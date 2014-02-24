@@ -4,10 +4,16 @@ PKG_NAME:=cfengine
 PKG_VERSION:=3.5.3
 PKG_RELEASE:=1
 
+#PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+#PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+#PKG_SOURCE_URL:=https://github.com/cfengine/core.git
+#PKG_SOURCE_PROTO:=git
+#PKG_SOURCE_VERSION:=3.5.3
+#PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/cfengine/core.git
-PKG_SOURCE_PROTO:=git
+#PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=http://cfengine.com/source-code/download?file=cfengine-3.5.3.tar.gz
 PKG_SOURCE_VERSION:=3.5.3
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -26,8 +32,17 @@ define Package/cfengine/description
 	Desc.
 endef
 
+	#cd $(PKG_BUILD_DIR) && ./autogen.sh \
+	#--prefix=/usr \
+	#--srcdir=$(PKG_BUILD_DIR) \
+	#--with-sysroot=$(PKG_BUILD_DIR) \
+	#--with-workdir=$(PKG_BUILD_DIR) \
+	#--enable-fhs \
+	#--disable-maintainer-mode \
+	#--without-libvirt
+
 define Build/Configure
-	cd $(PKG_BUILD_DIR) && ./autogen.sh
+	$(call Build/Configure/Default,--with-linux-headers=$(LINUX_DIR))
 endef
 
 #define Build/Compile
