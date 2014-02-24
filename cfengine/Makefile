@@ -19,7 +19,7 @@ define Package/cfengine
   SECTION:=admin
   CATEGORY:=Administration
   TITLE:=cfengine3
-  DEPENDS:=+libpcre +libopenssl +USE_UCLIBC
+  DEPENDS:=+libpcre +libopenssl +tokyocabinet
 endef
 
 define Package/cfengine/description
