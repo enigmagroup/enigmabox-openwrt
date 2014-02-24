@@ -38,7 +38,7 @@ endef
 	#$(call Build/Configure/Default,--with-linux-headers=$(LINUX_DIR))
 
 define Build/Configure
-	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh $(TARGET_CONFIGURE_OPTS)
+	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh --host=i486 --without-tokyocabinet $(TARGET_CONFIGURE_OPTS)
 endef
 
 #define Build/Compile
