@@ -1,7 +1,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=python-django14
+PKG_NAME:=python-django-1.4
 PKG_VERSION:=1.4.10
 PKG_RELEASE:=1
 
@@ -15,7 +15,7 @@ PKG_BUILD_DEPENDS:=python
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
 
-define Package/python-django14
+define Package/python-django-1.4
   SECTION:=language-python
   CATEGORY:=Languages
   SUBMENU:=Python
@@ -24,7 +24,7 @@ define Package/python-django14
   DEPENDS:=+python
 endef
 
-define Package/python-django14/description
+define Package/python-django-1.4/description
  Django is a high-level Python Web framework that encourages rapid
  development and clean, pragmatic design.
 endef
@@ -35,11 +35,11 @@ define Build/Compile
 	)
 endef
 
-define Package/python-django14/install
+define Package/python-django-1.4/install
 	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
 	$(CP) \
 		$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
 		$(1)$(PYTHON_PKG_DIR)/
 endef
 
-$(eval $(call BuildPackage,python-django14))
+$(eval $(call BuildPackage,python-django-1.4))
