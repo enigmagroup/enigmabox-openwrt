@@ -21,7 +21,7 @@ define Package/python-django-1.4
   SUBMENU:=Python
   TITLE:=Django Web framework v1.4
   URL:=https://www.djangoproject.com/
-  DEPENDS:=+python
+  DEPENDS:=+python +python-expat +python-json +python-sqlite3
 endef
 
 define Package/python-django-1.4/description

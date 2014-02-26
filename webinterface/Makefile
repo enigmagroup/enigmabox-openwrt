@@ -11,6 +11,7 @@ define Package/enigmabox-webinterface
   CATEGORY:=Enigmabox
   TITLE:=Enigmabox Webinterface
   DEFAULT:=y
+  DEPENDS:=+python-django-1.4
 endef
 
 define Package/enigmabox-webinterface/description
