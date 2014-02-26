@@ -21,7 +21,6 @@ define Package/django-south
   SUBMENU:=Python
   TITLE:=Django south 0.8.3
   URL:=http://south.aeracode.org/
-  DEPENDS:=+python-django-1.4
 endef
 
 define Package/django-south/description
