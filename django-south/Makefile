@@ -9,7 +9,7 @@ PKG_SOURCE:=south-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.aeracode.org/releases/south/
 PKG_MD5SUM:=672e6399d7acee82987dac7551ed812d
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/south-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/south-$(PKG_VERSION)/South-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=python
 
 include $(INCLUDE_DIR)/package.mk
