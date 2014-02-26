@@ -1,0 +1,87 @@
+{% load apptags %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Enigmabox Administration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/media/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/media/css/box.css?11" rel="stylesheet" media="screen">
+    <link href="/media/css/ansi2html.css" rel="stylesheet" media="screen">
+    <style>
+      body {
+        padding-top: 60px;
+      }
+    </style>
+    <script type="text/javascript">
+    translation = window.translation || {};
+    translation['are_you_sure'] = '{% trans "Are you sure?" %}';
+    translation['show'] = '{% trans "Show" %}';
+    </script>
+  </head>
+  <body>
+
+<div id="lockscreen"></div>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" title="Home" href="{% url app.views.home %}">Enigmabox Administration</a>
+{% if_config_changed object None %}
+      <a id="button-apply" href="{% url app.views.apply_changes %}" class="btn btn-danger">{% trans "Apply changes" %}</a>
+{% endif_config_changed %}
+        <ul class="nav pull-right">
+            <li class="divider-vertical"></li>
+            <!--<li><a title="Deine IPv6-Adresse" href="">{% display_ip %}</a></li>-->
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+{% get_language_info_list for LANGUAGES as languages %}
+{% for language in languages %}
+                    <li><a href="/i18n/setlang/{{ language.code }}/">{{ language.name_local|title }}</a></li>
+{% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <!--Sidebar content-->
+            <ul class="nav nav-list">
+                <li class=""><a href="/"><i class="icon-home"></i> {% trans "Welcome" %}</a></li>
+                <li class="nav-header">{% trans "System" %}</li>
+                <li class="{% active request 'addressbook' %}"><a href="{% url app.views.addressbook %}"><i class="icon-user"></i> {% trans "Addressbook" %}</a></li>
+                <li class="{% active request 'passwords' %}"><a href="{% url app.views.passwords %}"><i class="icon-lock"></i> {% trans "Passwords" %}</a></li>
+                <li class="{% active request 'backup' %}"><a href="{% url app.views.backup %}"><i class="icon-share"></i> {% trans "Backup &amp; restore" %}</a></li>
+{% if_config_changed object None %}
+                <li class="{% active request 'apply_changes' %}"><a href="{% url app.views.apply_changes %}"><i class="icon-circle-arrow-right"></i> {% trans "Apply changes" %}</a></li>
+{% endif_config_changed %}
+                <li class="nav-header">{% trans "Internet" %}</li>
+                <li class="{% active request 'countryselect' %}"><a href="{% url app.views.countryselect %}"><i class="icon-globe"></i> {% trans "Country selection" %}</a></li>
+                <li class="{% active request 'webfilter' %}"><a href="{% url app.views.webfilter %}"><i class="icon-ban-circle"></i> {% trans "Ad blocking" %}</a></li>
+                <li class="nav-header">{% trans "Network" %}</li>
+                <li class="{% active request 'peerings' %}"><a href="{% url app.views.peerings %}"><i class="icon-random"></i> {% trans "Peerings" %}</a></li>
+                <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i> {% trans "WLAN settings" %}&nbsp;<span class="label label-default">beta</span></a></li>
+                <li class="nav-header">{% trans "Services" %}</li>
+                <li class="{% active request 'teletext' %}"><a href="{% url app.views.teletext %}"><i class="icon-list"></i> {% trans "Teletext" %}&nbsp;<span class="label label-success">{% trans "New" %}</span></a></li>
+            </ul>
+        </div>
+        <div class="span10">
+
+        <!--Body content-->
+        {% block main %}[main]{% endblock %}
+
+        <p class="muted credit text-right">{% display_version %}</p>
+        </div>
+    </div>
+</div>
+
+    <script src="/media/js/jquery-2.0.2.min.js"></script>
+    <script src="/media/js/bootstrap.min.js"></script>
+    <script src="/media/js/box.js?11"></script>
+  </body>
+</html>

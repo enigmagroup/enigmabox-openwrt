@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+
+    <div class="container">
+
+      <h1>{% trans "Welcome" %}.</h1>
+{% if hostid %}
+      <p>{% trans "Your hostid is" %} <strong>{{ hostid }}</strong>. {% trans "Network access valid until" %} {{ internet_access }}.</p>
+{% endif %}
+
+      <hr />
+
+      <h5>{% trans "Applications" %}</h5>
+
+        <a href="/addressbook" class="btn btn-primary"><i class="icon icon-white icon-user"></i>&nbsp;{% trans "Addressbook" %}</a>
+        <a href="http://mail.box/" target="_blank" class="btn btn-primary"><i class="icon icon-white icon-envelope"></i>&nbsp;{% trans "Webmail" %}</a>
+{% if teletext_enabled == '1' %}
+        <a href="http://text.box/" target="_blank" class="btn btn-primary"><i class="icon icon-white icon-list"></i>&nbsp;{% trans "Teletext" %}</a>
+{% else %}
+        <a disabled="disabled" class="btn btn-primary"><i class="icon icon-white icon-list"></i>&nbsp;{% trans "Teletext" %}</a>
+{% endif %}
+
+      <hr />
+
+{% if teletext_enabled == '1' %}
+      <p>Unsere Nachrichtenagentur: <a href="http://text.box/fc80:56b5:b0ac:0c35:8e73:c9d1:5029:a6f2" target="_blank"><strong>N</strong>ews <strong>S</strong>uper <strong>A</strong>ktuell</a> im Teletext</p>
+
+      <hr />
+{% endif %}
+
+      <h5>{% trans "System status" %}</h5>
+
+        <a disabled="disabled" class="btn btn-{% btn_state netstat.dhcp '1' 'success' 'inverse' %}">{% trans "DHCP" %}</a>
+        <a disabled="disabled" class="btn btn-{% btn_state netstat.internet '1' 'success' 'inverse' %}">{% trans "Internet" %}</a>
+        <a disabled="disabled" class="btn btn-{% btn_state netstat.cjdns '1' 'success' 'inverse' %}">{% trans "cjdns" %}</a>
+        <a disabled="disabled" class="btn btn-{% btn_state netstat.cjdns_internet '1' 'success' 'inverse' %}">{% trans "Internet via cjdns" %}</a>
+
+      <hr />
+
+      <strong>{% trans "Connection info" %} {% trans "SSH access" %}:</strong><br />
+      <strong>{% trans "Username" %}:</strong> root<br />
+      <strong>{% trans "Password" %}:</strong> <span class="unveil" data-text="{{ root_password }}"></span><br />
+      <strong>{% trans "Server" %}:</strong> box<br />
+
+      <hr />
+
+      <br />
+    </div> <!-- /container -->
+{% endblock %}

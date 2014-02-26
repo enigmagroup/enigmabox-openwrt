@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Select country" %}</h1>
+      <p>{% trans "Choose over which country you want internet access." %}</p>
+      <br />
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+    <table class="table table-hover table-bordered" style="width: auto;">
+        <tbody>
+{% for countrycode, country in countries.items %}
+        <tr>
+    {% if countrycode == selected_country %}
+            <td><button id="{{ countrycode }}" name="country" type="text" class="btn btn-warning" value="{{ countrycode }}">{{ country }}</button></td>
+    {% else %}
+            <td><button id="{{ countrycode }}" name="country" type="text" class="btn btn-default" value="{{ countrycode }}">{{ country }}</button></td>
+    {% endif %}
+        </tr>
+{% endfor %}
+        </tbody>
+    </table>
+</form>
+
+      <p>{% trans "Note: It may take some time after a country switch until all contacts are reachable again!" %}</p>
+      <p>{% trans "If a server goes down, the next available server is automatically selected." %}</p>
+
+    </div> <!-- /container -->
+{% endblock %}

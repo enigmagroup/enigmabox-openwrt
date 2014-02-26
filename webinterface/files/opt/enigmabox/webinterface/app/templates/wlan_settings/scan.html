@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+    <ul class="breadcrumb">
+        <li><a href="{% url app.views.wlan_settings %}">{% trans "WLAN settings" %}</a> <span class="divider">/</span></li>
+        <li class="active">{% trans "Scan for WLAN networks" %}</li>
+    </ul>
+
+<p><a href="" class="btn btn-default">{% trans "Refresh" %}</a></p>
+<br />
+
+<form method="post" class="form-horizontal">
+
+    <table class="table table-hover table-bordered" style="width: auto;">
+        <thead>
+        <tr>
+            <th>{% trans "SSID" %}</th>
+            <th>{% trans "Quality" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+{% for cell in cells %}
+        <tr>
+            <form method="post" class="form-horizontal">
+            {% csrf_token %}
+                <td><button id="{{ cell.ssid }}" name="ssid" type="text" class="btn btn-default" value="{{ cell.ssid }}">{{ cell.ssid }}</button></td>
+                <td>{{ cell.quality }}</td>
+                <input type="hidden" name="security" value="{{ cell.security }}" />
+                <input type="hidden" name="group" value="{{ cell.group }}" />
+                <input type="hidden" name="pairwise" value="{{ cell.pairwise }}" />
+            </form>
+        </tr>
+{% endfor %}
+        </tbody>
+    </table>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}

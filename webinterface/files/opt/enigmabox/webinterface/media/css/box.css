@@ -1,0 +1,27 @@
+
+.ajax-loader {
+    background: url('/media/img/ajax-loader.gif');
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    margin-top: 3px;
+}
+
+.hidden {
+    display: none;
+}
+
+#lockscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    z-index: 9999;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+    display: none;
+}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Teletext" %}</h1>
+      <p>{% trans 'Teletext is a distributed Twitter clone.' %}</p>
+      <p>{% trans 'Publish telegrams, find other ciphernauts, coordinate a revolution below the radar.' %}</p>
+      <br />
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+
+<fieldset>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="teletext">{% trans "Enable Teletext" %}:</label>
+  <div class="controls">
+{% if teletext_enabled == '1' %}
+    <button id="teletext" name="teletext" class="btn btn-success">{% trans "Enabled" %}</button>
+{% else %}
+    <button id="teletext" name="teletext" class="btn btn-inverse">{% trans "Disabled" %}</button>
+{% endif %}
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}

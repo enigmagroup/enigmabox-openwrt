@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+        <ul class="breadcrumb">
+            <li><a href="{% url app.views.peerings %}">{% trans "Peerings" %}</a> <span class="divider">/</span></li>
+            <li class="active">{{ peering.address }}</li>
+        </ul>
+
+        <form method="post" class="form-horizontal">
+        {% csrf_token %}
+        <fieldset>
+
+        <!-- Form Name -->
+        <legend>{{ peering.address }}</legend>
+
+        <p>{% trans "Insert connection data to your peer" %}:</p>
+        <br />
+
+{% if form.errors %}
+<div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>{% trans "Error" %}:</strong>
+{{ form.errors }}
+</div>
+{% endif %}
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label">{% trans "Address" %}</label>
+          <div class="controls">
+            <input {% form_error form.address.errors %} id="address" name="address" type="text" value="{{ form.address.value }}" placeholder="{% trans "ip:port" %}" class="input-xlarge" />
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label">{% trans "Public key" %}</label>
+          <div class="controls">
+            <input {% form_error form.public_key.errors %} id="public_key" name="public_key" type="text" value="{{ form.public_key.value }}" placeholder="{% trans "publickey.k" %}" class="input-xlarge" />
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label">{% trans "Password" %}</label>
+          <div class="controls">
+            <input {% form_error form.password.errors %} id="password" name="password" type="text" value="{{ form.password.value }}" placeholder="{% trans "Password" %}" class="input-xlarge" />
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="control-group">
+          <label class="control-label">{% trans "Description" %}</label>
+          <div class="controls">
+            <textarea style="width: 270px;" rows="5" {% form_error form.description.errors %} id="description" name="description" placeholder="{% trans "Description (optional)" %}">{{ form.description.value }}</textarea>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label"></label>
+          <div class="controls">
+            <button id="submit" name="submit" value="save" class="btn btn-primary">{% trans "Save" %}</button>
+            <a href="{% url app.views.peerings %}" class="btn">{% trans "Cancel" %}</a>
+          </div>
+        </div>
+
+        <hr />
+
+{% if peering.address %}
+
+        <legend>{% trans "Remove peering" %}</legend>
+
+        <div class="control-group">
+          <div class="controls">
+            <button name="submit" value="delete" class="btn btn-danger confirmation">{% trans "Delete" %}</button>
+          </div>
+        </div>
+
+{% endif %}
+
+        </fieldset>
+        </form>
+
+    </div> <!-- /container -->
+{% endblock %}

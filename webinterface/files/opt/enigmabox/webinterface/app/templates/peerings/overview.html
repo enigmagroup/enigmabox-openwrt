@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Peerings" %}</h1>
+      <p>{% trans "Manage peerings (encrypted, direct connections to other cjdns users)" %}</p>
+
+      <legend>{% trans "Outgoing peerings" %}</legend>
+
+{% if peerings %}
+    <table class="table table-hover table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>{% trans "Peering address" %}</th>
+            <th>{% trans "Description" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for peering in peerings %}
+        <tr>
+            <td><a href="{% url app.views.peerings_edit peering.pk %}">{{ peering.address }}</a></td>
+            <td>{{ peering.description }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<a href="/peerings/new/" class="btn btn-primary">{% trans "New peering" %}</a>
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+<fieldset>
+
+<legend>{% trans "Incoming peering" %}</legend>
+
+<div class="control-group">
+  <label class="control-label" for="allow_peering">{% trans "Incoming peering" %}</label>
+  <div class="controls">
+{% if allow_peering == '1' %}
+    <button id="allow_peering" name="allow_peering" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+    <button id="allow_peering" name="allow_peering" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+{% endif %}
+  </div>
+</div>
+
+{% if allow_peering == '1' %}
+
+<div class="control-group">
+  <label class="control-label" for="peering_port">{% trans "Port" %}</label>
+  <div class="controls">
+    <input id="peering_port" name="peering_port" type="text" placeholder="47526" class="input-xlarge" value="{{ peering_port|default_if_none:'' }}">
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label" for="peering_password">{% trans "Password" %}</label>
+  <div class="controls">
+    <input id="peering_password" name="peering_password" type="text" placeholder="Password" class="input-xlarge" value="{{ peering_password|default_if_none:'' }}">
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label" for="save_peeringinfo"></label>
+  <div class="controls">
+    <button id="save_peeringinfo" name="save_peeringinfo" class="btn btn-primary" value="1">{% trans "Save" %}</button>
+  </div>
+</div>
+
+{% if peering_port and peering_password %}
+
+<div class="control-group">
+  <label class="control-label" for="peeringinfo">{% trans "Peering info" %}</label>
+  <div class="controls">
+    <input id="peeringinfo" name="peeringinfo" type="text" placeholder="" class="input-xlarge" value='"your.external.ip.goes.here:{{ peering_port }}":{"password":"{{ peering_password }}","publicKey":"{{ public_key }}"}'>
+    <p class="help-block">{% trans "Hand over that information to your peer!" %}</p>
+  </div>
+</div>
+
+{% endif %}
+{% endif %}
+
+</fieldset>
+</form>
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+<fieldset>
+
+<legend>{% trans "Autopeering" %}</legend>
+
+<div class="control-group">
+  <label class="control-label" for="autopeering">{% trans "Automatically connect to other cjdns nodes in the same LAN" %}</label>
+  <div class="controls">
+{% if autopeering == '1' %}
+    <button id="autopeering" name="autopeering" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+    <button id="autopeering" name="autopeering" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+{% endif %}
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}

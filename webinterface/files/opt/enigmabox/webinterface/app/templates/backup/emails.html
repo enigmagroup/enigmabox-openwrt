@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+    <ul class="breadcrumb">
+        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a> <span class="divider">/</span></li>
+        <li class="active">{% trans "emails" %}</li>
+    </ul>
+
+      <h1>{% trans "Backup &amp; restore emails" %}</h1>
+      <p>{% trans "Your email folder." %}</p>
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+<fieldset>
+
+<legend>{% trans "Backup emails" %}</legend>
+
+<!-- Button -->
+<div class="control-group">
+  <div class="controls">
+    <button name="backup" class="btn btn-primary" value="1">{% trans "Backup" %}</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+<form method="post" enctype="multipart/form-data" class="form-horizontal">
+{% csrf_token %}
+<fieldset>
+
+<legend>{% trans "Restore emails" %}</legend>
+
+<!-- File Button -->
+<div class="control-group">
+  <label class="control-label">{% trans "emails.tar.gz file:" %}</label>
+  <div class="controls">
+    <input name="file" class="input-file" type="file">
+  </div>
+</div>
+
+{% if msg %}
+{% if msg == 'backuperror' %}
+<div class="alert alert-error">
+{% trans "Error in creating backup" %}
+</div>
+{% endif %}
+{% if msg == 'restoreerror' %}
+<div class="alert alert-error">
+{% trans "Error restoring emails" %}
+</div>
+{% endif %}
+{% if msg == 'restoresuccess' %}
+<div class="alert alert-success">
+{% trans "Restore successful" %}
+</div>
+{% endif %}
+{% endif %}
+
+<div class="alert alert-notice">
+{% trans "Warning: all your emails currently stored on your box <strong>will be overwritten!</strong>" %}
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <div class="controls">
+    <button name="restore" class="btn btn-danger confirmation" value="1">{% trans "Restore" %}</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}

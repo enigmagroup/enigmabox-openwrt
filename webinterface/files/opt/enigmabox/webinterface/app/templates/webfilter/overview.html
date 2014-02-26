@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Ad blocking" %}</h1>
+      <p>{% trans "Filter out ads and trackers, block whole domains." %}</p>
+
+<div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>{% trans "Instructions" %}:</strong> {% trans '<a href="http://enigmabox.net/en/ad-blocking/" target="_blank">enigmabox.net/en/ad-blocking/</a>' %}
+</div>
+
+<br />
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+
+
+<ul class="nav nav-tabs" id="webfilter-tabs">
+  <li><a href="#general-config">{% trans "General configuration" %}</a></li>
+  <li><a href="#block-domains">{% trans "Block domains" %}</a></li>
+  <li><a href="#custom-rules">{% trans "Custom blocking rules" %}</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane" id="general-config">
+        <fieldset>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="filter-ads">{% trans "Filter ads and trackers" %}</label>
+          <div class="controls">
+{% if filter_ads == '1' %}
+            <button id="filter-ads" name="filter-ads" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+            <button id="filter-ads" name="filter-ads" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+{% endif %}
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="filter-headers">{% trans "Filter browser headers" %}</label>
+          <div class="controls">
+{% if filter_headers == '1' %}
+            <button id="filter-headers" name="filter-headers" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+            <button id="filter-headers" name="filter-headers" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+{% endif %}
+          </div>
+        </div>
+
+{% if filter_headers == '1' %}
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="disable-browser-ident">{% trans "Disable user agent" %}</label>
+          <div class="controls">
+{% if disable_browser_ident == '1' %}
+            <button id="disable-browser-ident" name="disable-browser-ident" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+            <button id="disable-browser-ident" name="disable-browser-ident" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+{% endif %}
+          </div>
+        </div>
+{% endif %}
+        </fieldset>
+    </div>
+
+    <div class="tab-pane" id="block-domains">
+        <fieldset>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="block-facebook">{% trans "Block Facebook" %}</label>
+          <div class="controls">
+{% if block_facebook == '1' %}
+            <button id="block-facebook" name="block-facebook" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+            <button id="block-facebook" name="block-facebook" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+{% endif %}
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="block-google">{% trans "Block Google" %}</label>
+          <div class="controls">
+{% if block_google == '1' %}
+            <button id="block-google" name="block-google" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+            <button id="block-google" name="block-google" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+{% endif %}
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="block-twitter">{% trans "Block Twitter" %}</label>
+          <div class="controls">
+{% if block_twitter == '1' %}
+            <button id="block-twitter" name="block-twitter" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+            <button id="block-twitter" name="block-twitter" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+{% endif %}
+          </div>
+        </div>
+        </fieldset>
+    </div>
+
+    <div class="tab-pane" id="custom-rules">
+        <fieldset>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="custom-rules">{% trans "Custom rules" %}</label>
+          <div class="controls">
+{% if custom_rules == '1' %}
+            <button id="custom-rules" name="custom-rules" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+            <button id="custom-rules" name="custom-rules" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+{% endif %}
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="control-group">
+          <label class="control-label" for="custom-rules-text">{% trans "Rules" %}</label>
+          <div class="controls">
+            <textarea id="custom-rules-text" name="custom-rules-text" class="input-xlarge" rows="10">{{ custom_rules_text }}</textarea>
+          </div>
+        </div>
+        </fieldset>
+
+        <!-- Button -->
+        <div class="control-group">
+          <div class="controls">
+            <button id="save-custom-rules" name="save-custom-rules" class="btn btn-primary">{% trans "Save" %}</button>
+          </div>
+        </div>
+    </div>
+</div>
+
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}
