@@ -18,6 +18,7 @@ define Package/exim4
   SECTION:=mail
   CATEGORY:=Mail
   TITLE:=Exim Internet Mailer Version 4
+  DEPENDS:=+libdb47
   URL:=http://www.exim.org/
 endef
 
@@ -29,9 +30,9 @@ define Build/Configure
 	cp ./files/Makefile $(PKG_BUILD_DIR)/Local/Makefile
 endef
 
-#define Build/Compile
-#	cd $(PKG_BUILD_DIR) && make
-#endef
+define Build/Compile
+	cd $(PKG_BUILD_DIR) && make
+endef
 
 define Package/exim4/install
 	$(INSTALL_DIR) $(1)/usr/sbin
