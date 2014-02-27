@@ -26,31 +26,9 @@ define Package/cfengine/description
 	Desc.
 endef
 
-	#cd $(PKG_BUILD_DIR) && ./autogen.sh \
-	#--prefix=/usr \
-	#--srcdir=$(PKG_BUILD_DIR) \
-	#--with-sysroot=$(PKG_BUILD_DIR) \
-	#--with-workdir=$(PKG_BUILD_DIR) \
-	#--enable-fhs \
-	#--disable-maintainer-mode \
-	#--without-libvirt
-
-	#$(call Build/Configure/Default,--with-linux-headers=$(LINUX_DIR))
-
 define Build/Configure
 	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh --host=i486 --target=i386-pc-linux-gnu $(TARGET_CONFIGURE_OPTS)
 endef
-
-#define Build/Compile
-#	CFLAGS="$(TARGET_CFLAGS) $(EXTRA_CPPFLAGS) " \
-#	LDFLAGS="$(EXTRA_LDFLAGS) " \
-#	cd $(PKG_BUILD_DIR)
-#	$(MAKE) -C $(PKG_BUILD_DIR) \
-#		$(TARGET_CONFIGURE_OPTS) \
-#		CROSS="$(TARGET_CROSS)" \
-#		CXXFLAGS="$(TARGET_CFLAGS) $(EXTRA_CPPFLAGS) " \
-#		ARCH="$(ARCH)";
-#endef
 
 define Package/cfengine/install
 	$(INSTALL_DIR) $(1)/opt/cfengine/bin
@@ -68,4 +46,4 @@ define Package/cfengine/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/libpromises/libpromises.la   $(1)/opt/cfengine/lib/libpromises.so.1.0.0
 endef
 
-$(eval $(call BuildPackage,cfengine,+libc))
+$(eval $(call BuildPackage,cfengine))
