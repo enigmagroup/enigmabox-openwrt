@@ -23,9 +23,9 @@ define Package/exim4/description
 	Description.
 endef
 
-define Build/Configure
-	cp ./files/Makefile $(PKG_BUILD_DIR)/Local/Makefile
-endef
+#define Build/Configure
+#	cp ./files/Makefile $(PKG_BUILD_DIR)/Local/Makefile
+#endef
 
 #define Build/Compile
 #endef
