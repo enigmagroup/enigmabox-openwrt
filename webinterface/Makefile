@@ -11,7 +11,7 @@ define Package/enigmabox-webinterface
   CATEGORY:=Enigmabox
   TITLE:=Enigmabox Webinterface
   URL:=http://enigmabox.net/en/
-  DEPENDS:=+python-django-1.4 +django-south +python-expat +python-json +python-sqlite3 +python-unidecode
+  DEPENDS:=+python-django-1.4 +django-south +python-expat +python-json +python-sqlite3 +python-unidecode +asterisk18
 endef
 
 define Package/enigmabox-webinterface/description
