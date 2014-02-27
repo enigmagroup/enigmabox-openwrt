@@ -10,6 +10,8 @@ PKG_MD5SUM:=7f7b50394f8f3d4141e7dca9392f62f0
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/exim-$(PKG_VERSION)
 
+CC="$(TARGET_CC)"
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/exim4
@@ -27,10 +29,12 @@ define Build/Configure
 	cp ./files/Makefile $(PKG_BUILD_DIR)/Local/Makefile
 endef
 
-define Build/Compile
-endef
+#define Build/Compile
+#	cd $(PKG_BUILD_DIR) && make
+#endef
 
 define Package/exim4/install
+	$(INSTALL_DIR) $(1)/usr/sbin
 endef
 
 $(eval $(call BuildPackage,exim4))
