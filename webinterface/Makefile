@@ -10,8 +10,8 @@ define Package/enigmabox-webinterface
   SECTION:=administration
   CATEGORY:=Enigmabox
   TITLE:=Enigmabox Webinterface
-  DEFAULT:=y
-  DEPENDS:=+python-django-1.4
+  URL:=http://enigmabox.net/en/
+  DEPENDS:=+python-django-1.4 +django-south +python-expat +python-json +python-sqlite3 +python-unidecode
 endef
 
 define Package/enigmabox-webinterface/description
