@@ -31,8 +31,7 @@
 # the C compiler; the overall default is gcc, but some OS Makefiles specify cc.
 # You can override anything that is set by putting CC=whatever in your
 # Local/Makefile.
-CC=cc
-ARCHTYPE=i386
+CC=ccache_cc
 
 # NOTE: You should never need to edit any of the distributed Makefiles; all
 # overriding can be done in your Local/Makefile(s). This will make it easier

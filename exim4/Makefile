@@ -31,7 +31,7 @@ define Build/Configure
 endef
 
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && make
+	cd $(PKG_BUILD_DIR) && EXIM_ARCHTYPE=i386 make
 endef
 
 define Package/exim4/install
