@@ -1,0 +1,13 @@
+--- a/OS/Makefile-Base
++++ b/OS/Makefile-Base
+@@ -112,8 +112,8 @@ allexim: config.h $(EXIM_MONITOR) exicyclog exinext exiwhat \
+ 
+ # Targets for special-purpose configuration header builders
+ buildconfig: buildconfig.c
+-	@echo "$(CC) buildconfig.c"
+-	$(FE)$(CC) $(CFLAGS) $(INCLUDE) -o buildconfig buildconfig.c $(LIBS)
++	@echo "$(HOSTCC) buildconfig.c"
++	$(FE)$(HOSTCC) $(HOSTCFLAGS) $(INCLUDE) -o buildconfig buildconfig.c $(LIBS)
+ 
+ 
+ # Target for the exicyclog utility script
