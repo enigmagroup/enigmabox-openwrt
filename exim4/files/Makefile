@@ -293,7 +293,7 @@ TRANSPORT_SMTP=yes
 # handled for you automatically by also defining the _PC variable to reference
 # the name of the pkg-config package, if such is available.
 
-LOOKUP_DBM=yes
+LOOKUP_DBM=no
 LOOKUP_LSEARCH=yes
 LOOKUP_DNSDB=yes
 
@@ -662,12 +662,15 @@ HEADERS_CHARSET="ISO-8859-1"
 # and its header file are not in the default places. You might need to use
 # something like this:
 #
-# HAVE_ICONV=yes
+HAVE_ICONV=no
 # CFLAGS=-O -I/usr/local/include
 # EXTRALIBS_EXIM=-L/usr/local/lib -liconv
 #
 # but of course there may need to be other things in CFLAGS and EXTRALIBS_EXIM
 # as well.
+#CFLAGS="-Os -pipe -march=i486 -fno-caller-saves -fhonour-copts -Wno-error=unused-but-set-variable"
+#CFLAGS="$(TARGET_CFLAGS)"
+CFLAGS=-O -I/usr/local/include
 
 
 #------------------------------------------------------------------------------
