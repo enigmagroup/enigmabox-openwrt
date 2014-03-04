@@ -1,14 +1,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cfengine
-PKG_VERSION:=3.5.3
+PKG_VERSION:=3.6.0b1-build4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/cfengine/core.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=3.5.3
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 CC="$(TARGET_CC)"
@@ -19,7 +19,7 @@ define Package/cfengine
   SECTION:=admin
   CATEGORY:=Administration
   TITLE:=cfengine3
-  DEPENDS:=+libpcre +libopenssl +tokyocabinet +libxml2
+  DEPENDS:=+libpcre +libopenssl +tokyocabinet +libxml2 +qdbm
 endef
 
 define Package/cfengine/description
