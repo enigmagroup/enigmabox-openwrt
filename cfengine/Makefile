@@ -19,7 +19,7 @@ define Package/cfengine
   SECTION:=admin
   CATEGORY:=Administration
   TITLE:=cfengine3
-  DEPENDS:=+libpcre +libopenssl +libxml2 +qdbm
+  DEPENDS:=+libpcre +libopenssl +libxml2 +libtokiocabinet
 endef
 
 define Package/cfengine/description
@@ -27,7 +27,7 @@ define Package/cfengine/description
 endef
 
 define Build/Configure
-	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh --host=i486 --target=i386-pc-linux-gnu $(TARGET_CONFIGURE_OPTS)
+	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh --host=i486 --target=i386-pc-linux-gnu --with-tokyocabinet $(TARGET_CONFIGURE_OPTS)
 endef
 
 define Package/cfengine/install
