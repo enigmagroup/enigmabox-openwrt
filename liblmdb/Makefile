@@ -26,7 +26,7 @@ define Package/liblmdb/description
 endef
 
 define Build/Compile
-	cd $(PKG_BUILD_DIR)/libraries/liblmdb && CFLAGS="$(TARGET_CFLAGS)" make
+	cd $(PKG_BUILD_DIR)/libraries/liblmdb && $(CC) $(TARGET_CFLAGS) -c mdb.c
 endef
 
 define Package/liblmdb/install
