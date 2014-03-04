@@ -18,7 +18,7 @@ define Package/exim4
   SECTION:=mail
   CATEGORY:=Mail
   TITLE:=Exim Internet Mailer Version 4
-  DEPENDS:=+libdb47 +libiconv
+  DEPENDS:=+libdb47 +libiconv +libpcre
   URL:=http://www.exim.org/
 endef
 
