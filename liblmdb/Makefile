@@ -9,7 +9,7 @@ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://git.gitorious.org/mdb/mdb.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_VERSION)
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/libraries/liblmdb
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 CC="$(TARGET_CC)"
 
@@ -25,9 +25,9 @@ define Package/liblmdb/description
 	Desc.
 endef
 
-#define Build/Configure
-#	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh --host=i486 --target=i386-pc-linux-gnu $(TARGET_CONFIGURE_OPTS)
-#endef
+define Build/Compile
+	cd $(PKG_BUILD_DIR)/libraries/liblmdb && CFLAGS="$(TARGET_CFLAGS)" make
+endef
 
 define Package/liblmdb/install
 	$(INSTALL_DIR) $(1)/usr
