@@ -1,0 +1,11 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -667,7 +667,7 @@ CF3_WITH_LIBRARY(pam, [
+ ])
+ dnl These platforms must have pam, others can have it, but not required.
+ AS_CASE([$target_os],
+-        [*gnu*|*solaris*|*aix*|*hpux*|*hp-ux*], [
++        [*solaris*|*aix*|*hpux*|*hp-ux*], [
+             AS_IF([test "x$ac_cv_lib_pam_pam_start" != "xyes"],
+                   [AC_MSG_ERROR(Cannot find PAM library)]
+             )
