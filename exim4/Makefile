@@ -35,7 +35,23 @@ define Build/Compile
 endef
 
 define Package/exim4/install
-	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_DIR) $(1)/usr/exim/bin
+
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim $(1)/usr/exim/bin/exim
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_dumpdb $(1)/usr/exim/bin/exim_dumpdb
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_fixdb $(1)/usr/exim/bin/exim_fixdb
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_tidydb $(1)/usr/exim/bin/exim_tidydb
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exinext $(1)/usr/exim/bin/exinext
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exiwhat $(1)/usr/exim/bin/exiwhat
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_dbmbuild $(1)/usr/exim/bin/exim_dbmbuild
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exicyclog $(1)/usr/exim/bin/exicyclog
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exigrep $(1)/usr/exim/bin/exigrep
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/eximstats $(1)/usr/exim/bin/eximstats
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exipick $(1)/usr/exim/bin/exipick
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exiqgrep $(1)/usr/exim/bin/exiqgrep
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exiqsumm $(1)/usr/exim/bin/exiqsumm
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_lock $(1)/usr/exim/bin/exim_lock
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_checkaccess $(1)/usr/exim/bin/exim_checkaccess
 endef
 
 $(eval $(call BuildPackage,exim4))
