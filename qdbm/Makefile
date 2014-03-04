@@ -28,9 +28,8 @@ define Build/Configure
   $(call Build/Configure/Default,--with-linux-headers=$(LINUX_DIR))
 endef
 
-#define Package/qdbm/install
-#        $(INSTALL_DIR) $(1)/usr/sbin
-#        $(INSTALL_BIN) $(PKG_BUILD_DIR)/brctl/brctl $(1)/usr/sbin/
-#endef
+define Package/qdbm/install
+	$(INSTALL_DIR) $(1)/usr/sbin
+endef
 
 $(eval $(call BuildPackage,qdbm))
