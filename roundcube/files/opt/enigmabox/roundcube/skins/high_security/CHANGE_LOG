@@ -1,0 +1,82 @@
+3.5.1 (2013-09-12)
+==================
+- upgraded the skin to be compatible with Roundcube 0.9.4
+
+3.5 (2013-04-22)
+================
+- upgraded the skin to be compatible with Roundcube 0.9
+
+3.4 (2012-12-10)
+================
+- fixed login logo code
+- upgraded the skin to be compatible with some third-party plugins
+
+3.3 (2012-10-17)
+================
+- upgraded the skin to be compatible with Roundcube 0.8.2
+
+3.2 (2012-10-12)
+================
+- re-created the skin based on Larry instead of Default
+
+3.1 (2012-08-10)
+================
+- made the theme compatible with Roundcube 0.8
+- fixed popup window background display on IE8
+
+3.0 (2012-04-17)
+================
+- added refresh mail button
+- added indication of which folder is selected in folder list
+- added scrolling in folder list
+- added left panel resizing to the mail list page
+- added left panel resizing to compose page
+- added left panel resizing to the address book page
+- added icons to address book groups
+- added back button to toolbar
+- added refresh button to toolbar
+- added folder expanding/collapsing functionality
+- added folder list drop target indication
+- eliminated rounded corner images and replaced them with css 3 styling
+- enabled list sort header inverted coloring
+- fixed inactive button transparency
+- fixed markasjunk plugin images
+- fixed problems with plugins adding icons to toolbar
+- fixed help screen display
+- fixed tabbed header display
+- fixed fieldset box display
+- fixed plugin content positioning
+- fixed display of error messages
+- fixed the problem with the blocked images functionality
+- changed logo and watermark
+
+2.0.3 (2011-12-30)
+==================
+- ensured compatibility with RoundCube 0.7
+- fixed the replied and forwarded message icon display
+- fixed sidebar background display
+
+2.0.2 (2011-11-11)
+==================
+- fixed the problem that didn't allow plugins to place their buttons on the settings bar
+
+2.0.1 (2011-10-31)
+==================
+- fixed some display problems on IE 7 & 8
+
+2.0 (2011-10-18)
+================
+- upgraded the theme to work under Roundcube 0.6
+  - support for advanced address search
+  - support for new address handling
+  - support for contact images
+  - support for attachment/inline forwarding options
+
+- added missing logo on settings pages
+- fixed various display problems
+- changed favicon
+
+1.1 (2011-08-26)
+================
+- fixed mail column width display
+- fixed the inline display of PDF files

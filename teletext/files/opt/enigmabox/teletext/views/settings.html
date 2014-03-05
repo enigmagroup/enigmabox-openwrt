@@ -1,0 +1,82 @@
+
+<div class="row profile_header">
+    <div class="span8 offset1">
+<form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Settings</legend>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="username">Username</label>
+  <div class="controls">
+    <input id="username" name="username" type="text" placeholder="Your name" class="input-xlarge" value="{{username}}">
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="control-group">
+  <label class="control-label" for="bio">Bio</label>
+  <div class="controls">
+    <textarea id="bio" name="bio" class="input-xlarge" rows="3">{{bio}}</textarea>
+  </div>
+</div>
+
+% from time import strftime
+% now = strftime('%M%S')
+<!-- File Button -->
+<div class="control-group">
+  <label class="control-label" for="image">Profile image</label>
+  <div class="controls">
+    <img class="img-rounded" src="/static/img/profile/{{my_ipv6}}.png?{{now}}" alt="" />
+    <input id="image" name="image" class="input-file" type="file">
+  </div>
+</div>
+
+<!-- Multiple Checkboxes (inline) -->
+<div class="control-group">
+  <label class="control-label" for="show_subscribers">Show subscribers</label>
+  <div class="controls">
+    <label class="checkbox" for="show_subscribers-0">
+%if show_subscribers == '1':
+      <input type="checkbox" name="show_subscribers" id="show_subscribers-0" value="1" checked="checked">
+%else:
+      <input type="checkbox" name="show_subscribers" id="show_subscribers-0" value="1">
+%end
+      Allow people to see my subscribers
+    </label>
+  </div>
+  <label class="control-label" for="show_subscriptions">Show subscriptions</label>
+  <div class="controls">
+    <label class="checkbox" for="show_subscriptions-0">
+%if show_subscriptions == '1':
+      <input type="checkbox" name="show_subscriptions" id="show_subscriptions-0" value="1" checked="checked">
+%else:
+      <input type="checkbox" name="show_subscriptions" id="show_subscriptions-0" value="1">
+%end
+      Allow people to see my subscriptions
+    </label>
+  </div>
+</div>
+
+%if message[0] != '':
+<div class="alert alert-{{message[0]}}">
+    {{message[1]}}
+</div>
+%end
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="save"></label>
+  <div class="controls">
+    <button id="save" name="save" class="btn btn-primary" value="1">Save settings</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+    </div>
+</div>
+
+%rebase _layout my_ipv6=my_ipv6, pending_requests=pending_requests

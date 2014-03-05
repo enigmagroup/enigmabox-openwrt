@@ -1,0 +1,37 @@
+
+%if not defined('xhr'):
+<form method="post" action="">
+<div class="row">
+    <div class="span8 offset1">
+    %if xhr_url != '':
+        <ul class="user_list xhr" data-xhr-url="{{xhr_url}}">
+    %else:
+        <ul class="user_list">
+    %end
+%end
+        %for user in user_list:
+            <li>
+                <div class="row-fluid">
+                    <div class="profile-image">
+                        <img class="img-rounded" src="/static/img/profile/{{user['ipv6']}}.png" alt="" onerror="imgError(this);" />
+                    </div>
+                    <div class="span8">
+                        <div class="author"><a href="/{{user['ipv6']}}">{{user['name']}}</a></div>
+                        <div class="ipv6">{{user['ipv6']}}</div>
+                    </div>
+                    <div class="span2">
+                    %if user['subscribed']:
+                        <button name="unsubscribe" class="btn btn-success subscribe" value="{{user['ipv6']}}">Subscribed</button>
+                    %else:
+                        <button name="subscribe" class="btn btn-default subscribe" value="{{user['ipv6']}}">Subscribe</button>
+                    %end
+                    </div>
+                </div>
+            </li>
+        %end
+%if not defined('xhr'):
+        </ul>
+    </div>
+</div>
+</form>
+%end

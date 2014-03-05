@@ -1,0 +1,28 @@
+
+<form class="form-horizontal" method="post" action="/new_telegram">
+
+<fieldset>
+
+<!-- Textarea -->
+<div class="control-group">
+  <label class="control-label" for="telegram">Telegram</label>
+  <div class="controls">
+    <textarea id="telegram" name="telegram" class="input-xxlarge" rows="5"></textarea>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <div class="controls">
+    <button id="transmit" name="transmit" class="btn btn-default"><i class="icon-bullhorn"></i>&nbsp;Transmit</button>
+    <span class="charcounter">256</span>
+  </div>
+</div>
+</fieldset>
+</form>
+
+%include timeline telegrams=telegrams, xhr_url=xhr_url, my_ipv6=my_ipv6
+
+%include modal_window
+
+%rebase _layout my_ipv6=my_ipv6, pending_requests=pending_requests

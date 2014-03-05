@@ -1,0 +1,50 @@
+
+<div class="row profile_header">
+    <div class="span8 offset1">
+        <div class="user_block">
+            <div class="profile_image"><img class="img-circle" src="/static/img/profile/{{ipv6}}.png" alt="" onerror="imgError(this);" /></div>
+            <div class="username">{{username}}</div>
+            <div class="ipv6">{{ipv6}}</div>
+            <div class="bio">{{!bio}}</div>
+        </div>
+        <div class="stats_block">
+            <div class="block">
+                <a href="/{{ipv6}}"><strong>{{transmissions}}</strong>Transmissions</a>
+            </div>
+            <div class="block">
+                <a href="/{{ipv6}}/subscriptions"><strong>{{subscriptions}}</strong>Subscriptions</a>
+            </div>
+            <div class="block">
+                <a href="/{{ipv6}}/subscribers"><strong>{{subscribers}}</strong>Subscribers</a>
+            </div>
+%if ipv6 != my_ipv6:
+            <div class="buttonblock">
+%if subscribed:
+                <button name="unsubscribe" class="btn btn-success subscribe" value="{{ipv6}}">Subscribed</button>
+%else:
+                <button name="subscribe" class="btn btn-default subscribe" value="{{ipv6}}">Subscribe</button>
+%end
+                <div class="btn-group">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addressbook/requests/{{ipv6}}">Add to Enigmabox address book...</a></li>
+                    </ul>
+                </div>
+            </div>
+%end
+        </div>
+    </div>
+</div>
+
+%if template == 'timeline':
+    %include timeline telegrams=telegrams, xhr_url=xhr_url, my_ipv6=my_ipv6
+%elif template == 'user_list':
+    %include user_list user_list=user_list, xhr_url=xhr_url, my_ipv6=my_ipv6
+%end
+
+%include modal_window
+
+%rebase _layout my_ipv6=my_ipv6, pending_requests=pending_requests

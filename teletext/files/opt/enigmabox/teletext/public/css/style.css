@@ -1,0 +1,302 @@
+
+/* telegram form */
+
+.charcounter {
+    position: absolute;
+    margin: 5px 0 0 16px;
+    font-size: 20px;
+}
+
+.warning {
+    color: #d00;
+}
+
+
+
+/* timeline */
+
+ul.timeline, ul.user_list {
+    margin: 0 0 130px 0;
+}
+
+.timeline li, .user_list li {
+    list-style-type: none;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+.timeline li:hover, .user_list li:hover {
+    background: #f9f9f9;
+}
+
+.timeline .profile-image {
+    width: 50px;
+    margin: 5px -5px 0 0;
+    display: inline;
+    float: left;
+}
+
+.timeline img {
+    width: 48px;
+}
+
+.timeline .author a {
+    color: #768fac;
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+}
+
+.timeline .ipv6 {
+    color: #999;
+}
+
+.timeline .text {
+    color: #663b12;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.timeline .created_at,
+.timeline .created_at a {
+    color: #999;
+    font-size: 12px;
+}
+
+.timeline .retransmit {
+    color: #999;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+.timeline .delete {
+    color: #999;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+
+
+/* modal telegram */
+
+.modal-body li, .user_list li {
+    list-style-type: none;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+.modal-body li:hover, .user_list li:hover {
+    background: #f9f9f9;
+}
+
+.modal-body .profile-image {
+    width: 50px;
+    margin: 5px -5px 0 0;
+    display: inline;
+    float: left;
+}
+
+.modal-body img {
+    width: 48px;
+}
+
+.modal-body .author a {
+    color: #768fac;
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+}
+
+.modal-body .ipv6 {
+    color: #999;
+}
+
+.modal-body .text {
+    color: #663b12;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.modal-body .created_at a {
+    color: #999;
+    font-size: 12px;
+}
+
+.modal-body .retransmit,
+.modal-body .delete {
+    display: none;
+}
+
+
+
+/* telegram */
+
+ul.telegram, ul.user_list {
+    margin: 0 0 130px 0;
+}
+
+.telegram li, .user_list li {
+    list-style-type: none;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+.telegram .profile-image {
+    width: 50px;
+    margin: 5px -5px 0 0;
+    display: inline;
+    float: left;
+}
+
+.telegram img {
+    width: 48px;
+}
+
+.telegram .author a {
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0 0 0;
+}
+
+.telegram .ipv6 {
+    color: #999;
+}
+
+.telegram .text {
+    font-family: Georgia,"Times New Roman",serif;
+    color: #663b12;
+    font-size: 25px;
+    line-height: 33px;
+    margin: 15px 0 5px;
+}
+
+.telegram .created_at,
+.telegram .created_at a {
+    color: #999;
+    font-size: 12px;
+}
+
+.telegram .retransmit {
+    color: #999;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+.telegram .delete {
+    color: #999;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+
+
+/* user_list */
+
+.user_list .author a {
+    color: #768fac;
+    font-weight: bold;
+}
+
+.user_list .ipv6 {
+    color: #999;
+}
+
+.user_list button {
+    margin-top: 10px;
+}
+
+.user_list .profile-image {
+    width: 50px;
+    margin: 5px -5px 0 0;
+    display: inline;
+    float: left;
+}
+
+.user_list img {
+    width: 48px;
+}
+
+
+
+/* profile_header */
+
+.profile_header {
+    margin-bottom: 20px;
+}
+
+.profile_header .profile_image {
+    text-align: center;
+}
+
+.profile_header .bio {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.profile_header .user_block {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+.profile_header .user_block .username {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+.profile_header .user_block .ipv6 {
+    color: #999;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.profile_header .stats_block {
+    height: 55px;
+    border-bottom: 1px solid #ccc;
+}
+
+.profile_header .stats_block .block {
+    float: left;
+    margin: 8px 40px 0 10px;
+    text-align: center;
+}
+
+.profile_header .stats_block .block a {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #999;
+}
+
+.profile_header .stats_block .block a:hover,
+.profile_header .stats_block .block strong:hover {
+    text-decoration: none;
+    color: #768fac;
+}
+
+.profile_header .stats_block .block strong {
+    display: block;
+    font-size: 20px;
+    color: #333;
+}
+
+.profile_header .stats_block .buttonblock {
+    margin: 10px 10px 0 0;
+    float: right;
+}
+

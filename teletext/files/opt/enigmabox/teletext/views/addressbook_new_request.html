@@ -1,0 +1,46 @@
+
+<form action="" method="post" class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>New contact request</legend>
+
+%if addrbook_url != '':
+<div class="alert alert-success">
+    Request sent successfully.
+</div>
+
+<a href="{{addrbook_url}}" target="_blank" class="btn btn-success btn-xlarge">Open address book...</a>
+
+%else:
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="ipv6">To</label>
+  <div class="controls">
+    <input id="ipv6" name="ipv6" type="text" placeholder="" class="input-xlarge" value="{{ipv6}}">
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="control-group">
+  <label class="control-label" for="comments">Comments</label>
+  <div class="controls">
+    <textarea id="comments" name="comments" class="input-xlarge" rows="3"></textarea>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="send_request"></label>
+  <div class="controls">
+    <button id="send_request" name="send_request" class="btn btn-primary" value="1">Send</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+%end
+
+%rebase _layout my_ipv6=my_ipv6, pending_requests=pending_requests

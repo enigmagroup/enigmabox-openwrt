@@ -1,0 +1,40 @@
+Alpha skin for Roundcube (http://roundcube.net)
+================================================================
+
+Alpha is a Roundcube skin for desktop browsers. It is meant to be used together with its counterpart skins for phone and tablet devices and two accompanying plugins:
+
+rcs_mobile_switch - this plugin will load the correct skin based on the device used,
+rcs_mobile_options - this plugin will allow the user to set different skins to be used on desktop, tablet and phone devices.
+
+Roundcube compatibility
+-----------------------
+
+The skin is fully compatible with Roundcube 0.9. It might work with earlier versions of Roundcube, but it's not guaranteed.
+
+Browser compatibility
+---------------------
+
+The skin is compatible with all modern browsers.
+
+Installation
+------------
+
+1. Install the skin:
+
+Copy the directory "alpha" to the "skins" directory of your Roundcube.
+
+2. Install the rcs plugins and the plugin skin templates:
+
+Copy the contents of the "plugins" directory from the installation package to the "plugins" directory of your Roundcube.
+
+3. Set the skin as default:
+
+Edit the file "config/main.inc.php" and set the 'skin' variable this way:
+
+$rcmail_config['skin'] = 'alpha';
+
+4. Enable the rcs plugins:
+
+Find the variable 'plugins' in the file "config/main.inc.php" and add rcs_mobile_options and rcs_mobile_switch to the array, like this:
+
+$rcmail_config['plugins'] = array("rcs_mobile_options", "rcs_mobile_switch");

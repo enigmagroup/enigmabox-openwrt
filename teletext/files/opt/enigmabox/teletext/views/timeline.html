@@ -1,0 +1,49 @@
+
+%if not defined('xhr'):
+<div class="row">
+    <div class="span8 offset1">
+        <ul class="timeline xhr" data-xhr-url="{{xhr_url}}">
+%end
+        %for telegram in telegrams:
+            <li>
+            %if telegram['retransmission_from']:
+                <div class="row-fluid">
+                    <div class="profile-image">
+                        <img class="img-rounded" src="/static/img/profile/{{telegram['retransmission_from']}}.png" alt="" />
+                    </div>
+                    <div class="span10">
+                        <div class="author"><a href="/{{telegram['retransmission_from']}}">{{telegram['retransmission_from_author']}}</a></div>
+                        <div class="ipv6">{{telegram['retransmission_from']}}</div>
+                        <div class="text">{{!telegram['text']}}</div>
+                        <div class="created_at" data-created_at="{{telegram['created_at']}}">
+                            <a href="/{{telegram['ipv6']}}/{{telegram['created_at']}}">{{telegram['created_at_formatted']}}</a>
+                            &ndash;&nbsp;<a href="/{{telegram['retransmission_from']}}/{{telegram['retransmission_original_time']}}">Original transmission</a>
+                        </div>
+                    %if (telegram['ipv6'] != my_ipv6) and (telegram['retransmission_from'] != my_ipv6):
+                        <div class="retransmit" data-author="{{telegram['ipv6']}}" data-created_at="{{telegram['created_at']}}"><i class="icon-retweet"></i>&nbsp;Retransmit</div>
+                    %end
+                    </div>
+                </div>
+            %else:
+                <div class="row-fluid">
+                    <div class="profile-image">
+                        <img class="img-rounded" src="/static/img/profile/{{telegram['ipv6']}}.png" alt="" />
+                    </div>
+                    <div class="span10">
+                        <div class="author"><a href="/{{telegram['ipv6']}}">{{telegram['author']}}</a></div>
+                        <div class="ipv6">{{telegram['ipv6']}}</div>
+                        <div class="text">{{!telegram['text']}}</div>
+                        <div class="created_at" data-created_at="{{telegram['created_at']}}"><a href="/{{telegram['ipv6']}}/{{telegram['created_at']}}">{{telegram['created_at_formatted']}}</a></div>
+                    %if telegram['ipv6'] != my_ipv6:
+                        <div class="retransmit" data-author="{{telegram['ipv6']}}" data-created_at="{{telegram['created_at']}}"><i class="icon-retweet"></i>&nbsp;Retransmit</div>
+                    %end
+                    </div>
+                </div>
+            %end
+            </li>
+        %end
+%if not defined('xhr'):
+        </ul>
+    </div>
+</div>
+%end

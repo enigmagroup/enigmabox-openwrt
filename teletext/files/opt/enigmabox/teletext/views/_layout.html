@@ -1,0 +1,103 @@
+%from bottle import request
+%from urllib import unquote
+%urlpath = unquote(request.urlparts.path)
+%active_menu = 'home'
+%if my_ipv6 != None and my_ipv6 in urlpath:
+%    active_menu = 'me'
+%end
+%if '/addressbook' in urlpath:
+%    active_menu = 'addressbook'
+%end
+%if '/settings' in urlpath:
+%    active_menu = 'settings'
+%end
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Teletext</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/css/style.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <script>
+function imgError(image) {
+    image.onerror = "";
+    image.src = "/static/img/no-avatar.png";
+    return true;
+}
+    </script>
+	<link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="/static/favicon.ico">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">Teletext</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+            %if active_menu == 'home':
+              <li class="active"><a href="/"><i class="icon-home icon-white"></i>&nbsp;Home</a></li>
+            %else:
+              <li><a href="/"><i class="icon-home icon-white"></i>&nbsp;Home</a></li>
+            %end
+            %if active_menu == 'me':
+              <li class="active"><a href="/{{my_ipv6}}"><i class="icon-user icon-white"></i>&nbsp;Me</a></li>
+            %else:
+              <li><a href="/{{my_ipv6}}"><i class="icon-user icon-white"></i>&nbsp;Me</a></li>
+            %end
+            %if active_menu == 'addressbook':
+              <li class="active"><a href="/addressbook"><i class="icon-book icon-white"></i>&nbsp;Enigmabox address book</a></li>
+            %else:
+              <li><a href="/addressbook"><i class="icon-book icon-white"></i>&nbsp;Enigmabox address book</a></li>
+            %end
+            %if pending_requests:
+              <a href="/addressbook/requests" class="btn btn-warning"><i class="icon-resize-small icon-white"></i>&nbsp;New contact request</a>
+            %end
+            </ul>
+            <ul class="nav pull-right">
+                <li class="divider-vertical"></li>
+            %if active_menu == 'settings':
+                <li class="active"><a href="/settings"><i class="icon-wrench icon-white"></i>&nbsp;Settings</a></li>
+            %else:
+                <li><a href="/settings"><i class="icon-wrench icon-white"></i>&nbsp;Settings</a></li>
+            %end
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+        %include
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/default.js"></script>
+
+  </body>
+</html>

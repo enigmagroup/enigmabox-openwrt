@@ -1,0 +1,47 @@
+
+<form action="" method="post" class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>New contact request</legend>
+
+%if addrbook_url != '':
+<div class="alert alert-success">
+    Contact confirmed successfully.
+</div>
+
+<a href="{{addrbook_url}}" target="_blank" class="btn btn-success btn-xlarge">Open address book...</a>
+
+%else:
+
+<div class="row">
+    <div class="span8 offset1">
+        <ul class="user_list">
+        %for user in requests_list:
+            <li>
+                <div class="row-fluid">
+                    <div class="profile-image">
+                        <img class="img-rounded" src="/static/img/profile/{{user['ipv6']}}.png" alt="" onerror="imgError(this);" />
+                    </div>
+                    <div class="span7">
+                        <div class="author"><a href="/{{user['ipv6']}}">{{user['name']}}</a></div>
+                        <div class="ipv6">{{user['ipv6']}}</div>
+                        <div class="text">{{user['comments']}}</div>
+                    </div>
+                    <div class="span3">
+                        <button name="confirm_request" class="btn btn-success" value="{{user['ipv6']}}">Confirm</button>
+                        <button name="decline_request" class="btn btn-danger" value="{{user['ipv6']}}">Decline</button>
+                    </div>
+                </div>
+            </li>
+        %end
+        </ul>
+    </div>
+</div>
+
+</fieldset>
+</form>
+
+%end
+
+%rebase _layout my_ipv6=my_ipv6, pending_requests=pending_requests

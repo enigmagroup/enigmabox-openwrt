@@ -1,0 +1,14 @@
+
+<div class="row profile_header">
+    <div class="span8 offset1">
+    <h3>Add contacts from the Enigmabox address book</h3>
+    </div>
+</div>
+
+%if not defined('xhr_url'):
+%    xhr_url = ''
+%end
+
+%include user_list user_list=user_list, xhr_url=xhr_url
+
+%rebase _layout my_ipv6=my_ipv6, pending_requests=pending_requests
