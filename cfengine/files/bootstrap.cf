@@ -1,0 +1,19 @@
+#!/opt/cfengine/bin/cf-agent --no-lock
+body common control
+{
+  bundlesequence => { "hello_world" };
+}
+
+bundle agent hello_world
+# @brief Say Hi to everyone and introduce yourself
+{
+
+  reports:
+
+    any::
+
+      "Hello World! I am $(sys.fqhost) and it is $(sys.date)"
+        comment => "It's nice to introduce yourself when you say hello";
+
+
+}
