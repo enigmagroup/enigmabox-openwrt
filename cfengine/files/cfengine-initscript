@@ -1,0 +1,18 @@
+#!/bin/sh /etc/rc.common
+# Example script
+# Copyright (C) 2007 OpenWrt.org
+ 
+START=10
+STOP=15
+ 
+start() {
+    echo start
+    mkdir -p /var/cfengine/bin
+    cp /opt/cfengine/bin/cf-promises /var/cfengine/bin
+    /opt/cfengine/bin/cf-key
+    echo started.
+}
+ 
+stop() {
+    echo stop
+}

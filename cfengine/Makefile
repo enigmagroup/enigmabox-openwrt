@@ -45,6 +45,8 @@ define Package/cfengine/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/libpromises/libpromises.la $(1)/opt/cfengine/lib/cf-libpromises.la
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/libpromises/libpromises.la $(1)/opt/cfengine/lib/libpromises.so.1.0.0
 
+	$(INSTALL_BIN) ./files/cfengine-initscript $(1)/etc/init.d/cfengine
+
 	$(INSTALL_DIR) $(1)/opt/enigmabox/cfengine
 	$(INSTALL_BIN) ./files/bootstrap.cf $(1)/opt/enigmabox/cfengine/bootstrap.cf
 endef
