@@ -1,0 +1,12 @@
+
+bundle agent network
+{
+  files:
+      "/etc/hosts"
+      edit_template => "templates/hosts";
+
+  reports:
+    any::
+      "/etc/hosts customized";
+}
+
