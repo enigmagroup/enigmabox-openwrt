@@ -28,6 +28,7 @@ define Package/cfengine-policies/install
 	$(INSTALL_BIN) ./files/bootstrap.cf $(1)/opt/cfengine/bootstrap.cf
 
 	$(INSTALL_DIR) $(1)/opt/enigmabox/cfengine-policies
+	cp -r ./files/* /opt/enigmabox/cfengine-policies/
 endef
 
 $(eval $(call BuildPackage,cfengine-policies))
