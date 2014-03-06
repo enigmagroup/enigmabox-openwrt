@@ -2,12 +2,12 @@
 
 body common control
 {
-        bundlesequence => {
-                  "hello_world",
-                  };
+      bundlesequence => {
+			  "hello_world",
+      };
 
-        inputs => {
-                  "/opt/enigmabox/cfengine-policies/hello_world.cf",
-                  };
+      inputs => {
+		  "/opt/enigmabox/cfengine-policies/hello_world.cf",
+      };
 }
 
