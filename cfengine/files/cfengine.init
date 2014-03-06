@@ -10,7 +10,7 @@ start() {
     mkdir -p /var/cfengine/bin
     cp /opt/cfengine/bin/cf-promises /var/cfengine/bin/cf-promises
     /opt/cfengine/bin/cf-key
-    /opt/enigmabox/cfengine/bootstrap.cf
+    /opt/cfengine/bootstrap.cf
     echo started.
 }
  

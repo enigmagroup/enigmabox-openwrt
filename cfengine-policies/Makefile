@@ -24,8 +24,9 @@ define Build/Compile
 endef
 
 define Package/cfengine-policies/install
+	$(INSTALL_BIN) ./files/bootstrap.cf $(1)/opt/cfengine/bootstrap.cf
+
 	$(INSTALL_DIR) $(1)/opt/enigmabox/cfengine-policies
-	$(INSTALL_BIN) ./files/bootstrap.cf $(1)/opt/enigmabox/cfengine-policies/bootstrap.cf
 endef
 
 $(eval $(call BuildPackage,cfengine-policies))
