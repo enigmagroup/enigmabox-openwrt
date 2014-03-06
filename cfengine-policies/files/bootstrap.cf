@@ -1,4 +1,4 @@
-#!/opt/cfengine/bin/cf-agent --no-lock
+#!/opt/cfengine/bin/cf-agent --inform
 
 bundle common g
 {
