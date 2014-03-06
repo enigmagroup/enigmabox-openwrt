@@ -11,12 +11,10 @@ bundle common g
 body common control
 {
       bundlesequence => {
-			  "hello_world",
 			  "system_network",
       };
 
       inputs => {
-		  "$(g.workdir)/hello_world.cf",
 		  "$(g.workdir)/system_network/bundle.cf",
       };
 }
