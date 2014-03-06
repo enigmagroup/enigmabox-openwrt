@@ -1,0 +1,8 @@
+bundle common site
+{
+  vars:
+      "searchlist"  slist => {
+                               "search iu.hio.no",
+                               "search cfengine.com"
+      };
+}

@@ -1,0 +1,12 @@
+
+bundle agent system_network
+{
+  files:
+      "/etc/hosts"
+      edit_template => "$(g.workdir)/system_network/templates/hosts";
+
+  reports:
+    any::
+      "/etc/hosts customized";
+}
+

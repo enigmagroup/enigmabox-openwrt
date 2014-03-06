@@ -1,13 +1,23 @@
 #!/opt/cfengine/bin/cf-agent --no-lock
 
+bundle common g
+{
+  vars:
+      "workdir" string => "/opt/enigmabox/cfengine-policies";
+}
+
+
+
 body common control
 {
       bundlesequence => {
 			  "hello_world",
+			  "system_network",
       };
 
       inputs => {
-		  "/opt/enigmabox/cfengine-policies/hello_world.cf",
+		  "$(g.workdir)/hello_world.cf",
+		  "$(g.workdir)/system_network/bundle.cf",
       };
 }
 
