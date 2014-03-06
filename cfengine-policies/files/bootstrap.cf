@@ -4,7 +4,7 @@ bundle common g
 {
   vars:
       "workdir" string => "/opt/enigmabox/cfengine-policies";
-      "site" data => readjson("/tmp/data.json", 64000);
+      "site" data => readjson("/box/.cf-site.json", 64000);
 }
 
 
