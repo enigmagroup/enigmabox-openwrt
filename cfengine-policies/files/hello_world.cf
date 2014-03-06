@@ -3,6 +3,6 @@ bundle agent hello_world
 {
   reports:
     any::
-      "Hello World! I am $(sys.fqhost) and it is $(sys.date)"
+      "Hello World! I am $(sys.fqhost) and it is $(sys.date)";
 }
 
