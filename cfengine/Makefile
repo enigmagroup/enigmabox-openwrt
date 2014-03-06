@@ -47,9 +47,6 @@ define Package/cfengine/install
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cfengine.init $(1)/etc/init.d/cfengine
-
-	$(INSTALL_DIR) $(1)/opt/enigmabox/cfengine
-	$(INSTALL_BIN) ./files/bootstrap.cf $(1)/opt/enigmabox/cfengine/bootstrap.cf
 endef
 
 $(eval $(call BuildPackage,cfengine))
