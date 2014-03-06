@@ -20,6 +20,9 @@ endef
 define Build/Configure
 endef
 
+define Build/Compile
+endef
+
 define Package/cfengine-policies/install
 	$(INSTALL_DIR) $(1)/opt/enigmabox/cfengine-policies
 	$(INSTALL_BIN) ./files/bootstrap.cf $(1)/opt/enigmabox/cfengine-policies/bootstrap.cf
