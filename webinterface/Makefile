@@ -11,7 +11,7 @@ define Package/enigmabox-webinterface
   CATEGORY:=Enigmabox
   TITLE:=Enigmabox Webinterface
   URL:=http://enigmabox.net/en/
-  DEPENDS:=+cjdns +python-django-1.4 +django-south +python-expat +python-json +python-sqlite3 +python-unidecode +asterisk18 +php5 +php5-mod-mcrypt +php5-mod-sqlite3 +nginx +privoxy +dovecot +exim4 +cfengine +cfengine-policies -luci
+  DEPENDS:=+cjdns +python-django-1.4 +django-south +python-expat +python-json +python-sqlite3 +python-unidecode +asterisk18 +php5 +php5-mod-mcrypt +php5-mod-sqlite3 +nginx +privoxy +dovecot +exim4 +cfengine +cfengine-policies
 endef
 
 define Package/enigmabox-webinterface/description
