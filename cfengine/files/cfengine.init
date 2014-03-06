@@ -1,6 +1,5 @@
 #!/bin/sh /etc/rc.common
-# Example script
-# Copyright (C) 2007 OpenWrt.org
+# cfengine
  
 START=90
 STOP=10
@@ -9,11 +8,8 @@ start() {
     echo start
     mkdir -p /var/cfengine/bin
     cp /opt/cfengine/bin/cf-promises /var/cfengine/bin/cf-promises
-    /opt/cfengine/bin/cf-key
+    /opt/cfengine/bin/cf-key &> /dev/null
     /opt/cfengine/bootstrap.cf
     echo started.
 }
  
-stop() {
-    echo stop
-}
