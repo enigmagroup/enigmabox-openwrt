@@ -10,7 +10,7 @@ PKG_SOURCE_URL:=https://pypi.python.org/packages/source/g/gunicorn/
 PKG_MD5SUM:=c7138b9ac7515a42066922d2b6120fbe
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/gunicorn-$(PKG_VERSION)
-PKG_BUILD_DEPENDS:=python +python-setuptools
+PKG_BUILD_DEPENDS:=python python-setuptools
 
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
@@ -21,15 +21,19 @@ define Package/python-gunicorn
   SUBMENU:=Python
   TITLE:=Python Gunicorn
   URL:=https://pypi.python.org/pypi/gunicorn/
+  DEPENDS:=+python-setuptools
 endef
 
 define Package/python-gunicorn/description
  TODO
 endef
 
+#PYTHONPATH += $(PYTHON_DIR)/Lib
+
 define Build/Compile
 	$(call Build/Compile/PyMod,., \
-		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" \
+		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)", \
+		PYTHONPATH="$(PYTHON_LIB_DIR):$(STAGING_DIR)/root-x86/$(PYTHON_PKG_DIR)"; \
 	)
 endef
 
