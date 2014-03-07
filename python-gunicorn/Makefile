@@ -10,7 +10,7 @@ PKG_SOURCE_URL:=https://pypi.python.org/packages/source/g/gunicorn/
 PKG_MD5SUM:=c7138b9ac7515a42066922d2b6120fbe
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/gunicorn-$(PKG_VERSION)
-PKG_BUILD_DEPENDS:=python
+PKG_BUILD_DEPENDS:=python +python-setuptools
 
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
