@@ -42,6 +42,11 @@ define Package/python-gunicorn/install
 	$(CP) \
 		$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
 		$(1)$(PYTHON_PKG_DIR)/
+
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/bin/* \
+		$(1)/usr/bin/
 endef
 
 $(eval $(call BuildPackage,python-gunicorn))
