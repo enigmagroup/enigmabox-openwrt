@@ -26,8 +26,8 @@ $(call include_mk, python-package.mk)
 
 define Package/gevent
   SUBMENU:=Python
-  SECTION:=libs
-  CATEGORY:=Libraries
+  SECTION:=lang
+  CATEGORY:=Languages
   TITLE:=gevent
   URL:=http://www.gevent.org/
   DEPENDS:=+python +python-greenlet
