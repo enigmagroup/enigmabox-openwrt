@@ -9,7 +9,7 @@ PKG_SOURCE:=eventlet-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/source/e/eventlet/
 PKG_MD5SUM:=207119abce774018432225bd719403fb
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/eventlet-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=python
 
 include $(INCLUDE_DIR)/package.mk
