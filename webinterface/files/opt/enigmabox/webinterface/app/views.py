@@ -818,17 +818,26 @@ def cfengine_site(request):
 
     server_peerings = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1]
     for peering in server_peerings:
+        #TODO
         peerings.append(peering)
 
     custom_peerings = Peering.objects.filter(custom=True).order_by('id')
-    for peering in custom_peerings:
-        peerings.append(peering)
+    for p in custom_peerings:
+        peerings.append({
+            'address': p.address,
+            'password': p.password,
+            'public_key': p.public_key,
+        })
 
     addresses = []
     db_addresses = Address.objects.filter().order_by('id')
-    for address in db_addresses:
-        print address
-        addresses.append(address)
+    for a in db_addresses:
+        addresses.append({
+            'ipv6': a.ipv6,
+            'hostname': a.name,
+            'display_name': a.display_name,
+            'phone': a.phone,
+        })
 
     webinterface_password = o.get_value('webinterface_password')
     mailbox_password = o.get_value(u'mailbox_password')
