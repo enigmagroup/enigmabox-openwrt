@@ -18,7 +18,10 @@ class Migration(DataMigration):
         hashed_password = crypt(password, "$6$" + salt + "$")
 
         # set root password
-        Popen(['sudo', 'usermod', '-p', hashed_password, 'root'], stdout=PIPE).communicate()[0]
+        try:
+            Popen(['sudo', 'usermod', '-p', hashed_password, 'root'], stdout=PIPE).communicate()[0]
+        except Exception:
+            pass
 
         # set django admin password
         u = User.objects.get(username__exact='admin')
