@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-gevent
-PKG_VERSION:=0.13.8
+PKG_VERSION:=1.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
