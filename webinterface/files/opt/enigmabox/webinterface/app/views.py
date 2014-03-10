@@ -8,6 +8,7 @@ import string
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import ugettext as _
+from django.http import HttpResponse
 from slugify import slugify
 
 
@@ -893,11 +894,9 @@ def cfengine_site(request):
         'teletext_enabled': o.get_value('teletext_enabled', '0'),
     }
 
-    import json
-
-    print response_data
-
-    from django.http import HttpResponse
-
-    return HttpResponse(json.dumps(response_data, sort_keys=True, indent=4, separators=(',', ': ')), content_type="application/json")
+    return HttpResponse(json.dumps(response_data,
+        sort_keys=True,
+        indent=4,
+        separators=(',', ': ')
+    ), content_type="application/json")
 
