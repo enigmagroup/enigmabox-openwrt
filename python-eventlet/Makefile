@@ -5,7 +5,7 @@ PKG_NAME:=python-eventlet
 PKG_VERSION:=0.14.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=eventlet-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/source/e/eventlet/
 PKG_MD5SUM:=207119abce774018432225bd719403fb
 
