@@ -1,0 +1,8 @@
+
+bundle agent system_base
+{
+  files:
+      "/etc/nginx/nginx.conf"
+      edit_template => "$(g.workdir)/system_base/templates/nginx.conf";
+}
+
