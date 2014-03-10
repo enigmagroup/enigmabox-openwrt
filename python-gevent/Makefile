@@ -29,7 +29,8 @@ endef
 
 define Build/Compile
 	$(call Build/Compile/PyMod,., \
-		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" \
+		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)", \
+		PYTHONPATH="$(PYTHON_LIB_DIR):$(STAGING_DIR)/root-x86/$(PYTHON_PKG_DIR)"; \
 	)
 endef
 

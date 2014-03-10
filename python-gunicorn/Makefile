@@ -28,8 +28,6 @@ define Package/python-gunicorn/description
  TODO
 endef
 
-#PYTHONPATH += $(PYTHON_DIR)/Lib
-
 define Build/Compile
 	$(call Build/Compile/PyMod,., \
 		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)", \
