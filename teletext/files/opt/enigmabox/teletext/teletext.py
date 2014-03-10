@@ -1069,7 +1069,7 @@ def xhr_timeline():
 def xhr_userlist(ipv6, subscription_type):
 
     step = request.GET.get('step', 0)
-    user_list = data.get_userlist(subscription_type, step)
+    user_list = data.get_userlist(subscription_type, ipv6, step)
 
     return template('user_list',
         user_list = user_list,
