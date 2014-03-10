@@ -13,6 +13,7 @@ urlpatterns = patterns('app.views',
     # sites
     url(r'^(?P<program>puppet)/site.pp$', 'puppet_site'),
     url(r'^(?P<program>ansible)/site.yml$', 'puppet_site'),
+    url(r'^cfengine/site.json$', 'cfengine_site'),
 
     # addressbook
     url(r'^addressbook/edit/(?P<addr_id>.*)/$', 'addressbook_edit'),
