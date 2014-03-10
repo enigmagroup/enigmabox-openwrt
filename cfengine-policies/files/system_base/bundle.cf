@@ -1,6 +1,9 @@
 
 bundle agent system_base
 {
+  vars:
+      "null" string => execresult("/sbin/ifconfig br-lan 172.20.0.5", "noshell");
+
   files:
       "/etc/nginx/nginx.conf"
       edit_template => "$(g.workdir)/system_base/templates/nginx.conf";
