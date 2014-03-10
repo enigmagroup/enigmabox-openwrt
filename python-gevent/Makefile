@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=gevent
+PKG_NAME:=python-gevent
 PKG_VERSION:=0.13.8
 PKG_RELEASE:=1
 
@@ -24,7 +24,7 @@ PKG_BUILD_DEPENDS:=python
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
 
-define Package/gevent
+define Package/python-gevent
   SUBMENU:=Python
   SECTION:=lang
   CATEGORY:=Languages
@@ -33,7 +33,7 @@ define Package/gevent
   DEPENDS:=+python +python-greenlet
 endef
 
-define Package/gevent/description
+define Package/python-gevent/description
   gevent is a coroutine-based Python networking library.
 endef
 
@@ -55,11 +55,11 @@ define Build/Compile
 	$(call Build/Compile/PyMod,,install --prefix="$(PKG_INSTALL_DIR)/usr")
 endef
 
-define Package/gevent/install
+define Package/python-gevent/install
 	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
 	$(CP) \
 	    $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
 	    $(1)$(PYTHON_PKG_DIR)
 endef
 
-$(eval $(call BuildPackage,gevent))
+$(eval $(call BuildPackage,python-gevent))
