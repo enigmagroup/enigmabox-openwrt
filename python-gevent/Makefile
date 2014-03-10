@@ -14,20 +14,18 @@ PKG_RELEASE:=1
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/surfly/gevent.git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=$(PKG_VERSION)
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_VERSION:=a5ae94cab7c91f70e74eaba9d343983523d4554f
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
-
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-PKG_BUILD_DEPENDS:=python
+PKG_BUILD_DEPENDS:=python cython
 
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
 
 define Package/python-gevent
   SUBMENU:=Python
-  SECTION:=lang
-  CATEGORY:=Languages
+  SECTION:=libs
+  CATEGORY:=Libraries
   TITLE:=gevent
   URL:=http://www.gevent.org/
   DEPENDS:=+python +python-greenlet
@@ -52,7 +50,9 @@ define Build/Compile
                         --without-libintl-prefix \
                         --disable-nls \
 	);
-	$(call Build/Compile/PyMod,,install --prefix="$(PKG_INSTALL_DIR)/usr")
+	$(call Build/Compile/PyMod,,install --prefix="$(PKG_INSTALL_DIR)/usr", \
+		CYTHON="$(STAGING_DIR_HOST)/usr/bin/cython" \
+	)
 endef
 
 define Package/python-gevent/install
