@@ -10,7 +10,7 @@ PKG_SOURCE_URL:=https://pypi.python.org/packages/source/e/eventlet/
 PKG_MD5SUM:=207119abce774018432225bd719403fb
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/eventlet-$(PKG_VERSION)
-PKG_BUILD_DEPENDS:=python
+PKG_BUILD_DEPENDS:=python python-setuptools
 
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
@@ -21,6 +21,7 @@ define Package/python-eventlet
   SUBMENU:=Python
   TITLE:=Python Eventlet
   URL:=http://eventlet.net/
+  DEPENDS:=+python-setuptools
 endef
 
 define Package/python-eventlet/description
@@ -29,7 +30,8 @@ endef
 
 define Build/Compile
 	$(call Build/Compile/PyMod,., \
-		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" \
+		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)", \
+		PYTHONPATH="$(PYTHON_LIB_DIR):$(STAGING_DIR)/root-x86/$(PYTHON_PKG_DIR)"; \
 	)
 endef
 
