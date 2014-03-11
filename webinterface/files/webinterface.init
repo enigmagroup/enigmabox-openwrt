@@ -10,5 +10,5 @@ start() {
 }
  
 stop() {
-    kill $(cat $(PIDFILE))
+    kill $(cat "$PIDFILE")
 }
