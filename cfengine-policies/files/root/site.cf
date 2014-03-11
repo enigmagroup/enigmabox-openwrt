@@ -1,9 +1,10 @@
-#!/opt/cfengine/bin/cf-agent --no-lock
+#!/opt/cfengine/bin/cf-agent --inform
 
 bundle common g
 {
   vars:
       "workdir" string => "/opt/enigmabox/cfengine-policies";
+      "site" data => readjson("/box/.cf-site.json", 64000);
 }
 
 
@@ -12,11 +13,11 @@ body common control
 {
       inputs => {
 		  "$(g.workdir)/lib/files.cf",
-		  "$(g.workdir)/system_base/bundle.cf",
+		  "$(g.workdir)/system_network/bundle.cf",
       };
 
       bundlesequence => {
-			  "system_base",
+			  "system_network",
       };
 }
 
