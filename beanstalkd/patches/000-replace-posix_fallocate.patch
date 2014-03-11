@@ -1,0 +1,11 @@
+--- a/linux.c
++++ b/linux.c
+@@ -19,7 +19,7 @@ static int epfd;
+ int
+ rawfalloc(int fd, int len)
+ {
+-    return posix_fallocate(fd, 0, len);
++    return ftruncate(fd, len);
+ }
+ 
+ 

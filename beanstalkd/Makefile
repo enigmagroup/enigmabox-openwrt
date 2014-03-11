@@ -29,7 +29,7 @@ define Build/Configure
 endef
 
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && make CFLAGS="-march=i386"
+	cd $(PKG_BUILD_DIR) && make CC="$(TARGET_CC)" CFLAGS="$(TARGET_CFLAGS)"
 endef
 
 define Package/beanstalkd/install
