@@ -29,6 +29,7 @@ define Build/Configure
 endef
 
 define Package/beanstalkd/install
+	$(INSTALL_DIR) $(1)/usr/bin
 endef
 
 $(eval $(call BuildPackage,beanstalkd))
