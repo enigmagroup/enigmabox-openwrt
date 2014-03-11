@@ -5,7 +5,7 @@ bundle agent system_network
       "/etc/hosts"
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
-      edit_template => "$(this.promise_dirname)/templates/hosts.mustache",
+      edit_template => "$(this.promise_dirname)/templates/hosts.mustache";
 
   reports:
       "Modified /etc/hosts";
