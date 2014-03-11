@@ -26,7 +26,7 @@ endef
 
 define Package/enigmabox-webinterface/install
 	mkdir $(1)/box
-	cp -r ./files/* $(1)
+	cp -r ./files/root/* $(1)
 endef
 
 $(eval $(call BuildPackage,enigmabox-webinterface))
