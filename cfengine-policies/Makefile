@@ -26,6 +26,7 @@ endef
 define Package/cfengine-policies/install
 	$(INSTALL_DIR) $(1)/opt/cfengine
 	$(INSTALL_BIN) ./files/root/bootstrap.cf $(1)/opt/cfengine/bootstrap.cf
+	$(INSTALL_BIN) ./files/root/site.cf $(1)/opt/cfengine/site.cf
 
 	$(INSTALL_DIR) $(1)/opt/enigmabox/cfengine-policies
 	cp -r ./files/root/* $(1)/opt/enigmabox/cfengine-policies/
