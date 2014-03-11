@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=cython
+PKG_NAME:=python-cython
 PKG_VERSION:=0.19
 PKG_RELEASE:=1
 
@@ -25,16 +25,16 @@ include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
 
-define Package/cython
+define Package/python-cython
   SUBMENU:=Python
   SECTION:=lang
   CATEGORY:=Languages
-  TITLE:=cython
+  TITLE:=python-cython
   URL:=http://www.cython.org
   DEPENDS:=+python-mini
 endef
 
-define Package/cython/description
+define Package/python-cython/description
   Cython is a language that should make writing C extensions for the Python language easier
 endef
 
@@ -75,4 +75,4 @@ endef
 
 $(eval $(call HostBuild))
 
-$(eval $(call BuildPackage,cython))
+$(eval $(call BuildPackage,python-cython))
