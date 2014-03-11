@@ -10,7 +10,7 @@ bundle agent system_base
 
       "/etc/init.d/webinterface"
       create => "true",
-      mode => "+x",
+      mode => "755",
       edit_template => "$(this.promise_dirname)/templates/webinterface.init";
 
       "/etc/rc.d/S95webinterface"
