@@ -1,0 +1,124 @@
+#!/bin/ash
+
+#set -xv
+
+# variables
+cfengine_site="/box/.cf-site.json"
+cfagent="/opt/cfengine/bin/cf-agent"
+webinterface="http://127.0.0.1:8000"
+pidfile="/var/run/cfengine-apply.pid"
+puppet_output="/tmp/puppet_output"
+
+
+
+usage() {
+cat << EOF
+usage: $0 options
+
+This script runs cfengine.
+
+OPTIONS:
+   -h      Show this message
+   -s      Sleep for n seconds before run
+   -r      Run and apply changes (no dry-run)
+   -b      Run in background (outputs to $puppet_output)
+EOF
+}
+
+run() {
+    noop=""
+    if [[ "$1" == "dry" ]]; then
+        noop=1
+        echo "** dry run **"
+    fi
+
+    background=""
+    if [[ "$1" == "background" || "$2" == "background" ]]; then
+        > "$puppet_output"
+        background=1
+    fi
+
+    echo "running cfengine and applying policy..."
+    curl "$webinterface/cfengine/site.json" > "$cfengine_site"
+
+    if [[ "$noop" == 1 ]]; then
+
+        if [[ "$background" == 1 ]]; then
+            cfengine_run noop > "$puppet_output" &
+        else
+            cfengine_run noop
+        fi
+
+    else
+
+        if [[ "$background" == 1 ]]; then
+            (cfengine_run > "$puppet_output" && inform_webinterface) &
+        else
+            cfengine_run && inform_webinterface &> /dev/null
+        fi
+
+    fi
+
+}
+
+inform_webinterface() {
+    curl --data "key=config_changed&value=False" -X POST "$webinterface/api/v1/set_option" &> /dev/null
+}
+
+cfengine_run() {
+    if [[ "$1" == "noop" ]]; then
+        "$cfagent" --inform --dry-run /opt/cfengine/bootstrap.cf
+    else
+        "$cfagent" --inform /opt/cfengine/bootstrap.cf
+    fi
+}
+
+
+
+# Check if this script is already running
+kill -0 $(cat "$pidfile" 2> /dev/null) 2> /dev/null
+if [[ "$?" == "0" ]]; then
+    echo "Script is already running, exiting"
+    exit 1
+else
+    [[ -f "$pidfile" ]] && rm "$pidfile"
+fi
+echo $$ > "$pidfile"
+
+
+
+# Option parsing
+while getopts ":rs:b" opt; do
+    case "$opt" in
+    r)
+        run=1
+        ;;
+    s)
+        sleep="$OPTARG"
+        ;;
+    b)
+        background="background"
+        ;;
+    :)
+        echo "Option -$OPTARG requires an argument."
+        exit 1
+        ;;
+    \?)
+        usage
+        exit 1
+        ;;
+    esac
+done
+
+
+
+if [[ -n "$sleep" ]]; then
+    echo "sleeping for $sleep seconds..."
+    sleep "$sleep"
+fi
+
+[[ -z "$run" ]] && run dry $background
+[[ -n "$run" ]] && run $background
+
+rm "$pidfile"
+
