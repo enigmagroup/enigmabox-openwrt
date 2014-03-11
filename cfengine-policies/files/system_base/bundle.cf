@@ -6,10 +6,11 @@ bundle agent system_base
 
   files:
       "/etc/nginx/nginx.conf"
-      edit_template => "$(g.workdir)/system_base/templates/nginx.conf";
+      edit_template => "$(this.promise_dirname)/templates/nginx.conf";
 
       "/etc/init.d/webinterface"
-      edit_template => "$(g.workdir)/system_base/templates/webinterface.init";
+      create => "true",
+      edit_template => "$(this.promise_dirname)/templates/webinterface.init";
 
       "/etc/rc.d/S95webinterface"
       link_from => ln_s("/etc/init.d/webinterface");
