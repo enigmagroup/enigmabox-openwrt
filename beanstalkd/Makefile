@@ -28,6 +28,10 @@ endef
 define Build/Configure
 endef
 
+define Build/Compile
+	cd $(PKG_BUILD_DIR) && make CFLAGS="-march=i386"
+endef
+
 define Package/beanstalkd/install
 	$(INSTALL_DIR) $(1)/usr/bin
 endef
