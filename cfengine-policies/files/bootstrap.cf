@@ -23,3 +23,8 @@ body common control
       };
 }
 
+body perms script
+{
+      mode => "755"
+}
+
