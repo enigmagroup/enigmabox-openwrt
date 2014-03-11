@@ -75,7 +75,7 @@ def addressbook(request):
         form = AddressbookForm()
 
     addresses = Address.objects.all().order_by('id')
-    sip_peers = Popen(["sudo", "asterisk", "-rx", "sip show peers"], stdout=PIPE).communicate()[0]
+    sip_peers = Popen(["asterisk", "-rx", "sip show peers"], stdout=PIPE).communicate()[0]
 
     return render_to_response('addressbook/overview.html', {
         'addresses': addresses,
@@ -534,11 +534,11 @@ def apply_changes(request):
     if request.POST.get('apply_changes') == 'dry_run':
         output_window = True
         loader_hint = 'dry-run'
-        Popen(["sudo", "/usr/local/sbin/puppet-apply", "-b"], stdout=PIPE)
+        Popen(["/usr/sbin/cfengine-apply", "-b"], stdout=PIPE)
     if request.POST.get('apply_changes') == 'run':
         output_window = True
         loader_hint = 'run'
-        Popen(["sudo", "/usr/local/sbin/puppet-apply", "-r", "-b"], stdout=PIPE)
+        Popen(["/usr/sbin/cfengine-apply", "-r", "-b"], stdout=PIPE)
     if request.POST.get('apply_changes') == 'back':
         return redirect('/')
 
