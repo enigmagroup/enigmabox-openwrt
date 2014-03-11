@@ -16,7 +16,7 @@ PKG_SOURCE_URL:=http://www.cython.org/release/
 PKG_BUILD_DIR:=$(BUILD_DIR)/Cython-$(PKG_VERSION)
 PKG_MD5SUM:=76989337dee4cf7afdcb5cde514423f8
 
-PKG_BUILD_DEPENDS:=python cython/host
+PKG_BUILD_DEPENDS:=python python-cython/host
 HOST_BUILD_DEPENDS:=python
 
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/Cython-$(PKG_VERSION)
