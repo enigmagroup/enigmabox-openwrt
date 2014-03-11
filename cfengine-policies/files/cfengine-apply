@@ -67,9 +67,9 @@ inform_webinterface() {
 
 cfengine_run() {
     if [[ "$1" == "noop" ]]; then
-        "$cfagent" --inform --dry-run /opt/cfengine/bootstrap.cf
+        "$cfagent" --inform --dry-run /opt/cfengine/site.cf
     else
-        "$cfagent" --inform /opt/cfengine/bootstrap.cf
+        "$cfagent" --inform /opt/cfengine/site.cf
     fi
 }
 
