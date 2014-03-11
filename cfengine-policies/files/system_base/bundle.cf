@@ -7,5 +7,11 @@ bundle agent system_base
   files:
       "/etc/nginx/nginx.conf"
       edit_template => "$(g.workdir)/system_base/templates/nginx.conf";
+
+      "/etc/init.d/webinterface"
+      edit_template => "$(g.workdir)/system_base/templates/webinterface.init";
+
+      "/etc/rc.d/S95webinterface"
+      link_from => ln_s("/etc/init.d/webinterface");
 }
 
