@@ -67,9 +67,9 @@ inform_webinterface() {
 
 cfengine_run() {
     if [[ "$1" == "noop" ]]; then
-        "$cfagent" --no-lock --inform --verbose --color=always --dry-run /opt/cfengine/site.cf
+        "$cfagent" --no-lock --inform --color=always --dry-run /opt/cfengine/site.cf
     else
-        "$cfagent" --no-lock --inform --verbose --color=always /opt/cfengine/site.cf
+        "$cfagent" --no-lock --inform --color=always /opt/cfengine/site.cf
     fi
 }
 
