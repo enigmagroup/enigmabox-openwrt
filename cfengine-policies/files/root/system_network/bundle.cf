@@ -7,6 +7,11 @@ bundle agent system_network
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/hosts.mustache";
 
+      "/usr/sbin/rebuild-iptables"
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/rebuild-iptables.mustache";
+
   reports:
       "system_network";
 }
