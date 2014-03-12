@@ -9,6 +9,10 @@ bundle agent system_base
       edit_template => "$(this.promise_dirname)/templates/nginx.conf",
       classes => if_repaired("reload_nginx");
 
+      "/etc/config/network"
+      edit_template => "$(this.promise_dirname)/templates/config-network",
+      classes => if_repaired("restart_network");
+
       #      "/etc/init.d/webinterface"
       #      create => "true",
       #      perms => script,
@@ -20,5 +24,8 @@ bundle agent system_base
   commands:
     reload_nginx::
       "/etc/init.d/nginx reload";
+
+    restart_network::
+      "/etc/init.d/network restart";
 }
 

@@ -7,14 +7,6 @@ bundle agent system_network
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/hosts.mustache";
 
-      "/etc/config/network"
-      edit_template => "$(this.promise_dirname)/templates/config-network",
-      classes => if_repaired("restart_network");
-
-  commands:
-    restart_network::
-      "/etc/init.d/network restart";
-
   reports:
       "system_network";
 }
