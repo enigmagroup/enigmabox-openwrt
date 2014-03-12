@@ -891,6 +891,15 @@ def cfengine_site(request):
         'teletext_enabled': o.get_value('teletext_enabled', 0),
     }
 
+    # and this, ladies and gentlemen, is a workaround for mustache
+    #TODO: handle "0" as false
+    r2 = {}
+    for key in response_data:
+        r2['if_' + key] = bool(response_data[key])
+        r2[key] = response_data[key]
+
+    response_data = r2
+
     return HttpResponse(json.dumps(response_data,
         sort_keys=True,
         indent=4,
