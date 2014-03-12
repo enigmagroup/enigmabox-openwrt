@@ -7,5 +7,11 @@ ff02::2             ip6-allrouters
 
 # enigmabox internal
 192.168.100.1       enigma mail text box
+{{#puppetmasters}}
+{{ip}}  {{hostname}}
+{{/puppetmasters}}
 
-{{cjdns_ipv6}}
+# friends
+{{#addresses}}
+{{ipv6}}    {{hostname}}
+{{/addresses}}

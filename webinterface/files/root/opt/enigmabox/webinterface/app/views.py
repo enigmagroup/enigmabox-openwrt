@@ -769,10 +769,10 @@ def cfengine_site(request):
     cjdns_public_key = o.get_value('public_key')
     cjdns_private_key = o.get_value('private_key')
     selected_country = o.get_value('selected_country', 'hu')
-    addresses = ''
-    puppetmasters = ''
+    addresses = []
+    puppetmasters = []
     internet_gateway = ''
-    peerings = ''
+    peerings = []
 
     # get Enigmabox-specific server data, when available
     try:
@@ -815,8 +815,6 @@ def cfengine_site(request):
         # no additional server data found, moving on...
         pass
 
-    peerings = []
-
     server_peerings = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1]
     for peering in server_peerings:
         #TODO
@@ -830,7 +828,6 @@ def cfengine_site(request):
             'public_key': p.public_key,
         })
 
-    addresses = []
     db_addresses = Address.objects.filter().order_by('id')
     for a in db_addresses:
         addresses.append({
@@ -873,25 +870,25 @@ def cfengine_site(request):
         'wlan_ssid': o.get_value('wlan_ssid'),
         'wlan_pass': o.get_value('wlan_pass'),
         'wlan_security': o.get_value('wlan_security'),
-        'wlan_group': o.get_value('wlan_group', ''),
-        'wlan_pairwise': o.get_value('wlan_pairwise', ''),
+        'wlan_group': o.get_value('wlan_group'),
+        'wlan_pairwise': o.get_value('wlan_pairwise'),
         'peerings': peerings,
         'internet_gateway': internet_gateway,
-        'autopeering': o.get_value('autopeering'),
-        'allow_peering': o.get_value('allow_peering'),
+        'autopeering': o.get_value('autopeering', 0),
+        'allow_peering': o.get_value('allow_peering', 0),
         'peering_port': o.get_value('peering_port'),
         'peering_password': o.get_value('peering_password'),
         'webinterface_password': webinterface_password,
         'mailbox_password': mailbox_password,
-        'webfilter_filter_ads': o.get_value('webfilter_filter-ads', ''),
-        'webfilter_filter_headers': o.get_value('webfilter_filter-headers', ''),
-        'webfilter_disable_browser_ident': o.get_value('webfilter_disable-browser-ident', ''),
-        'webfilter_block_facebook': o.get_value('webfilter_block-facebook', ''),
-        'webfilter_block_google': o.get_value('webfilter_block-google', ''),
-        'webfilter_block_twitter': o.get_value('webfilter_block-twitter', ''),
-        'webfilter_custom_rules': o.get_value('webfilter_custom-rules', ''),
+        'webfilter_filter_ads': o.get_value('webfilter_filter-ads', 0),
+        'webfilter_filter_headers': o.get_value('webfilter_filter-headers', 0),
+        'webfilter_disable_browser_ident': o.get_value('webfilter_disable-browser-ident', 0),
+        'webfilter_block_facebook': o.get_value('webfilter_block-facebook', 0),
+        'webfilter_block_google': o.get_value('webfilter_block-google', 0),
+        'webfilter_block_twitter': o.get_value('webfilter_block-twitter', 0),
+        'webfilter_custom_rules': o.get_value('webfilter_custom-rules', 0),
         'webfilter_custom_rules_text': custom_rules_text,
-        'teletext_enabled': o.get_value('teletext_enabled', '0'),
+        'teletext_enabled': o.get_value('teletext_enabled', 0),
     }
 
     return HttpResponse(json.dumps(response_data,
