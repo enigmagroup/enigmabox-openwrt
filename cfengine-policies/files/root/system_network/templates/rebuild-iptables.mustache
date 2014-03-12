@@ -54,11 +54,11 @@ $ip6tables -A INPUT -i tun0 -p tcp --sport 3838 -j ACCEPT
 $ip6tables -A OUTPUT -o tun0 -p tcp --dport 3838 -j ACCEPT
 {{/if_teletext_enabled}}
 
-{{#adresses}}
-# adresses
+{{#if_addresses}}# addresses{{/if_addresses}}
+{{#addresses}}
 $ip6tables -A INPUT -i tun0 --src {{ipv6}} -j ACCEPT
 $ip6tables -A OUTPUT -o tun0 --dst {{ipv6}} -j ACCEPT
-{{/adresses}}
+{{/addresses}}
 
 for interface in $(echo "eth1 eth2"); do
 
