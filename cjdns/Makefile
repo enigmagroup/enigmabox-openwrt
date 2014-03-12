@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=cjdns
+PKG_NAME:=cjdns-master
 PKG_VERSION:=master
 PKG_RELEASE:=1
 
@@ -17,7 +17,7 @@ CC="$(TARGET_CC)"
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/cjdns
+define Package/cjdns-master
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
@@ -27,7 +27,7 @@ endef
 
 TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include
 
-define Package/cjdns/description
+define Package/cjdns-master/description
 	Description.
 endef
 
@@ -35,9 +35,9 @@ define Build/Compile
 	cd $(PKG_BUILD_DIR) && ARCH=i386 ./cross-do
 endef
 
-define Package/cjdns/install
+define Package/cjdns-master/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cjdroute   $(1)/usr/sbin/cjdroute
 endef
 
-$(eval $(call BuildPackage,cjdns))
+$(eval $(call BuildPackage,cjdns-master))
