@@ -36,23 +36,23 @@ $ip6tables -A INPUT -p ipv6-icmp -j DROP
 $iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 $ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 
-{{#peering_port}}
+{{#if_peering_port}}
 # peering port
 $iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
-{{/peering_port}}
+{{/if_peering_port}}
 
 # nat
 $iptables -I POSTROUTING -t nat -o tun0 -j MASQUERADE
 
 ################################################################################
 
-{{#teletext_enabled}}
+{{#if_teletext_enabled}}
 # teletext
 $ip6tables -A INPUT -i tun0 -p tcp --dport 3838 -j ACCEPT
 $ip6tables -A OUTPUT -o tun0 -p tcp --sport 3838 -j ACCEPT
 $ip6tables -A INPUT -i tun0 -p tcp --sport 3838 -j ACCEPT
 $ip6tables -A OUTPUT -o tun0 -p tcp --dport 3838 -j ACCEPT
-{{/teletext_enabled}}
+{{/if_teletext_enabled}}
 
 {{#adresses}}
 # adresses
