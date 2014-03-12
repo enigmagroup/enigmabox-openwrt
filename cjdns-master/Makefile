@@ -13,8 +13,6 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
-CC="$(TARGET_CC)"
-
 include $(INCLUDE_DIR)/package.mk
 
 define Package/cjdns-master
@@ -32,7 +30,7 @@ define Package/cjdns-master/description
 endef
 
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && ARCH=i386 ./cross-do
+	cd $(PKG_BUILD_DIR) && CC=$(TARGET_CC) CFLAGS=$(TARGET_CFLAGS) ./do
 endef
 
 define Package/cjdns-master/install
