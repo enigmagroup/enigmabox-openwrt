@@ -243,7 +243,7 @@ TRANSPORT_SMTP=yes
 # MBX, is included only when requested. If you do not know what this is about,
 # leave these settings commented out.
 
-# SUPPORT_MAILDIR=yes
+SUPPORT_MAILDIR=yes
 # SUPPORT_MAILSTORE=yes
 # SUPPORT_MBX=yes
 
