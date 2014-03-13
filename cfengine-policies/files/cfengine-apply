@@ -11,20 +11,6 @@ puppet_output="/tmp/puppet_output"
 
 
 
-usage() {
-cat << EOF
-usage: $0 options
-
-This script runs cfengine.
-
-OPTIONS:
-   -h      Show this message
-   -s      Sleep for n seconds before run
-   -r      Run and apply changes (no dry-run)
-   -b      Run in background (outputs to $puppet_output)
-EOF
-}
-
 run() {
     background=""
     if [[ "$1" == "background" || "$2" == "background" ]]; then
@@ -66,11 +52,8 @@ echo $$ > "$pidfile"
 
 
 # Option parsing
-while getopts ":rs:b" opt; do
+while getopts "s:b" opt; do
     case "$opt" in
-    r)
-        run=1
-        ;;
     s)
         sleep="$OPTARG"
         ;;
@@ -79,10 +62,6 @@ while getopts ":rs:b" opt; do
         ;;
     :)
         echo "Option -$OPTARG requires an argument."
-        exit 1
-        ;;
-    \?)
-        usage
         exit 1
         ;;
     esac
@@ -95,8 +74,7 @@ if [[ -n "$sleep" ]]; then
     sleep "$sleep"
 fi
 
-[[ -z "$run" ]] && run dry $background
-[[ -n "$run" ]] && run $background
+run $background
 
 rm "$pidfile"
 

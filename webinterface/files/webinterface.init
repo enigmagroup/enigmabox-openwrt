@@ -8,6 +8,7 @@ PIDFILE=/var/run/webinterface.pid
 start() {
     [[ ! -f /box/settings.sqlite ]] && init_db
     gunicorn --worker-class=gevent --bind=127.0.0.1:8000 --workers=2 --timeout=600 --name=webinterface --pid="$PIDFILE" --daemon --chdir=/opt/enigmabox/webinterface wsgi
+    /usr/sbin/cfengine-apply &
 }
  
 stop() {
