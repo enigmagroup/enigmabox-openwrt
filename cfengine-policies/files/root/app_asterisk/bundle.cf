@@ -18,7 +18,7 @@ bundle agent app_asterisk
 
   commands:
     restart_asterisk::
-      "/etc/init.d/asterisk restart";
+      "/etc/init.d/asterisk reload";
 
   reports:
       "app_asterisk";
