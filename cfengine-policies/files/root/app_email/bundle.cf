@@ -2,9 +2,9 @@
 bundle agent app_email
 {
   vars:
-      "pwd[mark]" string => "mark:x:1000:100:Mark Burgess:/home/mark:/bin/bash";
-      "pwd[fred]" string => "fred:x:1001:100:Right Said:/home/fred:/bin/bash";
-      "pwd[jane]" string => "jane:x:1002:100:Jane Doe:/home/jane:/bin/bash";
+      "pwd[uucp]" string => "uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh";
+      "pwd[mail]" string => "mail:x:8:8:mail:/var/mail:/bin/sh";
+      "pwd[vmail]" string => "vmail:x:5000:5000:virtual mail user:/box/vmail:/bin/sh";
 
       "users" slist => getindices("pwd");
 
@@ -17,7 +17,6 @@ bundle agent app_email
       classes => if_repaired("restart_exim");
 
       "/etc/passwd"
-      create => "true",
       edit_line => append_users_starting("addpasswd.pwd");
 
       "/etc/group"
