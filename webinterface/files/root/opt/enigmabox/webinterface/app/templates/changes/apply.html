@@ -6,16 +6,13 @@
     <div class="container">
 
       <h1>{% trans "Apply changes" %}</h1>
-      <p>{% trans "You can review outstanding changes by hitting &quot;Show changes&quot;." %}</p>
-      <p>{% trans "Apply them with &quot;Confirm changes&quot;." %}</p>
 
       <hr />
 
     <form method="post" class="form-horizontal">
     {% csrf_token %}
         <span id="success" style="display: none;"><button id="button-success" name="apply_changes" type="text" class="btn btn-success" value="back">{% trans "Back" %}</button>&nbsp;{% trans "Changes successfully applied." %}</span>
-        <button id="button-dry-run" name="apply_changes" type="text" class="btn btn-primary" value="dry_run">{% trans "Show changes" %}</button>
-        <button id="button-run" name="apply_changes" type="text" class="btn btn-danger confirmation" value="run">{% trans "Confirm changes" %}</button>
+        <button id="button-run" name="apply_changes" type="text" class="btn btn-success confirmation" value="run">{% trans "Apply changes" %}</button>
         <span class="loader" style="display: none;">&nbsp;{% trans "Please wait" %}...&nbsp;<img src="/media/img/ajax-loader.gif" alt="ajax loader" /></span>
     </form>
 

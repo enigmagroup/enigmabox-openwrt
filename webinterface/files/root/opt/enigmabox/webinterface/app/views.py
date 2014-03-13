@@ -531,14 +531,10 @@ def apply_changes(request):
     output_window = False
     loader_hint = ''
 
-    if request.POST.get('apply_changes') == 'dry_run':
-        output_window = True
-        loader_hint = 'dry-run'
-        Popen(["/usr/sbin/cfengine-apply", "-b"], stdout=PIPE)
     if request.POST.get('apply_changes') == 'run':
         output_window = True
         loader_hint = 'run'
-        Popen(["/usr/sbin/cfengine-apply", "-r", "-b"], stdout=PIPE)
+        Popen(["/usr/sbin/cfengine-apply", "-b"], stdout=PIPE)
     if request.POST.get('apply_changes') == 'back':
         return redirect('/')
 
