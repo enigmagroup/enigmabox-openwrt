@@ -607,7 +607,7 @@ FIXED_NEVER_USERS=root
 # included in the Exim binary. You will then need to set up the run time
 # configuration to make use of the mechanism(s) selected.
 
-# AUTH_CRAM_MD5=yes
+AUTH_CRAM_MD5=yes
 # AUTH_CYRUS_SASL=yes
 # AUTH_DOVECOT=yes
 # AUTH_GSASL=yes
