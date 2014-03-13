@@ -1,0 +1,33 @@
+
+bundle agent app_email
+{
+  vars:
+      "pwd[mark]" string => "mark:x:1000:100:Mark Burgess:/home/mark:/bin/bash";
+      "pwd[fred]" string => "fred:x:1001:100:Right Said:/home/fred:/bin/bash";
+      "pwd[jane]" string => "jane:x:1002:100:Jane Doe:/home/jane:/bin/bash";
+
+      "users" slist => getindices("pwd");
+
+  files:
+      "/usr/exim/configure"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/exim4.conf.mustache",
+      classes => if_repaired("restart_exim");
+
+      "/etc/passwd"
+      create => "true",
+      edit_line => append_users_starting("addpasswd.pwd");
+
+      "/etc/group"
+      edit_line => append_user_field("users","4","@(addpasswd.users)");
+
+  commands:
+    restart_exim::
+      "/etc/init.d/exim restart";
+
+  reports:
+      "app_email";
+}
+
