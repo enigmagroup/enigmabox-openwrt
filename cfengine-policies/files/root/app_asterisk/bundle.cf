@@ -1,0 +1,26 @@
+
+bundle agent app_asterisk
+{
+  files:
+      "/etc/asterisk/sip.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/sip.conf.mustache",
+      classes => if_repaired("restart_asterisk");
+
+      "/etc/asterisk/extensions.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/extensions.conf.mustache",
+      classes => if_repaired("restart_asterisk");
+
+  commands:
+    restart_asterisk::
+      "/etc/init.d/asterisk restart";
+
+  reports:
+      "app_asterisk";
+}
+

@@ -26,12 +26,6 @@ EOF
 }
 
 run() {
-    noop=""
-    if [[ "$1" == "dry" ]]; then
-        noop=1
-        echo "** dry run **"
-    fi
-
     background=""
     if [[ "$1" == "background" || "$2" == "background" ]]; then
         > "$puppet_output"
@@ -41,22 +35,10 @@ run() {
     echo "running cfengine and applying policy..."
     curl "$webinterface/cfengine/site.json" > "$cfengine_site"
 
-    if [[ "$noop" == 1 ]]; then
-
-        if [[ "$background" == 1 ]]; then
-            cfengine_run noop > "$puppet_output" &
-        else
-            cfengine_run noop
-        fi
-
+    if [[ "$background" == 1 ]]; then
+        (cfengine_run > "$puppet_output" && inform_webinterface) &
     else
-
-        if [[ "$background" == 1 ]]; then
-            (cfengine_run > "$puppet_output" && inform_webinterface) &
-        else
-            cfengine_run && inform_webinterface &> /dev/null
-        fi
-
+        cfengine_run && inform_webinterface &> /dev/null
     fi
 
 }
@@ -66,11 +48,7 @@ inform_webinterface() {
 }
 
 cfengine_run() {
-    if [[ "$1" == "noop" ]]; then
-        "$cfagent" --no-lock --inform --color=always --dry-run /opt/cfengine/site.cf
-    else
-        "$cfagent" --no-lock --inform --color=always /opt/cfengine/site.cf
-    fi
+    "$cfagent" --no-lock --inform --color=always /opt/enigmabox/cfengine-policies/site.cf
 }
 
 

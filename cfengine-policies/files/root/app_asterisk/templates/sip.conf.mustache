@@ -1,0 +1,49 @@
+; SIP Configuration
+
+[general]
+bindaddr=::
+transport=tcp
+tcpenable=yes
+canreinvite=no
+jbenable=yes
+jbforce=yes
+
+; this settings work well when the net is fucked up and laggy
+;jbmaxsize=100
+;jbresyncthreshold=500
+
+; little less treshold
+jbmaxsize=50
+jbresyncthreshold=250
+
+; this settings work well when the net is ok
+;jbmaxsize=25
+;jbresyncthreshold=200
+
+
+
+; my own phone
+
+[100]
+type=peer
+qualify=yes
+secret=100
+host=dynamic
+context=friends
+transport=udp
+
+
+
+; my addresses
+
+[basic-options](!)
+    type=peer
+    qualify=5000
+    qualifyfreq=10
+    context=incoming
+
+{{#addresses}}
+[{{name}}](basic-options)
+    host={{ipv6}}
+    callerid="{{display_name}} <{{name}}>"
+{{/addresses}}

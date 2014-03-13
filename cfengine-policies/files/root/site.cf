@@ -14,10 +14,12 @@ body common control
       inputs => {
 		  "$(g.workdir)/lib/files.cf",
 		  "$(g.workdir)/system_network/bundle.cf",
+		  "$(g.workdir)/app_asterisk/bundle.cf",
       };
 
       bundlesequence => {
 			  "system_network",
+			  "app_asterisk",
       };
 }
 
