@@ -1,0 +1,20 @@
+#!/bin/sh /etc/rc.common
+# Exim
+ 
+START=90
+STOP=10
+PIDFILE=/var/run/exim.pid
+ 
+start() {
+    /usr/exim/bin/exim -bd -q30m
+}
+ 
+stop() {
+    kill $(cat "$PIDFILE")
+}
+
+restart() {
+    stop
+    start
+}
+

@@ -52,6 +52,9 @@ define Package/exim4/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exiqsumm $(1)/usr/exim/bin/exiqsumm
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_lock $(1)/usr/exim/bin/exim_lock
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_checkaccess $(1)/usr/exim/bin/exim_checkaccess
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/exim.init $(1)/etc/init.d/exim
 endef
 
 $(eval $(call BuildPackage,exim4))
