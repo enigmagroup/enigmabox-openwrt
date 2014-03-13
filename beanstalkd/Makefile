@@ -35,6 +35,9 @@ endef
 define Package/beanstalkd/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/beanstalkd $(1)/usr/bin/beanstalkd
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/beanstalkd.init $(1)/etc/init.d/beanstalkd
 endef
 
 $(eval $(call BuildPackage,beanstalkd))

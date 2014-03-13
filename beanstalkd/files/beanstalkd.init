@@ -1,0 +1,21 @@
+#!/bin/sh /etc/rc.common
+# Beanstalk
+ 
+START=95
+STOP=5
+PIDFILE=/var/run/beanstalkd.pid
+ 
+start() {
+    /usr/bin/beanstalkd -p 11300
+    echo $! > "$PIDFILE"
+}
+ 
+stop() {
+    kill $(cat "$PIDFILE")
+}
+
+restart() {
+    stop
+    start
+}
+
