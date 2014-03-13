@@ -132,7 +132,7 @@ CONFIGURE_FILE=/usr/exim/configure
 # deliveries. (Local deliveries run as various non-root users, typically as the
 # owner of a local mailbox.) Specifying these values as root is not supported.
 
-EXIM_USER=exim
+EXIM_USER=110
 
 # If you specify EXIM_USER as a name, this is looked up at build time, and the
 # uid number is built into the binary. However, you can specify that this
@@ -153,7 +153,7 @@ EXIM_USER=exim
 # for EXIM_USER (e.g. EXIM_USER=exim), you don't need to set EXIM_GROUP unless
 # you want to use a group other than the default group for the given user.
 
-# EXIM_GROUP=
+EXIM_GROUP=110
 
 # Many sites define a user called "exim", with an appropriate default group,
 # and use
@@ -174,6 +174,7 @@ EXIM_USER=exim
 
 # Almost all installations choose this:
 
+#TODO
 SPOOL_DIRECTORY=/var/spool/exim
 
 
