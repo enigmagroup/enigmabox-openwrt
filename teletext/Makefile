@@ -23,7 +23,13 @@ define Build/Compile
 endef
 
 define Package/teletext/install
-	cp -r ./files/* $(1)
+	cp -r ./files/root/* $(1)
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/teletext.init $(1)/etc/init.d/teletext
+
+	$(INSTALL_DIR) $(1)/etc/nginx/sites
+	$(INSTALL_DATA) ./files/nginx-site.conf $(1)/etc/nginx/sites/teletext.conf
 endef
 
 $(eval $(call BuildPackage,teletext))

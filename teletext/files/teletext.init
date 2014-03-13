@@ -1,0 +1,20 @@
+#!/bin/sh /etc/rc.common
+# Teletext
+ 
+START=96
+STOP=04
+PIDFILE=/var/run/teletext.pid
+ 
+start() {
+    gunicorn --worker-class=gevent --bind=127.0.0.1:8008 --workers=1 --timeout=60 --name=teletext --pid="$PIDFILE" --daemon --chdir=/opt/enigmabox/teletext teletext:app
+}
+ 
+stop() {
+    kill $(cat "$PIDFILE")
+}
+
+restart() {
+    stop
+    start
+}
+
