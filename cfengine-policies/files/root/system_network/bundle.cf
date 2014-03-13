@@ -1,6 +1,9 @@
 
 bundle agent system_network
 {
+  vars:
+      "null" string => execresult("/sbin/ifconfig eth0 172.20.0.5", "noshell");
+
   files:
       "/etc/hosts"
       template_method => "mustache",
