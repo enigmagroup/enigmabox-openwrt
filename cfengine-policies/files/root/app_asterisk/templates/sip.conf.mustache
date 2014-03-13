@@ -43,7 +43,8 @@ transport=udp
     context=incoming
 
 {{#addresses}}
-[{{name}}](basic-options)
+[{{hostname}}](basic-options)
     host={{ipv6}}
-    callerid="{{display_name}} <{{name}}>"
+    callerid="{{display_name}} <{{hostname}}>"
+
 {{/addresses}}
