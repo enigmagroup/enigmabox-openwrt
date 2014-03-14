@@ -33,6 +33,9 @@ define Package/cfengine-policies/install
 
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/cfengine-apply $(1)/usr/sbin/cfengine-apply
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/cfengine-policies.init $(1)/etc/init.d/cfengine-policies
 endef
 
 $(eval $(call BuildPackage,cfengine-policies))
