@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-greenlet
-PKG_VERSION:=0.4.0
+PKG_VERSION:=0.4.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/python-greenlet/greenlet/archive/
+PKG_SOURCE_URL:=https://github.com/python-greenlet/greenlet/
 #PKG_MD5SUM:=
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/greenlet-$(PKG_VERSION)
