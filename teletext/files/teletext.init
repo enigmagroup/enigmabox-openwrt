@@ -1,8 +1,8 @@
 #!/bin/sh /etc/rc.common
 # Teletext
  
-START=96
-STOP=04
+START=92
+STOP=08
 PIDFILE=/var/run/teletext.pid
  
 start() {

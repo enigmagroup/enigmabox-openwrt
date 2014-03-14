@@ -1,8 +1,8 @@
 #!/bin/sh /etc/rc.common
 # Exim
  
-START=90
-STOP=10
+START=91
+STOP=09
 PIDFILE=/var/run/exim.pid
  
 start() {

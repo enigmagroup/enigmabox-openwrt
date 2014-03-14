@@ -1,8 +1,8 @@
 #!/bin/sh /etc/rc.common
 # Enigmabox Webinterface
  
-START=95
-STOP=05
+START=93
+STOP=07
 PIDFILE=/var/run/webinterface.pid
  
 start() {
