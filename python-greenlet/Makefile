@@ -11,11 +11,12 @@ PKG_NAME:=python-greenlet
 PKG_VERSION:=0.4.2
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/python-greenlet/greenlet/
-#PKG_MD5SUM:=
-
-PKG_BUILD_DIR:=$(BUILD_DIR)/greenlet-$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/python-greenlet/greenlet.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=python
 
 include $(INCLUDE_DIR)/package.mk
