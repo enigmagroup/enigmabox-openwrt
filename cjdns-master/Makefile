@@ -1,35 +1,23 @@
-# You may redistribute this program and/or modify it under the terms of
-# the GNU General Public License as published by the Free Software Foundation,
-# either version 3 of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=cjdns
+PKG_NAME:=cjdns-master
 PKG_VERSION:=0.6
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=git://github.com/cjdelisle/cjdns.git
+PKG_SOURCE_URL:=https://github.com/cjdelisle/cjdns.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=master
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/cjdns
+define Package/cjdns-master
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
   TITLE:=Experimental self configuring routing protocol.
   DEPENDS:=+kmod-tun +kmod-ipv6 +libnl +libpthread +librt
-  MAINTAINER:=cjd
 endef
 
 define Build/Configure
@@ -44,7 +32,7 @@ define Build/Compile
 endef
 
 
-define Package/cjdns/install
+define Package/cjdns-master/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cjdroute 	$(1)/usr/sbin/cjdroute
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dnsserv 	$(1)/usr/sbin/dnsserv
@@ -52,4 +40,4 @@ define Package/cjdns/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/publictoip6 	$(1)/usr/sbin/
 endef
 
-$(eval $(call BuildPackage,cjdns))
+$(eval $(call BuildPackage,cjdns-master))
