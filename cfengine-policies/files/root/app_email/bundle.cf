@@ -22,6 +22,11 @@ bundle agent app_email
       edit_template => "$(this.promise_dirname)/templates/exim4.conf.mustache",
       classes => if_repaired("restart_exim");
 
+      "/etc/dovecot/dovecot.conf"
+      create => "true",
+      edit_template => "$(this.promise_dirname)/templates/dovecot.conf",
+      classes => if_repaired("restart_dovecot");
+
       "/etc/passwd"
       edit_line => append_users_starting("app_email.pwd");
 
@@ -31,6 +36,9 @@ bundle agent app_email
   commands:
     restart_exim::
       "/etc/init.d/exim restart";
+
+    restart_dovecot::
+      "/etc/init.d/dovecot restart";
 
   reports:
       "app_email";
