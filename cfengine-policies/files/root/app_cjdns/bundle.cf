@@ -1,0 +1,19 @@
+
+bundle agent app_cjdns
+{
+  files:
+      "/box/cjdroute.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/cjdroute.conf.mustache",
+      classes => if_repaired("restart_cjdns");
+
+  commands:
+    restart_cjdns::
+      "/etc/init.d/cjdns restart";
+
+  reports:
+      "app_cjdns";
+}
+

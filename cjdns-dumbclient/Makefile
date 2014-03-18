@@ -52,6 +52,9 @@ CMAKE_OPTIONS += -FORCE=1
 define Package/cjdns-dumbclient/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ipkg-install/usr/bin/cjdroute2   $(1)/usr/sbin/cjdroute
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/cjdns.init $(1)/etc/init.d/cjdns
 endef
 
 $(eval $(call BuildPackage,cjdns-dumbclient))
