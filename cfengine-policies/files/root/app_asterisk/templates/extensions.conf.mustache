@@ -5,7 +5,6 @@ exten => _X.,1,Answer()
 exten => _X.,2,Dial(SIP/100,30)
 exten => _X.,3,Hangup()
 
-{{#if_addresses}}[friends]{{/if_addresses}}
 {{#addresses}}
 exten => {{phone}},1,Dial(SIP/${EXTEN}@{{hostname}})
 {{/addresses}}
