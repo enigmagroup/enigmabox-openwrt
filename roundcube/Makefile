@@ -23,7 +23,10 @@ define Build/Compile
 endef
 
 define Package/roundcube/install
-	cp -r ./files/* $(1)
+	cp -r ./files/root/* $(1)
+
+	$(INSTALL_DIR) $(1)/etc/nginx/sites
+	$(INSTALL_DATA) ./files/nginx-site.conf $(1)/etc/nginx/sites/roundcube.conf
 endef
 
 $(eval $(call BuildPackage,roundcube))
