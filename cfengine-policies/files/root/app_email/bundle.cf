@@ -29,7 +29,7 @@ bundle agent app_email
 
       "/box/vmail/."
       create => "true",
-      perms => vmail,
+      perms => vmail;
 
       "/etc/dovecot/users.conf"
       create => "true",
