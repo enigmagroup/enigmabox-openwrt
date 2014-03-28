@@ -25,7 +25,7 @@ define Build/Compile
 endef
 
 define Package/enigmabox-webinterface/install
-	mkdir $(1)/box
+	$(INSTALL_DIR) $(1)/box
 	cp -r ./files/root/* $(1)
 
 	$(INSTALL_DIR) $(1)/etc/init.d
