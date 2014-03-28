@@ -9,6 +9,7 @@ start() {
     mkdir -p /var/cfengine/bin
     cp /opt/cfengine/bin/cf-promises /var/cfengine/bin/cf-promises
     cp -r /opt/cfengine/ppkeys /var/cfengine/
+    chmod 700 /var/cfengine/ppkeys
     /opt/cfengine/bootstrap.cf
     echo started.
 }
