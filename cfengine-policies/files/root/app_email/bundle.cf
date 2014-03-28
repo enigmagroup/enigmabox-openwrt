@@ -27,6 +27,10 @@ bundle agent app_email
       edit_template => "$(this.promise_dirname)/templates/dovecot.conf",
       classes => if_repaired("restart_dovecot");
 
+      "/box/vmail/."
+      create => "true",
+      perms => vmail,
+
       "/etc/dovecot/users.conf"
       create => "true",
       perms => file,
@@ -58,5 +62,12 @@ bundle agent app_email
 
   reports:
       "app_email";
+}
+
+body perms vmail
+{
+      mode => "755";
+      owners => { "vmail" };
+      groups => { "vmail" };
 }
 
