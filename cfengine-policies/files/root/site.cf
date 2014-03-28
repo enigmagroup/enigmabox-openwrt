@@ -32,3 +32,8 @@ body perms script
       mode => "755";
 }
 
+body perms file
+{
+      mode => "644";
+}
+
