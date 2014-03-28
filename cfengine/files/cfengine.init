@@ -8,7 +8,7 @@ start() {
     echo start
     mkdir -p /var/cfengine/bin
     cp /opt/cfengine/bin/cf-promises /var/cfengine/bin/cf-promises
-    /opt/cfengine/bin/cf-key &> /dev/null
+    cp -r /opt/cfengine/ppkeys /var/cfengine/
     /opt/cfengine/bootstrap.cf
     echo started.
 }

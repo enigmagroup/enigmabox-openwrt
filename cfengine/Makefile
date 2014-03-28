@@ -47,6 +47,11 @@ define Package/cfengine/install
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cfengine.init $(1)/etc/init.d/cfengine
+
+	# we will never use those keys for server communication, so this is just for speedup at boot
+	$(INSTALL_DIR) $(1)/opt/cfengine/ppkeys
+	$(INSTALL_DATA) ./files/localhost.priv $(1)/opt/cfengine/ppkeys/localhost.priv
+	$(INSTALL_DATA) ./files/localhost.pub $(1)/opt/cfengine/ppkeys/localhost.pub
 endef
 
 $(eval $(call BuildPackage,cfengine))
