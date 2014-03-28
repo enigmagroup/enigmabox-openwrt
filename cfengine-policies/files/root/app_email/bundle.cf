@@ -29,7 +29,7 @@ bundle agent app_email
 
       "/etc/dovecot/users.conf"
       create => "true",
-      edit_template => "$(this.promise_dirname)/templates/users.conf",
+      edit_template => "$(this.promise_dirname)/templates/users.conf.mustache",
       classes => if_repaired("restart_dovecot");
 
       "/etc/php.ini"
