@@ -27,7 +27,7 @@ define Package/cfengine/description
 endef
 
 define Build/Configure
-	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh --host=i486 --target=i386-pc-linux-gnu --with-tokyocabinet --without-libxml2 --without-postgresql $(TARGET_CONFIGURE_OPTS)
+	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh --host=$(ARCH) --target=$(GNU_TARGET_NAME) --with-tokyocabinet --without-libxml2 --without-postgresql $(TARGET_CONFIGURE_OPTS)
 endef
 
 define Package/cfengine/install
