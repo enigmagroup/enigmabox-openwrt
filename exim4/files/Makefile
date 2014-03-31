@@ -671,7 +671,7 @@ HAVE_ICONV=no
 # as well.
 #CFLAGS="-Os -pipe -march=i486 -fno-caller-saves -fhonour-copts -Wno-error=unused-but-set-variable"
 #CFLAGS="$(TARGET_CFLAGS)"
-CFLAGS=-O -I/usr/local/include
+CFLAGS=-O -I/usr/local/include -march=$(ARCH) -fhonour-copts
 
 
 #------------------------------------------------------------------------------
