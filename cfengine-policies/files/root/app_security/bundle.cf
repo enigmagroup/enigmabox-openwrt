@@ -5,11 +5,11 @@ bundle agent app_security
       "site" data => readjson("$(g.site)", 64000);
 
   classes:
-      "webinterface_password" => $(site.if_webinterface_password);
+      "webinterface_password" expression => $(site.if_webinterface_password);
 
   files:
       "/etc/nginx/auth/."
-      create => "true",
+      create => "true";
 
     webinterface_password::
       "/etc/nginx/auth/webinterface.conf"
