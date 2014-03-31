@@ -17,6 +17,7 @@ body common control
 		  "$(g.workdir)/app_cjdns/bundle.cf",
 		  "$(g.workdir)/app_asterisk/bundle.cf",
 		  "$(g.workdir)/app_email/bundle.cf",
+		  "$(g.workdir)/app_security/bundle.cf",
       };
 
       bundlesequence => {
@@ -24,6 +25,7 @@ body common control
 			  "app_cjdns",
 			  "app_asterisk",
 			  "app_email",
+			  "app_security",
       };
 }
 

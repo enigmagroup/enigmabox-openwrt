@@ -1,0 +1,36 @@
+
+bundle agent app_security
+{
+  vars:
+      "site" data => readjson("$(g.site)", 64000);
+
+  classes:
+      "webinterface_password" => $(site.if_webinterface_password);
+
+  files:
+      "/etc/nginx/auth/."
+      create => "true",
+
+    webinterface_password::
+      "/etc/nginx/auth/webinterface.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/webinterface.conf",
+      classes => if_repaired("restart_nginx");
+
+      "/etc/nginx/auth/webinterface.htpasswd"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/webinterface.htpasswd.mustache",
+      classes => if_repaired("restart_nginx");
+
+  commands:
+    restart_nginx::
+      "/etc/init.d/nginx restart";
+
+  reports:
+      "app_security";
+}
+
