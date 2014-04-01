@@ -11,7 +11,8 @@ bundle agent system_network
       edit_template => "$(this.promise_dirname)/templates/hosts.mustache";
 
       "/etc/config/dhcp"
-      edit_template => "$(this.promise_dirname)/templates/dhcp";
+      edit_template => "$(this.promise_dirname)/templates/dhcp",
+      classes => if_repaired("restart_dnsmasq");
 
       "/usr/sbin/rebuild-iptables"
       create => "true",
@@ -19,6 +20,10 @@ bundle agent system_network
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/rebuild-iptables.mustache";
+
+  commands:
+    restart_dnsmasq::
+      "/etc/init.d/dnsmasq restart";
 
   reports:
       "system_network";

@@ -24,7 +24,7 @@ config dhcp 'eth1'
     option ndp 'hybrid'
 
 config dhcp 'eth2'
-    option interface 'eth1'
+    option interface 'eth2'
     option start '50'
     option limit '150'
     option leasetime '24h'
