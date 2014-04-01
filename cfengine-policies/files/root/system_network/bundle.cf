@@ -10,6 +10,9 @@ bundle agent system_network
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/hosts.mustache";
 
+      "/etc/config/dhcp"
+      edit_template => "$(this.promise_dirname)/templates/dhcp";
+
       "/usr/sbin/rebuild-iptables"
       create => "true",
       perms => script,
