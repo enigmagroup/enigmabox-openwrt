@@ -10,14 +10,6 @@ bundle agent system_base
       edit_template => "$(this.promise_dirname)/templates/config-network",
       classes => if_repaired("restart_network");
 
-      #      "/etc/init.d/webinterface"
-      #      create => "true",
-      #      perms => script,
-      #      edit_template => "$(this.promise_dirname)/templates/webinterface.init";
-      #
-      #      "/etc/rc.d/S95webinterface"
-      #      link_from => ln_s("/etc/init.d/webinterface");
-
   commands:
     reload_nginx::
       "/etc/init.d/nginx reload";
