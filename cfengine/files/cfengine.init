@@ -14,7 +14,7 @@ start() {
     echo started.
 
     # fuckin ethernets on apu board hang - bootstrap again
-    sleep 120
-    /opt/cfengine/bootstrap.cf
+    #sleep 120
+    #/opt/cfengine/bootstrap.cf
 }
  
