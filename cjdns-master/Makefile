@@ -38,6 +38,9 @@ define Package/cjdns-master/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dnsserv 	$(1)/usr/sbin/dnsserv
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/privatetopublic $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/publictoip6 	$(1)/usr/sbin/
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/cjdns.init $(1)/etc/init.d/cjdns
 endef
 
 $(eval $(call BuildPackage,cjdns-master))
