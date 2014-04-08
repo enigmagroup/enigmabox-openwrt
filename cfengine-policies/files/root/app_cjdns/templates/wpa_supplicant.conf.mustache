@@ -1,0 +1,17 @@
+
+# docs: http://wiki.ubuntuusers.de/WLAN/wpa_supplicant
+
+ctrl_interface=/var/run/wpa_supplicant
+eapol_version=1
+ap_scan=1
+
+network={
+    ssid="{{wlan_ssid}}"
+    scan_ssid=1
+    proto=RSN
+    key_mgmt=WPA-PSK
+    group={{wlan_group}}
+    pairwise={{wlan_pairwise}}
+    psk="{{wlan_pass }}"
+}
+
