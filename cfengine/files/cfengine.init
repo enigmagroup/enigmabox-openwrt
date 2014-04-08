@@ -13,8 +13,14 @@ start() {
     /opt/cfengine/bootstrap.cf
     echo started.
 
-    # fuckin ethernets on apu board hang - bootstrap again
-    sleep 120
-    /opt/cfengine/bootstrap.cf
+    # fuckin ethernets on apu board hang - bootstrap again and wait for initialisation
+    while [[ $(grep eth1 /etc/config/network | wc -l) -eq 0 ]]; do
+        /opt/cfengine/bootstrap.cf
+        sleep 1
+    done
+
+    while [[ $(ifconfig eth1 | wc -l) -eq 0 ]]; do
+        sleep 1
+    done
 }
  

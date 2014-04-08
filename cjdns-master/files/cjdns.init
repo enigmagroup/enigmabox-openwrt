@@ -6,7 +6,7 @@ STOP=05
 PIDFILE=/var/run/cjdns
  
 start() {
-    /usr/sbin/cjdroute < /box/cjdroute.conf &> /dev/null
+    ( /usr/sbin/cjdroute < /box/cjdroute.conf &> /dev/null ) &
 }
  
 stop() {
