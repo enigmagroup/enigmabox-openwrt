@@ -1,0 +1,14 @@
+diff --git a/node_build/make.js b/node_build/make.js
+index 5b15c1b..0ae4b5a 100644
+--- a/node_build/make.js
++++ b/node_build/make.js
+@@ -222,7 +222,7 @@ Builder.configure({
+             gyp.stdout.on('data', function(dat) { process.stdout.write(dat.toString()); });
+             gyp.stderr.on('data', function(dat) { process.stderr.write(dat.toString()); });
+             gyp.on('close', waitFor(function () {
+-                var args = ['-j', WORKERS, '-C', 'out', 'BUILDTYPE=Release', 'CC='+builder.config.gcc];
++                var args = ['-j', WORKERS, '-C', 'out', 'BUILDTYPE=Release', 'CC='+builder.config.gcc, 'LINK='+builder.config.gcc, 'LDFLAGS='+builder.config.ldflags];
+                 if (builder.config.systemName === 'win32') { args.push('PLATFORM=mingw32'); }
+                 if (builder.config.systemName !== 'darwin') { args.push('CFLAGS=-fPIC'); }
+                 var make = Spawn('make', args);
+

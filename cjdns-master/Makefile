@@ -27,6 +27,7 @@ define Build/Compile
 	CROSS="true" \
 	CFLAGS="$(TARGET_CFLAGS)" \
 	CC="$(TARGET_CC)" \
+	ARCH="$(ARCH)" \
 	LDFLAGS="$(TARGET_LDFLAGS)" \
 	$(PKG_BUILD_DIR)/do
 endef
