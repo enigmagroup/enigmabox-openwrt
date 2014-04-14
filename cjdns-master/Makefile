@@ -7,7 +7,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/cjdelisle/cjdns.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=master
+PKG_SOURCE_VERSION:=crashey
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
@@ -26,6 +26,8 @@ endef
 define Build/Compile
 	CROSS="true" \
 	CFLAGS="$(TARGET_CFLAGS)" \
+	NO_PIE="true" \
+	NO_SECURITY="true" \
 	CC="$(TARGET_CC)" \
 	ARCH="$(ARCH)" \
 	LDFLAGS="$(TARGET_LDFLAGS)" \
