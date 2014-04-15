@@ -9,6 +9,7 @@ PKG_SOURCE_URL:=https://github.com/cjdelisle/cjdns.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=crashey
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_BUILD_DEPENDS:=libssp
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -17,7 +18,7 @@ define Package/cjdns-master
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
   TITLE:=Experimental self configuring routing protocol.
-  DEPENDS:=+kmod-tun +kmod-ipv6 +libnl +libpthread +librt
+  DEPENDS:=+kmod-tun +kmod-ipv6 +libnl +libpthread +librt +libssp
 endef
 
 define Build/Configure

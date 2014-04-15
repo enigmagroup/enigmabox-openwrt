@@ -1,0 +1,11 @@
+--- a/node_build/make.js
++++ b/node_build/make.js
+@@ -108,6 +108,9 @@ Builder.configure({
+         builder.config.cflags.push(
+             '-DHAS_ETH_INTERFACE=1'
+         );
++        builder.config.libs.push(
++            '-lssp'
++        );
+     }
+ 
