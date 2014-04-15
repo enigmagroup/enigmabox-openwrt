@@ -1,16 +1,5 @@
-diff --git a/node_build/make.js b/node_build/make.js
-index 44ff78d..4732924 100644
 --- a/node_build/make.js
 +++ b/node_build/make.js
-@@ -55,7 +55,7 @@ Builder.configure({
-         '-std=c99',
-         '-Wall',
-         '-Wextra',
--        '-Werror',
-+        //'-Werror',
-         '-Wno-pointer-sign',
-         '-pedantic',
-         '-D',builder.config.systemName + '=1',
 @@ -65,9 +65,9 @@ Builder.configure({
          // Broken GCC patch makes -fstack-protector-all not work
          // workaround is to give -fno-stack-protector first.
