@@ -28,10 +28,9 @@ define Build/Compile
 	CROSS="true" \
 	CFLAGS="$(TARGET_CFLAGS)" \
 	NO_PIE="true" \
-	NO_SECURITY="true" \
 	CC="$(TARGET_CC)" \
 	ARCH="$(ARCH)" \
-	LDFLAGS="$(TARGET_LDFLAGS)" \
+	LDFLAGS="$(TARGET_LDFLAGS) -lssp" \
 	$(PKG_BUILD_DIR)/do
 endef
 
