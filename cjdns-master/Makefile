@@ -18,7 +18,7 @@ define Package/cjdns-master
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
   TITLE:=Experimental self configuring routing protocol.
-  DEPENDS:=+kmod-tun +kmod-ipv6 +libnl +libpthread +librt +libssp
+  DEPENDS:=+kmod-tun +kmod-ipv6 +libnl +libpthread +librt +@SSP_SUPPORT +libssp
 endef
 
 define Build/Configure
