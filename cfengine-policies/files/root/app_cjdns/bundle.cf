@@ -11,6 +11,7 @@ bundle agent app_cjdns
 
       "/usr/sbin/setup-cjdns-networking"
       create => "true",
+      perms => script,
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/setup-cjdns-networking.mustache";
