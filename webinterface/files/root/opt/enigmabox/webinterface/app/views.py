@@ -812,9 +812,10 @@ def cfengine_site(request):
         pass
 
     server_peerings = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1]
-    for peering in server_peerings:
-        #TODO
-        peerings.append(peering)
+    for p in server_peerings:
+        peerings.append({
+            'address': p.address,
+        })
 
     custom_peerings = Peering.objects.filter(custom=True).order_by('id')
     for p in custom_peerings:
@@ -888,9 +889,11 @@ def cfengine_site(request):
     }
 
     # and this, ladies and gentlemen, is a workaround for mustache
-    #TODO: handle "0" as false
     r2 = {}
     for key in response_data:
+        if str(response_data[key]) == '0':
+            response_data[key] = False
+
         r2['if_' + key] = bool(response_data[key])
         r2[key] = response_data[key]
 
