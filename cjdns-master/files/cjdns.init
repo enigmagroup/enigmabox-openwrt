@@ -4,13 +4,18 @@
 START=95
 STOP=05
 PIDFILE=/var/run/cjdns
+EXTRA_COMMANDS="status"
  
 start() {
-    ( /usr/sbin/cjdroute < /box/cjdroute.conf &> /dev/null ) &
+    /usr/sbin/cjdroute < /box/cjdroute.conf
 }
  
 stop() {
     killall cjdroute
+}
+
+status() {
+    echo stopped
 }
 
 restart() {
