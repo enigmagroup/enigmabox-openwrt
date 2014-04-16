@@ -779,7 +779,7 @@ def cfengine_site(request):
         internet_access = json_data['internet_access']
         password = json_data['password']
         puppetmasters = json_data['puppetmasters']
-        peerings = json_data['peerings']
+        json_peerings = json_data['peerings']
 
         o.set_value('hostid', hostid)
         o.set_value('internet_access', internet_access)
@@ -796,7 +796,7 @@ def cfengine_site(request):
 
         Peering.objects.filter(custom=False).delete()
 
-        for address, peering in peerings.items():
+        for address, peering in json_peerings.items():
             p = Peering()
             p.address = address
             p.public_key = peering['publicKey']
@@ -804,8 +804,18 @@ def cfengine_site(request):
             p.country = peering['country']
             p.save()
 
-        puppetmasters = Puppetmaster.objects.all().order_by('priority')
-        internet_gateway = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1][0]
+        puppetmasters_db = Puppetmaster.objects.all().order_by('priority')
+        puppetmasters = []
+        for pm in puppetmasters_db:
+            puppetmasters.append({
+                'ip': pm.ip,
+                'hostname': pm.hostname,
+            })
+
+        internet_gateway_db = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1][0]
+        internet_gateway = {
+            'public_key': internet_gateway_db.public_key,
+        }
 
     except:
         # no additional server data found, moving on...
