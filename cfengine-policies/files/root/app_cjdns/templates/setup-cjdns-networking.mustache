@@ -3,7 +3,7 @@ export LC_ALL=en_US.UTF-8
 
 # vars
 
-remoteadresses="{{#connect_to}}{{address}} {{/connect_to}}" #todo: puppetmasters
+remoteadresses="{{#connect_to}}{{address}} {{/connect_to}} {{#puppetmasters}}{{ip}} {{/puppetmasters}}"
 
 orggatewayfile="/tmp/cjdns_org_gw"
 internet_interface="eth0"
