@@ -147,7 +147,7 @@ get_original_gateway() {
     if [[ -f "$orggatewayfile" ]]; then
         org_gw=$(cat "$orggatewayfile")
     else
-        org_gw=$(route -n | grep '^0.0.0.0' | awk '{ print $8 }')
+        org_gw=$(route -n | grep '^0.0.0.0' | awk '{ print $2 }')
         echo "$org_gw" > "$orggatewayfile"
     fi
     echo "$org_gw"
@@ -188,7 +188,7 @@ defaultroute() {
     vpn_gateway=$(get_vpn_gateway)
     if [[ "$(route -n | egrep "default.*?$vpn_gateway" | wc -l)" -eq 0 ]]; then
         e "setting defaultroute"
-        route del default gw "$vpn_gateway" tun0
+        route del default
         route add default gw "$vpn_gateway" tun0
     fi
 }
