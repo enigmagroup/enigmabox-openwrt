@@ -62,7 +62,7 @@ dhcp() {
     killall dhclient 2> /dev/null
     sleep 1
     dhclient "$internet_interface" 2> /dev/null &
-    for i in {10..1}; do
+    for i in `seq 10 -1 1`; do
         echo "waiting $i seconds for dhcp address..."
         if [[ "$(interface_dhcp_success)" == "true" ]]; then
             echo "got an ip"
@@ -259,7 +259,7 @@ if [[ "$wehaveinternet" == "yes" ]]; then
     request_cjdns_internet
     restart_cjdns
     set_status "cjdns" 1
-    for i in {60..1}; do
+    for i in `seq 60 -1 1`; do
         echo "waiting $i seconds for gateway to come up..."
         if [[ "$(gateway_is_up)" == "true" ]]; then
             e "gateway is up."
