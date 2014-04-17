@@ -824,6 +824,7 @@ def cfengine_site(request):
     server_peerings = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1]
     for p in server_peerings:
         peerings.append({
+            'ip': p.address.split(':')[0],
             'address': p.address,
             'password': p.password,
             'public_key': p.public_key,
@@ -832,6 +833,7 @@ def cfengine_site(request):
     custom_peerings = Peering.objects.filter(custom=True).order_by('id')
     for p in custom_peerings:
         peerings.append({
+            'ip': p.address.split(':')[0],
             'address': p.address,
             'password': p.password,
             'public_key': p.public_key,
