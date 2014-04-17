@@ -64,7 +64,7 @@ dhcp() {
     dhclient "$internet_interface" 2> /dev/null &
     for i in {10..1}; do
         echo "waiting $i seconds for dhcp address..."
-        if [[ $(interface_dhcp_success) == true ]]; then
+        if [[ $(interface_dhcp_success) == 'true' ]]; then
             echo "got an ip"
             sleep 1
             return
@@ -216,7 +216,7 @@ set_status() {
 
 # logic
 
-if [[ $(gateway_is_up) == true ]]; then
+if [[ $(gateway_is_up) == 'true' ]]; then
     set_network_parameters
     e "checking internet connectivity over cjdns"
     if [[ $($ping 8.8.8.8 | grep 'bytes from') ]]; then
@@ -239,7 +239,7 @@ set_status "cjdns_internet" 0
 # request dhcp
 dhcp
 
-if [[ $(interface_dhcp_success) == true ]]; then
+if [[ $(interface_dhcp_success) == 'true' ]]; then
     set_status "dhcp" 1
 fi
 
@@ -261,7 +261,7 @@ if [[ "$wehaveinternet" == "yes" ]]; then
     set_status "cjdns" 1
     for i in {60..1}; do
         echo "waiting $i seconds for gateway to come up..."
-        if [[ $(gateway_is_up) == true ]]; then
+        if [[ $(gateway_is_up) == 'true' ]]; then
             e "gateway is up."
             set_network_parameters
             e "done."
