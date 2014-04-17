@@ -111,7 +111,7 @@ request_cjdns_internet() {
             country=$(echo "$line" | tr "," "\n" | grep 'country' | cut -d: -f2 | sed 's#"##g' | sed 's#}##g')
 
             echo "trying $country ($ip)..."
-            if [[ $($ping $ip | grep 'bytes from' | wc -l) -gt 0 ]]; then
+            if [[ "$($ping $ip | grep 'bytes from' | wc -l)" -gt 0 ]]; then
                 # take it!
                 curl --data "key=selected_country&value=$country" -X POST http://127.0.0.1:8000/api/v1/set_option &> /dev/null
                 puppet-apply -r
@@ -128,7 +128,7 @@ request_cjdns_internet() {
 }
 
 start_cjdns() {
-    if [[ $(/etc/init.d/cjdns status) != "running" ]]; then
+    if [[ "$(/etc/init.d/cjdns status)" != "running" ]]; then
         e "starting cjdns"
         /etc/init.d/cjdns start
     fi
@@ -161,13 +161,13 @@ gateway_is_up() {
 }
 
 interface_dhcp_success() {
-    if [[ $(ifconfig "$internet_interface" | grep 'inet addr' | wc -l) -gt 0 ]]; then
+    if [[ "$(ifconfig "$internet_interface" | grep 'inet addr' | wc -l)" -gt 0 ]]; then
         echo true
     fi
 }
 
 mtu() {
-    if [[ $(ifconfig tun0 | grep -i mtu | awk '{ print $6 }' | cut -d: -f 2) -ne 1300 ]]; then
+    if [[ "$(ifconfig tun0 | grep -i mtu | awk '{ print $6 }' | cut -d: -f 2)" -ne 1300 ]]; then
         e "setting mtu"
         ifconfig tun0 mtu 1300
     fi
@@ -176,7 +176,7 @@ mtu() {
 original_gateway() {
     original_gateway=$(get_original_gateway)
     for remoteaddress in $remoteadresses; do
-        if [[ $(ip route | egrep "$remoteaddress.*?$original_gateway" | wc -l) -eq 0 ]]; then
+        if [[ "$(ip route | egrep "$remoteaddress.*?$original_gateway" | wc -l)" -eq 0 ]]; then
             e "setting route $remoteaddress via $original_gateway dev $internet_interface"
             ip route add "$remoteaddress" via "$original_gateway" dev "$internet_interface"
         fi
@@ -186,7 +186,7 @@ original_gateway() {
 defaultroute() {
     original_gateway=$(get_original_gateway)
     vpn_gateway=$(get_vpn_gateway)
-    if [[ $(ip route | egrep "default.*?$vpn_gateway" | wc -l) -eq 0 ]]; then
+    if [[ "$(ip route | egrep "default.*?$vpn_gateway" | wc -l)" -eq 0 ]]; then
         e "setting defaultroute"
         ip route del default via "$original_gateway" dev "$internet_interface"
         ip route add default via "$vpn_gateway" dev tun0
@@ -194,7 +194,7 @@ defaultroute() {
 }
 
 dns() {
-    if [[ $(grep '8.8.8.8' /etc/resolv.conf | wc -l) -eq 0 ]]; then
+    if [[ "$(grep '8.8.8.8' /etc/resolv.conf | wc -l)" -eq 0 ]]; then
         dhcp
     fi
 }
@@ -219,7 +219,7 @@ set_status() {
 if [[ "$(gateway_is_up)" == "true" ]]; then
     set_network_parameters
     e "checking internet connectivity over cjdns"
-    if [[ $($ping 8.8.8.8 | grep 'bytes from') ]]; then
+    if [[ "$($ping 8.8.8.8 | grep 'bytes from')" ]]; then
         echo "We have internet. Good."
         set_status "dhcp" 1
         set_status "internet" 1
@@ -246,7 +246,7 @@ fi
 # check for internet. if only one server with a direct route is pingable, we have an internet connection
 wehaveinternet="no"
 for remoteaddress in $remoteadresses; do
-    if [[ $($ping "$remoteaddress" | grep 'bytes from') ]]; then
+    if [[ "$($ping "$remoteaddress" | grep 'bytes from')" ]]; then
         echo "internet detected"
         set_status "internet" 1
         wehaveinternet="yes"
