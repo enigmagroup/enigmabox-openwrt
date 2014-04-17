@@ -26,11 +26,11 @@
                 "bind": "0.0.0.0:{{peering_port}}",
                 "connectTo":
                 {
-{{#if_connect_to}}
-{{#connect_to}}
+{{#if_peerings}}
+{{#peerings}}
                     "{{address}}":{"password":"{{password}}","publicKey":"{{public_key}}"},
-{{/connect_to}}
-{{/if_connect_to}}
+{{/peerings}}
+{{/if_peerings}}
                 }
             }
         ]
@@ -68,11 +68,11 @@
             ],
             "outgoingConnections":
             [
-{{#if_outgoing_connections}}
-{{#outgoing_connections}}
+{{#if_internet_gateway}}
+{{#internet_gateway}}
                 "{{public_key}}",
-{{/outgoing_connections}}
-{{/if_outgoing_connections}}
+{{/internet_gateway}}
+{{/if_internet_gateway}}
             ]
         }
     },
