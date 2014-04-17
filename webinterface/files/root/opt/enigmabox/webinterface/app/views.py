@@ -825,6 +825,8 @@ def cfengine_site(request):
     for p in server_peerings:
         peerings.append({
             'address': p.address,
+            'password': p.password,
+            'public_key': p.public_key,
         })
 
     custom_peerings = Peering.objects.filter(custom=True).order_by('id')
