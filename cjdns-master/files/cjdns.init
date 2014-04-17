@@ -7,7 +7,7 @@ PIDFILE=/var/run/cjdns
 EXTRA_COMMANDS="status"
  
 start() {
-    (/usr/sbin/cjdroute < /box/cjdroute.conf) &
+    ( /usr/sbin/cjdroute < /box/cjdroute.conf &> /dev/null ) &
 }
  
 stop() {
