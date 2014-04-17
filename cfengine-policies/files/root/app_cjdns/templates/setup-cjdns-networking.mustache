@@ -147,7 +147,7 @@ get_original_gateway() {
     if [[ -f "$orggatewayfile" ]]; then
         org_gw=$(cat "$orggatewayfile")
     else
-        org_gw=$(ip route show | grep ^default | cut -d ' ' -f 3)
+        org_gw=$(route -n | grep '^0.0.0.0' | awk '{ print $8 }')
         echo "$org_gw" > "$orggatewayfile"
     fi
     echo "$org_gw"
@@ -176,9 +176,9 @@ mtu() {
 original_gateway() {
     original_gateway=$(get_original_gateway)
     for remoteaddress in $remoteadresses; do
-        if [[ "$(ip route | egrep "$remoteaddress.*?$original_gateway" | wc -l)" -eq 0 ]]; then
+        if [[ "$(route -n | egrep "$remoteaddress.*?$original_gateway" | wc -l)" -eq 0 ]]; then
             e "setting route $remoteaddress via $original_gateway dev $internet_interface"
-            ip route add "$remoteaddress" via "$original_gateway" dev "$internet_interface"
+            route add "$remoteaddress" gw "$original_gateway" "$internet_interface"
         fi
     done
 }
@@ -186,10 +186,10 @@ original_gateway() {
 defaultroute() {
     original_gateway=$(get_original_gateway)
     vpn_gateway=$(get_vpn_gateway)
-    if [[ "$(ip route | egrep "default.*?$vpn_gateway" | wc -l)" -eq 0 ]]; then
+    if [[ "$(route -n | egrep "default.*?$vpn_gateway" | wc -l)" -eq 0 ]]; then
         e "setting defaultroute"
-        ip route del default via "$original_gateway" dev "$internet_interface"
-        ip route add default via "$vpn_gateway" dev tun0
+        route del default gw "$vpn_gateway" tun0
+        route add default gw "$vpn_gateway" tun0
     fi
 }
 
