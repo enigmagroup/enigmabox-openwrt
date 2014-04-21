@@ -7,6 +7,16 @@ bundle agent app_webfilter
       edit_template => "$(this.promise_dirname)/templates/config",
       classes => if_repaired("restart_privoxy");
 
+      "/etc/privoxy/match-all.action"
+      create => "true",
+      edit_template => "$(this.promise_dirname)/templates/match-all.action",
+      classes => if_repaired("restart_privoxy");
+
+      "/etc/privoxy/user.filter"
+      create => "true",
+      edit_template => "$(this.promise_dirname)/templates/user.filter",
+      classes => if_repaired("restart_privoxy");
+
       "/etc/privoxy/user.action"
       create => "true",
       template_method => "mustache",
