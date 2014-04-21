@@ -7,6 +7,11 @@ bundle agent system_network
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/hosts.mustache";
 
+      "/etc/display_names"
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/display_names.mustache";
+
       "/etc/config/dhcp"
       edit_template => "$(this.promise_dirname)/templates/dhcp",
       classes => if_repaired("restart_dnsmasq");
