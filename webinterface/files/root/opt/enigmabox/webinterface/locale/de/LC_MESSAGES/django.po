@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-20 13:05+0100\n"
-"PO-Revision-Date: 2014-02-20 13:06+0100\n"
+"POT-Creation-Date: 2014-04-20 17:13+0200\n"
+"PO-Revision-Date: 2014-04-20 17:18+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -29,23 +29,23 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:395
+#: app/views.py:416
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:396
+#: app/views.py:417
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:397
+#: app/views.py:418
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:398
+#: app/views.py:419
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:399
+#: app/views.py:420
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
@@ -133,10 +133,6 @@ msgstr "Dienste"
 #: app/templates/teletext/overview.html:8
 msgid "Teletext"
 msgstr "Teletext"
-
-#: app/templates/base.html:70
-msgid "New"
-msgstr "Neu"
 
 #: app/templates/home.html:11
 msgid "Your hostid is"
@@ -254,7 +250,7 @@ msgstr "Telefonnummer"
 #: app/templates/addressbook/detail.html:64
 #: app/templates/peerings/detail.html:67
 #: app/templates/peerings/overview.html:70
-#: app/templates/webfilter/overview.html:140
+#: app/templates/webfilter/overview.html:114
 #: app/templates/wlan_settings/overview.html:74
 msgid "Save"
 msgstr "Speichern"
@@ -461,13 +457,35 @@ msgstr "Land auswählen"
 msgid "Choose over which country you want internet access."
 msgstr "Über welches Land willst Du surfen?"
 
-#: app/templates/countryselect/overview.html:29
-msgid "Note: It may take some time after a country switch until all contacts are reachable again!"
-msgstr "Hinweis: Es kann nach einem Länderwechel unter Umständen etwas dauern, bis alle Adressen im Adressbuch wieder erreichbar sind."
+#: app/templates/countryselect/overview.html:10
+msgid "Drag and drop to reorder priorities. Mark servers active for failover in case the first (default) server is going down."
+msgstr "Ziehe die einzelnen Länder mit der Maus, um die Prioritäten zu bestimmen. Setze die Server aktiv, die im Fehlerfall bei einem Ausfall verwendet werden sollen."
 
-#: app/templates/countryselect/overview.html:30
-msgid "If a server goes down, the next available server is automatically selected."
-msgstr "Falls ein Server nicht mehr erreichbar ist, wird automatisch der nächste verfügbare Server ausgewählt."
+#: app/templates/countryselect/overview.html:20
+#: app/templates/countryselect/overview.html:32
+msgid "Active"
+msgstr "Aktiv"
+
+#: app/templates/countryselect/overview.html:25
+#: app/templates/countryselect/overview.html:37
+msgid "Inactive"
+msgstr "Inaktiv"
+
+#: app/templates/countryselect/overview.html:46
+msgid "The first server marked &quot;active&quot; is your default server, starting from the top."
+msgstr "Der erste als &quot;aktiv&quot; markierte Server wird standardmässig verwendet."
+
+#: app/templates/countryselect/overview.html:47
+msgid "The country marked orange is the currently selected country."
+msgstr "Orange: Aktuell gewähltes Land"
+
+#: app/templates/countryselect/overview.html:48
+msgid "If a server goes down, the next server marked &quot;active&quot; is automatically selected."
+msgstr "Falls ein Server nicht mehr erreichbar ist, wird automatisch der nächste als &quot;aktiv&quot; markierte Server ausgewählt."
+
+#: app/templates/countryselect/overview.html:49
+msgid "It may take some time after a country switch until all contacts are reachable again!"
+msgstr "Hinweis: Es kann nach einem Länderwechel etwas dauern, bis alle Adressen im Adressbuch wieder erreichbar sind."
 
 #: app/templates/peerings/detail.html:20
 msgid "Insert connection data to your peer"
@@ -527,12 +545,10 @@ msgstr "Eingehendes Peering"
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
 #: app/templates/webfilter/overview.html:37
-#: app/templates/webfilter/overview.html:49
-#: app/templates/webfilter/overview.html:62
-#: app/templates/webfilter/overview.html:80
-#: app/templates/webfilter/overview.html:92
-#: app/templates/webfilter/overview.html:104
-#: app/templates/webfilter/overview.html:121
+#: app/templates/webfilter/overview.html:54
+#: app/templates/webfilter/overview.html:66
+#: app/templates/webfilter/overview.html:78
+#: app/templates/webfilter/overview.html:95
 msgid "Enabled"
 msgstr "Aktiviert"
 
@@ -540,12 +556,10 @@ msgstr "Aktiviert"
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
 #: app/templates/webfilter/overview.html:39
-#: app/templates/webfilter/overview.html:51
-#: app/templates/webfilter/overview.html:64
-#: app/templates/webfilter/overview.html:82
-#: app/templates/webfilter/overview.html:94
-#: app/templates/webfilter/overview.html:106
-#: app/templates/webfilter/overview.html:123
+#: app/templates/webfilter/overview.html:56
+#: app/templates/webfilter/overview.html:68
+#: app/templates/webfilter/overview.html:80
+#: app/templates/webfilter/overview.html:97
 msgid "Disabled"
 msgstr "Deaktiviert"
 
@@ -609,31 +623,23 @@ msgstr "Eigene Filterregeln"
 msgid "Filter ads and trackers"
 msgstr "Werbung filtern"
 
-#: app/templates/webfilter/overview.html:46
-msgid "Filter browser headers"
-msgstr "Browserheader filtern"
-
-#: app/templates/webfilter/overview.html:59
-msgid "Disable user agent"
-msgstr "User-Agent deaktivieren"
-
-#: app/templates/webfilter/overview.html:77
+#: app/templates/webfilter/overview.html:51
 msgid "Block Facebook"
 msgstr "Facebook blockieren"
 
-#: app/templates/webfilter/overview.html:89
+#: app/templates/webfilter/overview.html:63
 msgid "Block Google"
 msgstr "Google blockieren"
 
-#: app/templates/webfilter/overview.html:101
+#: app/templates/webfilter/overview.html:75
 msgid "Block Twitter"
 msgstr "Twitter blockieren"
 
-#: app/templates/webfilter/overview.html:118
+#: app/templates/webfilter/overview.html:92
 msgid "Custom rules"
 msgstr "Eigene Regeln"
 
-#: app/templates/webfilter/overview.html:130
+#: app/templates/webfilter/overview.html:104
 msgid "Rules"
 msgstr "Regeln"
 
@@ -683,6 +689,15 @@ msgstr "Aktualisieren"
 #: app/templates/wlan_settings/scan.html:22
 msgid "Quality"
 msgstr "Signalstärke"
+
+#~ msgid "New"
+#~ msgstr "Neu"
+
+#~ msgid "Filter browser headers"
+#~ msgstr "Browserheader filtern"
+
+#~ msgid "Disable user agent"
+#~ msgstr "User-Agent deaktivieren"
 
 #~ msgid "Manage your contacts in the"
 #~ msgstr "Verwalte Deine Adressen im"

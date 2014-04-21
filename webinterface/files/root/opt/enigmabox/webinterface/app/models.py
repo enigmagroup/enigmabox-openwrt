@@ -29,6 +29,14 @@ class Puppetmaster(models.Model):
     def __unicode__(self):
         return self.hostname
 
+class Country(models.Model):
+    countrycode = models.CharField(max_length=2)
+    active = models.BooleanField(default=True)
+    priority = models.IntegerField(max_length=2)
+
+    def __unicode__(self):
+        return self.countrycode
+
 class Option(models.Model):
     key = models.CharField(max_length=50)
     value = models.TextField()

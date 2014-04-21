@@ -105,19 +105,8 @@ request_cjdns_internet() {
     # try another countryserver after the 2nd try
     if [[ "$try" -ge 2 ]]; then
         e "switching to an alternative server"
-
-        for line in $(cat /box/server.json | grep -A10 '"peerings":' | grep '"country":'); do
-            ip=$(echo "$line" | sed 's#^"##g' | cut -d: -f1)
-            country=$(echo "$line" | tr "," "\n" | grep 'country' | cut -d: -f2 | sed 's#"##g' | sed 's#}##g')
-
-            echo "trying $country ($ip)..."
-            if [[ "$($ping $ip | grep 'bytes from' | wc -l)" -gt 0 ]]; then
-                # take it!
-                curl --data "key=selected_country&value=$country" -X POST http://127.0.0.1:8000/api/v1/set_option &> /dev/null
-                puppet-apply -r
-                break
-            fi
-        done
+        curl http://127.0.0.1:8000/api/v1/set_next_country &> /dev/null
+        puppet-apply -r
     fi
 
     # request cjdns internet via script after the 3rd try

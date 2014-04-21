@@ -40,32 +40,6 @@
 {% endif %}
           </div>
         </div>
-
-        <!-- Button -->
-        <div class="control-group">
-          <label class="control-label" for="filter-headers">{% trans "Filter browser headers" %}</label>
-          <div class="controls">
-{% if filter_headers == '1' %}
-            <button id="filter-headers" name="filter-headers" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
-{% else %}
-            <button id="filter-headers" name="filter-headers" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
-{% endif %}
-          </div>
-        </div>
-
-{% if filter_headers == '1' %}
-        <!-- Button -->
-        <div class="control-group">
-          <label class="control-label" for="disable-browser-ident">{% trans "Disable user agent" %}</label>
-          <div class="controls">
-{% if disable_browser_ident == '1' %}
-            <button id="disable-browser-ident" name="disable-browser-ident" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
-{% else %}
-            <button id="disable-browser-ident" name="disable-browser-ident" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
-{% endif %}
-          </div>
-        </div>
-{% endif %}
         </fieldset>
     </div>
 

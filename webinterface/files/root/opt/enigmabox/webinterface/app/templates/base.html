@@ -67,7 +67,7 @@
                 <li class="{% active request 'peerings' %}"><a href="{% url app.views.peerings %}"><i class="icon-random"></i> {% trans "Peerings" %}</a></li>
                 <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i> {% trans "WLAN settings" %}&nbsp;<span class="label label-default">beta</span></a></li>
                 <li class="nav-header">{% trans "Services" %}</li>
-                <li class="{% active request 'teletext' %}"><a href="{% url app.views.teletext %}"><i class="icon-list"></i> {% trans "Teletext" %}&nbsp;<span class="label label-success">{% trans "New" %}</span></a></li>
+                <li class="{% active request 'teletext' %}"><a href="{% url app.views.teletext %}"><i class="icon-list"></i> {% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a></li>
             </ul>
         </div>
         <div class="span10">
@@ -81,6 +81,7 @@
 </div>
 
     <script src="/media/js/jquery-2.0.2.min.js"></script>
+    <script src="/media/js/jquery-ui-1.10.4.min.js"></script>
     <script src="/media/js/bootstrap.min.js"></script>
     <script src="/media/js/box.js?11"></script>
   </body>

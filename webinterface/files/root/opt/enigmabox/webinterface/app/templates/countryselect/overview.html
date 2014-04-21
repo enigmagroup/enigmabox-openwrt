@@ -7,27 +7,46 @@
 
       <h1>{% trans "Select country" %}</h1>
       <p>{% trans "Choose over which country you want internet access." %}</p>
+      <p>{% trans "Drag and drop to reorder priorities. Mark servers active for failover in case the first (default) server is going down." %}</p>
       <br />
 
 <form method="post" class="form-horizontal">
 {% csrf_token %}
-    <table class="table table-hover table-bordered" style="width: auto;">
-        <tbody>
-{% for countrycode, country in countries.items %}
-        <tr>
-    {% if countrycode == selected_country %}
-            <td><button id="{{ countrycode }}" name="country" type="text" class="btn btn-warning" value="{{ countrycode }}">{{ country }}</button></td>
+    <ol id="countrysort">
+{% for c in countries %}
+    {% if c.countrycode == selected_country %}
+        {% if c.active %}
+            <li>
+                <button name="country-active" type="text" class="btn btn-success" value="{{ c.countrycode }}">{% trans "Active" %}</button>
+                <button id="{{ c.countrycode }}" name="country" type="text" class="btn btn-warning" value="{{ c.countrycode }}">{% trans c.countryname %}</button>
+            </li>
+        {% else %}
+            <li>
+                <button name="country-inactive" type="text" class="btn btn-inverse" value="{{ c.countrycode }}">{% trans "Inactive" %}</button>
+                <button id="{{ c.countrycode }}" name="country" type="text" class="btn btn-warning" value="{{ c.countrycode }}">{% trans c.countryname %}</button>
+            </li>
+        {% endif %}
     {% else %}
-            <td><button id="{{ countrycode }}" name="country" type="text" class="btn btn-default" value="{{ countrycode }}">{{ country }}</button></td>
+        {% if c.active %}
+            <li>
+                <button name="country-active" type="text" class="btn btn-success" value="{{ c.countrycode }}">{% trans "Active" %}</button>
+                <button id="{{ c.countrycode }}" name="country" type="text" class="btn btn-default" value="{{ c.countrycode }}">{% trans c.countryname %}</button>
+            </li>
+        {% else %}
+            <li>
+                <button name="country-inactive" type="text" class="btn btn-inverse" value="{{ c.countrycode }}">{% trans "Inactive" %}</button>
+                <button id="{{ c.countrycode }}" name="country" type="text" class="btn btn-default" value="{{ c.countrycode }}">{% trans c.countryname %}</button>
+            </li>
+        {% endif %}
     {% endif %}
-        </tr>
 {% endfor %}
-        </tbody>
-    </table>
+    </ol>
 </form>
 
-      <p>{% trans "Note: It may take some time after a country switch until all contacts are reachable again!" %}</p>
-      <p>{% trans "If a server goes down, the next available server is automatically selected." %}</p>
+      <p>{% trans "The first server marked &quot;active&quot; is your default server, starting from the top." %}</p>
+      <p>{% trans "The country marked orange is the currently selected country." %}</p>
+      <p>{% trans "If a server goes down, the next server marked &quot;active&quot; is automatically selected." %}</p>
+      <p>{% trans "It may take some time after a country switch until all contacts are reachable again!" %}</p>
 
     </div> <!-- /container -->
 {% endblock %}

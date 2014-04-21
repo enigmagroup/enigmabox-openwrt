@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-20 13:05+0100\n"
+"POT-Creation-Date: 2014-04-20 17:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,24 +30,24 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:395
+#: app/views.py:416
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:396
+#: app/views.py:417
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:397
+#: app/views.py:418
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:398
+#: app/views.py:419
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:399
+#: app/views.py:420
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
@@ -123,10 +123,6 @@ msgstr "Servicios"
 #: app/templates/home.html.py:23 app/templates/teletext/overview.html:8
 msgid "Teletext"
 msgstr "Teletext"
-
-#: app/templates/base.html:70
-msgid "New"
-msgstr "Nuevo"
 
 #: app/templates/home.html:11
 msgid "Your hostid is"
@@ -242,7 +238,7 @@ msgstr "Número teléfono"
 #: app/templates/addressbook/detail.html:64
 #: app/templates/peerings/detail.html:67
 #: app/templates/peerings/overview.html:70
-#: app/templates/webfilter/overview.html:140
+#: app/templates/webfilter/overview.html:114
 #: app/templates/wlan_settings/overview.html:74
 msgid "Save"
 msgstr "Guardar"
@@ -452,20 +448,50 @@ msgstr "Seleccionar país"
 msgid "Choose over which country you want internet access."
 msgstr "Elige por cuál país quieres acceso internet"
 
-#: app/templates/countryselect/overview.html:29
+#: app/templates/countryselect/overview.html:10
 msgid ""
-"Note: It may take some time after a country switch until all contacts are "
+"Drag and drop to reorder priorities. Mark servers active for failover in "
+"case the first (default) server is going down."
+msgstr ""
+
+#: app/templates/countryselect/overview.html:20
+#: app/templates/countryselect/overview.html:32
+#, fuzzy
+msgid "Active"
+msgstr "Acción"
+
+#: app/templates/countryselect/overview.html:25
+#: app/templates/countryselect/overview.html:37
+msgid "Inactive"
+msgstr ""
+
+#: app/templates/countryselect/overview.html:46
+msgid ""
+"The first server marked &quot;active&quot; is your default server, starting "
+"from the top."
+msgstr ""
+
+#: app/templates/countryselect/overview.html:47
+msgid "The country marked orange is the currently selected country."
+msgstr ""
+
+#: app/templates/countryselect/overview.html:48
+#, fuzzy
+msgid ""
+"If a server goes down, the next server marked &quot;active&quot; is "
+"automatically selected."
+msgstr ""
+"Cuando un servidor se desconecta, el siguiente servidor disponible es "
+"selecionado automáticamente."
+
+#: app/templates/countryselect/overview.html:49
+#, fuzzy
+msgid ""
+"It may take some time after a country switch until all contacts are "
 "reachable again!"
 msgstr ""
 "Anota: tal vez se necesita un poco tiempo después de cambiar el país hasta "
 "que todos los contactos son accesibles de nuevo"
-
-#: app/templates/countryselect/overview.html:30
-msgid ""
-"If a server goes down, the next available server is automatically selected."
-msgstr ""
-"Cuando un servidor se desconecta, el siguiente servidor disponible es "
-"selecionado automáticamente."
 
 #: app/templates/peerings/detail.html:20
 msgid "Insert connection data to your peer"
@@ -527,12 +553,10 @@ msgstr "Compañero entrante"
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
 #: app/templates/webfilter/overview.html:37
-#: app/templates/webfilter/overview.html:49
-#: app/templates/webfilter/overview.html:62
-#: app/templates/webfilter/overview.html:80
-#: app/templates/webfilter/overview.html:92
-#: app/templates/webfilter/overview.html:104
-#: app/templates/webfilter/overview.html:121
+#: app/templates/webfilter/overview.html:54
+#: app/templates/webfilter/overview.html:66
+#: app/templates/webfilter/overview.html:78
+#: app/templates/webfilter/overview.html:95
 msgid "Enabled"
 msgstr "Activado"
 
@@ -540,12 +564,10 @@ msgstr "Activado"
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
 #: app/templates/webfilter/overview.html:39
-#: app/templates/webfilter/overview.html:51
-#: app/templates/webfilter/overview.html:64
-#: app/templates/webfilter/overview.html:82
-#: app/templates/webfilter/overview.html:94
-#: app/templates/webfilter/overview.html:106
-#: app/templates/webfilter/overview.html:123
+#: app/templates/webfilter/overview.html:56
+#: app/templates/webfilter/overview.html:68
+#: app/templates/webfilter/overview.html:80
+#: app/templates/webfilter/overview.html:97
 msgid "Disabled"
 msgstr "Desactivado"
 
@@ -617,31 +639,23 @@ msgstr "Reglas personalizadas de bloqueo"
 msgid "Filter ads and trackers"
 msgstr "Filtrar publicidad y rastreadores"
 
-#: app/templates/webfilter/overview.html:46
-msgid "Filter browser headers"
-msgstr "Filtrar títulos de navegador"
-
-#: app/templates/webfilter/overview.html:59
-msgid "Disable user agent"
-msgstr "Bloquea agente usuario"
-
-#: app/templates/webfilter/overview.html:77
+#: app/templates/webfilter/overview.html:51
 msgid "Block Facebook"
 msgstr "Bloquea Facebook"
 
-#: app/templates/webfilter/overview.html:89
+#: app/templates/webfilter/overview.html:63
 msgid "Block Google"
 msgstr "Bloquea Google"
 
-#: app/templates/webfilter/overview.html:101
+#: app/templates/webfilter/overview.html:75
 msgid "Block Twitter"
 msgstr "Bloquea Twitter"
 
-#: app/templates/webfilter/overview.html:118
+#: app/templates/webfilter/overview.html:92
 msgid "Custom rules"
 msgstr "Reglas personalizados"
 
-#: app/templates/webfilter/overview.html:130
+#: app/templates/webfilter/overview.html:104
 msgid "Rules"
 msgstr "Reglas"
 
@@ -697,3 +711,12 @@ msgstr "Renovar"
 #: app/templates/wlan_settings/scan.html:22
 msgid "Quality"
 msgstr "Calidad"
+
+#~ msgid "New"
+#~ msgstr "Nuevo"
+
+#~ msgid "Filter browser headers"
+#~ msgstr "Filtrar títulos de navegador"
+
+#~ msgid "Disable user agent"
+#~ msgstr "Bloquea agente usuario"

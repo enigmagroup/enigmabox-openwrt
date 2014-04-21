@@ -387,12 +387,33 @@ def countryselect(request):
 
     o = Option()
 
-    if request.POST:
-        country = request.POST.get('country')
+    country = request.POST.get('country', False)
+    if country:
         o.set_value('selected_country', country)
         o.config_changed(True)
 
-    countries = {
+    country_active = request.POST.get('country-active', False)
+    if country_active:
+        c = Country.objects.get(countrycode=country_active)
+        c.active = False
+        c.save()
+
+    country_inactive = request.POST.get('country-inactive', False)
+    if country_inactive:
+        c = Country.objects.get(countrycode=country_inactive)
+        c.active = True
+        c.save()
+
+    peerings = Peering.objects.filter(custom=False)
+    for p in peerings:
+        country = Country.objects.filter(countrycode=p.country)
+        if len(country) < 1:
+            c = Country()
+            c.countrycode = p.country
+            c.priority = 0
+            c.save()
+
+    countries_trans = {
         'hu': _('Hungary'),
         'fr': _('France'),
         'ch': _('Switzerland'),
@@ -400,8 +421,19 @@ def countryselect(request):
         'us': _('United Stasi of America'),
     }
 
+    db_countries = Country.objects.all().order_by('priority')
+    countries = []
+    for c in db_countries:
+        countries.append({
+            'countrycode': c.countrycode,
+            'active': c.active,
+            'priority': c.priority,
+            'countryname': countries_trans.get(c.countrycode),
+        })
+
     return render_to_response('countryselect/overview.html', {
         'countries': countries,
+        'countries_trans': countries_trans,
         'selected_country': o.get_value('selected_country', 'hu'),
     }, context_instance=RequestContext(request))
 
@@ -627,6 +659,50 @@ def api_v1(request, api_url):
         except:
             resp['message'] = 'fail'
 
+    if api_url == 'set_countries':
+        try:
+            countries = request.POST.get('countries', '').strip()
+            prio = 1
+            for country in countries.split(','):
+                c = Country.objects.get(countrycode=country)
+                c.priority = prio
+                c.save()
+                prio = prio + 1
+
+        except:
+            resp['message'] = 'fail'
+
+    if api_url == 'set_next_country':
+        our_default = 'ch'
+
+        o = Option()
+        current_country = o.get_value('selected_country')
+        countries = Country.objects.filter(active=True).order_by('priority')
+        if len(countries) < 1:
+            next_country = our_default
+        else:
+            no_next_country = True
+            i = 0
+            for c in countries:
+                if c.countrycode == current_country:
+                    no_next_country = False
+                    try:
+                        next_country = countries[i+1].countrycode
+                    except Exception:
+                        try:
+                            next_country = countries[0].countrycode
+                        except Exception:
+                            next_country = our_default
+                i = i + 1
+
+            if no_next_country:
+                next_country = countries[0].countrycode
+
+        o.set_value('selected_country', next_country)
+
+        resp['value'] = next_country
+        resp['result'] = 'success'
+
     return HttpResponse(json.dumps(resp), content_type='application/json')
 
 
@@ -725,9 +801,21 @@ def puppet_site(request, program):
 
     # webfilter: format custom rules
     custom_rules_text = o.get_value('webfilter_custom-rules-text', '')
-    # four backslashes: django -> puppet -> tinyproxy-regex
-    custom_rules_text = custom_rules_text.replace('.', '\\\\.')
-    custom_rules_text = custom_rules_text.replace('-', '\\\\-')
+    ## four backslashes: django -> puppet -> tinyproxy
+    #custom_rules_text = custom_rules_text.replace('.', '\\\\.')
+    #custom_rules_text = custom_rules_text.replace('-', '\\\\-')
+
+    custom_rules_text = custom_rules_text.replace('\r', '')
+
+    cr2 = ''
+    for crt in custom_rules_text.split('\n'):
+        cr2 += '.*' + crt + '.*\n'
+
+    custom_rules_text = cr2
+    custom_rules = o.get_value('webfilter_custom-rules', '')
+
+    if custom_rules != '1':
+        custom_rules_text = ''
 
     return render_to_response(template, {
         'box': box,
@@ -752,7 +840,7 @@ def puppet_site(request, program):
         'webfilter_block_facebook': o.get_value('webfilter_block-facebook', ''),
         'webfilter_block_google': o.get_value('webfilter_block-google', ''),
         'webfilter_block_twitter': o.get_value('webfilter_block-twitter', ''),
-        'webfilter_custom_rules': o.get_value('webfilter_custom-rules', ''),
+        'webfilter_custom_rules': custom_rules,
         'webfilter_custom_rules_text': custom_rules_text,
         'teletext_enabled': o.get_value('teletext_enabled', '0'),
     })
