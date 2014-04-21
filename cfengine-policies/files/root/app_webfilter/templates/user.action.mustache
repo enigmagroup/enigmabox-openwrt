@@ -196,22 +196,22 @@ www.example.com/nasty-ads/sponsor.gif
 {+block{Facebook "like" and similar tracking URLs.}}
 www.facebook.com/(extern|plugins)/(login_status|like(box)?|activity|fan)\.php
 
-{#if_webfilter_block_google}
+{{#if_webfilter_block_google}}
 {+block{Block all google}}
 .*google..*
-{/if_webfilter_block_google}
+{{/if_webfilter_block_google}}
 
-{#if_webfilter_block_facebook}
+{{#if_webfilter_block_facebook}}
 {+block{Block all facebook}}
 .*facebook..*
-{/if_webfilter_block_facebook}
+{{/if_webfilter_block_facebook}}
 
-{#if_webfilter_block_twitter}
+{{#if_webfilter_block_twitter}}
 {+block{Block all twitter}}
 .*twitter..*
-{/if_webfilter_block_twitter}
+{{/if_webfilter_block_twitter}}
 
-{#if_webfilter_custom_rules_text}
+{{#if_webfilter_custom_rules_text}}
 {+block{Block custom rules}}
 {{webfilter_custom_rules_text}}
-{/if_webfilter_custom_rules_text}
+{{/if_webfilter_custom_rules_text}}
