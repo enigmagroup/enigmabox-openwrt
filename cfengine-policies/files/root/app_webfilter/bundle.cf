@@ -4,13 +4,13 @@ bundle agent app_webfilter
   files:
       "/etc/privoxy/config"
       create => "true",
-      template_method => "mustache",
-      template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/config",
       classes => if_repaired("restart_privoxy");
 
       "/etc/privoxy/user.action"
       create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/user.action.mustache",
       classes => if_repaired("restart_privoxy");
 
