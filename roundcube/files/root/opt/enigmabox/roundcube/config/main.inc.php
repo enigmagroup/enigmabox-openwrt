@@ -748,7 +748,7 @@ $rcmail_config['addressbook_name_listing'] = 0;
 // use this timezone to display date/time
 // valid timezone identifers are listed here: php.net/manual/en/timezones.php
 // 'auto' will use the browser's timezone settings
-$rcmail_config['timezone'] = 'auto';
+$rcmail_config['timezone'] = 'UTC';
 
 // prefer displaying HTML messages
 $rcmail_config['prefer_html'] = true;
