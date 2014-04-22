@@ -11,7 +11,9 @@ if [[ $task == 'sslcerts' ]]; then
     [[ -z $hostid ]] && exit 1
 
     # delete old certs
-    rm -rf /box/ssl
+    rm "/box/ssl/$hostid-cert.pem"
+    rm "/box/ssl/$hostid-public_key.pem"
+    rm "/box/ssl/$hostid-private_key.pem"
 
     # mkdir
     mkdir -p /box/ssl
