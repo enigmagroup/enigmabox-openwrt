@@ -180,6 +180,7 @@ def backup_system(request):
             c.execute('select value from app_option where key = "ipv6"')
             msg = c.fetchone()[0]
             conn.close()
+
         except:
             msg = 'invalid'
 
@@ -190,6 +191,7 @@ def backup_system(request):
 
         o.config_changed(True)
         o.set_value('internet_requested', 0)
+        # TODO: set rootpw
         return redirect('/backup/system/')
 
     return render_to_response('backup/system.html', {
@@ -208,13 +210,14 @@ def backup_emails(request):
         from django.core.servers.basehttp import FileWrapper
 
         try:
-            Popen(["sudo", "/usr/local/sbin/backup-stuff", "emails"], stdout=PIPE).communicate()[0]
+            Popen(["/usr/sbin/backup-stuff", "emails"], stdout=PIPE).communicate()[0]
 
             wrapper = FileWrapper(file(filename))
             response = HttpResponse(wrapper, content_type='application/x-gzip')
             response['Content-Disposition'] = 'attachment; filename=emails.tar.gz'
             response['Content-Length'] = os.path.getsize(filename)
             return response
+
         except:
             msg = 'backuperror'
 
@@ -226,7 +229,7 @@ def backup_emails(request):
                 destination.write(chunk)
             destination.close()
 
-            Popen(["sudo", "/usr/local/sbin/restore-stuff", "emails"], stdout=PIPE).communicate()[0]
+            Popen(["/usr/sbin/restore-stuff", "emails"], stdout=PIPE).communicate()[0]
             msg = 'restoresuccess'
 
         except:
@@ -248,13 +251,14 @@ def backup_sslcerts(request):
         from django.core.servers.basehttp import FileWrapper
 
         try:
-            Popen(["sudo", "/usr/local/sbin/backup-stuff", "sslcerts"], stdout=PIPE).communicate()[0]
+            Popen(["/usr/sbin/backup-stuff", "sslcerts"], stdout=PIPE).communicate()[0]
 
             wrapper = FileWrapper(file(filename))
             response = HttpResponse(wrapper, content_type='application/x-gzip')
             response['Content-Disposition'] = 'attachment; filename=sslcerts.tar.gz'
             response['Content-Length'] = os.path.getsize(filename)
             return response
+
         except:
             msg = 'backuperror'
 
@@ -266,7 +270,7 @@ def backup_sslcerts(request):
                 destination.write(chunk)
             destination.close()
 
-            Popen(["sudo", "/usr/local/sbin/restore-stuff", "sslcerts"], stdout=PIPE).communicate()[0]
+            Popen(["/usr/sbin/restore-stuff", "sslcerts"], stdout=PIPE).communicate()[0]
             msg = 'restoresuccess'
 
         except:
