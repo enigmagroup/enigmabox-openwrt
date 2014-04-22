@@ -4,6 +4,7 @@
 START=93
 STOP=07
 PIDFILE=/var/run/webinterface.pid
+EXTRA_COMMANDS="init_db"
  
 start() {
     [[ ! -f /box/settings.sqlite ]] && init_db

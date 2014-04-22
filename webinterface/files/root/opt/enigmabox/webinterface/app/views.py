@@ -188,6 +188,7 @@ def backup_system(request):
         import shutil
 
         shutil.move(temp_db, final_db)
+        Popen(["/etc/init.d/webinterface", "init_db"], stdout=PIPE).communicate()[0]
 
         o.config_changed(True)
         o.set_value('internet_requested', 0)
