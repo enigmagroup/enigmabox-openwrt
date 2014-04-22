@@ -33,6 +33,10 @@ define Package/enigmabox-webinterface/install
 
 	$(INSTALL_DIR) $(1)/etc/nginx/sites
 	$(INSTALL_DATA) ./files/nginx-site.conf $(1)/etc/nginx/sites/webinterface.conf
+
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/backup-stuff $(1)/usr/sbin/backup-stuff
+	$(INSTALL_BIN) ./files/restore-stuff $(1)/usr/sbin/restore-stuff
 endef
 
 $(eval $(call BuildPackage,enigmabox-webinterface))
