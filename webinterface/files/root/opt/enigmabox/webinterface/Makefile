@@ -1,7 +1,7 @@
 all:
 	clear
 	./manage.py syncdb
-	./manage.py migrate app
+	./manage.py migrate app --noinput
 	./manage.py runserver
 
 trans:

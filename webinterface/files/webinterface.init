@@ -32,6 +32,6 @@ restart() {
 
 init_db() {
     /opt/enigmabox/webinterface/manage.py syncdb
-    /opt/enigmabox/webinterface/manage.py migrate app
+    /opt/enigmabox/webinterface/manage.py migrate app --noinput
 }
 
