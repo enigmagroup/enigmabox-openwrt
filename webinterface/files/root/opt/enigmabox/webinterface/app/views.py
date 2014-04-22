@@ -709,7 +709,7 @@ def cfengine_site(request):
     selected_country = o.get_value('selected_country', 'hu')
     addresses = []
     missioncontrol = []
-    internet_gateway = ''
+    internet_gateway = []
     peerings = []
 
     # get Enigmabox-specific server data, when available
