@@ -272,6 +272,7 @@ def backup_sslcerts(request):
             destination.close()
 
             Popen(["/usr/sbin/restore-stuff", "sslcerts"], stdout=PIPE).communicate()[0]
+            o.config_changed(True)
             msg = 'restoresuccess'
 
         except:
