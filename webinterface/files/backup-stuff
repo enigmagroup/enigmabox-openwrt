@@ -1,0 +1,24 @@
+#!/bin/bash
+
+task=$1
+
+if [[ $task == 'sslcerts' ]]; then
+
+    cp /box/ssl/* /tmp/
+
+    cd /tmp
+    tar czf sslcerts.tar.gz *.pem
+
+    rm /tmp/*.pem
+
+fi
+
+
+
+if [[ $task == 'emails' ]]; then
+
+    cd /box/vmail/
+    tar czvf /tmp/emails.tar.gz mail/
+
+fi
+

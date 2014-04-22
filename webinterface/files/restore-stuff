@@ -1,0 +1,40 @@
+#!/bin/ash
+
+task=$1
+
+if [[ $task == 'sslcerts' ]]; then
+
+    cd /tmp
+    tar xzf sslcerts.tar.gz
+
+    hostid=$(find /tmp -type f -name *-cert.pem | sed -n 's#/tmp/\(.*\)\-cert\.pem#\1#p');
+    [[ -z $hostid ]] && exit 1
+
+    # delete old certs
+    rm -rf /box/ssl
+
+    # mkdir
+    mkdir -p /box/ssl
+
+    # copy certs
+    mv "/tmp/$hostid-cert.pem" "/box/ssl/"
+    mv "/tmp/$hostid-public_key.pem" "/box/ssl/"
+    mv "/tmp/$hostid-private_key.pem" "/box/ssl/"
+
+    # inform webinterface
+    curl --data "key=hostid&value=$hostid" -X POST http://127.0.0.1:8000/api/v1/set_option &> /dev/null
+
+    rm /tmp/sslcerts.tar.gz
+
+fi
+
+
+
+if [[ $task == 'emails' ]]; then
+
+    rm -rf /box/vmail/mail
+    tar xzf /tmp/emails.tar.gz -C /box/vmail
+    chown -R vmail:vmail /box/vmail
+
+fi
+
