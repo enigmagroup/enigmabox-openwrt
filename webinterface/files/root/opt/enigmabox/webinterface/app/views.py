@@ -611,12 +611,12 @@ def api_v1(request, api_url):
         except:
             resp['message'] = 'error setting option'
 
-    if api_url == 'get_puppetmasters':
+    if api_url == 'get_missioncontrol':
         try:
-            puppetmasters = Puppetmaster.objects.all().order_by('priority')
+            missioncontrol = Missioncontrol.objects.all().order_by('priority')
             data = []
-            for pm in puppetmasters:
-                data.append(pm.hostname)
+            for mc in missioncontrol:
+                data.append(mc.hostname)
             resp['value'] = data
             resp['result'] = 'success'
         except:
@@ -709,142 +709,6 @@ def api_v1(request, api_url):
 
 # Sites
 
-def puppet_site(request, program):
-
-    if program == 'puppet':
-        template = 'puppet/site.pp'
-    else:
-        template = 'ansible/site.yml'
-
-    o = Option()
-
-    box = {}
-    box['ipv6'] = o.get_value('ipv6').strip()
-    box['public_key'] = o.get_value('public_key')
-    box['private_key'] = o.get_value('private_key')
-    selected_country = o.get_value('selected_country', 'hu')
-    addresses = ''
-    puppetmasters = ''
-    internet_gateway = ''
-    peerings = ''
-
-    # get Enigmabox-specific server data, when available
-    try:
-        f = open('/box/server.json', 'r')
-        json_data = json.load(f)
-
-        hostid = json_data['hostid']
-        internet_access = json_data['internet_access']
-        password = json_data['password']
-        puppetmasters = json_data['puppetmasters']
-        peerings = json_data['peerings']
-
-        o.set_value('hostid', hostid)
-        o.set_value('internet_access', internet_access)
-        o.set_value('password', password)
-
-        Puppetmaster.objects.all().delete()
-
-        for pm in puppetmasters:
-            p = Puppetmaster()
-            p.ip = pm[0]
-            p.hostname = pm[1]
-            p.priority = pm[2]
-            p.save()
-
-        Peering.objects.filter(custom=False).delete()
-
-        for address, peering in peerings.items():
-            p = Peering()
-            p.address = address
-            p.public_key = peering['publicKey']
-            p.password = peering['password']
-            p.country = peering['country']
-            p.save()
-
-        puppetmasters = Puppetmaster.objects.all().order_by('priority')
-        internet_gateway = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1][0]
-
-    except:
-        # no additional server data found, moving on...
-        pass
-
-    peerings = []
-
-    server_peerings = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1]
-    for peering in server_peerings:
-        peerings.append(peering)
-
-    custom_peerings = Peering.objects.filter(custom=True).order_by('id')
-    for peering in custom_peerings:
-        peerings.append(peering)
-
-    addresses = Address.objects.all().order_by('id')
-
-    webinterface_password = o.get_value('webinterface_password')
-    mailbox_password = o.get_value(u'mailbox_password')
-
-    if webinterface_password is None:
-        webinterface_password = ''
-
-    if mailbox_password is None:
-        mailbox_password = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(64))
-        o.set_value('mailbox_password', mailbox_password)
-
-    mailbox_password = mailbox_password.encode('utf-8')
-
-    # hash the password
-    import hashlib
-    import base64
-    p = hashlib.sha1(mailbox_password)
-    mailbox_password = base64.b64encode(p.digest())
-
-    # webfilter: format custom rules
-    custom_rules_text = o.get_value('webfilter_custom-rules-text', '')
-    ## four backslashes: django -> puppet -> tinyproxy
-    #custom_rules_text = custom_rules_text.replace('.', '\\\\.')
-    #custom_rules_text = custom_rules_text.replace('-', '\\\\-')
-
-    custom_rules_text = custom_rules_text.replace('\r', '')
-
-    cr2 = ''
-    for crt in custom_rules_text.split('\n'):
-        cr2 += '.*' + crt + '.*\n'
-
-    custom_rules_text = cr2
-    custom_rules = o.get_value('webfilter_custom-rules', '')
-
-    if custom_rules != '1':
-        custom_rules_text = ''
-
-    return render_to_response(template, {
-        'box': box,
-        'addresses': addresses,
-        'puppetmasters': puppetmasters,
-        'wlan_ssid': o.get_value('wlan_ssid'),
-        'wlan_pass': o.get_value('wlan_pass'),
-        'wlan_security': o.get_value('wlan_security'),
-        'wlan_group': o.get_value('wlan_group', ''),
-        'wlan_pairwise': o.get_value('wlan_pairwise', ''),
-        'peerings': peerings,
-        'internet_gateway': internet_gateway,
-        'autopeering': o.get_value('autopeering'),
-        'allow_peering': o.get_value('allow_peering'),
-        'peering_port': o.get_value('peering_port'),
-        'peering_password': o.get_value('peering_password'),
-        'webinterface_password': webinterface_password,
-        'mailbox_password': mailbox_password,
-        'webfilter_filter_ads': o.get_value('webfilter_filter-ads', ''),
-        'webfilter_filter_headers': o.get_value('webfilter_filter-headers', ''),
-        'webfilter_disable_browser_ident': o.get_value('webfilter_disable-browser-ident', ''),
-        'webfilter_block_facebook': o.get_value('webfilter_block-facebook', ''),
-        'webfilter_block_google': o.get_value('webfilter_block-google', ''),
-        'webfilter_block_twitter': o.get_value('webfilter_block-twitter', ''),
-        'webfilter_custom_rules': custom_rules,
-        'webfilter_custom_rules_text': custom_rules_text,
-        'teletext_enabled': o.get_value('teletext_enabled', '0'),
-    })
-
 def cfengine_site(request):
 
     o = Option()
@@ -854,7 +718,7 @@ def cfengine_site(request):
     cjdns_private_key = o.get_value('private_key')
     selected_country = o.get_value('selected_country', 'hu')
     addresses = []
-    puppetmasters = []
+    missioncontrol = []
     internet_gateway = ''
     peerings = []
 
@@ -866,21 +730,21 @@ def cfengine_site(request):
         hostid = json_data['hostid']
         internet_access = json_data['internet_access']
         password = json_data['password']
-        puppetmasters = json_data['puppetmasters']
+        json_missioncontrol = json_data['missioncontrol']
         json_peerings = json_data['peerings']
 
         o.set_value('hostid', hostid)
         o.set_value('internet_access', internet_access)
         o.set_value('password', password)
 
-        Puppetmaster.objects.all().delete()
+        Missioncontrol.objects.all().delete()
 
-        for pm in puppetmasters:
-            p = Puppetmaster()
-            p.ip = pm[0]
-            p.hostname = pm[1]
-            p.priority = pm[2]
-            p.save()
+        for mc in json_missioncontrol:
+            m = Missioncontrol()
+            m.ip = mc[0]
+            m.hostname = mc[1]
+            m.priority = mc[2]
+            m.save()
 
         Peering.objects.filter(custom=False).delete()
 
@@ -892,12 +756,12 @@ def cfengine_site(request):
             p.country = peering['country']
             p.save()
 
-        puppetmasters_db = Puppetmaster.objects.all().order_by('priority')
-        puppetmasters = []
-        for pm in puppetmasters_db:
-            puppetmasters.append({
-                'ip': pm.ip,
-                'hostname': pm.hostname,
+        missioncontrol_db = Missioncontrol.objects.all().order_by('priority')
+        missioncontrol = []
+        for mc in missioncontrol_db:
+            missioncontrol.append({
+                'ip': mc.ip,
+                'hostname': mc.hostname,
             })
 
         internet_gateway_db = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1][0]
@@ -965,7 +829,7 @@ def cfengine_site(request):
         'cjdns_public_key': cjdns_public_key,
         'cjdns_private_key': cjdns_private_key,
         'addresses': addresses,
-        'puppetmasters': puppetmasters,
+        'missioncontrol': missioncontrol,
         'wlan_ssid': o.get_value('wlan_ssid'),
         'wlan_pass': o.get_value('wlan_pass'),
         'wlan_security': o.get_value('wlan_security'),
