@@ -3,7 +3,7 @@ export LC_ALL=en_US.UTF-8
 
 # vars
 
-remoteadresses="{{#peerings}}{{ip}} {{/peerings}}{{#puppetmasters}}{{ip}} {{/puppetmasters}}"
+remoteadresses="{{#peerings}}{{ip}} {{/peerings}}{{#missioncontrol}}{{ip}} {{/missioncontrol}}"
 
 orggatewayfile="/tmp/cjdns_org_gw"
 internet_interface="eth0"
@@ -73,11 +73,6 @@ dhcp() {
     done
 }
 
-sync_time() {
-    e "sync time"
-    ntpdate pool.ntp.org
-}
-
 start_wpa() {
     e "start WPA session"
 
@@ -106,13 +101,13 @@ request_cjdns_internet() {
     if [[ "$try" -ge 2 ]]; then
         e "switching to an alternative server"
         curl http://127.0.0.1:8000/api/v1/set_next_country &> /dev/null
-        puppet-apply -r
+        /usr/sbin/cfengine-apply
     fi
 
     # request cjdns internet via script after the 3rd try
     if [[ "$try" -ge 3 ]]; then
         e "request cjdns internet"
-        /usr/local/sbin/request-internet.py 2> /dev/null
+        /usr/sbin/request-internet.py 2> /dev/null
     fi
 }
 
@@ -244,7 +239,6 @@ for remoteaddress in $remoteadresses; do
 done
 
 if [[ "$wehaveinternet" == "yes" ]]; then
-    sync_time
     request_cjdns_internet
     restart_cjdns
     set_status "cjdns" 1
