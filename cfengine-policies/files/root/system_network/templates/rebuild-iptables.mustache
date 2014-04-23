@@ -65,6 +65,9 @@ for interface in $(echo "eth1 eth2"); do
     # allow forwarding for eth1/2, but not for others
     $iptables -A FORWARD -i "$interface" -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
 
+    # allow dhcp requests
+    $iptables -A INPUT -p udp -i "$interface" --sport 67:68 --dport 67:68 -j ACCEPT
+
     # allow dns requests to tinyproxy
     $iptables -A INPUT -p udp -i "$interface" --sport 1024:65535 --dport 53 -j ACCEPT
 
