@@ -36,6 +36,7 @@ define Package/cfengine-policies/install
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cfengine-policies.init $(1)/etc/init.d/cfengine-policies
+	$(INSTALL_BIN) ./files/cjdns-networking.init $(1)/etc/init.d/cjdns-networking
 endef
 
 $(eval $(call BuildPackage,cfengine-policies))

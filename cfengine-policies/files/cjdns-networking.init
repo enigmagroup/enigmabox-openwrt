@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+# cjdns-networking check service
+ 
+START=95
+STOP=05
+ 
+start() {
+    while true; do
+        /usr/sbin/setup-cjdns-networking
+        sleep 60
+    done
+}
+ 
