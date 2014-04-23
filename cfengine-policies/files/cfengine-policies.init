@@ -2,7 +2,6 @@
 # cfengine policies apply service
  
 START=94
-STOP=06
  
 start() {
     /usr/sbin/cfengine-apply

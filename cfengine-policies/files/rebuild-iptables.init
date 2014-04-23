@@ -1,8 +1,7 @@
 #!/bin/sh /etc/rc.common
 # rebuild iptables
  
-START=95
-STOP=05
+START=90
  
 start() {
     /usr/sbin/rebuild-iptables
