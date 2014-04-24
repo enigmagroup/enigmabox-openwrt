@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=enigmabox-webinterface
+PKG_NAME:=webinterface
 PKG_VERSION:=0.16.0
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/enigmabox-webinterface
+define Package/webinterface
   SECTION:=administration
   CATEGORY:=Enigmabox
   TITLE:=Enigmabox Webinterface
@@ -14,7 +14,7 @@ define Package/enigmabox-webinterface
   DEPENDS:=+cjdns-master +python-django-1.4 +curl +python-gunicorn +python-six +python-gevent +python-openssl +python-requests +django-south +python-expat +python-json +python-sqlite3 +python-unidecode +asterisk18 +php5 +php5-fastcgi +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-session +php5-mod-iconv +php5-mod-json +@PHP5_FILTER +nginx +privoxy +dovecot +exim4 +cfengine +cfengine-policies +beanstalkd +python-beanstalkc +pyyaml +syslog-ng +unzip
 endef
 
-define Package/enigmabox-webinterface/description
+define Package/webinterface/description
 	Description.
 endef
 
@@ -24,7 +24,7 @@ endef
 define Build/Compile
 endef
 
-define Package/enigmabox-webinterface/install
+define Package/webinterface/install
 	$(INSTALL_DIR) $(1)/box
 	cp -r ./files/root/* $(1)
 
@@ -39,4 +39,4 @@ define Package/enigmabox-webinterface/install
 	$(INSTALL_BIN) ./files/restore-stuff $(1)/usr/sbin/restore-stuff
 endef
 
-$(eval $(call BuildPackage,enigmabox-webinterface))
+$(eval $(call BuildPackage,webinterface))
