@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=enigmabox-webinterface
-PKG_VERSION:=20
+PKG_VERSION:=0.16.0
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
