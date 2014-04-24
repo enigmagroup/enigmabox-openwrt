@@ -142,6 +142,27 @@ def passwords(request):
 
 
 
+# Updates
+
+def updates(request):
+
+    o = Option()
+
+    if request.POST.get('set_webinterface_password'):
+        o.set_value('webinterface_password', request.POST.get('webinterface_password'))
+        o.config_changed(True)
+
+    if request.POST.get('set_mailbox_password'):
+        o.set_value('mailbox_password', request.POST.get('mailbox_password'))
+        o.config_changed(True)
+
+    return render_to_response('passwords.html', {
+        'webinterface_password': o.get_value('webinterface_password'),
+        'mailbox_password': o.get_value('mailbox_password'),
+    }, context_instance=RequestContext(request))
+
+
+
 # Backup & restore
 
 def backup(request):

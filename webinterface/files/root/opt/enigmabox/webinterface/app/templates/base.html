@@ -57,6 +57,7 @@
                 <li class="{% active request 'addressbook' %}"><a href="{% url app.views.addressbook %}"><i class="icon-user"></i> {% trans "Addressbook" %}</a></li>
                 <li class="{% active request 'passwords' %}"><a href="{% url app.views.passwords %}"><i class="icon-lock"></i> {% trans "Passwords" %}</a></li>
                 <li class="{% active request 'backup' %}"><a href="{% url app.views.backup %}"><i class="icon-share"></i> {% trans "Backup &amp; restore" %}</a></li>
+                <li class="{% active request 'updates' %}"><a href="{% url app.views.updates %}"><i class="icon-download-alt"></i> {% trans "Updates" %}</a></li>
 {% if_config_changed object None %}
                 <li class="{% active request 'apply_changes' %}"><a href="{% url app.views.apply_changes %}"><i class="icon-circle-arrow-right"></i> {% trans "Apply changes" %}</a></li>
 {% endif_config_changed %}
@@ -65,7 +66,9 @@
                 <li class="{% active request 'webfilter' %}"><a href="{% url app.views.webfilter %}"><i class="icon-ban-circle"></i> {% trans "Ad blocking" %}</a></li>
                 <li class="nav-header">{% trans "Network" %}</li>
                 <li class="{% active request 'peerings' %}"><a href="{% url app.views.peerings %}"><i class="icon-random"></i> {% trans "Peerings" %}</a></li>
+<!--
                 <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i> {% trans "WLAN settings" %}&nbsp;<span class="label label-default">beta</span></a></li>
+-->
                 <li class="nav-header">{% trans "Services" %}</li>
                 <li class="{% active request 'teletext' %}"><a href="{% url app.views.teletext %}"><i class="icon-list"></i> {% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a></li>
             </ul>
