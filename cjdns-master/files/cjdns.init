@@ -1,9 +1,8 @@
 #!/bin/sh /etc/rc.common
 # cjdns
  
-START=95
-STOP=05
-PIDFILE=/var/run/cjdns
+START=93
+STOP=07
 EXTRA_COMMANDS="status"
  
 start() {

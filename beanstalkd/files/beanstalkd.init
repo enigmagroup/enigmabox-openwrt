@@ -1,16 +1,15 @@
 #!/bin/sh /etc/rc.common
 # Beanstalk
  
-START=91
-STOP=09
-PIDFILE=/var/run/beanstalkd.pid
+START=89
+STOP=11
  
 start() {
-    (/usr/bin/beanstalkd && echo $! > "$PIDFILE") &
+    /usr/bin/beanstalkd &
 }
  
 stop() {
-    kill $(cat "$PIDFILE")
+    killall beanstalkd
 }
 
 restart() {

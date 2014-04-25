@@ -1,8 +1,8 @@
 #!/bin/sh /etc/rc.common
 # Enigmabox Webinterface
  
-START=93
-STOP=07
+START=91
+STOP=09
 PIDFILE=/var/run/webinterface.pid
 EXTRA_COMMANDS="init_db"
  
