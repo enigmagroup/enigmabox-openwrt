@@ -11,32 +11,31 @@ dynamic_output="/tmp/dynamic_output"
 
 run() {
     background=""
-    what="$2"
 
     if [[ "$2" == "background" ]]; then
         > "$dynamic_output"
         background=1
     fi
 
-    if [[ "$what" == "check" ]]; then
+    if [[ "$1" == "check" ]]; then
         if [[ "$background" == 1 ]]; then
             (updater_check > "$dynamic_output") &
         else
             updater_check &> /dev/null
         fi
-    elif [[ "$what" == "apply" ]]; then
+    elif [[ "$1" == "apply" ]]; then
         if [[ "$background" == 1 ]]; then
             (updater_apply > "$dynamic_output") &
         else
-            updater_apply &> /dev/null
+            updater_apply
         fi
     fi
 
 }
 
 updater_check() {
-    "$opkg" update
-    "$opkg" list-upgradable
+    $opkg update
+    $opkg list-upgradable
 }
 
 
@@ -68,7 +67,7 @@ done
 
 
 
-run $background $2
+run $background $1
 
 rm "$pidfile"
 
