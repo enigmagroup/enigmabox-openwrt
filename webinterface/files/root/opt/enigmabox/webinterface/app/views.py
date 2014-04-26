@@ -152,12 +152,12 @@ def updates(request):
     if request.POST.get('check_updates'):
         output_window = True
         loader_hint = 'run'
-        Popen(["/usr/sbin/updater", "check", "-b"], stdout=PIPE)
+        Popen(["/usr/sbin/updater", "check", "bg"], stdout=PIPE)
 
     if request.POST.get('apply_updates'):
         output_window = True
         loader_hint = 'run'
-        Popen(["/usr/sbin/updater", "apply", "-b"], stdout=PIPE)
+        Popen(["/usr/sbin/updater", "apply", "bg"], stdout=PIPE)
 
     return render_to_response('updates/overview.html', {
         'output_window': output_window,

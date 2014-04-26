@@ -12,7 +12,7 @@ dynamic_output="/tmp/dynamic_output"
 run() {
     background=""
 
-    if [[ "$2" == "background" ]]; then
+    if [[ "$2" == "bg" ]]; then
         > "$dynamic_output"
         background=1
     fi
@@ -52,22 +52,7 @@ echo $$ > "$pidfile"
 
 
 
-# Option parsing
-while getopts "b" opt; do
-    case "$opt" in
-    b)
-        background="background"
-        ;;
-    :)
-        echo "Option -$OPTARG requires an argument."
-        exit 1
-        ;;
-    esac
-done
-
-
-
-run $background $1
+run $1 $2
 
 rm "$pidfile"
 
