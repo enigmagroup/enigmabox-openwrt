@@ -21,7 +21,7 @@ run() {
         if [[ "$background" == 1 ]]; then
             (updater_check > "$dynamic_output") &
         else
-            updater_check &> /dev/null
+            updater_check
         fi
     elif [[ "$1" == "apply" ]]; then
         if [[ "$background" == 1 ]]; then
