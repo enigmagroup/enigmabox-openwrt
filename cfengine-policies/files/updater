@@ -4,6 +4,7 @@
 
 # variables
 opkg="/bin/opkg -f /etc/opkg-enigmabox.conf"
+webinterface="http://127.0.0.1:8000"
 pidfile="/var/run/updater.pid"
 dynamic_output="/tmp/dynamic_output"
 
