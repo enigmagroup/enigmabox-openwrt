@@ -100,5 +100,5 @@ $iptables -A INPUT -m pkttype --pkt-type broadcast -j DROP
 $iptables -A INPUT -m pkttype --pkt-type multicast -j DROP
 
 # log all dropped
-$iptables -A INPUT -m limit --limit 10/min -j LOG
+#$iptables -A INPUT -m limit --limit 10/min -j LOG
 
