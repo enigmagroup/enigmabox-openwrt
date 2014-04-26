@@ -1,0 +1,74 @@
+#!/bin/ash
+
+#set -xv
+
+# variables
+opkg="/bin/opkg -f /etc/opkg-enigmabox.conf"
+pidfile="/var/run/updater.pid"
+dynamic_output="/tmp/dynamic_output"
+
+
+
+run() {
+    background=""
+    what="$2"
+
+    if [[ "$2" == "background" ]]; then
+        > "$dynamic_output"
+        background=1
+    fi
+
+    if [[ "$what" == "check" ]]; then
+        if [[ "$background" == 1 ]]; then
+            (updater_check > "$dynamic_output") &
+        else
+            updater_check &> /dev/null
+        fi
+    elif [[ "$what" == "apply" ]]; then
+        if [[ "$background" == 1 ]]; then
+            (updater_apply > "$dynamic_output") &
+        else
+            updater_apply &> /dev/null
+        fi
+    fi
+
+}
+
+updater_check() {
+    "$opkg" update
+    "$opkg" list-upgradable
+}
+
+
+
+# Check if this script is already running
+kill -0 $(cat "$pidfile" 2> /dev/null) 2> /dev/null
+if [[ "$?" == "0" ]]; then
+    echo "Script is already running, exiting"
+    exit 1
+else
+    [[ -f "$pidfile" ]] && rm "$pidfile"
+fi
+echo $$ > "$pidfile"
+
+
+
+# Option parsing
+while getopts "b" opt; do
+    case "$opt" in
+    b)
+        background="background"
+        ;;
+    :)
+        echo "Option -$OPTARG requires an argument."
+        exit 1
+        ;;
+    esac
+done
+
+
+
+run $background $2
+
+rm "$pidfile"
+
