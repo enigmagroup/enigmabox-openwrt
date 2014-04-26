@@ -149,12 +149,12 @@ def updates(request):
     output_window = False
     loader_hint = ''
 
-    if request.POST.get('updates_check'):
+    if request.POST.get('check_updates'):
         output_window = True
         loader_hint = 'run'
         Popen(["/usr/sbin/updater", "check", "-b"], stdout=PIPE)
 
-    if request.POST.get('updates_apply'):
+    if request.POST.get('apply_updates'):
         output_window = True
         loader_hint = 'run'
         Popen(["/usr/sbin/updater", "apply", "-b"], stdout=PIPE)
