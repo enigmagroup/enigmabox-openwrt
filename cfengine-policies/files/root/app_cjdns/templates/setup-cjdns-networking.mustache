@@ -59,7 +59,6 @@ dhcp() {
     ifconfig "$internet_interface" up
 
     e "dhcp request $internet_interface"
-    killall udhcpc 2> /dev/null
     udhcpc "$internet_interface"
 }
 
