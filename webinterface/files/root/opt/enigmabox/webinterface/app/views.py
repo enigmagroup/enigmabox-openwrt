@@ -146,19 +146,22 @@ def passwords(request):
 
 def updates(request):
 
-    o = Option()
+    output_window = False
+    loader_hint = ''
 
-    if request.POST.get('set_webinterface_password'):
-        o.set_value('webinterface_password', request.POST.get('webinterface_password'))
-        o.config_changed(True)
+    if request.POST.get('updates_check'):
+        output_window = True
+        loader_hint = 'run'
+        Popen(["/usr/sbin/updater", "check", "-b"], stdout=PIPE)
 
-    if request.POST.get('set_mailbox_password'):
-        o.set_value('mailbox_password', request.POST.get('mailbox_password'))
-        o.config_changed(True)
+    if request.POST.get('updates_apply'):
+        output_window = True
+        loader_hint = 'run'
+        Popen(["/usr/sbin/updater", "apply", "-b"], stdout=PIPE)
 
-    return render_to_response('passwords.html', {
-        'webinterface_password': o.get_value('webinterface_password'),
-        'mailbox_password': o.get_value('mailbox_password'),
+    return render_to_response('updates/overview.html', {
+        'output_window': output_window,
+        'loader_hint': loader_hint,
     }, context_instance=RequestContext(request))
 
 

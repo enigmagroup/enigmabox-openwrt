@@ -7,14 +7,14 @@ cfengine_site="/box/.cf-site.json"
 cfagent="/opt/cfengine/bin/cf-agent"
 webinterface="http://127.0.0.1:8000"
 pidfile="/var/run/cfengine-apply.pid"
-puppet_output="/tmp/puppet_output"
+dynamic_output="/tmp/dynamic_output"
 
 
 
 run() {
     background=""
     if [[ "$1" == "background" || "$2" == "background" ]]; then
-        > "$puppet_output"
+        > "$dynamic_output"
         background=1
     fi
 
@@ -22,7 +22,7 @@ run() {
     curl "$webinterface/cfengine/site.json" > "$cfengine_site"
 
     if [[ "$background" == 1 ]]; then
-        (cfengine_run > "$puppet_output" && inform_webinterface) &
+        (cfengine_run > "$dynamic_output" && inform_webinterface) &
     else
         cfengine_run && inform_webinterface &> /dev/null
     fi
