@@ -113,7 +113,7 @@ restart_cjdns() {
 }
 
 get_vpn_gateway() {
-    ifconfig tun0 | grep "inet addr" | cut -d: -f2 | awk '{ print $1 }'
+    ifconfig tun0 2> /dev/null | grep "inet addr" | cut -d: -f2 | awk '{ print $1 }'
 }
 
 get_original_gateway() {
@@ -140,7 +140,7 @@ interface_dhcp_success() {
 }
 
 mtu() {
-    if [[ "$(ifconfig tun0 | grep -i mtu | awk '{ print $6 }' | cut -d: -f 2)" -ne 1300 ]]; then
+    if [[ "$(ifconfig tun0 2> /dev/null | grep -i mtu | awk '{ print $6 }' | cut -d: -f 2)" -ne 1300 ]]; then
         e "setting mtu"
         ifconfig tun0 mtu 1300
     fi
