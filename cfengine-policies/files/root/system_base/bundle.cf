@@ -10,11 +10,21 @@ bundle agent system_base
       edit_template => "$(this.promise_dirname)/templates/config-network",
       classes => if_repaired("restart_network");
 
+      "/etc/config/system"
+      edit_template => "$(this.promise_dirname)/templates/config-system",
+      classes => if_repaired("restart_system");
+
+      "/etc/banner"
+      edit_template => "$(this.promise_dirname)/templates/banner";
+
   commands:
     reload_nginx::
       "/etc/init.d/nginx reload";
 
     restart_network::
       "/etc/init.d/network restart";
+
+    restart_system::
+      "/etc/init.d/system restart";
 }
 
