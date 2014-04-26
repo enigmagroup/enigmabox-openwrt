@@ -12,7 +12,7 @@ config dnsmasq
     option authoritative '1'
     option readethers '1'
     option leasefile '/tmp/dhcp.leases'
-    option resolvfile '/tmp/resolv.conf.auto'
+    option resolvfile '/etc/resolv.conf.enigmabox'
 
 config dhcp 'eth1'
     option interface 'eth1'

@@ -40,6 +40,9 @@ define Package/cfengine-policies/install
 	$(INSTALL_BIN) ./files/cjdns-networking.init $(1)/etc/init.d/cjdns-networking
 	$(INSTALL_BIN) ./files/rebuild-iptables.init $(1)/etc/init.d/rebuild-iptables
 
+	$(INSTALL_DIR) $(1)/etc
+	$(INSTALL_DATA) ./files/resolv.conf $(1)/etc/resolv.conf.enigmabox
+
 	# silly workaround to prevent dovecot generate ssl-params
 	$(INSTALL_DIR) $(1)/usr/lib/dovecot
 	$(INSTALL_BIN) ./files/ssl-parameters.dat $(1)/usr/lib/dovecot/ssl-parameters.dat

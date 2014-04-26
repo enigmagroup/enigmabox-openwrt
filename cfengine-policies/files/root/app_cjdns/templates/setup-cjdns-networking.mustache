@@ -60,17 +60,7 @@ dhcp() {
 
     e "dhcp request $internet_interface"
     killall udhcpc 2> /dev/null
-    sleep 1
-    udhcpc "$internet_interface" 2> /dev/null &
-    for i in `seq 10 -1 1`; do
-        echo "waiting $i seconds for dhcp address..."
-        if [[ "$(interface_dhcp_success)" == "true" ]]; then
-            echo "got an ip"
-            sleep 1
-            return
-        fi
-        sleep 1
-    done
+    udhcpc "$internet_interface"
 }
 
 start_wpa() {
@@ -177,17 +167,10 @@ defaultroute() {
     fi
 }
 
-dns() {
-    if [[ "$(grep '8.8.8.8' /etc/resolv.conf | wc -l)" -eq 0 ]]; then
-        dhcp
-    fi
-}
-
 set_network_parameters() {
     mtu
     original_gateway
     defaultroute
-    dns
 }
 
 set_status() {
