@@ -159,7 +159,7 @@ original_gateway() {
 defaultroute() {
     original_gateway=$(get_original_gateway)
     vpn_gateway=$(get_vpn_gateway)
-    if [[ "$(route -n | egrep "default.*?$vpn_gateway" | wc -l)" -eq 0 ]]; then
+    if [[ "$(route -n | egrep "0.0.0.0.*?$vpn_gateway" | wc -l)" -eq 0 ]]; then
         e "setting defaultroute"
         route del default
         route add default gw "$vpn_gateway" tun0
@@ -231,6 +231,7 @@ if [[ "$wehaveinternet" == "yes" ]]; then
             set_network_parameters
             e "done."
             set_status "cjdns_internet" 1
+            rm "$cjdns_request_tries" 2> /dev/null
             exit
         fi
         sleep 1
