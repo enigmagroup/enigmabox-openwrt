@@ -19,18 +19,22 @@ run() {
 
     if [[ "$1" == "check" ]]; then
         if [[ "$background" == 1 ]]; then
-            (updater_check > "$dynamic_output") &
+            (updater_check > "$dynamic_output" && inform_webinterface) &
         else
-            updater_check
+            updater_check && inform_webinterface
         fi
     elif [[ "$1" == "apply" ]]; then
         if [[ "$background" == 1 ]]; then
-            (updater_apply > "$dynamic_output") &
+            (updater_apply > "$dynamic_output" && inform_webinterface) &
         else
-            updater_apply
+            updater_apply && inform_webinterface
         fi
     fi
 
+}
+
+inform_webinterface() {
+    curl --data "key=updater_running&value=False" -X POST "$webinterface/api/v1/set_option" &> /dev/null
 }
 
 updater_check() {

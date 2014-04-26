@@ -24,7 +24,7 @@ run() {
     if [[ "$background" == 1 ]]; then
         (cfengine_run > "$dynamic_output" && inform_webinterface) &
     else
-        cfengine_run && inform_webinterface &> /dev/null
+        cfengine_run && inform_webinterface
     fi
 
 }

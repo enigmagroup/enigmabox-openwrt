@@ -20,20 +20,16 @@
 
         $dynamic_output.height(parseInt($(window).height(), 10) - 400);
 
-        if($('#loader-hint').data('value') == 'dry-run'){
-            $('.loader').show();
-            $('#button-dry-run, #button-run').attr('disabled', 'disabled');
-            $('#lockscreen').show();
-        }
-
         if($('#loader-hint').data('value') == 'run'){
             $('.loader').show();
             $('#button-dry-run, #button-run').attr('disabled', 'disabled');
             $('#lockscreen').show();
 
+            var output_type = $('#output-type').data('value'); // config_changed | updater_running
+
             setInterval(function(){
                 ret = $.post('/api/v1/get_option', {
-                    'key': 'config_changed'
+                    'key': output_type
                 }, function(data){
                     if(data['value'] == 'False'){
                         $('.loader').hide();
@@ -51,11 +47,6 @@
                 if(data != prev_data){
                     $dynamic_output.animate({ scrollTop: $('.dynamic-output')[0].scrollHeight}, 1000);
                     prev_data = data;
-                    if(data.indexOf('Finished catalog run') > -1){
-                        $('#button-dry-run, #button-run, #button-apply').removeAttr('disabled');
-                        $('.loader').hide();
-                        $('#lockscreen').hide();
-                    }
                 }
             });
         }, 1500);

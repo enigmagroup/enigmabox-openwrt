@@ -146,15 +146,20 @@ def passwords(request):
 
 def updates(request):
 
+    o = Option()
+
     output_window = False
     loader_hint = ''
+    output_type = 'updater_running'
 
     if request.POST.get('check_updates'):
+        o.set_value('updater_running', True)
         output_window = True
         loader_hint = 'run'
         Popen(["/usr/sbin/updater", "check", "bg"], stdout=PIPE)
 
     if request.POST.get('apply_updates'):
+        o.set_value('updater_running', True)
         output_window = True
         loader_hint = 'run'
         Popen(["/usr/sbin/updater", "apply", "bg"], stdout=PIPE)
@@ -162,6 +167,7 @@ def updates(request):
     return render_to_response('updates/overview.html', {
         'output_window': output_window,
         'loader_hint': loader_hint,
+        'output_type': output_type,
     }, context_instance=RequestContext(request))
 
 
@@ -578,6 +584,7 @@ def apply_changes(request):
 
     output_window = False
     loader_hint = ''
+    output_type = 'config_changed'
 
     if request.POST.get('apply_changes') == 'run':
         output_window = True
@@ -589,6 +596,7 @@ def apply_changes(request):
     return render_to_response('changes/apply.html', {
         'output_window': output_window,
         'loader_hint': loader_hint,
+        'output_type': output_type,
     }, context_instance=RequestContext(request))
 
 def dynamic_output(request):
