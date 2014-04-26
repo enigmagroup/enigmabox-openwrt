@@ -588,8 +588,8 @@ def apply_changes(request):
         'loader_hint': loader_hint,
     }, context_instance=RequestContext(request))
 
-def puppet_output(request):
-    with open('/tmp/puppet_output', 'r') as f:
+def dynamic_output(request):
+    with open('/tmp/dynamic_output', 'r') as f:
         output = f.read()
     from ansi2html import Ansi2HTMLConverter
     from django.http import HttpResponse

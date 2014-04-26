@@ -50,8 +50,8 @@ urlpatterns = patterns('app.views',
     # changes
     url(r'^apply_changes/$', 'apply_changes'),
 
-    # puppet output
-    url(r'^puppet_output/$', 'puppet_output'),
+    # dynamic output
+    url(r'^dynamic_output/$', 'dynamic_output'),
 
     # API
     url(r'^api/v1/(?P<api_url>.*)$', 'api_v1'),
