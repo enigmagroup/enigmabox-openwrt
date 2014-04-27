@@ -60,6 +60,7 @@ dhcp() {
 
     e "dhcp request $internet_interface"
     killall -1 udhcpc
+    sleep 10
 }
 
 start_wpa() {
