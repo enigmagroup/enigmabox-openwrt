@@ -27,7 +27,7 @@ bundle agent system_base
       comment => "Promise root cron table entries",
       create => "true",
       perms => mog("0600","root","root"),
-      edit_line => append_if_no_lines( "@{recipe.root_cron_jobs}" );
+      edit_line => append_if_no_lines( "@{system_base.root_cron_jobs}" );
 
   commands:
     reload_nginx::
