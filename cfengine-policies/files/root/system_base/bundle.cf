@@ -1,6 +1,11 @@
 
 bundle agent system_base
 {
+  vars:
+    "root_cron_jobs" slist => {
+      "* * * * * /sbin/reboot"
+    };
+
   files:
       "/etc/nginx/nginx.conf"
       edit_template => "$(this.promise_dirname)/templates/nginx.conf",
@@ -16,6 +21,13 @@ bundle agent system_base
 
       "/etc/banner"
       edit_template => "$(this.promise_dirname)/templates/banner";
+
+      "/etc/crontabs/root"
+      handle => "root_cron_jobs",
+      comment => "Promise root cron table entries",
+      create => "true",
+      perms => mog("0600","root","root"),
+      edit_line => append_if_no_lines( "@{recipe.root_cron_jobs}" );
 
   commands:
     reload_nginx::
