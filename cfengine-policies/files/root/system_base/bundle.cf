@@ -2,9 +2,13 @@
 bundle agent system_base
 {
   vars:
-    "root_cron_jobs" slist => {
-      "* * * * * /sbin/reboot"
-    };
+      "root_cron_jobs" slist => {
+				  "* * * * * /sbin/reboot"
+      };
+
+  services:
+      "cron"
+      service_policy => "start";
 
   files:
       "/etc/nginx/nginx.conf"
