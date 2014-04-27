@@ -13,7 +13,6 @@ body common control
 {
       inputs => {
 		  "$(g.workdir)/lib/files.cf",
-		  "$(g.workdir)/lib/services.cf",
 		  "$(g.workdir)/system_network/bundle.cf",
 		  "$(g.workdir)/app_cjdns/bundle.cf",
 		  "$(g.workdir)/app_asterisk/bundle.cf",
