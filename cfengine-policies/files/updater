@@ -41,21 +41,19 @@ inform_webinterface() {
 
 
 updater_apply() {
-    IFS="
-    "
 
     # upgrade every upgradable package
-    for package in $(cat "$updates_output"); do
+    while read package; do
         pkg=$(echo "$package" | cut -d' ' -f1)
         $opkg upgrade "$pkg"
-    done
+    done < "$updates_output"
 
     # remove and reinstall webinterface
     rm -rf /opt/enigmabox/webinterface
     $opkg install webinterface --force-reinstall
 
     # reboot
-    echo would reboot now... (TODO)
+    reboot
 
 }
 
