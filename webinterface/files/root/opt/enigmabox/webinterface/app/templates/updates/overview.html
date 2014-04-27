@@ -7,12 +7,29 @@
 
       <h1>{% trans "Updates" %}</h1>
 
-      <hr />
+    <table class="table table-hover table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>{% trans "Package" %}</th>
+            <th>{% trans "Installed version" %}</th>
+            <th>{% trans "New version" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for package in upgradables %}
+        <tr>
+            {% for row in package %}
+            <td>{{ row }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
     <form method="post" class="form-horizontal">
     {% csrf_token %}
         <span id="success" style="display: none;">{% trans "Updates applied." %}&nbsp;<a href="" class="btn btn-success">{% trans "Refresh" %}</a></span>
-        <button id="button-run" name="check_updates" type="text" class="btn btn-success" value="check">{% trans "Check for updates" %}</button>
+        <button id="button-run" name="apply_updates" type="text" class="btn btn-danger confirmation" value="apply">{% trans "Install updates" %}</button>
         <span class="loader" style="display: none;">&nbsp;{% trans "Please wait" %}...&nbsp;<img src="/media/img/ajax-loader.gif" alt="ajax loader" /></span>
     </form>
 

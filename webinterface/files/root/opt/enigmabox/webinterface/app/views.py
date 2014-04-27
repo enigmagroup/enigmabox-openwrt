@@ -164,10 +164,19 @@ def updates(request):
         loader_hint = 'run'
         Popen(["/usr/sbin/updater", "apply", "bg"], stdout=PIPE)
 
+    f = open('/tmp/updates_output', 'r')
+    upgr_content = f.read()
+
+    upgradables = []
+    for line in upgr_content.split('\n'):
+        if line != '':
+            upgradables.append(line.split(' - '))
+
     return render_to_response('updates/overview.html', {
         'output_window': output_window,
         'loader_hint': loader_hint,
         'output_type': output_type,
+        'upgradables': upgradables,
     }, context_instance=RequestContext(request))
 
 
