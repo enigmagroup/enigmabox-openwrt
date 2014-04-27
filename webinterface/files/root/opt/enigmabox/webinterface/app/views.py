@@ -152,12 +152,6 @@ def updates(request):
     loader_hint = ''
     output_type = 'updater_running'
 
-    if request.POST.get('check_updates'):
-        o.set_value('updater_running', True)
-        output_window = True
-        loader_hint = 'run'
-        Popen(["/usr/sbin/updater", "check", "bg"], stdout=PIPE)
-
     if request.POST.get('apply_updates'):
         o.set_value('updater_running', True)
         output_window = True

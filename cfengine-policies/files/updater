@@ -7,6 +7,7 @@ opkg="/bin/opkg -f /etc/opkg-enigmabox.conf"
 webinterface="http://127.0.0.1:8000"
 pidfile="/var/run/updater.pid"
 dynamic_output="/tmp/dynamic_output"
+updates_output="/tmp/updates_output"
 
 
 
@@ -19,17 +20,16 @@ run() {
     fi
 
     if [[ "$1" == "check" ]]; then
-        if [[ "$background" == 1 ]]; then
-            (updater_check > "$dynamic_output" && inform_webinterface) &
-        else
-            updater_check && inform_webinterface
-        fi
+        $opkg update
+        $opkg list-upgradable | tee "$updates_output"
+
     elif [[ "$1" == "apply" ]]; then
         if [[ "$background" == 1 ]]; then
-            (updater_apply > "$dynamic_output" && inform_webinterface) &
+            (updater_apply > "$dynamic_output") &
         else
-            updater_apply && inform_webinterface
+            updater_apply
         fi
+
     fi
 
 }
@@ -38,9 +38,25 @@ inform_webinterface() {
     curl --data "key=updater_running&value=False" -X POST "$webinterface/api/v1/set_option" &> /dev/null
 }
 
-updater_check() {
-    $opkg update
-    $opkg list-upgradable
+
+
+updater_apply() {
+    IFS="
+    "
+
+    # upgrade every upgradable package
+    for package in $(cat "$updates_output"); do
+        pkg=$(echo "$package" | cut -d' ' -f1)
+        $opkg upgrade "$pkg"
+    done
+
+    # remove and reinstall webinterface
+    rm -rf /opt/enigmabox/webinterface
+    $opkg install webinterface --force-reinstall
+
+    # reboot
+    echo would reboot now... (TODO)
+
 }
 
 
@@ -58,6 +74,7 @@ echo $$ > "$pidfile"
 
 
 run $1 $2
+inform_webinterface
 
 rm "$pidfile"
 
