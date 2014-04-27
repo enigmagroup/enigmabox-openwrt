@@ -58,9 +58,11 @@ dhcp() {
 
     ifconfig "$internet_interface" up
 
-    e "dhcp request $internet_interface"
-    killall -1 udhcpc
-    sleep 10
+    if [[ $( route -n | grep ^0.0.0.0 | wc -l ) -eq 0 ]]; then
+        e "dhcp request $internet_interface"
+        killall -1 udhcpc
+        sleep 10
+    fi
 }
 
 start_wpa() {
