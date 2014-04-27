@@ -4,9 +4,11 @@
 START=94
  
 start() {
-    while true; do
-        /usr/sbin/setup-cjdns-networking
-        sleep 60
-    done
+    (
+        while true; do
+            /usr/sbin/setup-cjdns-networking
+            sleep 60
+        done
+    ) &
 }
  
