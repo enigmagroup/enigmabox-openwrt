@@ -60,6 +60,7 @@ dhcp() {
 
     if [[ $( route -n | grep ^0.0.0.0 | wc -l ) -eq 0 ]]; then
         e "dhcp request $internet_interface"
+        #TODO: find a way not to shutdown eth0, i.e. in a direct connection between two boxes
         killall -1 udhcpc
         sleep 10
     fi
