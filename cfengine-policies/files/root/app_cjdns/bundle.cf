@@ -6,10 +6,6 @@ bundle agent app_cjdns
 				  "* * * * * /usr/sbin/setup-cjdns-networking"
       };
 
-  services:
-      "cron"
-      service_policy => "start";
-
   files:
       "/box/cjdroute.conf"
       create => "true",
