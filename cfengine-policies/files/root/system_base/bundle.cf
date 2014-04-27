@@ -1,6 +1,11 @@
 
 bundle agent system_base
 {
+  vars:
+      "root_cron_jobs" slist => {
+				  "0 3 * * * /usr/sbin/updater check &> /dev/null"
+      };
+
   services:
       "cron"
       service_policy => "start";
@@ -20,6 +25,11 @@ bundle agent system_base
 
       "/etc/banner"
       edit_template => "$(this.promise_dirname)/templates/banner";
+
+      "/etc/crontabs/root"
+      handle => "root_cron_jobs",
+      create => "true",
+      edit_line => append_if_no_lines( "@{system_base.root_cron_jobs}" );
 
   commands:
     reload_nginx::
