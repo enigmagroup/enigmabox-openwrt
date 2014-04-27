@@ -3,7 +3,7 @@ bundle agent system_base
 {
   vars:
       "root_cron_jobs" slist => {
-				  "0 3 * * * /usr/sbin/updater check &> /dev/null"
+				  "0 3 * * * /usr/sbin/updater check bg &> /dev/null"
       };
 
   services:
