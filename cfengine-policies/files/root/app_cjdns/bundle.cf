@@ -21,6 +21,6 @@ bundle agent app_cjdns
       "/etc/init.d/cjdns restart";
 
   reports:
-      "app_cjdns";
+      "checking cjdns: done";
 }
 

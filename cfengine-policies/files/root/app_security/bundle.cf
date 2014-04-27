@@ -37,7 +37,7 @@ bundle agent app_security
       "/etc/init.d/nginx restart";
 
   reports:
-      "app_security";
+      "checking security: done";
 }
 
 body perms wwwdata

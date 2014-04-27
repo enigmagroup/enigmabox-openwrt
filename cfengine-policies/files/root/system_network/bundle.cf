@@ -33,6 +33,6 @@ bundle agent system_network
       "/usr/sbin/rebuild-iptables";
 
   reports:
-      "system_network";
+      "checking network configuration: done";
 }
 

@@ -29,6 +29,6 @@ bundle agent app_webfilter
       "/etc/init.d/privoxy restart";
 
   reports:
-      "app_webfilter";
+      "checking webfilter: done";
 }
 

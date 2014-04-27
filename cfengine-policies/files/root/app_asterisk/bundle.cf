@@ -21,6 +21,6 @@ bundle agent app_asterisk
       "/etc/init.d/asterisk restart";
 
   reports:
-      "app_asterisk";
+      "checking asterisk: done";
 }
 

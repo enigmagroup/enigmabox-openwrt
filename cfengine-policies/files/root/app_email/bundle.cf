@@ -61,7 +61,7 @@ bundle agent app_email
       "/etc/init.d/php5-fastcgi restart";
 
   reports:
-      "app_email";
+      "checking email: done";
 }
 
 body perms vmail
