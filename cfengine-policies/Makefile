@@ -33,7 +33,6 @@ define Package/cfengine-policies/install
 
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/cfengine-apply $(1)/usr/sbin/cfengine-apply
-	$(INSTALL_BIN) ./files/updater $(1)/usr/sbin/updater
 	$(INSTALL_BIN) ./files/speedtest $(1)/usr/sbin/speedtest
 
 	$(INSTALL_DIR) $(1)/etc/init.d
