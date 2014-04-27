@@ -59,7 +59,7 @@ dhcp() {
     ifconfig "$internet_interface" up
 
     e "dhcp request $internet_interface"
-    #udhcpc "$internet_interface"
+    killall -1 udhcpc
 }
 
 start_wpa() {
