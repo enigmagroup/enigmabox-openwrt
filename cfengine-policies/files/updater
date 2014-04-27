@@ -42,6 +42,9 @@ inform_webinterface() {
 
 updater_apply() {
 
+    # updater is running
+    curl --data "key=updater_running&value=True" -X POST "$webinterface/api/v1/set_option" &> /dev/null
+
     # upgrade every upgradable package
     while read package; do
         pkg=$(echo "$package" | cut -d' ' -f1)
@@ -53,6 +56,8 @@ updater_apply() {
     $opkg install webinterface --force-reinstall
 
     # reboot
+    echo 'rebooting...'
+    sleep 2
     reboot
 
 }
