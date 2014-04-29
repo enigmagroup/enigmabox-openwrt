@@ -36,9 +36,7 @@ endef
 
 define Package/exim4/install
 	$(INSTALL_DIR) $(1)/usr/exim/bin
-
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim $(1)/usr/exim/bin/exim
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim $(1)/usr/sbin/exim4
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_dumpdb $(1)/usr/exim/bin/exim_dumpdb
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_fixdb $(1)/usr/exim/bin/exim_fixdb
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_tidydb $(1)/usr/exim/bin/exim_tidydb
@@ -53,6 +51,9 @@ define Package/exim4/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exiqsumm $(1)/usr/exim/bin/exiqsumm
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_lock $(1)/usr/exim/bin/exim_lock
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim_checkaccess $(1)/usr/exim/bin/exim_checkaccess
+
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build-Linux-i386/exim $(1)/usr/sbin/exim4
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/exim.init $(1)/etc/init.d/exim
