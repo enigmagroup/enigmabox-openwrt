@@ -37,13 +37,6 @@ bundle agent app_email
       create => "true",
       perms => vmail;
 
-      "/var/lib/dovecot/."
-      create => "true";
-
-      "/var/lib/dovecot/ssl-parameters.dat"
-      edit_template => "$(this.promise_dirname)/templates/ssl-parameters.dat",
-      create => "true";
-
       "/etc/dovecot/users.conf"
       create => "true",
       perms => file,
