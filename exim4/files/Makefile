@@ -1035,7 +1035,7 @@ SYSTEM_ALIASES_FILE=/etc/aliases
 #------------------------------------------------------------------------------
 # Uncomment this setting to include IPv6 support.
 
-# HAVE_IPV6=yes
+HAVE_IPV6=yes
 
 ###############################################################################
 #              THINGS YOU ALMOST NEVER NEED TO MENTION                        #
