@@ -5,6 +5,7 @@ START=88
 STOP=12
  
 start() {
+    chown root:exim /usr/exim/configure
     /usr/exim/bin/exim -bd -q30m
 }
  
