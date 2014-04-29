@@ -67,7 +67,7 @@ bundle agent app_email
 body perms vmail
 {
       mode => "755";
-      owners => { "vmail" };
-      groups => { "vmail" };
+      owners => { "exim" };
+      groups => { "exim" };
 }
 

@@ -1727,14 +1727,14 @@ address_directory:
 
 my_mailboxes:
   driver = appendfile
-  user = vmail
+  user = exim
   maildir_format = true
   directory = /box/vmail/$local_part/Maildir
   create_directory
   delivery_date_add
   envelope_to_add
   return_path_add
-  group = vmail
+  group = exim
   mode = 0600
   headers_rewrite = * "${sg{$sender_host_name}{\.box}{}} <mail@${sg{$sender_host_name}{\.box}{}}>" fw :\
                     * "Enigmabox <mail@box>" tcb
