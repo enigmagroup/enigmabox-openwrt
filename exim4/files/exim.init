@@ -6,6 +6,7 @@ STOP=12
  
 start() {
     chown root:exim /usr/exim/configure
+    chmod 640 /usr/exim/configure
     /usr/exim/bin/exim -bd -q30m
 }
  
