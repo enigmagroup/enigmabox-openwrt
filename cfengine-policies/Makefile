@@ -45,10 +45,6 @@ define Package/cfengine-policies/install
 	# create empty crontab so that the cron service starts
 	$(INSTALL_DIR) $(1)/etc/crontabs
 	touch $(1)/etc/crontabs/root
-
-	# silly workaround to prevent dovecot generate ssl-params
-	$(INSTALL_DIR) $(1)/usr/lib/dovecot
-	$(INSTALL_BIN) ./files/ssl-parameters.dat $(1)/usr/lib/dovecot/ssl-parameters.dat
 endef
 
 $(eval $(call BuildPackage,cfengine-policies))
