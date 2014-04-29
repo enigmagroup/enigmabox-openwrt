@@ -11,7 +11,8 @@ start() {
 }
  
 stop() {
-    killall exim
+    #killall exim
+    echo todo
 }
 
 restart() {
