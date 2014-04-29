@@ -7,12 +7,12 @@ bundle agent app_email
       "pwd[exim]" string => "exim:x:110:110:exim:/var/mail:/bin/sh";
       "pwd[dovecot]" string => "dovecot:x:106:106:Dovecot mail server:/usr/lib/dovecot:/bin/false";
       "pwd[dovenull]" string => "dovenull:x:107:107:Dovecot login user:/nonexistent:/bin/false";
-      "pwd[vmail]" string => "vmail:x:5000:5000:virtual mail user:/box/vmail:/bin/sh";
+      #"pwd[vmail]" string => "vmail:x:5000:5000:virtual mail user:/box/vmail:/bin/sh";
       "grp[uucp]" string => "uucp:x:10:";
       "grp[mail]" string => "mail:x:8:";
       "grp[exim]" string => "exim:x:110:";
       "grp[dovecot]" string => "dovecot:x:106:";
-      "grp[vmail]" string => "vmail:x:5000:";
+      #"grp[vmail]" string => "vmail:x:5000:";
 
   files:
       "/etc/passwd"
