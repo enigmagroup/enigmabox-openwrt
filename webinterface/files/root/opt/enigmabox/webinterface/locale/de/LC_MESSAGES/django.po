@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-20 17:13+0200\n"
-"PO-Revision-Date: 2014-04-20 17:18+0100\n"
+"POT-Creation-Date: 2014-04-30 11:43+0200\n"
+"PO-Revision-Date: 2014-04-30 11:43+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -29,23 +29,27 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:416
-msgid "Hungary"
-msgstr "Ungarn"
-
-#: app/views.py:417
-msgid "France"
-msgstr "Frankreich"
-
-#: app/views.py:418
+#: app/views.py:423
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:419
+#: app/views.py:424
+msgid "Sweden"
+msgstr "Schweden"
+
+#: app/views.py:425
+msgid "Hungary"
+msgstr "Ungarn"
+
+#: app/views.py:426
+msgid "France"
+msgstr "Frankreich"
+
+#: app/views.py:427
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:420
+#: app/views.py:428
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
