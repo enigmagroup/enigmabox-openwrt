@@ -4,7 +4,7 @@ task=$1
 
 if [[ $task == 'sslcerts' ]]; then
 
-    hostid=$(find /tmp -type f -name sslcerts-*.zip | sed -n 's#/tmp/sslcerts\-\(.*\)\.zip#\1#p');
+    hostid=$(unzip -l /tmp/sslcerts-*.zip | grep cert.pem | awk '{ print $4 }' | cut -d- -f1)
     [[ -z $hostid ]] && exit 1
 
     cd /tmp
