@@ -277,6 +277,8 @@ def backup_sslcerts(request):
 
     o = Option()
     hostid = o.get_value('hostid')
+    if hostid is None:
+        hostid = '$hostid'
     filename = '/tmp/sslcerts-' + hostid + '.zip'
     msg = False
 
