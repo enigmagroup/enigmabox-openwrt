@@ -4,11 +4,11 @@ task=$1
 
 if [[ $task == 'sslcerts' ]]; then
 
-    cd /tmp
-    tar xzf sslcerts.tar.gz
-
-    hostid=$(find /tmp -type f -name *-cert.pem | sed -n 's#/tmp/\(.*\)\-cert\.pem#\1#p');
+    hostid=$(find /tmp -type f -name sslcerts-*.zip | sed -n 's#/tmp/sslcerts\-\(.*\)\.zip#\1#p');
     [[ -z $hostid ]] && exit 1
+
+    cd /tmp
+    unzip "sslcerts-$hostid.zip"
 
     # delete old certs
     rm "/box/ssl/*-cert.pem"
@@ -29,7 +29,7 @@ if [[ $task == 'sslcerts' ]]; then
     # refresh server.json
     /usr/sbin/request-serverjson.py &
 
-    rm /tmp/sslcerts.tar.gz
+    rm "/tmp/sslcerts-$hostid.zip"
 
 fi
 

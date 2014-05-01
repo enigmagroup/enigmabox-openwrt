@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 11:43+0200\n"
-"PO-Revision-Date: 2014-04-30 11:43+0100\n"
+"POT-Creation-Date: 2014-05-01 21:09+0200\n"
+"PO-Revision-Date: 2014-05-01 21:09+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -29,27 +29,27 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:423
+#: app/views.py:425
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:424
+#: app/views.py:426
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:425
+#: app/views.py:427
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:426
+#: app/views.py:428
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:427
+#: app/views.py:429
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:428
+#: app/views.py:430
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
@@ -386,8 +386,8 @@ msgid "Restore SSL certificates"
 msgstr "SSL-Zertifikate wiederherstellen"
 
 #: app/templates/backup/sslcerts.html:39
-msgid "sslcerts.tar.gz file:"
-msgstr "sslcerts.tar.gz-Datei:"
+msgid "file"
+msgstr "Datei"
 
 #: app/templates/backup/sslcerts.html:53
 msgid "Error restoring SSL certificates"
@@ -693,6 +693,9 @@ msgstr "Aktualisieren"
 #: app/templates/wlan_settings/scan.html:22
 msgid "Quality"
 msgstr "Signalstärke"
+
+#~ msgid "sslcerts.tar.gz file:"
+#~ msgstr "sslcerts.tar.gz-Datei:"
 
 #~ msgid "New"
 #~ msgstr "Neu"

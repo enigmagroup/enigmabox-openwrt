@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 11:43+0200\n"
+"POT-Creation-Date: 2014-05-01 21:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,28 +30,28 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:423
+#: app/views.py:425
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:424
+#: app/views.py:426
 msgid "Sweden"
 msgstr ""
 
-#: app/views.py:425
+#: app/views.py:427
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:426
+#: app/views.py:428
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:427
+#: app/views.py:429
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:428
+#: app/views.py:430
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
@@ -376,8 +376,8 @@ msgid "Restore SSL certificates"
 msgstr "Restaurar certificados SSL"
 
 #: app/templates/backup/sslcerts.html:39
-msgid "sslcerts.tar.gz file:"
-msgstr "Archivo sslcerts.tar.gz:"
+msgid "file"
+msgstr ""
 
 #: app/templates/backup/sslcerts.html:53
 msgid "Error restoring SSL certificates"
@@ -715,6 +715,9 @@ msgstr "Renovar"
 #: app/templates/wlan_settings/scan.html:22
 msgid "Quality"
 msgstr "Calidad"
+
+#~ msgid "sslcerts.tar.gz file:"
+#~ msgstr "Archivo sslcerts.tar.gz:"
 
 #~ msgid "New"
 #~ msgstr "Nuevo"
