@@ -302,6 +302,9 @@ def backup_sslcerts(request):
     if request.POST.get('restore'):
 
         try:
+            # TODO
+            filename = request.FILES
+            print filename
             destination = open(filename, 'wb+')
             for chunk in request.FILES['file'].chunks():
                 destination.write(chunk)
