@@ -12,10 +12,8 @@ bundle agent app_security
       create => "true";
 
     webinterface_password::
-      "/etc/nginx/auth/webinterface.conf.mustache"
+      "/etc/nginx/auth/webinterface.conf"
       create => "true",
-      template_method => "mustache",
-      template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/webinterface.conf",
       classes => if_repaired("restart_nginx");
 
