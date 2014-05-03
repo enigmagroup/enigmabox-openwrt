@@ -1,0 +1,9 @@
+#!/bin/sh /etc/rc.common
+# setup cjdns networking
+ 
+START=94
+ 
+start() {
+    /usr/sbin/setup-cjdns-networking
+}
+ 
