@@ -19,7 +19,7 @@ class Migration(DataMigration):
 
         # set root password
         try:
-            Popen(['sudo', 'usermod', '-p', hashed_password, 'root'], stdout=PIPE).communicate()[0]
+            Popen(['usermod', '-p', hashed_password, 'root'], stdout=PIPE).communicate()[0]
         except Exception:
             pass
 
