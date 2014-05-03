@@ -219,13 +219,24 @@ def backup_system(request):
 
     if request.POST.get('restore'):
         import shutil
+        from crypt import crypt
 
         shutil.move(temp_db, final_db)
         Popen(["/etc/init.d/webinterface", "init_db"], stdout=PIPE).communicate()[0]
 
+        # set rootpw
+        password = o.get_value('root_password')
+        salt = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(10))
+        hashed_password = crypt(password, "$6$" + salt + "$")
+
+        try:
+            Popen(['usermod', '-p', hashed_password, 'root'], stdout=PIPE).communicate()[0]
+        except Exception:
+            pass
+
         o.config_changed(True)
         o.set_value('internet_requested', 0)
-        # TODO: set rootpw
+
         return redirect('/backup/system/')
 
     return render_to_response('backup/system.html', {
