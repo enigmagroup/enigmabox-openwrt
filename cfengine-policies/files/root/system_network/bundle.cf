@@ -18,10 +18,6 @@ bundle agent system_network
       edit_template => "$(this.promise_dirname)/templates/dhcp",
       classes => if_repaired("restart_dnsmasq");
 
-      "/etc/dnsmasq.conf"
-      edit_template => "$(this.promise_dirname)/templates/dnsmasq.conf",
-      classes => if_repaired("restart_dnsmasq");
-
       "/usr/sbin/rebuild-iptables"
       create => "true",
       perms => script,
