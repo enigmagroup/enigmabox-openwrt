@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gs_provision version="1">
+<config version="1">
+<P271>1</P271>
+<P270>box</P270>
+<P47>box</P47>
+<P48>box</P48>
+<P35>100</P35>
+<P36>100</P36>
+<P34>100</P34>
+<P64>CET-1CEST</P64>
+<P102>3</P102>
+<P104>2</P104>
+<P122>1</P122>
+</config>
+</gs_provision>

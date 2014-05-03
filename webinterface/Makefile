@@ -11,7 +11,7 @@ define Package/webinterface
   CATEGORY:=Enigmabox
   TITLE:=Enigmabox Webinterface
   URL:=http://enigmabox.net/en/
-  DEPENDS:=+cjdns-master +python-django-1.4 +curl +python-gunicorn +python-six +python-gevent +python-openssl +python-requests +django-south +python-expat +python-json +python-sqlite3 +python-unidecode +asterisk18 +php5 +php5-fastcgi +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-session +php5-mod-iconv +php5-mod-json +@PHP5_FILTER +nginx +privoxy +dovecot +exim4 +cfengine +cfengine-policies +beanstalkd +python-beanstalkc +pyyaml +syslog-ng +zip +unzip +shadow-usermod
+  DEPENDS:=+cjdns-master +python-django-1.4 +curl +python-gunicorn +python-six +python-gevent +python-openssl +python-requests +django-south +python-expat +python-json +python-sqlite3 +python-unidecode +asterisk18 +php5 +php5-fastcgi +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-session +php5-mod-iconv +php5-mod-json +@PHP5_FILTER +nginx +privoxy +dovecot +exim4 +cfengine +cfengine-policies +beanstalkd +python-beanstalkc +pyyaml +syslog-ng +zip +unzip +shadow-usermod +provision-grandstream
 endef
 
 define Package/webinterface/description
