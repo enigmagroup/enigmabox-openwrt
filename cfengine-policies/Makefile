@@ -38,6 +38,7 @@ define Package/cfengine-policies/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cfengine-policies.init $(1)/etc/init.d/cfengine-policies
 	$(INSTALL_BIN) ./files/rebuild-iptables.init $(1)/etc/init.d/rebuild-iptables
+	$(INSTALL_BIN) ./files/setup-cjdns-networking.init $(1)/etc/init.d/setup-cjdns-networking
 
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_DATA) ./files/resolv.conf $(1)/etc/resolv.conf.enigmabox
