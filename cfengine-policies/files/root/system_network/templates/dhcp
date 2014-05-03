@@ -32,7 +32,3 @@ config dhcp 'eth2'
     option ra 'hybrid'
     option ndp 'hybrid'
 
-config boot
-    option 'serveraddress' 'http://box:8080'
-    #list dhcp_option 'GRANDSTREAM,66,http://box:8080'
-
