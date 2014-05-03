@@ -12,7 +12,7 @@ bundle agent app_security
       create => "true";
 
     webinterface_password::
-      "/etc/nginx/auth/webinterface.conf"
+      "/etc/nginx/auth/webinterface.conf.mustache"
       create => "true",
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
