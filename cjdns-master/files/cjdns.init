@@ -14,7 +14,11 @@ stop() {
 }
 
 status() {
-    echo stopped
+    if [[ $(ps | grep cjdroute | wc -l) -gt 0 ]]; then
+        echo running
+    else
+        echo stopped
+    fi
 }
 
 restart() {
