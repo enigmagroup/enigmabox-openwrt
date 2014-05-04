@@ -3,6 +3,7 @@
  
 START=88
 STOP=12
+PIDFILE="/var/run/exim.pid"
  
 start() {
     chown root:exim /usr/exim/configure
@@ -11,8 +12,8 @@ start() {
 }
  
 stop() {
-    #killall exim
-    echo todo
+    kill $(cat "$PIDFILE")
+    rm "$PIDFILE"
 }
 
 restart() {
