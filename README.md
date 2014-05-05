@@ -1,9 +1,9 @@
 enigmabox-openwrt
 =================
 
-OpenWRT package feed for the Enigmabox software suite (work in progress...)
+OpenWRT package feed for the Enigmabox software suite.
 
-Work has started. Description in our wiki: http://wiki.enigmabox.net/roadmap/openwrt
+Description in our wiki: http://wiki.enigmabox.net/roadmap/openwrt
 
 How to build that stuff:
 
@@ -25,4 +25,6 @@ Next use that package system to incorporate the enigmabox software suite:
 Then configure for your system:
 
     # make menuconfig
+
+Select everything under "Enigmabox".
 
