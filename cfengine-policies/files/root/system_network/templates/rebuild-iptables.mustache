@@ -14,7 +14,10 @@ $ip6tables -F
 
 # defaults
 $iptables -P INPUT DROP
-$iptables -P OUTPUT DROP
+
+{{#if_missioncontrol}}$iptables -P OUTPUT DROP{{/if_missioncontrol}}
+{{^if_missioncontrol}}$iptables -P OUTPUT ACCEPT{{/if_missioncontrol}}
+
 $iptables -P FORWARD ACCEPT #no internet for the pc when dropping this :(
 $ip6tables -P INPUT DROP
 $ip6tables -P OUTPUT DROP
@@ -57,11 +60,13 @@ $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
 
 {{#missioncontrol}}
 $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
-{{/missioncontrol}}"
+{{/missioncontrol}}
 
-for dns in $(echo "4.2.2.1 4.2.2.2 4.2.2.3 4.2.2.4 8.8.8.8"); do
-    $iptables -A OUTPUT --dst "$dns" -j ACCEPT
-done
+$iptables -A OUTPUT --dst 4.2.2.1 -j ACCEPT
+$iptables -A OUTPUT --dst 4.2.2.2 -j ACCEPT
+$iptables -A OUTPUT --dst 4.2.2.3 -j ACCEPT
+$iptables -A OUTPUT --dst 4.2.2.4 -j ACCEPT
+$iptables -A OUTPUT --dst 8.8.8.8 -j ACCEPT
 
 # nat
 $iptables -I POSTROUTING -t nat -o tun0 -j MASQUERADE
