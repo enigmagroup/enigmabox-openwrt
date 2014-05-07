@@ -14,7 +14,7 @@ $ip6tables -F
 
 # defaults
 $iptables -P INPUT DROP
-$iptables -P OUTPUT ACCEPT
+$iptables -P OUTPUT DROP
 $iptables -P FORWARD ACCEPT #no internet for the pc when dropping this :(
 $ip6tables -P INPUT DROP
 $ip6tables -P OUTPUT DROP
@@ -43,6 +43,19 @@ $ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 # peering port
 $iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
 {{/if_peering_port}}
+
+# allow OUTPUT for eth1, eth2, missioncontrol, peerings, dns servers
+# TODO: timeservers
+$iptables -A OUTPUT -o eth1 -j ACCEPT
+$iptables -A OUTPUT -o eth2 -j ACCEPT
+
+{{#peerings}}
+$iptables -A OUTPUT --dst {{ip}} -j ACCEPT
+{{/peerings}}
+
+{{#missioncontrol}}
+$iptables -A OUTPUT --dst {{ip}} -j ACCEPT
+{{/missioncontrol}}"
 
 # nat
 $iptables -I POSTROUTING -t nat -o tun0 -j MASQUERADE
