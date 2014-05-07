@@ -22,6 +22,7 @@ $ip6tables -P FORWARD DROP
 
 # loopback
 $iptables -A INPUT -i lo -j ACCEPT
+$iptables -A OUTPUT -i lo -j ACCEPT
 
 # syncookies
 echo 1 > /proc/sys/net/ipv4/tcp_syncookies
