@@ -28,8 +28,11 @@ echo 1 > /proc/sys/net/ipv4/tcp_syncookies
 
 # allow ping
 $iptables -A INPUT -p icmp -m limit --limit 10/second -j ACCEPT
+$iptables -A OUTPUT -p icmp -m limit --limit 10/second -j ACCEPT
 $iptables -A INPUT -p icmp -j DROP
+
 $ip6tables -A INPUT -p ipv6-icmp -m limit --limit 10/second -j ACCEPT
+$ip6tables -A OUTPUT -p ipv6-icmp -m limit --limit 10/second -j ACCEPT
 $ip6tables -A INPUT -p ipv6-icmp -j DROP
 
 # allow related and established
