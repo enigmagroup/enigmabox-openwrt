@@ -1,0 +1,10 @@
+#!/bin/ash
+
+# reset status lights
+echo 0 > /tmp/netstat-cjdns
+echo 0 > /tmp/netstat-cjdns_internet
+
+# run cfengine and setup cjdns networking
+/usr/sbin/cfengine-apply
+/usr/sbin/setup-cjdns-networking
+

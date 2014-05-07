@@ -431,7 +431,8 @@ def countryselect(request):
     country = request.POST.get('country', False)
     if country:
         o.set_value('selected_country', country)
-        o.config_changed(True)
+        Popen(['/usr/sbin/set-country'], stdout=PIPE)
+        return redirect('/')
 
     country_active = request.POST.get('country-active', False)
     if country_active:
