@@ -48,8 +48,7 @@ $ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 $iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
 {{/if_peering_port}}
 
-# allow OUTPUT for tun0, eth1, eth2, missioncontrol, peerings, dns servers
-# TODO: timeservers
+# allow OUTPUT for tun0, eth1, eth2, missioncontrol and peerings
 $iptables -A OUTPUT -o tun0 -j ACCEPT
 $iptables -A OUTPUT -o eth1 -j ACCEPT
 $iptables -A OUTPUT -o eth2 -j ACCEPT
@@ -61,12 +60,6 @@ $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
 {{#missioncontrol}}
 $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
 {{/missioncontrol}}
-
-$iptables -A OUTPUT --dst 4.2.2.1 -j ACCEPT
-$iptables -A OUTPUT --dst 4.2.2.2 -j ACCEPT
-$iptables -A OUTPUT --dst 4.2.2.3 -j ACCEPT
-$iptables -A OUTPUT --dst 4.2.2.4 -j ACCEPT
-$iptables -A OUTPUT --dst 8.8.8.8 -j ACCEPT
 
 # nat
 $iptables -I POSTROUTING -t nat -o tun0 -j MASQUERADE
