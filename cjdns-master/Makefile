@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cjdns-master
 PKG_VERSION:=0.7.0
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -29,6 +29,7 @@ define Build/Compile
 	CROSS="true" \
 	CFLAGS="$(TARGET_CFLAGS)" \
 	NO_PIE="true" \
+	Seccomp_NO="true" \
 	CC="$(TARGET_CC)" \
 	ARCH="$(ARCH)" \
 	LDFLAGS="$(TARGET_LDFLAGS) -lssp" \
