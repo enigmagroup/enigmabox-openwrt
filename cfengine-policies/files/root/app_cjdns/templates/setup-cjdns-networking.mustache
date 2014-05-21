@@ -231,7 +231,7 @@ for remoteaddress in $remoteaddresses; do
     fi
 done
 
-if [[ "$wehaveinternet" == "yes" and "$request_internet" == "yes" ]]; then
+if [[ "$wehaveinternet" == "yes" && "$request_internet" == "yes" ]]; then
     request_cjdns_internet
     restart_cjdns
     set_status "cjdns" 1
