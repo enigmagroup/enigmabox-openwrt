@@ -32,7 +32,7 @@ def home(request):
         try:
             with open('/tmp/netstat-' + key, 'r') as f:
                 netstat[key] = f.read().strip()
-        except:
+        except Exception:
             pass
 
     return render_to_response('home.html', {
@@ -214,7 +214,7 @@ def backup_system(request):
             msg = c.fetchone()[0]
             conn.close()
 
-        except:
+        except Exception:
             msg = 'invalid'
 
     if request.POST.get('restore'):
@@ -263,7 +263,7 @@ def backup_emails(request):
             response['Content-Length'] = os.path.getsize(filename)
             return response
 
-        except:
+        except Exception:
             msg = 'backuperror'
 
     if request.POST.get('restore'):
@@ -277,7 +277,7 @@ def backup_emails(request):
             Popen(["/usr/sbin/restore-stuff", "emails"], stdout=PIPE).communicate()[0]
             msg = 'restoresuccess'
 
-        except:
+        except Exception:
             msg = 'restoreerror'
 
     return render_to_response('backup/emails.html', {
@@ -307,7 +307,7 @@ def backup_sslcerts(request):
             response['Content-Length'] = os.path.getsize(filename)
             return response
 
-        except:
+        except Exception:
             msg = 'backuperror'
 
     if request.POST.get('restore'):
@@ -323,7 +323,7 @@ def backup_sslcerts(request):
             o.config_changed(True)
             msg = 'restoresuccess'
 
-        except:
+        except Exception:
             msg = 'restoreerror'
 
     return render_to_response('backup/sslcerts.html', {
@@ -561,12 +561,12 @@ def wlan_scan(request):
 
             try:
                 group = cell.split('Group Cipher')[1].split('\n')[0].split(' ')[-1:][0].strip()
-            except:
+            except Exception:
                 group = ''
 
             try:
                 pairwise = cell.split('Pairwise Ciphers')[1].split('\n')[0].split(' ')[-1:][0].strip()
-            except:
+            except Exception:
                 pairwise = ''
 
             if 'WPA' in cell:
@@ -581,7 +581,7 @@ def wlan_scan(request):
                 'group': group,
                 'pairwise': pairwise,
             })
-        except:
+        except Exception:
             pass
 
     return render_to_response('wlan_settings/scan.html', {
@@ -652,7 +652,7 @@ def api_v1(request, api_url):
             r = o.get_value(request.POST['key'])
             resp['value'] = r
             resp['result'] = 'success'
-        except:
+        except Exception:
             resp['message'] = 'option not found or POST.key parameter missing'
 
     if api_url == 'set_option':
@@ -660,7 +660,7 @@ def api_v1(request, api_url):
             o = Option()
             o.set_value(request.POST['key'], request.POST['value'])
             resp['result'] = 'success'
-        except:
+        except Exception:
             resp['message'] = 'error setting option'
 
     if api_url == 'get_missioncontrol':
@@ -671,7 +671,7 @@ def api_v1(request, api_url):
                 data.append(mc.hostname)
             resp['value'] = data
             resp['result'] = 'success'
-        except:
+        except Exception:
             resp['message'] = 'fail'
 
     if api_url == 'get_contacts':
@@ -686,7 +686,7 @@ def api_v1(request, api_url):
                 })
             resp['value'] = data
             resp['result'] = 'success'
-        except:
+        except Exception:
             resp['message'] = 'fail'
 
     if api_url == 'add_contact':
@@ -708,7 +708,7 @@ def api_v1(request, api_url):
             else:
                 raise
 
-        except:
+        except Exception:
             resp['message'] = 'fail'
 
     if api_url == 'set_countries':
@@ -721,7 +721,7 @@ def api_v1(request, api_url):
                 c.save()
                 prio = prio + 1
 
-        except:
+        except Exception:
             resp['message'] = 'fail'
 
     if api_url == 'set_next_country':
@@ -821,7 +821,7 @@ def cfengine_site(request):
             'public_key': internet_gateway_db.public_key,
         }
 
-    except:
+    except Exception:
         # no additional server data found, moving on...
         pass
 
