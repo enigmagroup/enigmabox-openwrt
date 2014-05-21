@@ -3,7 +3,7 @@ export LC_ALL=en_US.UTF-8
 
 # vars
 
-remoteadresses="{{#peerings}}{{ip}} {{/peerings}}{{#missioncontrol}}{{ip}} {{/missioncontrol}}"
+remoteaddresses="{{#peerings}}{{ip}} {{/peerings}}{{#missioncontrol}}{{ip}} {{/missioncontrol}}"
 
 orggatewayfile="/tmp/cjdns_org_gw"
 internet_interface="eth0"
@@ -151,7 +151,7 @@ mtu() {
 
 original_gateway() {
     original_gateway=$(get_original_gateway)
-    for remoteaddress in $remoteadresses; do
+    for remoteaddress in $remoteaddresses; do
         if [[ "$(route -n | egrep "$remoteaddress.*?$original_gateway" | wc -l)" -eq 0 ]]; then
             e "setting route $remoteaddress via $original_gateway dev $internet_interface"
             route add "$remoteaddress" gw "$original_gateway" "$internet_interface"
@@ -214,7 +214,7 @@ fi
 
 # check for internet. if only one server with a direct route is pingable, we have an internet connection
 wehaveinternet="no"
-for remoteaddress in $remoteadresses; do
+for remoteaddress in $remoteaddresses; do
     if [[ "$($ping "$remoteaddress" | grep 'bytes from')" ]]; then
         echo "internet detected"
         set_status "internet" 1
