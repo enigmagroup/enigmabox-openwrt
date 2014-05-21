@@ -43,6 +43,8 @@ Select everything under "Enigmabox"
 
 Quit and save your .config
 
+Then:
+
     $ make
 
 After about 30mins (depending on your machine), your image is ready:
