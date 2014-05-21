@@ -18,6 +18,14 @@ txpower="{{wlan_txpower}}"    #options: NmW, N (value in dB), off, auto
 rate="{{wlan_rate}}"          #transmit rate (lower is usually more stable)
 security="{{wlan_security}}"
 
+{{#if_internet_gateway}}
+request_internet="yes"
+{{/if_internet_gateway}}
+
+{{^if_internet_gateway}}
+request_internet="no"
+{{/if_internet_gateway}}
+
 
 
 # check if its already running
@@ -223,7 +231,7 @@ for remoteaddress in $remoteaddresses; do
     fi
 done
 
-if [[ "$wehaveinternet" == "yes" ]]; then
+if [[ "$wehaveinternet" == "yes" and "$request_internet" == "yes" ]]; then
     request_cjdns_internet
     restart_cjdns
     set_status "cjdns" 1
