@@ -47,6 +47,10 @@ define Package/cfengine-policies/install
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_DATA) ./files/resolv.conf $(1)/etc/resolv.conf.enigmabox
 
+	# interfaces configuration
+	echo "$(CONFIG_INTERNAL_INTERFACES)" > $(1)/etc/internal-interfaces
+	echo "$(CONFIG_INTERNET_INTERFACE)" > $(1)/etc/internet-interface
+
 	# create empty crontab so that the cron service starts
 	$(INSTALL_DIR) $(1)/etc/crontabs
 	touch $(1)/etc/crontabs/root
