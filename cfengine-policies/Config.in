@@ -1,7 +1,9 @@
 
 config INTERNAL_INTERFACES
 	string "Internal interfaces"
-	default "eth1 eth2"
+	help
+        Enter a comma separated list of internal (LAN) interfaces
+	default "eth1,eth2"
 
 config INTERNET_INTERFACE
 	string "Internet interface"
