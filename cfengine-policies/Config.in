@@ -1,0 +1,14 @@
+menu "Configuration"
+
+comment "Profiles ---"
+
+config INTERNAL_INTERFACES
+	string "Internal interfaces"
+	default "eth1 eth2"
+
+config INTERNET_INTERFACE
+	string "Internet interface"
+	default "eth0"
+
+endmenu
+

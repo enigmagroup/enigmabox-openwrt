@@ -13,6 +13,10 @@ define Package/cfengine-policies
   DEPENDS:=+cfengine
 endef
 
+define Package/cfengine-policies/config
+	source "$(SOURCE)/Config.in"
+endef
+
 define Package/cfengine-policies/description
 	Desc.
 endef
