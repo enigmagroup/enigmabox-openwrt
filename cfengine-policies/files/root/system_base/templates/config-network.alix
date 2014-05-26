@@ -5,17 +5,21 @@ config interface 'loopback'
 	option ipaddr '127.0.0.1'
 	option netmask '255.0.0.0'
 
-config interface '{{vars.g.internet_interface}}'
-	option ifname '{{vars.g.internet_interface}}'
+config interface 'eth0'
+	option ifname 'eth0'
 	option proto 'dhcp'
 
-{{#vars.g.internal_interfaces}}
-config interface '{{.}}'
-	option ifname '{{.}}'
+config interface 'eth1'
+	option ifname 'eth1'
 	option proto 'static'
-	option ipaddr '{{#.}}{{.}}{{/.}}'
+	option ipaddr '192.168.100.1'
 	option netmask '255.255.255.0'
-{{/vars.g.internal_interfaces}}
+
+config interface 'eth2'
+	option ifname 'eth2'
+	option proto 'static'
+	option ipaddr '192.168.101.1'
+	option netmask '255.255.255.0'
 
 config globals 'globals'
 	option ula_prefix 'fd9a:6a77:bce8::/48'
