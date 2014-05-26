@@ -1,14 +1,13 @@
 
-config NETWORK_PROFILE
-	string "Network profile"
-	help
-        Configure interfaces for alix or raspberry pi
-	default "ALIX"
+choice
+    prompt "Network profile"
+    default NETWORK_PROFILE_ALIX
 
-    choice
-        config ALIX
-            bool "alix"
-        config RASPI
-            bool "Rasperry Pi"
-    endchoice
+    config NETWORK_PROFILE_ALIX
+        bool "alix"
+
+    config NETWORK_PROFILE_RASPI
+        bool "Rasperry Pi"
+
+endchoice
 
