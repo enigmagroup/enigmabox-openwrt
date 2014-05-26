@@ -4,6 +4,8 @@ bundle common g
 {
   vars:
       "workdir" string => "/opt/enigmabox/cfengine-policies";
+      "internet_interface" string => readfile("/etc/internet-interface", "100");
+      "internal_interfaces" data => data_readstringarray("/etc/internal-interfaces", "#.*", ":", 10, 1000);
 }
 
 

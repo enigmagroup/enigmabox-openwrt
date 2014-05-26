@@ -11,7 +11,8 @@ bundle agent system_base
       classes => if_repaired("reload_nginx");
 
       "/etc/config/network"
-      edit_template => "$(this.promise_dirname)/templates/config-network",
+      template_method => "mustache",
+      edit_template => "$(this.promise_dirname)/templates/config-network.mustache",
       classes => if_repaired("restart_network");
 
       "/etc/config/system"

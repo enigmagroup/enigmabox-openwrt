@@ -1,9 +1,21 @@
 
-config INTERNAL_INTERFACES
-	string "Internal interfaces"
+config INTERNAL_INTERFACE_1
+	string "Internal interface 1"
 	help
-        Enter a comma separated list of internal (LAN) interfaces
-	default "eth1,eth2"
+        Enter the first internal interface with the IP, like this: "eth1:192.168.100.1"
+	default "eth1:192.168.100.1"
+
+config INTERNAL_INTERFACE_2
+	string "Internal interface 2"
+	help
+        Enter the second internal interface with the IP, like this: "eth2:192.168.101.1"
+	default "eth2:192.168.101.1"
+
+config INTERNAL_INTERFACE_3
+	string "Internal interface 3"
+	help
+        Enter the third internal interface with the IP, like this: "eth3:192.168.102.1"
+	default "eth3:192.168.102.1"
 
 config INTERNET_INTERFACE
 	string "Internet interface"
