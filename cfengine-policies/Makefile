@@ -47,17 +47,8 @@ define Package/cfengine-policies/install
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_DATA) ./files/resolv.conf $(1)/etc/resolv.conf.enigmabox
 
-	# interfaces configuration
-	echo "$(CONFIG_INTERNET_INTERFACE)" > $(1)/etc/internet-interface
-	ifneq ($(CONFIG_INTERNAL_INTERFACE_1),)
-		echo "$(CONFIG_INTERNAL_INTERFACE_1)" > $(1)/etc/internal-interfaces
-	endif
-	ifneq ($(CONFIG_INTERNAL_INTERFACE_2),)
-		echo "$(CONFIG_INTERNAL_INTERFACE_2)" >> $(1)/etc/internal-interfaces
-	endif
-	ifneq ($(CONFIG_INTERNAL_INTERFACE_3),)
-		echo "$(CONFIG_INTERNAL_INTERFACE_3)" >> $(1)/etc/internal-interfaces
-	endif
+	# network profile
+	echo "$(CONFIG_NETWORK_PROFILE)" > $(1)/etc/network-profile
 
 	# create empty crontab so that the cron service starts
 	$(INSTALL_DIR) $(1)/etc/crontabs
