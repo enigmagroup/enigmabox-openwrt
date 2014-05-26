@@ -12,14 +12,25 @@ start() {
     /opt/cfengine/bootstrap.cf
     echo started.
 
-    # fuckin ethernets on apu board hang - bootstrap again and wait for initialisation
-    while [[ $(grep eth1 /etc/config/network | wc -l) -eq 0 ]]; do
-        /opt/cfengine/bootstrap.cf
-        sleep 1
-    done
+    if [[ $(cat /etc/network-profile) == 'alix' ]]; then
 
-    while [[ $(ifconfig eth1 | wc -l) -eq 0 ]]; do
-        sleep 1
-    done
+        # fuckin ethernets on apu board hang - bootstrap again and wait for initialisation
+        while [[ $(grep eth1 /etc/config/network | wc -l) -eq 0 ]]; do
+            /opt/cfengine/bootstrap.cf
+            sleep 1
+        done
+
+        while [[ $(ifconfig eth1 | wc -l) -eq 0 ]]; do
+            sleep 1
+        done
+
+    else
+
+        while [[ $(ifconfig eth0 | wc -l) -eq 0 ]]; do
+            sleep 1
+        done
+
+    fi
+
 }
  
