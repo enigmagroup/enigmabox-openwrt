@@ -68,7 +68,8 @@ dhcp() {
 
     if [[ $( route -n | grep ^0.0.0.0 | wc -l ) -eq 0 ]]; then
         e "dhcp request $internet_interface"
-        udhcpc -nq
+        #udhcpc -nq
+        exit
         sleep 3
     fi
 }
