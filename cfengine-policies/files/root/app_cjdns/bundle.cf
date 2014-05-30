@@ -14,7 +14,7 @@ bundle agent app_cjdns
       perms => script,
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
-      edit_template => "$(this.promise_dirname)/templates/setup-cjdns-networking.mustache";
+      edit_template => "$(this.promise_dirname)/templates/setup-cjdns-networking.$(g.network_profile).mustache";
 
   commands:
     restart_cjdns::
