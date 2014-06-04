@@ -25,8 +25,8 @@ define Build/Compile
 endef
 
 define Package/provision-grandstream/install
-	$(INSTALL_DIR) $(1)/etc/nginx/sites
-	$(INSTALL_DATA) ./files/nginx-site.conf $(1)/etc/nginx/sites/provision-grandstream.conf
+	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
+	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/provision-grandstream.conf
 
 	$(INSTALL_DIR) $(1)/opt/enigmabox/provision-grandstream
 	$(INSTALL_DATA) ./files/cfg.xml $(1)/opt/enigmabox/provision-grandstream/cfg.xml

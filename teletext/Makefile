@@ -28,8 +28,8 @@ define Package/teletext/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/teletext.init $(1)/etc/init.d/teletext
 
-	$(INSTALL_DIR) $(1)/etc/nginx/sites
-	$(INSTALL_DATA) ./files/nginx-site.conf $(1)/etc/nginx/sites/teletext.conf
+	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
+	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/teletext.conf
 endef
 
 $(eval $(call BuildPackage,teletext))
