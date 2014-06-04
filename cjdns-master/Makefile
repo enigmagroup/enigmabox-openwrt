@@ -10,7 +10,7 @@ PKG_SOURCE_URL:=https://github.com/cjdelisle/cjdns.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=2451764a189a43c2a51142ac93da1acdad700a6c
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-PKG_BUILD_DEPENDS:=libssp
+PKG_BUILD_DEPENDS:=libssp nacl4raspi
 
 include $(INCLUDE_DIR)/package.mk
 
