@@ -31,8 +31,8 @@ define Package/webinterface/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/webinterface.init $(1)/etc/init.d/webinterface
 
-	$(INSTALL_DIR) $(1)/etc/lighttpd/conf.d
-	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/conf.d/80-webinterface.conf
+	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
+	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/webinterface.conf
 
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/backup-stuff $(1)/usr/sbin/backup-stuff
