@@ -29,10 +29,10 @@ endef
 
 define Package/nacl4raspi/install
 	$(INSTALL_DIR) $(1)/usr/include/nacl
-	cp $(PKG_BUILD_DIR)/include/* 	$(1)/usr/include/nacl/
+	$(CP) $(PKG_BUILD_DIR)/include/* 	$(1)/usr/include/nacl/
 
 	$(INSTALL_DIR) $(1)/usr/lib
-	cp $(PKG_BUILD_DIR)/libnacl.a 	$(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/libnacl.a 	$(1)/usr/lib/
 endef
 
 $(eval $(call BuildPackage,nacl4raspi))
