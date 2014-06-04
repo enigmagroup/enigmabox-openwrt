@@ -21,16 +21,23 @@ from re import compile as re_compile
 
 def internal(fn):
     def check_ip(**kwargs):
-        try:
-            remote_ip = request.environ['HTTP_X_REAL_IP']
-        except:
-            remote_ip = '::1'
+        remote_ip = get_real_ip()
 
         if ':' in remote_ip:
             return '404'
         return fn(**kwargs)
 
     return check_ip
+
+def get_real_ip():
+    try:
+        remote_ip = request.environ['HTTP_X_FORWARDED_FOR']
+    except Exception:
+        try:
+            remote_ip = request.environ['HTTP_X_REAL_IP']
+        except Exception:
+            remote_ip = '::1'
+    return remote_ip
 
 def pad_ipv6(ipv6):
     splitter = ipv6.strip().split(':')
@@ -1254,7 +1261,7 @@ def api_new_telegram():
         try:
             telegram = json_loads(telegram)
             text = telegram['text']
-            ipv6 = pad_ipv6(request.environ['HTTP_X_REAL_IP'])
+            ipv6 = pad_ipv6(get_real_ip())
             created_at = telegram['created_at']
 
             if not data.is_in_subscriptions(ipv6):
@@ -1370,7 +1377,7 @@ def profile_json():
 @route('/api/v1/subscribe', method = 'POST')
 def external_subscribe():
     try:
-        ipv6 = pad_ipv6(request.environ['HTTP_X_REAL_IP'])
+        ipv6 = pad_ipv6(get_real_ip())
         data.add_subscriber(ipv6)
         result = 'success'
     except:
@@ -1383,7 +1390,7 @@ def external_subscribe():
 @route('/api/v1/unsubscribe', method = 'POST')
 def external_unsubscribe():
     try:
-        ipv6 = pad_ipv6(request.environ['HTTP_X_REAL_IP'])
+        ipv6 = pad_ipv6(get_real_ip())
         data.remove_subscriber(ipv6)
         result = 'success'
     except:
@@ -1396,7 +1403,7 @@ def external_unsubscribe():
 @route('/api/v1/contact_request', method = 'POST')
 def contact_request():
     try:
-        ipv6 = pad_ipv6(request.environ['HTTP_X_REAL_IP'])
+        ipv6 = pad_ipv6(get_real_ip())
         what = request.POST.get('what', False)
         comments = request.POST.get('comments', '')
 
