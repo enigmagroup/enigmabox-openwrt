@@ -11,7 +11,7 @@ define Package/provision-grandstream
   CATEGORY:=Enigmabox
   TITLE:=Provision Grandstream
   URL:=http://enigmabox.net/en/
-  DEPENDS:=+nginx
+  DEPENDS:=+lighttpd
 endef
 
 define Package/provision-grandstream/description
