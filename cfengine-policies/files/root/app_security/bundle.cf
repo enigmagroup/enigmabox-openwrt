@@ -8,31 +8,31 @@ bundle agent app_security
       "webinterface_password" expression => strcmp("$(site[if_webinterface_password])", "true");
 
   files:
-      "/etc/nginx/auth/."
+      "/etc/lighttpd/auth/."
       create => "true";
 
     webinterface_password::
-      "/etc/nginx/auth/webinterface.conf"
+      "/etc/lighttpd/auth/webinterface.conf"
       create => "true",
       edit_template => "$(this.promise_dirname)/templates/webinterface.conf",
-      classes => if_repaired("restart_nginx");
+      classes => if_repaired("restart_lighttpd");
 
-      "/etc/nginx/auth/webinterface.htpasswd"
+      "/etc/lighttpd/auth/webinterface.htpasswd"
       create => "true",
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/webinterface.htpasswd.mustache",
       perms => wwwdata,
-      classes => if_repaired("restart_nginx");
+      classes => if_repaired("restart_lighttpd");
 
     !webinterface_password::
-      "/etc/nginx/auth/webinterface.conf"
+      "/etc/lighttpd/auth/webinterface.conf"
       delete => tidy,
-      classes => if_repaired("restart_nginx");
+      classes => if_repaired("restart_lighttpd");
 
   commands:
-    restart_nginx::
-      "/etc/init.d/nginx restart";
+    restart_lighttpd::
+      "/etc/init.d/lighttpd restart";
 
   reports:
       "checking security: done";
