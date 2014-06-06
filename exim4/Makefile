@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=exim4
-PKG_VERSION:=4.82
+PKG_VERSION:=4.82.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=exim-$(PKG_VERSION).tar.gz
