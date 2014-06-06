@@ -668,7 +668,10 @@ def api_v1(request, api_url):
             missioncontrol = Missioncontrol.objects.all().order_by('priority')
             data = []
             for mc in missioncontrol:
-                data.append(mc.hostname)
+                data.append({
+                    'hostname': mc.hostname,
+                    'ip': mc.ip,
+                })
             resp['value'] = data
             resp['result'] = 'success'
         except Exception:
