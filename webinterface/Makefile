@@ -11,7 +11,16 @@ define Package/webinterface
   CATEGORY:=Enigmabox
   TITLE:=Enigmabox Webinterface
   URL:=http://enigmabox.net/en/
-  DEPENDS:=+cjdns-master +python-django-1.4 +curl +python-gunicorn +python-six +python-gevent +python-openssl +python-requests +django-south +python-expat +python-json +python-sqlite3 +python-unidecode +asterisk18 +php5 +php5-fastcgi +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-session +php5-mod-iconv +php5-mod-json +@PHP5_FILTER +lighttpd +lighttpd-mod-auth +lighttpd-mod-fastcgi +lighttpd-mod-proxy +privoxy +dovecot +exim4 +cfengine +cfengine-policies +beanstalkd +python-beanstalkc +pyyaml +syslog-ng +zip +unzip +shadow-usermod +kmod-ipt-nat6
+  DEPENDS:=+cjdns-master
+  DEPENDS+= +curl +syslog-ng +zip +unzip +shadow-usermod +kmod-ipt-nat6
+  DEPENDS+= +python-django-1.4 +python-gunicorn +python-six +python-gevent +python-openssl +python-requests +django-south +python-expat +python-json +python-sqlite3 +python-unidecode +python-beanstalkc +pyyaml
+  DEPENDS+= +asterisk18 +asterisk18-sounds
+  DEPENDS+= +php5 +php5-fastcgi +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-session +php5-mod-iconv +php5-mod-json +@PHP5_FILTER
+  DEPENDS+= +lighttpd +lighttpd-mod-auth +lighttpd-mod-fastcgi +lighttpd-mod-proxy
+  DEPENDS+= +privoxy
+  DEPENDS+= +dovecot +exim4
+  DEPENDS+= +cfengine +cfengine-policies
+  DEPENDS+= +beanstalkd
 endef
 
 define Package/webinterface/description
