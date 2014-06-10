@@ -557,28 +557,36 @@ def wlan_scan(request):
 
     cells = re.split('BSS.*\(on wlan0\)', scan)
     for cell in cells:
-        print cell
+
         try:
             ssid = cell.split('SSID: ')[1].split('\n')[0].replace('"', '').strip()
             signal = cell.split('signal: ')[1].split(' ')[0].strip()
-            print ssid
             signal = int(100 + float(signal))
-            print signal
 
             try:
-                group = cell.split('Group Cipher')[1].split('\n')[0].split(' ')[-1:][0].strip()
+                group = cell.split('Group cipher')[1].split('\n')[0].strip()
+                if 'CCMP' in group:
+                    group = 'CCMP'
+                else:
+                    group = 'TKIP'
+
             except Exception:
                 group = ''
 
             try:
-                pairwise = cell.split('Pairwise Ciphers')[1].split('\n')[0].split(' ')[-1:][0].strip()
+                pairwise = cell.split('Pairwise ciphers')[1].split('\n')[0].strip()
+                if 'CCMP' in pairwise:
+                    pairwise = 'CCMP'
+                else:
+                    pairwise = 'TKIP'
+
             except Exception:
                 pairwise = ''
 
-            if 'WPA' in cell:
-                security = 'WPA'
-            else:
+            if group == '' and pairwise == '':
                 security = 'WEP'
+            else:
+                security = 'WPA'
 
             final_cells.append({
                 'ssid': ssid,
@@ -587,6 +595,7 @@ def wlan_scan(request):
                 'group': group,
                 'pairwise': pairwise,
             })
+
         except Exception:
             pass
 
