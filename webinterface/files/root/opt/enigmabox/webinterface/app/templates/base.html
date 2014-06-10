@@ -68,9 +68,7 @@
                 <li class="{% active request 'webfilter' %}"><a href="{% url app.views.webfilter %}"><i class="icon-ban-circle"></i> {% trans "Ad blocking" %}</a></li>
                 <li class="nav-header">{% trans "Network" %}</li>
                 <li class="{% active request 'peerings' %}"><a href="{% url app.views.peerings %}"><i class="icon-random"></i> {% trans "Peerings" %}</a></li>
-<!--
-                <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i> {% trans "WLAN settings" %}&nbsp;<span class="label label-default">beta</span></a></li>
--->
+                <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i> {% trans "WLAN settings" %}</a></li>
                 <li class="nav-header">{% trans "Services" %}</li>
                 <li class="{% active request 'teletext' %}"><a href="{% url app.views.teletext %}"><i class="icon-list"></i> {% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a></li>
             </ul>
