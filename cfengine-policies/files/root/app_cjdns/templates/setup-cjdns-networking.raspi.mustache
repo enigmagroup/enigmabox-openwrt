@@ -6,7 +6,7 @@ export LC_ALL=en_US.UTF-8
 remoteaddresses="{{#peerings}}{{ip}} {{/peerings}}{{#missioncontrol}}{{ip}} {{/missioncontrol}}"
 
 orggatewayfile="/tmp/cjdns_org_gw"
-internet_interface="wlan0"
+clearnet_interface="wlan0"
 wlan_interface="wlan0"
 ping="ping -c 5 -W 5"
 cjdns_request_tries="/tmp/cjdns_request_tries"
@@ -14,8 +14,6 @@ netstat_file="/tmp/netstat"
 pidfile="/tmp/setup-cjdns-networking.pid"
 ssid="{{wlan_ssid}}"
 wep_pass="{{wlan_pass}}"
-txpower="{{wlan_txpower}}"    #options: NmW, N (value in dB), off, auto
-rate="{{wlan_rate}}"          #transmit rate (lower is usually more stable)
 security="{{wlan_security}}"
 
 {{#if_internet_gateway}}
@@ -51,11 +49,7 @@ dhcp() {
     if [[ -e "/sys/class/net/$wlan_interface" ]]; then
         e "wifi detected"
 
-        internet_interface="$wlan_interface"
-
-        #TODO ifconfig eth0 down
-        iwconfig "$wlan_interface" txpower "$txpower"
-        iwconfig "$wlan_interface" rate "$rate"
+        clearnet_interface="$wlan_interface"
 
         if [[ "$security" = "WPA" ]]; then
             start_wpa
@@ -64,10 +58,10 @@ dhcp() {
         fi
     fi
 
-    ifconfig "$internet_interface" up
+    ifconfig "$clearnet_interface" up
 
     if [[ $( route -n | grep ^0.0.0.0 | wc -l ) -eq 0 ]]; then
-        e "dhcp request $internet_interface"
+        e "dhcp request $clearnet_interface"
         #udhcpc -nq
         exit
         sleep 3
@@ -87,10 +81,16 @@ start_wpa() {
 }
 
 start_wep() {
+{{#if_wlan_pass}}
     e "start WEP session"
     ifconfig "$wlan_interface" up
-    iwconfig "$wlan_interface" essid "$ssid"
-    iwconfig "$wlan_interface" key "$wep_pass"
+    iw "$wlan_interface" connect "$ssid" keys "0:$wep_pass"
+{{/if_wlan_pass}}
+{{^if_wlan_pass}}
+    e "connecting to AP"
+    ifconfig "$wlan_interface" up
+    iw "$wlan_interface" connect "$ssid"
+{{/if_wlan_pass}}
 }
 
 request_cjdns_internet() {
@@ -146,7 +146,7 @@ gateway_is_up() {
 }
 
 interface_dhcp_success() {
-    if [[ "$(ifconfig "$internet_interface" | grep 'inet addr' | wc -l)" -gt 0 ]]; then
+    if [[ "$(ifconfig "$clearnet_interface" | grep 'inet addr' | wc -l)" -gt 0 ]]; then
         echo true
     fi
 }
@@ -162,8 +162,8 @@ original_gateway() {
     original_gateway=$(get_original_gateway)
     for remoteaddress in $remoteaddresses; do
         if [[ "$(route -n | egrep "$remoteaddress.*?$original_gateway" | wc -l)" -eq 0 ]]; then
-            e "setting route $remoteaddress via $original_gateway dev $internet_interface"
-            route add "$remoteaddress" gw "$original_gateway" "$internet_interface"
+            e "setting route $remoteaddress via $original_gateway dev $clearnet_interface"
+            route add "$remoteaddress" gw "$original_gateway" "$clearnet_interface"
         fi
     done
 }
