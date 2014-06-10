@@ -6,6 +6,7 @@ from app.forms import *
 import random
 import string
 import json
+import re
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse
@@ -554,11 +555,15 @@ def wlan_scan(request):
     #scan = Popen(["iw", "dev", "wlan0", "scan"], stdout=PIPE).communicate()[0]
     scan = Popen(["cat", "/tmp/scan.wlan"], stdout=PIPE).communicate()[0]
 
-    cells = scan.split('Cell ')
+    cells = re.split('BSS.*\(on wlan0\)', scan)
     for cell in cells:
+        print cell
         try:
-            ssid = cell.split('ESSID:')[1].split('\n')[0].replace('"', '').strip()
-            quality = cell.split('Quality=')[1].split(' ')[0].strip()
+            ssid = cell.split('SSID: ')[1].split('\n')[0].replace('"', '').strip()
+            quality = cell.split('signal: ')[1].split(' ')[0].strip()
+            print ssid
+            quality = 100 + float(quality)
+            print quality
 
             try:
                 group = cell.split('Group Cipher')[1].split('\n')[0].split(' ')[-1:][0].strip()
