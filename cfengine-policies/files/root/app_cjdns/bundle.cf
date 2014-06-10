@@ -9,6 +9,15 @@ bundle agent app_cjdns
       edit_template => "$(this.promise_dirname)/templates/cjdroute.conf.mustache",
       classes => if_repaired("restart_cjdns");
 
+      "/etc/wpa_supplicant/."
+      create => "true";
+
+      "/etc/wpa_supplicant/wpa_supplicant.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/wpa_supplicant.conf.mustache";
+
       "/usr/sbin/setup-cjdns-networking"
       create => "true",
       perms => script,
