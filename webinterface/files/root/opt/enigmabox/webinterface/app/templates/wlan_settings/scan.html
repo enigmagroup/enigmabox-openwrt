@@ -19,7 +19,7 @@
         <thead>
         <tr>
             <th>{% trans "SSID" %}</th>
-            <th>{% trans "Quality" %}</th>
+            <th>{% trans "Signal" %}</th>
         </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
             <form method="post" class="form-horizontal">
             {% csrf_token %}
                 <td><button id="{{ cell.ssid }}" name="ssid" type="text" class="btn btn-default" value="{{ cell.ssid }}">{{ cell.ssid }}</button></td>
-                <td>{{ cell.quality }}</td>
+                <td>{{ cell.signal }}</td>
                 <input type="hidden" name="security" value="{{ cell.security }}" />
                 <input type="hidden" name="group" value="{{ cell.group }}" />
                 <input type="hidden" name="pairwise" value="{{ cell.pairwise }}" />

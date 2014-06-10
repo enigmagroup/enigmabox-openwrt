@@ -560,10 +560,10 @@ def wlan_scan(request):
         print cell
         try:
             ssid = cell.split('SSID: ')[1].split('\n')[0].replace('"', '').strip()
-            quality = cell.split('signal: ')[1].split(' ')[0].strip()
+            signal = cell.split('signal: ')[1].split(' ')[0].strip()
             print ssid
-            quality = 100 + float(quality)
-            print quality
+            signal = int(100 + float(signal))
+            print signal
 
             try:
                 group = cell.split('Group Cipher')[1].split('\n')[0].split(' ')[-1:][0].strip()
@@ -582,13 +582,15 @@ def wlan_scan(request):
 
             final_cells.append({
                 'ssid': ssid,
-                'quality': quality,
+                'signal': signal,
                 'security': security,
                 'group': group,
                 'pairwise': pairwise,
             })
         except Exception:
             pass
+
+    final_cells = sorted(final_cells, key=lambda k: k['signal'], reverse=True)
 
     return render_to_response('wlan_settings/scan.html', {
         'cells': final_cells,
