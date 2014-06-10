@@ -62,8 +62,7 @@ dhcp() {
 
     if [[ $( route -n | grep ^0.0.0.0 | wc -l ) -eq 0 ]]; then
         e "dhcp request $clearnet_interface"
-        #udhcpc -nq
-        exit
+        udhcpc -i "$clearnet_interface"
         sleep 3
     fi
 }
