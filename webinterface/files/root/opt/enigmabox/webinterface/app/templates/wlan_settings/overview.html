@@ -49,20 +49,20 @@
   <label class="control-label" for="WLAN security">{% trans "WLAN security" %}</label>
   <div class="controls">
     <label class="radio" for="WLAN security-0">
-{% if wlan_security == "WEP" %}
-      <input type="radio" name="security" id="WLAN security-0" value="WEP" checked="checked">
-{% else %}
-      <input type="radio" name="security" id="WLAN security-0" value="WEP">
-{% endif %}
-      {% trans "WEP" %}
-    </label>
-    <label class="radio" for="WLAN security-1">
 {% if wlan_security == "WPA" %}
-      <input type="radio" name="security" id="WLAN security-1" value="WPA" checked="checked">
+      <input type="radio" name="security" id="WLAN security-0" value="WPA" checked="checked">
 {% else %}
-      <input type="radio" name="security" id="WLAN security-1" value="WPA">
+      <input type="radio" name="security" id="WLAN security-0" value="WPA">
 {% endif %}
       {% trans "WPA2" %}
+    </label>
+    <label class="radio" for="WLAN security-1">
+{% if wlan_security == "WEP" %}
+      <input type="radio" name="security" id="WLAN security-1" value="WEP" checked="checked">
+{% else %}
+      <input type="radio" name="security" id="WLAN security-1" value="WEP">
+{% endif %}
+      {% trans "WEP or unencrypted" %}
     </label>
   </div>
 </div>

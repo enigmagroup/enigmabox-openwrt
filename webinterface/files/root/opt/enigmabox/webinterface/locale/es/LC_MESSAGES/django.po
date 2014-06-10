@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-01 21:09+0200\n"
+"POT-Creation-Date: 2014-06-10 15:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,28 +30,28 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:425
+#: app/views.py:467
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:426
+#: app/views.py:468
 msgid "Sweden"
 msgstr ""
 
-#: app/views.py:427
+#: app/views.py:469
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:428
+#: app/views.py:470
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:429
+#: app/views.py:471
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:430
+#: app/views.py:472
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
@@ -63,8 +63,8 @@ msgstr "¿Estás seguro?"
 msgid "Show"
 msgstr "Mostrar"
 
-#: app/templates/base.html:31 app/templates/base.html.py:61
-#: app/templates/changes/apply.html:8
+#: app/templates/base.html:31 app/templates/base.html.py:64
+#: app/templates/changes/apply.html:8 app/templates/changes/apply.html:15
 msgid "Apply changes"
 msgstr "Aplicar cambios"
 
@@ -82,8 +82,8 @@ msgstr "Sistema"
 msgid "Addressbook"
 msgstr "Libreta de direcciones"
 
-#: app/templates/base.html:58 app/templates/passwords.html:8
-#: app/templates/passwords.html.py:16
+#: app/templates/base.html:58 app/templates/passwords/overview.html:8
+#: app/templates/passwords/overview.html:16
 msgid "Passwords"
 msgstr "Contraseñas"
 
@@ -93,37 +93,41 @@ msgstr "Contraseñas"
 msgid "Backup &amp; restore"
 msgstr "Copia de seguridad y restaurar"
 
-#: app/templates/base.html:63 app/templates/home.html:37
+#: app/templates/base.html:61 app/templates/updates/overview.html:8
+msgid "Updates"
+msgstr ""
+
+#: app/templates/base.html:66 app/templates/home.html:37
 msgid "Internet"
 msgstr "Internet"
 
-#: app/templates/base.html:64
+#: app/templates/base.html:67
 msgid "Country selection"
 msgstr "Selección de país"
 
-#: app/templates/base.html:65 app/templates/webfilter/overview.html:8
+#: app/templates/base.html:68 app/templates/webfilter/overview.html:8
 msgid "Ad blocking"
 msgstr "Añadir bloqueo"
 
-#: app/templates/base.html:66
+#: app/templates/base.html:69
 msgid "Network"
 msgstr "Red"
 
-#: app/templates/base.html:67 app/templates/peerings/detail.html:9
+#: app/templates/base.html:70 app/templates/peerings/detail.html:9
 #: app/templates/peerings/overview.html:8
 msgid "Peerings"
 msgstr "Compañeros"
 
-#: app/templates/base.html:68 app/templates/wlan_settings/overview.html:8
+#: app/templates/base.html:71 app/templates/wlan_settings/overview.html:8
 #: app/templates/wlan_settings/scan.html:9
 msgid "WLAN settings"
 msgstr "Configuración WLAN"
 
-#: app/templates/base.html:69
+#: app/templates/base.html:72
 msgid "Services"
 msgstr "Servicios"
 
-#: app/templates/base.html:70 app/templates/home.html:21
+#: app/templates/base.html:73 app/templates/home.html:21
 #: app/templates/home.html.py:23 app/templates/teletext/overview.html:8
 msgid "Teletext"
 msgstr "Teletext"
@@ -182,30 +186,6 @@ msgstr "Contraseña"
 #: app/templates/home.html:46
 msgid "Server"
 msgstr "Servidor"
-
-#: app/templates/passwords.html:10
-msgid "Set passwords. Empty value: Password is inactive."
-msgstr "Poner contraseñas.valor vacío:Contraseña es inactivo"
-
-#: app/templates/passwords.html:20
-msgid "Webinterface"
-msgstr "Interfaz web"
-
-#: app/templates/passwords.html:23 app/templates/passwords.html.py:41
-msgid "Set"
-msgstr "Poner"
-
-#: app/templates/passwords.html:24
-msgid "Password for the Webinterface"
-msgstr "Contraseña para el interfaz web"
-
-#: app/templates/passwords.html:25
-msgid "Username is"
-msgstr "Nombre de usuario es"
-
-#: app/templates/passwords.html:42
-msgid "Password for the email account"
-msgstr "Contraseña para la cuenta e mail"
 
 #: app/templates/addressbook/detail.html:23
 #: app/templates/addressbook/overview.html:48
@@ -415,32 +395,15 @@ msgstr "De acuerdo para restaurar?"
 msgid "Upload and check"
 msgstr "Subir y comprobar"
 
-#: app/templates/changes/apply.html:9
-msgid "You can review outstanding changes by hitting &quot;Show changes&quot;."
-msgstr ""
-"Puedes revisar los cambios pendientes con pulsar &quot;Mostrar cambios&quot;."
-
-#: app/templates/changes/apply.html:10
-msgid "Apply them with &quot;Confirm changes&quot;."
-msgstr "Aplicar los cambios con &quot;Confirmar cambios&quot;."
-
-#: app/templates/changes/apply.html:16
+#: app/templates/changes/apply.html:14
 msgid "Back"
 msgstr "Atrás"
 
-#: app/templates/changes/apply.html:16
+#: app/templates/changes/apply.html:14
 msgid "Changes successfully applied."
 msgstr "Cambios aplicados con éxito"
 
-#: app/templates/changes/apply.html:17
-msgid "Show changes"
-msgstr "Mostrar cambios"
-
-#: app/templates/changes/apply.html:18
-msgid "Confirm changes"
-msgstr "Confirmar cambios"
-
-#: app/templates/changes/apply.html:19
+#: app/templates/changes/apply.html:16 app/templates/updates/overview.html:33
 msgid "Please wait"
 msgstr "Por favor espera"
 
@@ -496,6 +459,31 @@ msgid ""
 msgstr ""
 "Anota: tal vez se necesita un poco tiempo después de cambiar el país hasta "
 "que todos los contactos son accesibles de nuevo"
+
+#: app/templates/passwords/overview.html:10
+msgid "Set passwords. Empty value: Password is inactive."
+msgstr "Poner contraseñas.valor vacío:Contraseña es inactivo"
+
+#: app/templates/passwords/overview.html:20
+msgid "Webinterface"
+msgstr "Interfaz web"
+
+#: app/templates/passwords/overview.html:23
+#: app/templates/passwords/overview.html:41
+msgid "Set"
+msgstr "Poner"
+
+#: app/templates/passwords/overview.html:24
+msgid "Password for the Webinterface"
+msgstr "Contraseña para el interfaz web"
+
+#: app/templates/passwords/overview.html:25
+msgid "Username is"
+msgstr "Nombre de usuario es"
+
+#: app/templates/passwords/overview.html:42
+msgid "Password for the email account"
+msgstr "Contraseña para la cuenta e mail"
 
 #: app/templates/peerings/detail.html:20
 msgid "Insert connection data to your peer"
@@ -611,6 +599,32 @@ msgstr ""
 msgid "Enable Teletext"
 msgstr "Desbloquear Teletext"
 
+#: app/templates/updates/overview.html:13
+msgid "Package"
+msgstr ""
+
+#: app/templates/updates/overview.html:14
+msgid "Installed version"
+msgstr ""
+
+#: app/templates/updates/overview.html:15
+#, fuzzy
+msgid "New version"
+msgstr "Compañero nuevo"
+
+#: app/templates/updates/overview.html:31
+msgid "Updates applied."
+msgstr ""
+
+#: app/templates/updates/overview.html:31
+#: app/templates/wlan_settings/scan.html:13
+msgid "Refresh"
+msgstr "Renovar"
+
+#: app/templates/updates/overview.html:32
+msgid "Install updates"
+msgstr ""
+
 #: app/templates/webfilter/overview.html:9
 msgid "Filter out ads and trackers, block whole domains."
 msgstr "Filtra publicidad y rastreadores, bloquea dominios enteros."
@@ -701,20 +715,37 @@ msgid "WLAN security"
 msgstr "Seguridad WLAN"
 
 #: app/templates/wlan_settings/overview.html:57
-msgid "WEP"
-msgstr "WEP"
-
-#: app/templates/wlan_settings/overview.html:65
 msgid "WPA2"
 msgstr "WPA2"
 
-#: app/templates/wlan_settings/scan.html:13
-msgid "Refresh"
-msgstr "Renovar"
+#: app/templates/wlan_settings/overview.html:65
+msgid "WEP or unencrypted"
+msgstr ""
 
 #: app/templates/wlan_settings/scan.html:22
-msgid "Quality"
-msgstr "Calidad"
+msgid "Signal"
+msgstr ""
+
+#~ msgid ""
+#~ "You can review outstanding changes by hitting &quot;Show changes&quot;."
+#~ msgstr ""
+#~ "Puedes revisar los cambios pendientes con pulsar &quot;Mostrar "
+#~ "cambios&quot;."
+
+#~ msgid "Apply them with &quot;Confirm changes&quot;."
+#~ msgstr "Aplicar los cambios con &quot;Confirmar cambios&quot;."
+
+#~ msgid "Show changes"
+#~ msgstr "Mostrar cambios"
+
+#~ msgid "Confirm changes"
+#~ msgstr "Confirmar cambios"
+
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "Quality"
+#~ msgstr "Calidad"
 
 #~ msgid "sslcerts.tar.gz file:"
 #~ msgstr "Archivo sslcerts.tar.gz:"
