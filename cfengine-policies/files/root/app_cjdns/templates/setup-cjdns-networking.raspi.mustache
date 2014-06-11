@@ -29,19 +29,16 @@ request_internet="no"
 
 
 
-# params
-[[ "$1" == "startwifi" ]] && startwifi "$2"
-
-
-
 # check if its already running
-kill -0 $(cat "$pidfile" 2> /dev/null) 2> /dev/null
-if [[ "$?" == "0" ]]; then
-    echo "script is already running"
-    exit 0
-fi
+if [[ "$1" != "startwifi" ]]; then
+    kill -0 $(cat "$pidfile" 2> /dev/null) 2> /dev/null
+    if [[ "$?" == "0" ]]; then
+        echo "script is already running"
+        exit 0
+    fi
 
-echo $$ > "$pidfile"
+    echo $$ > "$pidfile"
+fi
 
 
 
@@ -194,6 +191,11 @@ set_status() {
     val=$2
     echo "$val" > "$netstat_file-$key"
 }
+
+
+
+# params
+[[ "$1" == "startwifi" ]] && startwifi "$2"
 
 
 
