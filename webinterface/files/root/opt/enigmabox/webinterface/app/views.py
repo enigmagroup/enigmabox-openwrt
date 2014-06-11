@@ -527,7 +527,6 @@ def wlan_settings(request):
     o = Option()
 
     output_window = False
-    loader_hint = ''
 
     # TODO
 
@@ -536,15 +535,13 @@ def wlan_settings(request):
         o.set_value('wlan_pass', request.POST.get('pass'))
         o.set_value('wlan_security', request.POST.get('security'))
         output_window = True
-        loader_hint = 'run'
-        Popen(["/usr/sbin/cfengine-apply", "-b"], stdout=PIPE)
+        Popen(["/usr/sbin/setup-cjdns-networking", "startwifi", "-b"], stdout=PIPE)
 
     return render_to_response('wlan_settings/overview.html', {
         'wlan_ssid': o.get_value('wlan_ssid', ''),
         'wlan_pass': o.get_value('wlan_pass', ''),
         'wlan_security': o.get_value('wlan_security', 'WPA2'),
         'output_window': output_window,
-        'loader_hint': loader_hint,
     }, context_instance=RequestContext(request))
 
 def wlan_scan(request):
