@@ -7,7 +7,7 @@ bundle agent system_network
 
   classes:
       "missioncontrol"
-      expression => "$(json.if_missioncontrol)";
+      expression => regcmp("true", "$(json[if_missioncontrol])");
 
   files:
       "/etc/hosts"
