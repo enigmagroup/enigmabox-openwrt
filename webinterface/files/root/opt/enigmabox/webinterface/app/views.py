@@ -526,16 +526,25 @@ def wlan_settings(request):
 
     o = Option()
 
+    output_window = False
+    loader_hint = ''
+
+    # TODO
+
     if request.POST:
         o.set_value('wlan_ssid', request.POST.get('ssid'))
         o.set_value('wlan_pass', request.POST.get('pass'))
         o.set_value('wlan_security', request.POST.get('security'))
-        o.config_changed(True)
+        output_window = True
+        loader_hint = 'run'
+        Popen(["/usr/sbin/cfengine-apply", "-b"], stdout=PIPE)
 
     return render_to_response('wlan_settings/overview.html', {
         'wlan_ssid': o.get_value('wlan_ssid', ''),
         'wlan_pass': o.get_value('wlan_pass', ''),
         'wlan_security': o.get_value('wlan_security', 'WPA2'),
+        'output_window': output_window,
+        'loader_hint': loader_hint,
     }, context_instance=RequestContext(request))
 
 def wlan_scan(request):
@@ -553,7 +562,6 @@ def wlan_scan(request):
 
     Popen(["ifconfig", "wlan0", "up"], stdout=PIPE).communicate()[0]
     scan = Popen(["iw", "dev", "wlan0", "scan"], stdout=PIPE).communicate()[0]
-    #scan = Popen(["cat", "/tmp/scan.wlan"], stdout=PIPE).communicate()[0]
 
     cells = re.split('BSS.*\(on wlan0\)', scan)
     for cell in cells:

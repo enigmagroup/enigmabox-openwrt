@@ -69,14 +69,20 @@
 
 <!-- Button -->
 <div class="control-group">
-  <label class="control-label" for="save"></label>
+  <label class="control-label" for="connect"></label>
   <div class="controls">
-    <button id="save" name="save" class="btn btn-primary">{% trans "Save" %}</button>
+    <button id="connect" name="connect" class="btn btn-primary">{% trans "Connect" %}</button>
   </div>
 </div>
 
 </fieldset>
 </form>
+
+{% if output_window %}
+    <div id="loader-hint" data-value="{{ loader_hint }}"></div>
+    <div id="output-type" data-value="{{ output_type }}"></div>
+    <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output"></pre>
+{% endif %}
 
     </div> <!-- /container -->
 {% endblock %}
