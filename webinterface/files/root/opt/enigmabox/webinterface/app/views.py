@@ -528,14 +528,12 @@ def wlan_settings(request):
 
     output_window = False
 
-    # TODO
-
     if request.POST:
         o.set_value('wlan_ssid', request.POST.get('ssid'))
         o.set_value('wlan_pass', request.POST.get('pass'))
         o.set_value('wlan_security', request.POST.get('security'))
         output_window = True
-        Popen(["/usr/sbin/setup-cjdns-networking", "startwifi", "-b"], stdout=PIPE)
+        Popen(["/usr/sbin/setup-cjdns-networking", "startwifi", "bg"], stdout=PIPE)
 
     return render_to_response('wlan_settings/overview.html', {
         'wlan_ssid': o.get_value('wlan_ssid', ''),
