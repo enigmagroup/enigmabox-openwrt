@@ -2,12 +2,7 @@
 export LC_ALL=en_US.UTF-8
 
 # TODO
-# * param startwifi
 # * dns und gateway vom dhcp-server übernehmen, erst setzen, wenn ip erhalten
-# * falls WPA, cfengine-apply für wpa_supplicant
-# * sonst direkt verbinden, status nach dynamic_output
-# * danach dhcp
-# * dann regulär setup-cjdns-networking
 
 # vars
 
@@ -34,6 +29,11 @@ request_internet="no"
 
 
 
+# params
+[[ "$1" == "startwifi" ]] && startwifi "$2"
+
+
+
 # check if its already running
 kill -0 $(cat "$pidfile" 2> /dev/null) 2> /dev/null
 if [[ "$?" == "0" ]]; then
@@ -53,19 +53,17 @@ e() {
     echo "$1" 1>&2
 }
 
-dhcp() {
-    if [[ -e "/sys/class/net/$wlan_interface" ]]; then
-        e "wifi detected"
-
-        clearnet_interface="$wlan_interface"
-
-        if [[ "$security" = "WPA" ]]; then
-            start_wpa
-        else
-            start_wep
-        fi
+startwifi() {
+    if [[ "$security" = "WPA" ]]; then
+        /usr/sbin/cfengine-apply &> /tmp/dynamic_output
     fi
 
+    /usr/sbin/setup-cjdns-networking &> /tmp/dynamic_output
+
+    exit 0 #the script should end here
+}
+
+dhcp() {
     ifconfig "$clearnet_interface" up
 
     if [[ $( route -n | grep ^0.0.0.0 | wc -l ) -eq 0 ]]; then
@@ -220,6 +218,19 @@ set_status "dhcp" 0
 set_status "internet" 0
 set_status "cjdns" 0
 set_status "cjdns_internet" 0
+
+# setup wifi if available
+if [[ -e "/sys/class/net/$wlan_interface" ]]; then
+    e "wifi detected"
+
+    clearnet_interface="$wlan_interface"
+
+    if [[ "$security" = "WPA" ]]; then
+        start_wpa
+    else
+        start_wep
+    fi
+fi
 
 # request dhcp
 dhcp
