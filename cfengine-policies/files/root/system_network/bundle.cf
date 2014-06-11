@@ -1,6 +1,14 @@
 
 bundle agent system_network
 {
+  vars:
+      "json"
+      data => readjson("$(g.site)", 64000);
+
+  classes:
+      "missioncontrol"
+      expression => "$(json.if_missioncontrol)";
+
   files:
       "/etc/hosts"
       template_method => "mustache",
@@ -30,6 +38,7 @@ bundle agent system_network
       edit_template => "$(this.promise_dirname)/templates/rebuild-iptables.$(g.network_profile).mustache",
       classes => if_repaired("rebuild_iptables");
 
+    missioncontrol::
       "/box/.missioncontrol"
       create => "true",
       template_method => "mustache",
