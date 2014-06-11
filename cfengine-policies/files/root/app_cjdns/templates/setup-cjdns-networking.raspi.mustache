@@ -1,6 +1,14 @@
 #!/bin/ash
 export LC_ALL=en_US.UTF-8
 
+# TODO
+# * param startwifi
+# * dns und gateway vom dhcp-server übernehmen, erst setzen, wenn ip erhalten
+# * falls WPA, cfengine-apply für wpa_supplicant
+# * sonst direkt verbinden, status nach dynamic_output
+# * danach dhcp
+# * dann regulär setup-cjdns-networking
+
 # vars
 
 remoteaddresses="{{#peerings}}{{ip}} {{/peerings}}{{#missioncontrol}}{{ip}} {{/missioncontrol}}"
