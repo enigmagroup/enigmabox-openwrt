@@ -18,6 +18,7 @@ pidfile="/tmp/setup-cjdns-networking.pid"
 ssid="{{wlan_ssid}}"
 wep_pass="{{wlan_pass}}"
 security="{{wlan_security}}"
+dynamic_output="/tmp/dynamic_output"
 
 {{#if_internet_gateway}}
 request_internet="yes"
@@ -51,11 +52,11 @@ e() {
 }
 
 startwifi() {
-    if [[ "$security" = "WPA" ]]; then
-        /usr/sbin/cfengine-apply &> /tmp/dynamic_output
-    fi
+    echo "please wait, configuring system..." > "$dynamic_output"
+    /usr/sbin/cfengine-apply &> /dev/null
+    echo "done" > "$dynamic_output"
 
-    /usr/sbin/setup-cjdns-networking &> /tmp/dynamic_output
+    /usr/sbin/setup-cjdns-networking &> "$dynamic_output"
 
     exit 0 #the script should end here
 }
@@ -65,8 +66,7 @@ dhcp() {
 
     if [[ $( route -n | grep ^0.0.0.0 | wc -l ) -eq 0 ]]; then
         e "dhcp request $clearnet_interface"
-        udhcpc -i "$clearnet_interface"
-        sleep 3
+        udhcpc -i "$clearnet_interface" --now
     fi
 }
 
@@ -222,7 +222,7 @@ set_status "cjdns" 0
 set_status "cjdns_internet" 0
 
 # setup wifi if available
-if [[ -e "/sys/class/net/$wlan_interface" ]]; then
+if [[ -e "/sys/class/net/$wlan_interface" && -n "$ssid" ]]; then
     e "wifi detected"
 
     clearnet_interface="$wlan_interface"
@@ -266,7 +266,6 @@ if [[ "$wehaveinternet" == "yes" && "$request_internet" == "yes" ]]; then
             rm "$cjdns_request_tries" 2> /dev/null
             exit
         fi
-        sleep 1
     done
 else
     # we are not connected to the internet.
