@@ -222,25 +222,26 @@ set_status "cjdns" 0
 set_status "cjdns_internet" 0
 
 # setup wifi if available
-if [[ -e "/sys/class/net/$wlan_interface" && -n "$ssid" ]]; then
+if [[ -e "/sys/class/net/$wlan_interface" ]]; then
     e "wifi detected"
 
-    clearnet_interface="$wlan_interface"
-
-    # check if $wlan_interface already started
-    if [[ "$(ifconfig $wlan_interface | grep 'inet addr' | wc -l)" -eq 0 ]]; then
-        if [[ "$security" = "WPA" ]]; then
-            start_wpa
-        else
-            start_wep
-        fi
-    fi
-
-    # check if ah0 interface already started
+    # start ad-hoc cjdns
     if [[ "$(ifconfig ah0 2> /dev/null | wc -l)" -eq 0 ]]; then
         iw phy phy0 interface add ah0 type ibss
         ifconfig ah0 up
         iw dev ah0 ibss join cjdns 2412
+    fi
+
+    if [[ -n "$ssid" ]]; then
+        clearnet_interface="$wlan_interface"
+        # check if $wlan_interface already started
+        if [[ "$(ifconfig $wlan_interface | grep 'inet addr' | wc -l)" -eq 0 ]]; then
+            if [[ "$security" = "WPA" ]]; then
+                start_wpa
+            else
+                start_wep
+            fi
+        fi
     fi
 fi
 
@@ -278,7 +279,7 @@ if [[ "$wehaveinternet" == "yes" && "$request_internet" == "yes" ]]; then
         fi
     done
 else
-    # we are not connected to the internet.
+    e "we are not connected to the internet."
     # just ensure that cjdns is running, but DO NOT restart it!
     # since local phone calls may be active.
     start_cjdns
