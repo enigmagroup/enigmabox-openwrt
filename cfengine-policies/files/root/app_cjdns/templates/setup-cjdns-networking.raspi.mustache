@@ -86,7 +86,7 @@ start_wep() {
 {{#if_wlan_pass}}
     e "start WEP session"
     ifconfig "$wlan_interface" up
-    iw "$wlan_interface" connect "$ssid" keys "0:$wep_pass"
+    iw "$wlan_interface" connect "$ssid" keys "d:0:$wep_pass"
 {{/if_wlan_pass}}
 {{^if_wlan_pass}}
     e "connecting to AP"
