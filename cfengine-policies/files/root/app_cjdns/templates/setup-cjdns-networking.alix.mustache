@@ -1,12 +1,15 @@
 #!/bin/ash
 export LC_ALL=en_US.UTF-8
 
+# TODO
+# * dns und gateway vom dhcp-server übernehmen, erst setzen, wenn ip erhalten
+
 # vars
 
 remoteaddresses="{{#peerings}}{{ip}} {{/peerings}}{{#missioncontrol}}{{ip}} {{/missioncontrol}}"
 
 orggatewayfile="/tmp/cjdns_org_gw"
-internet_interface="eth0"
+clearnet_interface="eth0"
 wlan_interface="wlan0"
 ping="ping -c 5 -W 5"
 cjdns_request_tries="/tmp/cjdns_request_tries"
@@ -14,9 +17,8 @@ netstat_file="/tmp/netstat"
 pidfile="/tmp/setup-cjdns-networking.pid"
 ssid="{{wlan_ssid}}"
 wep_pass="{{wlan_pass}}"
-txpower="{{wlan_txpower}}"    #options: NmW, N (value in dB), off, auto
-rate="{{wlan_rate}}"          #transmit rate (lower is usually more stable)
 security="{{wlan_security}}"
+dynamic_output="/tmp/dynamic_output"
 
 {{#if_internet_gateway}}
 request_internet="yes"
@@ -29,13 +31,15 @@ request_internet="no"
 
 
 # check if its already running
-kill -0 $(cat "$pidfile" 2> /dev/null) 2> /dev/null
-if [[ "$?" == "0" ]]; then
-    echo "script is already running"
-    exit 0
-fi
+if [[ "$1" != "startwifi" ]]; then
+    kill -0 $(cat "$pidfile" 2> /dev/null) 2> /dev/null
+    if [[ "$?" == "0" ]]; then
+        echo "script is already running"
+        exit 0
+    fi
 
-echo $$ > "$pidfile"
+    echo $$ > "$pidfile"
+fi
 
 
 
@@ -47,29 +51,22 @@ e() {
     echo "$1" 1>&2
 }
 
+startwifi() {
+    echo "please wait, configuring system..." > "$dynamic_output"
+    /usr/sbin/cfengine-apply &> /dev/null
+    echo "done" > "$dynamic_output"
+
+    /usr/sbin/setup-cjdns-networking &> "$dynamic_output"
+
+    exit 0 #the script should end here
+}
+
 dhcp() {
-    if [[ -e "/sys/class/net/$wlan_interface" ]]; then
-        e "wifi detected"
-
-        internet_interface="$wlan_interface"
-
-        ifconfig eth0 down
-        iwconfig "$wlan_interface" txpower "$txpower"
-        iwconfig "$wlan_interface" rate "$rate"
-
-        if [[ "$security" = "WPA" ]]; then
-            start_wpa
-        else
-            start_wep
-        fi
-    fi
-
-    ifconfig "$internet_interface" up
+    ifconfig "$clearnet_interface" up
 
     if [[ $( route -n | grep ^0.0.0.0 | wc -l ) -eq 0 ]]; then
-        e "dhcp request $internet_interface"
-        udhcpc -nq
-        sleep 3
+        e "dhcp request $clearnet_interface"
+        udhcpc -i "$clearnet_interface" --now
     fi
 }
 
@@ -86,10 +83,16 @@ start_wpa() {
 }
 
 start_wep() {
+{{#if_wlan_pass}}
     e "start WEP session"
     ifconfig "$wlan_interface" up
-    iwconfig "$wlan_interface" essid "$ssid"
-    iwconfig "$wlan_interface" key "$wep_pass"
+    iw "$wlan_interface" connect "$ssid" keys "d:0:$wep_pass"
+{{/if_wlan_pass}}
+{{^if_wlan_pass}}
+    e "connecting to AP"
+    ifconfig "$wlan_interface" up
+    iw "$wlan_interface" connect "$ssid"
+{{/if_wlan_pass}}
 }
 
 request_cjdns_internet() {
@@ -145,7 +148,7 @@ gateway_is_up() {
 }
 
 interface_dhcp_success() {
-    if [[ "$(ifconfig "$internet_interface" | grep 'inet addr' | wc -l)" -gt 0 ]]; then
+    if [[ "$(ifconfig "$clearnet_interface" | grep 'inet addr' | wc -l)" -gt 0 ]]; then
         echo true
     fi
 }
@@ -161,8 +164,8 @@ original_gateway() {
     original_gateway=$(get_original_gateway)
     for remoteaddress in $remoteaddresses; do
         if [[ "$(route -n | egrep "$remoteaddress.*?$original_gateway" | wc -l)" -eq 0 ]]; then
-            e "setting route $remoteaddress via $original_gateway dev $internet_interface"
-            route add "$remoteaddress" gw "$original_gateway" "$internet_interface"
+            e "setting route $remoteaddress via $original_gateway dev $clearnet_interface"
+            route add "$remoteaddress" gw "$original_gateway" "$clearnet_interface"
         fi
     done
 }
@@ -191,6 +194,11 @@ set_status() {
 
 
 
+# params
+[[ "$1" == "startwifi" ]] && startwifi "$2"
+
+
+
 # logic
 
 if [[ "$(gateway_is_up)" == "true" ]]; then
@@ -212,6 +220,30 @@ set_status "dhcp" 0
 set_status "internet" 0
 set_status "cjdns" 0
 set_status "cjdns_internet" 0
+
+# setup wifi if available
+if [[ -e "/sys/class/net/$wlan_interface" ]]; then
+    e "wifi detected"
+
+    # start ad-hoc cjdns
+    if [[ "$(ifconfig ah0 2> /dev/null | wc -l)" -eq 0 ]]; then
+        iw phy phy0 interface add ah0 type ibss
+        ifconfig ah0 up
+        iw dev ah0 ibss join cjdns 2412
+    fi
+
+    if [[ -n "$ssid" ]]; then
+        clearnet_interface="$wlan_interface"
+        # check if $wlan_interface already started
+        if [[ "$(ifconfig $wlan_interface | grep 'inet addr' | wc -l)" -eq 0 ]]; then
+            if [[ "$security" = "WPA" ]]; then
+                start_wpa
+            else
+                start_wep
+            fi
+        fi
+    fi
+fi
 
 # request dhcp
 dhcp
@@ -245,10 +277,9 @@ if [[ "$wehaveinternet" == "yes" && "$request_internet" == "yes" ]]; then
             rm "$cjdns_request_tries" 2> /dev/null
             exit
         fi
-        sleep 1
     done
 else
-    # we are not connected to the internet.
+    e "we are not connected to the internet."
     # just ensure that cjdns is running, but DO NOT restart it!
     # since local phone calls may be active.
     start_cjdns
