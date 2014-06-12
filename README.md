@@ -13,11 +13,14 @@ How to build that stuff:
     $ cp feeds.conf.default feeds.conf
     $ vi feeds.conf
 
-And add the following line to the file:
+Your feeds.conf should look like this:
+
+    src-git packages https://github.com/openwrt/packages.git
+    src-git oldpackages http://git.openwrt.org/packages.git
+    src-git routing https://github.com/openwrt-routing/packages.git
+    src-git telephony http://git.openwrt.org/feed/telephony.git
 
     src-git enigmabox https://github.com/enigmagroup/enigmabox-openwrt.git
-
-(and delete the line with luci)
 
 Next use that package system to incorporate the enigmabox software suite:
 
