@@ -226,7 +226,7 @@ if [[ -e "/sys/class/net/$wlan_interface" ]]; then
     e "wifi detected"
 
     # start ad-hoc cjdns
-    if [[ "$(ifconfig ah0 2> /dev/null | wc -l)" -eq 0 ]]; then
+    if [[ "$(iw dev ah0 link | grep -i 'joined ibss')" -eq 0 ]]; then
         iw phy phy0 interface add ah0 type ibss
         ifconfig ah0 up
         iw dev ah0 ibss join cjdns 2412
