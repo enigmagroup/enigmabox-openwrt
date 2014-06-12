@@ -226,11 +226,11 @@ if [[ -e "/sys/class/net/$wlan_interface" ]]; then
     e "wifi detected"
 
     # start ad-hoc cjdns
-    if [[ "$(iw dev ah0 link | grep -i 'joined ibss')" -eq 0 ]]; then
+    if [[ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]]; then
         iw phy phy0 interface add ah0 type ibss
         ifconfig ah0 up
         iw dev ah0 ibss join cjdns 2412
-        while [ "$(iw dev ah0 link | grep -i 'joined ibss')" -eq 0 ]; do
+        while [ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]; do
             echo "waiting for ad-hoc interface to come up..."
             sleep 1
         done
