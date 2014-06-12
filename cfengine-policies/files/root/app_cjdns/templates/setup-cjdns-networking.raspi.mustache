@@ -227,13 +227,20 @@ if [[ -e "/sys/class/net/$wlan_interface" && -n "$ssid" ]]; then
 
     clearnet_interface="$wlan_interface"
 
-    # check if wifi already started
+    # check if $wlan_interface already started
     if [[ "$(ifconfig $wlan_interface | grep 'inet addr' | wc -l)" -eq 0 ]]; then
         if [[ "$security" = "WPA" ]]; then
             start_wpa
         else
             start_wep
         fi
+    fi
+
+    # check if ah0 interface already started
+    if [[ "$(ifconfig ah0 2> /dev/null | wc -l)" -eq 0 ]]; then
+        iw phy phy0 interface add ah0 type ibss
+        ifconfig ah0 up
+        iw dev ah0 ibss join cjdns 2412
     fi
 fi
 

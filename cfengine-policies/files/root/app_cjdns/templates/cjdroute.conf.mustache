@@ -34,9 +34,13 @@
                 }
             }
         ]
-{{#if_autopeering}}
         "ETHInterface":
         [
+            {
+                "bind": "ah0",
+                "beacon": 2,
+            },
+{{#if_autopeering}}
             {
                 "bind": "eth0",
                 "beacon": 2,
@@ -49,8 +53,8 @@
                 "bind": "eth2",
                 "beacon": 2,
             },
-        ]
 {{/if_autopeering}}
+        ]
     },
 
     // Configuration for the router.
