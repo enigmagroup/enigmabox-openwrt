@@ -227,10 +227,13 @@ if [[ -e "/sys/class/net/$wlan_interface" && -n "$ssid" ]]; then
 
     clearnet_interface="$wlan_interface"
 
-    if [[ "$security" = "WPA" ]]; then
-        start_wpa
-    else
-        start_wep
+    # check if wifi already started
+    if [[ "$(ifconfig $wlan_interface | grep 'inet addr' | wc -l)" -eq 0 ]]; then
+        if [[ "$security" = "WPA" ]]; then
+            start_wpa
+        else
+            start_wep
+        fi
     fi
 fi
 
