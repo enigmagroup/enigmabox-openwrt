@@ -257,6 +257,7 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
             echo "waiting for ad-hoc interface to come up..."
             sleep 1
         done
+        restart_cjdns
     fi
 
     if [[ -n "$ssid" ]]; then
