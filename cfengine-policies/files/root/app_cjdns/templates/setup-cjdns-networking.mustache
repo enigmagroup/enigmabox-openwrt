@@ -18,7 +18,6 @@ if [[ "$network_profile" = "alix" ]]; then
     clearnet_interface="eth0"
 fi
 
-wlan_interface="wlan0"
 ping="ping -c 5 -W 5"
 cjdns_request_tries="/tmp/cjdns_request_tries"
 netstat_file="/tmp/netstat"
@@ -85,21 +84,21 @@ start_wpa() {
     [[ $(pidof wpa_supplicant | wc -l) -gt 0 ]] && return
 
     # make sure wpa_supplicant is absent
-    rm "/var/run/wpa_supplicant/$wlan_interface" 2> /dev/null
+    rm "/var/run/wpa_supplicant/wclient0" 2> /dev/null
 
-    wpa_supplicant -i "$wlan_interface" -D wext -c /etc/wpa_supplicant/wpa_supplicant.conf -B
+    wpa_supplicant -i wclient0 -D wext -c /etc/wpa_supplicant/wpa_supplicant.conf -B
 }
 
 start_wep() {
 {{#if_wlan_pass}}
     e "start WEP session"
-    ifconfig "$wlan_interface" up
-    iw "$wlan_interface" connect "$ssid" keys "d:0:$wep_pass"
+    ifconfig wclient0 up
+    iw wclient0 connect "$ssid" keys "d:0:$wep_pass"
 {{/if_wlan_pass}}
 {{^if_wlan_pass}}
     e "connecting to AP"
-    ifconfig "$wlan_interface" up
-    iw "$wlan_interface" connect "$ssid"
+    ifconfig wclient0 up
+    iw wclient0 connect "$ssid"
 {{/if_wlan_pass}}
 }
 
@@ -230,8 +229,11 @@ set_status "cjdns" 0
 set_status "cjdns_internet" 0
 
 # setup wifi if available
-if [[ -e "/sys/class/net/$wlan_interface" ]]; then
+if [[ -e "/sys/class/net/wlan0" ]]; then
     e "wifi detected"
+
+    # shut down wlan0, to prevent "Device or resource busy"
+    ifconfig wlan0 down
 
     # start ad-hoc cjdns
     if [[ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]]; then
@@ -244,10 +246,17 @@ if [[ -e "/sys/class/net/$wlan_interface" ]]; then
         done
     fi
 
+    # start client wlan
+    if [[ "$(iw dev wclient0 link 2> /dev/null | wc -l)" -eq 0 ]]; then
+        iw phy phy0 interface add wclient0 type station
+        ifconfig wclient0 up
+        sleep 3 #just in case
+    fi
+
     if [[ -n "$ssid" ]]; then
-        clearnet_interface="$wlan_interface"
-        # check if $wlan_interface already started
-        if [[ "$(ifconfig $wlan_interface | grep 'inet addr' | wc -l)" -eq 0 ]]; then
+        clearnet_interface=wclient0
+        # check if wclient0 already started
+        if [[ "$(ifconfig wclient0 | grep 'inet addr' | wc -l)" -eq 0 ]]; then
             if [[ "$security" = "WPA" ]]; then
                 start_wpa
             else
