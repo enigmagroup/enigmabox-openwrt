@@ -10,13 +10,13 @@ How to build that stuff:
     $ git clone git://git.openwrt.org/openwrt.git
     $ cd openwrt
 
-    $ cp feeds.conf.default feeds.conf
     $ vi feeds.conf
 
 Your feeds.conf should look like this:
 
     src-git packages https://github.com/openwrt/packages.git
     src-git oldpackages http://git.openwrt.org/packages.git
+    src-git management https://github.com/openwrt-management/packages.git
     src-git routing https://github.com/openwrt-routing/packages.git
     src-git telephony http://git.openwrt.org/feed/telephony.git
 
