@@ -253,6 +253,8 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
     fi
 
     if [[ "$opmode" = "client" ]]; then
+        iw dev ah0 ibss leave
+        ifconfig ah0 down
         clearnet_interface=wlan0
         # check if wlan0 already started
         if [[ "$(ifconfig wlan0 | grep 'inet addr' | wc -l)" -eq 0 ]]; then
