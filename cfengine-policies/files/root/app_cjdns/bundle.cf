@@ -1,6 +1,10 @@
 
 bundle agent app_cjdns
 {
+  vars:
+      "if_meshmode"
+      expression => regcmp("mesh", "$(json[wlan_opmode])");
+
   files:
       "/box/cjdroute.conf"
       create => "true",

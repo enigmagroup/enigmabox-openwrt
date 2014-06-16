@@ -36,11 +36,12 @@
         ]
         "ETHInterface":
         [
-//TODO: only bind ah0 if wlan available
+{{#if_meshmode}}
             {
                 "bind": "ah0",
                 "beacon": 2,
             },
+{{/if_meshmode}}
 {{#if_autopeering}}
             {
                 "bind": "eth0",
