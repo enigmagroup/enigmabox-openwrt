@@ -527,16 +527,18 @@ def wlan_settings(request):
     o = Option()
 
     output_window = False
+    wlan_opmode = o.get_value('wlan_opmode', 'client')
 
     if request.POST:
-        o.set_value('wlan_ssid', request.POST.get('ssid'))
-        o.set_value('wlan_pass', request.POST.get('pass'))
-        o.set_value('wlan_security', request.POST.get('security'))
+        if wlan_opmode == 'client':
+            o.set_value('wlan_ssid', request.POST.get('ssid'))
+            o.set_value('wlan_pass', request.POST.get('pass'))
+            o.set_value('wlan_security', request.POST.get('security'))
         output_window = True
         Popen(["/usr/sbin/setup-cjdns-networking", "startwifi", "bg"], stdout=PIPE)
 
     return render_to_response('wlan_settings/overview.html', {
-        'wlan_opmode': o.get_value('wlan_opmode', 'client'),
+        'wlan_opmode': wlan_opmode,
         'wlan_ssid': o.get_value('wlan_ssid', ''),
         'wlan_pass': o.get_value('wlan_pass', ''),
         'wlan_security': o.get_value('wlan_security', 'WPA2'),
