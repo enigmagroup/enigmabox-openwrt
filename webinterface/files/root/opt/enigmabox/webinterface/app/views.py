@@ -555,10 +555,10 @@ def wlan_scan(request):
 
     final_cells = []
 
-    Popen(["ifconfig", "wclient0", "up"], stdout=PIPE).communicate()[0]
-    scan = Popen(["iw", "dev", "wclient0", "scan"], stdout=PIPE).communicate()[0]
+    Popen(["ifconfig", "wlan0", "up"], stdout=PIPE).communicate()[0]
+    scan = Popen(["iw", "dev", "wlan0", "scan"], stdout=PIPE).communicate()[0]
 
-    cells = re.split('BSS.*\(on wclient0\)', scan)
+    cells = re.split('BSS.*\(on wlan0\)', scan)
     for cell in cells:
 
         try:
