@@ -527,7 +527,7 @@ def wlan_settings(request):
     o = Option()
 
     output_window = False
-    wlan_opmode = o.get_value('wlan_opmode', 'client')
+    wlan_opmode = o.get_value('wlan_opmode', 'mesh')
 
     if request.POST:
         if wlan_opmode == 'client':
@@ -914,7 +914,7 @@ def cfengine_site(request):
         'addresses': addresses,
         'missioncontrol': missioncontrol,
         'wlan_ssid': o.get_value('wlan_ssid'),
-        'wlan_opmode': o.get_value('wlan_opmode', 'client'),
+        'wlan_opmode': o.get_value('wlan_opmode', 'mesh'),
         'wlan_pass': o.get_value('wlan_pass'),
         'wlan_security': o.get_value('wlan_security'),
         'wlan_group': o.get_value('wlan_group'),
