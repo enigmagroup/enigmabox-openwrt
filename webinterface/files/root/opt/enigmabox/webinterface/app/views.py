@@ -907,6 +907,9 @@ def cfengine_site(request):
     custom_rules_text = custom_rules_text.replace('.', '\\\\.')
     custom_rules_text = custom_rules_text.replace('-', '\\\\-')
 
+    wlan_opmode = o.get_value('wlan_opmode', 'mesh')
+    meshmode = (wlan_opmode == 'mesh')
+
     response_data = {
         'cjdns_ipv6': cjdns_ipv6,
         'cjdns_public_key': cjdns_public_key,
@@ -914,7 +917,8 @@ def cfengine_site(request):
         'addresses': addresses,
         'missioncontrol': missioncontrol,
         'wlan_ssid': o.get_value('wlan_ssid'),
-        'wlan_opmode': o.get_value('wlan_opmode', 'mesh'),
+        'wlan_opmode': wlan_opmode,
+        'meshmode': meshmode,
         'wlan_pass': o.get_value('wlan_pass'),
         'wlan_security': o.get_value('wlan_security'),
         'wlan_group': o.get_value('wlan_group'),
