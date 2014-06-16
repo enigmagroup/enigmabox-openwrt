@@ -563,6 +563,7 @@ def wlan_scan(request):
 
     final_cells = []
 
+    Popen(["ifconfig", "ah0", "down"], stdout=PIPE).communicate()[0]
     Popen(["ifconfig", "wlan0", "up"], stdout=PIPE).communicate()[0]
     scan = Popen(["iw", "dev", "wlan0", "scan"], stdout=PIPE).communicate()[0]
 
