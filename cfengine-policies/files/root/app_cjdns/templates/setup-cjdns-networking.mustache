@@ -295,6 +295,7 @@ if [[ "$wehaveinternet" == "yes" && "$request_internet" == "yes" ]]; then
             rm "$cjdns_request_tries" 2> /dev/null
             exit
         fi
+        sleep 1
     done
 else
     e "we are not connected to the internet."
