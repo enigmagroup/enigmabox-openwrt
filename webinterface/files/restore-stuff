@@ -11,6 +11,7 @@ if [[ $task == 'sslcerts' ]]; then
     unzip "sslcerts-$hostid.zip"
 
     # delete old certs
+    rm "/box/ssl/ca.pem"
     rm "/box/ssl/*-cert.pem"
     rm "/box/ssl/*-public_key.pem"
     rm "/box/ssl/*-private_key.pem"
@@ -19,6 +20,7 @@ if [[ $task == 'sslcerts' ]]; then
     mkdir -p /box/ssl
 
     # copy certs
+    mv "/tmp/ca.pem" "/box/ssl/"
     mv "/tmp/$hostid-cert.pem" "/box/ssl/"
     mv "/tmp/$hostid-public_key.pem" "/box/ssl/"
     mv "/tmp/$hostid-private_key.pem" "/box/ssl/"
