@@ -15,6 +15,24 @@
 <fieldset>
 
 <!-- Form Name -->
+<legend>{% trans "Mode of operation" %}</legend>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="opmode">{% trans "Mode of operation" %}</label>
+  <div class="controls">
+    <a href="/wlan_settings/set_opmode/client/" id="client" class="btn btn-{% btn_state wlan_opmode 'client' 'warning' 'default' %}">{% trans "Client" %}</a>
+    <a href="/wlan_settings/set_opmode/mesh/" id="mesh" class="btn btn-{% btn_state wlan_opmode 'mesh' 'warning' 'default' %}">{% trans "Mesh" %}</a>
+  </div>
+</div>
+
+</fieldset>
+
+<fieldset>
+
+{% if wlan_opmode == 'client' %}
+
+<!-- Form Name -->
 <legend>{% trans "Connect to a WLAN access point" %}</legend>
 
 <!-- Button Drop Down -->
@@ -66,6 +84,8 @@
     </label>
   </div>
 </div>
+
+{% endif %}
 
 <!-- Button -->
 <div class="control-group">
