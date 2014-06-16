@@ -536,7 +536,7 @@ def wlan_settings(request):
         Popen(["/usr/sbin/setup-cjdns-networking", "startwifi", "bg"], stdout=PIPE)
 
     return render_to_response('wlan_settings/overview.html', {
-        'wlan_opmode': o.get_value('wlan_opmode', ''),
+        'wlan_opmode': o.get_value('wlan_opmode', 'client'),
         'wlan_ssid': o.get_value('wlan_ssid', ''),
         'wlan_pass': o.get_value('wlan_pass', ''),
         'wlan_security': o.get_value('wlan_security', 'WPA2'),
@@ -912,7 +912,7 @@ def cfengine_site(request):
         'addresses': addresses,
         'missioncontrol': missioncontrol,
         'wlan_ssid': o.get_value('wlan_ssid'),
-        'wlan_opmode': o.get_value('wlan_opmode'),
+        'wlan_opmode': o.get_value('wlan_opmode', 'client'),
         'wlan_pass': o.get_value('wlan_pass'),
         'wlan_security': o.get_value('wlan_security'),
         'wlan_group': o.get_value('wlan_group'),

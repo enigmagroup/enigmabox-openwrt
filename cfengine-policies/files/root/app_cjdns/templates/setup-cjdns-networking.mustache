@@ -22,6 +22,7 @@ ping="ping -c 5 -W 5"
 cjdns_request_tries="/tmp/cjdns_request_tries"
 netstat_file="/tmp/netstat"
 pidfile="/tmp/setup-cjdns-networking.pid"
+opmode="{{wlan_opmode}}"
 ssid="{{wlan_ssid}}"
 wep_pass="{{wlan_pass}}"
 security="{{wlan_security}}"
@@ -232,25 +233,26 @@ set_status "cjdns_internet" 0
 if [[ -e "/sys/class/net/wlan0" ]]; then
     e "wifi detected"
 
-#    # add ad-hoc cjdns
-#    if [[ "$(iw dev ah0 link 2> /dev/null | wc -l)" -eq 0 ]]; then
-#        iw phy phy0 interface add ah0 type ibss
-#    fi
-#
-#    # up all
-#    ifconfig ah0 up
-#
-#    # start ad-hoc cjdns
-#    if [[ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]]; then
-#        iw dev ah0 ibss join cjdns 2412
-#        while [ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]; do
-#            echo "waiting for ad-hoc interface to come up..."
-#            sleep 1
-#        done
-#        restart_cjdns
-#    fi
+    if [[ "$opmode" = "mesh" ]]; then
+        # add ad-hoc cjdns
+        if [[ "$(iw dev ah0 link 2> /dev/null | wc -l)" -eq 0 ]]; then
+            iw phy phy0 interface add ah0 type ibss
+        fi
 
-    if [[ -n "$ssid" ]]; then
+        ifconfig ah0 up
+
+        # start ad-hoc cjdns
+        if [[ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]]; then
+            iw dev ah0 ibss join cjdns 2412
+            while [ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]; do
+                echo "waiting for ad-hoc interface to come up..."
+                sleep 1
+            done
+            restart_cjdns
+        fi
+    fi
+
+    if [[ "$opmode" = "client" ]]; then
         clearnet_interface=wlan0
         # check if wlan0 already started
         if [[ "$(ifconfig wlan0 | grep 'inet addr' | wc -l)" -eq 0 ]]; then
