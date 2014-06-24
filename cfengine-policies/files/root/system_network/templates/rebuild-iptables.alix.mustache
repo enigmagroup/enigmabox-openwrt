@@ -11,6 +11,7 @@ ip6tables="/usr/sbin/ip6tables"
 $iptables -F
 $iptables -t nat -F
 $ip6tables -F
+$ip6tables -t nat -F
 
 # defaults
 $iptables -P INPUT DROP
@@ -63,6 +64,7 @@ $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
 
 # nat
 $iptables -I POSTROUTING -t nat -o tun0 -j MASQUERADE
+$ip6tables -I POSTROUTING -t nat -o tun0 -j MASQUERADE
 
 ################################################################################
 
