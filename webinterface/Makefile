@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=0.17.8
-PKG_RELEASE:=2
+PKG_VERSION:=0.17.9
+PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
 
