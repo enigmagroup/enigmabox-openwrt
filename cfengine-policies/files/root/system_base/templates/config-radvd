@@ -1,8 +1,16 @@
 config interface
-        option interface        'eth0'
+        option interface        'eth1'
 
 config prefix
-        option interface        'eth0'
+        option interface        'eth1'
         option prefix           'fdfc::1/64'
+        option AdvRouterAddr    1
+
+config interface
+        option interface        'eth2'
+
+config prefix
+        option interface        'eth2'
+        option prefix           'fdfc::2/64'
         option AdvRouterAddr    1
 
