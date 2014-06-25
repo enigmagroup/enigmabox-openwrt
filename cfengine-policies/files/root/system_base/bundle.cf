@@ -32,6 +32,13 @@ bundle agent system_base
       create => "true",
       edit_template => "$(this.promise_dirname)/templates/crontab";
 
+      "/usr/libexec/."
+      create => "true";
+
+      "/usr/libexec/sftp-server"
+      create => "true",
+      link_from => ln_s("/usr/bin/gesftpserver";
+
   commands:
     restart_lighttpd::
       "/etc/init.d/lighttpd restart";
