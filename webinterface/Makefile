@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=0.17.10
+PKG_VERSION:=0.17.11
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -43,6 +43,7 @@ define Package/webinterface/install
 
 	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
 	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/webinterface.conf
+	$(INSTALL_DATA) ./files/mysite.conf $(1)/etc/lighttpd/sites.d/mysite.conf
 
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/backup-stuff $(1)/usr/sbin/backup-stuff
