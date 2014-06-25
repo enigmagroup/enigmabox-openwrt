@@ -93,6 +93,10 @@ for interface in $(echo "eth1 eth2"); do
     $ip6tables -A FORWARD -i "$interface" -o tun0 -j ACCEPT
     $ip6tables -A FORWARD -i tun0 -o "$interface" -m state --state RELATED,ESTABLISHED -j ACCEPT
 
+    # allow webserver access from LAN
+    $ip6tables -A INPUT -i "$interface" -p tcp --dport 80 -j ACCEPT
+    $ip6tables -A OUTPUT -o "$interface" -p tcp --sport 80 -j ACCEPT
+
     # allow dhcp requests
     $iptables -A INPUT -p udp -i "$interface" --sport 67:68 --dport 67:68 -j ACCEPT
 
