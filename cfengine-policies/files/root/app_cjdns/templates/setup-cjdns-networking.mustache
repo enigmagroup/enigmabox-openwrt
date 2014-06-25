@@ -209,6 +209,11 @@ set_status() {
 
 # logic
 
+# ensure radvd is running
+if [[ "$(pidof radvd | wc -l)" -eq 0 ]]; then
+    /etc/init.d/radvd restart
+fi
+
 if [[ "$(gateway_is_up)" == "true" ]]; then
     set_network_parameters
     e "checking internet connectivity over cjdns"
