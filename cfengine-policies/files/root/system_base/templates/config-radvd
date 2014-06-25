@@ -1,6 +1,7 @@
 config interface
         option interface        'eth1'
         option AdvSendAdvert    1
+        option AdvRetransTimer  5000
 
 config prefix
         option interface        'eth1'
@@ -10,6 +11,7 @@ config prefix
 config interface
         option interface        'eth2'
         option AdvSendAdvert    1
+        option AdvRetransTimer  5000
 
 config prefix
         option interface        'eth2'

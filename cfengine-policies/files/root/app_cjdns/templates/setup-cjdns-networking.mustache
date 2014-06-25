@@ -209,10 +209,10 @@ set_status() {
 
 # logic
 
-# ensure radvd is running - TODO: fix it, it sucks! restart it every time for now
-#if [[ "$(pidof radvd | wc -l)" -eq 0 ]]; then
+# ensure radvd is running
+if [[ "$(pidof radvd | wc -l)" -eq 0 ]]; then
     /etc/init.d/radvd restart
-#fi
+fi
 
 if [[ "$(gateway_is_up)" == "true" ]]; then
     set_network_parameters
