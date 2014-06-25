@@ -36,8 +36,7 @@ bundle agent system_base
       create => "true";
 
       "/usr/libexec/sftp-server"
-      create => "true",
-      link_from => ln_s("/usr/bin/gesftpserver";
+      link_from => ln_s("/usr/bin/gesftpserver");
 
   commands:
     restart_lighttpd::
