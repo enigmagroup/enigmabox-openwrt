@@ -2,12 +2,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-unidecode
-PKG_VERSION:=0.04.14
+PKG_VERSION:=0.04.16
 PKG_RELEASE:=1
 
 PKG_SOURCE:=Unidecode-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/source/U/Unidecode/
-PKG_MD5SUM:=d4106bcfdef39625944f4294ef4666de
+PKG_MD5SUM:=cd6e265fd61010a1cbfeb9dd42c6bcce
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Unidecode-$(PKG_VERSION)/Unidecode-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=python
@@ -24,7 +24,7 @@ define Package/python-unidecode
 endef
 
 define Package/python-unidecode/description
- TODO
+ ASCII transliterations of Unicode text.
 endef
 
 define Build/Compile

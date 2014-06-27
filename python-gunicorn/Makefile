@@ -2,12 +2,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-gunicorn
-PKG_VERSION:=18.0
+PKG_VERSION:=19.0.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=gunicorn-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/source/g/gunicorn/
-PKG_MD5SUM:=c7138b9ac7515a42066922d2b6120fbe
+PKG_MD5SUM:=eb40b21ea909621758e5436684dca028
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/gunicorn-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=python python-setuptools
@@ -25,7 +25,10 @@ define Package/python-gunicorn
 endef
 
 define Package/python-gunicorn/description
- TODO
+ Gunicorn 'Green Unicorn' is a Python WSGI HTTP Server for UNIX.
+ It's a pre-fork worker model ported from Ruby's Unicorn project.
+ The Gunicorn server is broadly compatible with various web frameworks,
+ simply implemented, light on server resources, and fairly speedy.
 endef
 
 define Build/Compile

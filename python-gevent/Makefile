@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-gevent
-PKG_VERSION:=1.0
+PKG_VERSION:=1.0.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/surfly/gevent.git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=1.0
+PKG_SOURCE_VERSION:=1.0.1
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
 PKG_BUILD_DEPENDS:=python python-cython
@@ -32,7 +32,7 @@ define Package/python-gevent
 endef
 
 define Package/python-gevent/description
-  gevent is a coroutine-based Python networking library.
+  Gevent is a coroutine-based Python networking library.
 endef
 
 define Build/Compile

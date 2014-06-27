@@ -2,12 +2,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-six
-PKG_VERSION:=1.5.2
+PKG_VERSION:=1.7.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=six-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/source/s/six/
-PKG_MD5SUM:=322b86d0c50a7d165c05600154cecc0a
+PKG_MD5SUM:=4c26276583b01dfc73474cb32327af91
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/six-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=python
@@ -24,7 +24,7 @@ define Package/python-six
 endef
 
 define Package/python-six/description
- TODO
+ Python 2 and 3 compatibility utilities.
 endef
 
 define Build/Compile

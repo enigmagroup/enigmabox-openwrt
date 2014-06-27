@@ -2,7 +2,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-requests
-PKG_VERSION:=v2.2.1
+PKG_VERSION:=v2.3.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -25,7 +25,7 @@ define Package/python-requests
 endef
 
 define Package/python-requests/description
- TODO
+ Requests is an elegant and simple HTTP library for Python, built for human beings.
 endef
 
 define Build/Compile

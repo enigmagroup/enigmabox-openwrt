@@ -26,7 +26,7 @@ define Package/python-beanstalkc
 endef
 
 define Package/python-beanstalkc/description
- TODO
+ A simple beanstalkd client library for Python.
 endef
 
 define Build/Compile
