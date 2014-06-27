@@ -22,7 +22,7 @@ define Package/beanstalkd
 endef
 
 define Package/beanstalkd/description
-	Desc.
+ Beanstalk is a simple, fast work queue.
 endef
 
 define Build/Configure

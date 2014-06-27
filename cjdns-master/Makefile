@@ -10,7 +10,7 @@ PKG_SOURCE_URL:=https://github.com/cjdelisle/cjdns.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=a201307bf747785249f6b42101edca1d29b74fb0
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-PKG_BUILD_DEPENDS:=libssp nacl4raspi
+PKG_BUILD_DEPENDS:=libssp
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -20,6 +20,13 @@ define Package/cjdns-master
   SUBMENU:=Routing and Redirection
   TITLE:=Experimental self configuring routing protocol.
   DEPENDS:=+kmod-tun +kmod-ipv6 +libnl +libpthread +librt +@SSP_SUPPORT +libssp
+endef
+
+define Package/cjdns-master/description
+ Cjdns is a networking protocol, a system of digital rules for
+ message exchange between computers. The philosophy behind cjdns
+ is that networks should be easy to set up, protocols should
+ scale up smoothly and security should be ubiquitous.
 endef
 
 define Build/Configure
@@ -35,7 +42,6 @@ define Build/Compile
 	LDFLAGS="$(TARGET_LDFLAGS) -lssp" \
 	$(PKG_BUILD_DIR)/do
 endef
-
 
 define Package/cjdns-master/install
 	$(INSTALL_DIR) $(1)/usr/sbin

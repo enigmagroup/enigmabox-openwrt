@@ -23,7 +23,11 @@ define Package/cfengine
 endef
 
 define Package/cfengine/description
-	Desc.
+ CFEngine is a popular open source configuration management system,
+ written by Mark Burgess. Its primary function is to provide automated
+ configuration and maintenance of large-scale computer systems, including
+ the unified management of servers, desktops, embedded networked devices,
+ mobile smartphones, and tablet computers.
 endef
 
 define Build/Configure

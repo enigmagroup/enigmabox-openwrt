@@ -2,12 +2,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=django-south
-PKG_VERSION:=0.8.3
+PKG_VERSION:=0.8.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=south-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.aeracode.org/releases/south/
-PKG_MD5SUM:=672e6399d7acee82987dac7551ed812d
+PKG_MD5SUM:=ccd6ebadd3e2c8c6ef16d771632f7840
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/south-$(PKG_VERSION)/South-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=python
@@ -19,12 +19,13 @@ define Package/django-south
   SECTION:=language-python
   CATEGORY:=Languages
   SUBMENU:=Python
-  TITLE:=Django south 0.8.3
+  TITLE:=Django south 0.8.4
   URL:=http://south.aeracode.org/
 endef
 
 define Package/django-south/description
- TODO
+ South is a tool to provide consistent, easy-to-use and
+ database-agnostic migrations for Django applications.
 endef
 
 define Build/Compile

@@ -23,7 +23,10 @@ define Package/exim4
 endef
 
 define Package/exim4/description
-	Description.
+ Exim is a mail transfer agent used on Unix-like operating systems.
+ Exim is free software distributed under the terms of the GNU General Public
+ License, and it aims to be a general and flexible mailer with extensive
+ facilities for checking incoming e-mail.
 endef
 
 define Build/Configure
