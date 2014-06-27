@@ -18,7 +18,7 @@ define Package/roundcube/description
  from an email client, including MIME support, address book, folder
  manipulation, message searching and spell checking.
 
- This version has been modified to work with the Enigmabox address book.
+ This version has been modified to integrate with the Enigmabox address book.
 endef
 
 define Build/Configure
