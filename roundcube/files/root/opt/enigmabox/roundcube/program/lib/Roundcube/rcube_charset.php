@@ -199,10 +199,13 @@ class rcube_charset
                     $iconv_options = '';
                 }
             }
+            else {
+                $iconv_options = false;
+            }
         }
 
         // convert charset using iconv module
-        if ($iconv_options !== null && $from != 'UTF7-IMAP' && $to != 'UTF7-IMAP') {
+        if ($iconv_options !== false && $from != 'UTF7-IMAP' && $to != 'UTF7-IMAP') {
             // throw an exception if iconv reports an illegal character in input
             // it means that input string has been truncated
             set_error_handler(array('rcube_charset', 'error_handler'), E_NOTICE);
@@ -224,10 +227,13 @@ class rcube_charset
                 $mbstring_list = mb_list_encodings();
                 $mbstring_list = array_map('strtoupper', $mbstring_list);
             }
+            else {
+                $mbstring_list = false;
+            }
         }
 
         // convert charset using mbstring module
-        if ($mbstring_list !== null) {
+        if ($mbstring_list !== false) {
             $aliases['WINDOWS-1257'] = 'ISO-8859-13';
             // it happens that mbstring supports ASCII but not US-ASCII
             if (($from == 'US-ASCII' || $to == 'US-ASCII') && !in_array('US-ASCII', $mbstring_list)) {
@@ -753,7 +759,12 @@ class rcube_charset
 
         // iconv/mbstring are much faster (especially with long strings)
         if (function_exists('mb_convert_encoding')) {
-            if (($res = mb_convert_encoding($input, 'UTF-8', 'UTF-8')) !== false) {
+            $msch = mb_substitute_character('none');
+            mb_substitute_character('none');
+            $res = mb_convert_encoding($input, 'UTF-8', 'UTF-8');
+            mb_substitute_character($msch);
+
+            if ($res !== false) {
                 return $res;
             }
         }
@@ -789,8 +800,8 @@ class rcube_charset
                 }
                 $seq = '';
                 $out .= $chr;
-            // first (or second) byte of multibyte sequence
             }
+            // first (or second) byte of multibyte sequence
             else if ($ord >= 0xC0) {
                 if (strlen($seq) > 1) {
                     $out .= preg_match($regexp, $seq) ? $seq : '';
@@ -800,8 +811,8 @@ class rcube_charset
                     $seq = '';
                 }
                 $seq .= $chr;
-            // next byte of multibyte sequence
             }
+            // next byte of multibyte sequence
             else if ($seq) {
                 $seq .= $chr;
             }

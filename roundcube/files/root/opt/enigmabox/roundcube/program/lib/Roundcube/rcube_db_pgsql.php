@@ -29,6 +29,17 @@ class rcube_db_pgsql extends rcube_db
     public $db_provider = 'postgres';
 
     /**
+     * Driver-specific configuration of database connection
+     *
+     * @param array $dsn DSN for DB connections
+     * @param PDO   $dbh Connection handler
+     */
+    protected function conn_configure($dsn, $dbh)
+    {
+        $dbh->query("SET NAMES 'utf8'");
+    }
+
+    /**
      * Get last inserted record ID
      *
      * @param string $table Table name (to find the incremented sequence)
@@ -53,19 +64,19 @@ class rcube_db_pgsql extends rcube_db
     /**
      * Return correct name for a specific database sequence
      *
-     * @param string $sequence Secuence name
+     * @param string $table Table name
      *
      * @return string Translated sequence name
      */
-    protected function sequence_name($sequence)
+    protected function sequence_name($table)
     {
-        $rcube = rcube::get_instance();
+        // Note: we support only one sequence per table
+        // Note: The sequence name must be <table_name>_seq
+        $sequence = $table . '_seq';
 
-        // return sequence name if configured
-        $config_key = 'db_sequence_'.$sequence;
-
-        if ($name = $rcube->config->get($config_key)) {
-            return $name;
+        // modify sequence name if prefix is configured
+        if ($prefix = $this->options['table_prefix']) {
+            return $prefix . $sequence;
         }
 
         return $sequence;
@@ -73,9 +84,6 @@ class rcube_db_pgsql extends rcube_db
 
     /**
      * Return SQL statement to convert a field value into a unix timestamp
-     *
-     * This method is deprecated and should not be used anymore due to limitations
-     * of timestamp functions in Mysql (year 2038 problem)
      *
      * @param string $field Field name
      *
@@ -85,6 +93,24 @@ class rcube_db_pgsql extends rcube_db
     public function unixtimestamp($field)
     {
         return "EXTRACT (EPOCH FROM $field)";
+    }
+
+    /**
+     * Return SQL function for current time and date
+     *
+     * @param int $interval Optional interval (in seconds) to add/subtract
+     *
+     * @return string SQL function to use in query
+     */
+    public function now($interval = 0)
+    {
+        if ($interval) {
+            $add = ' ' . ($interval > 0 ? '+' : '-') . " interval '";
+            $add .= $interval > 0 ? intval($interval) : intval($interval) * -1;
+            $add .= " seconds'";
+        }
+
+        return "now()" . $add;
     }
 
     /**
@@ -163,4 +189,24 @@ class rcube_db_pgsql extends rcube_db
         return $result;
     }
 
+    /**
+     * Parse SQL file and fix table names according to table prefix
+     */
+    protected function fix_table_names($sql)
+    {
+        if (!$this->options['table_prefix']) {
+            return $sql;
+        }
+
+        $sql = parent::fix_table_names($sql);
+
+        // replace sequence names, and other postgres-specific commands
+        $sql = preg_replace_callback(
+            '/((SEQUENCE |RENAME TO |nextval\()["\']*)([^"\' \r\n]+)/',
+            array($this, 'fix_table_names_callback'),
+            $sql
+        );
+
+        return $sql;
+    }
 }

@@ -29,37 +29,51 @@ class rcube_db_mssql extends rcube_db
     public $db_provider = 'mssql';
 
     /**
-     * Driver initialization
+     * Object constructor
+     *
+     * @param string $db_dsnw DSN for read/write operations
+     * @param string $db_dsnr Optional DSN for read only operations
+     * @param bool   $pconn   Enables persistent connections
      */
-    protected function init()
+    public function __construct($db_dsnw, $db_dsnr = '', $pconn = false)
     {
+        parent::__construct($db_dsnw, $db_dsnr, $pconn);
+
         $this->options['identifier_start'] = '[';
         $this->options['identifier_end'] = ']';
     }
 
     /**
-     * Character setting
+     * Driver-specific configuration of database connection
+     *
+     * @param array $dsn DSN for DB connections
+     * @param PDO   $dbh Connection handler
      */
-    protected function set_charset($charset)
+    protected function conn_configure($dsn, $dbh)
     {
-        // UTF-8 is default
+        // Set date format in case of non-default language (#1488918)
+        $dbh->query("SET DATEFORMAT ymd");
     }
 
     /**
      * Return SQL function for current time and date
      *
+     * @param int $interval Optional interval (in seconds) to add/subtract
+     *
      * @return string SQL function to use in query
      */
-    public function now()
+    public function now($interval = 0)
     {
+        if ($interval) {
+            $interval = intval($interval);
+            return "dateadd(second, $interval, getdate())";
+        }
+
         return "getdate()";
     }
 
     /**
      * Return SQL statement to convert a field value into a unix timestamp
-     *
-     * This method is deprecated and should not be used anymore due to limitations
-     * of timestamp functions in Mysql (year 2038 problem)
      *
      * @param string $field Field name
      *
@@ -152,5 +166,25 @@ class rcube_db_mssql extends rcube_db
         }
 
         return $result;
+    }
+
+    /**
+     * Parse SQL file and fix table names according to table prefix
+     */
+    protected function fix_table_names($sql)
+    {
+        if (!$this->options['table_prefix']) {
+            return $sql;
+        }
+
+        // replace sequence names, and other postgres-specific commands
+        $sql = preg_replace_callback(
+            '/((TABLE|(?<!ON )UPDATE|INSERT INTO|FROM(?! deleted)| ON(?! (DELETE|UPDATE|\[PRIMARY\]))'
+            . '|REFERENCES|CONSTRAINT|TRIGGER|INDEX)\s+(\[dbo\]\.)?[\[\]]*)([^\[\]\( \r\n]+)/',
+            array($this, 'fix_table_names_callback'),
+            $sql
+        );
+
+        return $sql;
     }
 }

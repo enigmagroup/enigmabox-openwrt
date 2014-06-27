@@ -171,7 +171,7 @@ class rcube_washtml
      */
     private function wash_style($style)
     {
-        $s = '';
+        $result = array();
 
         foreach (explode(';', $style) as $declaration) {
             if (preg_match('/^\s*([a-z\-]+)\s*:\s*(.*)\s*$/i', $declaration, $match)) {
@@ -179,54 +179,48 @@ class rcube_washtml
                 $str   = $match[2];
                 $value = '';
 
-                while (sizeof($str) > 0 &&
-                    preg_match('/^(url\(\s*[\'"]?([^\'"\)]*)[\'"]?\s*\)'./*1,2*/
-                        '|rgb\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*\)'.
-                        '|-?[0-9.]+\s*(em|ex|px|cm|mm|in|pt|pc|deg|rad|grad|ms|s|hz|khz|%)?'.
-                        '|#[0-9a-f]{3,6}'.
-                        '|[a-z0-9", -]+'.
-                        ')\s*/i', $str, $match)
-                ) {
-                    if ($match[2]) {
-                        if (($src = $this->config['cid_map'][$match[2]])
-                            || ($src = $this->config['cid_map'][$this->config['base_url'].$match[2]])
-                        ) {
-                            $value .= ' url('.htmlspecialchars($src, ENT_QUOTES) . ')';
-                        }
-                        else if (preg_match('!^(https?:)?//[a-z0-9/._+-]+$!i', $match[2], $url)) {
-                            if ($this->config['allow_remote']) {
-                                $value .= ' url('.htmlspecialchars($url[0], ENT_QUOTES).')';
+                foreach ($this->explode_style($str) as $val) {
+                    if (preg_match('/^url\(/i', $val)) {
+                        if (preg_match('/^url\(\s*[\'"]?([^\'"\)]*)[\'"]?\s*\)/iu', $val, $match)) {
+                            $url = $match[1];
+                            if (($src = $this->config['cid_map'][$url])
+                                || ($src = $this->config['cid_map'][$this->config['base_url'].$url])
+                            ) {
+                                $value .= ' url('.htmlspecialchars($src, ENT_QUOTES) . ')';
                             }
-                            else {
-                                $this->extlinks = true;
+                            else if (preg_match('!^(https?:)?//[a-z0-9/._+-]+$!i', $url, $m)) {
+                                if ($this->config['allow_remote']) {
+                                    $value .= ' url('.htmlspecialchars($m[0], ENT_QUOTES).')';
+                                }
+                                else {
+                                    $this->extlinks = true;
+                                }
                             }
-                        }
-                        else if (preg_match('/^data:.+/i', $match[2])) { // RFC2397
-                            $value .= ' url('.htmlspecialchars($match[2], ENT_QUOTES).')';
+                            else if (preg_match('/^data:.+/i', $url)) { // RFC2397
+                                $value .= ' url('.htmlspecialchars($url, ENT_QUOTES).')';
+                            }
                         }
                     }
-                    else {
+                    else if (!preg_match('/^(behavior|expression)/i', $val)) {
                         // whitelist ?
-                        $value .= ' ' . $match[0];
+                        $value .= ' ' . $val;
 
                         // #1488535: Fix size units, so width:800 would be changed to width:800px
                         if (preg_match('/(left|right|top|bottom|width|height)/i', $cssid)
-                            && preg_match('/^[0-9]+$/', $match[0])
+                            && preg_match('/^[0-9]+$/', $val)
                         ) {
                             $value .= 'px';
                         }
                     }
-
-                    $str = substr($str, strlen($match[0]));
                 }
 
                 if (isset($value[0])) {
-                    $s .= ($s?' ':'') . $cssid . ':' . $value . ';';
+                    $result[] = $cssid . ':' . $value;
                 }
             }
         }
 
-        return $s;
+        return implode('; ', $result);
     }
 
     /**
@@ -283,10 +277,12 @@ class rcube_washtml
 
     /**
      * The main loop that recurse on a node tree.
-     * It output only allowed tags with allowed attributes
-     * and allowed inline styles
+     * It output only allowed tags with allowed attributes and allowed inline styles
+     *
+     * @param DOMNode $node  HTML element
+     * @param int     $level Recurrence level (safe initial value found empirically)
      */
-    private function dumpHtml($node, $level = 0)
+    private function dumpHtml($node, $level = 20)
     {
         if (!$node->hasChildNodes()) {
             return '';
@@ -377,7 +373,14 @@ class rcube_washtml
         // Detect max nesting level (for dumpHTML) (#1489110)
         $this->max_nesting_level = (int) @ini_get('xdebug.max_nesting_level');
 
-        @$node->loadHTML($html);
+        // Use optimizations if supported
+        if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
+            @$node->loadHTML($html, LIBXML_PARSEHUGE | LIBXML_COMPACT);
+        }
+        else {
+            @$node->loadHTML($html);
+        }
+
         return $this->dumpHtml($node);
     }
 
@@ -410,6 +413,25 @@ class rcube_washtml
         );
         $html = preg_replace($html_search, $html_replace, trim($html));
 
+        //-> Replace all of those weird MS Word quotes and other high characters
+        $badwordchars = array(
+            "\xe2\x80\x98", // left single quote
+            "\xe2\x80\x99", // right single quote
+            "\xe2\x80\x9c", // left double quote
+            "\xe2\x80\x9d", // right double quote
+            "\xe2\x80\x94", // em dash
+            "\xe2\x80\xa6" // elipses
+        );
+        $fixedwordchars = array(
+            "'",
+            "'",
+            '"',
+            '"',
+            '&mdash;',
+            '...'
+        );
+        $html = str_replace($badwordchars, $fixedwordchars, $html);
+
         // PCRE errors handling (#1486856), should we use something like for every preg_* use?
         if ($html === null && ($preg_error = preg_last_error()) != PREG_NO_ERROR) {
             $errstr = "Could not clean up HTML message! PCRE Error: $preg_error.";
@@ -429,12 +451,15 @@ class rcube_washtml
         }
 
         // fix (unknown/malformed) HTML tags before "wash"
-        $html = preg_replace_callback('/(<(?!\!)[\/]*)([^\s>]+)/', array($this, 'html_tag_callback'), $html);
+        $html = preg_replace_callback('/(<(?!\!)[\/]*)([^\s>]+)([^>]*)/', array($this, 'html_tag_callback'), $html);
 
         // Remove invalid HTML comments (#1487759)
         // Don't remove valid conditional comments
         // Don't remove MSOutlook (<!-->) conditional comments (#1489004)
         $html = preg_replace('/<!--[^->\[\n]+>/', '', $html);
+
+        // fix broken nested lists
+        self::fix_broken_lists($html);
 
         // turn relative into absolute urls
         $html = self::resolve_base($html);
@@ -453,7 +478,12 @@ class rcube_washtml
             '/[^a-z0-9_\[\]\!-]/i', // forbidden characters
         ), '', $tagname);
 
-        return $matches[1] . $tagname;
+        // fix invalid closing tags - remove any attributes (#1489446)
+        if ($matches[1] == '</') {
+            $matches[3] = '';
+        }
+
+        return $matches[1] . $tagname . $matches[3];
     }
 
     /**
@@ -469,5 +499,122 @@ class rcube_washtml
 
         return $body;
     }
-}
 
+    /**
+     * Fix broken nested lists, they are not handled properly by DOMDocument (#1488768)
+     */
+    public static function fix_broken_lists(&$html)
+    {
+        // do two rounds, one for <ol>, one for <ul>
+        foreach (array('ol', 'ul') as $tag) {
+            $pos = 0;
+            while (($pos = stripos($html, '<' . $tag, $pos)) !== false) {
+                $pos++;
+
+                // make sure this is an ol/ul tag
+                if (!in_array($html[$pos+2], array(' ', '>'))) {
+                    continue;
+                }
+
+                $p      = $pos;
+                $in_li  = false;
+                $li_pos = 0;
+
+                while (($p = strpos($html, '<', $p)) !== false) {
+                    $tt = strtolower(substr($html, $p, 4));
+
+                    // li open tag
+                    if ($tt == '<li>' || $tt == '<li ') {
+                        $in_li = true;
+                        $p += 4;
+                    }
+                    // li close tag
+                    else if ($tt == '</li' && in_array($html[$p+4], array(' ', '>'))) {
+                        $li_pos = $p;
+                        $p += 4;
+                        $in_li = false;
+                    }
+                    // ul/ol closing tag
+                    else if ($tt == '</' . $tag && in_array($html[$p+4], array(' ', '>'))) {
+                        break;
+                    }
+                    // nested ol/ul element out of li
+                    else if (!$in_li && $li_pos && ($tt == '<ol>' || $tt == '<ol ' || $tt == '<ul>' || $tt == '<ul ')) {
+                        // find closing tag of this ul/ol element
+                        $element = substr($tt, 1, 2);
+                        $cpos    = $p;
+                        do {
+                            $tpos = stripos($html, '<' . $element, $cpos+1);
+                            $cpos = stripos($html, '</' . $element, $cpos+1);
+                        }
+                        while ($tpos !== false && $cpos !== false && $cpos > $tpos);
+
+                        // not found, this is invalid HTML, skip it
+                        if ($cpos === false) {
+                            break;
+                        }
+
+                        // get element content
+                        $end     = strpos($html, '>', $cpos);
+                        $len     = $end - $p + 1;
+                        $element = substr($html, $p, $len);
+
+                        // move element to the end of the last li
+                        $html    = substr_replace($html, '', $p, $len);
+                        $html    = substr_replace($html, $element, $li_pos, 0);
+
+                        $p = $end;
+                    }
+                    else {
+                        $p++;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Explode css style value
+     */
+    protected function explode_style($style)
+    {
+        $style = trim($style);
+
+        // first remove comments
+        $pos = 0;
+        while (($pos = strpos($style, '/*', $pos)) !== false) {
+            $end = strpos($style, '*/', $pos+2);
+
+            if ($end === false) {
+                $style = substr($style, 0, $pos);
+            }
+            else {
+                $style = substr_replace($style, '', $pos, $end - $pos + 2);
+            }
+        }
+
+        $strlen = strlen($style);
+        $result = array();
+
+        // explode value
+        for ($p=$i=0; $i < $strlen; $i++) {
+            if (($style[$i] == "\"" || $style[$i] == "'") && $style[$i-1] != "\\") {
+                if ($q == $style[$i]) {
+                    $q = false;
+                }
+                else if (!$q) {
+                    $q = $style[$i];
+                }
+            }
+
+            if (!$q && $style[$i] == ' ' && !preg_match('/[,\(]/', $style[$i-1])) {
+                $result[] = substr($style, $p, $i - $p);
+                $p = $i + 1;
+            }
+        }
+
+        $result[] = (string) substr($style, $p);
+
+        return $result;
+    }
+}

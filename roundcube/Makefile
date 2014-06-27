@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=roundcube
-PKG_VERSION:=0.9.5
-PKG_RELEASE:=2
+PKG_VERSION:=1.0.1
+PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -13,7 +13,9 @@ define Package/roundcube
 endef
 
 define Package/roundcube/description
-	Description.
+	Roundcube is a browser-based multilingual IMAP client with an application-like user interface. It provides full functionality you expect from an email client, including MIME support, address book, folder manipulation, message searching and spell checking.
+
+	This version has been modified to work with the Enigmabox address book.
 endef
 
 define Build/Configure

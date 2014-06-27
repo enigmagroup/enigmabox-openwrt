@@ -146,20 +146,9 @@ function update_db_schema($package, $version, $file)
     global $DB;
 
     // read DDL file
-    if ($lines = file($file)) {
-        $sql = '';
-        foreach ($lines as $line) {
-            if (preg_match('/^--/', $line) || trim($line) == '')
-                continue;
-
-            $sql .= $line . "\n";
-            if (preg_match('/(;|^GO)$/', trim($line))) {
-                @$DB->query(fix_table_names($sql));
-                $sql = '';
-                if ($error = $DB->is_error()) {
-                    return $error;
-                }
-            }
+    if ($sql = file_get_contents($file)) {
+        if (!$DB->exec_script($sql)) {
+            return $DB->is_error();
         }
     }
 
@@ -183,20 +172,6 @@ function update_db_schema($package, $version, $file)
     }
 
     return $DB->is_error();
-}
-
-function fix_table_names($sql)
-{
-    global $DB;
-
-    foreach (array('users','identities','contacts','contactgroups','contactgroupmembers','session','cache','cache_index','cache_index','cache_messages','dictionary','searches','system') as $table) {
-        $real_table = $DB->table_name($table);
-        if ($real_table != $table) {
-            $sql = preg_replace("/([^a-z0-9_])$table([^a-z0-9_])/i", "\\1$real_table\\2", $sql);
-        }
-    }
-
-    return $sql;
 }
 
 ?>
