@@ -13,9 +13,12 @@ define Package/roundcube
 endef
 
 define Package/roundcube/description
-	Roundcube is a browser-based multilingual IMAP client with an application-like user interface. It provides full functionality you expect from an email client, including MIME support, address book, folder manipulation, message searching and spell checking.
+  Roundcube is a browser-based multilingual IMAP client with an
+  application-like user interface. It provides full functionality you expect
+  from an email client, including MIME support, address book, folder
+  manipulation, message searching and spell checking.
 
-	This version has been modified to work with the Enigmabox address book.
+  This version has been modified to work with the Enigmabox address book.
 endef
 
 define Build/Configure
