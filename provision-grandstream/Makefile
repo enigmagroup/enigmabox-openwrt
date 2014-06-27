@@ -9,7 +9,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/provision-grandstream
   SECTION:=administration
   CATEGORY:=Enigmabox
-  TITLE:=Autoconfiguration for the Grandstream phone
+  TITLE:=Auto-configuration for the Grandstream phone
   DEPENDS:=+lighttpd
 endef
 
