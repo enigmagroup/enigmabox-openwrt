@@ -18,7 +18,7 @@ define Package/cfengine-policies/config
 endef
 
 define Package/cfengine-policies/description
- The policies ("promises") for cfengine which configure the Enigmabox.
+ The policies ("promises") for CFEngine which configure the Enigmabox.
 endef
 
 define Build/Configure
