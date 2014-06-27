@@ -14,7 +14,7 @@ define Package/teletext
 endef
 
 define Package/teletext/description
- Teletext - a distributed twitter clone.
+ Teletext - a distributed Twitter clone.
 
  (TS//SI//REL) Teletext provides distributed mass protest coordination
  below the radar by implementing a Twitter like messaging system
