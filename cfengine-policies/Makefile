@@ -9,7 +9,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/cfengine-policies
   SECTION:=administration
   CATEGORY:=Enigmabox
-  TITLE:=cfengine policies
+  TITLE:=CFEngine policies
   DEPENDS:=+cfengine
 endef
 
@@ -18,7 +18,7 @@ define Package/cfengine-policies/config
 endef
 
 define Package/cfengine-policies/description
-	Desc.
+ The policies ("promises") for cfengine which configure the Enigmabox.
 endef
 
 define Build/Configure

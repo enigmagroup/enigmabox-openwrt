@@ -9,13 +9,13 @@ include $(INCLUDE_DIR)/package.mk
 define Package/provision-grandstream
   SECTION:=administration
   CATEGORY:=Enigmabox
-  TITLE:=Provision Grandstream
-  URL:=http://enigmabox.net/en/
+  TITLE:=Autoconfiguration for the Grandstream phone
   DEPENDS:=+lighttpd
 endef
 
 define Package/provision-grandstream/description
-	Description.
+ Install a website which serves a cfg.xml for the Grandstream phone.
+ It will be read at boot time and sets the server and account details.
 endef
 
 define Build/Configure

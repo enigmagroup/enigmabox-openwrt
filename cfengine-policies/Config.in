@@ -1,5 +1,6 @@
 
 choice
+    depends on PACKAGE_cfengine-policies
     prompt "Network profile"
     default NETWORK_PROFILE_ALIX
 

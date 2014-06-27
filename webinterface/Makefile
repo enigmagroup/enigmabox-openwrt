@@ -9,7 +9,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/webinterface
   SECTION:=administration
   CATEGORY:=Enigmabox
-  TITLE:=Enigmabox Webinterface
+  TITLE:=Enigmabox web interface
   URL:=http://enigmabox.net/en/
   DEPENDS:=+cjdns-master
   DEPENDS+= +curl +syslog-ng +zip +unzip +shadow-usermod +kmod-ipt-nat6 +radvd +gesftpserver
@@ -26,7 +26,12 @@ define Package/webinterface
 endef
 
 define Package/webinterface/description
-	Description.
+ The Enigmabox administration web interface, used for configuring
+ the settings of the Enigmabox. It does not depend on any OpenWRT
+ interface, in fact, it replaces LuCI.
+
+ It also serves as a metapackage. Select it, and everything else
+ required for the Enigmabox will be selected.
 endef
 
 define Build/Configure
