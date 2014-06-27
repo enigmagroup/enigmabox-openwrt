@@ -14,7 +14,7 @@ define Package/provision-grandstream
 endef
 
 define Package/provision-grandstream/description
- Install a website which serves a cfg.xml for the Grandstream phone.
+ Installs a website which serves a cfg.xml for the Grandstream phone.
  It will be read at boot time and sets the server and account details.
 endef
 
