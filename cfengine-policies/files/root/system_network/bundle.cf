@@ -22,9 +22,9 @@ bundle agent system_network
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/display_names.mustache";
 
-      "/etc/dhcp.conf"
-      edit_template => "$(this.promise_dirname)/templates/dhcp.conf",
-      classes => if_repaired("restart_dhcp");
+      "/etc/dhcpd.conf"
+      edit_template => "$(this.promise_dirname)/templates/dhcpd.conf",
+      classes => if_repaired("restart_dhcpd");
 
       "/etc/config/dhcp"
       edit_template => "$(this.promise_dirname)/templates/config-dhcp",
@@ -49,8 +49,8 @@ bundle agent system_network
     restart_dnsmasq::
       "/etc/init.d/dnsmasq restart";
 
-    restart_dhcp::
-      "/etc/init.d/dhcp restart";
+    restart_dhcpd::
+      "/etc/init.d/dhcpd restart";
 
     rebuild_iptables::
       "/usr/sbin/rebuild-iptables";
