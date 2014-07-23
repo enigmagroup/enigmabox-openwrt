@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cfengine-policies
-PKG_VERSION:=0.17.10
+PKG_VERSION:=0.17.11
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
