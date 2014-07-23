@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=0.17.14
+PKG_VERSION:=0.17.15
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -12,7 +12,7 @@ define Package/webinterface
   TITLE:=Enigmabox web interface
   URL:=http://enigmabox.net/en/
   DEPENDS:=+cjdns-master
-  DEPENDS+= +curl +syslog-ng +zip +unzip +shadow-usermod +kmod-ipt-nat6 +radvd +gesftpserver
+  DEPENDS+= +curl +syslog-ng +zip +unzip +shadow-usermod +kmod-ipt-nat6 +isc-dhcp-server-ipv4 +radvd +gesftpserver
   DEPENDS+= +python-django-1.4 +python-gunicorn +python-six +python-gevent +python-openssl +python-requests +django-south +python-expat +python-json +python-sqlite3 +python-unidecode +python-beanstalkc +pyyaml
   DEPENDS+= +asterisk18 +asterisk18-sounds
   DEPENDS+= +php5 +php5-fastcgi +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-mysql +php5-mod-session +php5-mod-iconv +php5-mod-json +@PHP5_FILTER
