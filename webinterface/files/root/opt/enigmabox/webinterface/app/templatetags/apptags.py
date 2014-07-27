@@ -73,6 +73,12 @@ def if_updates(object, __=None):
 
 @register.tag
 @condition_tag
+def if_hostid(object, __=None):
+    o = Option()
+    return o.get_value('hostid', False)
+
+@register.tag
+@condition_tag
 def if_internet_access_expiring(object, __=None):
     o = Option()
     internet_access = o.get_value('internet_access')
