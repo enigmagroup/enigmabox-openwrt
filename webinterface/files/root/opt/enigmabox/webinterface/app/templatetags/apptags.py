@@ -71,3 +71,19 @@ def if_updates(object, __=None):
         uc = False
     return uc
 
+@register.tag
+@condition_tag
+def if_internet_access_expiring(object, __=None):
+    o = Option()
+    internet_access = o.get_value('internet_access')
+
+    try:
+        dt = datetime.strptime(internet_access, '%Y-%m-%d')
+        now = datetime.utcnow()
+        hundred_days = timedelta(days=100)
+        if (now + hundred_days) > dt:
+            return True
+
+    except Exception:
+        return False
+

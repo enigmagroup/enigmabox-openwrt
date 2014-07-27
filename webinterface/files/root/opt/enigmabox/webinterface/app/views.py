@@ -7,6 +7,7 @@ import random
 import string
 import json
 import re
+from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse
@@ -22,12 +23,22 @@ def home(request):
         request.session['django_language'] = language
         return redirect('/')
 
+    language = request.session.get('django_language')
+
     netstat = {
         'dhcp': '0',
         'internet': '0',
         'cjdns': '0',
         'cjdns_internet': '0',
     }
+
+    internet_access = o.get_value('internet_access')
+    dt = datetime.strptime(internet_access, '%Y-%m-%d')
+
+    if language == 'en':
+        internet_access_formatted = dt.strftime('%m %d, %Y')
+    else:
+        internet_access_formatted = dt.strftime('%d.%m.%Y')
 
     for key, value in netstat.items():
         try:
@@ -38,7 +49,8 @@ def home(request):
 
     return render_to_response('home.html', {
         'hostid': o.get_value('hostid'),
-        'internet_access': o.get_value('internet_access'),
+        'internet_access': internet_access,
+        'internet_access_formatted': internet_access_formatted,
         'teletext_enabled': o.get_value('teletext_enabled'),
         'root_password': o.get_value('root_password'),
         'netstat': netstat,
@@ -329,6 +341,44 @@ def backup_sslcerts(request):
     return render_to_response('backup/sslcerts.html', {
         'msg': msg,
         'hostid': hostid,
+    }, context_instance=RequestContext(request))
+
+
+
+# Subscription
+
+def subscription(request):
+
+    o = Option()
+
+    currency = request.POST.get('currency', 'CHF')
+    subscription = request.POST.get('subscription', '1')
+
+    amount_table = {}
+    amount_table['CHF'] = {
+        '1': 120,
+        '5': 500,
+        'lt': 1000,
+    }
+    amount_table['EUR'] = {
+        '1': 100,
+        '5': 400,
+        'lt': 800,
+    }
+    amount_table['USD'] = {
+        '1': 130,
+        '5': 550,
+        'lt': 1100,
+    }
+
+    amount = amount_table[currency][subscription]
+
+    return render_to_response('subscription/overview.html', {
+        'hostid': o.get_value('hostid'),
+        'show_invoice': request.POST.get('show_invoice'),
+        'currency': currency,
+        'subscription': subscription,
+        'amount': amount,
     }, context_instance=RequestContext(request))
 
 

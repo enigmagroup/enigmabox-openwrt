@@ -8,8 +8,11 @@
 
       <h1>{% trans "Welcome" %}.</h1>
 {% if hostid %}
-      <p>{% trans "Your hostid is" %} <strong>{{ hostid }}</strong>. {% trans "Network access valid until" %} {{ internet_access }}.</p>
+      <p>{% trans "Your hostid is" %} <strong>{{ hostid }}</strong>. {% trans "Network access valid until" %} {{ internet_access_formatted }}.</p>
 {% endif %}
+{% if_internet_access_expiring object None %}
+      <p><a href="/subscription/" class="btn btn-success"><i class="icon icon-white icon-refresh"></i>&nbsp;{% trans "Renew subscription" %}</a></p>
+{% endif_internet_access_expiring %}
 
       <hr />
 

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Subscription" %}</h1>
+
+      <p>{% trans "Renew your subscription." %}</p>
+
+<form action="" method="post" class="form-horizontal">
+{% csrf_token %}
+<fieldset>
+
+<!-- Form Name -->
+<legend>{% trans "Network access" %}</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="control-group">
+  <label class="control-label" for="currency">{% trans "Currency" %}</label>
+  <div class="controls">
+    <label class="radio inline" for="currency-0">
+      <input type="radio" name="currency" id="currency-0" value="CHF" {% btn_state currency 'CHF' 'checked="checked"' '' %}>
+      CHF
+    </label>
+    <label class="radio inline" for="currency-1">
+      <input type="radio" name="currency" id="currency-1" value="EUR" {% btn_state currency 'EUR' 'checked="checked"' '' %}>
+      EUR
+    </label>
+    <label class="radio inline" for="currency-2">
+      <input type="radio" name="currency" id="currency-2" value="USD" {% btn_state currency 'USD' 'checked="checked"' '' %}>
+      USD
+    </label>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="control-group">
+  <label class="control-label" for="subscription">{% trans "Subscription" %}</label>
+  <div class="controls">
+    <select id="subscription" name="subscription" class="input-xlarge">
+      <option value="1" {% btn_state subscription '1' 'selected="selected"' '' %}>{% trans "1 year" %}</option>
+      <option value="5" {% btn_state subscription '5' 'selected="selected"' '' %}>{% trans "5 years" %}</option>
+      <option value="lt" {% btn_state subscription 'lt' 'selected="selected"' '' %}>{% trans "Lifetime" %}</option>
+    </select>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="show_invoice"></label>
+  <div class="controls">
+    <button id="show_invoice" name="show_invoice" class="btn btn-primary" value="1">{% trans "Show invoice" %}</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+{% if show_invoice %}
+
+<p>{% trans "Please send" %} <strong>{{ currency }} {{ amount }}.-</strong> {% trans "to the following account" %}:</p>
+
+<pre>Valiant Bank AG
+Gerliswilstrasse 43
+Postfach
+6021 Emmenbrücke
+Schweiz
+
+{% trans "Account" %}: Verein Enigmabox, Emmenbrücke
+<strong>{% trans "Payment reference" %}: abo-{{ hostid }}</strong>
+{% if currency == 'EUR' %}
+EUR-Konto: 50.295.383.190.0
+IBAN: CH04 0630 0502 9538 3190 0
+{% else %}
+CHF-Konto: 50.295.383.368.7
+IBAN: CH61 0630 0502 9538 3368 7
+{% endif %}
+SWIFT/BIC: VABECH22XXX</pre>
+
+<p>{% trans "As soon as we've received the money, your subscription will be renewed. This can take up to two business days." %}</p>
+
+{% endif %}
+
+    </div> <!-- /container -->
+{% endblock %}

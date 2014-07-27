@@ -60,6 +60,9 @@
 {% if_updates object None  %}
                 <li class="{% active request 'updates' %}"><a href="{% url app.views.updates %}"><i class="icon-download-alt"></i> {% trans "Updates" %} <span class="badge badge-info">{% updates_count %}</span></a></li>
 {% endif_updates %}
+{% if_internet_access_expiring object None %}
+                <li class="{% active request 'subscription' %}"><a href="{% url app.views.subscription %}"><i class="icon-repeat"></i> {% trans "Subscription" %}</a></li>
+{% endif_internet_access_expiring %}
 {% if_config_changed object None %}
                 <li class="{% active request 'apply_changes' %}"><a href="{% url app.views.apply_changes %}"><i class="icon-circle-arrow-right"></i> {% trans "Apply changes" %}</a></li>
 {% endif_config_changed %}

@@ -29,6 +29,9 @@ urlpatterns = patterns('app.views',
     # updates
     url(r'^updates/$', 'updates'),
 
+    # subscription
+    url(r'^subscription/$', 'subscription'),
+
     # peerings
     url(r'^peerings/new/$', 'peerings_edit'),
     url(r'^peerings/(?P<peering_id>.*)/$', 'peerings_edit'),
