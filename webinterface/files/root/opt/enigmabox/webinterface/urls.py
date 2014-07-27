@@ -28,6 +28,7 @@ urlpatterns = patterns('app.views',
 
     # updates
     url(r'^updates/$', 'updates'),
+    url(r'^upgrade/$', 'upgrade'),
 
     # subscription
     url(r'^subscription/$', 'subscription'),

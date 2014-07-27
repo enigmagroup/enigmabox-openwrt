@@ -58,11 +58,9 @@
                 <li class="{% active request 'passwords' %}"><a href="{% url app.views.passwords %}"><i class="icon-lock"></i> {% trans "Passwords" %}</a></li>
                 <li class="{% active request 'backup' %}"><a href="{% url app.views.backup %}"><i class="icon-share"></i> {% trans "Backup &amp; restore" %}</a></li>
 {% if_updates object None  %}
-                <li class="{% active request 'updates' %}"><a href="{% url app.views.updates %}"><i class="icon-download-alt"></i> {% trans "Updates" %} <span class="badge badge-info">{% updates_count %}</span></a></li>
+                <li class="{% active request 'updates' %}"><a href="{% url app.views.updates %}"><i class="icon-circle-arrow-up"></i> {% trans "Updates" %} <span class="badge badge-info">{% updates_count %}</span></a></li>
 {% endif_updates %}
-{% if_internet_access_expiring object None %}
-                <li class="{% active request 'subscription' %}"><a href="{% url app.views.subscription %}"><i class="icon-repeat"></i> {% trans "Subscription" %}</a></li>
-{% endif_internet_access_expiring %}
+                <li class="{% active request 'upgrade' %}"><a href="{% url app.views.upgrade %}"><i class="icon-download-alt"></i> {% trans "Firmware upgrade" %}</a></li>
 {% if_config_changed object None %}
                 <li class="{% active request 'apply_changes' %}"><a href="{% url app.views.apply_changes %}"><i class="icon-circle-arrow-right"></i> {% trans "Apply changes" %}</a></li>
 {% endif_config_changed %}
@@ -70,6 +68,9 @@
                 <li class="{% active request 'countryselect' %}"><a href="{% url app.views.countryselect %}"><i class="icon-globe"></i> {% trans "Country selection" %}</a></li>
                 <li class="{% active request 'webfilter' %}"><a href="{% url app.views.webfilter %}"><i class="icon-ban-circle"></i> {% trans "Ad blocking" %}</a></li>
                 <li class="nav-header">{% trans "Network" %}</li>
+{% if_internet_access_expiring object None %}
+                <li class="{% active request 'subscription' %}"><a href="{% url app.views.subscription %}"><i class="icon-repeat"></i> {% trans "Subscription" %}</a></li>
+{% endif_internet_access_expiring %}
                 <li class="{% active request 'peerings' %}"><a href="{% url app.views.peerings %}"><i class="icon-random"></i> {% trans "Peerings" %}</a></li>
                 <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i> {% trans "WLAN settings" %}</a></li>
                 <li class="nav-header">{% trans "Services" %}</li>

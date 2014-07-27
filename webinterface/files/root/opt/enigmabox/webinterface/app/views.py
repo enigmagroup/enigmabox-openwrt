@@ -188,6 +188,41 @@ def updates(request):
 
 
 
+# Upgrade
+
+def upgrade(request):
+    import os.path
+
+    o = Option()
+    firmware_file = "/tmp/fw.img.gz"
+    download_ok = False
+    verify_ok = False
+    writing = False
+
+    if request.POST.get('download'):
+        Popen(["/usr/sbin/upgrader", "download"], stdout=PIPE).communicate()[0]
+
+    if request.POST.get('verify'):
+        Popen(["/usr/sbin/upgrader", "verify"], stdout=PIPE).communicate()[0]
+
+    if request.POST.get('write'):
+        writing = True
+        Popen(["/usr/sbin/upgrader", "write"], stdout=PIPE)
+
+    if os.path.isfile(firmware_file):
+        download_ok = True
+
+    if os.path.isfile("/tmp/fw_sig_ok"):
+        verify_ok = True
+
+    return render_to_response('upgrade/overview.html', {
+        'download_ok': download_ok,
+        'verify_ok': verify_ok,
+        'writing': writing,
+    }, context_instance=RequestContext(request))
+
+
+
 # Backup & restore
 
 def backup(request):

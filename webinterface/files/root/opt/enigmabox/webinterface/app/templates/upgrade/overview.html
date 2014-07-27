@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Firmware upgrade" %}</h1>
+
+      <p>{% trans "Flash the current image onto the Enigmabox." %}</p>
+
+      <p>&nbsp;</p>
+
+<div class="alert alert-error">
+  <h4>{% trans "Warning" %}</h4>
+  <a target="_blank" href="/backup/emails/">{% trans "Back up your emails!" %}</a> {% trans "Your emails WILL BE DELETED during the upgrade!" %}
+</div>
+
+<form action="" method="post" class="form-horizontal">
+{% csrf_token %}
+<fieldset>
+
+<!-- Form Name -->
+<legend>{% trans "Flash firmware" %}</legend>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="download">{% trans "Step one" %}:</label>
+  <div class="controls">
+    <button id="download" name="download" class="btn btn-success">{% trans "Download image" %}</button>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="verify">{% trans "Step two" %}:</label>
+  <div class="controls">
+    <button id="verify" name="verify" class="btn btn-warning" {% if not download_ok %}disabled="disabled"{% endif %}>{% trans "Verify image" %}</button> {% if verify_ok %}{% trans "Image ok" %}{% endif %}
+  </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="write">{% trans "Step three" %}:</label>
+  <div class="controls">
+    <button id="write" name="write" class="btn btn-danger" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}
