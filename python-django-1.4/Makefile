@@ -2,12 +2,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-django-1.4
-PKG_VERSION:=1.4.13
+PKG_VERSION:=1.4.14
 PKG_RELEASE:=1
 
 PKG_SOURCE:=Django-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://media.djangoproject.com/releases/1.4/
-PKG_MD5SUM:=9e28e33680f28b027ad67a026a785ea5
+PKG_MD5SUM:=80dc1b9866487afc2ab3f774e29181bc
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Django-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=python
