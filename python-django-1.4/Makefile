@@ -6,7 +6,7 @@ PKG_VERSION:=1.4.14
 PKG_RELEASE:=1
 
 PKG_SOURCE:=Django-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://media.djangoproject.com/releases/1.4/
+PKG_SOURCE_URL:=https://pypi.python.org/packages/source/D/Django/
 PKG_MD5SUM:=80dc1b9866487afc2ab3f774e29181bc
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Django-$(PKG_VERSION)
