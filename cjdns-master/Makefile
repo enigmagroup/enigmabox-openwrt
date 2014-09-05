@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cjdns-master
-PKG_VERSION:=9595d67f9edd759054c5bd3aaee0968ff55e361a
+PKG_VERSION:=eb9d39f6fdc8bf65472f5d8fe034f88ca0807b27
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
