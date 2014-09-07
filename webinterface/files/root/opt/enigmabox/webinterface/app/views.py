@@ -32,13 +32,18 @@ def home(request):
         'cjdns_internet': '0',
     }
 
-    internet_access = o.get_value('internet_access')
-    dt = datetime.strptime(internet_access, '%Y-%m-%d')
+    try:
+        internet_access = o.get_value('internet_access')
+        dt = datetime.strptime(internet_access, '%Y-%m-%d')
 
-    if language == 'en':
-        internet_access_formatted = dt.strftime('%m %d, %Y')
-    else:
-        internet_access_formatted = dt.strftime('%d.%m.%Y')
+        if language == 'en':
+            internet_access_formatted = dt.strftime('%m %d, %Y')
+        else:
+            internet_access_formatted = dt.strftime('%d.%m.%Y')
+
+    except Exception:
+        internet_access = ''
+        internet_access_formatted = ''
 
     for key, value in netstat.items():
         try:
