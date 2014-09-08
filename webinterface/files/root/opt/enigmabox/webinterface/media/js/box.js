@@ -113,6 +113,10 @@
     $('#fw-write').on('click', function() {
         var self = this;
 
+        if(! confirm(trans['are_you_sure'])) {
+            return false;
+        }
+
         setTimeout(function() {
             $(self).attr('disabled', 'disabled');
         }, 10);
