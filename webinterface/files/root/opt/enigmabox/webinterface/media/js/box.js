@@ -131,7 +131,7 @@
 
         setTimeout(function() {
             window.location.href = '/';
-        }, 1000 * 60 * 5);
+        }, 1000 * 60 * 15); //15min for 4GB
 
         return false;
     });
