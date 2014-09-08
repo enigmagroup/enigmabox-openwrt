@@ -27,7 +27,7 @@
 <div class="control-group">
   <label class="control-label" for="download">{% trans "Step one" %}:</label>
   <div class="controls">
-    <button id="download" name="download" class="btn btn-success">{% trans "Download image" %}</button>
+    <button id="download" name="download" value="1" class="btn btn-success">{% trans "Download image" %}</button>
   </div>
 </div>
 
@@ -35,7 +35,7 @@
 <div class="control-group">
   <label class="control-label" for="verify">{% trans "Step two" %}:</label>
   <div class="controls">
-    <button id="verify" name="verify" class="btn btn-warning" {% if not download_ok %}disabled="disabled"{% endif %}>{% trans "Verify image" %}</button> {% if verify_ok %}{% trans "Image ok" %}{% endif %}
+    <button id="verify" name="verify" value="1" class="btn btn-warning" {% if not download_ok %}disabled="disabled"{% endif %}>{% trans "Verify image" %}</button> {% if verify_ok %}{% trans "Image ok" %}{% endif %}
   </div>
 </div>
 
@@ -43,7 +43,7 @@
 <div class="control-group">
   <label class="control-label" for="write">{% trans "Step three" %}:</label>
   <div class="controls">
-    <button id="write" name="write" class="btn btn-danger" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
+    <button id="write" name="write" value="1" class="btn btn-danger" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
   </div>
 </div>
 

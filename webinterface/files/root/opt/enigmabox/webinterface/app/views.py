@@ -204,13 +204,13 @@ def upgrade(request):
     verify_ok = False
     writing = False
 
-    if request.POST.get('download'):
+    if request.POST.get('download') == '1':
         Popen(["/usr/sbin/upgrader", "download"], stdout=PIPE).communicate()[0]
 
-    if request.POST.get('verify'):
+    if request.POST.get('verify') == '1':
         Popen(["/usr/sbin/upgrader", "verify"], stdout=PIPE).communicate()[0]
 
-    if request.POST.get('write'):
+    if request.POST.get('write') == '1':
         writing = True
         Popen(["/usr/sbin/upgrader", "write"], stdout=PIPE)
 
