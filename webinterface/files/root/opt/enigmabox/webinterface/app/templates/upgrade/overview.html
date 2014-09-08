@@ -45,7 +45,7 @@
         <div class="control-group">
           <label class="control-label" for="write">{% trans "Step three" %}:</label>
           <div class="controls">
-            <button id="fw-write" name="write" value="1" class="btn btn-danger" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
+            <button id="fw-write" name="write" value="1" class="btn btn-danger confirmation" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
           </div>
         </div>
 
@@ -58,8 +58,21 @@
     </div>
 {% else %}
     <div class="span7">
-        <div class="progress progress-success hidden">
+        <div id="fw-download-progress" class="progress progress-success hidden">
             <div id="fw-download-bar" class="bar" style="width: 0%"></div>
+        </div>
+    </div>
+{% endif %}
+{% if verify_ok %}
+    <div class="span7">
+        <div class="progress progress-warning">
+            <div id="fw-verify-bar" class="bar" style="width: 100%"></div>
+        </div>
+    </div>
+{% else %}
+    <div class="span7">
+        <div id="fw-verify-progress" class="progress progress-warning hidden">
+            <div id="fw-verify-bar" class="bar" style="width: 0%"></div>
         </div>
     </div>
 {% endif %}

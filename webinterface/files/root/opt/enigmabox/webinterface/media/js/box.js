@@ -85,14 +85,29 @@
             $(self).attr('disabled', 'disabled');
         }, 10);
 
-        $('.progress-success').show();
+        $('#fw-download-progress').show();
 
         var w = 0;
         setInterval(function() {
             w += 1;
             $('#fw-download-bar').css('width', w + '%');
         }, 300);
+    });
 
+    $('#fw-verify').on('click', function() {
+        var self = this;
+
+        setTimeout(function() {
+            $(self).attr('disabled', 'disabled');
+        }, 10);
+
+        $('#fw-verify-progress').show();
+
+        var w = 0;
+        setInterval(function() {
+            w += 2;
+            $('#fw-verify-bar').css('width', w + '%');
+        }, 300);
     });
 
 })();
