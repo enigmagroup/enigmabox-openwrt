@@ -89,9 +89,9 @@
 
         var w = 0;
         setInterval(function() {
-            w += 10;
+            w += 1;
             $('#fw-download-bar').css('width', w + '%');
-        }, 1000);
+        }, 300);
 
     });
 
