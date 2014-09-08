@@ -23,28 +23,46 @@
 <!-- Form Name -->
 <legend>{% trans "Flash firmware" %}</legend>
 
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label" for="download">{% trans "Step one" %}:</label>
-  <div class="controls">
-    <button id="download" name="download" value="1" class="btn btn-success">{% trans "Download image" %}</button>
-  </div>
-</div>
+<div class="row">
+    <div class="span5">
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="download">{% trans "Step one" %}:</label>
+          <div class="controls">
+            <button id="fw-download" name="download" value="1" class="btn btn-success">{% trans "Download image" %}</button>
+          </div>
+        </div>
 
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label" for="verify">{% trans "Step two" %}:</label>
-  <div class="controls">
-    <button id="verify" name="verify" value="1" class="btn btn-warning" {% if not download_ok %}disabled="disabled"{% endif %}>{% trans "Verify image" %}</button> {% if verify_ok %}{% trans "Image ok" %}{% endif %}
-  </div>
-</div>
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="verify">{% trans "Step two" %}:</label>
+          <div class="controls">
+            <button id="fw-verify" name="verify" value="1" class="btn btn-warning" {% if not download_ok %}disabled="disabled"{% endif %}>{% trans "Verify image" %}</button> {% if verify_ok %}{% trans "Image ok" %}{% endif %}
+          </div>
+        </div>
 
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label" for="write">{% trans "Step three" %}:</label>
-  <div class="controls">
-    <button id="write" name="write" value="1" class="btn btn-danger" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
-  </div>
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="write">{% trans "Step three" %}:</label>
+          <div class="controls">
+            <button id="fw-write" name="write" value="1" class="btn btn-danger" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
+          </div>
+        </div>
+
+    </div>
+{% if download_ok %}
+    <div class="span7">
+        <div class="progress progress-success">
+            <div id="fw-download-bar" class="bar" style="width: 100%"></div>
+        </div>
+    </div>
+{% else %}
+    <div class="span7">
+        <div class="progress progress-success hidden">
+            <div id="fw-download-bar" class="bar" style="width: 0%"></div>
+        </div>
+    </div>
+{% endif %}
 </div>
 
 </fieldset>

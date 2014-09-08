@@ -78,4 +78,21 @@
         }
     });
 
+    $('#fw-download').on('click', function() {
+        var self = this;
+
+        setTimeout(function() {
+            $(self).attr('disabled', 'disabled');
+        }, 10);
+
+        $('.progress-success').show();
+
+        var w = 0;
+        setInterval(function() {
+            w += 10;
+            $('#fw-download-bar').css('width', w + '%');
+        }, 1000);
+
+    });
+
 })();
