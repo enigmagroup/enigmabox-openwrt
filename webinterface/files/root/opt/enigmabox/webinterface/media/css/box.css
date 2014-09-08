@@ -26,6 +26,11 @@
     display: none;
 }
 
+.counter {
+    font-size: 200px;
+    line-height: 1em;
+}
+
 #countrysort li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
 
 .ui-state-highlight {

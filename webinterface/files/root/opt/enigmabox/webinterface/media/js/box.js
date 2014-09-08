@@ -127,11 +127,24 @@
             'write': '1'
         });
 
-        $('#lockscreen').fadeIn();
+        $('#fw-countdown').modal({
+            'backdrop': 'static',
+            'keyboard': false,
+        });
+
+        var remaining_seconds = 60 * 15;
+        var total_remaining = remaining_seconds;
+        var w = 0;
+        setInterval(function() {
+            $('.counter').text(remaining_seconds);
+            w = Math.floor(100 - (100 / total_remaining * remaining_seconds));
+            $('#fw-write-bar').css('width', w + '%');
+            remaining_seconds = remaining_seconds - 1;
+        }, 1000);
 
         setTimeout(function() {
             window.location.href = '/';
-        }, 1000 * 60 * 15); //15min for 4GB
+        }, 1000 * remaining_seconds); //15min for 4GB
 
         return false;
     });

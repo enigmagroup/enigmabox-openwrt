@@ -81,5 +81,22 @@
 </fieldset>
 </form>
 
+<!-- Modal -->
+<div id="fw-countdown" class="modal hide fade" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <h3>Firmware upgrade in progress</h3>
+  </div>
+  <div class="modal-body text-center">
+    <p>Do NOT power off your Enigmabox!</p>
+    <p class="counter">999</p>
+    <p>seconds remaining</p>
+  </div>
+  <div class="modal-footer">
+    <div id="fw-write-progress" class="progress progress-striped active">
+        <div id="fw-write-bar" class="bar" style="width: 0%"></div>
+    </div>
+  </div>
+</div>
+
     </div> <!-- /container -->
 {% endblock %}
