@@ -24,7 +24,7 @@
             $dynamic_output = $('.dynamic-output');
             $('.loader').show();
             $('#button-dry-run, #button-run').attr('disabled', 'disabled');
-            $('#lockscreen').show();
+            $('#lockscreen').fadeIn();
 
             var output_type = $('#output-type').data('value'); // config_changed | updater_running
 
@@ -108,6 +108,28 @@
             w += 2;
             $('#fw-verify-bar').css('width', w + '%');
         }, 300);
+    });
+
+    $('#fw-write').on('click', function() {
+        var self = this;
+
+        setTimeout(function() {
+            $(self).attr('disabled', 'disabled');
+        }, 10);
+
+        var csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val();
+        $.post('/upgrade/', {
+            'csrfmiddlewaretoken': csrfmiddlewaretoken,
+            'write': '1'
+        });
+
+        $('#lockscreen').fadeIn();
+
+        setTimeout(function() {
+            window.location.href = '/';
+        }, 1000 * 60 * 5);
+
+        return false;
     });
 
 })();
