@@ -35,7 +35,7 @@ bundle agent system_network
       perms => script,
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
-      edit_template => "$(this.promise_dirname)/templates/rebuild-iptables.$(g.network_profile).mustache",
+      edit_template => "$(this.promise_dirname)/templates/rebuild-iptables.mustache",
       classes => if_repaired("rebuild_iptables");
 
     missioncontrol::

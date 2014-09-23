@@ -11,14 +11,13 @@ ip6tables="/usr/sbin/ip6tables"
 $iptables -F
 $iptables -t nat -F
 $ip6tables -F
+$ip6tables -t nat -F
 
 # defaults
 $iptables -P INPUT DROP
-
 {{#if_missioncontrol}}$iptables -P OUTPUT DROP{{/if_missioncontrol}}
 {{^if_missioncontrol}}$iptables -P OUTPUT ACCEPT{{/if_missioncontrol}}
-
-$iptables -P FORWARD ACCEPT #no internet for the pc when dropping this :(
+$iptables -P FORWARD DROP
 $ip6tables -P INPUT DROP
 $ip6tables -P OUTPUT DROP
 $ip6tables -P FORWARD DROP
@@ -62,7 +61,8 @@ $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
 {{/missioncontrol}}
 
 # nat
-$iptables -I POSTROUTING -t nat -o tun0 -j MASQUERADE
+$iptables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
+$ip6tables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
 
 ################################################################################
 
@@ -82,8 +82,20 @@ $ip6tables -A OUTPUT -o tun0 --dst {{ipv6}} -j ACCEPT
 
 for interface in $(echo "eth1 eth2"); do
 
-    # allow forwarding for eth1/2, but not for others
+    # MTU fix
     $iptables -A FORWARD -i "$interface" -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+
+    # allow forwarding for eth1/2, but not for others
+    $iptables -A FORWARD -i "$interface" -o tun0 -j ACCEPT
+    $iptables -A FORWARD -i tun0 -o "$interface" -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+    # allow hype access
+    $ip6tables -A FORWARD -i "$interface" -o tun0 -j ACCEPT
+    $ip6tables -A FORWARD -i tun0 -o "$interface" -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+    # allow webserver access from LAN
+    $ip6tables -A INPUT -i "$interface" -p tcp --dport 80 -j ACCEPT
+    $ip6tables -A OUTPUT -o "$interface" -p tcp --sport 80 -j ACCEPT
 
     # allow dhcp requests
     $iptables -A INPUT -p udp -i "$interface" --sport 67:68 --dport 67:68 -j ACCEPT
