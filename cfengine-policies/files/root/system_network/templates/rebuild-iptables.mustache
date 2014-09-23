@@ -1,11 +1,15 @@
 #!/bin/ash
 
-# eth0:     internet/router cable
-# eth1+2:   internal LAN, phone/pc
-
-
 iptables="/usr/sbin/iptables"
 ip6tables="/usr/sbin/ip6tables"
+network_profile="$(cat /etc/enigmabox/network-profile)"
+
+# define interfaces
+[[ "$network_profile" == "alix" ]] && internal_interfaces="eth1 eth2"
+[[ "$network_profile" == "apu" ]] && internal_interfaces="eth0 eth1"
+[[ "$network_profile" == "raspi" ]] && internal_interfaces="eth0"
+
+
 
 # reset all
 $iptables -F
@@ -47,10 +51,12 @@ $ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 $iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
 {{/if_peering_port}}
 
-# allow OUTPUT for tun0, eth1, eth2, missioncontrol and peerings
+# allow OUTPUT for tun0, internal_interfaces, missioncontrol and peerings
 $iptables -A OUTPUT -o tun0 -j ACCEPT
-$iptables -A OUTPUT -o eth1 -j ACCEPT
-$iptables -A OUTPUT -o eth2 -j ACCEPT
+
+for interface in $internal_interfaces; do
+    $iptables -A OUTPUT -o $interface -j ACCEPT
+done
 
 {{#peerings}}
 $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
@@ -80,12 +86,12 @@ $ip6tables -A INPUT -i tun0 --src {{ipv6}} -j ACCEPT
 $ip6tables -A OUTPUT -o tun0 --dst {{ipv6}} -j ACCEPT
 {{/addresses}}
 
-for interface in $(echo "eth1 eth2"); do
+for interface in $internal_interfaces; do
 
     # MTU fix
     $iptables -A FORWARD -i "$interface" -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
 
-    # allow forwarding for eth1/2, but not for others
+    # allow forwarding for internal_interfaces, but not for others
     $iptables -A FORWARD -i "$interface" -o tun0 -j ACCEPT
     $iptables -A FORWARD -i tun0 -o "$interface" -m state --state RELATED,ESTABLISHED -j ACCEPT
 
