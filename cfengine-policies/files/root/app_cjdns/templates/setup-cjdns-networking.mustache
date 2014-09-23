@@ -10,7 +10,7 @@ remoteaddresses="{{#peerings}}{{ip}} {{/peerings}}{{#missioncontrol}}{{ip}} {{/m
 
 orggatewayfile="/tmp/cjdns_org_gw"
 
-network_profile="$(cat /etc/network-profile)"
+network_profile="$(cat /etc/enigmabox/network-profile)"
 [[ "$network_profile" = "alix" ]] && clearnet_interface="eth0"
 [[ "$network_profile" = "apu" ]] && clearnet_interface="eth2"
 [[ "$network_profile" = "raspi" ]] && clearnet_interface="wlan0"
