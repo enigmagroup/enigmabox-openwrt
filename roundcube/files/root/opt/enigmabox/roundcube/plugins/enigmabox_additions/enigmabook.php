@@ -56,7 +56,7 @@ class enigmabook extends rcube_addressbook
 
 		//display names file
 		$display_names = array();
-		$display_names_file = file_get_contents('/etc/display_names');
+		$display_names_file = file_get_contents('/etc/enigmabox/display_names');
 		$display_names_array = explode("\n", $display_names_file);
 		foreach ($display_names_array as $dname) 
 		{
