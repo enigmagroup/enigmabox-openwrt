@@ -11,12 +11,9 @@ remoteaddresses="{{#peerings}}{{ip}} {{/peerings}}{{#missioncontrol}}{{ip}} {{/m
 orggatewayfile="/tmp/cjdns_org_gw"
 
 network_profile="$(cat /etc/network-profile)"
-if [[ "$network_profile" = "raspi" ]]; then
-    clearnet_interface="wlan0"
-fi
-if [[ "$network_profile" = "alix" ]]; then
-    clearnet_interface="eth0"
-fi
+[[ "$network_profile" = "alix" ]] && clearnet_interface="eth0"
+[[ "$network_profile" = "apu" ]] && clearnet_interface="eth2"
+[[ "$network_profile" = "raspi" ]] && clearnet_interface="wlan0"
 
 ping="ping -c 5 -W 5"
 cjdns_request_tries="/tmp/cjdns_request_tries"
