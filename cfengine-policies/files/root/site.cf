@@ -4,7 +4,7 @@ bundle common g
 {
   vars:
       "workdir" string => "/opt/enigmabox/cfengine-policies";
-      "network_profile" string => readfile("/etc/network-profile" , "33");
+      "network_profile" string => readfile("/etc/enigmabox/network-profile" , "33");
       "site" string => "/box/.cf-site.json";
 }
 
