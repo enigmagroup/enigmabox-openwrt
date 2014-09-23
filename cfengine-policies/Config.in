@@ -2,10 +2,13 @@
 choice
     depends on PACKAGE_cfengine-policies
     prompt "Network profile"
-    default NETWORK_PROFILE_ALIX
+    default NETWORK_PROFILE_APU
 
     config NETWORK_PROFILE_ALIX
-        bool "alix"
+        bool "ALIX"
+
+    config NETWORK_PROFILE_APU
+        bool "APU"
 
     config NETWORK_PROFILE_RASPI
         bool "Rasperry Pi"

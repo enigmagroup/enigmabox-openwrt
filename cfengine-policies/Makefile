@@ -48,8 +48,10 @@ define Package/cfengine-policies/install
 	$(INSTALL_DATA) ./files/resolv.conf $(1)/etc/resolv.conf.enigmabox
 
 	# network profile
-	if [ "$(CONFIG_NETWORK_PROFILE_ALIX)" == "y" ]; then echo alix > $(1)/etc/network-profile; fi
-	if [ "$(CONFIG_NETWORK_PROFILE_RASPI)" == "y" ]; then echo raspi > $(1)/etc/network-profile; fi
+	$(INSTALL_DIR) $(1)/etc/enigmabox
+	if [ "$(CONFIG_NETWORK_PROFILE_ALIX)" == "y" ]; then echo alix > $(1)/etc/enigmabox/network-profile; fi
+	if [ "$(CONFIG_NETWORK_PROFILE_APU)" == "y" ]; then echo apu > $(1)/etc/enigmabox/network-profile; fi
+	if [ "$(CONFIG_NETWORK_PROFILE_RASPI)" == "y" ]; then echo raspi > $(1)/etc/enigmabox/network-profile; fi
 
 	# create empty crontab so that the cron service starts
 	$(INSTALL_DIR) $(1)/etc/crontabs
