@@ -33,7 +33,7 @@ define Package/cfengine-policies/install
 	$(INSTALL_BIN) ./files/root/site.cf $(1)/opt/cfengine/site.cf
 
 	$(INSTALL_DIR) $(1)/opt/enigmabox/cfengine-policies
-	cp -r ./files/root/* $(1)/opt/enigmabox/cfengine-policies/
+	cp -rv ./files/root/* $(1)/opt/enigmabox/cfengine-policies/
 
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/cfengine-apply $(1)/usr/sbin/cfengine-apply
