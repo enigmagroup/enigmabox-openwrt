@@ -72,6 +72,10 @@ $ip6tables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
 
 ################################################################################
 
+# allow calls from everyone
+$ip6tables -A INPUT -i tun0 -p udp --dport 5060 -j ACCEPT
+$ip6tables -A OUTPUT -o tun0 -p udp --sport 5060 -j ACCEPT
+
 {{#if_teletext_enabled}}
 # teletext
 $ip6tables -A INPUT -i tun0 -p tcp --dport 3838 -j ACCEPT
