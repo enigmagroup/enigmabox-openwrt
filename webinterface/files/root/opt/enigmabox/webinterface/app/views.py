@@ -1037,6 +1037,7 @@ def cfengine_site(request):
         'cjdns_public_key': cjdns_public_key,
         'cjdns_private_key': cjdns_private_key,
         'addresses': addresses,
+        'global_availability': o.get_value('global_availability', 0),
         'missioncontrol': missioncontrol,
         'wlan_ssid': o.get_value('wlan_ssid'),
         'wlan_opmode': wlan_opmode,
