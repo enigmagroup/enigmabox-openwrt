@@ -63,12 +63,14 @@
         anchor = $('.nav-tabs li:first a').attr('href').replace('#', '');
     }
 
-    console.info(anchor);
-    $('.nav-tabs a[href=#' + anchor + ']').tab('show');
+    try {
+        $('.nav-tabs a[href=#' + anchor + ']').tab('show');
+        $('.nav-tabs a').click(function (e) {
+            $(this).tab('show');
+        })
+    } catch (e) {}
 
-    $('.nav-tabs a').click(function (e) {
-        $(this).tab('show');
-    })
+    $('.tooltip-hover').tooltip();
 
     $('#countrysort').sortable({
         cancel: ".ui-state-disabled",

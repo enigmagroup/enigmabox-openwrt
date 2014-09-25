@@ -9,68 +9,59 @@
       <p>{% trans "Managing contacts and assigning names and numbers" %}.</p>
       <br />
 
-<ul class="nav nav-tabs" id="webfilter-tabs">
-  <li><a href="#personal-addressbook">{% trans "Personal address book" %}</a></li>
-  <li><a href="#global-addressbook">{% trans "Global address book" %}</a></li>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="/addressbook/">{% trans "Personal address book" %}</a></li>
+  <li><a href="/addressbook-global/">{% trans "Global address book" %}</a></li>
 </ul>
 
-<div class="tab-content">
-    <div class="tab-pane" id="personal-addressbook">
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>{% trans "Hostname" %}</th>
+        <th>{% trans "IPv6 address" %}</th>
+        <th>{% trans "Phone number" %}</th>
+        <th>{% trans "Status" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><a href="{% url app.views.addressbook %}">{% trans "My address" %}</a></td>
+        <td>{% display_ip %}</td>
+        <td>1</td>
+        <td>{% peer_status '100/100' sip_peers %}</td>
+    </tr>
+    {% for address in addresses %}
+    <tr>
+        <td><a href="{% url app.views.addressbook_edit address.pk %}">{{ address.name }}</a></td>
+        <td>{{ address.ipv6 }}</td>
+        <td>{{ address.phone|default_if_none:'-' }}</td>
+        <td>{% peer_status address.name sip_peers %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
-    <table class="table table-hover table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>{% trans "Hostname" %}</th>
-            <th>{% trans "IPv6 address" %}</th>
-            <th>{% trans "Phone number" %}</th>
-            <th>{% trans "Status" %}</th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><a href="{% url app.views.addressbook %}">{% trans "My address" %}</a></td>
-            <td>{% display_ip %}</td>
-            <td>1</td>
-            <td>{% peer_status '100/100' sip_peers %}</td>
-        </tr>
-        {% for address in addresses %}
-        <tr>
-            <td><a href="{% url app.views.addressbook_edit address.pk %}">{{ address.name }}</a></td>
-            <td>{{ address.ipv6 }}</td>
-            <td>{{ address.phone|default_if_none:'-' }}</td>
-            <td>{% peer_status address.name sip_peers %}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+<fieldset>
 
-    <form method="post" class="form-horizontal">
-    {% csrf_token %}
-    <fieldset>
+<legend>{% trans "Add contact" %}</legend>
 
-    <legend>{% trans "Add contact" %}</legend>
-
-    {% if form.errors %}
-    <div class="alert alert-error">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>{% trans "Error" %}:</strong>
-    {{ form.errors }}
-    </div>
-    {% endif %}
-
-    <input {% form_error form.name.errors %} id="name" name="name" type="text" placeholder="{% trans "Hostname" %}" class="input-large" value="{{ form.name.value }}" />
-    <input {% form_error form.ipv6.errors %} id="ipv6" name="ipv6" type="text" placeholder="{% trans "IPv6 address" %}" class="input-xlarge" value="{{ form.ipv6.value }}" />
-    <input {% form_error form.phone.errors %} id="phone" name="phone" type="text" placeholder="{% trans "Phone number" %}" class="input-mini" value="{{ form.phone.value }}" maxlength="7" />
-    <button id="add_address" name="add_address" class="btn btn-primary">{% trans "Add" %}</button>
-
-    </fieldset>
-    </form>
-    </div>
-
-    <div class="tab-pane" id="global-addressbook">
-    </div>
-
+{% if form.errors %}
+<div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>{% trans "Error" %}:</strong>
+{{ form.errors }}
 </div>
+{% endif %}
+
+<input {% form_error form.name.errors %} id="name" name="name" type="text" placeholder="{% trans "Hostname" %}" class="input-large" value="{{ form.name.value }}" />
+<input {% form_error form.ipv6.errors %} id="ipv6" name="ipv6" type="text" placeholder="{% trans "IPv6 address" %}" class="input-xlarge" value="{{ form.ipv6.value }}" />
+<input {% form_error form.phone.errors %} id="phone" name="phone" type="text" placeholder="{% trans "Phone number" %}" class="input-mini" value="{{ form.phone.value }}" maxlength="7" />
+<button id="add_address" name="add_address" class="btn btn-primary">{% trans "Add" %}</button>
+
+</fieldset>
+</form>
 
     </div> <!-- /container -->
 {% endblock %}
