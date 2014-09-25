@@ -150,7 +150,6 @@ def addressbook_global(request):
             a.ipv6 = cd['ipv6'].strip()
             a.phone = cd['phone']
             a.save()
-            o = Option()
             o.config_changed(True)
             return redirect('/addressbook/')
     else:
@@ -158,6 +157,7 @@ def addressbook_global(request):
 
     if request.POST.get('global-availability'):
         o.toggle_value('global_availability')
+        o.config_changed(True)
 
     addresses = Address.objects.all().order_by('id')
     sip_peers = Popen(["asterisk", "-rx", "sip show peers"], stdout=PIPE).communicate()[0]
