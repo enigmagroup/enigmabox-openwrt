@@ -53,14 +53,20 @@
         }, 1500);
     }
 
-    var anchor = 'general-config';
+    var anchor = false;
     var window_href = window.location.href;
     if(window_href.indexOf('#') > -1){
         anchor = window.location.href.split('#')[1];
     }
-    $('#webfilter-tabs a[href=#' + anchor + ']').tab('show');
 
-    $('#webfilter-tabs a').click(function (e) {
+    if(! anchor) {
+        anchor = $('.nav-tabs li:first a').attr('href').replace('#', '');
+    }
+
+    console.info(anchor);
+    $('.nav-tabs a[href=#' + anchor + ']').tab('show');
+
+    $('.nav-tabs a').click(function (e) {
         $(this).tab('show');
     })
 
