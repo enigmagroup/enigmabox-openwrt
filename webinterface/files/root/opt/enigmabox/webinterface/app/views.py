@@ -1005,6 +1005,24 @@ def cfengine_site(request):
             'phone': a.phone,
         })
 
+    global_addresses = []
+    try:
+        import sqlite3
+        db = sqlite3.connect('/etc/enigmabox/addressbook.db')
+        db.text_factory = sqlite3.OptimizedUnicode
+        c = db.cursor()
+        c.execute("SELECT ipv6,hostname,phone FROM addresses")
+
+        for address in c.fetchall():
+            global_addresses.append({
+                'ipv6': address[0],
+                'hostname': address[1],
+                'phone': address[2],
+            })
+
+    except Exception:
+        pass
+
     webinterface_password = o.get_value('webinterface_password')
     mailbox_password = o.get_value(u'mailbox_password')
 
@@ -1037,6 +1055,7 @@ def cfengine_site(request):
         'cjdns_public_key': cjdns_public_key,
         'cjdns_private_key': cjdns_private_key,
         'addresses': addresses,
+        'global_addresses': global_addresses,
         'global_availability': o.get_value('global_availability', 0),
         'missioncontrol': missioncontrol,
         'wlan_ssid': o.get_value('wlan_ssid'),
