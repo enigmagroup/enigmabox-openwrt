@@ -11,6 +11,11 @@ exten => _X.,n,Hangup()
 exten => {{phone}},1,Dial(SIP/${EXTEN}@{{hostname}})
 {{/addresses}}
 
+[global_addresses]
+{{#global_addresses}}
+exten => *{{phone}},1,Dial(SIP/${EXTEN}@[{{ipv6}}])
+{{/global_addresses}}
+
 ;echo test
 exten => 1,1,Answer()
 exten => 1,n,Playback(tt-somethingwrong)

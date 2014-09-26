@@ -49,3 +49,19 @@ transport=udp
     callerid="{{display_name}} <{{hostname}}>"
 
 {{/addresses}}
+
+
+
+; global addresses
+
+[global-addresses](!)
+    type=peer
+    context=incoming
+
+{{#global_addresses}}
+[{{phone}}](global-addresses)
+    host={{ipv6}}
+    callerid="*{{phone}} <*{{phone}}>"
+
+{{/global_addresses}}
+
