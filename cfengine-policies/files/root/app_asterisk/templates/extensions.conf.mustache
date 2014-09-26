@@ -8,12 +8,12 @@ exten => _X.,n,Hangup()
 
 [friends]
 {{#addresses}}
-exten => {{phone}},1,Dial(SIP/${EXTEN}@{{hostname}})
+exten => {{phone}},1,Dial(SIP/100@{{hostname}})
 {{/addresses}}
 
-[global_addresses]
+;global addresses
 {{#global_addresses}}
-exten => *{{phone}},1,Dial(SIP/${EXTEN}@[{{ipv6}}])
+exten => *{{phone}},1,Dial(SIP/100@global-{{phone}})
 {{/global_addresses}}
 
 ;echo test

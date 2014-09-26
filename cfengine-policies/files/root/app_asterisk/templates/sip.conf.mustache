@@ -59,7 +59,7 @@ transport=udp
     context=incoming
 
 {{#global_addresses}}
-[{{phone}}](global-addresses)
+[global-{{phone}}](global-addresses)
     host={{ipv6}}
     callerid="*{{phone}} <*{{phone}}>"
 
