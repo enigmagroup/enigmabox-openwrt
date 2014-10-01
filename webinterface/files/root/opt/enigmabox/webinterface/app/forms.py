@@ -30,6 +30,14 @@ class AddressbookForm(forms.Form):
     ipv6 = forms.CharField(initial='', validators=[validate_ipv6_address, validate_unique_ipv6])
     phone = forms.IntegerField(initial='', min_value=10, required=False, validators=[validate_unique_phone])
 
+class GlobalAddressbookForm(forms.Form):
+    def validate_hostname(value):
+        if re.search("[^a-z0-9-]", value):
+            raise exceptions.ValidationError('Der Hostname darf nur aus Kleinbuchstaben, Zahlen und Bindestrichen (-) bestehen.')
+
+    name = forms.CharField(initial='', required=True, min_length=1, max_length=50, validators=[validate_hostname])
+    phone = forms.IntegerField(initial='', min_value=10, required=True)
+
 class PeeringsForm(forms.Form):
     address = forms.CharField(initial='', required=True)
     public_key = forms.CharField(initial='', required=True, min_length=54, max_length=54)

@@ -6,7 +6,7 @@
     <div class="container">
 
         <ul class="breadcrumb">
-            <li><a href="{% url app.views.addressbook %}">{% trans "Addressbook" %}</a> <span class="divider">/</span></li>
+            <li><a href="{% url app.views.addressbook_global %}">{% trans "Addressbook" %}</a> <span class="divider">/</span></li>
             <li class="active">{{ address.display_name }}</li>
         </ul>
 
@@ -35,22 +35,6 @@
 
         <!-- Text input-->
         <div class="control-group">
-          <label class="control-label">{% trans "Displayed name" %}</label>
-          <div class="controls">
-            <input {% form_error form.name.errors %} id="display_name" name="display_name" type="text" value="{{ form.display_name.value }}" placeholder="{% trans "Displayed name" %}" class="input-xlarge" />
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
-          <label class="control-label">{% trans "IPv6 address" %}</label>
-          <div class="controls">
-            <input {% form_error form.ipv6.errors %} id="ipv6" name="ipv6" type="text" value="{{ form.ipv6.value }}" placeholder="{% trans "IPv6 address" %}" class="input-xlarge" />
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
           <label class="control-label">{% trans "Phone number" %}</label>
           <div class="controls">
             <input {% form_error form.phone.errors %} id="phone" name="phone" type="text" value="{{ form.phone.value|default_if_none:'' }}" placeholder="{% trans "Phone number" %}" class="input-xlarge" maxlength="7" />
@@ -62,7 +46,7 @@
           <label class="control-label"></label>
           <div class="controls">
             <button id="submit" name="submit" value="save" class="btn btn-primary">{% trans "Save" %}</button>
-            <a href="{% url app.views.addressbook %}" class="btn">{% trans "Cancel" %}</a>
+            <a href="{% url app.views.addressbook_global %}" class="btn">{% trans "Cancel" %}</a>
           </div>
         </div>
 

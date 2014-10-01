@@ -31,10 +31,15 @@
     <span>{{ global_phone|default_if_none:'[unset]' }}</span>
     <a href="/addressbook-global/edit/" class="btn btn-primary" value="1">{% trans "Edit" %}</a>
     <span>{% trans "Status" %}:
+{% if global_address_status == "unset" or global_address_status == None %}
         <span class="label label-default">{% trans "Unset" %}</span>
+{% elif global_address_status == "pending" %}
         <span class="label label-warning">{% trans "Pending" %}</span>
+{% elif global_address_status == "confirmed" %}
         <span class="label label-success">{% trans "Confirmed" %}</span>
+{% elif global_address_status == "rejected" %}
         <span class="label label-important">{% trans "Rejected" %}</span>
+{% endif %}
     </span>
 {% else %}
     <button id="global-availability" name="global-availability" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
