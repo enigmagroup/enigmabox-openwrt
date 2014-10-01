@@ -163,7 +163,7 @@ def addressbook_global_edit(request):
     global_hostname = o.get_value('global_hostname', '')
     global_phone = o.get_value('global_phone', '')
 
-    if request.POST.get('submit'):
+    if request.POST.get('submit') == 'save':
         form = GlobalAddressbookForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
@@ -173,6 +173,13 @@ def addressbook_global_edit(request):
             o.set_value('global_phone', phone)
             o.set_value('global_address_status', 'pending')
             return redirect('/addressbook-global/')
+
+    elif request.POST.get('submit') == 'delete':
+        o.set_value('global_hostname', '')
+        o.set_value('global_phone', '')
+        o.set_value('global_address_status', 'pending')
+        return redirect('/addressbook-global/')
+
     else:
         form = GlobalAddressbookForm(initial={
             'name': global_hostname,
