@@ -43,7 +43,7 @@ endef
 
 define Package/webinterface/install
 	$(INSTALL_DIR) $(1)/box
-	cp -r ./files/root/* $(1)
+	cp -rv ./files/root/* $(1)
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/webinterface.init $(1)/etc/init.d/webinterface
