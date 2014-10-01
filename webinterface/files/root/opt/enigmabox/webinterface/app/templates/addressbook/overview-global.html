@@ -25,14 +25,17 @@
   <div class="controls">
 {% if global_availability == '1' %}
     <button id="global-availability" name="global-availability" class="btn btn-success" value="1">{% trans "I am globally available" %}</button>
-    <span>{% trans "with this" %}</span>
-    <input {% form_error form.name.errors %} id="name" name="name" type="text" placeholder="{% trans "Hostname" %}" class="input-large tooltip-hover" data-toggle="tooltip" data-placement="bottom" title="{% trans "Optional" %}" value="{{ form.name.value }}" />
-    <span>{% trans "and" %}</span>
-    <input {% form_error form.phone.errors %} id="phone" name="phone" type="text" placeholder="{% trans "Phone number" %}" class="input-mini tooltip-hover" data-toggle="tooltip" data-placement="bottom" title="{% trans "Optional" %}" value="{{ form.phone.value }}" maxlength="7" />
-    <button id="set_address" name="set_address" class="btn btn-primary" value="1">{% trans "Set" %}</button>
-{% if global_hostname != None or global_phone != None %}
-    <button id="unregister" name="unregister" class="btn btn-danger" value="1">{% trans "Unregister" %}</button>
-{% endif %}
+    <strong>{% trans "Hostname" %}:</strong>
+    <span>{{ global_hostname|default_if_none:'[unset]' }}</span>,
+    <strong>{% trans "phone" %}:</strong>
+    <span>{{ global_phone|default_if_none:'[unset]' }}</span>
+    <a href="/addressbook-global/edit/" class="btn btn-primary" value="1">{% trans "Edit" %}</a>
+    <span>{% trans "Status" %}:
+        <span class="label label-default">{% trans "Unset" %}</span>
+        <span class="label label-warning">{% trans "Pending" %}</span>
+        <span class="label label-success">{% trans "Confirmed" %}</span>
+        <span class="label label-important">{% trans "Rejected" %}</span>
+    </span>
 {% else %}
     <button id="global-availability" name="global-availability" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
 {% endif %}

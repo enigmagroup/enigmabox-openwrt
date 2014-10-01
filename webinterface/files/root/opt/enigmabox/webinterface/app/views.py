@@ -164,6 +164,38 @@ def addressbook_global(request):
 
     return render_to_response('addressbook/overview-global.html', {
         'addresses': addresses,
+        'global_hostname': None,
+        'global_phone': None,
+        'form': form,
+        'sip_peers': sip_peers,
+        'global_availability': o.get_value('global_availability'),
+    }, context_instance=RequestContext(request))
+
+def addressbook_global_edit(request):
+    o = Option()
+
+    if request.POST.get('set_address'):
+        form = AddressbookForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            a = Address()
+            a.name = cd['name'].strip()
+            a.display_name = cd['name'].replace('-', ' ').title()
+            a.ipv6 = cd['ipv6'].strip()
+            a.phone = cd['phone']
+            a.save()
+            o.config_changed(True)
+            return redirect('/addressbook/')
+    else:
+        form = AddressbookForm()
+
+    addresses = Address.objects.all().order_by('id')
+    sip_peers = Popen(["asterisk", "-rx", "sip show peers"], stdout=PIPE).communicate()[0]
+
+    return render_to_response('addressbook/overview-global-edit.html', {
+        'addresses': addresses,
+        'global_hostname': None,
+        'global_phone': None,
         'form': form,
         'sip_peers': sip_peers,
         'global_availability': o.get_value('global_availability'),

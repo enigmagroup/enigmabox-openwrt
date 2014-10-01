@@ -16,6 +16,7 @@ urlpatterns = patterns('app.views',
     # addressbook
     url(r'^addressbook/edit/(?P<addr_id>.*)/$', 'addressbook_edit'),
     url(r'^addressbook/$', 'addressbook'),
+    url(r'^addressbook-global/edit/$', 'addressbook_global_edit'),
     url(r'^addressbook-global/$', 'addressbook_global'),
 
     # passwords
