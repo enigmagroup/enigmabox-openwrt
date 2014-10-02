@@ -70,16 +70,11 @@
       </tr>
     </thead>
     <tbody>
-    <tr>
-        <td><a href="{% url app.views.addressbook %}">{% trans "My address" %}</a></td>
-        <td>{% display_ip %}</td>
-        <td>1</td>
-    </tr>
     {% for address in addresses %}
-    <tr>
-        <td><a href="{% url app.views.addressbook_edit address.pk %}">{{ address.name }}</a></td>
+    <tr class="{% btn_state address.mine '1' 'warning' '' %}">
+        <td>{{ address.name }}</td>
         <td>{{ address.ipv6 }}</td>
-        <td>{{ address.phone|default_if_none:'-' }}</td>
+        <td>01{{ address.phone }}</td>
     </tr>
     {% endfor %}
     </tbody>

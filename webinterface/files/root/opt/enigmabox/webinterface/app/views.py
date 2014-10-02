@@ -140,21 +140,39 @@ def addressbook_edit(request, addr_id):
 def addressbook_global(request):
     o = Option()
 
-    global_hostname = o.get_value('global_hostname')
-    global_phone = o.get_value('global_phone')
-    global_address_status = o.get_value('global_address_status')
-    global_availability = o.get_value('global_availability')
-
     if request.POST.get('global-availability'):
         o.toggle_value('global_availability')
         o.config_changed(True)
         return redirect('/addressbook-global/')
+
+    global_hostname = o.get_value('global_hostname')
+    global_phone = o.get_value('global_phone')
+    global_address_status = o.get_value('global_address_status')
+    global_availability = o.get_value('global_availability')
+    ipv6 = o.get_value('ipv6')
+
+    import sqlite3
+    db = sqlite3.connect('/etc/enigmabox/addressbook.db')
+    db.text_factory = sqlite3.OptimizedUnicode
+    db_cursor = db.cursor()
+    db_cursor.execute("SELECT ipv6, hostname, phone FROM addresses ORDER BY id desc")
+    db_addresses = db_cursor.fetchall()
+
+    addresses = []
+    for adr in db_addresses:
+        addresses.append({
+            'ipv6': adr[0],
+            'name': adr[1],
+            'phone': adr[2],
+            'mine': '1' if adr[0] == ipv6 else '0',
+        })
 
     return render_to_response('addressbook/overview-global.html', {
         'global_hostname': global_hostname,
         'global_phone': global_phone,
         'global_address_status': global_address_status,
         'global_availability': global_availability,
+        'addresses': addresses,
     }, context_instance=RequestContext(request))
 
 def addressbook_global_edit(request):
