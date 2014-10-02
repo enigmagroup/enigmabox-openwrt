@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse
 from slugify import slugify
+from helpers import *
 
 
 
@@ -150,6 +151,7 @@ def addressbook_global(request):
     global_address_status = o.get_value('global_address_status')
     global_availability = o.get_value('global_availability')
     ipv6 = o.get_value('ipv6')
+    ipv6 = normalize_ipv6(ipv6)
 
     import sqlite3
     db = sqlite3.connect('/etc/enigmabox/addressbook.db')
@@ -164,7 +166,7 @@ def addressbook_global(request):
             'ipv6': adr[0],
             'name': adr[1],
             'phone': adr[2],
-            'mine': '1' if adr[0] == ipv6 else '0',
+            'mine': '1' if normalize_ipv6(adr[0]) == ipv6 else '0',
         })
 
     return render_to_response('addressbook/overview-global.html', {
