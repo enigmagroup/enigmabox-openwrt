@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-10 15:26+0200\n"
-"PO-Revision-Date: 2014-06-10 15:27+0100\n"
+"POT-Creation-Date: 2014-10-02 10:24+0200\n"
+"PO-Revision-Date: 2014-10-02 10:37+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: settings.py:41
 msgid "German"
@@ -29,27 +29,27 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:467
+#: app/views.py:611
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:468
+#: app/views.py:612
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:469
+#: app/views.py:613
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:470
+#: app/views.py:614
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:471
+#: app/views.py:615
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:472
+#: app/views.py:616
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
@@ -61,15 +61,12 @@ msgstr "Bist du sicher?"
 msgid "Show"
 msgstr "Zeigen"
 
-#: app/templates/base.html:31
-#: app/templates/base.html.py:64
-#: app/templates/changes/apply.html:8
-#: app/templates/changes/apply.html:15
+#: app/templates/base.html:31 app/templates/base.html.py:67
+#: app/templates/changes/apply.html:8 app/templates/changes/apply.html:15
 msgid "Apply changes"
 msgstr "Änderungen anwenden"
 
-#: app/templates/base.html:55
-#: app/templates/home.html:9
+#: app/templates/base.html:55 app/templates/home.html:9
 msgid "Welcome"
 msgstr "Willkommen"
 
@@ -77,70 +74,70 @@ msgstr "Willkommen"
 msgid "System"
 msgstr "System"
 
-#: app/templates/base.html:57
-#: app/templates/home.html:18
+#: app/templates/base.html:57 app/templates/home.html:21
 #: app/templates/addressbook/detail.html:9
+#: app/templates/addressbook/overview-global-edit.html:9
+#: app/templates/addressbook/overview-global.html:8
 #: app/templates/addressbook/overview.html:8
 msgid "Addressbook"
 msgstr "Adressbuch"
 
-#: app/templates/base.html:58
-#: app/templates/passwords/overview.html:8
+#: app/templates/base.html:58 app/templates/passwords/overview.html:8
 #: app/templates/passwords/overview.html:16
 msgid "Passwords"
 msgstr "Passwörter"
 
-#: app/templates/base.html:59
-#: app/templates/backup/emails.html:8
-#: app/templates/backup/overview.html:8
-#: app/templates/backup/sslcerts.html:8
+#: app/templates/base.html:59 app/templates/backup/emails.html:8
+#: app/templates/backup/overview.html:8 app/templates/backup/sslcerts.html:8
 #: app/templates/backup/system.html:8
 msgid "Backup &amp; restore"
 msgstr "Sichern &amp; Wiederherstellen"
 
-#: app/templates/base.html:61
-#: app/templates/updates/overview.html:8
+#: app/templates/base.html:61 app/templates/updates/overview.html:8
 msgid "Updates"
 msgstr "Aktualisierungen"
 
-#: app/templates/base.html:66
-#: app/templates/home.html:37
+#: app/templates/base.html:64 app/templates/upgrade/overview.html:8
+msgid "Firmware upgrade"
+msgstr "Firmwareaktualisierung"
+
+#: app/templates/base.html:69 app/templates/home.html:40
 msgid "Internet"
 msgstr "Internet"
 
-#: app/templates/base.html:67
+#: app/templates/base.html:70
 msgid "Country selection"
 msgstr "Land auswählen"
 
-#: app/templates/base.html:68
-#: app/templates/webfilter/overview.html:8
+#: app/templates/base.html:71 app/templates/webfilter/overview.html:8
 msgid "Ad blocking"
 msgstr "Werbeblocker"
 
-#: app/templates/base.html:69
+#: app/templates/base.html:72
 msgid "Network"
 msgstr "Netzwerk"
 
-#: app/templates/base.html:70
-#: app/templates/peerings/detail.html:9
+#: app/templates/base.html:74 app/templates/subscription/overview.html:8
+#: app/templates/subscription/overview.html:40
+msgid "Subscription"
+msgstr "Abonnement"
+
+#: app/templates/base.html:76 app/templates/peerings/detail.html:9
 #: app/templates/peerings/overview.html:8
 msgid "Peerings"
 msgstr "Peerings"
 
-#: app/templates/base.html:71
-#: app/templates/wlan_settings/overview.html:8
+#: app/templates/base.html:77 app/templates/wlan_settings/overview.html:8
 #: app/templates/wlan_settings/scan.html:9
 msgid "WLAN settings"
 msgstr "WLAN-Einstellungen"
 
-#: app/templates/base.html:72
+#: app/templates/base.html:78
 msgid "Services"
 msgstr "Dienste"
 
-#: app/templates/base.html:73
-#: app/templates/home.html:21
-#: app/templates/home.html.py:23
-#: app/templates/teletext/overview.html:8
+#: app/templates/base.html:79 app/templates/home.html:24
+#: app/templates/home.html.py:26 app/templates/teletext/overview.html:8
 msgid "Teletext"
 msgstr "Teletext"
 
@@ -152,64 +149,73 @@ msgstr "Deine Hostid ist"
 msgid "Network access valid until"
 msgstr "Dein Netzwerkzugang ist noch gültig bis zum"
 
-#: app/templates/home.html:16
+#: app/templates/home.html:14
+msgid "Renew subscription"
+msgstr "Abo erneuern"
+
+#: app/templates/home.html:19
 msgid "Applications"
 msgstr "Anwendungen"
 
-#: app/templates/home.html:19
+#: app/templates/home.html:22
 msgid "Webmail"
 msgstr "Webmail"
 
-#: app/templates/home.html:34
+#: app/templates/home.html:37
 msgid "System status"
 msgstr "Systemstatus"
 
-#: app/templates/home.html:36
+#: app/templates/home.html:39
 msgid "DHCP"
 msgstr "DHCP"
 
-#: app/templates/home.html:38
+#: app/templates/home.html:41
 msgid "cjdns"
 msgstr "cjdns"
 
-#: app/templates/home.html:39
+#: app/templates/home.html:42
 msgid "Internet via cjdns"
 msgstr "Internet via cjdns"
 
-#: app/templates/home.html:43
+#: app/templates/home.html:46
 msgid "Connection info"
 msgstr "Verbindungsinfos"
 
-#: app/templates/home.html:43
+#: app/templates/home.html:46
 msgid "SSH access"
 msgstr "SSH-Zugang"
 
-#: app/templates/home.html:44
+#: app/templates/home.html:47
 msgid "Username"
 msgstr "Benutzername"
 
-#: app/templates/home.html:45
-#: app/templates/peerings/detail.html:49
+#: app/templates/home.html:48 app/templates/peerings/detail.html:49
 #: app/templates/peerings/detail.html:51
 #: app/templates/peerings/overview.html:61
-#: app/templates/wlan_settings/overview.html:43
+#: app/templates/wlan_settings/overview.html:61
 msgid "Password"
 msgstr "Passwort"
 
-#: app/templates/home.html:46
+#: app/templates/home.html:49
 msgid "Server"
 msgstr "Server"
 
 #: app/templates/addressbook/detail.html:23
-#: app/templates/addressbook/overview.html:48
+#: app/templates/addressbook/overview-global-edit.html:23
+#: app/templates/addressbook/overview-global.html:54
+#: app/templates/addressbook/overview.html:53
 #: app/templates/peerings/detail.html:26
 msgid "Error"
 msgstr "Fehler"
 
 #: app/templates/addressbook/detail.html:30
 #: app/templates/addressbook/detail.html:32
-#: app/templates/addressbook/overview.html:15
-#: app/templates/addressbook/overview.html:53
+#: app/templates/addressbook/overview-global-edit.html:30
+#: app/templates/addressbook/overview-global-edit.html:32
+#: app/templates/addressbook/overview-global.html:28
+#: app/templates/addressbook/overview-global.html:67
+#: app/templates/addressbook/overview.html:20
+#: app/templates/addressbook/overview.html:58
 msgid "Hostname"
 msgstr "Hostname"
 
@@ -220,57 +226,133 @@ msgstr "Angezeigter Name"
 
 #: app/templates/addressbook/detail.html:46
 #: app/templates/addressbook/detail.html:48
-#: app/templates/addressbook/overview.html:16
-#: app/templates/addressbook/overview.html:54
+#: app/templates/addressbook/overview-global.html:68
+#: app/templates/addressbook/overview.html:21
+#: app/templates/addressbook/overview.html:59
 msgid "IPv6 address"
 msgstr "IPv6-Adresse"
 
 #: app/templates/addressbook/detail.html:54
 #: app/templates/addressbook/detail.html:56
-#: app/templates/addressbook/overview.html:17
-#: app/templates/addressbook/overview.html:55
+#: app/templates/addressbook/overview-global-edit.html:38
+#: app/templates/addressbook/overview-global-edit.html:40
+#: app/templates/addressbook/overview-global.html:69
+#: app/templates/addressbook/overview.html:22
+#: app/templates/addressbook/overview.html:60
 msgid "Phone number"
 msgstr "Telefonnummer"
 
 #: app/templates/addressbook/detail.html:64
+#: app/templates/addressbook/overview-global-edit.html:48
 #: app/templates/peerings/detail.html:67
 #: app/templates/peerings/overview.html:70
 #: app/templates/webfilter/overview.html:114
-#: app/templates/wlan_settings/overview.html:74
 msgid "Save"
 msgstr "Speichern"
 
 #: app/templates/addressbook/detail.html:65
+#: app/templates/addressbook/overview-global-edit.html:49
 #: app/templates/peerings/detail.html:68
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #: app/templates/addressbook/detail.html:71
+#: app/templates/addressbook/overview-global-edit.html:55
 msgid "Delete phone number"
 msgstr "Telefonnummer löschen"
 
 #: app/templates/addressbook/detail.html:75
+#: app/templates/addressbook/overview-global-edit.html:59
 #: app/templates/peerings/detail.html:80
 msgid "Delete"
 msgstr "Löschen"
+
+#: app/templates/addressbook/overview-global.html:9
+msgid "Managing contacts and assigning names and numbers."
+msgstr "Verwalten von Kontakten, Zuweisen von Namen und Telefonnummern."
+
+#: app/templates/addressbook/overview-global.html:13
+#: app/templates/addressbook/overview.html:13
+msgid "Personal address book"
+msgstr "Addressbuch"
+
+#: app/templates/addressbook/overview-global.html:14
+#: app/templates/addressbook/overview-global.html:62
+#: app/templates/addressbook/overview.html:14
+msgid "Global address book"
+msgstr "Globales Addressbuch"
+
+#: app/templates/addressbook/overview-global.html:24
+msgid ""
+"If enabled, you can be called from anyone. If disabled, you can still call "
+"everyone in the global address book."
+msgstr ""
+"Falls aktiviert, bist du für jedermann erreichbar. Falls deaktiviert, kannst "
+"du dennoch alle Kontakte im globalen Adressbuch anrufen."
+
+#: app/templates/addressbook/overview-global.html:24
+msgid "Global availability"
+msgstr "Globale Erreichbarkeit"
+
+#: app/templates/addressbook/overview-global.html:27
+msgid "I am globally available"
+msgstr "Ich bin global erreichbar"
+
+#: app/templates/addressbook/overview-global.html:30
+msgid "phone"
+msgstr "Telefon"
+
+#: app/templates/addressbook/overview-global.html:32
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: app/templates/addressbook/overview-global.html:33
+#: app/templates/addressbook/overview.html:23
+msgid "Status"
+msgstr "Status"
+
+#: app/templates/addressbook/overview-global.html:35
+msgid "Unset"
+msgstr "Undefiniert"
+
+#: app/templates/addressbook/overview-global.html:37
+msgid "Pending"
+msgstr "Ausstehend"
+
+#: app/templates/addressbook/overview-global.html:39
+msgid "Confirmed"
+msgstr "Bestätigt"
+
+#: app/templates/addressbook/overview-global.html:41
+msgid "Rejected"
+msgstr "Abgelehnt"
+
+#: app/templates/addressbook/overview-global.html:45
+#: app/templates/peerings/overview.html:46
+#: app/templates/peerings/overview.html:102
+#: app/templates/teletext/overview.html:25
+#: app/templates/webfilter/overview.html:39
+#: app/templates/webfilter/overview.html:56
+#: app/templates/webfilter/overview.html:68
+#: app/templates/webfilter/overview.html:80
+#: app/templates/webfilter/overview.html:97
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: app/templates/addressbook/overview-global.html:74
+#: app/templates/addressbook/overview.html:28
+msgid "My address"
+msgstr "Meine Adresse"
 
 #: app/templates/addressbook/overview.html:9
 msgid "Managing contacts and assigning names and numbers"
 msgstr "Verwalten von Kontakten, Zuweisen von Namen und Telefonnummern."
 
-#: app/templates/addressbook/overview.html:18
-msgid "Status"
-msgstr "Status"
-
-#: app/templates/addressbook/overview.html:23
-msgid "My address"
-msgstr "Meine Adresse"
-
-#: app/templates/addressbook/overview.html:43
+#: app/templates/addressbook/overview.html:48
 msgid "Add contact"
 msgstr "Adresse hinzufügen"
 
-#: app/templates/addressbook/overview.html:56
+#: app/templates/addressbook/overview.html:61
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -282,18 +364,15 @@ msgstr "E-Mails"
 msgid "Backup &amp; restore emails"
 msgstr "E-Mails sichern &amp; wiederherstellen"
 
-#: app/templates/backup/emails.html:13
-#: app/templates/backup/overview.html:22
+#: app/templates/backup/emails.html:13 app/templates/backup/overview.html:22
 msgid "Your email folder."
 msgstr "Dein E-Mail Ordner."
 
-#: app/templates/backup/emails.html:19
-#: app/templates/backup/overview.html:21
+#: app/templates/backup/emails.html:19 app/templates/backup/overview.html:21
 msgid "Backup emails"
 msgstr "E-Mails sichern"
 
-#: app/templates/backup/emails.html:24
-#: app/templates/backup/sslcerts.html:24
+#: app/templates/backup/emails.html:24 app/templates/backup/sslcerts.html:24
 #: app/templates/backup/system.html:25
 msgid "Backup"
 msgstr "Sichern"
@@ -306,8 +385,7 @@ msgstr "E-Mails wiederherstellen"
 msgid "emails.tar.gz file:"
 msgstr "emails.tar.gz-Datei:"
 
-#: app/templates/backup/emails.html:48
-#: app/templates/backup/sslcerts.html:48
+#: app/templates/backup/emails.html:48 app/templates/backup/sslcerts.html:48
 msgid "Error in creating backup"
 msgstr "Fehler beim Erstellen der Sicherung"
 
@@ -315,17 +393,19 @@ msgstr "Fehler beim Erstellen der Sicherung"
 msgid "Error restoring emails"
 msgstr "Fehler beim Wiederherstellen der E-Mails"
 
-#: app/templates/backup/emails.html:58
-#: app/templates/backup/sslcerts.html:58
+#: app/templates/backup/emails.html:58 app/templates/backup/sslcerts.html:58
 msgid "Restore successful"
 msgstr "Wiederherstellen erfolgreich"
 
 #: app/templates/backup/emails.html:64
-msgid "Warning: all your emails currently stored on your box <strong>will be overwritten!</strong>"
-msgstr "Warnung: Alle deine jetzigen auf der Box gespeicherten E-Mails <strong>werden überschrieben!</strong>"
+msgid ""
+"Warning: all your emails currently stored on your box <strong>will be "
+"overwritten!</strong>"
+msgstr ""
+"Warnung: Alle deine jetzigen auf der Box gespeicherten E-Mails "
+"<strong>werden überschrieben!</strong>"
 
-#: app/templates/backup/emails.html:70
-#: app/templates/backup/sslcerts.html:66
+#: app/templates/backup/emails.html:70 app/templates/backup/sslcerts.html:66
 #: app/templates/backup/system.html:63
 msgid "Restore"
 msgstr "Wiederherstellen"
@@ -334,25 +414,28 @@ msgstr "Wiederherstellen"
 msgid "Backup and restore your data."
 msgstr "Sichern und Wiederherstellen deiner Daten."
 
-#: app/templates/backup/overview.html:14
-#: app/templates/backup/system.html:20
+#: app/templates/backup/overview.html:14 app/templates/backup/system.html:20
 msgid "Backup system settings"
 msgstr "Systemeinstellungen sichern"
 
-#: app/templates/backup/overview.html:15
-#: app/templates/backup/system.html:14
-msgid "Your IPv6 address, addressbook, passwords, internet- and network settings."
-msgstr "Deine IPv6-Adresse, das Adressbuch, Passwörter, Internet- und Netzwerkeinstellungen."
+#: app/templates/backup/overview.html:15 app/templates/backup/system.html:14
+msgid ""
+"Your IPv6 address, addressbook, passwords, internet- and network settings."
+msgstr ""
+"Deine IPv6-Adresse, das Adressbuch, Passwörter, Internet- und "
+"Netzwerkeinstellungen."
 
-#: app/templates/backup/overview.html:28
-#: app/templates/backup/sslcerts.html:19
+#: app/templates/backup/overview.html:28 app/templates/backup/sslcerts.html:19
 msgid "Backup SSL certificates"
 msgstr "SSL-Zertifikate sichern"
 
-#: app/templates/backup/overview.html:29
-#: app/templates/backup/sslcerts.html:13
-msgid "The SSL certificates used for communication with our server, e.g. requesting internet or updates."
-msgstr "SSL-Zertifikate, die zur Kommunikation mit unserem Server benutzt werden, z.B. für Updates."
+#: app/templates/backup/overview.html:29 app/templates/backup/sslcerts.html:13
+msgid ""
+"The SSL certificates used for communication with our server, e.g. requesting "
+"internet or updates."
+msgstr ""
+"SSL-Zertifikate, die zur Kommunikation mit unserem Server benutzt werden, z."
+"B. für Updates."
 
 #: app/templates/backup/sslcerts.html:9
 msgid "SSL certificates"
@@ -414,8 +497,7 @@ msgstr "Zurück"
 msgid "Changes successfully applied."
 msgstr "Änderungen erfolgreich angewendet."
 
-#: app/templates/changes/apply.html:16
-#: app/templates/updates/overview.html:33
+#: app/templates/changes/apply.html:16 app/templates/updates/overview.html:33
 msgid "Please wait"
 msgstr "Bitte warten"
 
@@ -428,8 +510,13 @@ msgid "Choose over which country you want internet access."
 msgstr "Über welches Land willst Du surfen?"
 
 #: app/templates/countryselect/overview.html:10
-msgid "Drag and drop to reorder priorities. Mark servers active for failover in case the first (default) server is going down."
-msgstr "Ziehe die einzelnen Länder mit der Maus, um die Prioritäten zu bestimmen. Setze die Server aktiv, die im Fehlerfall bei einem Ausfall verwendet werden sollen."
+msgid ""
+"Drag and drop to reorder priorities. Mark servers active for failover in "
+"case the first (default) server is going down."
+msgstr ""
+"Ziehe die einzelnen Länder mit der Maus, um die Prioritäten zu bestimmen. "
+"Setze die Server aktiv, die im Fehlerfall bei einem Ausfall verwendet werden "
+"sollen."
 
 #: app/templates/countryselect/overview.html:20
 #: app/templates/countryselect/overview.html:32
@@ -442,20 +529,32 @@ msgid "Inactive"
 msgstr "Inaktiv"
 
 #: app/templates/countryselect/overview.html:46
-msgid "The first server marked &quot;active&quot; is your default server, starting from the top."
-msgstr "Der erste als &quot;aktiv&quot; markierte Server wird standardmässig verwendet."
+msgid ""
+"The first server marked &quot;active&quot; is your default server, starting "
+"from the top."
+msgstr ""
+"Der erste als &quot;aktiv&quot; markierte Server wird standardmässig "
+"verwendet."
 
 #: app/templates/countryselect/overview.html:47
 msgid "The country marked orange is the currently selected country."
 msgstr "Orange: Aktuell gewähltes Land"
 
 #: app/templates/countryselect/overview.html:48
-msgid "If a server goes down, the next server marked &quot;active&quot; is automatically selected."
-msgstr "Falls ein Server nicht mehr erreichbar ist, wird automatisch der nächste als &quot;aktiv&quot; markierte Server ausgewählt."
+msgid ""
+"If a server goes down, the next server marked &quot;active&quot; is "
+"automatically selected."
+msgstr ""
+"Falls ein Server nicht mehr erreichbar ist, wird automatisch der nächste als "
+"&quot;aktiv&quot; markierte Server ausgewählt."
 
 #: app/templates/countryselect/overview.html:49
-msgid "It may take some time after a country switch until all contacts are reachable again!"
-msgstr "Hinweis: Es kann nach einem Länderwechel etwas dauern, bis alle Adressen im Adressbuch wieder erreichbar sind."
+msgid ""
+"It may take some time after a country switch until all contacts are "
+"reachable again!"
+msgstr ""
+"Hinweis: Es kann nach einem Länderwechel etwas dauern, bis alle Adressen im "
+"Adressbuch wieder erreichbar sind."
 
 #: app/templates/passwords/overview.html:10
 msgid "Set passwords. Empty value: Password is inactive."
@@ -517,7 +616,9 @@ msgstr "Peering entfernen"
 
 #: app/templates/peerings/overview.html:9
 msgid "Manage peerings (encrypted, direct connections to other cjdns users)"
-msgstr "Verwalten von Peerings (verschlüsselten Direktverbindungen zu anderen cjdns-Benutzern)"
+msgstr ""
+"Verwalten von Peerings (verschlüsselten Direktverbindungen zu anderen cjdns-"
+"Benutzern)"
 
 #: app/templates/peerings/overview.html:11
 msgid "Outgoing peerings"
@@ -547,17 +648,6 @@ msgstr "Eingehendes Peering"
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: app/templates/peerings/overview.html:46
-#: app/templates/peerings/overview.html:102
-#: app/templates/teletext/overview.html:25
-#: app/templates/webfilter/overview.html:39
-#: app/templates/webfilter/overview.html:56
-#: app/templates/webfilter/overview.html:68
-#: app/templates/webfilter/overview.html:80
-#: app/templates/webfilter/overview.html:97
-msgid "Disabled"
-msgstr "Deaktiviert"
-
 #: app/templates/peerings/overview.html:54
 msgid "Port"
 msgstr "Port"
@@ -578,13 +668,69 @@ msgstr "Autopeering"
 msgid "Automatically connect to other cjdns nodes in the same LAN"
 msgstr "Automatisch zu anderen cjdns-Knoten im gleichen Netzwerk verbinden"
 
+#: app/templates/subscription/overview.html:10
+msgid "Renew your subscription."
+msgstr "Abonnement erneuern."
+
+#: app/templates/subscription/overview.html:17
+msgid "Network access"
+msgstr "Netzwerkzugang"
+
+#: app/templates/subscription/overview.html:21
+msgid "Currency"
+msgstr "Währung"
+
+#: app/templates/subscription/overview.html:43
+msgid "1 year"
+msgstr "1 Jahr"
+
+#: app/templates/subscription/overview.html:44
+msgid "5 years"
+msgstr "5 Jahre"
+
+#: app/templates/subscription/overview.html:45
+msgid "Lifetime"
+msgstr "Lebenslang"
+
+#: app/templates/subscription/overview.html:54
+msgid "Show invoice"
+msgstr "Rechnung anzeigen"
+
+#: app/templates/subscription/overview.html:63
+msgid "Please send"
+msgstr "Bitte überweise"
+
+#: app/templates/subscription/overview.html:63
+msgid "to the following account"
+msgstr "auf folgendes Konto"
+
+#: app/templates/subscription/overview.html:71
+msgid "Account"
+msgstr "Konto"
+
+#: app/templates/subscription/overview.html:72
+msgid "Payment reference"
+msgstr "Zahlungsreferenz"
+
+#: app/templates/subscription/overview.html:82
+msgid ""
+"As soon as we've received the money, your subscription will be renewed. This "
+"can take up to two business days."
+msgstr ""
+"Sobald wir dein Geld haben, wird dein Abo erneuert. Das kann bis zu zwei "
+"Tagen dauern."
+
 #: app/templates/teletext/overview.html:9
 msgid "Teletext is a distributed Twitter clone."
 msgstr "Teletext ist ein dezentrales Twitter."
 
 #: app/templates/teletext/overview.html:10
-msgid "Publish telegrams, find other ciphernauts, coordinate a revolution below the radar."
-msgstr "Publiziere Telegramme, finde andere Ciphernauten, koordiniere eine Revolution unter dem Radar."
+msgid ""
+"Publish telegrams, find other ciphernauts, coordinate a revolution below the "
+"radar."
+msgstr ""
+"Publiziere Telegramme, finde andere Ciphernauten, koordiniere eine "
+"Revolution unter dem Radar."
 
 #: app/templates/teletext/overview.html:20
 msgid "Enable Teletext"
@@ -615,6 +761,54 @@ msgstr "Aktualisieren"
 msgid "Install updates"
 msgstr "Aktualisierungen installieren"
 
+#: app/templates/upgrade/overview.html:10
+msgid "Flash the current image onto the Enigmabox."
+msgstr "Die aktuelle Firmware auf die Enigmabox schreiben."
+
+#: app/templates/upgrade/overview.html:15
+msgid "Warning"
+msgstr "Achtung"
+
+#: app/templates/upgrade/overview.html:16
+msgid "Back up your emails!"
+msgstr "Sichere deine E-Mails!"
+
+#: app/templates/upgrade/overview.html:16
+msgid "Your emails WILL BE DELETED during the upgrade!"
+msgstr "Deine E-Mails werden bei der Aktualisierung GELÖSCHT!"
+
+#: app/templates/upgrade/overview.html:24
+msgid "Flash firmware"
+msgstr "Firmware schreiben"
+
+#: app/templates/upgrade/overview.html:30
+msgid "Step one"
+msgstr "Schritt eins"
+
+#: app/templates/upgrade/overview.html:32
+msgid "Download image"
+msgstr "Image herunterladen"
+
+#: app/templates/upgrade/overview.html:38
+msgid "Step two"
+msgstr "Schritt zwei"
+
+#: app/templates/upgrade/overview.html:40
+msgid "Verify image"
+msgstr "Image überprüfen"
+
+#: app/templates/upgrade/overview.html:40
+msgid "Image ok"
+msgstr "Image ok"
+
+#: app/templates/upgrade/overview.html:46
+msgid "Step three"
+msgstr "Schritt drei"
+
+#: app/templates/upgrade/overview.html:48
+msgid "Write image"
+msgstr "Image schreiben"
+
 #: app/templates/webfilter/overview.html:9
 msgid "Filter out ads and trackers, block whole domains."
 msgstr "Werbung und Tracker filtern, ganze Domains blockieren."
@@ -624,8 +818,12 @@ msgid "Instructions"
 msgstr "Anleitung"
 
 #: app/templates/webfilter/overview.html:13
-msgid "<a href=\"http://enigmabox.net/en/ad-blocking/\" target=\"_blank\">enigmabox.net/en/ad-blocking/</a>"
-msgstr "<a href=\"http://enigmabox.net/werbeblocker/\" target=\"_blank\">enigmabox.net/werbeblocker/</a>"
+msgid ""
+"<a href=\"http://enigmabox.net/en/ad-blocking/\" target=\"_blank\">enigmabox."
+"net/en/ad-blocking/</a>"
+msgstr ""
+"<a href=\"http://enigmabox.net/werbeblocker/\" target=\"_blank\">enigmabox."
+"net/werbeblocker/</a>"
 
 #: app/templates/webfilter/overview.html:23
 msgid "General configuration"
@@ -664,94 +862,67 @@ msgid "Rules"
 msgstr "Regeln"
 
 #: app/templates/wlan_settings/overview.html:9
-msgid "If you have a <a target=\"_blank\" href=\"http://www.wlan-shop24.de/24-GHz-USB-WLAN-Adapter-ALFA-AWUS036NEH-150-MBit-1000mW\">ALFA AWUS036NEH</a> WLAN adapter, you can configure your connection here."
-msgstr "Wenn du einen <a target=\"_blank\" href=\"http://www.wlan-shop24.de/24-GHz-USB-WLAN-Adapter-ALFA-AWUS036NEH-150-MBit-1000mW\">ALFA AWUS036NEH</a> WLAN-Adapter hast, kannst du ihn hier konfigurieren."
+msgid ""
+"If you have a <a target=\"_blank\" href=\"http://www.wlan-shop24.de/24-GHz-"
+"USB-WLAN-Adapter-ALFA-AWUS036NEH-150-MBit-1000mW\">ALFA AWUS036NEH</a> WLAN "
+"adapter, you can configure your connection here."
+msgstr ""
+"Wenn du einen <a target=\"_blank\" href=\"http://www.wlan-shop24.de/24-GHz-"
+"USB-WLAN-Adapter-ALFA-AWUS036NEH-150-MBit-1000mW\">ALFA AWUS036NEH</a> WLAN-"
+"Adapter hast, kannst du ihn hier konfigurieren."
 
 #: app/templates/wlan_settings/overview.html:18
+#: app/templates/wlan_settings/overview.html:22
+msgid "Mode of operation"
+msgstr "Betriebsmodus"
+
+#: app/templates/wlan_settings/overview.html:24
+msgid "Mesh"
+msgstr "Mesh"
+
+#: app/templates/wlan_settings/overview.html:25
+msgid "Client"
+msgstr "Client"
+
+#: app/templates/wlan_settings/overview.html:36
 msgid "Connect to a WLAN access point"
 msgstr "Zu einem WLAN Access-Point verbinden"
 
-#: app/templates/wlan_settings/overview.html:22
-#: app/templates/wlan_settings/overview.html:25
+#: app/templates/wlan_settings/overview.html:40
+#: app/templates/wlan_settings/overview.html:43
 #: app/templates/wlan_settings/scan.html:21
 msgid "SSID"
 msgstr "SSID"
 
-#: app/templates/wlan_settings/overview.html:28
+#: app/templates/wlan_settings/overview.html:46
 msgid "Action"
 msgstr "Aktion"
 
-#: app/templates/wlan_settings/overview.html:32
+#: app/templates/wlan_settings/overview.html:50
 #: app/templates/wlan_settings/scan.html:10
 msgid "Scan for WLAN networks"
 msgstr "Nach WLAN-Netzwerken suchen"
 
-#: app/templates/wlan_settings/overview.html:41
+#: app/templates/wlan_settings/overview.html:59
 msgid "WLAN password"
 msgstr "WLAN-Passwort"
 
-#: app/templates/wlan_settings/overview.html:49
+#: app/templates/wlan_settings/overview.html:67
 msgid "WLAN security"
 msgstr "WLAN-Sicherheit"
 
-#: app/templates/wlan_settings/overview.html:57
+#: app/templates/wlan_settings/overview.html:75
 msgid "WPA2"
 msgstr "WPA2"
 
-#: app/templates/wlan_settings/overview.html:65
+#: app/templates/wlan_settings/overview.html:83
 msgid "WEP or unencrypted"
 msgstr "WEP oder unverschlüsselt"
+
+#: app/templates/wlan_settings/overview.html:94
+msgid "Connect"
+msgstr "Verbinden"
 
 #: app/templates/wlan_settings/scan.html:22
 msgid "Signal"
 msgstr "Signal"
-
-#~ msgid ""
-#~ "You can review outstanding changes by hitting &quot;Show changes&quot;."
-#~ msgstr ""
-#~ "Du kannst ausstehende Änderungen anzeigen mit &quot;Änderungen "
-#~ "anzeigen&quot;."
-
-#~ msgid "Apply them with &quot;Confirm changes&quot;."
-#~ msgstr "&quot;Änderungen bestätigen&quot; wendet die Änderungen an."
-
-#~ msgid "Show changes"
-#~ msgstr "Änderungen anzeigen"
-
-#~ msgid "Confirm changes"
-#~ msgstr "Änderungen bestätigen"
-
-#~ msgid "WEP"
-#~ msgstr "WEP"
-
-#~ msgid "Quality"
-#~ msgstr "Signalstärke"
-
-#~ msgid "sslcerts.tar.gz file:"
-#~ msgstr "sslcerts.tar.gz-Datei:"
-
-#~ msgid "New"
-#~ msgstr "Neu"
-
-#~ msgid "Filter browser headers"
-#~ msgstr "Browserheader filtern"
-
-#~ msgid "Disable user agent"
-#~ msgstr "User-Agent deaktivieren"
-
-#~ msgid "Manage your contacts in the"
-#~ msgstr "Verwalte Deine Adressen im"
-
-#~ msgid "SIP phone"
-#~ msgstr "IP-Telefon"
-
-#~ msgid "Domain/Server"
-#~ msgstr "Domain/Server"
-
-#, fuzzy
-#~ msgid "Internet interface"
-#~ msgstr "Internet via cjdns"
-
-#, fuzzy
-#~ msgid "Select interface"
-#~ msgstr "Webinterface"
