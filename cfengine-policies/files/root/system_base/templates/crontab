@@ -6,5 +6,5 @@
 0 */4 * * * /usr/sbin/updater check bg &> /dev/null
 
 # pull address book
-0 3 * * * /usr/sbin/addressbook.py pull
+0 3 * * * /usr/sbin/addressbook.py pull &> /dev/null
 
