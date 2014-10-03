@@ -60,7 +60,9 @@
     }
 
     if(! anchor) {
-        anchor = $('.nav-tabs li:first a').attr('href').replace('#', '');
+        try {
+            anchor = $('.nav-tabs li:first a').attr('href').replace('#', '');
+        } catch (e) {}
     }
 
     try {
