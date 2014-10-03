@@ -18,7 +18,7 @@ exten => 01{{phone}},1,Dial(SIP/100@global-{{phone}})
 
 ;echo test
 exten => 1,1,Answer()
-exten => 1,n,Playback(tt-somethingwrong)
+;exten => 1,n,Playback(tt-somethingwrong)
 exten => 1,n,Playback(tt-weasels)
 exten => 1,n,Playback(tt-monkeysintro)
 exten => 1,n,Playback(tt-monkeys)
