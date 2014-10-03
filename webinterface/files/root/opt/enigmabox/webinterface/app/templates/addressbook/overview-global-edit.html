@@ -37,7 +37,10 @@
         <div class="control-group">
           <label class="control-label">{% trans "Phone number" %}</label>
           <div class="controls">
-            <input {% form_error form.phone.errors %} id="phone" name="phone" type="text" value="{{ form.phone.value|default_if_none:'' }}" placeholder="{% trans "Phone number" %}" class="input-xlarge" maxlength="7" />
+            <div class="input-prepend">
+                <span class="add-on">01</span>
+                <input {% form_error form.phone.errors %} id="phone" name="phone" type="text" value="{{ form.phone.value|default_if_none:'' }}" placeholder="{% trans "Phone number" %}" class="input-xlarge" maxlength="7" />
+            </div>
           </div>
         </div>
 
