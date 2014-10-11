@@ -727,20 +727,23 @@ def wlan_scan(request):
 
     final_cells = []
 
-    Popen(["ifconfig", "ah0", "down"], stdout=PIPE).communicate()[0]
-    Popen(["ifconfig", "wlan0", "up"], stdout=PIPE).communicate()[0]
-    scan = Popen(["iwlist", "wlan0", "scanning"], stdout=PIPE).communicate()[0]
+#    Popen(["ifconfig", "ah0", "down"], stdout=PIPE).communicate()[0]
+#    Popen(["ifconfig", "wlan0", "up"], stdout=PIPE).communicate()[0]
+#    scan = Popen(["iwlist", "wlan0", "scanning"], stdout=PIPE).communicate()[0]
+    with open('/tmp/wlan.txt', 'r') as f:
+        scan = f.read()
 
-    cells = re.split('BSS.*\(on wlan0\)', scan)
+    cells = re.split('Cell.*', scan)
     for cell in cells:
 
         try:
-            ssid = cell.split('SSID: ')[1].split('\n')[0].replace('"', '').strip()
-            signal = cell.split('signal: ')[1].split(' ')[0].strip()
-            signal = int(100 + float(signal))
+            ssid = cell.split('ESSID:')[1].split('\n')[0].replace('"', '').strip()
+#            signal = cell.split('Signal level:')[1].split(' ')[0].strip()
+#            signal = int(100 + float(signal))
+            signal = 'unknown'
 
             try:
-                group = cell.split('Group cipher')[1].split('\n')[0].strip()
+                group = cell.split('Group Cipher')[1].split('\n')[0].strip()
                 if 'CCMP' in group:
                     group = 'CCMP'
                 else:
@@ -750,7 +753,7 @@ def wlan_scan(request):
                 group = ''
 
             try:
-                pairwise = cell.split('Pairwise ciphers')[1].split('\n')[0].strip()
+                pairwise = cell.split('Pairwise Ciphers')[1].split('\n')[0].strip()
                 if 'CCMP' in pairwise:
                     pairwise = 'CCMP'
                 else:
