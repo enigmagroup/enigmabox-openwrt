@@ -91,12 +91,13 @@ start_wep() {
 {{#if_wlan_pass}}
     e "start WEP session"
     ifconfig wlan0 up
-    iw wlan0 connect "$ssid" keys "d:0:$wep_pass"
+    iwconfig wlan0 essid "$ssid"
+    iwconfig wlan0 key "d:0:$wep_pass"
 {{/if_wlan_pass}}
 {{^if_wlan_pass}}
     e "connecting to AP"
     ifconfig wlan0 up
-    iw wlan0 connect "$ssid"
+    iwconfig wlan0 essid "$ssid"
 {{/if_wlan_pass}}
 }
 
@@ -236,27 +237,21 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
     e "wifi detected"
 
     if [[ "$opmode" = "mesh" ]]; then
-        # add ad-hoc cjdns
-        if [[ "$(iw dev ah0 link 2> /dev/null | wc -l)" -eq 0 ]]; then
-            iw phy phy0 interface add ah0 type ibss
-        fi
-
-        ifconfig ah0 up
+        ifconfig wlan0 up
 
         # start ad-hoc cjdns
-        if [[ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]]; then
-            iw dev ah0 ibss join cjdns 2412
-            while [ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]; do
-                echo "waiting for ad-hoc interface to come up..."
-                sleep 1
-            done
-            restart_cjdns
-        fi
+        # TODO
+#        if [[ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]]; then
+#            iw dev ah0 ibss join cjdns 2412
+#            while [ "$(iw dev ah0 link 2> /dev/null | grep -i 'joined ibss' | wc -l)" -eq 0 ]; do
+#                echo "waiting for ad-hoc interface to come up..."
+#                sleep 1
+#            done
+#            restart_cjdns
+#        fi
     fi
 
     if [[ "$opmode" = "client" ]]; then
-        iw dev ah0 ibss leave 2> /dev/null
-        ifconfig ah0 down
         clearnet_interface=wlan0
         # check if wlan0 already started
         if [[ "$(ifconfig wlan0 | grep 'inet addr' | wc -l)" -eq 0 ]]; then

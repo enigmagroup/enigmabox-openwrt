@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=0.18.7
+PKG_VERSION:=0.18.8
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -22,7 +22,7 @@ define Package/webinterface
   DEPENDS+= +dovecot +exim4
   DEPENDS+= +cfengine +cfengine-policies
   DEPENDS+= +beanstalkd
-  DEPENDS+= +wpa-supplicant +kmod-ath +kmod-ath9k-htc +kmod-brcmfmac +kmod-carl9170 +kmod-libertas-sd +kmod-libertas-usb +kmod-net-zd1201 +kmod-p54-usb +kmod-rt2500-usb +kmod-rt2800-usb +kmod-rt73-usb +kmod-rtl8187 +kmod-rtl8192cu +kmod-zd1211rw
+  DEPENDS+= +wireless-tools +wpa-supplicant +kmod-ath +kmod-ath9k-htc +kmod-brcmfmac +kmod-carl9170 +kmod-libertas-sd +kmod-libertas-usb +kmod-net-zd1201 +kmod-p54-usb +kmod-rt2500-usb +kmod-rt2800-usb +kmod-rt73-usb +kmod-rtl8187 +kmod-rtl8192cu +kmod-zd1211rw
 #  DEPENDS+= +kmod-e1000 +kmod-r8169
 endef
 
