@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=roundcube
 PKG_VERSION:=1.0.1
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -28,7 +28,7 @@ define Build/Compile
 endef
 
 define Package/roundcube/install
-	cp -r ./files/root/* $(1)
+	cp -rv ./files/root/* $(1)
 
 	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
 	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/roundcube.conf
