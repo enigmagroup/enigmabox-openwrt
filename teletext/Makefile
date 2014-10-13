@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=teletext
 PKG_VERSION:=0.1.6
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -35,7 +35,7 @@ define Build/Compile
 endef
 
 define Package/teletext/install
-	cp -r ./files/root/* $(1)
+	cp -rv ./files/root/* $(1)
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/teletext.init $(1)/etc/init.d/teletext
