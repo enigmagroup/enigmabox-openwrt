@@ -22,7 +22,7 @@ define Package/webinterface
   DEPENDS+= +dovecot +exim4
   DEPENDS+= +cfengine +cfengine-policies
   DEPENDS+= +beanstalkd
-  DEPENDS+= +wireless-tools +wpa-supplicant +kmod-ath +kmod-ath9k-htc +kmod-brcmfmac +kmod-carl9170 +kmod-libertas-sd +kmod-libertas-usb +kmod-net-zd1201 +kmod-p54-usb +kmod-rt2500-usb +kmod-rt2800-usb +kmod-rt73-usb +kmod-rtl8187 +kmod-rtl8192cu +kmod-zd1211rw +kmod-rtl8188eu
+  DEPENDS+= +wireless-tools +wpa-supplicant +kmod-ath +kmod-ath9k-htc +kmod-brcmfmac +kmod-carl9170 +kmod-libertas-sd +kmod-libertas-usb +kmod-net-zd1201 +kmod-p54-usb +kmod-rt2500-usb +kmod-rt2800-usb +kmod-rt73-usb +kmod-rtl8187 +kmod-rtl8192cu +kmod-zd1211rw +kmod-net-rtl8188eu
 #  DEPENDS+= +kmod-e1000 +kmod-r8169
 endef
 
