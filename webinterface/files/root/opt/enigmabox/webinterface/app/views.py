@@ -729,9 +729,7 @@ def wlan_scan(request):
 
 #    Popen(["ifconfig", "ah0", "down"], stdout=PIPE).communicate()[0]
 #    Popen(["ifconfig", "wlan0", "up"], stdout=PIPE).communicate()[0]
-#    scan = Popen(["iwlist", "wlan0", "scanning"], stdout=PIPE).communicate()[0]
-    with open('/tmp/wlan.txt', 'r') as f:
-        scan = f.read()
+    scan = Popen(["iwlist", "wlan0", "scanning"], stdout=PIPE).communicate()[0]
 
     cells = re.split('Cell.*', scan)
     for cell in cells:
