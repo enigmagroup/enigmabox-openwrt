@@ -78,12 +78,15 @@ dhcp() {
 start_wpa() {
     e "start WPA session"
 
-    # return if wpa_supplicant is already running
-    [[ $(pidof wpa_supplicant | wc -l) -gt 0 ]] && return
+    ifconfig wlan0 down
+    killall wpa_supplicant
 
     # make sure wpa_supplicant is absent
     rm "/var/run/wpa_supplicant/wlan0" 2> /dev/null
 
+    sleep 2
+
+    ifconfig wlan0 up
     wpa_supplicant -i wlan0 -D wext -c /etc/wpa_supplicant/wpa_supplicant.conf -B
 }
 
