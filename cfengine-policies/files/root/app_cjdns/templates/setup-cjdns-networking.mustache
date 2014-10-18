@@ -210,6 +210,10 @@ set_status() {
 
 # logic
 
+if [[ -e "/sys/class/net/wlan0" ]]; then
+    clearnet_interface=wlan0
+fi
+
 # ensure radvd is running
 if [[ "$(pidof radvd | wc -l)" -eq 0 ]]; then
     /etc/init.d/radvd restart
@@ -255,7 +259,6 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
     fi
 
     if [[ "$opmode" = "client" ]]; then
-        clearnet_interface=wlan0
         # check if wlan0 already started
         if [[ "$(ifconfig wlan0 | grep 'inet addr' | wc -l)" -eq 0 ]]; then
             if [[ "$security" = "WPA" ]]; then
