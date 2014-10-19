@@ -1094,6 +1094,50 @@ def cfengine_site(request):
     wlan_opmode = o.get_value('wlan_opmode', 'mesh')
     meshmode = (wlan_opmode == 'mesh')
 
+    # autopeering
+    if o.get_value('autopeering', 0) == '1':
+
+        try:
+            with open('/etc/enigmabox/network-profile', 'r') as f:
+                network_profile = f.read().strip()
+
+            if network_profile == 'alix':
+                autopeering = [
+                    {
+                        'interface': 'eth0',
+                    },
+                    {
+                        'interface': 'eth1',
+                    },
+                    {
+                        'interface': 'eth2',
+                    },
+                ]
+            if network_profile == 'apu':
+                autopeering = [
+                    {
+                        'interface': 'eth0',
+                    },
+                    {
+                        'interface': 'eth1',
+                    },
+                    {
+                        'interface': 'eth2',
+                    },
+                ]
+            if network_profile == 'raspi':
+                autopeering = [
+                    {
+                        'interface': 'eth0',
+                    },
+                ]
+
+        except Exception:
+            autopeering = 0
+
+    else:
+        autopeering = 0
+
     response_data = {
         'cjdns_ipv6': cjdns_ipv6,
         'cjdns_public_key': cjdns_public_key,
@@ -1111,7 +1155,7 @@ def cfengine_site(request):
         'wlan_pairwise': o.get_value('wlan_pairwise'),
         'peerings': peerings,
         'internet_gateway': internet_gateway,
-        'autopeering': o.get_value('autopeering', 0),
+        'autopeering': autopeering,
         'allow_peering': o.get_value('allow_peering', 0),
         'peering_port': o.get_value('peering_port'),
         'peering_password': o.get_value('peering_password'),

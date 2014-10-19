@@ -38,24 +38,16 @@
         [
 {{#if_meshmode}}
             {
-                "bind": "ah0",
+                "bind": "wlan0",
                 "beacon": 2,
             },
 {{/if_meshmode}}
-{{#if_autopeering}}
+{{#autopeering}}
             {
-                "bind": "eth0",
+                "bind": "{{interface}}",
                 "beacon": 2,
             },
-            {
-                "bind": "eth1",
-                "beacon": 2,
-            },
-            {
-                "bind": "eth2",
-                "beacon": 2,
-            },
-{{/if_autopeering}}
+{{/autopeering}}
         ]
     },
 
