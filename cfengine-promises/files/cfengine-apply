@@ -18,7 +18,7 @@ run() {
         background=1
     fi
 
-    echo "running cfengine and applying policy..."
+    echo "running cfengine and applying promises..."
     curl "$webinterface/cfengine/site.json" > "$cfengine_site"
 
     if [[ "$background" == 1 ]]; then
@@ -34,7 +34,7 @@ inform_webinterface() {
 }
 
 cfengine_run() {
-    "$cfagent" --no-lock --inform --color=always /opt/enigmabox/cfengine-policies/site.cf
+    "$cfagent" --no-lock --inform --color=always /opt/enigmabox/cfengine-promises/site.cf
 }
 
 

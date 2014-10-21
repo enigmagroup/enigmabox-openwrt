@@ -1,6 +1,6 @@
 
 choice
-    depends on PACKAGE_cfengine-policies
+    depends on PACKAGE_cfengine-promises
     prompt "Network profile"
     default NETWORK_PROFILE_APU
 
