@@ -229,20 +229,20 @@ def password_edit(request, subject):
 
     o = Option()
 
+    if subject not in ['webinterface', 'mailbox']:
+        raise ValueError('allowed subjects: webinterface, mailbox')
+
     if request.POST.get('submit') == 'save':
         form = PasswordForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            if subject == 'webinterface':
-                o.set_value('webinterface_password', cd['password'])
-            elif subject == 'mailbox':
-                o.set_value('mailbox_password', cd['password'])
+            o.set_value(subject + '_password', cd['password'])
             o.config_changed(True)
+    elif request.POST.get('submit') == 'unset':
+        o.set_value(subject + '_password', '')
+        o.config_changed(True)
     else:
-        if subject == 'webinterface':
-            password = o.get_value('webinterface_password')
-        elif subject == 'mailbox':
-            password = o.get_value('mailbox_password')
+        password = o.get_value(subject + '_password')
 
         form = PasswordForm(initial={
             'password': password,
