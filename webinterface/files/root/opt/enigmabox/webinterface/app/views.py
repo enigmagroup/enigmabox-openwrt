@@ -220,17 +220,38 @@ def passwords(request):
 
     o = Option()
 
-    if request.POST.get('set_webinterface_password'):
-        o.set_value('webinterface_password', request.POST.get('webinterface_password'))
-        o.config_changed(True)
-
-    if request.POST.get('set_mailbox_password'):
-        o.set_value('mailbox_password', request.POST.get('mailbox_password'))
-        o.config_changed(True)
-
     return render_to_response('passwords/overview.html', {
         'webinterface_password': o.get_value('webinterface_password'),
         'mailbox_password': o.get_value('mailbox_password'),
+    }, context_instance=RequestContext(request))
+
+def password_edit(request, subject):
+
+    o = Option()
+
+    if request.POST.get('submit') == 'save':
+        form = PasswordForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            if subject == 'webinterface':
+                o.set_value('webinterface_password', cd['password'])
+            elif subject == 'mailbox':
+                o.set_value('mailbox_password', cd['password'])
+            o.config_changed(True)
+    else:
+        if subject == 'webinterface':
+            password = o.get_value('webinterface_password')
+        elif subject == 'mailbox':
+            password = o.get_value('mailbox_password')
+
+        form = PasswordForm(initial={
+            'password': password,
+            'password_repeat': password,
+        })
+
+    return render_to_response('passwords/edit.html', {
+        'subject': subject,
+        'form': form,
     }, context_instance=RequestContext(request))
 
 

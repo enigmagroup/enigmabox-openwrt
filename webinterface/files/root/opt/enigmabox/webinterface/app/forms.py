@@ -45,3 +45,16 @@ class PeeringsForm(forms.Form):
     country = forms.CharField(initial='', required=False, min_length=2, max_length=2)
     description = forms.CharField(initial='', required=False)
 
+class PasswordForm(forms.Form):
+    password = forms.CharField(initial='', required=True, max_length=100)
+    password_repeat = forms.CharField(initial='', required=True)
+
+    def clean(self):
+        password = self.cleaned_data.get('password')
+        password_repeat = self.cleaned_data.get('password_repeat')
+
+        if password and password != password_repeat:
+            raise forms.ValidationError("Passwords don't match")
+
+        return self.cleaned_data
+

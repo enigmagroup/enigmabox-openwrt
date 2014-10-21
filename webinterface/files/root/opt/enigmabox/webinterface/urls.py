@@ -20,6 +20,7 @@ urlpatterns = patterns('app.views',
     url(r'^addressbook-global/$', 'addressbook_global'),
 
     # passwords
+    url(r'^passwords/(?P<subject>.*)/$', 'password_edit'),
     url(r'^passwords/$', 'passwords'),
 
     # backup & restore
