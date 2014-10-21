@@ -1,9 +1,9 @@
 #!/bin/sh /etc/rc.common
-# cfengine policies apply service
- 
+# cfengine promises apply service
+
 START=92
- 
+
 start() {
     /usr/sbin/cfengine-apply
 }
- 
+
