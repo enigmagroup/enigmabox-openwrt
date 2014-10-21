@@ -15,7 +15,7 @@
         <fieldset>
 
 {% if subject == 'webinterface' %}
-<p>{% trans 'Password for the <a href="http://box/">web interface</a>' %}. {% trans 'Username is "admin"' %}.</p>
+<p>{% trans 'Password for the <a href="http://box/">web interface</a>' %}.</p>
 {% endif %}
 {% if subject == 'mailbox' %}
 <p>{% trans 'Password for the email account <em>mail@box</em>' %}.</p>
@@ -30,6 +30,15 @@
     <strong>{% trans "Error" %}:</strong>
 {{ form.errors }}
 </div>
+{% endif %}
+
+{% if subject == 'webinterface' %}
+        <div class="control-group">
+          <label class="control-label">{% trans "Username" %}</label>
+          <div class="controls">
+            <input {% form_error form.username.errors %} id="username" name="username" type="input" value="admin" class="input-xlarge uneditable-input" disabled="disabled" />
+          </div>
+        </div>
 {% endif %}
 
         <div class="control-group">
