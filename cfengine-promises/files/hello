@@ -1,0 +1,39 @@
+#!/bin/ash
+################################################################################
+less << EOF
+Hello.
+
+Thank you for joining us in our mission to protect humanity against tyranny
+and oppressive states.
+
+
+Enigmabox - folder structure
+=============================
+
+/box                                - personal data
+/etc/enigmabox                      - enigmabox specific data
+/opt/enigmabox                      - enigmabox applications
+/opt/enigmabox/cfengine-promises    - system configuration templates
+
+
+Enigmabox - commands
+=============================
+
+cfengine-apply              - run CFEngine, apply the configuration
+rebuild-iptables            - apply firewall rules
+setup-cjdns-networking      - manually run network setup script
+speedtest                   - bandwidth test
+
+
+The following commands are available for subscribers:
+
+addressbook.py pull now     - get global addressbook
+addressbook.py push         - publish your address in the directory
+updater check               - check for updates
+updater install             - install a package
+updater apply               - apply updates - this will reboot your box!
+upgrader download           - download newest firmware image
+upgrader verify             - verify firmware image
+upgrader write              - write firmware image
+
+EOF
