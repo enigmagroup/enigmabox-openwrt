@@ -13,12 +13,20 @@
 
 <p>
     {% trans 'Password for the <a href="http://box/">web interface</a>' %}:
+{% if webinterface_password == '' %}
     <span class="label label-default">Unset</span>
+{% else %}
+    <span class="label label-success">Set</span>
+{% endif %}
     <a href="/passwords/webinterface/"><i class="icon icon-pencil"></i> {% trans "Edit" %}</a>
 </p>
 <p>
     {% trans 'Password for the email account <em>mail@box</em>' %}:
+{% if mailbox_password == '' %}
     <span class="label label-default">Unset</span>
+{% else %}
+    <span class="label label-success">Set</span>
+{% endif %}
     <a href="/passwords/mailbox/"><i class="icon icon-pencil"></i> {% trans "Edit" %}</a>
 </p>
 

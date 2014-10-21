@@ -238,9 +238,11 @@ def password_edit(request, subject):
             cd = form.cleaned_data
             o.set_value(subject + '_password', cd['password'])
             o.config_changed(True)
+            return redirect('/passwords/')
     elif request.POST.get('submit') == 'unset':
         o.set_value(subject + '_password', '')
         o.config_changed(True)
+        return redirect('/passwords/')
     else:
         password = o.get_value(subject + '_password')
 
