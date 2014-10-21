@@ -38,3 +38,9 @@
     border: 2px dotted grey;
 }
 
+.credits {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+}
+
