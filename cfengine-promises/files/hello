@@ -1,6 +1,6 @@
 #!/bin/ash
 ################################################################################
-less << EOF
+less -E << EOF
 Hello.
 
 Thank you for joining us in our mission to protect humanity against tyranny
