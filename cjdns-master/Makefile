@@ -53,17 +53,17 @@ define Package/cjdns-master/install
 	cp -rv $(PKG_BUILD_DIR)/contrib/python/cjdnsadmin $(1)/usr/lib/python2.7/
 
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cexec 	$(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cjdnsa 	$(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cjdnslog 	$(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dumptable 	$(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/findnodes 	$(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ip6topk 	$(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/peerStats 	$(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pingAll.py 	$(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pktoip6 	$(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sessionStats 	$(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/trashroutes 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/cexec 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/cjdnsa 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/cjdnslog 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/dumptable 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/findnodes 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/ip6topk 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/peerStats 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/pingAll.py 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/pktoip6 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/sessionStats 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/python/trashroutes 	$(1)/usr/bin/
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cjdns.init $(1)/etc/init.d/cjdns
