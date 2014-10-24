@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cjdns-master
 PKG_VERSION:=2014-09-29-e2b673698e471dbc82b4e9dbc04cb9e16f1f06a6
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -48,6 +48,9 @@ define Package/cjdns-master/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cjdroute 	$(1)/usr/sbin/cjdroute
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/privatetopublic $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/publictoip6 	$(1)/usr/sbin/
+
+	$(INSTALL_DIR) $(1)/usr/bin
+	cp -rv $(PKG_BUILD_DIR)/contrib/python/* /usr/bin/
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cjdns.init $(1)/etc/init.d/cjdns
