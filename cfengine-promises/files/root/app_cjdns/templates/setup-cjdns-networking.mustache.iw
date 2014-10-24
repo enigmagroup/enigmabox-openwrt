@@ -13,7 +13,7 @@ orggatewayfile="/tmp/cjdns_org_gw"
 network_profile="$(cat /etc/enigmabox/network-profile)"
 [[ "$network_profile" = "alix" ]] && clearnet_interface="eth0"
 [[ "$network_profile" = "apu" ]] && clearnet_interface="eth2"
-[[ "$network_profile" = "raspi" ]] && clearnet_interface="wlan0"
+[[ "$network_profile" = "raspi" ]] && clearnet_interface="eth1"
 
 ping="ping -c 5 -W 5"
 cjdns_request_tries="/tmp/cjdns_request_tries"
