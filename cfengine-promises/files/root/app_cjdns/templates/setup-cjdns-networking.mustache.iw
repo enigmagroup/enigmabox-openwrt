@@ -231,6 +231,10 @@ set_status "internet" 0
 set_status "cjdns" 0
 set_status "cjdns_internet" 0
 
+if [[ -e "/sys/class/net/wlan0" ]]; then
+    clearnet_interface=wlan0
+fi
+
 # setup wifi if available
 if [[ -e "/sys/class/net/wlan0" ]]; then
     e "wifi detected"
@@ -257,7 +261,6 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
     if [[ "$opmode" = "client" ]]; then
         iw dev ah0 ibss leave 2> /dev/null
         ifconfig ah0 down
-        clearnet_interface=wlan0
         # check if wlan0 already started
         if [[ "$(ifconfig wlan0 | grep 'inet addr' | wc -l)" -eq 0 ]]; then
             if [[ "$security" = "WPA" ]]; then
