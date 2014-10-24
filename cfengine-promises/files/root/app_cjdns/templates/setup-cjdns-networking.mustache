@@ -244,11 +244,11 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
     e "wifi detected"
 
     if [[ "$opmode" = "mesh" ]]; then
-        ifconfig wlan0 up
-
         # start ad-hoc cjdns
+        ifconfig wlan0 down
         iwconfig wlan0 mode ad-hoc
         iwconfig wlan0 essid cjdns
+        ifconfig wlan0 up
         restart_cjdns
     fi
 
