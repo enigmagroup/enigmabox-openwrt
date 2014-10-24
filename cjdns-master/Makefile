@@ -50,7 +50,7 @@ define Package/cjdns-master/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/publictoip6 	$(1)/usr/sbin/
 
 	$(INSTALL_DIR) $(1)/usr/bin
-	cp -rv $(PKG_BUILD_DIR)/contrib/python/* /usr/bin/
+	cp -rv $(PKG_BUILD_DIR)/contrib/python/* $(1)/usr/bin/
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cjdns.init $(1)/etc/init.d/cjdns
