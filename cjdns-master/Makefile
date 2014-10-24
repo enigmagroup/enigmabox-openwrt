@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cjdns-master
 PKG_VERSION:=2014-09-29-e2b673698e471dbc82b4e9dbc04cb9e16f1f06a6
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -49,8 +49,21 @@ define Package/cjdns-master/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/privatetopublic $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/publictoip6 	$(1)/usr/sbin/
 
+	$(INSTALL_DIR) $(1)/usr/lib/python2.7
+	cp -rv $(PKG_BUILD_DIR)/contrib/python/cjdnsadmin $(1)/usr/lib/python2.7/
+
 	$(INSTALL_DIR) $(1)/usr/bin
-	cp -rv $(PKG_BUILD_DIR)/contrib/python/* $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cexec 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cjdnsa 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cjdnslog 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dumptable 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/findnodes 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ip6topk 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/peerStats 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pingAll.py 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pktoip6 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sessionStats 	$(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/trashroutes 	$(1)/usr/bin/
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cjdns.init $(1)/etc/init.d/cjdns
