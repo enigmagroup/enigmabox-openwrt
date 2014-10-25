@@ -36,18 +36,18 @@
         ]
         "ETHInterface":
         [
-{{#if_meshmode}}
-            {
-                "bind": "wlan0",
-                "beacon": 2,
-            },
-{{/if_meshmode}}
 {{#autopeering}}
             {
                 "bind": "{{interface}}",
                 "beacon": 2,
             },
 {{/autopeering}}
+{{#if_meshmode}}
+            {
+                "bind": "wlan0",
+                "beacon": 2,
+            },
+{{/if_meshmode}}
         ]
     },
 
