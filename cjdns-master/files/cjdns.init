@@ -14,7 +14,7 @@ stop() {
 }
 
 status() {
-    if [[ $(ps | grep cjdroute | wc -l) -gt 0 ]]; then
+    if [[ $(ps | grep cjdroute | wc -l) -gt 1 ]]; then
         echo running
     else
         echo stopped
