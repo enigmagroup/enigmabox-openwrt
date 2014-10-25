@@ -195,6 +195,17 @@ set_network_parameters() {
     defaultroute
 }
 
+check_for_internet() {
+    # check for internet. if only one server with a direct route is pingable,
+    # we have an internet connection
+    for remoteaddress in $remoteaddresses; do
+        if [[ "$($ping "$remoteaddress" | grep 'bytes from')" ]]; then
+            echo true
+            break
+        fi
+    done
+}
+
 set_status() {
     key=$1
     val=$2
@@ -210,19 +221,55 @@ set_status() {
 
 # logic
 
-if [[ -e "/sys/class/net/wlan0" ]]; then
-    clearnet_interface=wlan0
-fi
-
 # ensure radvd is running
 if [[ "$(pidof radvd | wc -l)" -eq 0 ]]; then
     /etc/init.d/radvd restart
 fi
 
+# setup wifi if available
+if [[ -e "/sys/class/net/wlan0" ]]; then
+    e "wifi detected"
+
+    if [[ "$opmode" = "mesh" ]]; then
+        e "opmode: mesh"
+
+        # check if wlan0 has already started
+        if [[ "$(iwconfig wlan0 | grep 'ESSID' | grep 'cjdns' | wc -l)" -eq 0 \
+            || "$(iwconfig wlan0 | grep 'Mode:' | grep 'Ad-Hoc' | wc -l)" -eq 0 ]]; then
+            e "starting ad-hoc mesh"
+            ifconfig wlan0 down
+            iwconfig wlan0 mode ad-hoc
+            iwconfig wlan0 essid cjdns
+            ifconfig wlan0 up
+            restart_cjdns
+        else
+            e "ad-hoc mesh is running fine"
+        fi
+    fi
+
+    if [[ "$opmode" = "client" ]]; then
+        e "opmode: client"
+
+        clearnet_interface=wlan0
+
+        # check if wlan0 has already started
+        if [[ "$(ifconfig wlan0 | grep 'inet addr' | wc -l)" -eq 0 ]]; then
+            if [[ "$security" = "WPA" ]]; then
+                start_wpa
+            else
+                start_wep
+            fi
+        else
+            e "wlan client is running fine"
+        fi
+        #TODO: connect to unencrypted wifi
+    fi
+fi
+
 if [[ "$(gateway_is_up)" == "true" ]]; then
     set_network_parameters
     e "checking internet connectivity over cjdns"
-    if [[ "$($ping 8.8.8.8 | grep 'bytes from')" ]]; then
+    if [[ "$(check_for_internet)" == "true" ]]; then
         echo "We have internet. Good."
         set_status "dhcp" 1
         set_status "internet" 1
@@ -239,33 +286,6 @@ set_status "internet" 0
 set_status "cjdns" 0
 set_status "cjdns_internet" 0
 
-# setup wifi if available
-if [[ -e "/sys/class/net/wlan0" ]]; then
-    e "wifi detected"
-
-    if [[ "$opmode" = "mesh" ]]; then
-        # start ad-hoc cjdns
-        ifconfig wlan0 down
-        iwconfig wlan0 mode ad-hoc
-        iwconfig wlan0 essid cjdns
-        ifconfig wlan0 up
-        restart_cjdns
-        exit
-    fi
-
-    if [[ "$opmode" = "client" ]]; then
-        # check if wlan0 already started
-        if [[ "$(ifconfig wlan0 | grep 'inet addr' | wc -l)" -eq 0 ]]; then
-            if [[ "$security" = "WPA" ]]; then
-                start_wpa
-            else
-                start_wep
-            fi
-        fi
-        #TODO: connect to unencrypted wifi
-    fi
-fi
-
 # request dhcp
 dhcp
 
@@ -273,16 +293,11 @@ if [[ "$(interface_dhcp_success)" == "true" ]]; then
     set_status "dhcp" 1
 fi
 
-# check for internet. if only one server with a direct route is pingable, we have an internet connection
 wehaveinternet="no"
-for remoteaddress in $remoteaddresses; do
-    if [[ "$($ping "$remoteaddress" | grep 'bytes from')" ]]; then
-        echo "internet detected"
-        set_status "internet" 1
-        wehaveinternet="yes"
-        break
-    fi
-done
+if [[ "$(check_for_internet)" == "true" ]]; then
+    set_status "internet" 1
+    wehaveinternet="yes"
+fi
 
 if [[ "$wehaveinternet" == "yes" && "$request_internet" == "yes" ]]; then
     request_cjdns_internet
