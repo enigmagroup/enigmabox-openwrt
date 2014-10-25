@@ -1,14 +1,19 @@
 #!/bin/ash
 ################################################################################
-less -E << EOF
+cat << EOF
 Hello.
 
-Thank you for joining us in our mission to protect humanity against tyranny
-and oppressive states.
+Thank you for joining us in our mission to provide the infrastructure
+for an independent, decentralized network built on secure protocols
+to protect humanity against tyranny and oppressive states.
+
+This is the Enigmabox, providing ready to use applications like telephony
+and email for use over cjdns networks.
+
 
 
 Enigmabox - folder structure
-=============================
+============================
 
 /box                                - personal data
 /etc/enigmabox                      - enigmabox specific data
@@ -16,13 +21,14 @@ Enigmabox - folder structure
 /opt/enigmabox/cfengine-promises    - system configuration templates
 
 
+
 Enigmabox - commands
-=============================
+====================
 
 cfengine-apply              - run CFEngine, apply the configuration
 rebuild-iptables            - apply firewall rules
 setup-cjdns-networking      - manually run network setup script
-speedtest                   - bandwidth test
+speedtest                   - conduct a bandwidth test
 
 
 The following commands are available for subscribers:
@@ -35,5 +41,15 @@ updater apply               - apply updates - this will reboot your box!
 upgrader download           - download newest firmware image
 upgrader verify             - verify firmware image
 upgrader write              - write firmware image
+
+
+
+cjdns - tools
+=============
+
+cjdnslog ''     - watch cjdns at work
+dumptable       - dump all nodes known to this cjdns instance
+findnodes       - details about nodes, e.g. link quality, cjdns version, path
+peerStats       - statistics about your direct peers
 
 EOF
