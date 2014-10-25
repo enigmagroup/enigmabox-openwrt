@@ -250,6 +250,7 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
         iwconfig wlan0 essid cjdns
         ifconfig wlan0 up
         restart_cjdns
+        exit
     fi
 
     if [[ "$opmode" = "client" ]]; then
@@ -287,7 +288,7 @@ if [[ "$wehaveinternet" == "yes" && "$request_internet" == "yes" ]]; then
     request_cjdns_internet
     restart_cjdns
     set_status "cjdns" 1
-    for i in `seq 60 -1 1`; do
+    for i in $(seq 60 -1 1); do
         echo "waiting $i seconds for gateway to come up..."
         if [[ "$(gateway_is_up)" == "true" ]]; then
             e "gateway is up."
@@ -300,7 +301,7 @@ if [[ "$wehaveinternet" == "yes" && "$request_internet" == "yes" ]]; then
         sleep 1
     done
 else
-    e "we are not connected to the internet."
+    e "no internet via cjdns."
     # just ensure that cjdns is running, but DO NOT restart it!
     # since local phone calls may be active.
     start_cjdns
