@@ -73,9 +73,15 @@ def if_updates(object, __=None):
 
 @register.tag
 @condition_tag
-def if_hostid(object, __=None):
+def if_show_upgrader(object, __=None):
     o = Option()
-    return o.get_value('hostid', False)
+    if o.get_value('hostid', False):
+        try:
+            with open('/etc/enigmabox/network-profile', 'r') as f:
+                output = f.read().strip()
+            return output in ['alix', 'apu']
+        except Exception:
+            return False
 
 @register.tag
 @condition_tag
