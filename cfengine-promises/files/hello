@@ -1,6 +1,6 @@
 #!/bin/ash
 ################################################################################
-less -E << EOF
+less << EOF
 Hello.
 
 Thank you for joining us in our mission to provide the infrastructure

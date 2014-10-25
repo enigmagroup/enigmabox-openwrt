@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cfengine-promises
-PKG_VERSION:=0.19.12
+PKG_VERSION:=0.19.13
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -37,8 +37,10 @@ define Package/cfengine-promises/install
 
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/cfengine-apply $(1)/usr/sbin/cfengine-apply
-	$(INSTALL_BIN) ./files/hello $(1)/usr/sbin/hello
-	$(INSTALL_BIN) ./files/speedtest $(1)/usr/sbin/speedtest
+
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) ./files/hello $(1)/usr/bin/hello
+	$(INSTALL_BIN) ./files/speedtest $(1)/usr/bin/speedtest
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cfengine-promises.init $(1)/etc/init.d/cfengine-promises
