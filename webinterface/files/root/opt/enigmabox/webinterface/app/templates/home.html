@@ -28,12 +28,6 @@
 
       <hr />
 
-{% if teletext_enabled == '1' %}
-      <p>Unsere Nachrichtenagentur: <a href="http://text.box/fc80:56b5:b0ac:0c35:8e73:c9d1:5029:a6f2" target="_blank"><strong>N</strong>ews <strong>S</strong>uper <strong>A</strong>ktuell</a> im Teletext</p>
-
-      <hr />
-{% endif %}
-
       <h5>{% trans "System status" %}</h5>
 
         <a disabled="disabled" class="btn btn-{% btn_state netstat.dhcp '1' 'success' 'inverse' %}">{% trans "DHCP" %}</a>
