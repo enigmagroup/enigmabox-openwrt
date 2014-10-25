@@ -75,7 +75,7 @@ class enigmabook extends rcube_addressbook
 				'ID' => $id,
 				'name' => $display_names[$friend],
 				'firstname' => $display_names[$friend],
-				'email' => "mail@$friend"
+				'email' => "mail@$friend.box"
 			);
 			$id++;
 		}
