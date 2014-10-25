@@ -88,6 +88,8 @@ start_wpa() {
 
     ifconfig wlan0 up
     wpa_supplicant -i wlan0 -D wext -c /etc/wpa_supplicant/wpa_supplicant.conf -B
+
+    sleep 2
 }
 
 start_wep() {
@@ -253,7 +255,8 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
         clearnet_interface=wlan0
 
         # check if wlan0 has already started
-        if [[ "$(ifconfig wlan0 | grep 'inet addr' | wc -l)" -eq 0 ]]; then
+        if [[ "$(ifconfig wlan0 | grep 'inet addr' | wc -l)" -eq 0 \
+            || "$(iwconfig wlan0 | grep 'Access Point: Not-Associated' | wc -l)" -gt 0 ]]; then
             if [[ "$security" = "WPA" ]]; then
                 start_wpa
             else
