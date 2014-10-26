@@ -272,7 +272,7 @@ fi
 if [[ "$(gateway_is_up)" == "true" ]]; then
     set_network_parameters
     e "checking internet connectivity over cjdns"
-    if [[ "$(check_for_internet)" == "true" ]]; then
+    if [[ "$($ping 8.8.8.8 | grep 'bytes from')" ]]; then
         echo "We have internet. Good."
         set_status "dhcp" 1
         set_status "internet" 1
