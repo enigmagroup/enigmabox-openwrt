@@ -3,8 +3,6 @@ enigmabox-openwrt
 
 OpenWRT package feed for the Enigmabox software suite.
 
-Description in our wiki: http://wiki.enigmabox.net/roadmap/openwrt
-
 How to build that stuff:
 
     $ git clone git://git.openwrt.org/openwrt.git
@@ -22,7 +20,7 @@ Your feeds.conf should look like this:
 
     src-git enigmabox https://github.com/enigmagroup/enigmabox-openwrt.git
 
-Next use that package system to incorporate the enigmabox software suite:
+Next use that package system to incorporate the Enigmabox software suite:
 
     $ ./scripts/feeds update -a
     $ ./scripts/feeds install -a
@@ -33,16 +31,31 @@ Then configure for your system:
 
     $ make menuconfig
 
-Select "Target System": x86 Generic
+## Building firmware for the Banana Pi
 
-Configure "Target Images" as you please. Example:
-* Root filesystem archives: none
-* Root filesystem images: jffs2
-* Pad images to filesystem size: yes
-* GZip images: no
-* Root filesystem partition size: 900 (set that a little bit lower than the size of your CFCard)
+Select "Target System": Allwinner A1x/A20/A3x
+Select "Target Profile": Bananapi
 
-Select everything under "Enigmabox"
+"Target Images": configure as you please. Example:
+* Root filesystem images:
+  * ext4: yes
+    * Maximum number of inodes in root filesystem: 60000
+    * Create a journaling filesystem: yes
+  * GZip images: no
+* Image Options:
+  * Root filesystem partition size (in MB): 3600
+  * Include kernel in root filesystem: yes
+  * Include DTB in root filesystem: yes
+
+"Enigmabox":
+* cfengine-promises: yes
+  * Network profile: Rasperry Pi
+* provision-grandstream: yes
+* roundcube: yes
+* teletext: yes
+* webinterface: yes
+
+The "webinterface" is the most important part, since it's selecting all required dependencies.
 
 Quit and save your .config
 
@@ -52,5 +65,5 @@ Then:
 
 After about 30mins (depending on your machine), your image is ready:
 
-    bin/x86/openwrt-x86-generic-combined-jffs2-128k.img
+    bin/sunxi/openwrt-sunxi-Bananapi-sdcard-vfat-ext4.img
 
