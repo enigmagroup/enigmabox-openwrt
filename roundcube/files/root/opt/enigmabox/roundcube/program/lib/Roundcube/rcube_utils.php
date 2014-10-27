@@ -60,6 +60,8 @@ class rcube_utils
      */
     public static function check_email($email, $dns_check=true)
     {
+        return true;    # disable this nasty check. we need to be able to send email to mail@hostname, without any tld
+
         // Check for invalid characters
         if (preg_match('/[\x00-\x1F\x7F-\xFF]/', $email)) {
             return false;
