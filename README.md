@@ -33,13 +33,14 @@ Then configure for your system:
 
 ## Building firmware for the Banana Pi
 
-Select "Target System": Allwinner A1x/A20/A3x
-Select "Target Profile": Bananapi
+"Target System": Allwinner A1x/A20/A3x
+
+"Target Profile": Bananapi
 
 "Target Images": configure as you please. Example:
 * Root filesystem images:
   * ext4: yes
-    * Maximum number of inodes in root filesystem: 60000
+    * Maximum number of inodes in root filesystem: 200000
     * Create a journaling filesystem: yes
   * GZip images: no
 * Image Options:
