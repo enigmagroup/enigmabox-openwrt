@@ -2,9 +2,6 @@
 # cjdns networking
 * * * * * /usr/sbin/setup-cjdns-networking &> /dev/null
 
-# updater
-0 */4 * * * /usr/sbin/updater check bg &> /dev/null
-
-# pull address book
-0 3 * * * /usr/sbin/addressbook.py pull &> /dev/null
+# subscriber stuff
+0 */4 * * * /usr/sbin/subscriber-stuff &> /dev/null
 
