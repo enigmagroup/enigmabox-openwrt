@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=provision-grandstream
-PKG_VERSION:=0.2.1
+PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
