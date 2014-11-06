@@ -160,8 +160,14 @@ $ip6tables -P FORWARD DROP
 $ip6tables -A INPUT -i lo -j ACCEPT
 $ip6tables -A OUTPUT -o lo -j ACCEPT
 
-$iptables -X friends-in
-$iptables -N friends-in
+$ip6tables -X internal-in
+$ip6tables -N internal-in
+for interface in $internal_interfaces; do
+    $ip6tables -A internal-in -i "$interface" -j ACCEPT
+done
+
+$ip6tables -X friends-in
+$ip6tables -N friends-in
 {{#addresses}}
 $ip6tables -A friends-in -i tun0 --src {{ipv6}} -j ACCEPT
 {{/addresses}}
