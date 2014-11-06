@@ -11,6 +11,10 @@ network_profile="$(cat /etc/enigmabox/network-profile)"
 
 
 
+################################################################################
+# init
+################################################################################
+
 # reset all
 $iptables -F
 $iptables -t nat -F
@@ -21,32 +25,25 @@ $iptables -P INPUT DROP
 {{^if_missioncontrol}}$iptables -P OUTPUT ACCEPT{{/if_missioncontrol}}
 $iptables -P FORWARD DROP
 
+################################################################################
+# define interfaces + address groups
+################################################################################
+
 # loopback
 $iptables -A INPUT -i lo -j ACCEPT
 $iptables -A OUTPUT -o lo -j ACCEPT
 
-# syncookies
-echo 1 > /proc/sys/net/ipv4/tcp_syncookies
-
-# allow related and established
-$iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
-$iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
-
-{{#if_peering_port}}
-# peering port
-$iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
-{{/if_peering_port}}
-
-# allow OUTPUT for tun0, internal_interfaces, missioncontrol and peerings
-$iptables -A OUTPUT -o tun0 -j ACCEPT   # that is needed for dnsmasq to make dns requests
+$iptables -X internal-in
+$iptables -N internal-in
+for interface in $internal_interfaces; do
+    $iptables -A internal-in -i "$interface" -j ACCEPT
+done
 
 $iptables -X internal-out
 $iptables -N internal-out
 for interface in $internal_interfaces; do
     $iptables -A internal-out -o "$interface" -j ACCEPT
 done
-
-$iptables -A OUTPUT -j internal-out     # asterisk needs this
 
 $iptables -X peering-servers
 $iptables -N peering-servers
@@ -58,18 +55,24 @@ $iptables -A peering-servers --dst {{ip}} -j ACCEPT
 $iptables -A peering-servers --dst {{ip}} -j ACCEPT
 {{/missioncontrol}}
 
-$iptables -A OUTPUT -j peering-servers
-
-# NAT
-$iptables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
-
+################################################################################
+# general rules
 ################################################################################
 
-$iptables -X internal-in
-$iptables -N internal-in
-for interface in $internal_interfaces; do
-    $iptables -A internal-in -i "$interface" -j ACCEPT
-done
+# syncookies
+echo 1 > /proc/sys/net/ipv4/tcp_syncookies
+
+# allow related and established
+$iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+$iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# allow ping
+$iptables -A INPUT -i internal-in -p icmp -m limit --limit 10/second -j ACCEPT
+$iptables -A INPUT -i internal-in -p icmp -j DROP
+
+################################################################################
+# input
+################################################################################
 
 # dhcp server
 $iptables -A INPUT -p udp --dport 67:68 -j internal-in
@@ -96,6 +99,28 @@ $iptables -A INPUT -p tcp --dport 8888 -j internal-in
 
 # grandstream phone provisioning
 $iptables -A INPUT -p tcp --dport 8080 -j internal-in
+
+{{#if_peering_port}}
+# peering port
+$iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
+{{/if_peering_port}}
+
+################################################################################
+# output
+################################################################################
+
+$iptables -A OUTPUT -o tun0 -j ACCEPT   # that is needed for dnsmasq to make dns requests
+
+$iptables -A OUTPUT -j peering-servers
+
+$iptables -A OUTPUT -j internal-out     # asterisk needs this
+
+################################################################################
+# forward
+################################################################################
+
+# NAT
+$iptables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
 
 for interface in $internal_interfaces; do
 
@@ -132,8 +157,8 @@ $ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 $ip6tables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 # allow ping
-$ip6tables -A INPUT -p ipv6-icmp -m limit --limit 10/second -j ACCEPT
-$ip6tables -A INPUT -p ipv6-icmp -j DROP
+$ip6tables -A INPUT -i tun0 -p ipv6-icmp -m limit --limit 10/second -j ACCEPT
+$ip6tables -A INPUT -i tun0 -p ipv6-icmp -j DROP
 
 # allow OUTPUT for tun0
 $ip6tables -A OUTPUT -o tun0 -j ACCEPT
