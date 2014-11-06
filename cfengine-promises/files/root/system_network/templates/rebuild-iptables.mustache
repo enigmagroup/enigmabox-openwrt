@@ -40,9 +40,9 @@ $iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
 # allow OUTPUT for tun0, internal_interfaces, missioncontrol and peerings
 $iptables -A OUTPUT -o tun0 -j ACCEPT   # that is needed for dnsmasq to make dns requests
 
-#for interface in $internal_interfaces; do
-#    $iptables -A OUTPUT -o $interface -j ACCEPT # should be obsolete with RELATED
-#done
+for interface in $internal_interfaces; do
+    $iptables -A OUTPUT -o $interface -j ACCEPT     # asterisk needs this
+done
 
 {{#peerings}}
 $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
