@@ -40,17 +40,25 @@ $iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
 # allow OUTPUT for tun0, internal_interfaces, missioncontrol and peerings
 $iptables -A OUTPUT -o tun0 -j ACCEPT   # that is needed for dnsmasq to make dns requests
 
+$iptables -X internal-out
+$iptables -N internal-out
 for interface in $internal_interfaces; do
-    $iptables -A OUTPUT -o $interface -j ACCEPT     # asterisk needs this
+    $iptables -A internal-out -o "$interface" -j ACCEPT
 done
 
+$iptables -A OUTPUT -j internal-out     # asterisk needs this
+
+$iptables -X peering-servers
+$iptables -N peering-servers
 {{#peerings}}
-$iptables -A OUTPUT --dst {{ip}} -j ACCEPT
+$iptables -A peering-servers --dst {{ip}} -j ACCEPT
 {{/peerings}}
 
 {{#missioncontrol}}
-$iptables -A OUTPUT --dst {{ip}} -j ACCEPT
+$iptables -A peering-servers --dst {{ip}} -j ACCEPT
 {{/missioncontrol}}
+
+$iptables -A OUTPUT -j peering-servers
 
 # NAT
 $iptables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
@@ -60,7 +68,7 @@ $iptables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
 $iptables -X internal-in
 $iptables -N internal-in
 for interface in $internal_interfaces; do
-    $iptables -A -i internal-in "$interface" -j ACCEPT
+    $iptables -A internal-in -i "$interface" -j ACCEPT
 done
 
 # dhcp server
