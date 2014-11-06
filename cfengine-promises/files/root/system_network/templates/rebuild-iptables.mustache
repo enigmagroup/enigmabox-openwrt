@@ -14,17 +14,12 @@ network_profile="$(cat /etc/enigmabox/network-profile)"
 # reset all
 $iptables -F
 $iptables -t nat -F
-$ip6tables -F
-$ip6tables -t nat -F
 
 # defaults
 $iptables -P INPUT DROP
 {{#if_missioncontrol}}$iptables -P OUTPUT DROP{{/if_missioncontrol}}
 {{^if_missioncontrol}}$iptables -P OUTPUT ACCEPT{{/if_missioncontrol}}
 $iptables -P FORWARD DROP
-$ip6tables -P INPUT DROP
-$ip6tables -P OUTPUT DROP
-$ip6tables -P FORWARD DROP
 
 # loopback
 $iptables -A INPUT -i lo -j ACCEPT
@@ -33,17 +28,9 @@ $iptables -A OUTPUT -o lo -j ACCEPT
 # syncookies
 echo 1 > /proc/sys/net/ipv4/tcp_syncookies
 
-# allow ping
-$iptables -A INPUT -p icmp -m limit --limit 10/second -j ACCEPT
-$iptables -A OUTPUT -p icmp -m limit --limit 10/second -j ACCEPT
-$iptables -A INPUT -p icmp -j DROP
-
-$ip6tables -A INPUT -p ipv6-icmp -m limit --limit 10/second -j ACCEPT
-$ip6tables -A INPUT -p ipv6-icmp -j DROP
-
 # allow related and established
 $iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
-$ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+$iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 {{#if_peering_port}}
 # peering port
@@ -51,12 +38,11 @@ $iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
 {{/if_peering_port}}
 
 # allow OUTPUT for tun0, internal_interfaces, missioncontrol and peerings
-$ip6tables -A OUTPUT -o tun0 -j ACCEPT
 $iptables -A OUTPUT -o tun0 -j ACCEPT   # that is needed for dnsmasq to make dns requests
 
-for interface in $internal_interfaces; do
-    $iptables -A OUTPUT -o $interface -j ACCEPT
-done
+#for interface in $internal_interfaces; do
+#    $iptables -A OUTPUT -o $interface -j ACCEPT # should be obsolete with RELATED
+#done
 
 {{#peerings}}
 $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
@@ -66,31 +52,42 @@ $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
 $iptables -A OUTPUT --dst {{ip}} -j ACCEPT
 {{/missioncontrol}}
 
-# nat
+# NAT
 $iptables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
-$ip6tables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
 
 ################################################################################
 
-{{#if_global_availability}}
-# allow calls from everyone
-$ip6tables -A INPUT -i tun0 -p tcp --dport 5060 -j ACCEPT
-$ip6tables -A INPUT -i tun0 -p udp --dport 5060 -j ACCEPT
-{{/if_global_availability}}
+$iptables -X internal-in
+$iptables -N internal-in
+for interface in $internal_interfaces; do
+    $iptables -A -i "$interface" -j ACCEPT
+done
 
-# SIP call tone transmission - RELATED seems not to work :-(
-$ip6tables -A INPUT -i tun0 -p udp -m multiport --dport 10000:20000 -j ACCEPT
+# dhcp server
+$iptables -A INPUT -p udp --sport 67:68 --dport 67:68 -j internal-in
 
-{{#if_teletext_enabled}}
-# teletext
-$ip6tables -A INPUT -i tun0 -p tcp --dport 3838 -j ACCEPT
-$ip6tables -A INPUT -i tun0 -p tcp --sport 3838 -j ACCEPT
-{{/if_teletext_enabled}}
+# allow dns requests to tinyproxy
+$iptables -A INPUT -p udp --sport 1024:65535 --dport 53 -j internal-in
 
-{{#if_addresses}}# addresses{{/if_addresses}}
-{{#addresses}}
-$ip6tables -A INPUT -i tun0 --src {{ipv6}} -j ACCEPT
-{{/addresses}}
+# ssh
+$iptables -A INPUT -p tcp --dport 22 -j internal-in
+
+# webinterface
+$iptables -A INPUT -p tcp --dport 80 -j internal-in
+
+# email
+$iptables -A INPUT -p tcp --dport 25 -j internal-in
+$iptables -A INPUT -p tcp --dport 110 -j internal-in
+$iptables -A INPUT -p tcp --dport 143 -j internal-in
+
+# voip phone
+$iptables -A INPUT -p udp --dport 5060 -j internal-in
+
+# tinyproxy
+$iptables -A INPUT -p tcp --dport 8888 -j internal-in
+
+# grandstream phone provisioning
+$iptables -A INPUT -p tcp --dport 8080 -j internal-in
 
 for interface in $internal_interfaces; do
 
@@ -101,43 +98,74 @@ for interface in $internal_interfaces; do
     $iptables -A FORWARD -i "$interface" -o tun0 -j ACCEPT
     $iptables -A FORWARD -i tun0 -o "$interface" -m state --state RELATED,ESTABLISHED -j ACCEPT
 
+done
+
+
+
+################################################################################
+# IPv6
+################################################################################
+
+# reset all
+$ip6tables -F
+$ip6tables -t nat -F
+
+# defaults
+$ip6tables -P INPUT DROP
+$ip6tables -P OUTPUT DROP
+$ip6tables -P FORWARD DROP
+
+# loopback
+$ip6tables -A INPUT -i lo -j ACCEPT
+$ip6tables -A OUTPUT -o lo -j ACCEPT
+
+# allow ping
+$ip6tables -A INPUT -p ipv6-icmp -m limit --limit 10/second -j ACCEPT
+$ip6tables -A INPUT -p ipv6-icmp -j DROP
+
+# allow related and established
+$ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+$ip6tables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# allow OUTPUT for tun0
+$ip6tables -A OUTPUT -o tun0 -j ACCEPT
+
+# NAT
+$ip6tables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
+
+################################################################################
+
+{{#if_global_availability}}
+# allow calls from everyone
+$ip6tables -A INPUT -i tun0 -p tcp --dport 5060 -j ACCEPT
+$ip6tables -A INPUT -i tun0 -p udp --dport 5060 -j ACCEPT
+{{/if_global_availability}}
+
+## SIP call tone transmission - RELATED seems not to work :-( - test again
+#$ip6tables -A INPUT -i tun0 -p udp -m multiport --dport 10000:20000 -j ACCEPT
+
+{{#if_teletext_enabled}}
+# teletext
+$ip6tables -A INPUT -i tun0 -p tcp --dport 3838 -j ACCEPT
+#$ip6tables -A INPUT -i tun0 -p tcp --sport 3838 -j ACCEPT - test that
+{{/if_teletext_enabled}}
+
+{{#if_addresses}}# addresses{{/if_addresses}}
+{{#addresses}}
+$ip6tables -A INPUT -i tun0 --src {{ipv6}} -j ACCEPT
+{{/addresses}}
+
+for interface in $internal_interfaces; do
+
     # allow hype access
     $ip6tables -A FORWARD -i "$interface" -o tun0 -j ACCEPT
     $ip6tables -A FORWARD -i tun0 -o "$interface" -m state --state RELATED,ESTABLISHED -j ACCEPT
 
     # allow webserver access from LAN
     $ip6tables -A INPUT -i "$interface" -p tcp --dport 80 -j ACCEPT
-    $ip6tables -A OUTPUT -o "$interface" -p tcp --sport 80 -j ACCEPT
-
-    # allow dhcp requests
-    $iptables -A INPUT -p udp -i "$interface" --sport 67:68 --dport 67:68 -j ACCEPT
-
-    # allow dns requests to tinyproxy
-    $iptables -A INPUT -p udp -i "$interface" --sport 1024:65535 --dport 53 -j ACCEPT
-
-    # ssh
-    $iptables -A INPUT -p tcp -i "$interface" --dport 22 -j ACCEPT
-
-    # webinterface
-    $iptables -A INPUT -p tcp -i "$interface" --dport 80 -j ACCEPT
-
-    # email
-    $iptables -A INPUT -p tcp -i "$interface" --dport 25 -j ACCEPT
-    $iptables -A INPUT -p tcp -i "$interface" --dport 110 -j ACCEPT
-    $iptables -A INPUT -p tcp -i "$interface" --dport 143 -j ACCEPT
-
-    # voip phone
-    $iptables -A INPUT -p udp -i "$interface" --dport 5060 -j ACCEPT
-
-    # tinyproxy
-    $iptables -A INPUT -p tcp -i "$interface" --dport 8888 -j ACCEPT
-
-    # grandstream phone provisioning
-    $iptables -A INPUT -p tcp -i "$interface" --dport 8080 -j ACCEPT
+    #$ip6tables -A OUTPUT -o "$interface" -p tcp --sport 80 -j ACCEPT
 
 done
-
-################################################################################
 
 # deny broadcasts (no logging)
 #$iptables -A INPUT -m pkttype --pkt-type broadcast -j DROP
