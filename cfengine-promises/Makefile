@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cfengine-promises
-PKG_VERSION:=1.0.0
-PKG_RELEASE:=5
+PKG_VERSION:=1.0.1
+PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
 
