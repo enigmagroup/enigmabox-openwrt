@@ -67,7 +67,7 @@ $iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 $iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 # allow ping
-$iptables -A INPUT icmp -m limit --limit 10/second -j internal-in
+$iptables -A INPUT -p icmp -m limit --limit 10/second -j internal-in
 
 ################################################################################
 # input
