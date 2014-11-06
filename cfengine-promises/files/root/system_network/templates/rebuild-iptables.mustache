@@ -64,10 +64,10 @@ for interface in $internal_interfaces; do
 done
 
 # dhcp server
-$iptables -A INPUT -p udp --sport 67:68 --dport 67:68 -j internal-in
+$iptables -A INPUT -p udp --dport 67:68 -j internal-in
 
 # allow dns requests to tinyproxy
-$iptables -A INPUT -p udp --sport 1024:65535 --dport 53 -j internal-in
+$iptables -A INPUT -p udp --dport 53 -j internal-in
 
 # ssh
 $iptables -A INPUT -p tcp --dport 22 -j internal-in
