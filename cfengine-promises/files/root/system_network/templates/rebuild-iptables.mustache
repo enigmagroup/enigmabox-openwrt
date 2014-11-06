@@ -60,7 +60,7 @@ $iptables -A POSTROUTING -t nat -o tun0 -j MASQUERADE
 $iptables -X internal-in
 $iptables -N internal-in
 for interface in $internal_interfaces; do
-    $iptables -A -i "$interface" -j ACCEPT
+    $iptables -A -i internal-in "$interface" -j ACCEPT
 done
 
 # dhcp server
