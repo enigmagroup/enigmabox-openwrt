@@ -165,6 +165,12 @@ for interface in $internal_interfaces; do
     $ip6tables -A internal-in -i "$interface" -j ACCEPT
 done
 
+$ip6tables -X internal-out
+$ip6tables -N internal-out
+for interface in $internal_interfaces; do
+    $ip6tables -A internal-out -o "$interface" -j ACCEPT
+done
+
 $ip6tables -X friends-in
 $ip6tables -N friends-in
 {{#addresses}}
@@ -212,6 +218,9 @@ $ip6tables -A INPUT -p tcp --dport 80 -j internal-in
 
 # allow OUTPUT for tun0
 $ip6tables -A OUTPUT -o tun0 -j ACCEPT
+
+# allow router advertisements
+$ip6tables -A OUTPUT -p ipv6-icmp -j internal-out
 
 ################################################################################
 # forward
