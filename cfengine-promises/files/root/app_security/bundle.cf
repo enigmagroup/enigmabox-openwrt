@@ -14,7 +14,7 @@ bundle agent app_security
     webinterface_password::
       "/etc/lighttpd/auth/webinterface.conf"
       create => "true",
-      edit_template => "$(this.promise_dirname)/templates/webinterface.conf",
+      edit_template => "$(this.promise_dirname)/templates/webinterface.conf.mustache",
       classes => if_repaired("restart_lighttpd");
 
       "/etc/lighttpd/auth/webinterface.htpasswd"

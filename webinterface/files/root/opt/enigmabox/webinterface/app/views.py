@@ -1162,6 +1162,7 @@ def cfengine_site(request):
         autopeering = 0
 
     response_data = {
+        'hostid': hostid,
         'cjdns_ipv6': cjdns_ipv6,
         'cjdns_public_key': cjdns_public_key,
         'cjdns_private_key': cjdns_private_key,

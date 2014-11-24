@@ -1,6 +1,7 @@
 from django import template
 from app.models import *
 from condtag import *
+from datetime import datetime, timedelta
 import re
 
 register = template.Library()

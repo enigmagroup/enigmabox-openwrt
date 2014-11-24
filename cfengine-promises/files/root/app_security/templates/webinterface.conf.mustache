@@ -4,7 +4,12 @@ auth.backend.plain.userfile = "/etc/lighttpd/auth/webinterface.htpasswd"
 auth.require = ("" =>
     (
         "method"  => "basic",
+{{#if_hostid}}
+        "realm"   => "Enigmabox Webinterface (Hostid: {{hostid}})",
+{{/if_hostid}}
+{{^if_hostid}}
         "realm"   => "Enigmabox Webinterface",
+{{/if_hostid}}
         "require" => "valid-user"
     )
 )
