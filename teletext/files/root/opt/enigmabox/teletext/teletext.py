@@ -1017,9 +1017,9 @@ def settings():
             image = request.files.get('image', False)
 
             if image:
-                from PIL import open as im_open, ANTIALIAS as im_ANTIALIAS
-                img = im_open(image.file)
-                img.thumbnail((75, 75), im_ANTIALIAS)
+                from PIL import Image
+                img = Image.open(image.file)
+                img.thumbnail((75, 75), Image.ANTIALIAS)
                 img.save('./public/img/profile/' + ipv6 + '.png')
 
             data.set_user_attr(user_id, 'name', username)
