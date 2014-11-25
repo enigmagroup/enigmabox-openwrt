@@ -1017,7 +1017,7 @@ def settings():
             image = request.files.get('image', False)
 
             if image:
-                from Image import open as im_open, ANTIALIAS as im_ANTIALIAS
+                from PIL import open as im_open, ANTIALIAS as im_ANTIALIAS
                 img = im_open(image.file)
                 img.thumbnail((75, 75), im_ANTIALIAS)
                 img.save('./public/img/profile/' + ipv6 + '.png')
