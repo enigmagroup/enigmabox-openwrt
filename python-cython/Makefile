@@ -44,8 +44,9 @@ define Package/python-cython/description
 endef
 
 define Build/Compile
+	# <--no-cython-compile> required, otherwise setup.py calls the target-gcc to create so-files which obviously can't be used by <python> on the host system.
 	$(call Build/Compile/PyMod,., \
-		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" \
+		install --no-cython-compile --prefix="/usr" --root="$(PKG_INSTALL_DIR)" \
 	)
 endef
 
@@ -71,8 +72,17 @@ define Package/python-cython/install
 	$(SED) \
 		's,^#!.*,#!/usr/bin/env python$(PYTHON_BINABI),g' \
 		$(1)/usr/bin/cython
-
-
 endef
+
+define Host/Compile
+	$(call Host/Compile/PyMod,., \
+		install --no-cython-compile --prefix="/usr" --root="$(STAGING_DIR_HOST)" \
+	)
+endef
+
+define Host/Install
+endef
+
+$(eval $(call HostBuild))
 
 $(eval $(call BuildPackage,python-cython))
