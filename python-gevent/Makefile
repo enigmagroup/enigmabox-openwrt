@@ -36,30 +36,26 @@ define Package/python-gevent/description
 endef
 
 define Build/Compile
-	(cd $(PKG_BUILD_DIR)/libev; \
-		$(TARGET_CONFIGURE_OPTS) \
-                CFLAGS="$(TARGET_CFLAGS)" \
-                CPPFLAGS="-I$(STAGING_DIR)/usr/include -I$(STAGING_DIR)/include" \
-                LDFLAGS="-L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib" \
-		$(PKG_BUILD_DIR)/libev/configure \
-			--target=$(GNU_TARGET_NAME) \
-                        --host=$(GNU_TARGET_NAME) \
-                        --build=$(GNU_HOST_NAME) \
-                        --prefix=/usr \
-                        --without-libiconv-prefix \
-                        --without-libintl-prefix \
-                        --disable-nls \
-	);
-	$(call Build/Compile/PyMod,,install --prefix="$(PKG_INSTALL_DIR)/usr", \
-		CYTHON="$(STAGING_DIR_HOST)/usr/bin/cython" \
+	$(call Build/Compile/PyMod,., \
+		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" \
 	)
+endef
+
+define Build/InstallDev
+	$(INSTALL_DIR) $(STAGING_DIR)$(PYTHON_PKG_DIR)
+	$(CP) \
+		$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
+		$(STAGING_DIR)$(PYTHON_PKG_DIR)/
+	[ ! -e $(PKG_INSTALL_DIR)/usr/include ] || $(CP) \
+		$(PKG_INSTALL_DIR)/usr/include/* \
+		$(STAGING_DIR)/usr/include/
 endef
 
 define Package/python-gevent/install
 	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
 	$(CP) \
-	    $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
-	    $(1)$(PYTHON_PKG_DIR)
+		$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
+		$(1)$(PYTHON_PKG_DIR)
 endef
 
 $(eval $(call BuildPackage,python-gevent))
