@@ -57,7 +57,8 @@ define Build/Compile
                         --without-libintl-prefix \
                         --disable-nls \
 	);
-	$(call Build/Compile/PyMod,,install --prefix="$(PKG_INSTALL_DIR)/usr", \
+	$(call Build/Compile/PyMod,., \
+		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)", \
 		CYTHON="$(STAGING_DIR_HOST)/usr/bin/cython" \
 	)
 endef
