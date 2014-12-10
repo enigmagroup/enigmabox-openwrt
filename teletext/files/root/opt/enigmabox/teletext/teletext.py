@@ -1795,7 +1795,7 @@ for i in range(100):
 
 if __name__ == "__main__":
     debug(True)
-    run(host='127.0.0.1', port=8008, server='gevent', reloader=True)
+    run(host='127.0.0.1', port=8008, server='gevent')
 
 app = default_app()
 
