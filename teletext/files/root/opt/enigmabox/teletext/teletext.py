@@ -1787,8 +1787,8 @@ def notification_worker():
 # spawn the write worker
 spawn(write_worker)
 
-# spawn 100 notification workers
-for i in range(100):
+# spawn 3 notification workers (>10 = segfault !?)
+for i in range(3):
     spawn(notification_worker)
 
 
