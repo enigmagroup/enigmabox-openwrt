@@ -41,64 +41,44 @@ endef
 define Build/Compile
 	echo build-compile
 	# <--no-cython-compile> required, otherwise setup.py calls the target-gcc to create so-files which obviously can't be used by <python> on the host system.
-	$(call Build/Compile/PyMod,., \
-		install --no-cython-compile --prefix="$(PKG_INSTALL_DIR)/usr", \
-	)
+	$(call Build/Compile/PyMod,,install --single-version-externally-managed --no-cython-compile --prefix="/usr" --root="$(PKG_INSTALL_DIR)")
 endef
 
+#$(call Build/Compile/PyMod,,install --single-version-externally-managed --no-cython-compile --prefix="/usr" --root="$(PKG_INSTALL_DIR)")
+
 define Build/InstallDev
+	echo build-installdev
 	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
 	$(CP) \
-	    $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
+	    $(PKG_INSTALL_DIR)/usr/lib/python2.7/site-packages/* \
 	    $(1)$(PYTHON_PKG_DIR)
+	$(CP) \
+	    $(PKG_INSTALL_DIR)/usr/lib/python2.7/site-packages/* \
+	    $(STAGING_DIR_HOST)/lib/python2.7/site-packages/
 endef
 
 # TODO: this should be moved to python package
 # $(1) => build subdir
 # $(2) => additional arguments to setup.py
 # $(3) => additional variables
-#define Host/Compile/PyMod
-#        $(call HostPython, \
-#                cd $(HOST_BUILD_DIR)/$(strip $(1)); \
-#                CFLAGS="$(HOST_CFLAGS)" \
-#                CPPFLAGS="$(HOST_CPPFLAGS)" \
-#                LDFLAGS="$(HOST_LDFLAGS)" \
-#                $(3) \
-#                , \
-#                ./setup.py $(2) \
-#        )
-#endef
-
-# $(1) => build subdir
-# $(2) => additional arguments to setup.py
-# $(3) => additional variables
 define Host/Compile/PyMod
-	$(INSTALL_DIR) $(PKG_INSTALL_DIR)/$(PYTHON_PKG_DIR)
-	$(call HostPython, \
-		cd $(HOST_BUILD_DIR)/$(strip $(1)); \
-		CC="$(TARGET_CC)" \
-		CCSHARED="$(TARGET_CC) $(FPIC)" \
-		LD="$(TARGET_CC)" \
-		LDSHARED="$(TARGET_CC) -shared" \
-		CFLAGS="$(HOST_CFLAGS)" \
-		CPPFLAGS="$(HOST_CPPFLAGS) -I$(PYTHON_INC_DIR)" \
-		LDFLAGS="$(HOST_LDFLAGS) -lpython$(PYTHON_VERSION)" \
-		_PYTHON_HOST_PLATFORM="linux-$(ARCH)" \
-		__PYVENV_LAUNCHER__="/usr/bin/$(PYTHON)" \
-		$(3) \
-		, \
-		./setup.py $(2) \
-	)
-	find $(PKG_INSTALL_DIR) -name "*\.pyc" -o -name "*\.pyo" | xargs rm -f
+        $(call HostPython, \
+                cd $(HOST_BUILD_DIR)/$(strip $(1)); \
+                CFLAGS="$(HOST_CFLAGS)" \
+                CPPFLAGS="$(HOST_CPPFLAGS)" \
+                LDFLAGS="$(HOST_LDFLAGS)" \
+                $(3) \
+                , \
+                ./setup.py $(2) \
+        )
 endef
 
 define Host/Compile
 	echo host-compile
-	$(call Host/Compile/PyMod,., \
-		install --no-cython-compile --prefix="$(STAGING_DIR_HOST)/usr", \
-		PYTHONPATH="/root:$(STAGING_DIR_HOST)/usr/lib/python2.7/site-packages/:/root:$(PYTHON_LIB_DIR):$(STAGING_DIR_ROOT)/$(PYTHON_PKG_DIR)"; \
-	)
+	$(call Host/Compile/PyMod,,install --single-version-externally-managed --no-cython-compile --prefix="/usr" --root="$(STAGING_DIR_HOST)")
 endef
+
+#$(call Host/Compile/PyMod,,install --single-version-externally-managed --no-cython-compile --prefix="/usr" --root="$(STAGING_DIR_HOST)")
 
 define Host/Install
 endef

@@ -37,7 +37,8 @@ endef
 
 define Build/Compile
 	$(call Build/Compile/PyMod,., \
-		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" \
+		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)", \
+		CYTHON="$(STAGING_DIR_HOST)/usr/bin/cython", \
 	)
 endef
 
