@@ -16,7 +16,7 @@ Your feeds.conf should look like this:
     src-git oldpackages http://git.openwrt.org/packages.git
     src-git management https://github.com/openwrt-management/packages.git
     src-git routing https://github.com/openwrt-routing/packages.git
-    src-git telephony http://git.openwrt.org/feed/telephony.git
+    src-git telephony https://github.com/openwrt/telephony.git
 
     src-git enigmabox https://github.com/enigmagroup/enigmabox-openwrt.git
 
