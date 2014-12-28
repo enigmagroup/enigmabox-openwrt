@@ -32,6 +32,19 @@ endef
 define Build/Configure
 endef
 
+## NEON
+#define Build/Compile
+#	CROSS="true" \
+#	CFLAGS="-O2 -march=armv7-a -mtune=cortex-a8 -mfpu=neon -ftree-vectorize -ffast-math -mfloat-abi=hard -marm -Wno-error=maybe-uninitialized" \
+#	NO_PIE="true" \
+#	Seccomp_NO="true" \
+#	CC="$(TARGET_CC)" \
+#	ARCH="$(ARCH)" \
+#	LDFLAGS="$(CFLAGS) -lssp" \
+#	$(PKG_BUILD_DIR)/do
+#endef
+
+# regular
 define Build/Compile
 	CROSS="true" \
 	CFLAGS="$(TARGET_CFLAGS)" \
