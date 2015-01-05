@@ -989,6 +989,7 @@ def cfengine_site(request):
     cjdns_public_key = o.get_value('public_key')
     cjdns_private_key = o.get_value('private_key')
     selected_country = o.get_value('selected_country', 'ch')
+    hostid = ''
     addresses = []
     missioncontrol = []
     internet_gateway = []
