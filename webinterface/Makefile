@@ -13,7 +13,7 @@ define Package/webinterface
   URL:=http://enigmabox.net/en/
   DEPENDS:=+cjdns-master
   DEPENDS+= +curl +syslog-ng +zip +unzip +shadow-usermod +kmod-ipt-nat6 +isc-dhcp-server-ipv4 +radvd +gesftpserver
-  DEPENDS+= +python +python-django-1.4 +python-gunicorn +python-six +python-gevent +python-openssl +python-requests +django-south +python-expat +python-json +python-sqlite3 +python-unidecode +python-beanstalkc +python-imaging-library +pyyaml
+  DEPENDS+= +python +python-django-1.4 +python-gunicorn +python-six +python-gevent +python-requests +django-south +python-json +python-unidecode +python-beanstalkc +pyyaml
   DEPENDS+= +asterisk11 +asterisk11-sounds +asterisk11-codec-gsm +asterisk11-format-gsm +asterisk11-res-srtp +asterisk11-res-musiconhold
   DEPENDS+= +php5 +php5-fastcgi +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-mysql +php5-mod-session +php5-mod-iconv +php5-mod-json +@PHP5_FILTER
   DEPENDS+= +mysql-server
