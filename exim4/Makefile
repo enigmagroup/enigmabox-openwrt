@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=exim4
-PKG_VERSION:=4.84
+PKG_VERSION:=4.85
 PKG_RELEASE:=1
 
 PKG_SOURCE:=exim-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://mirror.switch.ch/ftp/mirror/exim/exim/exim4/
-PKG_MD5SUM:=25e2721081e6df3d8e1bc0cf89829bb2
+PKG_MD5SUM:=ebae28762b6f125726283dc9434e8709
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/exim-$(PKG_VERSION)
 
