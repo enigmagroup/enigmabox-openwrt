@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=exim-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://mirror.switch.ch/ftp/mirror/exim/exim/exim4/
-PKG_MD5SUM:=ebae28762b6f125726283dc9434e8709
+PKG_MD5SUM:=56c1840a1491e03b3bff25855de3c17c
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/exim-$(PKG_VERSION)
 
