@@ -275,6 +275,10 @@ def updates(request):
         o.toggle_value('autoupdates')
         o.config_changed(True)
 
+    if request.POST.get('check'):
+        Popen(["/usr/sbin/updater", "check"], stdout=PIPE).communicate()[0]
+        return redirect('/updates/')
+
     if request.POST.get('apply_updates'):
         o.set_value('updater_running', True)
         output_window = True

@@ -7,7 +7,8 @@
 
       <h1>{% trans "Updates" %}</h1>
 
-<h2>&nbsp;</h2>
+<p>{% trans "Automatic and manual updates." %}</p>
+<br />
 
 <form method="post" class="form-horizontal">
 {% csrf_token %}
@@ -21,6 +22,13 @@
 {% else %}
     <button id="autoupdates" name="autoupdates" class="btn btn-inverse" value="0">{% trans "Disabled" %}</button>
 {% endif %}
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label" for="check">{% trans "Manual updates" %}:</label>
+  <div class="controls">
+      <button name="check" class="btn btn-primary" value="1">Check for updates</button>
   </div>
 </div>
 
