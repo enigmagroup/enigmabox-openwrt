@@ -7,6 +7,29 @@
 
       <h1>{% trans "Updates" %}</h1>
 
+<h2>&nbsp;</h2>
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="autoupdates">{% trans "Automatic updates" %}:</label>
+  <div class="controls">
+{% if autoupdates == '1' %}
+    <button id="autoupdates" name="autoupdates" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+    <button id="autoupdates" name="autoupdates" class="btn btn-inverse" value="0">{% trans "Disabled" %}</button>
+{% endif %}
+  </div>
+</div>
+
+</form>
+
+{% if upgradables|length > 0 %}
+
+<h2>&nbsp;</h2>
+
     <table class="table table-hover table-striped table-bordered">
         <thead>
           <tr>
@@ -32,6 +55,8 @@
         <button id="button-run" name="apply_updates" type="text" class="btn btn-danger confirmation" value="apply">{% trans "Install updates" %}</button>
         <span class="loader" style="display: none;">&nbsp;{% trans "Please wait" %}...&nbsp;<img src="/media/img/ajax-loader.gif" alt="ajax loader" /></span>
     </form>
+
+{% endif %}
 
 {% if output_window %}
     <div id="loader-hint" data-value="{{ loader_hint }}"></div>

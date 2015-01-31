@@ -67,10 +67,7 @@ def if_config_changed(object, __=None):
 @condition_tag
 def if_updates(object, __=None):
     o = Option()
-    uc = o.get_value('updates_count', False)
-    if uc == '0':
-        uc = False
-    return uc
+    return o.get_value('hostid', False)
 
 @register.tag
 @condition_tag

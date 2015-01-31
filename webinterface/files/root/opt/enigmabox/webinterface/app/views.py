@@ -268,14 +268,24 @@ def updates(request):
     loader_hint = ''
     output_type = 'updater_running'
 
+    if o.get_value('autoupdates', None) == None:
+        o.set_value('autoupdates', '1')
+
+    if request.POST.get('autoupdates'):
+        o.toggle_value('autoupdates')
+        o.config_changed(True)
+
     if request.POST.get('apply_updates'):
         o.set_value('updater_running', True)
         output_window = True
         loader_hint = 'run'
         Popen(["/usr/sbin/updater", "apply", "bg"], stdout=PIPE)
 
-    f = open('/tmp/updates_output', 'r')
-    upgr_content = f.read()
+    try:
+        f = open('/tmp/updates_output', 'r')
+        upgr_content = f.read()
+    except Exception:
+        upgr_content = ''
 
     upgradables = []
     for line in upgr_content.split('\n'):
@@ -287,6 +297,7 @@ def updates(request):
         'loader_hint': loader_hint,
         'output_type': output_type,
         'upgradables': upgradables,
+        'autoupdates': o.get_value('autoupdates'),
     }, context_instance=RequestContext(request))
 
 
@@ -1171,6 +1182,7 @@ def cfengine_site(request):
         'global_addresses': global_addresses,
         'global_availability': o.get_value('global_availability', 0),
         'missioncontrol': missioncontrol,
+        'autoupdates': o.get_value('autoupdates', '1'),
         'wlan_ssid': o.get_value('wlan_ssid'),
         'wlan_opmode': wlan_opmode,
         'meshmode': meshmode,
