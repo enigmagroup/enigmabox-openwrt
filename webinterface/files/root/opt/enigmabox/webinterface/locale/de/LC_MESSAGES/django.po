@@ -5,17 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-02 10:24+0200\n"
-"PO-Revision-Date: 2014-10-02 10:37+0100\n"
+"POT-Creation-Date: 2015-02-01 10:52+0100\n"
+"PO-Revision-Date: 2015-02-01 10:53+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Agent 42 <42@enigmabox.net>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.10\n"
 
 #: settings.py:41
 msgid "German"
@@ -29,27 +30,27 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:611
+#: app/views.py:669
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:612
+#: app/views.py:670
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:613
+#: app/views.py:671
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:614
+#: app/views.py:672
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:615
+#: app/views.py:673
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:616
+#: app/views.py:674
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
@@ -82,8 +83,9 @@ msgstr "System"
 msgid "Addressbook"
 msgstr "Adressbuch"
 
-#: app/templates/base.html:58 app/templates/passwords/overview.html:8
-#: app/templates/passwords/overview.html:16
+#: app/templates/base.html:58 app/templates/passwords/edit.html:9
+#: app/templates/passwords/overview.html:8
+#: app/templates/passwords/overview.html:12
 msgid "Passwords"
 msgstr "Passwörter"
 
@@ -101,7 +103,7 @@ msgstr "Aktualisierungen"
 msgid "Firmware upgrade"
 msgstr "Firmwareaktualisierung"
 
-#: app/templates/base.html:69 app/templates/home.html:40
+#: app/templates/base.html:69 app/templates/home.html:34
 msgid "Internet"
 msgstr "Internet"
 
@@ -161,42 +163,43 @@ msgstr "Anwendungen"
 msgid "Webmail"
 msgstr "Webmail"
 
-#: app/templates/home.html:37
+#: app/templates/home.html:31
 msgid "System status"
 msgstr "Systemstatus"
 
-#: app/templates/home.html:39
+#: app/templates/home.html:33
 msgid "DHCP"
 msgstr "DHCP"
 
-#: app/templates/home.html:41
+#: app/templates/home.html:35
 msgid "cjdns"
 msgstr "cjdns"
 
-#: app/templates/home.html:42
+#: app/templates/home.html:36
 msgid "Internet via cjdns"
 msgstr "Internet via cjdns"
 
-#: app/templates/home.html:46
+#: app/templates/home.html:40
 msgid "Connection info"
 msgstr "Verbindungsinfos"
 
-#: app/templates/home.html:46
+#: app/templates/home.html:40
 msgid "SSH access"
 msgstr "SSH-Zugang"
 
-#: app/templates/home.html:47
+#: app/templates/home.html:41 app/templates/passwords/edit.html:37
 msgid "Username"
 msgstr "Benutzername"
 
-#: app/templates/home.html:48 app/templates/peerings/detail.html:49
-#: app/templates/peerings/detail.html:51
+#: app/templates/home.html:42 app/templates/passwords/edit.html:45
+#: app/templates/passwords/edit.html:47 app/templates/passwords/edit.html:54
+#: app/templates/peerings/detail.html:49 app/templates/peerings/detail.html:51
 #: app/templates/peerings/overview.html:61
 #: app/templates/wlan_settings/overview.html:61
 msgid "Password"
 msgstr "Passwort"
 
-#: app/templates/home.html:49
+#: app/templates/home.html:43
 msgid "Server"
 msgstr "Server"
 
@@ -204,7 +207,7 @@ msgstr "Server"
 #: app/templates/addressbook/overview-global-edit.html:23
 #: app/templates/addressbook/overview-global.html:54
 #: app/templates/addressbook/overview.html:53
-#: app/templates/peerings/detail.html:26
+#: app/templates/passwords/edit.html:30 app/templates/peerings/detail.html:26
 msgid "Error"
 msgstr "Fehler"
 
@@ -235,7 +238,7 @@ msgstr "IPv6-Adresse"
 #: app/templates/addressbook/detail.html:54
 #: app/templates/addressbook/detail.html:56
 #: app/templates/addressbook/overview-global-edit.html:38
-#: app/templates/addressbook/overview-global-edit.html:40
+#: app/templates/addressbook/overview-global-edit.html:42
 #: app/templates/addressbook/overview-global.html:69
 #: app/templates/addressbook/overview.html:22
 #: app/templates/addressbook/overview.html:60
@@ -243,26 +246,26 @@ msgid "Phone number"
 msgstr "Telefonnummer"
 
 #: app/templates/addressbook/detail.html:64
-#: app/templates/addressbook/overview-global-edit.html:48
-#: app/templates/peerings/detail.html:67
+#: app/templates/addressbook/overview-global-edit.html:51
+#: app/templates/passwords/edit.html:62 app/templates/peerings/detail.html:67
 #: app/templates/peerings/overview.html:70
 #: app/templates/webfilter/overview.html:114
 msgid "Save"
 msgstr "Speichern"
 
 #: app/templates/addressbook/detail.html:65
-#: app/templates/addressbook/overview-global-edit.html:49
-#: app/templates/peerings/detail.html:68
+#: app/templates/addressbook/overview-global-edit.html:52
+#: app/templates/passwords/edit.html:63 app/templates/peerings/detail.html:68
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #: app/templates/addressbook/detail.html:71
-#: app/templates/addressbook/overview-global-edit.html:55
+#: app/templates/addressbook/overview-global-edit.html:58
 msgid "Delete phone number"
 msgstr "Telefonnummer löschen"
 
 #: app/templates/addressbook/detail.html:75
-#: app/templates/addressbook/overview-global-edit.html:59
+#: app/templates/addressbook/overview-global-edit.html:62
 #: app/templates/peerings/detail.html:80
 msgid "Delete"
 msgstr "Löschen"
@@ -303,6 +306,8 @@ msgid "phone"
 msgstr "Telefon"
 
 #: app/templates/addressbook/overview-global.html:32
+#: app/templates/passwords/overview.html:21
+#: app/templates/passwords/overview.html:30
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -312,6 +317,7 @@ msgid "Status"
 msgstr "Status"
 
 #: app/templates/addressbook/overview-global.html:35
+#: app/templates/passwords/edit.html:73
 msgid "Unset"
 msgstr "Undefiniert"
 
@@ -331,6 +337,7 @@ msgstr "Abgelehnt"
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
+#: app/templates/updates/overview.html:23
 #: app/templates/webfilter/overview.html:39
 #: app/templates/webfilter/overview.html:56
 #: app/templates/webfilter/overview.html:68
@@ -339,14 +346,13 @@ msgstr "Abgelehnt"
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: app/templates/addressbook/overview-global.html:74
-#: app/templates/addressbook/overview.html:28
-msgid "My address"
-msgstr "Meine Adresse"
-
 #: app/templates/addressbook/overview.html:9
 msgid "Managing contacts and assigning names and numbers"
 msgstr "Verwalten von Kontakten, Zuweisen von Namen und Telefonnummern."
+
+#: app/templates/addressbook/overview.html:28
+msgid "My address"
+msgstr "Meine Adresse"
 
 #: app/templates/addressbook/overview.html:48
 msgid "Add contact"
@@ -497,7 +503,7 @@ msgstr "Zurück"
 msgid "Changes successfully applied."
 msgstr "Änderungen erfolgreich angewendet."
 
-#: app/templates/changes/apply.html:16 app/templates/updates/overview.html:33
+#: app/templates/changes/apply.html:16 app/templates/updates/overview.html:64
 msgid "Please wait"
 msgstr "Bitte warten"
 
@@ -556,30 +562,27 @@ msgstr ""
 "Hinweis: Es kann nach einem Länderwechel etwas dauern, bis alle Adressen im "
 "Adressbuch wieder erreichbar sind."
 
-#: app/templates/passwords/overview.html:10
-msgid "Set passwords. Empty value: Password is inactive."
-msgstr "Passwörter setzen. Leerer Wert = Passwort ist nicht aktiv."
+#: app/templates/passwords/edit.html:18
+#: app/templates/passwords/overview.html:15
+msgid "Password for the <a href=\"http://box/\">web interface</a>"
+msgstr "Passwort für das <a href=\"http://box/\">Webinterface</a>"
 
-#: app/templates/passwords/overview.html:20
-msgid "Webinterface"
-msgstr "Webinterface"
-
-#: app/templates/passwords/overview.html:23
-#: app/templates/passwords/overview.html:41
-msgid "Set"
-msgstr "Setzen"
-
+#: app/templates/passwords/edit.html:21
 #: app/templates/passwords/overview.html:24
-msgid "Password for the Webinterface"
-msgstr "Passwort für das Webinterface"
+msgid "Password for the email account <em>mail@box</em>"
+msgstr "Passwort für das Mailkonto <em>mail@box</em>"
 
-#: app/templates/passwords/overview.html:25
-msgid "Username is"
-msgstr "Benutzername ist"
+#: app/templates/passwords/edit.html:52
+msgid "Repeat password"
+msgstr "Passwort wiederholen"
 
-#: app/templates/passwords/overview.html:42
-msgid "Password for the email account"
-msgstr "Passwort für das Mailkonto"
+#: app/templates/passwords/edit.html:69
+msgid "Unset password"
+msgstr "Passwort entfernen"
+
+#: app/templates/passwords/overview.html:10
+msgid "Set passwords and protect the administration interface from access."
+msgstr "Passwörter setzen, um die Administrationsoberfläche zu schützen."
 
 #: app/templates/peerings/detail.html:20
 msgid "Insert connection data to your peer"
@@ -640,6 +643,7 @@ msgstr "Eingehendes Peering"
 #: app/templates/peerings/overview.html:44
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
+#: app/templates/updates/overview.html:21
 #: app/templates/webfilter/overview.html:37
 #: app/templates/webfilter/overview.html:54
 #: app/templates/webfilter/overview.html:66
@@ -736,28 +740,44 @@ msgstr ""
 msgid "Enable Teletext"
 msgstr "Teletext aktivieren"
 
-#: app/templates/updates/overview.html:13
+#: app/templates/updates/overview.html:10
+msgid "Automatic and manual updates."
+msgstr "Automatische und manuelle Aktualisierungen."
+
+#: app/templates/updates/overview.html:18
+msgid "Automatic updates"
+msgstr "Automatische Aktualisierungen"
+
+#: app/templates/updates/overview.html:29
+msgid "Manual updates"
+msgstr "Manuelle Aktualisierungen"
+
+#: app/templates/updates/overview.html:31
+msgid "Check for updates"
+msgstr "Auf Aktualisierungen prüfen"
+
+#: app/templates/updates/overview.html:44
 msgid "Package"
 msgstr "Paket"
 
-#: app/templates/updates/overview.html:14
+#: app/templates/updates/overview.html:45
 msgid "Installed version"
 msgstr "Installierte version"
 
-#: app/templates/updates/overview.html:15
+#: app/templates/updates/overview.html:46
 msgid "New version"
 msgstr "Neue Version"
 
-#: app/templates/updates/overview.html:31
+#: app/templates/updates/overview.html:62
 msgid "Updates applied."
 msgstr "Aktualisierungen installiert."
 
-#: app/templates/updates/overview.html:31
+#: app/templates/updates/overview.html:62
 #: app/templates/wlan_settings/scan.html:13
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-#: app/templates/updates/overview.html:32
+#: app/templates/updates/overview.html:63
 msgid "Install updates"
 msgstr "Aktualisierungen installieren"
 
@@ -926,3 +946,15 @@ msgstr "Verbinden"
 #: app/templates/wlan_settings/scan.html:22
 msgid "Signal"
 msgstr "Signal"
+
+#~ msgid "Set passwords. Empty value: Password is inactive."
+#~ msgstr "Passwörter setzen. Leerer Wert = Passwort ist nicht aktiv."
+
+#~ msgid "Webinterface"
+#~ msgstr "Webinterface"
+
+#~ msgid "Set"
+#~ msgstr "Setzen"
+
+#~ msgid "Username is"
+#~ msgstr "Benutzername ist"

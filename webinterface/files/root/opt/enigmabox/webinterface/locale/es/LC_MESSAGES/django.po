@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-02 10:24+0200\n"
+"POT-Creation-Date: 2015-02-01 10:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,28 +30,28 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:611
+#: app/views.py:669
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:612
+#: app/views.py:670
 msgid "Sweden"
 msgstr ""
 
-#: app/views.py:613
+#: app/views.py:671
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:614
+#: app/views.py:672
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:615
+#: app/views.py:673
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:616
+#: app/views.py:674
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
@@ -84,8 +84,9 @@ msgstr "Sistema"
 msgid "Addressbook"
 msgstr "Libreta de direcciones"
 
-#: app/templates/base.html:58 app/templates/passwords/overview.html:8
-#: app/templates/passwords/overview.html:16
+#: app/templates/base.html:58 app/templates/passwords/edit.html:9
+#: app/templates/passwords/overview.html:8
+#: app/templates/passwords/overview.html:12
 msgid "Passwords"
 msgstr "Contraseñas"
 
@@ -103,7 +104,7 @@ msgstr ""
 msgid "Firmware upgrade"
 msgstr ""
 
-#: app/templates/base.html:69 app/templates/home.html:40
+#: app/templates/base.html:69 app/templates/home.html:34
 msgid "Internet"
 msgstr "Internet"
 
@@ -165,42 +166,43 @@ msgstr "Aplicaciones"
 msgid "Webmail"
 msgstr "E mail web"
 
-#: app/templates/home.html:37
+#: app/templates/home.html:31
 msgid "System status"
 msgstr "Estado de sistema"
 
-#: app/templates/home.html:39
+#: app/templates/home.html:33
 msgid "DHCP"
 msgstr "DHCP"
 
-#: app/templates/home.html:41
+#: app/templates/home.html:35
 msgid "cjdns"
 msgstr "cjdns"
 
-#: app/templates/home.html:42
+#: app/templates/home.html:36
 msgid "Internet via cjdns"
 msgstr "Internet por cjdns"
 
-#: app/templates/home.html:46
+#: app/templates/home.html:40
 msgid "Connection info"
 msgstr "Información conexión"
 
-#: app/templates/home.html:46
+#: app/templates/home.html:40
 msgid "SSH access"
 msgstr "Dirección SSH"
 
-#: app/templates/home.html:47
+#: app/templates/home.html:41 app/templates/passwords/edit.html:37
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: app/templates/home.html:48 app/templates/peerings/detail.html:49
-#: app/templates/peerings/detail.html:51
+#: app/templates/home.html:42 app/templates/passwords/edit.html:45
+#: app/templates/passwords/edit.html:47 app/templates/passwords/edit.html:54
+#: app/templates/peerings/detail.html:49 app/templates/peerings/detail.html:51
 #: app/templates/peerings/overview.html:61
 #: app/templates/wlan_settings/overview.html:61
 msgid "Password"
 msgstr "Contraseña"
 
-#: app/templates/home.html:49
+#: app/templates/home.html:43
 msgid "Server"
 msgstr "Servidor"
 
@@ -208,7 +210,7 @@ msgstr "Servidor"
 #: app/templates/addressbook/overview-global-edit.html:23
 #: app/templates/addressbook/overview-global.html:54
 #: app/templates/addressbook/overview.html:53
-#: app/templates/peerings/detail.html:26
+#: app/templates/passwords/edit.html:30 app/templates/peerings/detail.html:26
 msgid "Error"
 msgstr "Error"
 
@@ -239,7 +241,7 @@ msgstr "Dirección IPv6"
 #: app/templates/addressbook/detail.html:54
 #: app/templates/addressbook/detail.html:56
 #: app/templates/addressbook/overview-global-edit.html:38
-#: app/templates/addressbook/overview-global-edit.html:40
+#: app/templates/addressbook/overview-global-edit.html:42
 #: app/templates/addressbook/overview-global.html:69
 #: app/templates/addressbook/overview.html:22
 #: app/templates/addressbook/overview.html:60
@@ -247,26 +249,26 @@ msgid "Phone number"
 msgstr "Número teléfono"
 
 #: app/templates/addressbook/detail.html:64
-#: app/templates/addressbook/overview-global-edit.html:48
-#: app/templates/peerings/detail.html:67
+#: app/templates/addressbook/overview-global-edit.html:51
+#: app/templates/passwords/edit.html:62 app/templates/peerings/detail.html:67
 #: app/templates/peerings/overview.html:70
 #: app/templates/webfilter/overview.html:114
 msgid "Save"
 msgstr "Guardar"
 
 #: app/templates/addressbook/detail.html:65
-#: app/templates/addressbook/overview-global-edit.html:49
-#: app/templates/peerings/detail.html:68
+#: app/templates/addressbook/overview-global-edit.html:52
+#: app/templates/passwords/edit.html:63 app/templates/peerings/detail.html:68
 msgid "Cancel"
 msgstr "Cancelar"
 
 #: app/templates/addressbook/detail.html:71
-#: app/templates/addressbook/overview-global-edit.html:55
+#: app/templates/addressbook/overview-global-edit.html:58
 msgid "Delete phone number"
 msgstr "Borrar número teléfono"
 
 #: app/templates/addressbook/detail.html:75
-#: app/templates/addressbook/overview-global-edit.html:59
+#: app/templates/addressbook/overview-global-edit.html:62
 #: app/templates/peerings/detail.html:80
 msgid "Delete"
 msgstr "Borrar"
@@ -308,6 +310,8 @@ msgid "phone"
 msgstr ""
 
 #: app/templates/addressbook/overview-global.html:32
+#: app/templates/passwords/overview.html:21
+#: app/templates/passwords/overview.html:30
 msgid "Edit"
 msgstr ""
 
@@ -317,6 +321,7 @@ msgid "Status"
 msgstr "Estado"
 
 #: app/templates/addressbook/overview-global.html:35
+#: app/templates/passwords/edit.html:73
 msgid "Unset"
 msgstr ""
 
@@ -337,6 +342,7 @@ msgstr ""
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
+#: app/templates/updates/overview.html:23
 #: app/templates/webfilter/overview.html:39
 #: app/templates/webfilter/overview.html:56
 #: app/templates/webfilter/overview.html:68
@@ -345,14 +351,13 @@ msgstr ""
 msgid "Disabled"
 msgstr "Desactivado"
 
-#: app/templates/addressbook/overview-global.html:74
-#: app/templates/addressbook/overview.html:28
-msgid "My address"
-msgstr "Mi dirección"
-
 #: app/templates/addressbook/overview.html:9
 msgid "Managing contacts and assigning names and numbers"
 msgstr "Administrar contactos asignar números y nombres"
+
+#: app/templates/addressbook/overview.html:28
+msgid "My address"
+msgstr "Mi dirección"
 
 #: app/templates/addressbook/overview.html:48
 msgid "Add contact"
@@ -504,7 +509,7 @@ msgstr "Atrás"
 msgid "Changes successfully applied."
 msgstr "Cambios aplicados con éxito"
 
-#: app/templates/changes/apply.html:16 app/templates/updates/overview.html:33
+#: app/templates/changes/apply.html:16 app/templates/updates/overview.html:64
 msgid "Please wait"
 msgstr "Por favor espera"
 
@@ -561,30 +566,31 @@ msgstr ""
 "Anota: tal vez se necesita un poco tiempo después de cambiar el país hasta "
 "que todos los contactos son accesibles de nuevo"
 
-#: app/templates/passwords/overview.html:10
-msgid "Set passwords. Empty value: Password is inactive."
-msgstr "Poner contraseñas.valor vacío:Contraseña es inactivo"
-
-#: app/templates/passwords/overview.html:20
-msgid "Webinterface"
-msgstr "Interfaz web"
-
-#: app/templates/passwords/overview.html:23
-#: app/templates/passwords/overview.html:41
-msgid "Set"
-msgstr "Poner"
-
-#: app/templates/passwords/overview.html:24
-msgid "Password for the Webinterface"
+#: app/templates/passwords/edit.html:18
+#: app/templates/passwords/overview.html:15
+#, fuzzy
+msgid "Password for the <a href=\"http://box/\">web interface</a>"
 msgstr "Contraseña para el interfaz web"
 
-#: app/templates/passwords/overview.html:25
-msgid "Username is"
-msgstr "Nombre de usuario es"
-
-#: app/templates/passwords/overview.html:42
-msgid "Password for the email account"
+#: app/templates/passwords/edit.html:21
+#: app/templates/passwords/overview.html:24
+#, fuzzy
+msgid "Password for the email account <em>mail@box</em>"
 msgstr "Contraseña para la cuenta e mail"
+
+#: app/templates/passwords/edit.html:52
+#, fuzzy
+msgid "Repeat password"
+msgstr "Contraseña WLAN"
+
+#: app/templates/passwords/edit.html:69
+#, fuzzy
+msgid "Unset password"
+msgstr "Contraseña WLAN"
+
+#: app/templates/passwords/overview.html:10
+msgid "Set passwords and protect the administration interface from access."
+msgstr ""
 
 #: app/templates/peerings/detail.html:20
 msgid "Insert connection data to your peer"
@@ -645,6 +651,7 @@ msgstr "Compañero entrante"
 #: app/templates/peerings/overview.html:44
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
+#: app/templates/updates/overview.html:21
 #: app/templates/webfilter/overview.html:37
 #: app/templates/webfilter/overview.html:54
 #: app/templates/webfilter/overview.html:66
@@ -741,29 +748,45 @@ msgstr ""
 msgid "Enable Teletext"
 msgstr "Desbloquear Teletext"
 
-#: app/templates/updates/overview.html:13
+#: app/templates/updates/overview.html:10
+msgid "Automatic and manual updates."
+msgstr ""
+
+#: app/templates/updates/overview.html:18
+msgid "Automatic updates"
+msgstr ""
+
+#: app/templates/updates/overview.html:29
+msgid "Manual updates"
+msgstr ""
+
+#: app/templates/updates/overview.html:31
+msgid "Check for updates"
+msgstr ""
+
+#: app/templates/updates/overview.html:44
 msgid "Package"
 msgstr ""
 
-#: app/templates/updates/overview.html:14
+#: app/templates/updates/overview.html:45
 msgid "Installed version"
 msgstr ""
 
-#: app/templates/updates/overview.html:15
+#: app/templates/updates/overview.html:46
 #, fuzzy
 msgid "New version"
 msgstr "Compañero nuevo"
 
-#: app/templates/updates/overview.html:31
+#: app/templates/updates/overview.html:62
 msgid "Updates applied."
 msgstr ""
 
-#: app/templates/updates/overview.html:31
+#: app/templates/updates/overview.html:62
 #: app/templates/wlan_settings/scan.html:13
 msgid "Refresh"
 msgstr "Renovar"
 
-#: app/templates/updates/overview.html:32
+#: app/templates/updates/overview.html:63
 msgid "Install updates"
 msgstr ""
 
@@ -935,6 +958,18 @@ msgstr "Información conexión"
 msgid "Signal"
 msgstr ""
 
+#~ msgid "Set passwords. Empty value: Password is inactive."
+#~ msgstr "Poner contraseñas.valor vacío:Contraseña es inactivo"
+
+#~ msgid "Webinterface"
+#~ msgstr "Interfaz web"
+
+#~ msgid "Set"
+#~ msgstr "Poner"
+
+#~ msgid "Username is"
+#~ msgstr "Nombre de usuario es"
+
 #, fuzzy
 #~ msgid "Danish"
 #~ msgstr "Español"
@@ -1066,10 +1101,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "E-mail address:"
 #~ msgstr "Mi dirección"
-
-#, fuzzy
-#~ msgid "Reset my password"
-#~ msgstr "Contraseña WLAN"
 
 #, fuzzy
 #~ msgid "Select %s"

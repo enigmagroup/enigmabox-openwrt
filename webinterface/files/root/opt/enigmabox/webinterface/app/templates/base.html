@@ -58,7 +58,7 @@
                 <li class="{% active request 'passwords' %}"><a href="{% url app.views.passwords %}"><i class="icon-lock"></i> {% trans "Passwords" %}</a></li>
                 <li class="{% active request 'backup' %}"><a href="{% url app.views.backup %}"><i class="icon-share"></i> {% trans "Backup &amp; restore" %}</a></li>
 {% if_updates object None  %}
-                <li class="{% active request 'updates' %}"><a href="{% url app.views.updates %}"><i class="icon-circle-arrow-up"></i> {% trans "Updates" %} <span class="badge badge-info">{% updates_count %}</span></a></li>
+                <li class="{% active request 'updates' %}"><a href="{% url app.views.updates %}"><i class="icon-circle-arrow-up"></i> {% trans "Updates" %}</a></li>
 {% endif_updates %}
 {% if_show_upgrader object None %}
                 <li class="{% active request 'upgrade' %}"><a href="{% url app.views.upgrade %}"><i class="icon-download-alt"></i> {% trans "Firmware upgrade" %}</a></li>
