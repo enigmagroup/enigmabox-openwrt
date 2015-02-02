@@ -1,0 +1,13 @@
+diff --git a/node_build/dependencies/libuv/gyp_uv.py b/node_build/dependencies/libuv/gyp_uv.py
+index 4ba6916..d9f871b 100755
+--- a/node_build/dependencies/libuv/gyp_uv.py
++++ b/node_build/dependencies/libuv/gyp_uv.py
+@@ -20,7 +20,7 @@ except ImportError:
+ 
+ 
+ def host_arch():
+-  machine = platform.machine()
++  machine = os.environ.get('ARCH', platform.machine())
+   if machine == 'i386': return 'ia32'
+   if machine == 'x86_64': return 'x64'
+   if machine.startswith('arm'): return 'arm'
