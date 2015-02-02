@@ -1,6 +1,17 @@
 
 bundle agent app_cjdns
 {
+  vars:
+      "json"
+      data => readjson("$(g.site)", 64000);
+
+  classes:
+      "cjdns_master"
+      expression => regcmp("master", "$(json[cjdns_version])");
+
+      "cjdns_v6"
+      expression => regcmp("v6", "$(json[cjdns_version])");
+
   files:
       "/box/cjdroute.conf"
       create => "true",
@@ -30,6 +41,16 @@ bundle agent app_cjdns
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/setup-cjdns-networking.mustache";
+
+    cjdns_master::
+      "/usr/sbin/cjdroute"
+      edit_template => "/usr/sbin/cjdroute.master",
+      classes => if_repaired("restart_cjdns");
+
+    cjdns_v6::
+      "/usr/sbin/cjdroute"
+      edit_template => "/usr/sbin/cjdroute.v6",
+      classes => if_repaired("restart_cjdns");
 
   commands:
     restart_cjdns::
