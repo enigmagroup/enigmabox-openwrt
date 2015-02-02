@@ -42,3 +42,10 @@ body perms file
       mode => "644";
 }
 
+body copy_from local_copy(from)
+{
+      source => "$(from)";
+      compare => "hash";
+      copy_backup => false;
+}
+

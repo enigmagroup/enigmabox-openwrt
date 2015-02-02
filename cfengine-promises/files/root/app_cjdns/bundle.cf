@@ -60,9 +60,3 @@ bundle agent app_cjdns
       "checking cjdns: done";
 }
 
-body copy_from local_copy(from)
-{
-    source => "$(from)";
-    compare => "hash";
-    copy_backup => false;
-}
