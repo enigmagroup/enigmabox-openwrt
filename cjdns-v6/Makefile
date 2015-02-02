@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cjdns-v6
 PKG_VERSION:=2015-02-02-1d51ddc5d036244c5eb231d635e649bb5d325445
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -47,12 +47,13 @@ endef
 # regular
 define Build/Compile
 	CROSS="true" \
-	CFLAGS="$(TARGET_CFLAGS)" \
+	CFLAGS="$(TARGET_CFLAGS) -Wno-error=maybe-uninitialized" \
 	NO_PIE="true" \
 	Seccomp_NO="true" \
 	CC="$(TARGET_CC)" \
 	ARCH="$(ARCH)" \
 	LDFLAGS="$(TARGET_LDFLAGS) -lssp" \
+	LINK="$(TARGET_CC)" \
 	$(PKG_BUILD_DIR)/do
 endef
 
