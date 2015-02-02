@@ -11,7 +11,7 @@ define Package/webinterface
   CATEGORY:=Enigmabox
   TITLE:=Enigmabox web interface
   URL:=http://enigmabox.net/en/
-  DEPENDS:=+cjdns-master + cjdns-dumbclient
+  DEPENDS:=+cjdns-master +cjdns-dumbclient
   DEPENDS+= +curl +syslog-ng +zip +unzip +shadow-usermod +kmod-ipt-nat6 +isc-dhcp-server-ipv4 +radvd +gesftpserver
   DEPENDS+= +python +python-django-1.4 +python-gunicorn +python-six +python-gevent +python-requests +django-south +python-json +python-unidecode +python-beanstalkc +python-imglib +pyyaml
   DEPENDS+= +asterisk11 +asterisk11-sounds +asterisk11-codec-gsm +asterisk11-format-gsm +asterisk11-res-srtp +asterisk11-res-musiconhold
