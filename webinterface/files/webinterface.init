@@ -7,7 +7,7 @@ PIDFILE=/var/run/webinterface.pid
 EXTRA_COMMANDS="init_db"
  
 start() {
-    [[ ! -f /box/settings.sqlite ]] && init_db
+    init_db
 
     # another 'apu ethernet card hangs' workaround... -.-
     while [[ $(ifconfig lo | wc -l) -eq 0 ]]; do
@@ -27,7 +27,6 @@ stop() {
 
 restart() {
     stop
-    init_db
     start
 }
 
