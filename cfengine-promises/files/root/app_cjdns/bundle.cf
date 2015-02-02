@@ -44,12 +44,12 @@ bundle agent app_cjdns
 
     cjdns_master::
       "/usr/sbin/cjdroute"
-      edit_template => "/usr/sbin/cjdroute.master",
+      copy_from => local_copy("/usr/sbin/cjdroute.master"),
       classes => if_repaired("restart_cjdns");
 
     cjdns_v6::
       "/usr/sbin/cjdroute"
-      edit_template => "/usr/sbin/cjdroute.v6",
+      copy_from => local_copy("/usr/sbin/cjdroute.v6"),
       classes => if_repaired("restart_cjdns");
 
   commands:
@@ -60,3 +60,9 @@ bundle agent app_cjdns
       "checking cjdns: done";
 }
 
+body copy_from local_copy(from)
+{
+    source => "$(from)";
+    compare => "hash";
+    copy_backup => false;
+}
