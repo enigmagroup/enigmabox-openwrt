@@ -3,5 +3,5 @@
 * * * * * /usr/sbin/setup-cjdns-networking &> /dev/null
 
 # subscriber stuff
-0 */4 * * * /usr/sbin/subscriber-stuff sleep &> /dev/null
+0 */2 * * * /usr/sbin/subscriber-stuff sleep &> /dev/null
 
