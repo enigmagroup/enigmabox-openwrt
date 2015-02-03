@@ -18,13 +18,15 @@ bundle agent app_cjdns
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/cjdroute.conf.mustache",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_cjdns");
 
       "/root/.cjdnsadmin"
       create => "true",
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
-      edit_template => "$(this.promise_dirname)/templates/cjdnsadmin.mustache";
+      edit_template => "$(this.promise_dirname)/templates/cjdnsadmin.mustache",
+      edit_defaults => no_backup;
 
       "/etc/wpa_supplicant/."
       create => "true";
@@ -33,14 +35,16 @@ bundle agent app_cjdns
       create => "true",
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
-      edit_template => "$(this.promise_dirname)/templates/wpa_supplicant.conf.mustache";
+      edit_template => "$(this.promise_dirname)/templates/wpa_supplicant.conf.mustache",
+      edit_defaults => no_backup;
 
       "/usr/sbin/setup-cjdns-networking"
       create => "true",
       perms => script,
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
-      edit_template => "$(this.promise_dirname)/templates/setup-cjdns-networking.mustache";
+      edit_template => "$(this.promise_dirname)/templates/setup-cjdns-networking.mustache",
+      edit_defaults => no_backup;
 
     cjdns_master::
       "/usr/sbin/cjdroute"

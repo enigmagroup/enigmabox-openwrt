@@ -17,6 +17,7 @@ bundle agent app_security
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/webinterface.conf.mustache",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_lighttpd");
 
       "/etc/lighttpd/auth/webinterface.htpasswd"
@@ -24,6 +25,7 @@ bundle agent app_security
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/webinterface.htpasswd.mustache",
+      edit_defaults => no_backup,
       perms => wwwdata,
       classes => if_repaired("restart_lighttpd");
 

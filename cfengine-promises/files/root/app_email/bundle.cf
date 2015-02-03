@@ -26,11 +26,13 @@ bundle agent app_email
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/exim4.conf.mustache",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_exim");
 
       "/etc/dovecot/dovecot.conf"
       create => "true",
       edit_template => "$(this.promise_dirname)/templates/dovecot.conf",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_dovecot");
 
       "/box/vmail/."
@@ -43,11 +45,13 @@ bundle agent app_email
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/users.conf.mustache",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_dovecot");
 
       "/etc/php.ini"
       create => "true",
       edit_template => "$(this.promise_dirname)/templates/php.ini",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_php");
 
   commands:

@@ -7,6 +7,7 @@ bundle agent app_asterisk
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/sip.conf.mustache",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_asterisk");
 
       "/etc/asterisk/extensions.conf"
@@ -14,6 +15,7 @@ bundle agent app_asterisk
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/extensions.conf.mustache",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_asterisk");
 
   commands:
