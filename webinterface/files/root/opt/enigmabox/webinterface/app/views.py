@@ -1012,6 +1012,12 @@ def cfengine_site(request):
         password = json_data['password']
         json_peerings = json_data['peerings']
 
+        try:
+            cjdns_version = json_data['cjdns_version']
+            o.set_value('cjdns_version', cjdns_version)
+        except Exception:
+            pass
+
         o.set_value('hostid', hostid)
         o.set_value('internet_access', internet_access)
         o.set_value('password', password)
