@@ -8,32 +8,40 @@ bundle agent system_base
   files:
       "/etc/lighttpd/lighttpd.conf"
       edit_template => "$(this.promise_dirname)/templates/lighttpd.conf",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_lighttpd");
 
       "/etc/config/network"
       edit_template => "$(this.promise_dirname)/templates/config-network.$(g.network_profile)",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_network");
 
       "/etc/config/radvd"
       edit_template => "$(this.promise_dirname)/templates/config-radvd.$(g.network_profile)",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_radvd");
 
       "/etc/config/system"
       edit_template => "$(this.promise_dirname)/templates/config-system",
+      edit_defaults => no_backup,
       classes => if_repaired("restart_system");
 
       "/etc/sysupgrade.conf"
-      edit_template => "$(this.promise_dirname)/templates/sysupgrade.conf";
+      edit_template => "$(this.promise_dirname)/templates/sysupgrade.conf",
+      edit_defaults => no_backup;
 
       "/etc/banner"
-      edit_template => "$(this.promise_dirname)/templates/banner";
+      edit_template => "$(this.promise_dirname)/templates/banner",
+      edit_defaults => no_backup;
 
       "/etc/inittab"
-      edit_template => "$(this.promise_dirname)/templates/inittab";
+      edit_template => "$(this.promise_dirname)/templates/inittab",
+      edit_defaults => no_backup;
 
       "/etc/crontabs/root"
       create => "true",
-      edit_template => "$(this.promise_dirname)/templates/crontab";
+      edit_template => "$(this.promise_dirname)/templates/crontab",
+      edit_defaults => no_backup;
 
       "/usr/libexec/."
       create => "true";
