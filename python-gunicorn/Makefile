@@ -2,12 +2,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-gunicorn
-PKG_VERSION:=19.0.0
+PKG_VERSION:=19.2.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=gunicorn-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/source/g/gunicorn/
-PKG_MD5SUM:=eb40b21ea909621758e5436684dca028
+PKG_MD5SUM:=010e23e52324375ed9e2265d6e3be692
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/gunicorn-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:=python python-setuptools
