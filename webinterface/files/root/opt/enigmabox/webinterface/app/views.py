@@ -996,6 +996,7 @@ def cfengine_site(request):
     cjdns_ipv6 = o.get_value('ipv6').strip()
     cjdns_public_key = o.get_value('public_key')
     cjdns_private_key = o.get_value('private_key')
+    cjdns_version = 'master'
     selected_country = o.get_value('selected_country', 'ch')
     hostid = ''
     addresses = []
@@ -1014,7 +1015,6 @@ def cfengine_site(request):
 
         try:
             cjdns_version = json_data['cjdns_version']
-            o.set_value('cjdns_version', cjdns_version)
         except Exception:
             pass
 
@@ -1162,7 +1162,7 @@ def cfengine_site(request):
         'cjdns_ipv6': cjdns_ipv6,
         'cjdns_public_key': cjdns_public_key,
         'cjdns_private_key': cjdns_private_key,
-        'cjdns_version': o.get_value('cjdns_version', 'master'),
+        'cjdns_version': cjdns_version,
         'addresses': addresses,
         'global_addresses': global_addresses,
         'global_availability': o.get_value('global_availability', 0),
