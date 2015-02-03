@@ -897,14 +897,7 @@ def api_v1(request, api_url):
 
     if api_url == 'get_missioncontrol':
         try:
-            missioncontrol = Missioncontrol.objects.all().order_by('priority')
-            data = []
-            for mc in missioncontrol:
-                data.append({
-                    'hostname': mc.hostname,
-                    'ip': mc.ip,
-                })
-            resp['value'] = data
+            resp['value'] = _get_missioncontrol()
             resp['result'] = 'success'
         except Exception:
             resp['message'] = 'fail'
@@ -1006,7 +999,6 @@ def cfengine_site(request):
     selected_country = o.get_value('selected_country', 'ch')
     hostid = ''
     addresses = []
-    missioncontrol = []
     internet_gateway = []
     peerings = []
 
@@ -1018,21 +1010,11 @@ def cfengine_site(request):
         hostid = json_data['hostid']
         internet_access = json_data['internet_access']
         password = json_data['password']
-        json_missioncontrol = json_data['missioncontrol']
         json_peerings = json_data['peerings']
 
         o.set_value('hostid', hostid)
         o.set_value('internet_access', internet_access)
         o.set_value('password', password)
-
-        Missioncontrol.objects.all().delete()
-
-        for mc in json_missioncontrol:
-            m = Missioncontrol()
-            m.ip = mc[0]
-            m.hostname = mc[1]
-            m.priority = mc[2]
-            m.save()
 
         Peering.objects.filter(custom=False).delete()
 
@@ -1043,14 +1025,6 @@ def cfengine_site(request):
             p.password = peering['password']
             p.country = peering['country']
             p.save()
-
-        missioncontrol_db = Missioncontrol.objects.all().order_by('priority')
-        missioncontrol = []
-        for mc in missioncontrol_db:
-            missioncontrol.append({
-                'ip': mc.ip,
-                'hostname': mc.hostname,
-            })
 
         internet_gateway_db = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1][0]
         internet_gateway = {
@@ -1186,7 +1160,7 @@ def cfengine_site(request):
         'addresses': addresses,
         'global_addresses': global_addresses,
         'global_availability': o.get_value('global_availability', 0),
-        'missioncontrol': missioncontrol,
+        'missioncontrol': _get_missioncontrol(),
         'autoupdates': o.get_value('autoupdates', '1'),
         'wlan_ssid': o.get_value('wlan_ssid'),
         'wlan_opmode': wlan_opmode,
@@ -1230,4 +1204,25 @@ def cfengine_site(request):
         indent=4,
         separators=(',', ': ')
     ), content_type="application/json")
+
+
+
+def _get_missioncontrol():
+
+    missioncontrol = []
+
+    try:
+        with open('/box/.missioncontrol', 'r') as f:
+            missioncontrol_content = f.read().strip()
+
+        for mc in missioncontrol_content.split('\n'):
+            missioncontrol.append({
+                'ip': mc.split(' ')[0],
+                'hostname': mc.split(' ')[1],
+            })
+
+    except Exception:
+        pass
+
+    return missioncontrol
 
