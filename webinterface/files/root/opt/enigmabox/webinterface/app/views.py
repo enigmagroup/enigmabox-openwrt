@@ -283,7 +283,7 @@ def updates(request):
         o.set_value('updater_running', True)
         output_window = True
         loader_hint = 'run'
-        Popen(["/usr/sbin/updater", "apply", "bg"], stdout=PIPE)
+        Popen(["/usr/sbin/updater", "apply", "bg"], stdout=PIPE, close_fds=True)
 
     try:
         f = open('/tmp/updates_output', 'r')
@@ -325,7 +325,7 @@ def upgrade(request):
 
     if request.POST.get('write') == '1':
         writing = True
-        Popen(["/usr/sbin/upgrader", "write"], stdout=PIPE)
+        Popen(["/usr/sbin/upgrader", "write"], stdout=PIPE, close_fds=True)
 
     if os.path.isfile(firmware_file):
         download_ok = True
@@ -634,7 +634,7 @@ def countryselect(request):
     country = request.POST.get('country', False)
     if country:
         o.set_value('selected_country', country)
-        Popen(['/usr/sbin/set-country'], stdout=PIPE)
+        Popen(['/usr/sbin/set-country'], stdout=PIPE, close_fds=True)
         return redirect('/')
 
     country_active = request.POST.get('country-active', False)
@@ -737,7 +737,7 @@ def wlan_settings(request):
             o.set_value('wlan_pass', request.POST.get('pass'))
             o.set_value('wlan_security', request.POST.get('security'))
         output_window = True
-        Popen(["/usr/sbin/setup-cjdns-networking", "startwifi", "bg"], stdout=PIPE)
+        Popen(["/usr/sbin/setup-cjdns-networking", "startwifi", "bg"], stdout=PIPE, close_fds=True)
 
     return render_to_response('wlan_settings/overview.html', {
         'wlan_opmode': wlan_opmode,
@@ -849,7 +849,7 @@ def apply_changes(request):
     if request.POST.get('apply_changes') == 'run':
         output_window = True
         loader_hint = 'run'
-        Popen(["/usr/sbin/cfengine-apply", "-b"], stdout=PIPE)
+        Popen(["/usr/sbin/cfengine-apply", "-b"], stdout=PIPE, close_fds=True)
     if request.POST.get('apply_changes') == 'back':
         return redirect('/')
 
