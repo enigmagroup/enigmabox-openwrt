@@ -983,6 +983,16 @@ def api_v1(request, api_url):
         resp['value'] = next_country
         resp['result'] = 'success'
 
+    if api_url == 'get_hashed_rootpw':
+        from crypt import crypt
+
+        o = Option()
+        password = o.get_value('root_password')
+        salt = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(10))
+        hashed_password = crypt(password, "$6$" + salt + "$")
+
+        return HttpResponse(hashed_password)
+
     return HttpResponse(json.dumps(resp), content_type='application/json')
 
 

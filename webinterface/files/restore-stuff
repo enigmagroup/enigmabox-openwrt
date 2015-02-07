@@ -73,6 +73,8 @@ if [[ $task == 'usbstick' ]]; then
     /etc/init.d/webinterface restart
     /etc/init.d/teletext restart
 
+    usermod -p $(curl http://127.0.0.1:8000/api/v1/get_hashed_rootpw) root
+
     /usr/sbin/request-serverjson.py
     /usr/sbin/cfengine-apply
     /usr/sbin/request-internet.py &
