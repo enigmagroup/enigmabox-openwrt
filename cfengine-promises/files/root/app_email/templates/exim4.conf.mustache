@@ -1736,7 +1736,7 @@ my_mailboxes:
   return_path_add
   group = exim
   mode = 0600
-  headers_rewrite = * "${sg{$sender_host_name}{\.box}{}} <mail@${sg{$sender_host_name}{\.box}{}}>" fw :\
+  headers_rewrite = * "${sg{$sender_host_name}{\\\\.box}{}} <mail@${sg{$sender_host_name}{\\\\.box}{}}>" fw :\
                     * "Enigmabox <mail@box>" tcb
 
 
