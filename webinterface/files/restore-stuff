@@ -47,3 +47,28 @@ if [[ $task == 'emails' ]]; then
 
 fi
 
+
+
+if [[ $task == 'usbstick' ]]; then
+
+    mount /dev/sdb1 /mnt
+    rsync -Pah /mnt/etc/enigmabox/addressbook.db /etc/enigmabox/
+    rsync -Pah /mnt/box/teletext.db /box/
+    rsync -Pah /mnt/box/ssl/ /box/ssl/
+    rsync -Pah /mnt/box/vmail/mail/ /box/vmail/mail/
+    rsync -Pah /mnt/box/roundcube.sqlite /box/
+    rsync -Pah /mnt/box/settings.sqlite /box/
+    rsync -Pah /mnt/teletext-avatars/ /opt/enigmabox/teletext/public/img/profile/
+
+    chown -R vmail:vmail /box/vmail
+
+    sync
+    umount /mnt
+
+    # refresh server.json
+    /usr/sbin/request-serverjson.py
+    /usr/sbin/cfengine-apply
+    /usr/sbin/request-internet.py &
+
+fi
+
