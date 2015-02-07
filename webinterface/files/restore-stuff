@@ -51,7 +51,7 @@ fi
 
 if [[ $task == 'usbstick' ]]; then
 
-    mount /dev/sdb1 /mnt
+    mount -o ro /dev/sdb1 /mnt
     rsync -Pah /mnt/etc/enigmabox/addressbook.db /etc/enigmabox/
     rsync -Pah /mnt/box/teletext.db /box/
     rsync -Pah /mnt/box/ssl/ /box/ssl/
@@ -60,7 +60,12 @@ if [[ $task == 'usbstick' ]]; then
     rsync -Pah /mnt/box/settings.sqlite /box/
     rsync -Pah /mnt/teletext-avatars/ /opt/enigmabox/teletext/public/img/profile/
 
+    chown -R www-data:www-data /etc/enigmabox/addressbook.db
+    chown -R www-data:www-data /box/teletext.db
     chown -R exim:exim /box/vmail
+    chown -R www-data:www-data /box/roundcube.sqlite
+    chown -R www-data:www-data /box/settings.sqlite
+    chown -R www-data:www-data /opt/enigmabox/teletext/public/img/profile/
 
     sync
     umount /mnt
@@ -69,6 +74,8 @@ if [[ $task == 'usbstick' ]]; then
     /usr/sbin/request-serverjson.py
     /usr/sbin/cfengine-apply
     /usr/sbin/request-internet.py &
+
+    /etc/init.d/teletext restart
 
 fi
 
