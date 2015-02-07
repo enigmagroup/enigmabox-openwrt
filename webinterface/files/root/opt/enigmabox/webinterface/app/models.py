@@ -21,14 +21,6 @@ class Peering(models.Model):
     def __unicode__(self):
         return self.address
 
-class Missioncontrol(models.Model):
-    ip = models.CharField(max_length=15)
-    hostname = models.CharField(max_length=64)
-    priority = models.IntegerField(max_length=2)
-
-    def __unicode__(self):
-        return self.hostname
-
 class Country(models.Model):
     countrycode = models.CharField(max_length=2)
     active = models.BooleanField(default=True)
