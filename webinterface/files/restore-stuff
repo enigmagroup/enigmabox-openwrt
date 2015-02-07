@@ -70,12 +70,12 @@ if [[ $task == 'usbstick' ]]; then
     sync
     umount /mnt
 
-    # refresh server.json
+    /etc/init.d/webinterface restart
+    /etc/init.d/teletext restart
+
     /usr/sbin/request-serverjson.py
     /usr/sbin/cfengine-apply
     /usr/sbin/request-internet.py &
-
-    /etc/init.d/teletext restart
 
 fi
 
