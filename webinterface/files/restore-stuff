@@ -43,7 +43,7 @@ if [[ $task == 'emails' ]]; then
 
     rm -rf /box/vmail/mail
     tar xzf /tmp/emails.tar.gz -C /box/vmail
-    chown -R vmail:vmail /box/vmail
+    chown -R exim:exim /box/vmail
 
 fi
 
@@ -60,7 +60,7 @@ if [[ $task == 'usbstick' ]]; then
     rsync -Pah /mnt/box/settings.sqlite /box/
     rsync -Pah /mnt/teletext-avatars/ /opt/enigmabox/teletext/public/img/profile/
 
-    chown -R vmail:vmail /box/vmail
+    chown -R exim:exim /box/vmail
 
     sync
     umount /mnt
