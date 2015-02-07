@@ -60,12 +60,12 @@ if [[ $task == 'usbstick' ]]; then
     rsync -Pah /mnt/box/settings.sqlite /box/
     rsync -Pah /mnt/teletext-avatars/ /opt/enigmabox/teletext/public/img/profile/
 
-    chown -R www-data:www-data /etc/enigmabox/addressbook.db
-    chown -R www-data:www-data /box/teletext.db
+    chown -R root:www-data /etc/enigmabox/addressbook.db
+    chown -R root:www-data /box/teletext.db
     chown -R exim:exim /box/vmail
-    chown -R www-data:www-data /box/roundcube.sqlite
-    chown -R www-data:www-data /box/settings.sqlite
-    chown -R www-data:www-data /opt/enigmabox/teletext/public/img/profile/
+    chown -R root:www-data /box/roundcube.sqlite
+    chown -R root:www-data /box/settings.sqlite
+    chown -R root:www-data /opt/enigmabox/teletext/public/img/profile/
 
     sync
     umount /mnt
