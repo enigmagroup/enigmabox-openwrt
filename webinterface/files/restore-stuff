@@ -70,8 +70,10 @@ if [[ $task == 'usbstick' ]]; then
     sync
     umount /mnt
 
+    /etc/init.d/lighttpd stop
     /etc/init.d/webinterface restart
     /etc/init.d/teletext restart
+    /etc/init.d/lighttpd start
 
     usermod -p $(curl http://127.0.0.1:8000/api/v1/get_hashed_rootpw) root
 
