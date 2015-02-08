@@ -25,6 +25,10 @@ define Package/truecrypt/description
  TrueCrypt is a discontinued source-available freeware utility used for on-the-fly encryption (OTFE). It can create a virtual encrypted disk within a file or encrypt a partition or (under Microsoft Windows except Windows 8 with GPT) the entire storage device (pre-boot authentication).
 endef
 
+define Build/Compile
+	$(MAKE) NOASM=1
+endef
+
 define Build/Configure
 	$(CP) ./files/pkcs11.h $(PKG_BUILD_DIR)
 	$(CP) ./files/pkcs11f.h $(PKG_BUILD_DIR)
