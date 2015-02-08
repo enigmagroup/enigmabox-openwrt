@@ -1,0 +1,34 @@
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=truecrypt
+PKG_VERSION:=7.1a
+PKG_RELEASE:=1
+
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://enigmabox.net/truecrypt/
+PKG_MD5SUM:=102d9652681db11c813610882332ae48
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+
+CC="$(TARGET_CC)"
+
+include $(INCLUDE_DIR)/package.mk
+
+define Package/truecrypt
+  SECTION:=admin
+  CATEGORY:=Utilities
+  SUBMENU:=Filesystem
+  TITLE:=TrueCrypt
+endef
+
+define Package/truecrypt/description
+ TrueCrypt is a discontinued source-available freeware utility used for on-the-fly encryption (OTFE). It can create a virtual encrypted disk within a file or encrypt a partition or (under Microsoft Windows except Windows 8 with GPT) the entire storage device (pre-boot authentication).
+endef
+
+define Build/Configure
+endef
+
+define Package/truecrypt/install
+endef
+
+$(eval $(call BuildPackage,truecrypt))
