@@ -26,7 +26,7 @@ define Package/truecrypt/description
 endef
 
 define Build/Compile
-	$(MAKE) NOASM=1
+	cd $(PKG_BUILD_DIR) && make NOASM=1
 endef
 
 define Build/Configure
