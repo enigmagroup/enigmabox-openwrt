@@ -8,7 +8,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://enigmabox.net/truecrypt/
 PKG_MD5SUM:=102d9652681db11c813610882332ae48
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)-source
 
 CC="$(TARGET_CC)"
 
@@ -29,6 +29,8 @@ define Build/Configure
 endef
 
 define Package/truecrypt/install
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/truecrypt 	$(1)/usr/sbin/truecrypt
 endef
 
 $(eval $(call BuildPackage,truecrypt))
