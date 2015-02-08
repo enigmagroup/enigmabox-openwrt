@@ -26,6 +26,9 @@ define Package/truecrypt/description
 endef
 
 define Build/Configure
+	$(CP) ./files/pkcs11.h $(PKG_BUILD_DIR)
+	$(CP) ./files/pkcs11f.h $(PKG_BUILD_DIR)
+	$(CP) ./files/pkcs11t.h $(PKG_BUILD_DIR)
 endef
 
 define Package/truecrypt/install
