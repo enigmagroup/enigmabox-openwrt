@@ -19,6 +19,7 @@ define Package/truecrypt
   CATEGORY:=Utilities
   SUBMENU:=Filesystem
   TITLE:=TrueCrypt
+  DEPENDS:=fuse-utils
 endef
 
 define Package/truecrypt/description
