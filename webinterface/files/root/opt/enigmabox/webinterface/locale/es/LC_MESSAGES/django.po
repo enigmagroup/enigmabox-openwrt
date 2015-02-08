@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-01 10:52+0100\n"
+"POT-Creation-Date: 2015-02-08 17:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -837,6 +837,18 @@ msgstr ""
 
 #: app/templates/upgrade/overview.html:48
 msgid "Write image"
+msgstr ""
+
+#: app/templates/upgrade/overview.html:87
+msgid "Firmware upgrade in progress"
+msgstr ""
+
+#: app/templates/upgrade/overview.html:90
+msgid "Do NOT power off your Enigmabox!"
+msgstr ""
+
+#: app/templates/upgrade/overview.html:92
+msgid "seconds remaining"
 msgstr ""
 
 #: app/templates/webfilter/overview.html:9
