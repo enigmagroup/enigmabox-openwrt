@@ -20,6 +20,7 @@ define Package/truecrypt
   SUBMENU:=Filesystem
   TITLE:=TrueCrypt
   DEPENDS:=+fuse-utils
+  PKG_BUILD_DEPENDS:=libfuse
 endef
 
 define Package/truecrypt/description
