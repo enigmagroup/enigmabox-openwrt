@@ -10,7 +10,8 @@
     </ul>
 
       <h1>{% trans "Backup &amp; restore SSL certificates" %}</h1>
-      <p>{% trans "The SSL certificates used for communication with our server, e.g. requesting internet or updates." %}</p>
+
+      <p>&nbsp;</p>
 
 <form method="post" class="form-horizontal">
 {% csrf_token %}
@@ -32,7 +33,7 @@
 {% csrf_token %}
 <fieldset>
 
-<legend>{% trans "Restore SSL certificates" %}</legend>
+<legend>{% trans "Import SSL certificates" %}</legend>
 
 <!-- File Button -->
 <div class="control-group">
@@ -50,12 +51,12 @@
 {% endif %}
 {% if msg == 'restoreerror' %}
 <div class="alert alert-error">
-{% trans "Error restoring SSL certificates" %}
+{% trans "Error importing SSL certificates" %}
 </div>
 {% endif %}
 {% if msg == 'restoresuccess' %}
 <div class="alert alert-success">
-{% trans "Restore successful" %}
+{% trans "Import successful" %}
 </div>
 {% endif %}
 {% endif %}
@@ -63,7 +64,7 @@
 <!-- Button -->
 <div class="control-group">
   <div class="controls">
-    <button name="restore" class="btn btn-danger confirmation" value="1">{% trans "Restore" %}</button>
+    <button name="restore" class="btn btn-danger confirmation" value="1">{% trans "Import" %}</button>
   </div>
 </div>
 

@@ -9,24 +9,19 @@
 
       <p>{% trans "Backup and restore your data." %}</p>
 
+      <p>&nbsp;</p>
+
         <div class="control-group">
           <div class="controls">
-            <a href="/backup/system/" class="btn btn-inverse">{% trans "Backup system settings" %}</a>
-            {% trans "Your IPv6 address, addressbook, passwords, internet- and network settings." %}
+            <a href="/backup/system/" class="btn btn-inverse">{% trans "Complete system" %}</a>
+            {% trans "Everything." %}
           </div>
         </div>
 
         <div class="control-group">
           <div class="controls">
-            <a href="/backup/emails/" class="btn btn-success">{% trans "Backup emails" %}</a>
-            {% trans "Your email folder." %}
-          </div>
-        </div>
-
-        <div class="control-group">
-          <div class="controls">
-            <a href="/backup/sslcerts/" class="btn btn-warning">{% trans "Backup SSL certificates" %}</a>
-            {% trans "The SSL certificates used for communication with our server, e.g. requesting internet or updates." %}
+            <a href="/backup/sslcerts/" class="btn btn-warning">{% trans "SSL certificates" %}</a>
+            {% trans "Used for communication with our server, e.g. requesting internet or updates." %}
           </div>
         </div>
 

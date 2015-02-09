@@ -6,23 +6,23 @@
     <div class="container">
     <ul class="breadcrumb">
         <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a> <span class="divider">/</span></li>
-        <li class="active">{% trans "System settings" %}</li>
+        <li class="active">{% trans "Complete system" %}</li>
     </ul>
 
-      <h1>{% trans "Backup &amp; restore system settings" %}</h1>
+      <h1>{% trans "Backup &amp; restore complete system" %}</h1>
 
-        <p>{% trans "Your IPv6 address, addressbook, passwords, internet- and network settings." %}</p>
+        <p>&nbsp;</p>
 
 <form method="post" class="form-horizontal">
 {% csrf_token %}
 <fieldset>
 
-<legend>{% trans "Backup system settings" %}</legend>
+<legend>{% trans "Backup complete system" %}</legend>
 
 <!-- Button -->
 <div class="control-group">
   <div class="controls">
-    <button name="backup" class="btn btn-primary" value="1">{% trans "Backup" %}</button>
+    <button name="backup" class="btn btn-primary" value="1">{% trans "Start backup wizard" %}</button>
   </div>
 </div>
 
@@ -33,37 +33,12 @@
 {% csrf_token %}
 <fieldset>
 
-<legend>{% trans "Restore system settings" %}</legend>
-
-<!-- File Button -->
-<div class="control-group">
-  <label class="control-label">{% trans "settings.sqlite file:" %}</label>
-  <div class="controls">
-    <input name="file" class="input-file" type="file">
-  </div>
-</div>
-
-{% if msg %}
-{% if msg == 'invalid' %}
-<div class="alert alert-error">
-{% trans "Error: invalid settings file" %}
-</div>
-{% else %}
-<div class="alert alert-info">
-{% trans "This settings file has the following IPv6 address:" %} <strong>{{ msg }}</strong><br />
-{% trans "Ok to restore?" %}
-</div>
-{% endif %}
-{% endif %}
+<legend>{% trans "Restore complete system" %}</legend>
 
 <!-- Button -->
 <div class="control-group">
   <div class="controls">
-{% if msg and msg != 'invalid' %}
-    <button name="restore" class="btn btn-danger confirmation" value="1">{% trans "Restore" %}</button>
-{% else %}
-    <button name="upload_check" class="btn btn-warning" value="1">{% trans "Upload and check" %}</button>
-{% endif %}
+    <button name="restore" class="btn btn-danger" value="1">{% trans "Start restore wizard" %}</button>
   </div>
 </div>
 
