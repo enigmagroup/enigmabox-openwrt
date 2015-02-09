@@ -410,15 +410,14 @@ def backup_system_restorewizard(request):
         show_output = True
         step = 'restore_from_usb'
 
-    if request.POST.get('proceed_to_step_4') == '1':
+    if request.GET.get('step') == 'usb':
         step = 'ensure_usb_unplugged'
 
     if request.POST.get('ensure_usb_unplugged') == '1':
         result = Popen(["/usr/sbin/restore-stuff check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
         result = result.strip()
         if result == 'nodrive':
-            step = 'ensure_usb_unplugged'
-            errormsg = 'allgood'
+            return redirect('/')
         else:
             step = 'ensure_usb_unplugged'
             errormsg = 'usbfail'

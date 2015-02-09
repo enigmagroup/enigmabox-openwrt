@@ -20,21 +20,26 @@
         <legend>{% trans "Step 2: Restore from USB stick" %}</legend>
         <p>{% trans "Ok, now we restore all your user data and system settings from the USB stick." %}</p>
         <p>&nbsp;</p>
-
-{% if show_output %}
-        <button id="restore_from_usb" name="restore_from_usb" value="1" class="btn btn-default">{% trans "Start restore" %}</button>
-{% else %}
         <button id="restore_from_usb" name="restore_from_usb" value="1" class="btn btn-danger">{% trans "Start restore" %}</button>
-{% endif %}
-
-{% if show_output %}
-        <p>&nbsp;</p>
-        <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output" data-padding_from_top="500"></pre>
-        <p>{% trans "Please wait, this can take some time..." %}</p>
-        <a href="/" alt="" class="btn btn-primary">{% trans "Return to homescreen" %}</a>
-{% endif %}
     </fieldset>
 </form>
+
+<!-- Modal -->
+<div id="restore-progress" class="modal hide fade" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <h3>{% trans "Firmware upgrade in progress" %}</h3>
+  </div>
+  <div class="modal-body text-center">
+    <p>{% trans "Do NOT power off your Enigmabox!" %}</p>
+    <p class="counter">999</p>
+    <p>{% trans "seconds remaining" %}</p>
+  </div>
+  <div class="modal-footer">
+    <div id="fw-write-progress" class="progress progress-striped active">
+        <div id="fw-write-bar" class="bar" style="width: 0%"></div>
+    </div>
+  </div>
+</div>
 
     </div> <!-- /container -->
 {% endblock %}

@@ -161,4 +161,33 @@
         return false;
     });
 
+    $('#restore_from_usb').on('click', function() {
+        var self = this;
+
+        if(! confirm(trans['are_you_sure'])) {
+            return false;
+        }
+
+        var csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val();
+        $.post('/backup/system/restorewizard/', {
+            'csrfmiddlewaretoken': csrfmiddlewaretoken,
+            'restore_from_usb': '1'
+        });
+
+        $('#restore-progress').modal({
+            'backdrop': 'static',
+            'keyboard': false,
+        });
+
+        setInterval(function() {
+            $.get('/restore_status/', function(data) {
+                if(data == 'done') {
+                    window.location.href = '/backup/system/restorewizard/?step=usb';
+                }
+            });
+        }, 2000);
+
+        return false;
+    });
+
 })();
