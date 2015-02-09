@@ -49,6 +49,20 @@ fi
 
 
 
+if [[ $task == 'check_usb' ]]; then
+
+    if [[ $($parted /dev/sdb p | grep Disk | wc -l) -gt 0 ]]; then
+        if [[ $($parted /dev/sdb unit kB p | grep 'Disk /dev/sdb' | awk '{ print $3 }' | cut -dk -f1) -gt $(( $(du -s /box | awk '{ print $1 }') + 100 * 1024 )) ]]; then
+            echo yes
+        else
+            echo sizefail
+        fi
+    else
+        echo nodrive
+    fi
+
+fi
+
 if [[ $task == 'usbstick' ]]; then
 
     mount -o ro /dev/sdb1 /mnt
@@ -68,7 +82,7 @@ if [[ $task == 'usbstick' ]]; then
     chown -R root:www-data /opt/enigmabox/teletext/public/img/profile/
 
     sync
-    umount /mnt
+    umount /mnt || umount -l
 
     /etc/init.d/lighttpd stop
     /etc/init.d/webinterface restart
