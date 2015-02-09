@@ -396,6 +396,12 @@ def backup_system_restorewizard(request):
     show_output = False
     errormsg = ''
 
+    if request.session.get('django_language') == None:
+        o = Option()
+        language = o.get_value('language', 'de')
+        request.session['django_language'] = language
+        return redirect('/backup/system/restorewizard/?step=usb')
+
     if request.POST.get('check_usb') == '1':
         result = Popen(["/usr/sbin/restore-stuff check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
         result = result.strip()
