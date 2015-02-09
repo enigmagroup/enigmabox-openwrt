@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Firmware upgrade" %}</h1>
+
+      <p>&nbsp;</p>
+
+<form action="" method="post" class="form-horizontal">
+{% csrf_token %}
+    <fieldset>
+        <legend>{% trans "Step 4: Download firmware image" %}</legend>
+        <p>{% trans "Download and verify the new firmware image." %}</p>
+        <p>&nbsp;</p>
+{% if errormsg %}
+        <div class="alert alert-error">
+            <h4>{% trans "Error" %}</h4>
+            {% trans "Download failed or corrupt image." %}
+        </div>
+{% endif %}
+        <button id="download_image" name="download_image" value="1" class="btn btn-primary">{% trans "Download image" %}</button>
+    </fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Firmware upgrade" %}</h1>
+
+      <p>&nbsp;</p>
+
+<form action="" method="post" class="form-horizontal">
+{% csrf_token %}
+    <fieldset>
+        <legend>{% trans "Step 3: Backup to USB stick" %}</legend>
+        <p>{% trans "Ok, now we back up all your user data and system settings to the USB stick." %}</p>
+        <p>&nbsp;</p>
+
+{% if show_output %}
+        <button id="backup_to_usb" name="backup_to_usb" value="1" class="btn btn-default">{% trans "Start backup" %}</button>
+{% else %}
+        <button id="backup_to_usb" name="backup_to_usb" value="1" class="btn btn-primary">{% trans "Start backup" %}</button>
+{% endif %}
+
+{% if show_output %}
+        <p>&nbsp;</p>
+        <pre style="overflow-y: scroll; overflow-x: hidden;" class="backup-output"></pre>
+        <p>{% trans "Looking good?" %}</p>
+        <button id="proceed_to_step_4" name="proceed_to_step_4" value="1" class="btn btn-primary">{% trans "Proceed to step 4" %}</button>
+{% endif %}
+    </fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}
