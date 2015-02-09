@@ -428,6 +428,13 @@ def backup_system_restorewizard(request):
         'errormsg': errormsg,
     }, context_instance=RequestContext(request))
 
+def restore_status(request):
+    import os.path
+    if os.path.isfile('/tmp/restore-in-progress'):
+        return HttpResponse('in progress')
+    else:
+        return HttpResponse('done')
+
 def backup_sslcerts(request):
     o = Option()
     hostid = o.get_value('hostid')

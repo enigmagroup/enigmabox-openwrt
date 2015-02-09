@@ -59,9 +59,19 @@ if [[ $task == 'check_usb' ]]; then
 
 fi
 
+restore_start() {
+    touch /tmp/restore-in-progress
+}
+
+restore_end() {
+    rm /tmp/restore-in-progress
+}
+
 if [[ $task == 'usbstick' ]]; then
 
-    mount -o ro /dev/sdb1 /mnt
+    restore_start
+
+    mount -o ro /dev/sdb1 /mnt || restore_end ; exit 1
     rsync -Pah /mnt/etc/enigmabox/addressbook.db /etc/enigmabox/
     rsync -Pah /mnt/box/teletext.db /box/
     rsync -Pah /mnt/box/ssl/ /box/ssl/
@@ -81,15 +91,19 @@ if [[ $task == 'usbstick' ]]; then
     umount /mnt || umount -l
 
     /etc/init.d/lighttpd stop
+
     /etc/init.d/webinterface restart
     /etc/init.d/teletext restart
-    /etc/init.d/lighttpd start
 
     usermod -p $(curl http://127.0.0.1:8000/api/v1/get_hashed_rootpw) root
 
     /usr/sbin/request-serverjson.py
     /usr/sbin/cfengine-apply
     /usr/sbin/request-internet.py &
+
+    /etc/init.d/lighttpd start
+
+    restore_end
 
 fi
 
