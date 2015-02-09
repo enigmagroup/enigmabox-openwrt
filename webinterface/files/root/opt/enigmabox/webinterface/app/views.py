@@ -406,9 +406,8 @@ def backup_system_restorewizard(request):
             errormsg = 'nodrive'
 
     if request.POST.get('restore_from_usb') == '1':
-        Popen(["/usr/sbin/restore-stuff usbstick 2>&1 > /tmp/dynamic_output"], shell=True, stdout=PIPE, close_fds=True)
-        show_output = True
-        step = 'restore_from_usb'
+        import os
+        os.system("/usr/sbin/restore-stuff usbstick &")
 
     if request.GET.get('step') == 'usb':
         step = 'ensure_usb_unplugged'
