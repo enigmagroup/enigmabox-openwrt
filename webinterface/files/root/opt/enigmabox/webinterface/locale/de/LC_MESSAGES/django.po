@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-08 17:36+0100\n"
-"PO-Revision-Date: 2015-02-08 17:37+0100\n"
+"POT-Creation-Date: 2015-02-09 17:51+0100\n"
+"PO-Revision-Date: 2015-02-09 17:53+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -30,27 +30,27 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:669
+#: app/views.py:642
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:670
+#: app/views.py:643
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:671
+#: app/views.py:644
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:672
+#: app/views.py:645
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:673
+#: app/views.py:646
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:674
+#: app/views.py:647
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
@@ -75,7 +75,7 @@ msgstr "Willkommen"
 msgid "System"
 msgstr "System"
 
-#: app/templates/base.html:57 app/templates/home.html:21
+#: app/templates/base.html:57 app/templates/home.html:38
 #: app/templates/addressbook/detail.html:9
 #: app/templates/addressbook/overview-global-edit.html:9
 #: app/templates/addressbook/overview-global.html:8
@@ -89,9 +89,10 @@ msgstr "Adressbuch"
 msgid "Passwords"
 msgstr "Passwörter"
 
-#: app/templates/base.html:59 app/templates/backup/emails.html:8
-#: app/templates/backup/overview.html:8 app/templates/backup/sslcerts.html:8
-#: app/templates/backup/system.html:8
+#: app/templates/base.html:59 app/templates/backup/overview.html:8
+#: app/templates/backup/sslcerts.html:8 app/templates/backup/system.html:8
+#: app/templates/backup/restorewizard/check_usb.html:8
+#: app/templates/backup/restorewizard/restore_from_usb.html:8
 msgid "Backup &amp; restore"
 msgstr "Sichern &amp; Wiederherstellen"
 
@@ -99,11 +100,13 @@ msgstr "Sichern &amp; Wiederherstellen"
 msgid "Updates"
 msgstr "Aktualisierungen"
 
-#: app/templates/base.html:64 app/templates/upgrade/overview.html:8
+#: app/templates/base.html:64
+#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:8
+#: app/templates/upgrade/overview.html:8
 msgid "Firmware upgrade"
 msgstr "Firmwareaktualisierung"
 
-#: app/templates/base.html:69 app/templates/home.html:34
+#: app/templates/base.html:69 app/templates/home.html:51
 msgid "Internet"
 msgstr "Internet"
 
@@ -138,8 +141,8 @@ msgstr "WLAN-Einstellungen"
 msgid "Services"
 msgstr "Dienste"
 
-#: app/templates/base.html:79 app/templates/home.html:24
-#: app/templates/home.html.py:26 app/templates/teletext/overview.html:8
+#: app/templates/base.html:79 app/templates/home.html:41
+#: app/templates/home.html.py:43 app/templates/teletext/overview.html:8
 msgid "Teletext"
 msgstr "Teletext"
 
@@ -152,46 +155,67 @@ msgid "Network access valid until"
 msgstr "Dein Netzwerkzugang ist noch gültig bis zum"
 
 #: app/templates/home.html:14
+msgid "Continue installation:"
+msgstr ""
+
+#: app/templates/home.html:17
+msgid "Restore from USB stick"
+msgstr ""
+
+#: app/templates/home.html:18
+msgid "Choose this if you have upgraded from a previous Enigmabox."
+msgstr ""
+
+#: app/templates/home.html:24 app/templates/backup/sslcerts.html:36
+#, fuzzy
+msgid "Import SSL certificates"
+msgstr "SSL-Zertifikate"
+
+#: app/templates/home.html:25
+msgid "Choose this if you have built your own Enigmabox on the Banana Pi."
+msgstr ""
+
+#: app/templates/home.html:31
 msgid "Renew subscription"
 msgstr "Abo erneuern"
 
-#: app/templates/home.html:19
+#: app/templates/home.html:36
 msgid "Applications"
 msgstr "Anwendungen"
 
-#: app/templates/home.html:22
+#: app/templates/home.html:39
 msgid "Webmail"
 msgstr "Webmail"
 
-#: app/templates/home.html:31
+#: app/templates/home.html:48
 msgid "System status"
 msgstr "Systemstatus"
 
-#: app/templates/home.html:33
+#: app/templates/home.html:50
 msgid "DHCP"
 msgstr "DHCP"
 
-#: app/templates/home.html:35
+#: app/templates/home.html:52
 msgid "cjdns"
 msgstr "cjdns"
 
-#: app/templates/home.html:36
+#: app/templates/home.html:53
 msgid "Internet via cjdns"
 msgstr "Internet via cjdns"
 
-#: app/templates/home.html:40
+#: app/templates/home.html:57
 msgid "Connection info"
 msgstr "Verbindungsinfos"
 
-#: app/templates/home.html:40
+#: app/templates/home.html:57
 msgid "SSH access"
 msgstr "SSH-Zugang"
 
-#: app/templates/home.html:41 app/templates/passwords/edit.html:37
+#: app/templates/home.html:58 app/templates/passwords/edit.html:37
 msgid "Username"
 msgstr "Benutzername"
 
-#: app/templates/home.html:42 app/templates/passwords/edit.html:45
+#: app/templates/home.html:59 app/templates/passwords/edit.html:45
 #: app/templates/passwords/edit.html:47 app/templates/passwords/edit.html:54
 #: app/templates/peerings/detail.html:49 app/templates/peerings/detail.html:51
 #: app/templates/peerings/overview.html:61
@@ -199,7 +223,7 @@ msgstr "Benutzername"
 msgid "Password"
 msgstr "Passwort"
 
-#: app/templates/home.html:43
+#: app/templates/home.html:60
 msgid "Server"
 msgstr "Server"
 
@@ -207,6 +231,8 @@ msgstr "Server"
 #: app/templates/addressbook/overview-global-edit.html:23
 #: app/templates/addressbook/overview-global.html:54
 #: app/templates/addressbook/overview.html:53
+#: app/templates/backup/restorewizard/check_usb.html:25
+#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:20
 #: app/templates/passwords/edit.html:30 app/templates/peerings/detail.html:26
 msgid "Error"
 msgstr "Fehler"
@@ -318,8 +344,10 @@ msgstr "Status"
 
 #: app/templates/addressbook/overview-global.html:35
 #: app/templates/passwords/edit.html:73
+#: app/templates/passwords/overview.html:17
+#: app/templates/passwords/overview.html:26
 msgid "Unset"
-msgstr "Undefiniert"
+msgstr "Nicht gesetzt"
 
 #: app/templates/addressbook/overview-global.html:37
 msgid "Pending"
@@ -362,138 +390,155 @@ msgstr "Adresse hinzufügen"
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: app/templates/backup/emails.html:9
-msgid "emails"
-msgstr "E-Mails"
-
-#: app/templates/backup/emails.html:12
-msgid "Backup &amp; restore emails"
-msgstr "E-Mails sichern &amp; wiederherstellen"
-
-#: app/templates/backup/emails.html:13 app/templates/backup/overview.html:22
-msgid "Your email folder."
-msgstr "Dein E-Mail Ordner."
-
-#: app/templates/backup/emails.html:19 app/templates/backup/overview.html:21
-msgid "Backup emails"
-msgstr "E-Mails sichern"
-
-#: app/templates/backup/emails.html:24 app/templates/backup/sslcerts.html:24
-#: app/templates/backup/system.html:25
-msgid "Backup"
-msgstr "Sichern"
-
-#: app/templates/backup/emails.html:35
-msgid "Restore emails"
-msgstr "E-Mails wiederherstellen"
-
-#: app/templates/backup/emails.html:39
-msgid "emails.tar.gz file:"
-msgstr "emails.tar.gz-Datei:"
-
-#: app/templates/backup/emails.html:48 app/templates/backup/sslcerts.html:48
-msgid "Error in creating backup"
-msgstr "Fehler beim Erstellen der Sicherung"
-
-#: app/templates/backup/emails.html:53
-msgid "Error restoring emails"
-msgstr "Fehler beim Wiederherstellen der E-Mails"
-
-#: app/templates/backup/emails.html:58 app/templates/backup/sslcerts.html:58
-msgid "Restore successful"
-msgstr "Wiederherstellen erfolgreich"
-
-#: app/templates/backup/emails.html:64
-msgid ""
-"Warning: all your emails currently stored on your box <strong>will be "
-"overwritten!</strong>"
-msgstr ""
-"Warnung: Alle deine jetzigen auf der Box gespeicherten E-Mails "
-"<strong>werden überschrieben!</strong>"
-
-#: app/templates/backup/emails.html:70 app/templates/backup/sslcerts.html:66
-#: app/templates/backup/system.html:63
-msgid "Restore"
-msgstr "Wiederherstellen"
-
 #: app/templates/backup/overview.html:10
 msgid "Backup and restore your data."
 msgstr "Sichern und Wiederherstellen deiner Daten."
 
-#: app/templates/backup/overview.html:14 app/templates/backup/system.html:20
-msgid "Backup system settings"
-msgstr "Systemeinstellungen sichern"
-
-#: app/templates/backup/overview.html:15 app/templates/backup/system.html:14
-msgid ""
-"Your IPv6 address, addressbook, passwords, internet- and network settings."
+#: app/templates/backup/overview.html:16 app/templates/backup/system.html:9
+#: app/templates/backup/restorewizard/check_usb.html:9
+#: app/templates/backup/restorewizard/restore_from_usb.html:9
+msgid "Complete system"
 msgstr ""
-"Deine IPv6-Adresse, das Adressbuch, Passwörter, Internet- und "
-"Netzwerkeinstellungen."
 
-#: app/templates/backup/overview.html:28 app/templates/backup/sslcerts.html:19
-msgid "Backup SSL certificates"
-msgstr "SSL-Zertifikate sichern"
+#: app/templates/backup/overview.html:17
+msgid "Everything."
+msgstr ""
 
-#: app/templates/backup/overview.html:29 app/templates/backup/sslcerts.html:13
+#: app/templates/backup/overview.html:23 app/templates/backup/sslcerts.html:9
+msgid "SSL certificates"
+msgstr "SSL-Zertifikate"
+
+#: app/templates/backup/overview.html:24
+#, fuzzy
 msgid ""
-"The SSL certificates used for communication with our server, e.g. requesting "
-"internet or updates."
+"Used for communication with our server, e.g. requesting internet or updates."
 msgstr ""
 "SSL-Zertifikate, die zur Kommunikation mit unserem Server benutzt werden, z."
 "B. für Updates."
-
-#: app/templates/backup/sslcerts.html:9
-msgid "SSL certificates"
-msgstr "SSL-Zertifikate"
 
 #: app/templates/backup/sslcerts.html:12
 msgid "Backup &amp; restore SSL certificates"
 msgstr "SSL-Zertifikate sichern &amp; wiederherstellen"
 
-#: app/templates/backup/sslcerts.html:35
-msgid "Restore SSL certificates"
-msgstr "SSL-Zertifikate wiederherstellen"
+#: app/templates/backup/sslcerts.html:20
+msgid "Backup SSL certificates"
+msgstr "SSL-Zertifikate sichern"
 
-#: app/templates/backup/sslcerts.html:39
+#: app/templates/backup/sslcerts.html:25
+msgid "Backup"
+msgstr "Sichern"
+
+#: app/templates/backup/sslcerts.html:40
 msgid "file"
 msgstr "Datei"
 
-#: app/templates/backup/sslcerts.html:53
-msgid "Error restoring SSL certificates"
+#: app/templates/backup/sslcerts.html:49
+msgid "Error in creating backup"
+msgstr "Fehler beim Erstellen der Sicherung"
+
+#: app/templates/backup/sslcerts.html:54
+#, fuzzy
+msgid "Error importing SSL certificates"
 msgstr "Fehler beim Wiederherstellen der SSL-Zertifikate"
 
-#: app/templates/backup/system.html:9
-msgid "System settings"
-msgstr "Systemeinstellungen"
+#: app/templates/backup/sslcerts.html:59
+#, fuzzy
+msgid "Import successful"
+msgstr "Wiederherstellen erfolgreich"
+
+#: app/templates/backup/sslcerts.html:67
+#, fuzzy
+msgid "Import"
+msgstr "ip:port"
 
 #: app/templates/backup/system.html:12
-msgid "Backup &amp; restore system settings"
+#, fuzzy
+msgid "Backup &amp; restore complete system"
+msgstr "E-Mails sichern &amp; wiederherstellen"
+
+#: app/templates/backup/system.html:20
+#, fuzzy
+msgid "Backup complete system"
 msgstr "Systemeinstellungen sichern &amp; wiederherstellen"
 
+#: app/templates/backup/system.html:25
+msgid "Start backup wizard"
+msgstr ""
+
 #: app/templates/backup/system.html:36
-msgid "Restore system settings"
+#, fuzzy
+msgid "Restore complete system"
 msgstr "Systemeinstellungen wiederherstellen"
 
-#: app/templates/backup/system.html:40
-msgid "settings.sqlite file:"
-msgstr "settings.sqlite-Datei:"
+#: app/templates/backup/system.html:41
+msgid "Start restore wizard"
+msgstr ""
 
-#: app/templates/backup/system.html:49
-msgid "Error: invalid settings file"
-msgstr "Fehler: Ungültige Einstellungsdatei"
+#: app/templates/backup/restorewizard/check_usb.html:10
+#: app/templates/backup/restorewizard/restore_from_usb.html:10
+#, fuzzy
+msgid "Restore wizard"
+msgstr "Wiederherstellen"
 
-#: app/templates/backup/system.html:53
-msgid "This settings file has the following IPv6 address:"
-msgstr "Diese Einstellungsdatei hat folgende IPv6-Adresse:"
+#: app/templates/backup/restorewizard/check_usb.html:13
+#: app/templates/backup/restorewizard/restore_from_usb.html:13
+msgid "Complete system restore"
+msgstr ""
 
-#: app/templates/backup/system.html:54
-msgid "Ok to restore?"
+#: app/templates/backup/restorewizard/check_usb.html:20
+msgid "Step 1: Insert USB stick"
+msgstr ""
+
+#: app/templates/backup/restorewizard/check_usb.html:21
+msgid "Insert the USB stick that holds your data."
+msgstr ""
+
+#: app/templates/backup/restorewizard/check_usb.html:27
+msgid "No USB stick detected."
+msgstr ""
+
+#: app/templates/backup/restorewizard/check_usb.html:31
+msgid "Check USB stick"
+msgstr ""
+
+#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:15
+msgid "Step 5: Remove USB stick"
+msgstr ""
+
+#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:16
+msgid "Now remove the USB stick."
+msgstr ""
+
+#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:21
+msgid "Please remove the USB stick!"
+msgstr ""
+
+#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:24
+msgid "I have removed the USB stick"
+msgstr ""
+
+#: app/templates/backup/restorewizard/restore_from_usb.html:20
+msgid "Step 2: Restore from USB stick"
+msgstr ""
+
+#: app/templates/backup/restorewizard/restore_from_usb.html:21
+msgid ""
+"Ok, now we restore all your user data and system settings from the USB stick."
+msgstr ""
+
+#: app/templates/backup/restorewizard/restore_from_usb.html:25
+#: app/templates/backup/restorewizard/restore_from_usb.html:27
+#, fuzzy
+msgid "Start restore"
 msgstr "Wiederherstellen?"
 
-#: app/templates/backup/system.html:65
-msgid "Upload and check"
-msgstr "Hochladen und überprüfen"
+#: app/templates/backup/restorewizard/restore_from_usb.html:33
+msgid "Please wait, this can take some time..."
+msgstr ""
+
+#: app/templates/backup/restorewizard/restore_from_usb.html:34
+msgid "Return to homescreen"
+msgstr ""
 
 #: app/templates/changes/apply.html:14
 msgid "Back"
@@ -583,6 +628,11 @@ msgstr "Passwort entfernen"
 #: app/templates/passwords/overview.html:10
 msgid "Set passwords and protect the administration interface from access."
 msgstr "Passwörter setzen, um die Administrationsoberfläche zu schützen."
+
+#: app/templates/passwords/overview.html:19
+#: app/templates/passwords/overview.html:28
+msgid "Set"
+msgstr "Gesetzt"
 
 #: app/templates/peerings/detail.html:20
 msgid "Insert connection data to your peer"
@@ -959,14 +1009,63 @@ msgstr "Verbinden"
 msgid "Signal"
 msgstr "Signal"
 
+#~ msgid "emails"
+#~ msgstr "E-Mails"
+
+#~ msgid "Your email folder."
+#~ msgstr "Dein E-Mail Ordner."
+
+#~ msgid "Backup emails"
+#~ msgstr "E-Mails sichern"
+
+#~ msgid "Restore emails"
+#~ msgstr "E-Mails wiederherstellen"
+
+#~ msgid "emails.tar.gz file:"
+#~ msgstr "emails.tar.gz-Datei:"
+
+#~ msgid "Error restoring emails"
+#~ msgstr "Fehler beim Wiederherstellen der E-Mails"
+
+#~ msgid ""
+#~ "Warning: all your emails currently stored on your box <strong>will be "
+#~ "overwritten!</strong>"
+#~ msgstr ""
+#~ "Warnung: Alle deine jetzigen auf der Box gespeicherten E-Mails "
+#~ "<strong>werden überschrieben!</strong>"
+
+#~ msgid "Backup system settings"
+#~ msgstr "Systemeinstellungen sichern"
+
+#~ msgid ""
+#~ "Your IPv6 address, addressbook, passwords, internet- and network settings."
+#~ msgstr ""
+#~ "Deine IPv6-Adresse, das Adressbuch, Passwörter, Internet- und "
+#~ "Netzwerkeinstellungen."
+
+#~ msgid "Restore SSL certificates"
+#~ msgstr "SSL-Zertifikate wiederherstellen"
+
+#~ msgid "System settings"
+#~ msgstr "Systemeinstellungen"
+
+#~ msgid "settings.sqlite file:"
+#~ msgstr "settings.sqlite-Datei:"
+
+#~ msgid "Error: invalid settings file"
+#~ msgstr "Fehler: Ungültige Einstellungsdatei"
+
+#~ msgid "This settings file has the following IPv6 address:"
+#~ msgstr "Diese Einstellungsdatei hat folgende IPv6-Adresse:"
+
+#~ msgid "Upload and check"
+#~ msgstr "Hochladen und überprüfen"
+
 #~ msgid "Set passwords. Empty value: Password is inactive."
 #~ msgstr "Passwörter setzen. Leerer Wert = Passwort ist nicht aktiv."
 
 #~ msgid "Webinterface"
 #~ msgstr "Webinterface"
-
-#~ msgid "Set"
-#~ msgstr "Setzen"
 
 #~ msgid "Username is"
 #~ msgstr "Benutzername ist"
