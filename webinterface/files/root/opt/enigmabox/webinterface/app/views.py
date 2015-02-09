@@ -241,7 +241,7 @@ def password_edit(request, subject):
         o.config_changed(True)
         return redirect('/passwords/')
     else:
-        password = o.get_value(subject + '_password')
+        password = o.get_value(subject + '_password', '')
 
         form = PasswordForm(initial={
             'password': password,
