@@ -64,6 +64,7 @@ restore_start() {
 }
 
 restore_end() {
+    umount /mnt || umount -l
     rm /tmp/restore-in-progress
 }
 
@@ -71,7 +72,7 @@ if [[ $task == 'usbstick' ]]; then
 
     restore_start
 
-    mount -o ro /dev/sdb1 /mnt || restore_end ; exit 1
+    mount -o ro /dev/sdb1 /mnt || (restore_end ; exit 1)
     rsync -Pah /mnt/etc/enigmabox/addressbook.db /etc/enigmabox/
     rsync -Pah /mnt/box/teletext.db /box/
     rsync -Pah /mnt/box/ssl/ /box/ssl/
