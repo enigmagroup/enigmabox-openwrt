@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-09 18:14+0100\n"
-"PO-Revision-Date: 2015-02-09 17:53+0100\n"
+"POT-Creation-Date: 2015-02-09 18:56+0100\n"
+"PO-Revision-Date: 2015-02-09 19:05+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -30,27 +30,27 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:642
+#: app/views.py:648
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:643
+#: app/views.py:649
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:644
+#: app/views.py:650
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:645
+#: app/views.py:651
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:646
+#: app/views.py:652
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:647
+#: app/views.py:653
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
@@ -156,24 +156,24 @@ msgstr "Dein Netzwerkzugang ist noch gültig bis zum"
 
 #: app/templates/home.html:14
 msgid "Continue installation:"
-msgstr ""
+msgstr "Installation fortsetzen:"
 
 #: app/templates/home.html:17
 msgid "Restore from USB stick"
-msgstr ""
+msgstr "Vom USB-Stick wiederherstellen"
 
 #: app/templates/home.html:18
 msgid "Choose this if you have upgraded from a previous Enigmabox."
 msgstr ""
+"Wähle das aus, falls du von einer bestehenden Enigmabox aktualisiert hast."
 
 #: app/templates/home.html:24 app/templates/backup/sslcerts.html:36
-#, fuzzy
 msgid "Import SSL certificates"
-msgstr "SSL-Zertifikate"
+msgstr "SSL-Zertifikate importieren"
 
 #: app/templates/home.html:25
 msgid "Choose this if you have built your own Enigmabox on the Banana Pi."
-msgstr ""
+msgstr "Wähle das aus für die Enigmabox Marke Eigenbau auf dem Banana Pi."
 
 #: app/templates/home.html:31
 msgid "Renew subscription"
@@ -397,23 +397,22 @@ msgstr "Sichern und Wiederherstellen deiner Daten."
 #: app/templates/backup/restorewizard/check_usb.html:9
 #: app/templates/backup/restorewizard/restore_from_usb.html:9
 msgid "Complete system"
-msgstr ""
+msgstr "Vollständiges System"
 
 #: app/templates/backup/overview.html:17
 msgid "Everything."
-msgstr ""
+msgstr "Alles."
 
 #: app/templates/backup/overview.html:23 app/templates/backup/sslcerts.html:9
 msgid "SSL certificates"
 msgstr "SSL-Zertifikate"
 
 #: app/templates/backup/overview.html:24
-#, fuzzy
 msgid ""
 "Used for communication with our server, e.g. requesting internet or updates."
 msgstr ""
 "SSL-Zertifikate, die zur Kommunikation mit unserem Server benutzt werden, z."
-"B. für Updates."
+"B. für Aktualisierungen."
 
 #: app/templates/backup/sslcerts.html:12
 msgid "Backup &amp; restore SSL certificates"
@@ -436,108 +435,102 @@ msgid "Error in creating backup"
 msgstr "Fehler beim Erstellen der Sicherung"
 
 #: app/templates/backup/sslcerts.html:54
-#, fuzzy
 msgid "Error importing SSL certificates"
-msgstr "Fehler beim Wiederherstellen der SSL-Zertifikate"
+msgstr "Fehler beim Importieren der SSL-Zertifikate"
 
 #: app/templates/backup/sslcerts.html:59
-#, fuzzy
 msgid "Import successful"
-msgstr "Wiederherstellen erfolgreich"
+msgstr "Import erfolgreich"
 
 #: app/templates/backup/sslcerts.html:67
-#, fuzzy
 msgid "Import"
-msgstr "ip:port"
+msgstr "Import"
 
 #: app/templates/backup/system.html:12
-#, fuzzy
 msgid "Backup &amp; restore complete system"
-msgstr "E-Mails sichern &amp; wiederherstellen"
+msgstr "Sichern &amp; Wiederherstellen des gesamten Systems"
 
 #: app/templates/backup/system.html:20
-#, fuzzy
 msgid "Backup complete system"
-msgstr "Systemeinstellungen sichern &amp; wiederherstellen"
+msgstr "Vollständige Systemsicherung"
 
 #: app/templates/backup/system.html:25
 msgid "Start backup wizard"
-msgstr ""
+msgstr "Systemsicherungsassistent starten"
 
 #: app/templates/backup/system.html:36
-#, fuzzy
 msgid "Restore complete system"
-msgstr "Systemeinstellungen wiederherstellen"
+msgstr "Vollständige Systemwiederherstellung"
 
 #: app/templates/backup/system.html:41
 msgid "Start restore wizard"
-msgstr ""
+msgstr "Systemwiederherstellungsassistent starten"
 
 #: app/templates/backup/restorewizard/check_usb.html:10
 #: app/templates/backup/restorewizard/restore_from_usb.html:10
-#, fuzzy
 msgid "Restore wizard"
-msgstr "Wiederherstellen"
+msgstr "Wiederherstellungsassistent"
 
 #: app/templates/backup/restorewizard/check_usb.html:13
 #: app/templates/backup/restorewizard/restore_from_usb.html:13
 msgid "Complete system restore"
-msgstr ""
+msgstr "Vollständige Systemwiederherstellung"
 
 #: app/templates/backup/restorewizard/check_usb.html:20
 msgid "Step 1: Insert USB stick"
-msgstr ""
+msgstr "Schritt 1: USB-Stick einstecken"
 
 #: app/templates/backup/restorewizard/check_usb.html:21
 msgid "Insert the USB stick that holds your data."
-msgstr ""
+msgstr "Bitte USB-Stick mit deinen Daten einstecken."
 
 #: app/templates/backup/restorewizard/check_usb.html:27
 msgid "No USB stick detected."
-msgstr ""
+msgstr "Keinen USB-Stick gefunden."
 
 #: app/templates/backup/restorewizard/check_usb.html:31
 msgid "Check USB stick"
-msgstr ""
+msgstr "USB-Stick überprüfen"
 
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:15
-msgid "Step 5: Remove USB stick"
-msgstr ""
+msgid "Step 3: Remove USB stick"
+msgstr "Schritt 3: USB-Stick entfernen"
 
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:16
-msgid "Now remove the USB stick."
-msgstr ""
+msgid "Restore successful. Now remove the USB stick."
+msgstr "Wiederherstellung erfolgreich. Bitte USB-Stick entfernen."
 
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:21
 msgid "Please remove the USB stick!"
-msgstr ""
+msgstr "Bitte entferne den USB-Stick!"
 
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:24
 msgid "I have removed the USB stick"
-msgstr ""
+msgstr "Ich habe den USB-Stick entfernt"
 
 #: app/templates/backup/restorewizard/restore_from_usb.html:20
 msgid "Step 2: Restore from USB stick"
-msgstr ""
+msgstr "Schritt 2: Wiederherstellen von einem USB-Stick"
 
 #: app/templates/backup/restorewizard/restore_from_usb.html:21
 msgid ""
 "Ok, now we restore all your user data and system settings from the USB stick."
 msgstr ""
+"Ok, wir werden jetzt alle Benutzerdaten und Systemeinstellungen vom USB-"
+"Stick wiederherstellen."
 
-#: app/templates/backup/restorewizard/restore_from_usb.html:25
-#: app/templates/backup/restorewizard/restore_from_usb.html:27
-#, fuzzy
+#: app/templates/backup/restorewizard/restore_from_usb.html:23
 msgid "Start restore"
-msgstr "Wiederherstellen?"
+msgstr "Systemwiederherstellung starten"
+
+#: app/templates/backup/restorewizard/restore_from_usb.html:30
+msgid "Restore in progress"
+msgstr "Systemwiederherstellung läuft"
 
 #: app/templates/backup/restorewizard/restore_from_usb.html:33
-msgid "Please wait, this can take some time..."
-msgstr ""
-
-#: app/templates/backup/restorewizard/restore_from_usb.html:34
-msgid "Return to homescreen"
-msgstr ""
+#: app/templates/upgrade/overview.html:90
+msgid "Do NOT power off your Enigmabox!"
+msgstr "Schalte die Enigmabox NICHT aus!"
 
 #: app/templates/changes/apply.html:14
 msgid "Back"
@@ -625,7 +618,6 @@ msgid "Unset password"
 msgstr "Passwort entfernen"
 
 #: app/templates/passwords/edit.html:73
-#, fuzzy
 msgid "Unset Password"
 msgstr "Passwort entfernen"
 
@@ -886,10 +878,6 @@ msgstr "Image schreiben"
 #: app/templates/upgrade/overview.html:87
 msgid "Firmware upgrade in progress"
 msgstr "Firmwareaktualisierung läuft"
-
-#: app/templates/upgrade/overview.html:90
-msgid "Do NOT power off your Enigmabox!"
-msgstr "Schalte die Enigmabox NICHT aus!"
 
 #: app/templates/upgrade/overview.html:92
 msgid "seconds remaining"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-09 18:14+0100\n"
+"POT-Creation-Date: 2015-02-09 18:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,28 +30,28 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:642
+#: app/views.py:648
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:643
+#: app/views.py:649
 msgid "Sweden"
 msgstr ""
 
-#: app/views.py:644
+#: app/views.py:650
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:645
+#: app/views.py:651
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:646
+#: app/views.py:652
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:647
+#: app/views.py:653
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
@@ -507,12 +507,14 @@ msgid "Check USB stick"
 msgstr ""
 
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:15
-msgid "Step 5: Remove USB stick"
-msgstr ""
+#, fuzzy
+msgid "Step 3: Remove USB stick"
+msgstr "Remover compañero"
 
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:16
-msgid "Now remove the USB stick."
-msgstr ""
+#, fuzzy
+msgid "Restore successful. Now remove the USB stick."
+msgstr "Remover compañero"
 
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:21
 msgid "Please remove the USB stick!"
@@ -531,18 +533,19 @@ msgid ""
 "Ok, now we restore all your user data and system settings from the USB stick."
 msgstr ""
 
-#: app/templates/backup/restorewizard/restore_from_usb.html:25
-#: app/templates/backup/restorewizard/restore_from_usb.html:27
+#: app/templates/backup/restorewizard/restore_from_usb.html:23
 #, fuzzy
 msgid "Start restore"
 msgstr "De acuerdo para restaurar?"
 
-#: app/templates/backup/restorewizard/restore_from_usb.html:33
-msgid "Please wait, this can take some time..."
-msgstr ""
+#: app/templates/backup/restorewizard/restore_from_usb.html:30
+#, fuzzy
+msgid "Restore in progress"
+msgstr "Restaurar"
 
-#: app/templates/backup/restorewizard/restore_from_usb.html:34
-msgid "Return to homescreen"
+#: app/templates/backup/restorewizard/restore_from_usb.html:33
+#: app/templates/upgrade/overview.html:90
+msgid "Do NOT power off your Enigmabox!"
 msgstr ""
 
 #: app/templates/changes/apply.html:14
@@ -895,10 +898,6 @@ msgstr ""
 
 #: app/templates/upgrade/overview.html:87
 msgid "Firmware upgrade in progress"
-msgstr ""
-
-#: app/templates/upgrade/overview.html:90
-msgid "Do NOT power off your Enigmabox!"
 msgstr ""
 
 #: app/templates/upgrade/overview.html:92
