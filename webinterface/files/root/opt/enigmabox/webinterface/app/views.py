@@ -219,8 +219,8 @@ def passwords(request):
     o = Option()
 
     return render_to_response('passwords/overview.html', {
-        'webinterface_password': o.get_value('webinterface_password'),
-        'mailbox_password': o.get_value('mailbox_password'),
+        'webinterface_password': o.get_value('webinterface_password', ''),
+        'mailbox_password': o.get_value('mailbox_password', ''),
     }, context_instance=RequestContext(request))
 
 def password_edit(request, subject):
@@ -1063,11 +1063,8 @@ def cfengine_site(request):
     except Exception:
         pass
 
-    webinterface_password = o.get_value('webinterface_password')
+    webinterface_password = o.get_value('webinterface_password', '')
     mailbox_password = o.get_value(u'mailbox_password')
-
-    if webinterface_password is None:
-        webinterface_password = ''
 
     if mailbox_password is None:
         mailbox_password = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(64))
