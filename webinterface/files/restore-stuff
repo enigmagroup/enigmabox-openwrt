@@ -51,12 +51,8 @@ fi
 
 if [[ $task == 'check_usb' ]]; then
 
-    if [[ $($parted /dev/sdb p | grep Disk | wc -l) -gt 0 ]]; then
-        if [[ $($parted /dev/sdb unit kB p | grep 'Disk /dev/sdb' | awk '{ print $3 }' | cut -dk -f1) -gt $(( $(du -s /box | awk '{ print $1 }') + 100 * 1024 )) ]]; then
-            echo yes
-        else
-            echo sizefail
-        fi
+    if [[ $(fdisk -l /dev/sdb | grep Disk | wc -l) -gt 0 ]]; then
+        echo yes
     else
         echo nodrive
     fi

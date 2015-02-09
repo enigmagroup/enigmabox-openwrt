@@ -369,7 +369,7 @@ def backup_system_backupwizard(request):
         step = 'backup_to_usb'
 
     if request.POST.get('backup_to_usb') == '1':
-        Popen(["/bin/busybox sh /usr/sbin/upgrader backup_to_usb 2>&1 > /tmp/backup_output"], shell=True, stdout=PIPE, close_fds=True)
+        Popen(["/bin/busybox sh /usr/sbin/upgrader backup_to_usb 2>&1 > /tmp/dynamic_output"], shell=True, stdout=PIPE, close_fds=True)
         show_output = True
         step = 'backup_to_usb'
 
@@ -406,7 +406,7 @@ def backup_system_restorewizard(request):
             errormsg = 'nodrive'
 
     if request.POST.get('restore_from_usb') == '1':
-        Popen(["/usr/sbin/restore-stuff usbstick 2>&1 > /tmp/restore_output"], shell=True, stdout=PIPE, close_fds=True)
+        Popen(["/usr/sbin/restore-stuff usbstick 2>&1 > /tmp/dynamic_output"], shell=True, stdout=PIPE, close_fds=True)
         show_output = True
         step = 'restore_from_usb'
 
