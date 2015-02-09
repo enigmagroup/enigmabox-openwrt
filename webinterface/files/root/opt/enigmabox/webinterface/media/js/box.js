@@ -180,11 +180,13 @@
         });
 
         setInterval(function() {
-            $.get('/restore_status/', function(data) {
-                if(data == 'done') {
-                    window.location.href = '/backup/system/restorewizard/?step=usb';
-                }
-            });
+            try {
+                $.get('/restore_status/', function(data) {
+                    if(data == 'done') {
+                        window.location.href = '/backup/system/restorewizard/?step=usb';
+                    }
+                });
+            } catch(e){}
         }, 2000);
 
         return false;
