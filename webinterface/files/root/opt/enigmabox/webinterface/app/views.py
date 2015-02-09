@@ -179,7 +179,6 @@ def addressbook_global(request):
 
 def addressbook_global_edit(request):
     o = Option()
-
     global_hostname = o.get_value('global_hostname', '')
     global_phone = o.get_value('global_phone', '')
 
@@ -217,7 +216,6 @@ def addressbook_global_edit(request):
 # Passwords
 
 def passwords(request):
-
     o = Option()
 
     return render_to_response('passwords/overview.html', {
@@ -226,7 +224,6 @@ def passwords(request):
     }, context_instance=RequestContext(request))
 
 def password_edit(request, subject):
-
     o = Option()
 
     if subject not in ['webinterface', 'mailbox']:
@@ -261,9 +258,7 @@ def password_edit(request, subject):
 # Updates
 
 def updates(request):
-
     o = Option()
-
     output_window = False
     loader_hint = ''
     output_type = 'updater_running'
@@ -310,7 +305,6 @@ def updates(request):
 
 def upgrade(request):
     import os.path
-
     o = Option()
     firmware_file = "/tmp/fw.img.gz"
     download_ok = False
@@ -347,41 +341,7 @@ def backup(request):
     return render_to_response('backup/overview.html', context_instance=RequestContext(request))
 
 def backup_system(request):
-
     o = Option()
-    temp_db = '/tmp/settings.sqlite'
-    final_db = '/box/settings.sqlite'
-    msg = False
-
-    if request.POST.get('backup'):
-        import os
-        from django.http import HttpResponse
-        from django.core.servers.basehttp import FileWrapper
-
-        filename = '/box/settings.sqlite'
-        wrapper = FileWrapper(file(filename))
-        response = HttpResponse(wrapper, content_type='application/x-sqlite3')
-        response['Content-Disposition'] = 'attachment; filename=settings.sqlite'
-        response['Content-Length'] = os.path.getsize(filename)
-        return response
-
-    if request.POST.get('upload_check'):
-        import sqlite3
-
-        try:
-            destination = open(temp_db, 'wb+')
-            for chunk in request.FILES['file'].chunks():
-                destination.write(chunk)
-            destination.close()
-
-            conn = sqlite3.connect(temp_db)
-            c = conn.cursor()
-            c.execute('select value from app_option where key = "ipv6"')
-            msg = c.fetchone()[0]
-            conn.close()
-
-        except Exception:
-            msg = 'invalid'
 
     if request.POST.get('restore'):
         import shutil
@@ -410,7 +370,6 @@ def backup_system(request):
     }, context_instance=RequestContext(request))
 
 def backup_emails(request):
-
     o = Option()
     filename = '/tmp/emails.tar.gz'
     msg = False
@@ -451,7 +410,6 @@ def backup_emails(request):
     }, context_instance=RequestContext(request))
 
 def backup_sslcerts(request):
-
     o = Option()
     hostid = o.get_value('hostid')
     if hostid is None:
@@ -501,9 +459,7 @@ def backup_sslcerts(request):
 # Subscription
 
 def subscription(request):
-
     o = Option()
-
     currency = request.POST.get('currency', 'CHF')
     subscription = request.POST.get('subscription', '1')
 
@@ -539,7 +495,6 @@ def subscription(request):
 # Peerings
 
 def peerings(request):
-
     o = Option()
 
     if request.POST.get('allow_peering'):
@@ -628,7 +583,6 @@ def peerings_edit(request, peering_id=None):
 # Country selection
 
 def countryselect(request):
-
     o = Option()
 
     country = request.POST.get('country', False)
@@ -695,7 +649,6 @@ def countryselect(request):
 # Web filter
 
 def webfilter(request):
-
     o = Option()
 
     if request.POST:
@@ -725,7 +678,6 @@ def webfilter(request):
 # WLAN settings
 
 def wlan_settings(request):
-
     o = Option()
 
     output_window = False
@@ -753,7 +705,6 @@ def set_opmode(request, wlan_opmode):
     return redirect('/wlan_settings/')
 
 def wlan_scan(request):
-
     o = Option()
 
     if request.POST:
@@ -825,7 +776,6 @@ def wlan_scan(request):
 # Teletext
 
 def teletext(request):
-
     o = Option()
 
     if request.POST:
@@ -841,7 +791,6 @@ def teletext(request):
 # Changes
 
 def apply_changes(request):
-
     output_window = False
     loader_hint = ''
     output_type = 'config_changed'
@@ -1000,7 +949,6 @@ def api_v1(request, api_url):
 # Sites
 
 def cfengine_site(request):
-
     o = Option()
 
     cjdns_ipv6 = o.get_value('ipv6').strip()
@@ -1224,7 +1172,6 @@ def cfengine_site(request):
 
 
 def _get_missioncontrol():
-
     missioncontrol = []
 
     try:
