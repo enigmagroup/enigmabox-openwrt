@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-09 17:51+0100\n"
+"POT-Creation-Date: 2015-02-09 18:14+0100\n"
 "PO-Revision-Date: 2015-02-09 17:53+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
@@ -343,7 +343,6 @@ msgid "Status"
 msgstr "Status"
 
 #: app/templates/addressbook/overview-global.html:35
-#: app/templates/passwords/edit.html:73
 #: app/templates/passwords/overview.html:17
 #: app/templates/passwords/overview.html:26
 msgid "Unset"
@@ -623,6 +622,11 @@ msgstr "Passwort wiederholen"
 
 #: app/templates/passwords/edit.html:69
 msgid "Unset password"
+msgstr "Passwort entfernen"
+
+#: app/templates/passwords/edit.html:73
+#, fuzzy
+msgid "Unset Password"
 msgstr "Passwort entfernen"
 
 #: app/templates/passwords/overview.html:10

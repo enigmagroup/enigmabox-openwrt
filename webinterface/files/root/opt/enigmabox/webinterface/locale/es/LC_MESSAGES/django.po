@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-09 17:51+0100\n"
+"POT-Creation-Date: 2015-02-09 18:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -348,7 +348,6 @@ msgid "Status"
 msgstr "Estado"
 
 #: app/templates/addressbook/overview-global.html:35
-#: app/templates/passwords/edit.html:73
 #: app/templates/passwords/overview.html:17
 #: app/templates/passwords/overview.html:26
 msgid "Unset"
@@ -631,6 +630,11 @@ msgstr "Contraseña WLAN"
 #: app/templates/passwords/edit.html:69
 #, fuzzy
 msgid "Unset password"
+msgstr "Contraseña WLAN"
+
+#: app/templates/passwords/edit.html:73
+#, fuzzy
+msgid "Unset Password"
 msgstr "Contraseña WLAN"
 
 #: app/templates/passwords/overview.html:10
