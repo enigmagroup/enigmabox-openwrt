@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-09 18:56+0100\n"
-"PO-Revision-Date: 2015-02-09 19:14+0100\n"
+"PO-Revision-Date: 2015-02-09 19:16+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -510,7 +510,7 @@ msgstr "Ich habe den USB-Stick entfernt"
 
 #: app/templates/backup/restorewizard/restore_from_usb.html:20
 msgid "Step 2: Restore from USB stick"
-msgstr "Schritt 2: Wiederherstellen von einem USB-Stick"
+msgstr "Schritt 2: Wiederherstellen vom USB-Stick"
 
 #: app/templates/backup/restorewizard/restore_from_usb.html:21
 msgid ""
