@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-09 18:56+0100\n"
-"PO-Revision-Date: 2015-02-09 19:05+0100\n"
+"PO-Revision-Date: 2015-02-09 19:14+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -482,7 +482,7 @@ msgstr "Schritt 1: USB-Stick einstecken"
 
 #: app/templates/backup/restorewizard/check_usb.html:21
 msgid "Insert the USB stick that holds your data."
-msgstr "Bitte USB-Stick mit deinen Daten einstecken."
+msgstr "Bitte den USB-Stick mit deinen Daten einstecken."
 
 #: app/templates/backup/restorewizard/check_usb.html:27
 msgid "No USB stick detected."
