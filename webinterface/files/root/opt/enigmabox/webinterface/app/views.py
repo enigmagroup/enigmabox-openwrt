@@ -345,51 +345,90 @@ def backup_system(request):
     }, context_instance=RequestContext(request))
 
 def backup_system_backupwizard(request):
-    return render_to_response('backup/backupwizard/overview.html', {
+    step = 'overview'
+    show_output = False
+    errormsg = ''
+
+    if request.POST.get('start') == '1':
+        step = 'check_usb'
+
+    if request.POST.get('check_usb') == '1':
+        result = Popen(["/bin/busybox sh /usr/sbin/upgrader check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
+        result = result.strip()
+        if result == 'yes':
+            step = 'format_usb'
+        elif result == 'sizefail':
+            step = 'check_usb'
+            errormsg = 'sizefail'
+        elif result == 'nodrive':
+            step = 'check_usb'
+            errormsg = 'nodrive'
+
+    if request.POST.get('format_usb') == '1':
+        Popen(["/bin/busybox sh /usr/sbin/upgrader format_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
+        step = 'backup_to_usb'
+
+    if request.POST.get('backup_to_usb') == '1':
+        Popen(["/bin/busybox sh /usr/sbin/upgrader backup_to_usb 2>&1 > /tmp/backup_output"], shell=True, stdout=PIPE, close_fds=True)
+        show_output = True
+        step = 'backup_to_usb'
+
+    if request.POST.get('proceed_to_step_4') == '1':
+        step = 'ensure_usb_unplugged'
+
+    if request.POST.get('ensure_usb_unplugged') == '1':
+        result = Popen(["/bin/busybox sh /usr/sbin/upgrader check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
+        result = result.strip()
+        if result == 'nodrive':
+            step = 'ensure_usb_unplugged'
+            errormsg = 'allgood'
+        else:
+            step = 'ensure_usb_unplugged'
+            errormsg = 'usbfail'
+
+    return render_to_response('backup/backupwizard/' + step + '.html', {
+        'show_output': show_output,
+        'errormsg': errormsg,
     }, context_instance=RequestContext(request))
 
 def backup_system_restorewizard(request):
-    return render_to_response('backup/restorewizard/overview.html', {
-    }, context_instance=RequestContext(request))
+    step = 'overview'
+    show_output = False
+    errormsg = ''
 
-def backup_emails(request):
-    o = Option()
-    filename = '/tmp/emails.tar.gz'
-    msg = False
+    if request.POST.get('start') == '1':
+        step = 'check_usb'
 
-    if request.POST.get('backup'):
-        import os
-        from django.http import HttpResponse
-        from django.core.servers.basehttp import FileWrapper
+    if request.POST.get('check_usb') == '1':
+        result = Popen(["/usr/sbin/restore-stuff check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
+        result = result.strip()
+        if result == 'yes':
+            step = 'restore_from_usb'
+        elif result == 'nodrive':
+            step = 'check_usb'
+            errormsg = 'nodrive'
 
-        try:
-            Popen(["/usr/sbin/backup-stuff", "emails"], stdout=PIPE).communicate()[0]
+    if request.POST.get('restore_from_usb') == '1':
+        Popen(["/usr/sbin/restore-stuff usbstick 2>&1 > /tmp/restore_output"], shell=True, stdout=PIPE, close_fds=True)
+        show_output = True
+        step = 'restore_from_usb'
 
-            wrapper = FileWrapper(file(filename))
-            response = HttpResponse(wrapper, content_type='application/x-gzip')
-            response['Content-Disposition'] = 'attachment; filename=emails.tar.gz'
-            response['Content-Length'] = os.path.getsize(filename)
-            return response
+    if request.POST.get('proceed_to_step_4') == '1':
+        step = 'ensure_usb_unplugged'
 
-        except Exception:
-            msg = 'backuperror'
+    if request.POST.get('ensure_usb_unplugged') == '1':
+        result = Popen(["/usr/sbin/restore-stuff check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
+        result = result.strip()
+        if result == 'nodrive':
+            step = 'ensure_usb_unplugged'
+            errormsg = 'allgood'
+        else:
+            step = 'ensure_usb_unplugged'
+            errormsg = 'usbfail'
 
-    if request.POST.get('restore'):
-
-        try:
-            destination = open('/tmp/emails.tar.gz', 'wb+')
-            for chunk in request.FILES['file'].chunks():
-                destination.write(chunk)
-            destination.close()
-
-            Popen(["/usr/sbin/restore-stuff", "emails"], stdout=PIPE).communicate()[0]
-            msg = 'restoresuccess'
-
-        except Exception:
-            msg = 'restoreerror'
-
-    return render_to_response('backup/emails.html', {
-        'msg': msg,
+    return render_to_response('backup/restorewizard/' + step + '.html', {
+        'show_output': show_output,
+        'errormsg': errormsg,
     }, context_instance=RequestContext(request))
 
 def backup_sslcerts(request):
