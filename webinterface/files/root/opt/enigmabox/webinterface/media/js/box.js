@@ -18,7 +18,9 @@
 
     if ($dynamic_output.length){
 
-        $dynamic_output.height(parseInt($(window).height(), 10) - 400);
+        var padding_from_top = $dynamic_output.data('padding_from_top') || 400;
+        padding_from_top = parseInt(padding_from_top, 10);
+        $dynamic_output.height(parseInt($(window).height(), 10) - padding_from_top);
 
         if($('#loader-hint').data('value') == 'run'){
             $dynamic_output = $('.dynamic-output');

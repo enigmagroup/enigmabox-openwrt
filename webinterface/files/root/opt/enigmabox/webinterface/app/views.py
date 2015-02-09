@@ -392,12 +392,9 @@ def backup_system_backupwizard(request):
     }, context_instance=RequestContext(request))
 
 def backup_system_restorewizard(request):
-    step = 'overview'
+    step = 'check_usb'
     show_output = False
     errormsg = ''
-
-    if request.POST.get('start') == '1':
-        step = 'check_usb'
 
     if request.POST.get('check_usb') == '1':
         result = Popen(["/usr/sbin/restore-stuff check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]

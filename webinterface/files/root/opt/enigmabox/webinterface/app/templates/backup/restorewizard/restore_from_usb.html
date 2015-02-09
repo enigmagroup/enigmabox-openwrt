@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+    <ul class="breadcrumb">
+        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a> <span class="divider">/</span></li>
+        <li><a href="/backup/system/">{% trans "Complete system" %}</a> <span class="divider">/</span></li>
+        <li class="active">{% trans "Restore wizard" %}</li>
+    </ul>
+
+      <h1>{% trans "Complete system restore" %}</h1>
+
+      <p>&nbsp;</p>
+
+<form action="" method="post" class="form-horizontal">
+{% csrf_token %}
+    <fieldset>
+        <legend>{% trans "Step 2: Restore from USB stick" %}</legend>
+        <p>{% trans "Ok, now we restore all your user data and system settings from the USB stick." %}</p>
+        <p>&nbsp;</p>
+
+{% if show_output %}
+        <button id="restore_from_usb" name="restore_from_usb" value="1" class="btn btn-default">{% trans "Start restore" %}</button>
+{% else %}
+        <button id="restore_from_usb" name="restore_from_usb" value="1" class="btn btn-danger">{% trans "Start restore" %}</button>
+{% endif %}
+
+{% if show_output %}
+        <p>&nbsp;</p>
+        <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output" data-padding_from_top="500"></pre>
+        <p>{% trans "Please wait, this can take some time..." %}</p>
+        <a href="/" alt="" class="btn btn-primary">{% trans "Return to homescreen" %}</a>
+{% endif %}
+    </fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}
