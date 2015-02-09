@@ -9,6 +9,23 @@
       <h1>{% trans "Welcome" %}.</h1>
 {% if hostid %}
       <p>{% trans "Your hostid is" %} <strong>{{ hostid }}</strong>. {% trans "Network access valid until" %} {{ internet_access_formatted }}.</p>
+{% else %}
+      <p>&nbsp;</p>
+      <h5>{% trans "Continue installation:" %}</h5>
+        <div class="control-group">
+          <div class="controls">
+            <a href="/backup/system/" class="btn btn-inverse">{% trans "Restore from USB stick" %}</a>
+            {% trans "Choose this if you have upgraded from a previous Enigmabox." %}
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <a href="/backup/sslcerts/" class="btn btn-warning">{% trans "Import SSL certificates" %}</a>
+            {% trans "Choose this if you have built your own Enigmabox on the Banana Pi." %}
+          </div>
+        </div>
+      <p>&nbsp;</p>
 {% endif %}
 {% if_internet_access_expiring object None %}
       <p><a href="/subscription/" class="btn btn-success"><i class="icon icon-white icon-refresh"></i>&nbsp;{% trans "Renew subscription" %}</a></p>
