@@ -207,7 +207,7 @@
                     prev_data = data;
                 }
             });
-        }, 600);
+        }, 1000);
 
         $.post('/apply_changes/', {
             'apply_changes': 'run'
