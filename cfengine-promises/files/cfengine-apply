@@ -19,15 +19,15 @@ run() {
         background=1
     fi
 
+    touch "$dynamic_status"
+
     echo "running cfengine and applying promises..."
     curl "$webinterface/cfengine/site.json" > "$cfengine_site"
 
     if [[ "$background" == 1 ]]; then
         (
-            touch "$dynamic_status"
             cfengine_run > "$dynamic_output"
             inform_webinterface
-            rm "$dynamic_status"
         ) &
     else
         cfengine_run && inform_webinterface
@@ -37,6 +37,7 @@ run() {
 
 inform_webinterface() {
     curl --data "key=config_changed&value=False" -X POST "$webinterface/api/v1/set_option" &> /dev/null
+    rm "$dynamic_status"
 }
 
 cfengine_run() {
