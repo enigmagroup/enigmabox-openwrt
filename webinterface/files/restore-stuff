@@ -1,5 +1,9 @@
 #!/bin/ash
 
+find_usb() {
+    find /dev/sd[b-z] | xargs fdisk -l 2> /dev/null | grep 'Disk /dev' | cut -d' ' -f2 | cut -d: -f1
+}
+
 task=$1
 
 if [[ $task == 'sslcerts' ]]; then
@@ -51,7 +55,7 @@ fi
 
 if [[ $task == 'check_usb' ]]; then
 
-    if [[ $(fdisk -l /dev/sdb | grep Disk | wc -l) -gt 0 ]]; then
+    if [[ $(find_usb | wc -l) -gt 0 ]]; then
         echo yes
     else
         echo nodrive
@@ -72,7 +76,7 @@ if [[ $task == 'usbstick' ]]; then
 
     restore_start
 
-    mount -o ro /dev/sdb1 /mnt || (restore_end ; exit 1)
+    mount -o ro $(find_usb)1 /mnt || (restore_end ; exit 1)
     rsync -Pah /mnt/etc/enigmabox/addressbook.db /etc/enigmabox/
     rsync -Pah /mnt/box/teletext.db /box/
     rsync -Pah /mnt/box/ssl/ /box/ssl/
