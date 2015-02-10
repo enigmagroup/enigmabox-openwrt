@@ -2,21 +2,17 @@
 bundle agent app_webfilter
 {
   files:
-      "/etc/privoxy/config"
+      "/etc/config/privoxy"
       create => "true",
-      edit_template => "$(this.promise_dirname)/templates/config",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/etc-config-privoxy.mustache",
       edit_defaults => no_backup,
       classes => if_repaired("restart_privoxy");
 
       "/etc/privoxy/match-all.action"
       create => "true",
       edit_template => "$(this.promise_dirname)/templates/match-all.action",
-      edit_defaults => no_backup,
-      classes => if_repaired("restart_privoxy");
-
-      "/etc/privoxy/user.filter"
-      create => "true",
-      edit_template => "$(this.promise_dirname)/templates/user.filter",
       edit_defaults => no_backup,
       classes => if_repaired("restart_privoxy");
 
