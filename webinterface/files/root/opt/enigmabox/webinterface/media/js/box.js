@@ -28,37 +28,6 @@
             $dynamic_output.height(parseInt($(window).height(), 10) - padding_from_top);
         }
 
-        if($('#loader-hint').data('value') == 'run'){
-            $dynamic_output = $('.dynamic-output');
-            $('.loader').show();
-            $('#button-dry-run, #button-run').attr('disabled', 'disabled');
-            $('#lockscreen').fadeIn();
-
-            var output_type = $('#output-type').data('value'); // config_changed | updater_running
-
-            setInterval(function(){
-                ret = $.post('/api/v1/get_option', {
-                    'key': output_type
-                }, function(data){
-                    if(data['value'] == 'False'){
-                        $('.loader').hide();
-                        $('#button-dry-run, #button-run, #button-apply').hide();
-                        $('#success').fadeIn();
-                        $('#lockscreen').hide();
-                    }
-                });
-            }, 2000);
-        }
-
-        var prev_data = '';
-        setInterval(function(){
-            $dynamic_output.load('/dynamic_output/', function(data){
-                if(data != prev_data){
-                    $dynamic_output.animate({ scrollTop: $('.dynamic-output')[0].scrollHeight}, 1000);
-                    prev_data = data;
-                }
-            });
-        }, 1500);
     }
 
     var anchor = false;
@@ -199,6 +168,7 @@
     });
 
     var applyval = 0;
+    var prev_data = '';
 
     $('#button-apply').on('click', function() {
         var self = this;
@@ -220,14 +190,22 @@
                 $.get('/dynamic_status/?key=applynow', function(data) {
                     if(data == 'done') {
                         clearInterval(applyval);
+                        $('.apply-progressbar').hide();
                         $('#apply-now .dynamic-output').slideUp(function(){
-                            $('.apply-progressbar').hide();
                             $('.apply-changes-success').show();
                             $('.apply-donebar').show();
                         });
                     }
                 });
             } catch(e){}
+            $dynamic_output.load('/dynamic_output/', function(data) {
+                if(data != prev_data){
+                    $('#apply-now .dynamic-output').animate({
+                        scrollTop: $('.dynamic-output')[0].scrollHeight
+                    }, 1000);
+                    prev_data = data;
+                }
+            });
         }, 600);
 
         $.post('/apply_changes/', {

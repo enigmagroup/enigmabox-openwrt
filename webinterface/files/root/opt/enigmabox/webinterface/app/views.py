@@ -836,8 +836,12 @@ def apply_changes(request):
 # Dynamic output
 
 def dynamic_output(request):
-    with open('/tmp/dynamic_output', 'r') as f:
-        output = f.read()
+    try:
+        with open('/tmp/dynamic_output', 'r') as f:
+            output = f.read()
+    except Exception:
+        output = ''
+
     from ansi2html import Ansi2HTMLConverter
     from django.http import HttpResponse
     conv = Ansi2HTMLConverter()
