@@ -32,11 +32,13 @@ def display_ip():
     return o.get_ipv6()
 
 @register.simple_tag
-def display_version():
-    f = open('VERSION', 'r')
-    version = f.read()
-    f.close()
-    return version
+def display_version(slugify=False):
+    with open('VERSION', 'r') as f:
+        version = f.read().strip()
+    if slugify == '1':
+        return template.defaultfilters.slugify(version)
+    else:
+        return version
 
 @register.simple_tag
 def updates_count():

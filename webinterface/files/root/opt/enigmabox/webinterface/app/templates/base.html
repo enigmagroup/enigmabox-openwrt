@@ -6,7 +6,7 @@
     <title>Enigmabox Administration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/media/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="/media/css/box.css?13" rel="stylesheet" media="screen">
+    <link href="/media/css/box.css?{% display_version slugify='1' %}" rel="stylesheet" media="screen">
     <link href="/media/css/ansi2html.css" rel="stylesheet" media="screen">
     <style>
       body {
@@ -84,7 +84,7 @@
         <!--Body content-->
         {% block main %}[main]{% endblock %}
 
-        <p class="muted credits">{% display_version %}</p>
+        <a href="https://github.com/enigmagroup/enigmabox-openwrt" target="_blank" class="muted credits">{% display_version %}</a>
         </div>
     </div>
 </div>
@@ -92,6 +92,6 @@
     <script src="/media/js/jquery-2.0.2.min.js"></script>
     <script src="/media/js/jquery-ui-1.10.4.min.js"></script>
     <script src="/media/js/bootstrap.min.js"></script>
-    <script src="/media/js/box.js?13"></script>
+    <script src="/media/js/box.js?{% display_version slugify='1' %}"></script>
   </body>
 </html>
