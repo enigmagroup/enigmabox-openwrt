@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-09 18:56+0100\n"
+"POT-Creation-Date: 2015-02-10 13:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,28 +30,28 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:648
+#: app/views.py:646
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:649
+#: app/views.py:647
 msgid "Sweden"
 msgstr ""
 
-#: app/views.py:650
+#: app/views.py:648
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:651
+#: app/views.py:649
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:652
+#: app/views.py:650
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:653
+#: app/views.py:651
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
@@ -63,8 +63,8 @@ msgstr "¿Estás seguro?"
 msgid "Show"
 msgstr "Mostrar"
 
-#: app/templates/base.html:31 app/templates/base.html.py:67
-#: app/templates/changes/apply.html:8 app/templates/changes/apply.html:15
+#: app/templates/base.html:31 app/templates/base.html.py:92
+#: app/templates/base.html:102
 msgid "Apply changes"
 msgstr "Aplicar cambios"
 
@@ -101,52 +101,69 @@ msgstr "Copia de seguridad y restaurar"
 msgid "Updates"
 msgstr ""
 
-#: app/templates/base.html:64
-#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:8
-#: app/templates/upgrade/overview.html:8
+#: app/templates/base.html:64 app/templates/upgrade/overview.html:8
 msgid "Firmware upgrade"
 msgstr ""
 
-#: app/templates/base.html:69 app/templates/home.html:51
+#: app/templates/base.html:66 app/templates/home.html:51
 msgid "Internet"
 msgstr "Internet"
 
-#: app/templates/base.html:70
+#: app/templates/base.html:67
 msgid "Country selection"
 msgstr "Selección de país"
 
-#: app/templates/base.html:71 app/templates/webfilter/overview.html:8
+#: app/templates/base.html:68 app/templates/webfilter/overview.html:8
 msgid "Ad blocking"
 msgstr "Añadir bloqueo"
 
-#: app/templates/base.html:72
+#: app/templates/base.html:69
 msgid "Network"
 msgstr "Red"
 
-#: app/templates/base.html:74 app/templates/subscription/overview.html:8
+#: app/templates/base.html:71 app/templates/subscription/overview.html:8
 #: app/templates/subscription/overview.html:40
 #, fuzzy
 msgid "Subscription"
 msgstr "Descripción"
 
-#: app/templates/base.html:76 app/templates/peerings/detail.html:9
+#: app/templates/base.html:73 app/templates/peerings/detail.html:9
 #: app/templates/peerings/overview.html:8
 msgid "Peerings"
 msgstr "Compañeros"
 
-#: app/templates/base.html:77 app/templates/wlan_settings/overview.html:8
+#: app/templates/base.html:74 app/templates/wlan_settings/overview.html:8
 #: app/templates/wlan_settings/scan.html:9
 msgid "WLAN settings"
 msgstr "Configuración WLAN"
 
-#: app/templates/base.html:78
+#: app/templates/base.html:75
 msgid "Services"
 msgstr "Servicios"
 
-#: app/templates/base.html:79 app/templates/home.html:41
+#: app/templates/base.html:76 app/templates/home.html:41
 #: app/templates/home.html.py:43 app/templates/teletext/overview.html:8
 msgid "Teletext"
 msgstr "Teletext"
+
+#: app/templates/base.html:96
+#, fuzzy
+msgid "Apply changes?"
+msgstr "Aplicar cambios"
+
+#: app/templates/base.html:97
+msgid "Changes successfully applied."
+msgstr "Cambios aplicados con éxito"
+
+#: app/templates/base.html:101 app/templates/addressbook/detail.html:65
+#: app/templates/addressbook/overview-global-edit.html:52
+#: app/templates/passwords/edit.html:63 app/templates/peerings/detail.html:68
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/templates/base.html:110
+msgid "Done"
+msgstr ""
 
 #: app/templates/home.html:11
 msgid "Your hostid is"
@@ -282,12 +299,6 @@ msgstr "Número teléfono"
 #: app/templates/webfilter/overview.html:114
 msgid "Save"
 msgstr "Guardar"
-
-#: app/templates/addressbook/detail.html:65
-#: app/templates/addressbook/overview-global-edit.html:52
-#: app/templates/passwords/edit.html:63 app/templates/peerings/detail.html:68
-msgid "Cancel"
-msgstr "Cancelar"
 
 #: app/templates/addressbook/detail.html:71
 #: app/templates/addressbook/overview-global-edit.html:58
@@ -486,6 +497,7 @@ msgid "Restore wizard"
 msgstr "Restaurar"
 
 #: app/templates/backup/restorewizard/check_usb.html:13
+#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:8
 #: app/templates/backup/restorewizard/restore_from_usb.html:13
 msgid "Complete system restore"
 msgstr ""
@@ -547,18 +559,6 @@ msgstr "Restaurar"
 #: app/templates/upgrade/overview.html:90
 msgid "Do NOT power off your Enigmabox!"
 msgstr ""
-
-#: app/templates/changes/apply.html:14
-msgid "Back"
-msgstr "Atrás"
-
-#: app/templates/changes/apply.html:14
-msgid "Changes successfully applied."
-msgstr "Cambios aplicados con éxito"
-
-#: app/templates/changes/apply.html:16 app/templates/updates/overview.html:64
-msgid "Please wait"
-msgstr "Por favor espera"
 
 #: app/templates/countryselect/overview.html:8
 msgid "Select country"
@@ -847,6 +847,10 @@ msgstr "Renovar"
 msgid "Install updates"
 msgstr ""
 
+#: app/templates/updates/overview.html:64
+msgid "Please wait"
+msgstr "Por favor espera"
+
 #: app/templates/upgrade/overview.html:10
 msgid "Flash the current image onto the Enigmabox."
 msgstr ""
@@ -1022,6 +1026,9 @@ msgstr "Información conexión"
 #: app/templates/wlan_settings/scan.html:22
 msgid "Signal"
 msgstr ""
+
+#~ msgid "Back"
+#~ msgstr "Atrás"
 
 #~ msgid "emails"
 #~ msgstr "E mails"
