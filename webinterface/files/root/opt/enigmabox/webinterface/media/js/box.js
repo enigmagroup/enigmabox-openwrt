@@ -194,32 +194,33 @@
 
     $('#button-apply').on('click', function() {
         var self = this;
+        var applyval = 0;
 
         $('#apply-now').modal();
 
-        var applyval = setInterval(function() {
+        return false;
+    });
+
+    $('#confirm-apply').on('click', function() {
+
+        applyval = setInterval(function() {
             try {
                 $.get('/dynamic_status/?key=applynow', function(data) {
                     if(data == 'done') {
                         clearInterval(applyval);
-                        var href = window.location.href;
-                        window.location.href = href;
                     }
                 });
             } catch(e){}
         }, 600);
 
-        $('#apply-now').on('hide', function() {
-            clearInterval(applyval);
+        $.post('/apply_changes/', {
+            'apply_changes': 'run'
         });
 
-        $('#confirm-apply').on('click', function() {
-            $.post('/apply_changes/', {
-                'apply_changes': 'run'
-            });
-        });
+    });
 
-        return false;
+    $('#apply-now').on('hide', function() {
+        clearInterval(applyval);
     });
 
 })();
