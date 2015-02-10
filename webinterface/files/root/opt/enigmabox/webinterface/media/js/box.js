@@ -213,7 +213,7 @@
                     if(data == 'done') {
                         clearInterval(applyval);
                         $('.apply-progressbar').hide();
-                        $('.apply-buttonbar').show();
+                        $('.apply-donebar').show();
                     }
                 });
             } catch(e){}
