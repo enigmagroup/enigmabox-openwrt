@@ -7,6 +7,10 @@ PIDFILE=/var/run/webinterface.pid
 EXTRA_COMMANDS="init_db"
  
 start() {
+    # kill that nasty ssl-params process
+    killall -9 ssl-params 2> /dev/null
+
+    # init db
     [[ ! -f /box/settings.sqlite ]] && init_db
 
     # another 'apu ethernet card hangs' workaround... -.-
