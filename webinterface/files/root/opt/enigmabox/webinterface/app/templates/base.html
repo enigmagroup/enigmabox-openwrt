@@ -63,9 +63,6 @@
 {% if_show_upgrader object None %}
                 <li class="{% active request 'upgrade' %}"><a href="{% url app.views.upgrade %}"><i class="icon-download-alt"></i> {% trans "Firmware upgrade" %}</a></li>
 {% endif_show_upgrader  %}
-{% if_config_changed object None %}
-                <li class="{% active request 'apply_changes' %}"><a href="{% url app.views.apply_changes %}"><i class="icon-circle-arrow-right"></i> {% trans "Apply changes" %}</a></li>
-{% endif_config_changed %}
                 <li class="nav-header">{% trans "Internet" %}</li>
                 <li class="{% active request 'countryselect' %}"><a href="{% url app.views.countryselect %}"><i class="icon-globe"></i> {% trans "Country selection" %}</a></li>
                 <li class="{% active request 'webfilter' %}"><a href="{% url app.views.webfilter %}"><i class="icon-ban-circle"></i> {% trans "Ad blocking" %}</a></li>
@@ -87,6 +84,20 @@
         <a href="https://github.com/enigmagroup/enigmabox-openwrt" target="_blank" class="muted credits">{% display_version %}</a>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div id="apply-now" class="modal hide" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <h3>{% trans "Apply changes" %}</h3>
+  </div>
+  <div class="modal-body">
+    <p>{% trans "Apply changes?" %}</p>
+  </div>
+  <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
+      <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
+  </div>
 </div>
 
     <script src="/media/js/jquery-2.0.2.min.js"></script>

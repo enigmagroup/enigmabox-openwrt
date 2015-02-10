@@ -141,7 +141,7 @@
 
         $('#fw-countdown').modal({
             'backdrop': 'static',
-            'keyboard': false,
+            'keyboard': false
         });
 
         var remaining_seconds = 60 * 15;
@@ -176,7 +176,7 @@
 
         $('#restore-progress').modal({
             'backdrop': 'static',
-            'keyboard': false,
+            'keyboard': false
         });
 
         setInterval(function() {
@@ -188,6 +188,36 @@
                 });
             } catch(e){}
         }, 2000);
+
+        return false;
+    });
+
+    $('#button-apply').on('click', function() {
+        var self = this;
+
+        $('#apply-now').modal();
+
+        var applyval = setInterval(function() {
+            try {
+                $.get('/dynamic_status/?key=applynow', function(data) {
+                    if(data == 'done') {
+                        clearInterval(applyval);
+                        var href = window.location.href;
+                        window.location.href = href;
+                    }
+                });
+            } catch(e){}
+        }, 600);
+
+        $('#apply-now').on('hide', function() {
+            clearInterval(applyval);
+        });
+
+        $('#confirm-apply').on('click', function() {
+            $.post('/apply_changes/', {
+                'apply_changes': 'run'
+            });
+        });
 
         return false;
     });
