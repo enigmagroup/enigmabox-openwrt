@@ -191,6 +191,7 @@
                     if(data == 'done') {
                         clearInterval(applyval);
                         $('.apply-progressbar').hide();
+                        $('#button-apply').hide();
                         $('#apply-now .dynamic-output').slideUp(function(){
                             $('.apply-changes-success').show();
                             $('.apply-donebar').show();
