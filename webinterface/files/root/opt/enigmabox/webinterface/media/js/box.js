@@ -19,8 +19,14 @@
     if ($dynamic_output.length){
 
         var padding_from_top = $dynamic_output.data('padding_from_top') || 400;
-        padding_from_top = parseInt(padding_from_top, 10);
-        $dynamic_output.height(parseInt($(window).height(), 10) - padding_from_top);
+        var static_height = $dynamic_output.data('static_height') || false;
+
+        if(static_height){
+            $dynamic_output.height(static_height);
+        }else{
+            padding_from_top = parseInt(padding_from_top, 10);
+            $dynamic_output.height(parseInt($(window).height(), 10) - padding_from_top);
+        }
 
         if($('#loader-hint').data('value') == 'run'){
             $dynamic_output = $('.dynamic-output');
@@ -205,15 +211,20 @@
     $('#confirm-apply').on('click', function() {
 
         $('.apply-buttonbar').hide();
+        $('.apply-changes-ask').hide();
         $('.apply-progressbar').show();
+        $('#apply-now .dynamic-output').slideDown();
 
         applyval = setInterval(function() {
             try {
                 $.get('/dynamic_status/?key=applynow', function(data) {
                     if(data == 'done') {
                         clearInterval(applyval);
-                        $('.apply-progressbar').hide();
-                        $('.apply-donebar').show();
+                        $('#apply-now .dynamic-output').slideUp(function(){
+                            $('.apply-progressbar').hide();
+                            $('.apply-changes-success').show();
+                            $('.apply-donebar').show();
+                        });
                     }
                 });
             } catch(e){}

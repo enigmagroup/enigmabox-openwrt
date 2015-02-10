@@ -92,7 +92,9 @@
     <h3>{% trans "Apply changes" %}</h3>
   </div>
   <div class="modal-body">
-    <p>{% trans "Apply changes?" %}</p>
+    <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output hide" data-static_height="300"></pre>
+    <p class="apply-changes-ask">{% trans "Apply changes?" %}</p>
+    <p class="apply-changes-success hide">{% trans "Changes successfully applied." %}</p>
   </div>
   <div class="modal-footer">
     <span class="apply-buttonbar">
