@@ -1170,6 +1170,7 @@ def cfengine_site(request):
         'cjdns_public_key': cjdns_public_key,
         'cjdns_private_key': cjdns_private_key,
         'cjdns_version': cjdns_version,
+        'cjdns_v6': cjdns_version == 'v6',
         'addresses': addresses,
         'global_addresses': global_addresses,
         'global_availability': o.get_value('global_availability', 0),
