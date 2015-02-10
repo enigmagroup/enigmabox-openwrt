@@ -52,28 +52,28 @@
         <div class="span2">
             <!--Sidebar content-->
             <ul class="nav nav-list">
-                <li class=""><a href="/"><i class="icon-home"></i> {% trans "Welcome" %}</a></li>
+                <li class=""><a href="/"><i class="icon-home"></i>&nbsp;{% trans "Welcome" %}</a></li>
                 <li class="nav-header">{% trans "System" %}</li>
-                <li class="{% active request 'addressbook' %}"><a href="{% url app.views.addressbook %}"><i class="icon-user"></i> {% trans "Addressbook" %}</a></li>
-                <li class="{% active request 'passwords' %}"><a href="{% url app.views.passwords %}"><i class="icon-lock"></i> {% trans "Passwords" %}</a></li>
-                <li class="{% active request 'backup' %}"><a href="{% url app.views.backup %}"><i class="icon-share"></i> {% trans "Backup &amp; restore" %}</a></li>
+                <li class="{% active request 'addressbook' %}"><a href="{% url app.views.addressbook %}"><i class="icon-user"></i>&nbsp;{% trans "Addressbook" %}</a></li>
+                <li class="{% active request 'passwords' %}"><a href="{% url app.views.passwords %}"><i class="icon-lock"></i>&nbsp;{% trans "Passwords" %}</a></li>
+                <li class="{% active request 'backup' %}"><a href="{% url app.views.backup %}"><i class="icon-share"></i>&nbsp;{% trans "Backup &amp; restore" %}</a></li>
 {% if_updates object None  %}
-                <li class="{% active request 'updates' %}"><a href="{% url app.views.updates %}"><i class="icon-circle-arrow-up"></i> {% trans "Updates" %}</a></li>
+                <li class="{% active request 'updates' %}"><a href="{% url app.views.updates %}"><i class="icon-circle-arrow-up"></i>&nbsp;{% trans "Updates" %}</a></li>
 {% endif_updates %}
 {% if_show_upgrader object None %}
-                <li class="{% active request 'upgrade' %}"><a href="{% url app.views.upgrade %}"><i class="icon-download-alt"></i> {% trans "Firmware upgrade" %}</a></li>
+                <li class="{% active request 'upgrade' %}"><a href="{% url app.views.upgrade %}"><i class="icon-download-alt"></i>&nbsp;{% trans "Firmware upgrade" %}</a></li>
 {% endif_show_upgrader  %}
                 <li class="nav-header">{% trans "Internet" %}</li>
-                <li class="{% active request 'countryselect' %}"><a href="{% url app.views.countryselect %}"><i class="icon-globe"></i> {% trans "Country selection" %}</a></li>
-                <li class="{% active request 'webfilter' %}"><a href="{% url app.views.webfilter %}"><i class="icon-ban-circle"></i> {% trans "Ad blocking" %}</a></li>
+                <li class="{% active request 'countryselect' %}"><a href="{% url app.views.countryselect %}"><i class="icon-globe"></i>&nbsp;{% trans "Country selection" %}</a></li>
+                <li class="{% active request 'webfilter' %}"><a href="{% url app.views.webfilter %}"><i class="icon-ban-circle"></i>&nbsp;{% trans "Ad blocking" %}</a></li>
                 <li class="nav-header">{% trans "Network" %}</li>
 {% if_internet_access_expiring object None %}
-                <li class="{% active request 'subscription' %}"><a href="{% url app.views.subscription %}"><i class="icon-repeat"></i> {% trans "Subscription" %}</a></li>
+                <li class="{% active request 'subscription' %}"><a href="{% url app.views.subscription %}"><i class="icon-repeat"></i>&nbsp;{% trans "Subscription" %}</a></li>
 {% endif_internet_access_expiring %}
-                <li class="{% active request 'peerings' %}"><a href="{% url app.views.peerings %}"><i class="icon-random"></i> {% trans "Peerings" %}</a></li>
-                <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i> {% trans "WLAN settings" %}</a></li>
+                <li class="{% active request 'peerings' %}"><a href="{% url app.views.peerings %}"><i class="icon-random"></i>&nbsp;{% trans "Peerings" %}</a></li>
+                <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i>&nbsp;{% trans "WLAN settings" %}</a></li>
                 <li class="nav-header">{% trans "Services" %}</li>
-                <li class="{% active request 'teletext' %}"><a href="{% url app.views.teletext %}"><i class="icon-list"></i> {% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a></li>
+                <li class="{% active request 'teletext' %}"><a href="{% url app.views.teletext %}"><i class="icon-list"></i>&nbsp;{% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a></li>
             </ul>
         </div>
         <div class="span10">
