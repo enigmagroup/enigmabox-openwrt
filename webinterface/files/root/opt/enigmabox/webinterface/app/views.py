@@ -813,23 +813,13 @@ def teletext(request):
 
 # Changes
 
+@csrf_exempt
 def apply_changes(request):
-    output_window = False
-    loader_hint = ''
-    output_type = 'config_changed'
-
     if request.POST.get('apply_changes') == 'run':
-        output_window = True
-        loader_hint = 'run'
         Popen(["/usr/sbin/cfengine-apply", "-b"], stdout=PIPE, close_fds=True)
-    if request.POST.get('apply_changes') == 'back':
-        return redirect('/')
+        return HttpResponse('ok')
 
-    return render_to_response('changes/apply.html', {
-        'output_window': output_window,
-        'loader_hint': loader_hint,
-        'output_type': output_type,
-    }, context_instance=RequestContext(request))
+    return HttpResponse('')
 
 
 
