@@ -192,9 +192,10 @@
         return false;
     });
 
+    var applyval = 0;
+
     $('#button-apply').on('click', function() {
         var self = this;
-        var applyval = 0;
 
         $('#apply-now').modal();
 
@@ -203,11 +204,16 @@
 
     $('#confirm-apply').on('click', function() {
 
+        $('.apply-buttonbar').hide();
+        $('.apply-progressbar').show();
+
         applyval = setInterval(function() {
             try {
                 $.get('/dynamic_status/?key=applynow', function(data) {
                     if(data == 'done') {
                         clearInterval(applyval);
+                        $('.apply-progressbar').hide();
+                        $('.apply-buttonbar').show();
                     }
                 });
             } catch(e){}

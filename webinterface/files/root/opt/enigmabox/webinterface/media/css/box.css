@@ -44,3 +44,6 @@
     right: 20px;
 }
 
+.apply-progressbar .progress {
+    margin-bottom: 0;
+}
