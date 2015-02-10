@@ -8,6 +8,7 @@ cfagent="/opt/cfengine/bin/cf-agent"
 webinterface="http://127.0.0.1:8000"
 pidfile="/var/run/cfengine-apply.pid"
 dynamic_output="/tmp/dynamic_output"
+dynamic_status="/tmp/apply-in-progress"
 
 
 
@@ -22,7 +23,12 @@ run() {
     curl "$webinterface/cfengine/site.json" > "$cfengine_site"
 
     if [[ "$background" == 1 ]]; then
-        (cfengine_run > "$dynamic_output" && inform_webinterface) &
+        (
+            touch "$dynamic_status"
+            cfengine_run > "$dynamic_output"
+            inform_webinterface
+            rm "$dynamic_status"
+        ) &
     else
         cfengine_run && inform_webinterface
     fi
