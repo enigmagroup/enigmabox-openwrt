@@ -209,13 +209,15 @@
             try {
                 $.get('/dynamic_status/?key=applynow', function(data) {
                     if(data == 'done') {
-                        clearInterval(applyval);
-                        $('.apply-progressbar').hide();
-                        $('#button-apply').hide();
-                        $('#apply-now .dynamic-output').slideUp(function(){
-                            $('.apply-changes-success').show();
-                            $('.apply-donebar').show();
-                        });
+                        setTimeout(function() {
+                            clearInterval(applyval);
+                            $('.apply-progressbar').hide();
+                            $('#button-apply').hide();
+                            $('#apply-now .dynamic-output').slideUp(function(){
+                                $('.apply-changes-success').show();
+                                $('.apply-donebar').show();
+                            });
+                        }, 1000);
                     }
                 });
             } catch(e){}
@@ -227,7 +229,7 @@
                     prev_data = data;
                 }
             });
-        }, 1000);
+        }, 600);
 
         $.post('/apply_changes/', {
             'apply_changes': 'run'
