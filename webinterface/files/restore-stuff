@@ -1,7 +1,7 @@
 #!/bin/ash
 
 find_usb() {
-    [[ $(find /dev/sd[b-z] 2> /dev/null ]] || exit
+    [[ $(find /dev/sd[b-z] 2> /dev/null) ]] || exit
     find /dev/sd[b-z] | xargs fdisk -l 2> /dev/null | grep 'Disk /dev' | cut -d' ' -f2 | cut -d: -f1
 }
 
