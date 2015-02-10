@@ -14,8 +14,15 @@
         return false;
     });
 
-    var $dynamic_output = $('.dynamic-output');
+    var $ajax_refresh = $('.ajax_refresh');
+    if ($ajax_refresh.length){
+        var request_url = $ajax_refresh.data('request_url');
+        setInterval(function() {
+            $ajax_refresh.load(request_url);
+        }, 2000);
+    }
 
+    var $dynamic_output = $('.dynamic-output');
     if ($dynamic_output.length){
 
         var padding_from_top = $dynamic_output.data('padding_from_top') || 400;
@@ -173,7 +180,10 @@
     $('#button-apply').on('click', function() {
         var self = this;
 
-        $('#apply-now').modal();
+        $('#apply-now').modal({
+            'backdrop': 'static',
+            'keyboard': false
+        });
 
         return false;
     });

@@ -47,10 +47,9 @@
 
       <h5>{% trans "System status" %}</h5>
 
-        <a disabled="disabled" class="btn btn-{% btn_state netstat.dhcp '1' 'success' 'inverse' %}">{% trans "DHCP" %}</a>
-        <a disabled="disabled" class="btn btn-{% btn_state netstat.internet '1' 'success' 'inverse' %}">{% trans "Internet" %}</a>
-        <a disabled="disabled" class="btn btn-{% btn_state netstat.cjdns '1' 'success' 'inverse' %}">{% trans "cjdns" %}</a>
-        <a disabled="disabled" class="btn btn-{% btn_state netstat.cjdns_internet '1' 'success' 'inverse' %}">{% trans "Internet via cjdns" %}</a>
+<div class="system_status">
+{% include 'home/system_status.html' %}
+</div>
 
       <hr />
 

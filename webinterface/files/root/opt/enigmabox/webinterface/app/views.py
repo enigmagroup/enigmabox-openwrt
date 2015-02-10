@@ -53,14 +53,20 @@ def home(request):
         except Exception:
             pass
 
-    return render_to_response('home.html', {
-        'hostid': o.get_value('hostid'),
-        'internet_access': internet_access,
-        'internet_access_formatted': internet_access_formatted,
-        'teletext_enabled': o.get_value('teletext_enabled'),
-        'root_password': o.get_value('root_password'),
-        'netstat': netstat,
-    }, context_instance=RequestContext(request))
+    if request.is_ajax():
+        return render_to_response('home/system_status.html', {
+            'netstat': netstat,
+        }, context_instance=RequestContext(request))
+
+    else:
+        return render_to_response('home/overview.html', {
+            'hostid': o.get_value('hostid'),
+            'internet_access': internet_access,
+            'internet_access_formatted': internet_access_formatted,
+            'teletext_enabled': o.get_value('teletext_enabled'),
+            'root_password': o.get_value('root_password'),
+            'netstat': netstat,
+        }, context_instance=RequestContext(request))
 
 
 
