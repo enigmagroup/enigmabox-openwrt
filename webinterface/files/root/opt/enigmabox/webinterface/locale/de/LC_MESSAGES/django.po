@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-10 13:26+0100\n"
-"PO-Revision-Date: 2015-02-10 13:26+0100\n"
+"POT-Creation-Date: 2015-02-10 20:35+0100\n"
+"PO-Revision-Date: 2015-02-10 20:35+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -30,27 +30,27 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:646
+#: app/views.py:659
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:647
+#: app/views.py:660
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:648
+#: app/views.py:661
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:649
+#: app/views.py:662
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:650
+#: app/views.py:663
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:651
+#: app/views.py:664
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
@@ -67,7 +67,7 @@ msgstr "Zeigen"
 msgid "Apply changes"
 msgstr "Änderungen anwenden"
 
-#: app/templates/base.html:55 app/templates/home.html:9
+#: app/templates/base.html:55 app/templates/home/overview.html:9
 msgid "Welcome"
 msgstr "Willkommen"
 
@@ -75,11 +75,11 @@ msgstr "Willkommen"
 msgid "System"
 msgstr "System"
 
-#: app/templates/base.html:57 app/templates/home.html:38
-#: app/templates/addressbook/detail.html:9
+#: app/templates/base.html:57 app/templates/addressbook/detail.html:9
 #: app/templates/addressbook/overview-global-edit.html:9
 #: app/templates/addressbook/overview-global.html:8
 #: app/templates/addressbook/overview.html:8
+#: app/templates/home/overview.html:38
 msgid "Addressbook"
 msgstr "Adressbuch"
 
@@ -104,7 +104,7 @@ msgstr "Aktualisierungen"
 msgid "Firmware upgrade"
 msgstr "Firmwareaktualisierung"
 
-#: app/templates/base.html:66 app/templates/home.html:51
+#: app/templates/base.html:66 app/templates/home/system_status.html:5
 msgid "Internet"
 msgstr "Internet"
 
@@ -139,8 +139,8 @@ msgstr "WLAN-Einstellungen"
 msgid "Services"
 msgstr "Dienste"
 
-#: app/templates/base.html:76 app/templates/home.html:41
-#: app/templates/home.html.py:43 app/templates/teletext/overview.html:8
+#: app/templates/base.html:76 app/templates/home/overview.html:41
+#: app/templates/home/overview.html:43 app/templates/teletext/overview.html:8
 msgid "Teletext"
 msgstr "Teletext"
 
@@ -162,130 +162,58 @@ msgstr "Abbrechen"
 msgid "Done"
 msgstr "Fertig"
 
-#: app/templates/home.html:11
-msgid "Your hostid is"
-msgstr "Deine Hostid ist"
-
-#: app/templates/home.html:11
-msgid "Network access valid until"
-msgstr "Dein Netzwerkzugang ist noch gültig bis zum"
-
-#: app/templates/home.html:14
-msgid "Continue installation:"
-msgstr "Installation fortsetzen:"
-
-#: app/templates/home.html:17
-msgid "Restore from USB stick"
-msgstr "Vom USB-Stick wiederherstellen"
-
-#: app/templates/home.html:18
-msgid "Choose this if you have upgraded from a previous Enigmabox."
-msgstr ""
-"Wähle das aus, falls du von einer bestehenden Enigmabox aktualisiert hast."
-
-#: app/templates/home.html:24 app/templates/backup/sslcerts.html:36
-msgid "Import SSL certificates"
-msgstr "SSL-Zertifikate importieren"
-
-#: app/templates/home.html:25
-msgid "Choose this if you have built your own Enigmabox on the Banana Pi."
-msgstr "Wähle das aus für die Enigmabox Marke Eigenbau auf dem Banana Pi."
-
-#: app/templates/home.html:31
-msgid "Renew subscription"
-msgstr "Abo erneuern"
-
-#: app/templates/home.html:36
-msgid "Applications"
-msgstr "Anwendungen"
-
-#: app/templates/home.html:39
-msgid "Webmail"
-msgstr "Webmail"
-
-#: app/templates/home.html:48
-msgid "System status"
-msgstr "Systemstatus"
-
-#: app/templates/home.html:50
-msgid "DHCP"
-msgstr "DHCP"
-
-#: app/templates/home.html:52
-msgid "cjdns"
-msgstr "cjdns"
-
-#: app/templates/home.html:53
-msgid "Internet via cjdns"
-msgstr "Internet via cjdns"
-
-#: app/templates/home.html:57
-msgid "Connection info"
-msgstr "Verbindungsinfos"
-
-#: app/templates/home.html:57
-msgid "SSH access"
-msgstr "SSH-Zugang"
-
-#: app/templates/home.html:58 app/templates/passwords/edit.html:37
-msgid "Username"
-msgstr "Benutzername"
-
-#: app/templates/home.html:59 app/templates/passwords/edit.html:45
-#: app/templates/passwords/edit.html:47 app/templates/passwords/edit.html:54
-#: app/templates/peerings/detail.html:49 app/templates/peerings/detail.html:51
-#: app/templates/peerings/overview.html:61
-#: app/templates/wlan_settings/overview.html:61
-msgid "Password"
-msgstr "Passwort"
-
-#: app/templates/home.html:60
-msgid "Server"
-msgstr "Server"
-
-#: app/templates/addressbook/detail.html:23
-#: app/templates/addressbook/overview-global-edit.html:23
-#: app/templates/addressbook/overview-global.html:54
-#: app/templates/addressbook/overview.html:53
-#: app/templates/backup/restorewizard/check_usb.html:25
-#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:20
-#: app/templates/passwords/edit.html:30 app/templates/peerings/detail.html:26
-msgid "Error"
-msgstr "Fehler"
-
+#: app/templates/addressbook/address_table.html:7
 #: app/templates/addressbook/detail.html:30
 #: app/templates/addressbook/detail.html:32
 #: app/templates/addressbook/overview-global-edit.html:30
 #: app/templates/addressbook/overview-global-edit.html:32
 #: app/templates/addressbook/overview-global.html:28
 #: app/templates/addressbook/overview-global.html:67
-#: app/templates/addressbook/overview.html:20
-#: app/templates/addressbook/overview.html:58
+#: app/templates/addressbook/overview.html:35
 msgid "Hostname"
 msgstr "Hostname"
 
-#: app/templates/addressbook/detail.html:38
-#: app/templates/addressbook/detail.html:40
-msgid "Displayed name"
-msgstr "Angezeigter Name"
-
+#: app/templates/addressbook/address_table.html:8
 #: app/templates/addressbook/detail.html:46
 #: app/templates/addressbook/detail.html:48
 #: app/templates/addressbook/overview-global.html:68
-#: app/templates/addressbook/overview.html:21
-#: app/templates/addressbook/overview.html:59
+#: app/templates/addressbook/overview.html:36
 msgid "IPv6 address"
 msgstr "IPv6-Adresse"
 
+#: app/templates/addressbook/address_table.html:9
 #: app/templates/addressbook/detail.html:54
 #: app/templates/addressbook/detail.html:56
 #: app/templates/addressbook/overview-global-edit.html:38
 #: app/templates/addressbook/overview-global-edit.html:42
 #: app/templates/addressbook/overview-global.html:69
-#: app/templates/addressbook/overview.html:22
-#: app/templates/addressbook/overview.html:60
+#: app/templates/addressbook/overview.html:37
 msgid "Phone number"
 msgstr "Telefonnummer"
+
+#: app/templates/addressbook/address_table.html:10
+#: app/templates/addressbook/overview-global.html:33
+msgid "Status"
+msgstr "Status"
+
+#: app/templates/addressbook/address_table.html:15
+msgid "My address"
+msgstr "Meine Adresse"
+
+#: app/templates/addressbook/detail.html:23
+#: app/templates/addressbook/overview-global-edit.html:23
+#: app/templates/addressbook/overview-global.html:54
+#: app/templates/addressbook/overview.html:30
+#: app/templates/backup/restorewizard/check_usb.html:25
+#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:20
+#: app/templates/passwords/edit.html:30 app/templates/peerings/detail.html:26
+msgid "Error"
+msgstr "Fehler"
+
+#: app/templates/addressbook/detail.html:38
+#: app/templates/addressbook/detail.html:40
+msgid "Displayed name"
+msgstr "Angezeigter Name"
 
 #: app/templates/addressbook/detail.html:64
 #: app/templates/addressbook/overview-global-edit.html:51
@@ -347,11 +275,6 @@ msgstr "Telefon"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: app/templates/addressbook/overview-global.html:33
-#: app/templates/addressbook/overview.html:23
-msgid "Status"
-msgstr "Status"
-
 #: app/templates/addressbook/overview-global.html:35
 #: app/templates/passwords/overview.html:17
 #: app/templates/passwords/overview.html:26
@@ -387,15 +310,11 @@ msgstr "Deaktiviert"
 msgid "Managing contacts and assigning names and numbers"
 msgstr "Verwalten von Kontakten, Zuweisen von Namen und Telefonnummern."
 
-#: app/templates/addressbook/overview.html:28
-msgid "My address"
-msgstr "Meine Adresse"
-
-#: app/templates/addressbook/overview.html:48
+#: app/templates/addressbook/overview.html:25
 msgid "Add contact"
 msgstr "Adresse hinzufügen"
 
-#: app/templates/addressbook/overview.html:61
+#: app/templates/addressbook/overview.html:38
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -435,6 +354,10 @@ msgstr "SSL-Zertifikate sichern"
 #: app/templates/backup/sslcerts.html:25
 msgid "Backup"
 msgstr "Sichern"
+
+#: app/templates/backup/sslcerts.html:36 app/templates/home/overview.html:24
+msgid "Import SSL certificates"
+msgstr "SSL-Zertifikate importieren"
 
 #: app/templates/backup/sslcerts.html:40
 msgid "file"
@@ -598,8 +521,84 @@ msgstr ""
 "Hinweis: Es kann nach einem Länderwechel etwas dauern, bis alle Adressen im "
 "Adressbuch wieder erreichbar sind."
 
+#: app/templates/home/overview.html:11
+msgid "Your hostid is"
+msgstr "Deine Hostid ist"
+
+#: app/templates/home/overview.html:11
+msgid "Network access valid until"
+msgstr "Dein Netzwerkzugang ist noch gültig bis zum"
+
+#: app/templates/home/overview.html:14
+msgid "Continue installation:"
+msgstr "Installation fortsetzen:"
+
+#: app/templates/home/overview.html:17
+msgid "Restore from USB stick"
+msgstr "Vom USB-Stick wiederherstellen"
+
+#: app/templates/home/overview.html:18
+msgid "Choose this if you have upgraded from a previous Enigmabox."
+msgstr ""
+"Wähle das aus, falls du von einer bestehenden Enigmabox aktualisiert hast."
+
+#: app/templates/home/overview.html:25
+msgid "Choose this if you have built your own Enigmabox on the Banana Pi."
+msgstr "Wähle das aus für die Enigmabox Marke Eigenbau auf dem Banana Pi."
+
+#: app/templates/home/overview.html:31
+msgid "Renew subscription"
+msgstr "Abo erneuern"
+
+#: app/templates/home/overview.html:36
+msgid "Applications"
+msgstr "Anwendungen"
+
+#: app/templates/home/overview.html:39
+msgid "Webmail"
+msgstr "Webmail"
+
+#: app/templates/home/overview.html:48
+msgid "System status"
+msgstr "Systemstatus"
+
+#: app/templates/home/overview.html:56
+msgid "Connection info"
+msgstr "Verbindungsinfos"
+
+#: app/templates/home/overview.html:56
+msgid "SSH access"
+msgstr "SSH-Zugang"
+
+#: app/templates/home/overview.html:57 app/templates/passwords/edit.html:37
+msgid "Username"
+msgstr "Benutzername"
+
+#: app/templates/home/overview.html:58 app/templates/passwords/edit.html:45
+#: app/templates/passwords/edit.html:47 app/templates/passwords/edit.html:54
+#: app/templates/peerings/detail.html:49 app/templates/peerings/detail.html:51
+#: app/templates/peerings/overview.html:61
+#: app/templates/wlan_settings/overview.html:61
+msgid "Password"
+msgstr "Passwort"
+
+#: app/templates/home/overview.html:59
+msgid "Server"
+msgstr "Server"
+
+#: app/templates/home/system_status.html:4
+msgid "DHCP"
+msgstr "DHCP"
+
+#: app/templates/home/system_status.html:6
+msgid "cjdns"
+msgstr "cjdns"
+
+#: app/templates/home/system_status.html:7
+msgid "Internet via cjdns"
+msgstr "Internet via cjdns"
+
 #: app/templates/passwords/edit.html:18
-#: app/templates/passwords/overview.html:15
 msgid "Password for the <a href=\"http://box/\">web interface</a>"
 msgstr "Passwort für das <a href=\"http://box/\">Webinterface</a>"
 
@@ -623,6 +622,10 @@ msgstr "Passwort entfernen"
 #: app/templates/passwords/overview.html:10
 msgid "Set passwords and protect the administration interface from access."
 msgstr "Passwörter setzen, um die Administrationsoberfläche zu schützen."
+
+#: app/templates/passwords/overview.html:15
+msgid "Password for the web interface <em>http://box/</em>"
+msgstr "Passwort für das Webinterface <em>http://box/</em>"
 
 #: app/templates/passwords/overview.html:19
 #: app/templates/passwords/overview.html:28
