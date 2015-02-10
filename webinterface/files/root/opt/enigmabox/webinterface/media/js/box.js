@@ -40,6 +40,13 @@
 
     }
 
+    $disable_after_click = $('.disable_after_click').on('click', function() {
+        var self = this;
+        setTimeout(function() {
+            $(self).attr('disabled', 'disabled');
+        }, 10);
+    });
+
     var anchor = false;
     var window_href = window.location.href;
     if(window_href.indexOf('#') > -1){
