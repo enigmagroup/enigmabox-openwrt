@@ -432,13 +432,6 @@ def backup_system_restorewizard(request):
         'errormsg': errormsg,
     }, context_instance=RequestContext(request))
 
-def restore_status(request):
-    import os.path
-    if os.path.isfile('/tmp/restore-in-progress'):
-        return HttpResponse('in progress')
-    else:
-        return HttpResponse('done')
-
 def backup_sslcerts(request):
     o = Option()
     hostid = o.get_value('hostid')
@@ -838,6 +831,10 @@ def apply_changes(request):
         'output_type': output_type,
     }, context_instance=RequestContext(request))
 
+
+
+# Dynamic output
+
 def dynamic_output(request):
     with open('/tmp/dynamic_output', 'r') as f:
         output = f.read()
@@ -846,6 +843,24 @@ def dynamic_output(request):
     conv = Ansi2HTMLConverter()
     html = conv.convert(output, full=False)
     return HttpResponse(html)
+
+
+
+def dynamic_status(request):
+
+    if request.GET.get('key') == 'applynow':
+        import os.path
+        if os.path.isfile('/tmp/apply-in-progress'):
+            return HttpResponse('in progress')
+        else:
+            return HttpResponse('done')
+
+    if request.GET.get('key') == 'restore':
+        import os.path
+        if os.path.isfile('/tmp/restore-in-progress'):
+            return HttpResponse('in progress')
+        else:
+            return HttpResponse('done')
 
 
 

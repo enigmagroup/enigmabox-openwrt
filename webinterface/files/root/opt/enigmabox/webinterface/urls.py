@@ -29,7 +29,6 @@ urlpatterns = patterns('app.views',
     url(r'^backup/system/$', 'backup_system'),
     url(r'^backup/sslcerts/$', 'backup_sslcerts'),
     url(r'^backup/$', 'backup'),
-    url(r'^restore_status/$', 'restore_status'),
 
     # updates
     url(r'^updates/$', 'updates'),
@@ -62,6 +61,9 @@ urlpatterns = patterns('app.views',
 
     # dynamic output
     url(r'^dynamic_output/$', 'dynamic_output'),
+
+    # dynamic status
+    url(r'^dynamic_status/$', 'dynamic_status'),
 
     # API
     url(r'^api/v1/(?P<api_url>.*)$', 'api_v1'),

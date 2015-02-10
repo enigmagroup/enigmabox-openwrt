@@ -181,7 +181,7 @@
 
         setInterval(function() {
             try {
-                $.get('/restore_status/', function(data) {
+                $.get('/dynamic_status/?key=restore', function(data) {
                     if(data == 'done') {
                         window.location.href = '/backup/system/restorewizard/?step=usb';
                     }
