@@ -102,11 +102,18 @@ def addressbook(request):
     addresses = Address.objects.all().order_by('id')
     sip_peers = Popen(["asterisk", "-rx", "sip show peers"], stdout=PIPE).communicate()[0]
 
-    return render_to_response('addressbook/overview.html', {
-        'addresses': addresses,
-        'form': form,
-        'sip_peers': sip_peers,
-    }, context_instance=RequestContext(request))
+    if request.is_ajax():
+        return render_to_response('addressbook/address_table.html', {
+            'addresses': addresses,
+            'sip_peers': sip_peers,
+        }, context_instance=RequestContext(request))
+
+    else:
+        return render_to_response('addressbook/overview.html', {
+            'addresses': addresses,
+            'form': form,
+            'sip_peers': sip_peers,
+        }, context_instance=RequestContext(request))
 
 def addressbook_edit(request, addr_id):
     if request.POST:

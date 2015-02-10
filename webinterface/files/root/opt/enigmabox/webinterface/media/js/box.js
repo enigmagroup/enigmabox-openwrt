@@ -17,9 +17,12 @@
     var $ajax_refresh = $('.ajax_refresh');
     if ($ajax_refresh.length){
         var request_url = $ajax_refresh.data('request_url');
-        setInterval(function() {
+        var ajaxval = setInterval(function() {
             $ajax_refresh.load(request_url);
         }, 2000);
+        $ajax_refresh.on('click', function() {
+            clearInterval(ajaxval);
+        });
     }
 
     var $dynamic_output = $('.dynamic-output');
