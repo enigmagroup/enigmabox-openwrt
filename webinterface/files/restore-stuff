@@ -69,7 +69,7 @@ restore_start() {
 }
 
 restore_end() {
-    umount /mnt || umount -l
+    umount /mnt || umount -l /mnt
     rm /tmp/restore-in-progress
 }
 
@@ -96,7 +96,7 @@ if [[ $task == 'usbstick' ]]; then
     chown -R root:www-data /opt/enigmabox/teletext/public/img/profile/
 
     sync
-    umount /mnt || umount -l
+    umount /mnt || umount -l /mnt
 
     /etc/init.d/lighttpd stop
 
