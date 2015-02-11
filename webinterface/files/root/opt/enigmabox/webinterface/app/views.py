@@ -1001,6 +1001,7 @@ def api_v1(request, api_url):
 # Sites
 
 def cfengine_site(request):
+    from unidecode import unidecode
     o = Option()
 
     cjdns_ipv6 = o.get_value('ipv6').strip()
@@ -1074,7 +1075,7 @@ def cfengine_site(request):
         addresses.append({
             'ipv6': a.ipv6,
             'hostname': a.name,
-            'display_name': a.display_name,
+            'display_name': unidecode(a.display_name),
             'phone': a.phone,
         })
 
