@@ -6,7 +6,6 @@ config privoxy 'privoxy'
         list filterfile 'default.filter'
         list actionsfile 'default.action'
 {{/if_webfilter_filter_ads}}
-        list filterfile 'user.filter'
         list actionsfile 'user.action'
         list actionsfile 'match-all.action'
         list listen_address '0.0.0.0:8888'
