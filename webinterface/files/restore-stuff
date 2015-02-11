@@ -75,7 +75,7 @@ restore_end() {
 
 if [[ $task == 'usbstick' ]]; then
 
-    [[ $(check_usb) == "yes" ]] || exit 1
+    [[ $(find_usb | wc -l) -gt 0 ]] || exit 1
 
     restore_start
 
