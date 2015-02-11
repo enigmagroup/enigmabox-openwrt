@@ -2,7 +2,7 @@
 
 find_usb() {
     [[ $(cat /etc/enigmabox/network-profile) == 'raspi' ]] && start_part=a || start_part=b
-    [[ $(find /dev/sd[$start_part-z] 2> /dev/null) ]] || exit
+    [[ $(find /dev/sd[$start_part-z] 2> /dev/null | wc -l) -gt 0 ]] || exit
     find /dev/sd[$start_part-z] | xargs fdisk -l 2> /dev/null | grep 'Disk /dev' | cut -d' ' -f2 | cut -d: -f1
 }
 
