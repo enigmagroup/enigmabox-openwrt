@@ -85,6 +85,9 @@ $iptables -A INPUT -p tcp --dport 22 -j internal-in
 # webinterface
 $iptables -A INPUT -p tcp --dport 80 -j internal-in
 
+# renew notice
+$iptables -A INPUT -p tcp --dport 8117 -j internal-in
+
 # email
 $iptables -A INPUT -p tcp --dport 25 -j internal-in
 $iptables -A INPUT -p tcp --dport 110 -j internal-in
