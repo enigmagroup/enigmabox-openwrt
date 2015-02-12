@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=1.3.25
+PKG_VERSION:=1.3.26
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -17,7 +17,7 @@ define Package/webinterface
   DEPENDS+= +asterisk11 +asterisk11-sounds +asterisk11-codec-gsm +asterisk11-format-gsm +asterisk11-res-srtp +asterisk11-res-musiconhold
   DEPENDS+= +php5 +php5-fastcgi +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-mysql +php5-mod-session +php5-mod-iconv +php5-mod-json +@PHP5_FILTER
   DEPENDS+= +mysql-server
-  DEPENDS+= +lighttpd +lighttpd-mod-auth +lighttpd-mod-fastcgi +lighttpd-mod-proxy
+  DEPENDS+= +lighttpd +lighttpd-mod-auth +lighttpd-mod-fastcgi +lighttpd-mod-proxy +lighttpd-mod-rewrite +lighttpd-mod-setenv
   DEPENDS+= +privoxy
   DEPENDS+= +dovecot +exim4
   DEPENDS+= +cfengine +cfengine-promises
