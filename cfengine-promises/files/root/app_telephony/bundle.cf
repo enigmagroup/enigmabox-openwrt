@@ -1,5 +1,5 @@
 
-bundle agent app_asterisk
+bundle agent app_telephony
 {
   files:
       "/etc/asterisk/sip.conf"
@@ -29,6 +29,6 @@ bundle agent app_asterisk
       "/etc/init.d/asterisk restart";
 
   reports:
-      "checking asterisk: done";
+      "checking telephony: done";
 }
 

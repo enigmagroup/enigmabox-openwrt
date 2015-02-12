@@ -16,7 +16,7 @@ body common control
 		  "$(g.workdir)/lib/files.cf",
 		  "$(g.workdir)/system_network/bundle.cf",
 		  "$(g.workdir)/app_cjdns/bundle.cf",
-		  "$(g.workdir)/app_asterisk/bundle.cf",
+		  "$(g.workdir)/app_telephony/bundle.cf",
 		  "$(g.workdir)/app_email/bundle.cf",
 		  "$(g.workdir)/app_webfilter/bundle.cf",
 		  "$(g.workdir)/app_security/bundle.cf",
@@ -25,7 +25,7 @@ body common control
       bundlesequence => {
 			  "system_network",
 			  "app_cjdns",
-			  "app_asterisk",
+			  "app_telephony",
 			  "app_email",
 			  "app_webfilter",
 			  "app_security",
