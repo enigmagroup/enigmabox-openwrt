@@ -49,8 +49,8 @@ def updates_count():
 @register.simple_tag
 def peer_status(peer_name, sip_peers):
     try:
-        ret = re.search(peer_name + '.*5060(.*)', sip_peers).group(1).strip()
-    except:
+        ret = re.search('\n' + peer_name + '\s.*5060(.*)', sip_peers).group(1).strip()
+    except Exception:
         ret = '-'
     return ret
 
