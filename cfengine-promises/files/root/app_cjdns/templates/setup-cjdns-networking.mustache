@@ -121,7 +121,7 @@ request_cjdns_internet() {
     # request cjdns internet via script after the 3rd try
     if [[ "$try" -ge 3 ]]; then
         e "request cjdns internet"
-        /usr/sbin/request-internet.py 2> /dev/null
+        /usr/sbin/request-internet 2> /dev/null
     fi
 }
 

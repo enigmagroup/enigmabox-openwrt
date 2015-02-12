@@ -35,9 +35,9 @@ if [[ $task == 'sslcerts' ]]; then
     curl --data "key=hostid&value=$hostid" -X POST http://127.0.0.1:8000/api/v1/set_option &> /dev/null
 
     # refresh server.json
-    /usr/sbin/request-serverjson.py
+    /usr/sbin/request-serverjson
     /usr/sbin/cfengine-apply
-    /usr/sbin/request-internet.py &
+    /usr/sbin/request-internet &
 
     rm "/tmp/sslcerts-$hostid.zip"
 
@@ -106,9 +106,9 @@ if [[ $task == 'usbstick' ]]; then
 
     usermod -p $(curl http://127.0.0.1:8000/api/v1/get_hashed_rootpw) root
 
-    /usr/sbin/request-serverjson.py
+    /usr/sbin/request-serverjson
     /usr/sbin/cfengine-apply
-    /usr/sbin/request-internet.py &
+    /usr/sbin/request-internet &
 
     /etc/init.d/lighttpd start
 
