@@ -109,9 +109,7 @@ $iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
 ################################################################################
 
 $iptables -A OUTPUT -o tun0 -j ACCEPT   # that is needed for dnsmasq to make dns requests
-
 $iptables -A OUTPUT -j peering-servers
-
 $iptables -A OUTPUT -j internal-out     # asterisk needs this
 
 ################################################################################
@@ -131,6 +129,13 @@ for interface in $internal_interfaces; do
     $iptables -A FORWARD -i tun0 -o "$interface" -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 done
+
+{{#if_display_expiration_notice}}
+# show renew notice if subscription has expired
+for interface in $internal_interfaces; do
+    $iptables -t nat -A PREROUTING -i "$interface" -p tcp --dport 80 -j REDIRECT --to-port 8117
+done
+{{/if_display_expiration_notice}}
 
 
 

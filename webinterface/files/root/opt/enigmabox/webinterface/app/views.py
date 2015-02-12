@@ -7,7 +7,7 @@ import random
 import string
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse
@@ -506,9 +506,9 @@ def subscription(request):
         'lt': 1000,
     }
     amount_table['EUR'] = {
-        '1': 100,
-        '5': 400,
-        'lt': 800,
+        '1': 120,
+        '5': 500,
+        'lt': 1000,
     }
     amount_table['USD'] = {
         '1': 130,
@@ -525,6 +525,23 @@ def subscription(request):
         'subscription': subscription,
         'amount': amount,
     }, context_instance=RequestContext(request))
+
+def subscription_hide_notice(request):
+    o = Option()
+
+    o.set_value('expiration_notice_confirmed', '1')
+
+    try:
+        Popen(["/usr/sbin/hide-expiration-notice"], stdout=PIPE).communicate()[0]
+    except Exception:
+        pass
+
+    try:
+        referrer = request.META['HTTP_REFERER']
+    except Exception:
+        referrer = ''
+
+    return redirect(referrer)
 
 
 
@@ -1013,6 +1030,7 @@ def cfengine_site(request):
     addresses = []
     internet_gateway = []
     peerings = []
+    display_expiration_notice = '0'
 
     # get Enigmabox-specific server data, when available
     try:
@@ -1047,6 +1065,22 @@ def cfengine_site(request):
         internet_gateway = {
             'public_key': internet_gateway_db.public_key,
         }
+
+        # expiration notice
+        dt = datetime.strptime(internet_access, '%Y-%m-%d')
+        now = datetime.utcnow()
+        three_weeks = timedelta(days=20)
+        expiration_notice_confirmed = o.get_value('expiration_notice_confirmed', False)
+
+        if (now + three_weeks) > dt:
+            display_expiration_notice = '1'
+
+        if expiration_notice_confirmed:
+            display_expiration_notice = '0'
+
+        # well, umm, leave it hidden, in case the box didn't get the update
+        #if now > dt:
+        #    display_expiration_notice = '1'
 
     except Exception:
         # no additional server data found, moving on...
@@ -1201,6 +1235,7 @@ def cfengine_site(request):
         'webfilter_custom_rules': o.get_value('webfilter_custom-rules', 0),
         'webfilter_custom_rules_text': custom_rules_text,
         'teletext_enabled': o.get_value('teletext_enabled', 0),
+        'display_expiration_notice': display_expiration_notice,
     }
 
     # and this, ladies and gentlemen, is a workaround for mustache
