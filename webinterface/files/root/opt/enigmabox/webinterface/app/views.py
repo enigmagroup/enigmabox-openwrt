@@ -539,7 +539,7 @@ def subscription_hide_notice(request):
     try:
         referrer = request.META['HTTP_REFERER']
     except Exception:
-        referrer = ''
+        referrer = 'http://box/'
 
     return redirect(referrer)
 
