@@ -179,10 +179,17 @@ for interface in $internal_interfaces; do
     $ip6tables -A internal-out -o "$interface" -j ACCEPT
 done
 
+$ip6tables -X friendports
+$ip6tables -N friendports
+$ip6tables -A friendports -p tcp --dport 25 -j ACCEPT
+$ip6tables -A friendports -p tcp --dport 5060 -j ACCEPT
+$ip6tables -A friendports -p udp --dport 5060 -j ACCEPT
+$ip6tables -A friendports -p udp -m udp --dport 10000:20000 -j ACCEPT
+
 $ip6tables -X friends-in
 $ip6tables -N friends-in
 {{#addresses}}
-$ip6tables -A friends-in -i tun0 --src {{ipv6}} -j ACCEPT
+$ip6tables -A friends-in -i tun0 --src {{ipv6}} -j friendports
 {{/addresses}}
 
 ################################################################################
