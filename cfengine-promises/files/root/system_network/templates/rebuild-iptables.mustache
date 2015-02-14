@@ -201,7 +201,7 @@ $ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 $ip6tables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 # allow ping
-$ip6tables -A INPUT -i tun0 -p ipv6-icmp -m limit --limit 10/second -j ACCEPT
+$ip6tables -A INPUT -p ipv6-icmp -m limit --limit 10/second -j ACCEPT
 
 ################################################################################
 # input
