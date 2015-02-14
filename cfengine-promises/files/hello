@@ -36,7 +36,7 @@ The following commands are available for subscribers:
 addressbook pull            - get global addressbook
 addressbook push            - publish your address in the directory
 updater check               - check for updates
-updater install             - install a package
+updater install [package]   - install a package
 updater apply               - apply updates - this will reboot your box!
 upgrader download           - download newest firmware image
 upgrader verify             - verify firmware image
