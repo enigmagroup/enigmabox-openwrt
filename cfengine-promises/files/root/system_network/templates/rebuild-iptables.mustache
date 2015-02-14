@@ -206,10 +206,11 @@ $ip6tables -A INPUT -j friends-in
 # allow calls from everyone
 $ip6tables -A INPUT -i tun0 -p tcp --dport 5060 -j ACCEPT
 $ip6tables -A INPUT -i tun0 -p udp --dport 5060 -j ACCEPT
-{{/if_global_availability}}
 
-## SIP call tone transmission - RELATED seems not to work :-( - test again
-#$ip6tables -A INPUT -i tun0 -p udp -m multiport --dport 10000:20000 -j ACCEPT
+# RTP - the media stream
+# (related to the port range in /etc/asterisk/rtp.conf)
+$ip6tables -A INPUT -i tun0 -p udp -m udp --dport 10000:20000 -j ACCEPT
+{{/if_global_availability}}
 
 {{#if_teletext_enabled}}
 # teletext
