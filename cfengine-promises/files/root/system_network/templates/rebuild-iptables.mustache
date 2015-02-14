@@ -102,10 +102,10 @@ $iptables -A INPUT -p tcp --dport 8888 -j internal-in
 # grandstream phone provisioning
 $iptables -A INPUT -p tcp --dport 8080 -j internal-in
 
-{{#if_peering_port}}
+{{#if_allow_peering}}
 # peering port
 $iptables -A INPUT -p udp --dport {{peering_port}} -j ACCEPT
-{{/if_peering_port}}
+{{/if_allow_peering}}
 
 ################################################################################
 # output
