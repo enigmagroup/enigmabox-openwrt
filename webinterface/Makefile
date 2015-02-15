@@ -26,6 +26,7 @@ define Package/webinterface
   DEPENDS+= +wireless-tools +wpa-supplicant +kmod-ath +kmod-ath9k-htc +kmod-brcmfmac +kmod-carl9170 +kmod-libertas-usb +kmod-net-zd1201 +kmod-p54-usb +kmod-rt2500-usb +kmod-rt2800-usb +kmod-rt73-usb +kmod-rtl8187 +kmod-rtl8192cu +kmod-zd1211rw +kmod-net-rtl8188eu
 #  DEPENDS+= +kmod-e1000 +kmod-r8169 +kmod-via-rhine
   DEPENDS+= +kmod-fs-btrfs +kmod-fs-cifs +kmod-fs-cramfs +kmod-fs-ext4 +kmod-fs-hfs +kmod-fs-hfsplus +kmod-fs-isofs +kmod-fs-jfs +kmod-fs-msdos +kmod-fs-nfs +kmod-fs-ntfs +kmod-fs-reiserfs +kmod-fs-udf +kmod-fs-vfat +kmod-fs-xfs +kmod-fuse
+  DEPENDS+= +kmod-nls-cp1250 +kmod-nls-cp1251 +kmod-nls-cp437 +kmod-nls-cp775 +kmod-nls-cp850 +kmod-nls-cp852 +kmod-nls-cp862 +kmod-nls-cp864 +kmod-nls-cp866 +kmod-nls-cp932 +kmod-nls-iso8859-1 +kmod-nls-iso8859-13 +kmod-nls-iso8859-15 +kmod-nls-iso8859-2 +kmod-nls-iso8859-6 +kmod-nls-iso8859-8 +kmod-nls-koi8r +kmod-nls-utf8
 endef
 
 define Package/webinterface/description
