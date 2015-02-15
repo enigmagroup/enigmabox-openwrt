@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=1.3.27
+PKG_VERSION:=1.3.28
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -25,6 +25,7 @@ define Package/webinterface
   DEPENDS+= +kmod-usb-net +kmod-usb-net-asix +kmod-usb-net-asix-ax88179 +kmod-usb-net-cdc-eem +kmod-usb-net-cdc-ether +kmod-usb-net-cdc-mbim +kmod-usb-net-cdc-ncm +kmod-usb-net-cdc-subset +kmod-usb-net-dm9601-ether +kmod-usb-net-hso +kmod-usb-net-huawei-cdc-ncm +kmod-usb-net-ipheth +kmod-usb-net-kalmia +kmod-usb-net-kaweth +kmod-usb-net-mcs7830 +kmod-usb-net-pegasus +kmod-usb-net-qmi-wwan +kmod-usb-net-rndis +kmod-usb-net-sierrawireless +kmod-usb-net-smsc95xx
   DEPENDS+= +wireless-tools +wpa-supplicant +kmod-ath +kmod-ath9k-htc +kmod-brcmfmac +kmod-carl9170 +kmod-libertas-usb +kmod-net-zd1201 +kmod-p54-usb +kmod-rt2500-usb +kmod-rt2800-usb +kmod-rt73-usb +kmod-rtl8187 +kmod-rtl8192cu +kmod-zd1211rw +kmod-net-rtl8188eu
 #  DEPENDS+= +kmod-e1000 +kmod-r8169 +kmod-via-rhine
+  DEPENDS+= +kmod-fs-btrfs +kmod-fs-cifs +kmod-fs-cramfs +kmod-fs-ext4 +kmod-fs-hfs +kmod-fs-hfsplus +kmod-fs-isofs +kmod-fs-jfs +kmod-fs-msdos +kmod-fs-nfs +kmod-fs-ntfs +kmod-fs-reiserfs +kmod-fs-udf +kmod-fs-vfat +kmod-fs-xfs +kmod-fuse
 endef
 
 define Package/webinterface/description
