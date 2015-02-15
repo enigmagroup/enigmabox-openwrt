@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Hypesites" %}</h1>
+      <p>{% trans 'Hypesites are websites inside hyperboria.' %}</p>
+      <p>{% trans 'Run a webserver and publish your own site.' %}</p>
+      <br />
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+
+<fieldset>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="webserver">{% trans "Enable Webserver" %}:</label>
+  <div class="controls">
+{% if webserver_enabled == '1' %}
+    <button id="webserver" name="webserver" class="btn btn-success">{% trans "Enabled" %}</button>
+{% else %}
+    <button id="webserver" name="webserver" class="btn btn-inverse">{% trans "Disabled" %}</button>
+{% endif %}
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}

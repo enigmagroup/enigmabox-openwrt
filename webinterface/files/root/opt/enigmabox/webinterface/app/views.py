@@ -841,6 +841,22 @@ def teletext(request):
 
 
 
+# Hypesites
+
+def hypesites(request):
+    o = Option()
+
+    if request.POST:
+        o.toggle_value('webserver_enabled')
+        print o.get_value('webserver_enabled')
+        o.config_changed(True)
+
+    return render_to_response('hypesites/overview.html', {
+        'webserver_enabled': o.get_value('webserver_enabled', 0),
+    }, context_instance=RequestContext(request))
+
+
+
 # Changes
 
 @csrf_exempt
@@ -1235,6 +1251,7 @@ def cfengine_site(request):
         'webfilter_custom_rules': o.get_value('webfilter_custom-rules', 0),
         'webfilter_custom_rules_text': custom_rules_text,
         'teletext_enabled': o.get_value('teletext_enabled', 0),
+        'webserver_enabled': o.get_value('webserver_enabled', 0),
         'display_expiration_notice': display_expiration_notice,
     }
 

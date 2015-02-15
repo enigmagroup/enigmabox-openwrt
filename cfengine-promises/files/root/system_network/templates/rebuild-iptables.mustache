@@ -226,6 +226,11 @@ $ip6tables -A INPUT -i tun0 -p tcp --dport 3838 -j ACCEPT
 #$ip6tables -A INPUT -i tun0 -p tcp --sport 3838 -j ACCEPT - test that
 {{/if_teletext_enabled}}
 
+{{#if_webserver_enabled}}
+# hypesite
+$ip6tables -A INPUT -i tun0 -p tcp --dport 80 -j ACCEPT
+{{/if_webserver_enabled}}
+
 # allow webserver access from LAN
 $ip6tables -A INPUT -p tcp --dport 80 -j internal-in
 

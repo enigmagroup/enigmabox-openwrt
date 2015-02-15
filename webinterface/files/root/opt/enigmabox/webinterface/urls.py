@@ -57,6 +57,9 @@ urlpatterns = patterns('app.views',
     # teletext
     url(r'^teletext/$', 'teletext'),
 
+    # hypesites
+    url(r'^hypesites/$', 'hypesites'),
+
     # changes
     url(r'^apply_changes/$', 'apply_changes'),
 
