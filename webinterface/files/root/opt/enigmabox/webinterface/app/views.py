@@ -848,7 +848,6 @@ def hypesites(request):
 
     if request.POST:
         o.toggle_value('webserver_enabled')
-        print o.get_value('webserver_enabled')
         o.config_changed(True)
 
     return render_to_response('hypesites/overview.html', {
