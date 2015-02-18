@@ -42,7 +42,7 @@ endef
 
 define Package/truecrypt/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/truecrypt 	$(1)/usr/sbin/truecrypt
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/Main/truecrypt 	$(1)/usr/sbin/truecrypt
 endef
 
 $(eval $(call BuildPackage,truecrypt))
