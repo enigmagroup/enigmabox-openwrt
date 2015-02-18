@@ -36,7 +36,10 @@ define Build/Configure
 	$(CP) ./files/pkcs11.h $(PKG_BUILD_DIR)
 	$(CP) ./files/pkcs11f.h $(PKG_BUILD_DIR)
 	$(CP) ./files/pkcs11t.h $(PKG_BUILD_DIR)
-	[[ ! -d $(PKG_BUILD_DIR)/wxWidgets-2.8.12 ]] && wget http://switch.dl.sourceforge.net/project/wxwindows/2.8.12/wxWidgets-2.8.12.tar.gz && tar xzvf wxWidgets-2.8.12.tar.gz -C $(PKG_BUILD_DIR)
+	[[ ! -d $(PKG_BUILD_DIR)/wxrelease ]] \
+	&& wget http://switch.dl.sourceforge.net/project/wxwindows/2.8.12/wxWidgets-2.8.12.tar.gz \
+	&& tar xzvf wxWidgets-2.8.12.tar.gz -C $(PKG_BUILD_DIR) \
+	&& rm wxWidgets-2.8.12.tar.gz
 endef
 
 define Package/truecrypt/install
