@@ -14,7 +14,7 @@
   <li><a href="/addressbook-global/">{% trans "Global address book" %}</a></li>
 </ul>
 
-<div class="ajax_refresh" data-request_url="/addressbook/">
+<div class="ajax_refresh" data-request_url="/addressbook/?order={{ order }}">
 {% include 'addressbook/address_table.html' %}
 </div>
 

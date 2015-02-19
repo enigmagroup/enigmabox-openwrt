@@ -4,9 +4,9 @@
 <table class="table table-hover table-striped table-bordered">
     <thead>
       <tr>
-        <th>{% trans "Hostname" %}</th>
-        <th>{% trans "IPv6 address" %}</th>
-        <th>{% trans "Phone number" %}</th>
+        <th><a href="/addressbook/?order=name">{% trans "Hostname" %}</a></th>
+        <th><a href="/addressbook/?order=ipv6">{% trans "IPv6 address" %}</a></th>
+        <th><a href="/addressbook/?order=phone">{% trans "Phone number" %}</a></th>
         <th>{% trans "Status" %}</th>
       </tr>
     </thead>
@@ -27,4 +27,3 @@
     {% endfor %}
     </tbody>
 </table>
-
