@@ -1738,6 +1738,8 @@ my_mailboxes:
   mode = 0600
   headers_rewrite = * "${sg{$sender_host_name}{\\\\.box}{}} <mail@${sg{$sender_host_name}{\\\\.box}{}}>" fw :\
                     * "Enigmabox <mail@box>" tcb
+  headers_remove = ${if eq{$sender_host_name}{}{From}{}}
+  headers_add = ${if eq{$sender_host_name}{}{From: mail@${sg{$sender_rcvhost}{\\].*}{]}}\n}{}}
 
 
 ######################################################################
