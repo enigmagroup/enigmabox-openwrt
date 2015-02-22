@@ -1169,6 +1169,14 @@ def cfengine_site(request):
     # four backslashes: django -> puppet -> tinyproxy-regex
     custom_rules_text = custom_rules_text.replace('.', '\\\\.')
     custom_rules_text = custom_rules_text.replace('-', '\\\\-')
+    custom_rules_text_array = []
+    for crt in custom_rules_text.split('\n'):
+        crt = crt.strip()
+        if crt == '':
+            continue
+        crt = crt.lower()
+        custom_rules_text_array.append({'rule': crt})
+    custom_rules_text = custom_rules_text_array
 
     wlan_opmode = o.get_value('wlan_opmode', 'mesh')
     meshmode = (wlan_opmode == 'mesh')
