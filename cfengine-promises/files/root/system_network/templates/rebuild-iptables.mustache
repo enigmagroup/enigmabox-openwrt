@@ -170,7 +170,6 @@ $ip6tables -N friends-services
 $ip6tables -A friends-services -p tcp --dport 25 -j ACCEPT      # smtp
 $ip6tables -A friends-services -p tcp --dport 5060 -j ACCEPT    # asterisk
 $ip6tables -A friends-services -p udp --dport 5060 -j ACCEPT    # asterisk
-$ip6tables -A friends-services -p udp -m udp --dport 10000:20000 -j ACCEPT  # rtp
 $ip6tables -A friends-services -p ipv6-icmp -m limit --limit 10/second -j ACCEPT # icmp
 
 $ip6tables -X friends-in
@@ -205,10 +204,6 @@ $ip6tables -A INPUT -i tun0 -p ipv6-icmp -m limit --limit 10/second -j ACCEPT
 $ip6tables -A INPUT -i tun0 -p tcp --dport 5060 -j ACCEPT
 $ip6tables -A INPUT -i tun0 -p udp --dport 5060 -j ACCEPT
 
-# RTP - the media stream
-# (related to the port range in /etc/asterisk/rtp.conf)
-$ip6tables -A INPUT -i tun0 -p udp -m udp --dport 10000:20000 -j ACCEPT
-
 # allow emails from everyone
 $ip6tables -A INPUT -i tun0 -p tcp --dport 25 -j ACCEPT
 {{/if_global_availability}}
@@ -223,6 +218,11 @@ $ip6tables -A INPUT -i tun0 -p tcp --dport 3838 -j ACCEPT
 # hypesite
 $ip6tables -A INPUT -i tun0 -p tcp --dport 80 -j ACCEPT
 {{/if_webserver_enabled}}
+
+# RTP - the media stream
+# (related to the port range in /etc/asterisk/rtp.conf)
+# needed for making outgoing calls to the global address book
+$ip6tables -A INPUT -i tun0 -p udp -m udp --dport 10000:20000 -j ACCEPT
 
 # allow webserver access from LAN
 $ip6tables -A INPUT -p tcp --dport 80 -j internal-in
