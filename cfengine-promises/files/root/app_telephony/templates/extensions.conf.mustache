@@ -13,7 +13,7 @@ exten => {{phone}},1,Dial(SIP/100@{{hostname}})
 
 ;global addresses
 {{#global_addresses}}
-exten => 01{{phone}},1,Dial(SIP/100@global-{{hostname}})
+exten => 01{{phone}},1,Dial(SIP/100@{{hostname}}.eb)
 {{/global_addresses}}
 
 ;echo test
