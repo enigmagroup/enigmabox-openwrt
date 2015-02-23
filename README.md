@@ -1,7 +1,7 @@
 enigmabox-openwrt
 =================
 
-OpenWRT package feed for the Enigmabox software suite.
+OpenWrt package feed for the Enigmabox software suite.
 
 How to build that stuff:
 

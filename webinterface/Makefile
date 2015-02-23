@@ -32,7 +32,7 @@ endef
 
 define Package/webinterface/description
  The Enigmabox administration web interface, used for configuring
- the settings of the Enigmabox. It does not depend on any OpenWRT
+ the settings of the Enigmabox. It does not depend on any OpenWrt
  interface, in fact, it replaces LuCI.
 
  It also serves as a metapackage. Select it, and everything else
