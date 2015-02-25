@@ -54,7 +54,7 @@ define Package/webinterface/install
 
 	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
 	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/webinterface.conf
-	$(INSTALL_DATA) ./files/mysite.conf $(1)/etc/lighttpd/sites.d/mysite.conf
+	$(INSTALL_DATA) ./files/hypesite.conf $(1)/etc/lighttpd/sites.d/hypesite.conf
 	$(INSTALL_DIR) $(1)/www/htdocs
 
 	$(INSTALL_DIR) $(1)/usr/sbin
