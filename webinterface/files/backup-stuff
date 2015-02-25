@@ -6,11 +6,11 @@ if [[ $task == 'sslcerts' ]]; then
 
     hostid=$(find /box/ssl -name '*-private_key.pem' | sed -n 's#/box/ssl/\(.*\)\-private_key\.pem#\1#p')
 
-    cp "/box/ssl/ca.pem" /tmp/
-    cp "/box/ssl/$hostid-*.pem" /tmp/
+    cp /box/ssl/ca.pem /tmp/
+    cp /box/ssl/$hostid-*.pem /tmp/
 
     cd /tmp
-    zip "sslcerts-$hostid.zip" *.pem
+    zip sslcerts-$hostid.zip *.pem
 
     rm /tmp/*.pem
 
