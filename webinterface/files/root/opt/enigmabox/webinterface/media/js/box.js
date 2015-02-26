@@ -184,6 +184,22 @@
         return false;
     });
 
+    $('#backup_to_usb').on('click', function() {
+
+        var prev_data = '';
+        setInterval(function() {
+            $dynamic_output.load('/dynamic_output/', function(data) {
+                if(data != prev_data){
+                    $('.dynamic-output').animate({
+                        scrollTop: $('.dynamic-output')[0].scrollHeight
+                    }, 1000);
+                    prev_data = data;
+                }
+            });
+        }, 600);
+
+    });
+
     var applyval = 0;
     var prev_data = '';
 
