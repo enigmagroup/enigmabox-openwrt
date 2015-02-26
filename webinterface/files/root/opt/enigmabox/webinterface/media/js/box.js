@@ -196,7 +196,7 @@
                     prev_data = data;
                 }
             });
-        }, 600);
+        }, 1000);
     }
 
     var applyval = 0;
