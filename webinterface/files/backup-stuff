@@ -1,5 +1,11 @@
 #!/bin/ash
 
+find_usb() {
+    [[ $(cat /etc/enigmabox/network-profile) == 'raspi' ]] && start_part=a || start_part=b
+    [[ $(find /dev/sd[$start_part-z] 2> /dev/null | tail -n 1 | wc -l) -gt 0 ]] || exit
+    find /dev/sd[$start_part-z] | tail -n 1 | xargs fdisk -l 2> /dev/null | grep 'Disk /dev' | cut -d' ' -f2 | cut -d: -f1
+}
+
 task=$1
 
 if [[ $task == 'sslcerts' ]]; then
@@ -22,6 +28,96 @@ if [[ $task == 'emails' ]]; then
 
     cd /box/vmail/
     tar czvf /tmp/emails.tar.gz mail/
+
+fi
+
+
+
+if [[ $task == 'check_usb' ]]; then
+
+    usbdrive=$(find_usb)
+    if [[ $(echo p | /usr/sbin/fdisk $usbdrive | grep Disk | wc -l) -gt 0 ]]; then
+
+        usbsize=$(echo p | /usr/sbin/fdisk $usbdrive | grep bytes | head -n 1 | cut -d' ' -f9) #bytes
+        userdirsize=$(( $(du -s /box | awk '{ print $1 }') * 1024)) #bytes
+
+        if [[ $usbsize -gt $(( $userdirsize + 100 * 1024 * 1024 )) ]]; then
+            echo yes
+        else
+            echo sizefail
+        fi
+
+    else
+        echo nodrive
+    fi
+
+fi
+
+
+
+if [[ $task == 'format_usb' ]]; then
+
+    [[ $(check_usb) == "yes" ]] || exit 1
+
+    usbdrive=$(find_usb)
+    [[ -z $usbdrive ]] && exit 1
+
+    echo "p
+d
+d
+d
+d
+g
+n
+
+
+
+p
+w
+" | /usr/sbin/fdisk $usbdrive
+
+    /usr/sbin/mkfs.ext4 "$usbdrive"1
+
+fi
+
+
+
+if [[ $task == 'backup_to_usb' ]]; then
+
+    [[ $(check_usb) == "yes" ]] || exit 1
+    usbdrive=$(find_usb)
+    echo "mount usb stick"
+    mount "$usbdrive"1 /mnt
+    echo
+
+    echo "rsync -Pah --delete /box/ /mnt/box/"
+    /usr/bin/rsync -Pah --delete /box/ /mnt/box/
+    echo
+
+    echo "backup addressbook.db"
+    mkdir -p /mnt/etc/enigmabox
+    /usr/bin/rsync -Pah --delete /etc/enigmabox/addressbook.db /mnt/etc/enigmabox/addressbook.db
+    echo
+
+    echo "backup teletext avatars"
+    /usr/bin/rsync -Pah --delete /opt/enigmabox/teletext/public/img/profile/ /mnt/teletext-avatars/
+    echo
+
+    echo "sync & umount, first attempt:"
+    sync
+    umount /mnt
+    sleep 3
+    echo "sync & umount, second attempt:"
+    sync
+    umount /mnt || umount -l /mnt
+    sleep 5
+    echo
+
+    echo "output of 'mount':"
+    echo
+    mount
+    echo
+    echo "if you see no $usbdrive1 or /mnt there, everything is fine."
 
 fi
 

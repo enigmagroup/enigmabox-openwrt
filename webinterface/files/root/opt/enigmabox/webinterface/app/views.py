@@ -366,7 +366,7 @@ def backup_system_backupwizard(request):
     errormsg = ''
 
     if request.POST.get('check_usb') == '1':
-        result = Popen(["/bin/busybox sh /usr/sbin/upgrader check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
+        result = Popen(["/bin/busybox sh /usr/sbin/backup-stuff check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
         result = result.strip()
         if result == 'yes':
             step = 'format_usb'
@@ -378,11 +378,11 @@ def backup_system_backupwizard(request):
             errormsg = 'nodrive'
 
     if request.POST.get('format_usb') == '1':
-        Popen(["/bin/busybox sh /usr/sbin/upgrader format_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
+        Popen(["/bin/busybox sh /usr/sbin/backup-stuff format_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
         step = 'backup_to_usb'
 
     if request.POST.get('backup_to_usb') == '1':
-        Popen(["/bin/busybox sh /usr/sbin/upgrader backup_to_usb 2>&1 > /tmp/dynamic_output"], shell=True, stdout=PIPE, close_fds=True)
+        Popen(["/bin/busybox sh /usr/sbin/backup-stuff backup_to_usb 2>&1 > /tmp/dynamic_output"], shell=True, stdout=PIPE, close_fds=True)
         show_output = True
         step = 'backup_to_usb'
 
@@ -390,7 +390,7 @@ def backup_system_backupwizard(request):
         step = 'ensure_usb_unplugged'
 
     if request.POST.get('ensure_usb_unplugged') == '1':
-        result = Popen(["/bin/busybox sh /usr/sbin/upgrader check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
+        result = Popen(["/bin/busybox sh /usr/sbin/backup-stuff check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
         result = result.strip()
         if result == 'nodrive':
             return redirect('/')
