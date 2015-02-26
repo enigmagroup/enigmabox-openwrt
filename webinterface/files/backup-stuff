@@ -57,8 +57,6 @@ fi
 
 if [[ $task == 'format_usb' ]]; then
 
-    [[ $(check_usb) == "yes" ]] || exit 1
-
     usbdrive=$(find_usb)
     [[ -z $usbdrive ]] && exit 1
 
