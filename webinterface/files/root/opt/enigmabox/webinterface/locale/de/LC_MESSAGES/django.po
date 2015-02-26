@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-26 12:02+0100\n"
-"PO-Revision-Date: 2015-02-26 12:05+0100\n"
+"POT-Creation-Date: 2015-02-26 15:41+0100\n"
+"PO-Revision-Date: 2015-02-26 15:41+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -476,8 +476,8 @@ msgid "Check USB stick"
 msgstr "USB-Stick überprüfen"
 
 #: app/templates/backup/backupwizard/ensure_usb_unplugged.html:20
-msgid "Step 5: Remove USB stick"
-msgstr "Schritt 5: USB-Stick entfernen"
+msgid "Step 4: Remove USB stick"
+msgstr "Schritt 4: USB-Stick entfernen"
 
 #: app/templates/backup/backupwizard/ensure_usb_unplugged.html:21
 msgid "Now remove the USB stick."

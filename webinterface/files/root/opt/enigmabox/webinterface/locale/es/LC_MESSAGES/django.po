@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-26 12:02+0100\n"
+"POT-Creation-Date: 2015-02-26 15:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -491,7 +491,7 @@ msgstr ""
 
 #: app/templates/backup/backupwizard/ensure_usb_unplugged.html:20
 #, fuzzy
-msgid "Step 5: Remove USB stick"
+msgid "Step 4: Remove USB stick"
 msgstr "Remover compañero"
 
 #: app/templates/backup/backupwizard/ensure_usb_unplugged.html:21
