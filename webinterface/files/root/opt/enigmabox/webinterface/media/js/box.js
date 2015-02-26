@@ -184,8 +184,8 @@
         return false;
     });
 
-    $('#backup_to_usb').on('click', function() {
-
+    var $backupwindow = $('.backupwindow');
+    if ($backupwindow.length){
         var prev_data = '';
         setInterval(function() {
             $dynamic_output.load('/dynamic_output/', function(data) {
@@ -197,8 +197,7 @@
                 }
             });
         }, 600);
-
-    });
+    }
 
     var applyval = 0;
     var prev_data = '';

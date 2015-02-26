@@ -82,8 +82,9 @@ fi
 
 if [[ $task == 'backup_to_usb' ]]; then
 
-    [[ $(check_usb) == "yes" ]] || exit 1
     usbdrive=$(find_usb)
+    [[ -z $usbdrive ]] && exit 1
+
     echo "mount usb stick"
     mount "$usbdrive"1 /mnt
     echo
@@ -107,7 +108,7 @@ if [[ $task == 'backup_to_usb' ]]; then
     sleep 3
     echo "sync & umount, second attempt:"
     sync
-    umount /mnt || umount -l /mnt
+    umount /mnt 2> /dev/null || umount -l /mnt 2> /dev/null
     sleep 5
     echo
 
@@ -115,7 +116,7 @@ if [[ $task == 'backup_to_usb' ]]; then
     echo
     mount
     echo
-    echo "if you see no $usbdrive1 or /mnt there, everything is fine."
+    echo if you see no "$usbdrive"1 or /mnt there, everything is fine.
 
 fi
 
