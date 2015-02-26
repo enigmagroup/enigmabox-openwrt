@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-10 20:35+0100\n"
-"PO-Revision-Date: 2015-02-10 20:35+0100\n"
+"POT-Creation-Date: 2015-02-26 12:02+0100\n"
+"PO-Revision-Date: 2015-02-26 12:05+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -30,27 +30,27 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:659
+#: app/views.py:675
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:660
+#: app/views.py:676
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:661
+#: app/views.py:677
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:662
+#: app/views.py:678
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:663
+#: app/views.py:679
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:664
+#: app/views.py:680
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
@@ -62,8 +62,8 @@ msgstr "Bist du sicher?"
 msgid "Show"
 msgstr "Zeigen"
 
-#: app/templates/base.html:31 app/templates/base.html.py:92
-#: app/templates/base.html:102
+#: app/templates/base.html:31 app/templates/base.html.py:93
+#: app/templates/base.html:103
 msgid "Apply changes"
 msgstr "Änderungen anwenden"
 
@@ -91,6 +91,10 @@ msgstr "Passwörter"
 
 #: app/templates/base.html:59 app/templates/backup/overview.html:8
 #: app/templates/backup/sslcerts.html:8 app/templates/backup/system.html:8
+#: app/templates/backup/backupwizard/backup_to_usb.html:8
+#: app/templates/backup/backupwizard/check_usb.html:8
+#: app/templates/backup/backupwizard/ensure_usb_unplugged.html:8
+#: app/templates/backup/backupwizard/format_usb.html:8
 #: app/templates/backup/restorewizard/check_usb.html:8
 #: app/templates/backup/restorewizard/restore_from_usb.html:8
 msgid "Backup &amp; restore"
@@ -144,21 +148,25 @@ msgstr "Dienste"
 msgid "Teletext"
 msgstr "Teletext"
 
-#: app/templates/base.html:96
+#: app/templates/base.html:77 app/templates/hypesites/overview.html:8
+msgid "Hypesites"
+msgstr ""
+
+#: app/templates/base.html:97
 msgid "Apply changes?"
 msgstr "Änderungen anwenden?"
 
-#: app/templates/base.html:97
+#: app/templates/base.html:98
 msgid "Changes successfully applied."
 msgstr "Änderungen erfolgreich angewendet."
 
-#: app/templates/base.html:101 app/templates/addressbook/detail.html:65
+#: app/templates/base.html:102 app/templates/addressbook/detail.html:65
 #: app/templates/addressbook/overview-global-edit.html:52
 #: app/templates/passwords/edit.html:63 app/templates/peerings/detail.html:68
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: app/templates/base.html:110
+#: app/templates/base.html:111
 msgid "Done"
 msgstr "Fertig"
 
@@ -204,6 +212,8 @@ msgstr "Meine Adresse"
 #: app/templates/addressbook/overview-global-edit.html:23
 #: app/templates/addressbook/overview-global.html:54
 #: app/templates/addressbook/overview.html:30
+#: app/templates/backup/backupwizard/check_usb.html:25
+#: app/templates/backup/backupwizard/ensure_usb_unplugged.html:25
 #: app/templates/backup/restorewizard/check_usb.html:25
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:20
 #: app/templates/passwords/edit.html:30 app/templates/peerings/detail.html:26
@@ -294,6 +304,7 @@ msgid "Rejected"
 msgstr "Abgelehnt"
 
 #: app/templates/addressbook/overview-global.html:45
+#: app/templates/hypesites/overview.html:25
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
@@ -323,6 +334,10 @@ msgid "Backup and restore your data."
 msgstr "Sichern und Wiederherstellen deiner Daten."
 
 #: app/templates/backup/overview.html:16 app/templates/backup/system.html:9
+#: app/templates/backup/backupwizard/backup_to_usb.html:9
+#: app/templates/backup/backupwizard/check_usb.html:9
+#: app/templates/backup/backupwizard/ensure_usb_unplugged.html:9
+#: app/templates/backup/backupwizard/format_usb.html:9
 #: app/templates/backup/restorewizard/check_usb.html:9
 #: app/templates/backup/restorewizard/restore_from_usb.html:9
 msgid "Complete system"
@@ -399,6 +414,101 @@ msgstr "Vollständige Systemwiederherstellung"
 msgid "Start restore wizard"
 msgstr "Systemwiederherstellungsassistent starten"
 
+#: app/templates/backup/backupwizard/backup_to_usb.html:10
+#: app/templates/backup/backupwizard/check_usb.html:10
+#: app/templates/backup/backupwizard/ensure_usb_unplugged.html:10
+#: app/templates/backup/backupwizard/format_usb.html:10
+msgid "Backup wizard"
+msgstr "Systemsicherungsassistent"
+
+#: app/templates/backup/backupwizard/backup_to_usb.html:13
+#: app/templates/backup/backupwizard/check_usb.html:13
+#: app/templates/backup/backupwizard/ensure_usb_unplugged.html:13
+#: app/templates/backup/backupwizard/format_usb.html:13
+msgid "Complete system backup"
+msgstr "Vollständige Systemsicherung"
+
+#: app/templates/backup/backupwizard/backup_to_usb.html:20
+msgid "Step 3: Backup to USB stick"
+msgstr "Schritt 3: Sicherung auf den USB-Stick"
+
+#: app/templates/backup/backupwizard/backup_to_usb.html:21
+msgid ""
+"Ok, now we back up all your user data and system settings to the USB stick."
+msgstr ""
+"Ok, wir werden jetzt alle Benutzerdaten und Systemeinstellungen auf den USB-"
+"Stick sichern."
+
+#: app/templates/backup/backupwizard/backup_to_usb.html:25
+#: app/templates/backup/backupwizard/backup_to_usb.html:27
+msgid "Start backup"
+msgstr "Datensicherung starten"
+
+#: app/templates/backup/backupwizard/backup_to_usb.html:33
+msgid "Looking good?"
+msgstr "Sieht's gut aus?"
+
+#: app/templates/backup/backupwizard/backup_to_usb.html:34
+msgid "Proceed to step 4"
+msgstr "Weiter zu Schritt 4"
+
+#: app/templates/backup/backupwizard/check_usb.html:20
+msgid "Step 1: Prepare USB stick"
+msgstr "Schritt 1: USB-Stick vorbereiten"
+
+#: app/templates/backup/backupwizard/check_usb.html:21
+msgid "Insert an USB stick, large enough to back up you data."
+msgstr ""
+"Bitte einen USB-Stick einstecken, gross genug, um deine Daten zu sichern."
+
+#: app/templates/backup/backupwizard/check_usb.html:27
+msgid "This USB stick is too small!"
+msgstr "Der USB-Stick ist zu klein!"
+
+#: app/templates/backup/backupwizard/check_usb.html:30
+#: app/templates/backup/restorewizard/check_usb.html:27
+msgid "No USB stick detected."
+msgstr "Keinen USB-Stick gefunden."
+
+#: app/templates/backup/backupwizard/check_usb.html:34
+#: app/templates/backup/restorewizard/check_usb.html:31
+msgid "Check USB stick"
+msgstr "USB-Stick überprüfen"
+
+#: app/templates/backup/backupwizard/ensure_usb_unplugged.html:20
+msgid "Step 5: Remove USB stick"
+msgstr "Schritt 5: USB-Stick entfernen"
+
+#: app/templates/backup/backupwizard/ensure_usb_unplugged.html:21
+msgid "Now remove the USB stick."
+msgstr "Bitte entferne jetzt den USB-Stick."
+
+#: app/templates/backup/backupwizard/ensure_usb_unplugged.html:26
+#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:21
+msgid "Please remove the USB stick!"
+msgstr "Bitte entferne den USB-Stick!"
+
+#: app/templates/backup/backupwizard/ensure_usb_unplugged.html:29
+#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:24
+msgid "I have removed the USB stick"
+msgstr "Ich habe den USB-Stick entfernt"
+
+#: app/templates/backup/backupwizard/format_usb.html:20
+msgid "Step 2: Format USB stick"
+msgstr "Schritt 2: USB-Stick formatieren"
+
+#: app/templates/backup/backupwizard/format_usb.html:21
+msgid "Your USB stick seems ok."
+msgstr "Der USB-Stick scheint ok."
+
+#: app/templates/backup/backupwizard/format_usb.html:22
+msgid "We will format your USB stick now."
+msgstr "Wir werden den USB-Stick jetzt formatieren."
+
+#: app/templates/backup/backupwizard/format_usb.html:24
+msgid "Format USB stick"
+msgstr "USB-Stick formatieren"
+
 #: app/templates/backup/restorewizard/check_usb.html:10
 #: app/templates/backup/restorewizard/restore_from_usb.html:10
 msgid "Restore wizard"
@@ -418,14 +528,6 @@ msgstr "Schritt 1: USB-Stick einstecken"
 msgid "Insert the USB stick that holds your data."
 msgstr "Bitte den USB-Stick mit deinen Daten einstecken."
 
-#: app/templates/backup/restorewizard/check_usb.html:27
-msgid "No USB stick detected."
-msgstr "Keinen USB-Stick gefunden."
-
-#: app/templates/backup/restorewizard/check_usb.html:31
-msgid "Check USB stick"
-msgstr "USB-Stick überprüfen"
-
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:15
 msgid "Step 3: Remove USB stick"
 msgstr "Schritt 3: USB-Stick entfernen"
@@ -433,14 +535,6 @@ msgstr "Schritt 3: USB-Stick entfernen"
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:16
 msgid "Restore successful. Now remove the USB stick."
 msgstr "Wiederherstellung erfolgreich. Bitte USB-Stick entfernen."
-
-#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:21
-msgid "Please remove the USB stick!"
-msgstr "Bitte entferne den USB-Stick!"
-
-#: app/templates/backup/restorewizard/ensure_usb_unplugged.html:24
-msgid "I have removed the USB stick"
-msgstr "Ich habe den USB-Stick entfernt"
 
 #: app/templates/backup/restorewizard/restore_from_usb.html:20
 msgid "Step 2: Restore from USB stick"
@@ -598,9 +692,35 @@ msgstr "cjdns"
 msgid "Internet via cjdns"
 msgstr "Internet via cjdns"
 
+#: app/templates/hypesites/overview.html:9
+msgid "Hypesites are websites inside hyperboria."
+msgstr ""
+
+#: app/templates/hypesites/overview.html:10
+msgid "Run a webserver and publish your own site."
+msgstr ""
+
+#: app/templates/hypesites/overview.html:20
+msgid "Enable Webserver"
+msgstr "Webserver aktivieren"
+
+#: app/templates/hypesites/overview.html:23
+#: app/templates/peerings/overview.html:44
+#: app/templates/peerings/overview.html:100
+#: app/templates/teletext/overview.html:23
+#: app/templates/updates/overview.html:21
+#: app/templates/webfilter/overview.html:37
+#: app/templates/webfilter/overview.html:54
+#: app/templates/webfilter/overview.html:66
+#: app/templates/webfilter/overview.html:78
+#: app/templates/webfilter/overview.html:95
+msgid "Enabled"
+msgstr "Aktiviert"
+
 #: app/templates/passwords/edit.html:18
-msgid "Password for the <a href=\"http://box/\">web interface</a>"
-msgstr "Passwort für das <a href=\"http://box/\">Webinterface</a>"
+#: app/templates/passwords/overview.html:15
+msgid "Password for the web interface <em>http://box/</em>"
+msgstr "Passwort für das Webinterface <em>http://box/</em>"
 
 #: app/templates/passwords/edit.html:21
 #: app/templates/passwords/overview.html:24
@@ -622,10 +742,6 @@ msgstr "Passwort entfernen"
 #: app/templates/passwords/overview.html:10
 msgid "Set passwords and protect the administration interface from access."
 msgstr "Passwörter setzen, um die Administrationsoberfläche zu schützen."
-
-#: app/templates/passwords/overview.html:15
-msgid "Password for the web interface <em>http://box/</em>"
-msgstr "Passwort für das Webinterface <em>http://box/</em>"
 
 #: app/templates/passwords/overview.html:19
 #: app/templates/passwords/overview.html:28
@@ -687,18 +803,6 @@ msgstr "Neues Peering"
 #: app/templates/peerings/overview.html:41
 msgid "Incoming peering"
 msgstr "Eingehendes Peering"
-
-#: app/templates/peerings/overview.html:44
-#: app/templates/peerings/overview.html:100
-#: app/templates/teletext/overview.html:23
-#: app/templates/updates/overview.html:21
-#: app/templates/webfilter/overview.html:37
-#: app/templates/webfilter/overview.html:54
-#: app/templates/webfilter/overview.html:66
-#: app/templates/webfilter/overview.html:78
-#: app/templates/webfilter/overview.html:95
-msgid "Enabled"
-msgstr "Aktiviert"
 
 #: app/templates/peerings/overview.html:54
 msgid "Port"
@@ -1006,6 +1110,9 @@ msgstr "Verbinden"
 #: app/templates/wlan_settings/scan.html:22
 msgid "Signal"
 msgstr "Signal"
+
+#~ msgid "Password for the <a href=\"http://box/\">web interface</a>"
+#~ msgstr "Passwort für das <a href=\"http://box/\">Webinterface</a>"
 
 #~ msgid "Back"
 #~ msgstr "Zurück"

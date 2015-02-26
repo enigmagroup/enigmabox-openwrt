@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+    <ul class="breadcrumb">
+        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a> <span class="divider">/</span></li>
+        <li><a href="/backup/system/">{% trans "Complete system" %}</a> <span class="divider">/</span></li>
+        <li class="active">{% trans "Backup wizard" %}</li>
+    </ul>
+
+      <h1>{% trans "Complete system backup" %}</h1>
+
+      <p>&nbsp;</p>
+
+<form action="" method="post" class="form-horizontal">
+{% csrf_token %}
+    <fieldset>
+        <legend>{% trans "Step 5: Remove USB stick" %}</legend>
+        <p>{% trans "Now remove the USB stick." %}</p>
+        <p>&nbsp;</p>
+{% if errormsg %}
+        <div class="alert alert-error">
+            <h4>{% trans "Error" %}</h4>
+            {% trans "Please remove the USB stick!" %}
+        </div>
+{% endif %}
+        <button id="ensure_usb_unplugged" name="ensure_usb_unplugged" value="1" class="btn btn-primary disable_after_click">{% trans "I have removed the USB stick" %}</button>
+    </fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}

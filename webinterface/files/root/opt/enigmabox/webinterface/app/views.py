@@ -361,12 +361,9 @@ def backup_system(request):
     }, context_instance=RequestContext(request))
 
 def backup_system_backupwizard(request):
-    step = 'overview'
+    step = 'check_usb'
     show_output = False
     errormsg = ''
-
-    if request.POST.get('start') == '1':
-        step = 'check_usb'
 
     if request.POST.get('check_usb') == '1':
         result = Popen(["/bin/busybox sh /usr/sbin/upgrader check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
@@ -396,8 +393,7 @@ def backup_system_backupwizard(request):
         result = Popen(["/bin/busybox sh /usr/sbin/upgrader check_usb"], shell=True, stdout=PIPE, close_fds=True).communicate()[0]
         result = result.strip()
         if result == 'nodrive':
-            step = 'ensure_usb_unplugged'
-            errormsg = 'allgood'
+            return redirect('/')
         else:
             step = 'ensure_usb_unplugged'
             errormsg = 'usbfail'
