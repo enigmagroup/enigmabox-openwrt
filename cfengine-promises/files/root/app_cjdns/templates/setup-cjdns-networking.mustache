@@ -121,7 +121,7 @@ request_cjdns_internet() {
     # request cjdns internet via script after the 3rd try
     if [[ "$try" -ge 3 ]]; then
         e "request cjdns internet"
-        /usr/sbin/request-internet 2> /dev/null
+        /usr/sbin/request-internet
     fi
 }
 
@@ -311,10 +311,20 @@ if [[ "$wehaveinternet" == "yes" && "$request_internet" == "yes" ]]; then
         if [[ "$(gateway_is_up)" == "true" ]]; then
             e "gateway is up."
             set_network_parameters
-            e "done."
-            set_status "cjdns_internet" 1
-            rm "$cjdns_request_tries" 2> /dev/null
-            exit
+            e "checking internet connectivity over cjdns"
+            if [[ "$($ping 8.8.8.8 | grep 'bytes from')" ]]; then
+                echo "We have internet. Good."
+                set_status "dhcp" 1
+                set_status "internet" 1
+                set_status "cjdns" 1
+                set_status "cjdns_internet" 1
+                rm "$cjdns_request_tries" 2> /dev/null
+                exit
+            else
+                echo "Gateway is up, but no internet. Requesting..."
+                /usr/sbin/request-internet
+                exit
+            fi
         fi
         sleep 1
     done
