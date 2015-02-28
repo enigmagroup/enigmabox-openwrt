@@ -10,7 +10,7 @@
 +change-x-forwarded-for{block} \
 +client-header-tagger{css-requests} \
 +client-header-tagger{image-requests} \
-+deanimate-gifs{last} \
+#+deanimate-gifs{last} \
 +filter{refresh-tags} \
 +filter{img-reorder} \
 +filter{banners-by-size} \
