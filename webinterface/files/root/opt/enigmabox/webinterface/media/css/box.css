@@ -48,3 +48,10 @@
     margin-bottom: 0;
 }
 
+.table thead > tr > th {
+    font-size: 13px;
+    font-weight: 600;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
