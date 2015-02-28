@@ -1,121 +1,373 @@
 {% load apptags %}
 {% load i18n %}
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Enigmabox Administration</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/media/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="/media/css/box.css?{% display_version slugify='1' %}" rel="stylesheet" media="screen">
-    <link href="/media/css/ansi2html.css" rel="stylesheet" media="screen">
-    <style>
-      body {
-        padding-top: 60px;
-      }
-    </style>
-    <script type="text/javascript">
-    translation = window.translation || {};
-    translation['are_you_sure'] = '{% trans "Are you sure?" %}';
-    translation['show'] = '{% trans "Show" %}';
-    </script>
-  </head>
-  <body>
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
 
-<div id="lockscreen"></div>
+        <title>Enigmabox controlpanel</title>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="brand" title="Home" href="{% url app.views.home %}">Enigmabox Administration</a>
+        <meta name="description" content="ProUI is a Responsive Bootstrap Admin Template created by pixelcave and published on Themeforest.">
+        <meta name="robots" content="noindex, nofollow">
+
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+
+        <!-- Icons -->
+        <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+        <link rel="shortcut icon" href="/media/img/favicon.png">
+        <link rel="apple-touch-icon" href="/media/img/icon57.png" sizes="57x57">
+        <link rel="apple-touch-icon" href="/media/img/icon72.png" sizes="72x72">
+        <link rel="apple-touch-icon" href="/media/img/icon76.png" sizes="76x76">
+        <link rel="apple-touch-icon" href="/media/img/icon114.png" sizes="114x114">
+        <link rel="apple-touch-icon" href="/media/img/icon120.png" sizes="120x120">
+        <link rel="apple-touch-icon" href="/media/img/icon144.png" sizes="144x144">
+        <link rel="apple-touch-icon" href="/media/img/icon152.png" sizes="152x152">
+        <link rel="apple-touch-icon" href="/media/img/icon180.png" sizes="180x180">
+        <!-- END Icons -->
+
+        <!-- Stylesheets -->
+        <!-- Bootstrap is included in its original form, unaltered -->
+        <link rel="stylesheet" href="/media/css/bootstrap.min.css">
+
+        <!-- Related styles of various icon packs and plugins -->
+        <link rel="stylesheet" href="/media/css/plugins.css">
+
+        <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+        <link rel="stylesheet" href="/media/css/main.css">
+
+        <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
+
+        <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+        <link rel="stylesheet" href="/media/css/themes/night.css">
+
+        <link href="/media/css/box.css?{% display_version slugify='1' %}" rel="stylesheet" media="screen">
+        <link href="/media/css/ansi2html.css" rel="stylesheet" media="screen">
+        <!-- END Stylesheets -->
+
+        <script type="text/javascript">
+        translation = window.translation || {};
+        translation['are_you_sure'] = '{% trans "Are you sure?" %}';
+        translation['show'] = '{% trans "Show" %}';
+        </script>
+
+        <!-- Modernizr (browser feature detection library) & Respond.js (enables responsive CSS code on browsers that don't support it, eg IE8) -->
+        <!--<script src="/media/js/vendor/modernizr-respond.min.js"></script>-->
+    </head>
+    <body>
+        <!-- Page Wrapper -->
+        <div id="page-wrapper">
+            <!-- Page Container -->
+            <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+                <!-- Main Sidebar -->
+                <div id="sidebar">
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll">
+                        <!-- Sidebar Content -->
+                        <div class="sidebar-content">
+                            <!-- Brand -->
+                            <a href="{% url app.views.home %}" class="sidebar-brand">
+                                <i class="gi gi-flash"></i><span class="sidebar-nav-mini-hide"><strong>Enigmabox</strong></span>
+                            </a>
+                            <!-- END Brand -->
 {% if_config_changed object None %}
       <a id="button-apply" href="{% url app.views.apply_changes %}" class="btn btn-danger">{% trans "Apply changes" %}</a>
 {% endif_config_changed %}
-        <ul class="nav pull-right">
-            <li class="divider-vertical"></li>
-            <!--<li><a title="Deine IPv6-Adresse" href="">{% display_ip %}</a></li>-->
-            <li class="dropdown">
-                <a href="" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-{% get_language_info_list for LANGUAGES as languages %}
-{% for language in languages %}
-                    <li><a href="/i18n/setlang/{{ language.code }}/">{{ language.name_local|title }}</a></li>
-{% endfor %}
-                </ul>
-            </li>
-        </ul>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span2">
-            <!--Sidebar content-->
-            <ul class="nav nav-list">
-                <li class=""><a href="/"><i class="icon-home"></i>&nbsp;{% trans "Welcome" %}</a></li>
-                <li class="nav-header">{% trans "System" %}</li>
-                <li class="{% active request 'addressbook' %}"><a href="{% url app.views.addressbook %}"><i class="icon-user"></i>&nbsp;{% trans "Addressbook" %}</a></li>
-                <li class="{% active request 'passwords' %}"><a href="{% url app.views.passwords %}"><i class="icon-lock"></i>&nbsp;{% trans "Passwords" %}</a></li>
-                <li class="{% active request 'backup' %}"><a href="{% url app.views.backup %}"><i class="icon-share"></i>&nbsp;{% trans "Backup &amp; restore" %}</a></li>
+                            <!-- Sidebar Navigation -->
+                            <ul class="sidebar-nav">
+                                <li>
+                                    <a href="{% url app.views.home %}"><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Overview</span></a>
+                                </li>
+                                <li class="sidebar-header">
+                                    <span class="sidebar-header-title">Widget Kit</span>
+                                </li>
+                                <li>
+                                    <a href="page_widgets_stats.html"><i class="gi gi-charts sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Statistics</span></a>
+                                </li>
+                                <li>
+                                    <a href="page_widgets_social.html"><i class="gi gi-share_alt sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Social</span></a>
+                                </li>
+                                <li>
+                                    <a href="page_widgets_media.html"><i class="gi gi-film sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Media</span></a>
+                                </li>
+                                <li>
+                                    <a href="page_widgets_links.html"><i class="gi gi-link sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Links</span></a>
+                                </li>
+                                <li class="">
+                                    <a href="/"><i class="icon-home"></i>&nbsp;{% trans "Welcome" %}</a>
+                                </li>
+                                <li class="nav-header">{% trans "System" %}</li>
+                                <li class="{% active request 'addressbook' %}">
+                                    <a href="{% url app.views.addressbook %}"><i class="icon-user"></i>&nbsp;{% trans "Addressbook" %}</a>
+                                </li>
+                                <li class="{% active request 'passwords' %}">
+                                    <a href="{% url app.views.passwords %}"><i class="icon-lock"></i>&nbsp;{% trans "Passwords" %}</a>
+                                </li>
+                                <li class="{% active request 'backup' %}">
+                                    <a href="{% url app.views.backup %}"><i class="icon-share"></i>&nbsp;{% trans "Backup &amp; restore" %}</a>
+                                </li>
 {% if_updates object None  %}
-                <li class="{% active request 'updates' %}"><a href="{% url app.views.updates %}"><i class="icon-circle-arrow-up"></i>&nbsp;{% trans "Updates" %}</a></li>
+                                <li class="{% active request 'updates' %}">
+                                    <a href="{% url app.views.updates %}"><i class="icon-circle-arrow-up"></i>&nbsp;{% trans "Updates" %}</a>
+                                </li>
 {% endif_updates %}
 {% if_show_upgrader object None %}
-                <li class="{% active request 'upgrade' %}"><a href="{% url app.views.upgrade %}"><i class="icon-download-alt"></i>&nbsp;{% trans "Firmware upgrade" %}</a></li>
+                                <li class="{% active request 'upgrade' %}">
+                                    <a href="{% url app.views.upgrade %}"><i class="icon-download-alt"></i>&nbsp;{% trans "Firmware upgrade" %}</a>
+                                </li>
 {% endif_show_upgrader  %}
-                <li class="nav-header">{% trans "Internet" %}</li>
-                <li class="{% active request 'countryselect' %}"><a href="{% url app.views.countryselect %}"><i class="icon-globe"></i>&nbsp;{% trans "Country selection" %}</a></li>
-                <li class="{% active request 'webfilter' %}"><a href="{% url app.views.webfilter %}"><i class="icon-ban-circle"></i>&nbsp;{% trans "Ad blocking" %}</a></li>
-                <li class="nav-header">{% trans "Network" %}</li>
+                                <li class="nav-header">{% trans "Internet" %}
+                                </li>
+                                <li class="{% active request 'countryselect' %}">
+                                    <a href="{% url app.views.countryselect %}"><i class="icon-globe"></i>&nbsp;{% trans "Country selection" %}</a>
+                                </li>
+                                <li class="{% active request 'webfilter' %}">
+                                    <a href="{% url app.views.webfilter %}"><i class="icon-ban-circle"></i>&nbsp;{% trans "Ad blocking" %}</a>
+                                </li>
+                                <li class="nav-header">{% trans "Network" %}
+                                </li>
 {% if_internet_access_expiring object None %}
-                <li class="{% active request 'subscription' %}"><a href="{% url app.views.subscription %}"><i class="icon-repeat"></i>&nbsp;{% trans "Subscription" %}</a></li>
+                                <li class="{% active request 'subscription' %}">
+                                    <a href="{% url app.views.subscription %}"><i class="icon-repeat"></i>&nbsp;{% trans "Subscription" %}</a>
+                                </li>
 {% endif_internet_access_expiring %}
-                <li class="{% active request 'peerings' %}"><a href="{% url app.views.peerings %}"><i class="icon-random"></i>&nbsp;{% trans "Peerings" %}</a></li>
-                <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i>&nbsp;{% trans "WLAN settings" %}</a></li>
-                <li class="nav-header">{% trans "Services" %}</li>
-                <li class="{% active request 'teletext' %}"><a href="{% url app.views.teletext %}"><i class="icon-list"></i>&nbsp;{% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a></li>
-<!--                <li class="{% active request 'hypesites' %}"><a href="{% url app.views.hypesites %}"><i class="icon-road"></i>&nbsp;{% trans "Hypesites" %}&nbsp;<span class="label label-default">beta</span></a></li>-->
-            </ul>
+                                <li class="{% active request 'peerings' %}">
+                                    <a href="{% url app.views.peerings %}"><i class="icon-random"></i>&nbsp;{% trans "Peerings" %}</a>
+                                </li>
+                                <li class="{% active request 'wlan_settings' %}">
+                                    <a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i>&nbsp;{% trans "WLAN settings" %}</a>
+                                </li>
+                                <li class="nav-header">{% trans "Services" %}
+                                </li>
+                                <li class="{% active request 'teletext' %}">
+                                    <a href="{% url app.views.teletext %}"><i class="icon-list"></i>&nbsp;{% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a>
+                                </li>
+                                <!--                
+                                <li class="{% active request 'hypesites' %}">
+                                    <a href="{% url app.views.hypesites %}"><i class="icon-road"></i>&nbsp;{% trans "Hypesites" %}&nbsp;<span class="label label-default">beta</span></a>
+                                </li>
+                                -->
+                            </ul>
+                            <!-- END Sidebar Navigation -->
+
+                            <!-- Sidebar Notifications -->
+                            <div class="sidebar-section sidebar-nav-mini-hide">
+                                <div class="alert alert-warning alert-alt">
+                                    <small>Speicherplatz</small><br>
+                                    <strong>2GB</strong> von 4GB belegt
+                                </div>
+                            </div>
+                            <!-- END Sidebar Notifications -->
+                        </div>
+                        <!-- END Sidebar Content -->
+                    </div>
+                    <!-- END Wrapper for scrolling functionality -->
+                </div>
+                <!-- END Main Sidebar -->
+
+                <!-- Main Container -->
+                <div id="main-container">
+                    <!-- Page content -->
+                    <div id="page-content">
+{% block main %}
+                        <!-- Buttons - Dropdowns Header -->
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Overview</li>
+                        </ul>
+                        <!-- END Buttons - Dropdowns Header -->
+
+                        <ul class="nav pull-right">
+                            <li class="divider-vertical"></li>
+                            <!--<li><a title="Deine IPv6-Adresse" href="">{% display_ip %}</a></li>-->
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+{% get_language_info_list for LANGUAGES as languages %}
+{% for language in languages %}
+                                    <li><a href="/i18n/setlang/{{ language.code }}/">{{ language.name_local|title }}</a></li>
+{% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <!-- Buttons Alternative Style Block -->
+                        <div class="block">
+                            <!-- Buttons Alternative Style Title -->
+                            <div class="block-title">
+                                <h2><strong>Addressbuch</strong></h2>
+                            </div>
+                            <!-- END Buttons Alternative Style Title -->
+
+                            <!-- Buttons Alternative Style Content -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="block-section">
+                                        <h4 class="sub-header">Extra Small</h4>
+                                        <button type="button" class="btn btn-alt btn-xs btn-default">Default</button>
+                                        <button type="button" class="btn btn-alt btn-xs btn-primary">Primary</button>
+                                        <button type="button" class="btn btn-alt btn-xs btn-info">Info</button>
+                                        <button type="button" class="btn btn-alt btn-xs btn-success">Success</button>
+                                        <button type="button" class="btn btn-alt btn-xs btn-warning">Warning</button>
+                                        <button type="button" class="btn btn-alt btn-xs btn-danger">Danger</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="block-section">
+                                        <h4 class="sub-header">Small</h4>
+                                        <button type="button" class="btn btn-alt btn-sm btn-default">Default</button>
+                                        <button type="button" class="btn btn-alt btn-sm btn-primary">Primary</button>
+                                        <button type="button" class="btn btn-alt btn-sm btn-info">Info</button>
+                                        <button type="button" class="btn btn-alt btn-sm btn-success">Success</button>
+                                        <button type="button" class="btn btn-alt btn-sm btn-warning">Warning</button>
+                                        <button type="button" class="btn btn-alt btn-sm btn-danger">Danger</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="block-section">
+                                        <h4 class="sub-header">Normal</h4>
+                                        <button type="button" class="btn btn-alt btn-default">Default</button>
+                                        <button type="button" class="btn btn-alt btn-primary">Primary</button>
+                                        <button type="button" class="btn btn-alt btn-info">Info</button>
+                                        <button type="button" class="btn btn-alt btn-success">Success</button>
+                                        <button type="button" class="btn btn-alt btn-warning">Warning</button>
+                                        <button type="button" class="btn btn-alt btn-danger">Danger</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="block-section">
+                                        <h4 class="sub-header">Large</h4>
+                                        <button type="button" class="btn btn-alt btn-lg btn-default">Default</button>
+                                        <button type="button" class="btn btn-alt btn-lg btn-primary">Primary</button>
+                                        <button type="button" class="btn btn-alt btn-lg btn-info">Info</button>
+                                        <button type="button" class="btn btn-alt btn-lg btn-success">Success</button>
+                                        <button type="button" class="btn btn-alt btn-lg btn-warning">Warning</button>
+                                        <button type="button" class="btn btn-alt btn-lg btn-danger">Danger</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END Buttons Alternative Style Content -->
+                        </div>
+                        <!-- END Buttons Alternative Style Block -->
+                    </div>
+{% endblock %}
+                    <!-- END Page Content -->
+
+                    <!-- Footer -->
+                    <footer class="clearfix">
+                        <div class="pull-right">
+                            <a href="https://github.com/enigmagroup/enigmabox-openwrt" target="_blank">Enigmasuite Version 1.4.0 on OpenWrt</a>
+                        </div>
+                    </footer>
+                    <!-- END Footer -->
+                </div>
+                <!-- END Main Container -->
+            </div>
+            <!-- END Page Container -->
         </div>
-        <div class="span10">
+        <!-- END Page Wrapper -->
 
-        <!--Body content-->
-        {% block main %}[main]{% endblock %}
+        <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
+        <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
 
-        <a href="https://github.com/enigmagroup/enigmabox-openwrt" target="_blank" class="muted credits">{% display_version %}</a>
+        <!-- User Settings, modal which opens from Settings link (found in top right user menu) and the Cog link (found in sidebar user info) -->
+        <div id="modal-user-settings" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header text-center">
+                        <h2 class="modal-title"><i class="fa fa-pencil"></i> Settings</h2>
+                    </div>
+                    <!-- END Modal Header -->
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <form action="index.html" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
+                            <fieldset>
+                                <legend>Vital Info</legend>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Username</label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">Admin</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="user-settings-email">Email</label>
+                                    <div class="col-md-8">
+                                        <input type="email" id="user-settings-email" name="user-settings-email" class="form-control" value="admin@example.com">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="user-settings-notifications">Email Notifications</label>
+                                    <div class="col-md-8">
+                                        <label class="switch switch-primary">
+                                            <input type="checkbox" id="user-settings-notifications" name="user-settings-notifications" value="1" checked>
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Password Update</legend>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="user-settings-password">New Password</label>
+                                    <div class="col-md-8">
+                                        <input type="password" id="user-settings-password" name="user-settings-password" class="form-control" placeholder="Please choose a complex one..">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="user-settings-repassword">Confirm New Password</label>
+                                    <div class="col-md-8">
+                                        <input type="password" id="user-settings-repassword" name="user-settings-repassword" class="form-control" placeholder="..and confirm it!">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="form-group form-actions">
+                                <div class="col-xs-12 text-right">
+                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- END Modal Body -->
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+        <!-- END User Settings -->
 
-<!-- Modal -->
-<div id="apply-now" class="modal hide" tabindex="-1" role="dialog">
-  <div class="modal-header">
-    <h3>{% trans "Apply changes" %}</h3>
-  </div>
-  <div class="modal-body">
-    <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output hide" data-static_height="300"></pre>
-    <p class="apply-changes-ask">{% trans "Apply changes?" %}</p>
-    <p class="apply-changes-success hide">{% trans "Changes successfully applied." %}</p>
-  </div>
-  <div class="modal-footer">
-    <span class="apply-buttonbar">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
-        <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
-    </span>
-    <span class="apply-progressbar hide">
-        <div class="progress progress-striped active">
-            <div class="bar" style="width: 100%"></div>
+        <!-- Modal -->
+        <div id="apply-now" class="modal hide" tabindex="-1" role="dialog">
+          <div class="modal-header">
+            <h3>{% trans "Apply changes" %}</h3>
+          </div>
+          <div class="modal-body">
+            <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output hide" data-static_height="300"></pre>
+            <p class="apply-changes-ask">{% trans "Apply changes?" %}</p>
+            <p class="apply-changes-success hide">{% trans "Changes successfully applied." %}</p>
+          </div>
+          <div class="modal-footer">
+            <span class="apply-buttonbar">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
+                <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
+            </span>
+            <span class="apply-progressbar hide">
+                <div class="progress progress-striped active">
+                    <div class="bar" style="width: 100%"></div>
+                </div>
+            </span>
+            <span class="apply-donebar hide">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Done" %}</button>
+            </span>
+          </div>
         </div>
-    </span>
-    <span class="apply-donebar hide">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Done" %}</button>
-    </span>
-  </div>
-</div>
 
-    <script src="/media/js/jquery-2.0.2.min.js"></script>
-    <script src="/media/js/jquery-ui-1.10.4.min.js"></script>
-    <script src="/media/js/bootstrap.min.js"></script>
-    <script src="/media/js/box.js?{% display_version slugify='1' %}"></script>
-  </body>
+        <script src="/media/js/vendor/jquery-1.11.2.min.js"></script>
+
+        <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
+        <script src="/media/js/vendor/bootstrap.min.js"></script>
+        <script src="/media/js/plugins.js"></script>
+        <script src="/media/js/app.js"></script>
+        <script src="/media/js/box.js?{% display_version slugify='1' %}"></script>
+    </body>
 </html>
