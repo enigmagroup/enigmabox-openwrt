@@ -80,76 +80,65 @@
                                     <a href="{% url app.views.home %}"><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Overview</span></a>
                                 </li>
                                 <li class="sidebar-header">
-                                    <span class="sidebar-header-title">Widget Kit</span>
+                                    <span class="sidebar-header-title">{% trans "System" %}</span>
                                 </li>
-                                <li>
-                                    <a href="page_widgets_stats.html"><i class="gi gi-charts sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Statistics</span></a>
-                                </li>
-                                <li>
-                                    <a href="page_widgets_social.html"><i class="gi gi-share_alt sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Social</span></a>
-                                </li>
-                                <li>
-                                    <a href="page_widgets_media.html"><i class="gi gi-film sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Media</span></a>
-                                </li>
-                                <li>
-                                    <a href="page_widgets_links.html"><i class="gi gi-link sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Links</span></a>
-                                </li>
-                                <li class="">
-                                    <a href="/"><i class="icon-home"></i>&nbsp;{% trans "Welcome" %}</a>
-                                </li>
-                                <li class="nav-header">{% trans "System" %}</li>
                                 <li class="{% active request 'addressbook' %}">
-                                    <a href="{% url app.views.addressbook %}"><i class="icon-user"></i>&nbsp;{% trans "Addressbook" %}</a>
+                                    <a href="{% url app.views.addressbook %}"><i class="gi gi-user sidebar-nav-icon"></i>&nbsp;{% trans "Addressbook" %}</a>
                                 </li>
                                 <li class="{% active request 'passwords' %}">
-                                    <a href="{% url app.views.passwords %}"><i class="icon-lock"></i>&nbsp;{% trans "Passwords" %}</a>
+                                    <a href="{% url app.views.passwords %}"><i class="gi gi-lock sidebar-nav-icon"></i>&nbsp;{% trans "Passwords" %}</a>
                                 </li>
                                 <li class="{% active request 'backup' %}">
-                                    <a href="{% url app.views.backup %}"><i class="icon-share"></i>&nbsp;{% trans "Backup &amp; restore" %}</a>
+                                    <a href="{% url app.views.backup %}"><i class="gi gi-share sidebar-nav-icon"></i>&nbsp;{% trans "Backup &amp; restore" %}</a>
                                 </li>
 {% if_updates object None  %}
                                 <li class="{% active request 'updates' %}">
-                                    <a href="{% url app.views.updates %}"><i class="icon-circle-arrow-up"></i>&nbsp;{% trans "Updates" %}</a>
+                                    <a href="{% url app.views.updates %}"><i class="gi gi-circle-arrow-up sidebar-nav-icon"></i>&nbsp;{% trans "Updates" %}</a>
                                 </li>
 {% endif_updates %}
 {% if_show_upgrader object None %}
                                 <li class="{% active request 'upgrade' %}">
-                                    <a href="{% url app.views.upgrade %}"><i class="icon-download-alt"></i>&nbsp;{% trans "Firmware upgrade" %}</a>
+                                    <a href="{% url app.views.upgrade %}"><i class="gi gi-download-alt sidebar-nav-icon"></i>&nbsp;{% trans "Firmware upgrade" %}</a>
                                 </li>
 {% endif_show_upgrader  %}
-                                <li class="nav-header">{% trans "Internet" %}
+                                <li class="sidebar-header">
+                                    <span class="sidebar-header-title">{% trans "Internet" %}</span>
                                 </li>
                                 <li class="{% active request 'countryselect' %}">
-                                    <a href="{% url app.views.countryselect %}"><i class="icon-globe"></i>&nbsp;{% trans "Country selection" %}</a>
+                                    <a href="{% url app.views.countryselect %}"><i class="gi gi-globe sidebar-nav-icon"></i>&nbsp;{% trans "Country selection" %}</a>
                                 </li>
                                 <li class="{% active request 'webfilter' %}">
-                                    <a href="{% url app.views.webfilter %}"><i class="icon-ban-circle"></i>&nbsp;{% trans "Ad blocking" %}</a>
+                                    <a href="{% url app.views.webfilter %}"><i class="gi gi-ban sidebar-nav-icon"></i>&nbsp;{% trans "Ad blocking" %}</a>
                                 </li>
-                                <li class="nav-header">{% trans "Network" %}
+                                <li class="sidebar-header">
+                                    <span class="sidebar-header-title">{% trans "Network" %}</span>
                                 </li>
 {% if_internet_access_expiring object None %}
                                 <li class="{% active request 'subscription' %}">
-                                    <a href="{% url app.views.subscription %}"><i class="icon-repeat"></i>&nbsp;{% trans "Subscription" %}</a>
+                                    <a href="{% url app.views.subscription %}"><i class="gi gi-repeat sidebar-nav-icon"></i>&nbsp;{% trans "Subscription" %}</a>
                                 </li>
 {% endif_internet_access_expiring %}
                                 <li class="{% active request 'peerings' %}">
-                                    <a href="{% url app.views.peerings %}"><i class="icon-random"></i>&nbsp;{% trans "Peerings" %}</a>
+                                    <a href="{% url app.views.peerings %}"><i class="gi gi-random sidebar-nav-icon"></i>&nbsp;{% trans "Peerings" %}</a>
                                 </li>
                                 <li class="{% active request 'wlan_settings' %}">
-                                    <a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i>&nbsp;{% trans "WLAN settings" %}</a>
+                                    <a href="{% url app.views.wlan_settings %}"><i class="gi gi-signal sidebar-nav-icon"></i>&nbsp;{% trans "WLAN settings" %}</a>
                                 </li>
-                                <li class="nav-header">{% trans "Services" %}
+                                <li class="sidebar-header">
+                                    <span class="sidebar-header-title">{% trans "Services" %}</span>
                                 </li>
                                 <li class="{% active request 'teletext' %}">
-                                    <a href="{% url app.views.teletext %}"><i class="icon-list"></i>&nbsp;{% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a>
+                                    <a href="{% url app.views.teletext %}"><i class="gi gi-list sidebar-nav-icon"></i>&nbsp;{% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a>
                                 </li>
                                 <!--                
                                 <li class="{% active request 'hypesites' %}">
-                                    <a href="{% url app.views.hypesites %}"><i class="icon-road"></i>&nbsp;{% trans "Hypesites" %}&nbsp;<span class="label label-default">beta</span></a>
+                                    <a href="{% url app.views.hypesites %}"><i class="gi gi-road sidebar-nav-icon"></i>&nbsp;{% trans "Hypesites" %}&nbsp;<span class="label label-default">beta</span></a>
                                 </li>
                                 -->
                             </ul>
                             <!-- END Sidebar Navigation -->
+
+                            <hr />
 
                             <!-- Sidebar Notifications -->
                             <div class="sidebar-section sidebar-nav-mini-hide">
