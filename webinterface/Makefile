@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=1.3.40
+PKG_VERSION:=1.3.41
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -15,7 +15,7 @@ define Package/webinterface
   DEPENDS+= +curl +syslog-ng +zip +unzip +shadow-usermod +kmod-ipt-nat6 +isc-dhcp-server-ipv4 +radvd +gesftpserver +vnstat +rsync +fdisk +@DROPBEAR_ECC +@BUSYBOX_CUSTOM +@BUSYBOX_CONFIG_DIFF
   DEPENDS+= +python +python-django-1.4 +python-gunicorn +python-six +python-gevent +python-requests +django-south +python-json +python-unidecode +python-beanstalkc +python-imglib +pyyaml
   DEPENDS+= +asterisk11 +asterisk11-sounds +asterisk11-codec-gsm +asterisk11-format-gsm +asterisk11-res-srtp +asterisk11-res-musiconhold
-  DEPENDS+= +php5 +php5-fastcgi +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-mysql +php5-mod-session +php5-mod-iconv +php5-mod-json +php5-mod-ctype +php5-mod-dom +php5-mod-gd +php5-mod-hash +php5-mod-mbstring +php5-mod-simplexml +php5-mod-xml +php5-mod-xmlreader +php5-mod-xmlwriter +php5-mod-zip +php5-mod-curl +php5-mod-pdo-mysql +@PHP5_FILTER +@PHP5_LIBXML +@BUILD_NLS
+  DEPENDS+= +php5 +php5-fastcgi +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-mysql +php5-mod-mysqli +php5-mod-session +php5-mod-iconv +php5-mod-json +php5-mod-ctype +php5-mod-dom +php5-mod-gd +php5-mod-hash +php5-mod-mbstring +php5-mod-simplexml +php5-mod-xml +php5-mod-xmlreader +php5-mod-xmlwriter +php5-mod-zip +php5-mod-curl +php5-mod-pdo-mysql +@PHP5_FILTER +@PHP5_LIBXML +@BUILD_NLS
   DEPENDS+= +mysql-server
   DEPENDS+= +lighttpd +lighttpd-mod-auth +lighttpd-mod-fastcgi +lighttpd-mod-proxy +lighttpd-mod-rewrite +lighttpd-mod-setenv
   DEPENDS+= +privoxy
