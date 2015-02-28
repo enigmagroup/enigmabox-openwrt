@@ -1,0 +1,21 @@
+
+bundle agent app_database
+{
+  files:
+      "/etc/my.cnf"
+      create => "true",
+      edit_template => "$(this.promise_dirname)/templates/my.cnf",
+      edit_defaults => no_backup,
+      classes => if_repaired("init_mysql");
+
+      "/www/db/mysql/."
+      create => "true";
+
+  commands:
+    init_mysql::
+      "/usr/sbin/init-mysql";
+
+  reports:
+      "checking database: done";
+}
+

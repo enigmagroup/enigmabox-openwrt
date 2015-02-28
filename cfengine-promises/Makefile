@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cfengine-promises
-PKG_VERSION:=1.3.14
+PKG_VERSION:=1.3.15
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -37,6 +37,7 @@ define Package/cfengine-promises/install
 
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/cfengine-apply $(1)/usr/sbin/cfengine-apply
+	$(INSTALL_BIN) ./files/init-mysql $(1)/usr/sbin/init-mysql
 
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) ./files/hello $(1)/usr/bin/hello
