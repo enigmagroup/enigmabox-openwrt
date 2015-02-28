@@ -40,7 +40,7 @@
         <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-        <link rel="stylesheet" href="/media/css/themes/night.css">
+        <link rel="stylesheet" href="/media/css/themes/forest.css">
 
         <link href="/media/css/box.css?{% display_version slugify='1' %}" rel="stylesheet" media="screen">
         <link href="/media/css/ansi2html.css" rel="stylesheet" media="screen">
@@ -82,57 +82,57 @@
                                 <li class="sidebar-header">
                                     <span class="sidebar-header-title">{% trans "System" %}</span>
                                 </li>
-                                <li class="{% active request 'addressbook' %}">
-                                    <a href="{% url app.views.addressbook %}"><i class="gi gi-user sidebar-nav-icon"></i>&nbsp;{% trans "Addressbook" %}</a>
+                                <li>
+                                    <a class="{% active request 'addressbook' %}" href="{% url app.views.addressbook %}"><i class="gi gi-user sidebar-nav-icon"></i>&nbsp;{% trans "Addressbook" %}</a>
                                 </li>
-                                <li class="{% active request 'passwords' %}">
-                                    <a href="{% url app.views.passwords %}"><i class="gi gi-lock sidebar-nav-icon"></i>&nbsp;{% trans "Passwords" %}</a>
+                                <li>
+                                    <a class="{% active request 'passwords' %}" href="{% url app.views.passwords %}"><i class="gi gi-lock sidebar-nav-icon"></i>&nbsp;{% trans "Passwords" %}</a>
                                 </li>
-                                <li class="{% active request 'backup' %}">
-                                    <a href="{% url app.views.backup %}"><i class="gi gi-share sidebar-nav-icon"></i>&nbsp;{% trans "Backup &amp; restore" %}</a>
+                                <li>
+                                    <a class="{% active request 'backup' %}" href="{% url app.views.backup %}"><i class="gi gi-share sidebar-nav-icon"></i>&nbsp;{% trans "Backup &amp; restore" %}</a>
                                 </li>
 {% if_updates object None  %}
-                                <li class="{% active request 'updates' %}">
-                                    <a href="{% url app.views.updates %}"><i class="gi gi-circle-arrow-up sidebar-nav-icon"></i>&nbsp;{% trans "Updates" %}</a>
+                                <li>
+                                    <a class="{% active request 'updates' %}" href="{% url app.views.updates %}"><i class="gi gi-circle-arrow-up sidebar-nav-icon"></i>&nbsp;{% trans "Updates" %}</a>
                                 </li>
 {% endif_updates %}
 {% if_show_upgrader object None %}
-                                <li class="{% active request 'upgrade' %}">
-                                    <a href="{% url app.views.upgrade %}"><i class="gi gi-download-alt sidebar-nav-icon"></i>&nbsp;{% trans "Firmware upgrade" %}</a>
+                                <li>
+                                    <a class="{% active request 'upgrade' %}" href="{% url app.views.upgrade %}"><i class="gi gi-download-alt sidebar-nav-icon"></i>&nbsp;{% trans "Firmware upgrade" %}</a>
                                 </li>
 {% endif_show_upgrader  %}
                                 <li class="sidebar-header">
                                     <span class="sidebar-header-title">{% trans "Internet" %}</span>
                                 </li>
-                                <li class="{% active request 'countryselect' %}">
-                                    <a href="{% url app.views.countryselect %}"><i class="gi gi-globe sidebar-nav-icon"></i>&nbsp;{% trans "Country selection" %}</a>
+                                <li>
+                                    <a class="{% active request 'countryselect' %}" href="{% url app.views.countryselect %}"><i class="gi gi-globe sidebar-nav-icon"></i>&nbsp;{% trans "Country selection" %}</a>
                                 </li>
-                                <li class="{% active request 'webfilter' %}">
-                                    <a href="{% url app.views.webfilter %}"><i class="gi gi-ban sidebar-nav-icon"></i>&nbsp;{% trans "Ad blocking" %}</a>
+                                <li>
+                                    <a class="{% active request 'webfilter' %}" href="{% url app.views.webfilter %}"><i class="gi gi-ban sidebar-nav-icon"></i>&nbsp;{% trans "Ad blocking" %}</a>
                                 </li>
                                 <li class="sidebar-header">
                                     <span class="sidebar-header-title">{% trans "Network" %}</span>
                                 </li>
 {% if_internet_access_expiring object None %}
-                                <li class="{% active request 'subscription' %}">
-                                    <a href="{% url app.views.subscription %}"><i class="gi gi-repeat sidebar-nav-icon"></i>&nbsp;{% trans "Subscription" %}</a>
+                                <li>
+                                    <a class="{% active request 'subscription' %}" href="{% url app.views.subscription %}"><i class="gi gi-repeat sidebar-nav-icon"></i>&nbsp;{% trans "Subscription" %}</a>
                                 </li>
 {% endif_internet_access_expiring %}
-                                <li class="{% active request 'peerings' %}">
-                                    <a href="{% url app.views.peerings %}"><i class="gi gi-random sidebar-nav-icon"></i>&nbsp;{% trans "Peerings" %}</a>
+                                <li>
+                                    <a class="{% active request 'peerings' %}" href="{% url app.views.peerings %}"><i class="gi gi-random sidebar-nav-icon"></i>&nbsp;{% trans "Peerings" %}</a>
                                 </li>
-                                <li class="{% active request 'wlan_settings' %}">
-                                    <a href="{% url app.views.wlan_settings %}"><i class="gi gi-signal sidebar-nav-icon"></i>&nbsp;{% trans "WLAN settings" %}</a>
+                                <li>
+                                    <a class="{% active request 'wlan_settings' %}" href="{% url app.views.wlan_settings %}"><i class="gi gi-signal sidebar-nav-icon"></i>&nbsp;{% trans "WLAN settings" %}</a>
                                 </li>
                                 <li class="sidebar-header">
                                     <span class="sidebar-header-title">{% trans "Services" %}</span>
                                 </li>
-                                <li class="{% active request 'teletext' %}">
-                                    <a href="{% url app.views.teletext %}"><i class="gi gi-list sidebar-nav-icon"></i>&nbsp;{% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a>
+                                <li>
+                                    <a class="{% active request 'teletext' %}" href="{% url app.views.teletext %}"><i class="gi gi-list sidebar-nav-icon"></i>&nbsp;{% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a>
                                 </li>
                                 <!--                
-                                <li class="{% active request 'hypesites' %}">
-                                    <a href="{% url app.views.hypesites %}"><i class="gi gi-road sidebar-nav-icon"></i>&nbsp;{% trans "Hypesites" %}&nbsp;<span class="label label-default">beta</span></a>
+                                <li>
+                                    <a class="{% active request 'hypesites' %}" href="{% url app.views.hypesites %}"><i class="gi gi-road sidebar-nav-icon"></i>&nbsp;{% trans "Hypesites" %}&nbsp;<span class="label label-default">beta</span></a>
                                 </li>
                                 -->
                             </ul>
@@ -159,14 +159,8 @@
                 <div id="main-container">
                     <!-- Page content -->
                     <div id="page-content">
-{% block main %}
-                        <!-- Buttons - Dropdowns Header -->
-                        <ul class="breadcrumb breadcrumb-top">
-                            <li>Overview</li>
-                        </ul>
-                        <!-- END Buttons - Dropdowns Header -->
 
-                        <ul class="nav pull-right">
+                        <ul class="breadcrumb breadcrumb-top pull-right">
                             <li class="divider-vertical"></li>
                             <!--<li><a title="Deine IPv6-Adresse" href="">{% display_ip %}</a></li>-->
                             <li class="dropdown">
@@ -179,6 +173,13 @@
                                 </ul>
                             </li>
                         </ul>
+
+{% block main %}
+                        <!-- Buttons - Dropdowns Header -->
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Overview</li>
+                        </ul>
+                        <!-- END Buttons - Dropdowns Header -->
 
                         <!-- Buttons Alternative Style Block -->
                         <div class="block">
@@ -238,8 +239,8 @@
                             <!-- END Buttons Alternative Style Content -->
                         </div>
                         <!-- END Buttons Alternative Style Block -->
-                    </div>
 {% endblock %}
+                    </div>
                     <!-- END Page Content -->
 
                     <!-- Footer -->

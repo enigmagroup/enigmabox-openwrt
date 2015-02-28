@@ -3,42 +3,64 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Addressbook" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Addressbook" %}</h1>
-      <p>{% trans "Managing contacts and assigning names and numbers" %}.</p>
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Addressbook" %}</strong></h2>
+        </div>
+        <!-- END Title -->
+
+      <p>{% trans "Managing contacts and assigning names and numbers." %}</p>
       <br />
 
-<ul class="nav nav-tabs">
-  <li class="active"><a href="/addressbook/">{% trans "Personal address book" %}</a></li>
-  <li><a href="/addressbook-global/">{% trans "Global address book" %}</a></li>
-</ul>
+        <!-- Buttons Alternative Style Content -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block-section">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a href="/addressbook/">{% trans "Personal address book" %}</a></li>
+                      <li><a href="/addressbook-global/">{% trans "Global address book" %}</a></li>
+                    </ul>
 
-<div class="ajax_refresh" data-request_url="/addressbook/?order={{ order }}">
-{% include 'addressbook/address_table.html' %}
-</div>
+                    <div class="ajax_refresh" data-request_url="/addressbook/?order={{ order }}">
+                    {% include 'addressbook/address_table.html' %}
+                    </div>
 
-<form method="post" class="form-horizontal">
-{% csrf_token %}
-<fieldset>
+                    <form method="post" class="form-horizontal">
+                    {% csrf_token %}
+                    <fieldset>
 
-<legend>{% trans "Add contact" %}</legend>
+                    <legend>{% trans "Add contact" %}</legend>
 
-{% if form.errors %}
-<div class="alert alert-error">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>{% trans "Error" %}:</strong>
-{{ form.errors }}
-</div>
-{% endif %}
+                    {% if form.errors %}
+                    <div class="alert alert-error">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{% trans "Error" %}:</strong>
+                    {{ form.errors }}
+                    </div>
+                    {% endif %}
 
-<input {% form_error form.name.errors %} id="name" name="name" type="text" placeholder="{% trans "Hostname" %}" class="input-large" value="{{ form.name.value }}" />
-<input {% form_error form.ipv6.errors %} id="ipv6" name="ipv6" type="text" placeholder="{% trans "IPv6 address" %}" class="input-xlarge" value="{{ form.ipv6.value }}" />
-<input {% form_error form.phone.errors %} id="phone" name="phone" type="text" placeholder="{% trans "Phone number" %}" class="input-mini" value="{{ form.phone.value }}" maxlength="7" />
-<button id="add_address" name="add_address" class="btn btn-primary">{% trans "Add" %}</button>
+                    <input {% form_error form.name.errors %} id="name" name="name" type="text" placeholder="{% trans "Hostname" %}" class="input-large" value="{{ form.name.value }}" />
+                    <input {% form_error form.ipv6.errors %} id="ipv6" name="ipv6" type="text" placeholder="{% trans "IPv6 address" %}" class="input-xlarge" value="{{ form.ipv6.value }}" />
+                    <input {% form_error form.phone.errors %} id="phone" name="phone" type="text" placeholder="{% trans "Phone number" %}" class="input-mini" value="{{ form.phone.value }}" maxlength="7" />
+                    <button id="add_address" name="add_address" class="btn btn-primary">{% trans "Add" %}</button>
 
-</fieldset>
-</form>
+                    </fieldset>
+                    </form>
+                </div>
+            </div>
 
-    </div> <!-- /container -->
+        </div>
+        <!-- END Buttons Alternative Style Content -->
+
+    </div>
+    <!-- END Block -->
 {% endblock %}
