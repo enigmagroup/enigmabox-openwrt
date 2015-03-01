@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=stikked
 PKG_VERSION:=0.9.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -34,7 +34,13 @@ endef
 define Package/stikked/install
 	$(INSTALL_DIR) $(1)/www/htdocs/stikked
 	$(CP) -rv $(PKG_BUILD_DIR)/htdocs/* $(1)/www/htdocs/stikked/
+
+	# stikked config
 	$(INSTALL_DATA) ./files/stikked.php $(1)/www/htdocs/stikked/application/config/stikked.php
+
+	# hypesite config
+	$(INSTALL_DIR) $(1)/etc/lighttpd/hypesites.d/stikked.conf
+	$(INSTALL_DATA) ./files/stikked.conf $(1)/etc/lighttpd/hypesites.d/stikked.conf
 endef
 
 $(eval $(call BuildPackage,stikked))
