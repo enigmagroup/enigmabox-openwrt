@@ -33,7 +33,7 @@ endef
 
 define Package/stikked/install
 	$(INSTALL_DIR) $(1)/www/htdocs/stikked
-	$(CP) -rv $(PKG_BUILD_DIR)/htdocs/* $(1)/www/htdocs/stikked/
+	$(CP) -v $(PKG_BUILD_DIR)/htdocs/* $(1)/www/htdocs/stikked/
 
 	# stikked config
 	$(INSTALL_DATA) ./files/stikked.php $(1)/www/htdocs/stikked/application/config/stikked.php
