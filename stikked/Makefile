@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/stikked
   SECTION:=admin
   CATEGORY:=Enigmabox
-  TITLE:=stikked
+  TITLE:=Stikked - open source encrypted pastebin
 endef
 
 define Package/stikked/description
