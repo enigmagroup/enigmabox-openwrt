@@ -16,6 +16,8 @@ define Package/owncloud
   SECTION:=admin
   CATEGORY:=Enigmabox
   TITLE:=ownCloud - self hosted cloud
+  DEPENDS:=hypesites
+  SUBMENU:=Hypesite packages
 endef
 
 define Package/owncloud/description
