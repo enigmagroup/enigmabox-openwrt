@@ -1,16 +1,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=owncloud
-PKG_VERSION:=v8.0.0
+PKG_VERSION:=8.0.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/owncloud/core.git
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_VERSION)
+PKG_SOURCE_URL:=https://download.owncloud.org/community/
+PKG_MD5SUM:=d2c1366be0756c24e1f5cfc02f80269f
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-
 CC="$(TARGET_CC)"
 
 include $(INCLUDE_DIR)/package.mk
