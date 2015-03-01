@@ -30,7 +30,7 @@ endef
 
 define Package/owncloud/install
 	$(INSTALL_DIR) $(1)/www/htdocs/owncloud
-	$(CP) -rv $(PKG_BUILD_DIR)/* $(1)/www/htdocs/owncloud/
+	$(CP) -rv $(BUILD_DIR)/owncloud/* $(1)/www/htdocs/owncloud/
 
 	# hypesite config
 	$(INSTALL_DIR) $(1)/etc/lighttpd/hypesites.d
