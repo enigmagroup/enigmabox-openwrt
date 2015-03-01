@@ -20,7 +20,7 @@ define Package/stikked
   CATEGORY:=Enigmabox
   TITLE:=Stikked - open source encrypted pastebin
   DEPENDS:=hypesites
-  SUBMENU:=Hypesite packages
+  SUBMENU:=Hypesite apps
 endef
 
 define Package/stikked/description
