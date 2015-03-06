@@ -5,6 +5,5 @@ START=92
 
 start() {
     /usr/sbin/cfengine-apply
-    (sleep 60 && /usr/sbin/asterisk -rx 'sip notify gsreboot 100') &
 }
 
