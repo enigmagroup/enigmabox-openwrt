@@ -24,12 +24,6 @@ bundle agent app_telephony
       edit_defaults => no_backup,
       classes => if_repaired("restart_asterisk");
 
-      "/etc/init.d/asterisk"
-      create => "true",
-      edit_template => "$(this.promise_dirname)/templates/asterisk.init",
-      edit_defaults => no_backup,
-      classes => if_repaired("restart_asterisk");
-
   commands:
     restart_asterisk::
       "/etc/init.d/asterisk restart";
