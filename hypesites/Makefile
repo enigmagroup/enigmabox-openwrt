@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hypesites
 PKG_VERSION:=0.0.2
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -24,7 +24,7 @@ endef
 
 define Package/hypesites/install
 	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
-	$(INSTALL_BIN) ./files/hypesites.conf $(1)/etc/lighttpd/sites.d/hypesites.conf
+	$(INSTALL_DATA) ./files/hypesites.conf $(1)/etc/lighttpd/sites.d/hypesites.conf
 
 	$(INSTALL_DIR) $(1)/etc/lighttpd/hypesites.d
 	$(INSTALL_DATA) ./files/index.conf $(1)/etc/lighttpd/hypesites.d/index.conf
