@@ -223,6 +223,11 @@ set_status() {
 
 # logic
 
+# ensure dhcpd is running
+if [[ $( pidof dhcpd | wc -l ) -eq 0 ]]; then
+    /etc/init.d/dhcpd restart
+fi
+
 # ensure radvd is running
 if [[ "$(pidof radvd | wc -l)" -eq 0 ]]; then
     /etc/init.d/radvd restart
