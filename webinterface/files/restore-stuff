@@ -26,7 +26,11 @@ if [[ $task == 'sslcerts' ]]; then
     mkdir -p /box/ssl
 
     # copy certs
-    mv "/tmp/ca.pem" "/box/ssl/"
+    if [[ ! -f "/tmp/ca.pem" ]]; then
+        cp "/etc/enigmabox/ca-prodnet.pem" "/box/ssl/ca.pem"
+    else
+        mv "/tmp/ca.pem" "/box/ssl/"
+    fi
     mv "/tmp/$hostid-cert.pem" "/box/ssl/"
     mv "/tmp/$hostid-public_key.pem" "/box/ssl/"
     mv "/tmp/$hostid-private_key.pem" "/box/ssl/"
