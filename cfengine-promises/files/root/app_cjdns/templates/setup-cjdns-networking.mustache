@@ -111,17 +111,29 @@ request_cjdns_internet() {
     try=$(($try+1))
     echo "$try" > "$cjdns_request_tries"
 
-    # try another countryserver after the 2nd try
-    if [[ "$try" -ge 2 ]]; then
+    # try another countryserver on the 2nd try
+    if [[ "$try" -eq 2 ]]; then
         e "switching to an alternative server"
         curl http://127.0.0.1:8000/api/v1/set_next_country &> /dev/null
         /usr/sbin/cfengine-apply
     fi
 
-    # request cjdns internet via script after the 3rd try
-    if [[ "$try" -ge 3 ]]; then
+    # request server.json on the 3rd try
+    if [[ "$try" -eq 3 ]]; then
+        e "request server.json"
+        /usr/sbin/request-serverjson
+        /usr/sbin/cfengine-apply
+    fi
+
+    # request cjdns internet via script on the 4th try
+    if [[ "$try" -eq 4 ]]; then
         e "request cjdns internet"
         /usr/sbin/request-internet
+    fi
+
+    # reset counter after 5th try, start from the beginning
+    if [[ "$try" -ge 5 ]]; then
+        echo 1 > "$cjdns_request_tries"
     fi
 }
 
