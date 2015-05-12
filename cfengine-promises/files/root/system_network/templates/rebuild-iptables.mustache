@@ -235,7 +235,7 @@ $ip6tables -A INPUT -p tcp --dport 80 -j internal-in
 $ip6tables -A OUTPUT -o tun0 -j ACCEPT
 
 # allow router advertisements
-#$ip6tables -A OUTPUT -p ipv6-icmp -j internal-out
+$ip6tables -A OUTPUT -p ipv6-icmp -j internal-out
 
 ################################################################################
 # forward
