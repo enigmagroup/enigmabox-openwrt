@@ -7,6 +7,7 @@ exten => _X.,n,Read(get,"silence/1",,,,1)
 exten => _X.,n,GotoIf($[ 1${get} = 18 ]?confcall:dial)
 exten => _X.,n(confcall),ConfBridge(8)
 exten => _X.,n(dial),Dial(SIP/100,30)
+exten => _X.,n,Voicemail(100@default)
 exten => _X.,n,Hangup()
 
 [friends]
