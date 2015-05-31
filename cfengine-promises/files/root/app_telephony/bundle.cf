@@ -24,6 +24,12 @@ bundle agent app_telephony
       edit_defaults => no_backup,
       classes => if_repaired("restart_asterisk");
 
+      "/etc/asterisk/voicemail.conf"
+      create => "true",
+      edit_template => "$(this.promise_dirname)/templates/voicemail.conf",
+      edit_defaults => no_backup,
+      classes => if_repaired("restart_asterisk");
+
   commands:
     restart_asterisk::
       "/etc/init.d/asterisk restart";
