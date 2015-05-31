@@ -35,7 +35,14 @@ endef
 
 define Package/dokuwiki/install
 	$(INSTALL_DIR) $(1)/www/htdocs/dokuwiki
-	$(CP) -rv $(PKG_BUILD_DIR)/* $(1)/www/htdocs/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/bin $(1)/www/htdocs/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/conf $(1)/www/htdocs/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/data $(1)/www/htdocs/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/inc $(1)/www/htdocs/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/lib $(1)/www/htdocs/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/doku.php $(1)/www/htdocs/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/feed.php $(1)/www/htdocs/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/index.php $(1)/www/htdocs/dokuwiki/
 
 	# hypesite config
 	$(INSTALL_DIR) $(1)/etc/lighttpd/hypesites.d
