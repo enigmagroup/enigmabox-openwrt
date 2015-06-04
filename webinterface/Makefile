@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=1.3.54
+PKG_VERSION:=1.3.55
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -17,7 +17,7 @@ define Package/webinterface
   DEPENDS+= +asterisk11 +asterisk11-sounds +asterisk11-codec-gsm +asterisk11-format-gsm +asterisk11-format-wav +asterisk11-res-srtp +asterisk11-res-musiconhold +asterisk11-app-confbridge +asterisk11-app-read +asterisk11-res-timing-timerfd +asterisk11-voicemail
   DEPENDS+= +php5 +php5-cli +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-mysql +php5-mod-mysqli +php5-mod-session +php5-mod-iconv +php5-mod-json +php5-mod-ctype +php5-mod-dom +php5-mod-gd +php5-mod-hash +php5-mod-mbstring +php5-mod-simplexml +php5-mod-xml +php5-mod-xmlreader +php5-mod-xmlwriter +php5-mod-zip +php5-mod-curl +php5-mod-pdo-mysql +php5-mod-sqlite3 +php5-mod-fileinfo +php5-mod-exif +@PHP5_FILTER +@PHP5_LIBXML +@BUILD_NLS
   DEPENDS+= +mysql-server
-  DEPENDS+= +lighttpd +lighttpd-mod-auth +lighttpd-mod-cgi +lighttpd-mod-fastcgi +lighttpd-mod-proxy +lighttpd-mod-rewrite +lighttpd-mod-setenv
+  DEPENDS+= +lighttpd +lighttpd-mod-auth +lighttpd-mod-access +lighttpd-mod-cgi +lighttpd-mod-fastcgi +lighttpd-mod-proxy +lighttpd-mod-rewrite +lighttpd-mod-setenv
   DEPENDS+= +privoxy
   DEPENDS+= +dovecot +exim4
   DEPENDS+= +cfengine +cfengine-promises
