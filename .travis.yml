@@ -8,7 +8,6 @@ script:
     - wget http://paste.scratchbook.ch/view/raw/c513c3b7 -O feeds.conf
     - ./scripts/feeds update -a
     - ./scripts/feeds install -a
-    - make defconfig
-    - make prereq
     - wget http://paste.the-compiler.org/view/raw/922fec02 -O .config
+    - make prereq
     - make
