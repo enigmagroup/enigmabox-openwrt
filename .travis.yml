@@ -5,9 +5,11 @@ sudo: no
 script:
     - git clone git://git.openwrt.org/openwrt.git
     - cd openwrt
-    - wget http://paste.scratchbook.ch/view/raw/c513c3b7 -O feeds.conf
+    - wget http://paste.the-compiler.org/view/raw/8f62c6c3 -O feeds.conf
     - ./scripts/feeds update -a
     - ./scripts/feeds install -a
     - wget http://paste.the-compiler.org/view/raw/922fec02 -O .config
+    - make defconfig
     - make prereq
     - make
+
