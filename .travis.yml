@@ -1,6 +1,6 @@
 language: c
 
-sudo: required
+sudo: no
 
 script:
     - git clone git://git.openwrt.org/openwrt.git
