@@ -1195,7 +1195,7 @@ def cfengine_site(request):
     custom_rules_text = custom_rules_text_array
 
     wlan_opmode = o.get_value('wlan_opmode', 'mesh')
-    meshmode = (wlan_opmode == 'mesh')
+    meshmode = (wlan_opmode[0] == 'mesh')
 
     # autopeering
     if o.get_value('autopeering', 0) == '1':
@@ -1242,10 +1242,10 @@ def cfengine_site(request):
         autopeering = 0
 
     hypesites_access = o.get_value('hypesites_access', 'off'),
-    hype_access_off = (hypesites_access == 'off')
-    hype_access_internal = (hypesites_access == 'internal')
-    hype_access_friends = (hypesites_access == 'friends')
-    hype_access_global = (hypesites_access == 'global')
+    hype_access_off = (hypesites_access[0] == 'off')
+    hype_access_internal = (hypesites_access[0] == 'internal')
+    hype_access_friends = (hypesites_access[0] == 'friends')
+    hype_access_global = (hypesites_access[0] == 'global')
 
     response_data = {
         'hostid': hostid,
