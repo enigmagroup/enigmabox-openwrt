@@ -1241,6 +1241,12 @@ def cfengine_site(request):
     else:
         autopeering = 0
 
+    hypesites_access = o.get_value('hypesites_access', 'off'),
+    hype_access_off = (hypesites_access == 'off')
+    hype_access_internal = (hypesites_access == 'internal')
+    hype_access_friends = (hypesites_access == 'friends')
+    hype_access_global = (hypesites_access == 'global')
+
     response_data = {
         'hostid': hostid,
         'cjdns_ipv6': cjdns_ipv6,
@@ -1277,7 +1283,10 @@ def cfengine_site(request):
         'webfilter_custom_rules': o.get_value('webfilter_custom-rules', 0),
         'webfilter_custom_rules_text': custom_rules_text,
         'teletext_enabled': o.get_value('teletext_enabled', 0),
-        'webserver_enabled': o.get_value('webserver_enabled', 0),
+        'hype_access_off': hype_access_off,
+        'hype_access_internal': hype_access_internal,
+        'hype_access_friends': hype_access_friends,
+        'hype_access_global': hype_access_global,
         'display_expiration_notice': display_expiration_notice,
     }
 
