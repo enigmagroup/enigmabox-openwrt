@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-26 15:41+0100\n"
-"PO-Revision-Date: 2015-02-26 15:41+0100\n"
+"POT-Creation-Date: 2015-06-17 18:52+0200\n"
+"PO-Revision-Date: 2015-06-17 18:54+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -150,7 +150,7 @@ msgstr "Teletext"
 
 #: app/templates/base.html:77 app/templates/hypesites/overview.html:8
 msgid "Hypesites"
-msgstr ""
+msgstr "Hypesites"
 
 #: app/templates/base.html:97
 msgid "Apply changes?"
@@ -304,7 +304,8 @@ msgid "Rejected"
 msgstr "Abgelehnt"
 
 #: app/templates/addressbook/overview-global.html:45
-#: app/templates/hypesites/overview.html:25
+#: app/templates/hypesites/overview.html:44
+#: app/templates/hypesites/overview.html:57
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
@@ -693,18 +694,47 @@ msgid "Internet via cjdns"
 msgstr "Internet via cjdns"
 
 #: app/templates/hypesites/overview.html:9
-msgid "Hypesites are websites inside hyperboria."
-msgstr ""
+msgid "Hypesites are websites inside Hyperboria."
+msgstr "Hypesites sind Websites innerhalb Hyperboria."
 
 #: app/templates/hypesites/overview.html:10
 msgid "Run a webserver and publish your own site."
-msgstr ""
+msgstr "Publiziere deine eigene Hyperboria-Website."
 
-#: app/templates/hypesites/overview.html:20
-msgid "Enable Webserver"
-msgstr "Webserver aktivieren"
+#: app/templates/hypesites/overview.html:18
+msgid "Hypesites webserver firewall configuration"
+msgstr "Hypesites Webserver Firewallkonfiguration"
 
-#: app/templates/hypesites/overview.html:23
+#: app/templates/hypesites/overview.html:22
+msgid "Allow access"
+msgstr "Zugriff erlauben"
+
+#: app/templates/hypesites/overview.html:24
+msgid "Global"
+msgstr "Global"
+
+#: app/templates/hypesites/overview.html:25
+msgid "Friends only"
+msgstr "Nur Freunde"
+
+#: app/templates/hypesites/overview.html:26
+msgid "Internal LAN"
+msgstr "Internes LAN"
+
+#: app/templates/hypesites/overview.html:27
+msgid "Off"
+msgstr "Keiner"
+
+#: app/templates/hypesites/overview.html:35
+msgid "Webservices"
+msgstr "Webdienste"
+
+#: app/templates/hypesites/overview.html:39
+msgid "Personal website"
+msgstr "Eigene Website"
+
+#: app/templates/hypesites/overview.html:42
+#: app/templates/hypesites/overview.html:55
 #: app/templates/peerings/overview.html:44
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
@@ -716,6 +746,15 @@ msgstr "Webserver aktivieren"
 #: app/templates/webfilter/overview.html:95
 msgid "Enabled"
 msgstr "Aktiviert"
+
+#: app/templates/hypesites/overview.html:46
+#: app/templates/hypesites/overview.html:59
+msgid "Configure access..."
+msgstr "Zugriffe verwalten..."
+
+#: app/templates/hypesites/overview.html:52
+msgid "Dokuwiki"
+msgstr "Dokuwiki"
 
 #: app/templates/passwords/edit.html:18
 #: app/templates/passwords/overview.html:15
@@ -1110,6 +1149,9 @@ msgstr "Verbinden"
 #: app/templates/wlan_settings/scan.html:22
 msgid "Signal"
 msgstr "Signal"
+
+#~ msgid "Enable Webserver"
+#~ msgstr "Webserver aktivieren"
 
 #~ msgid "Password for the <a href=\"http://box/\">web interface</a>"
 #~ msgstr "Passwort für das <a href=\"http://box/\">Webinterface</a>"

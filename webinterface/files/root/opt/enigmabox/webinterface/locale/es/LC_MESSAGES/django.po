@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-26 15:41+0100\n"
+"POT-Creation-Date: 2015-06-17 18:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -309,7 +309,8 @@ msgid "Rejected"
 msgstr ""
 
 #: app/templates/addressbook/overview-global.html:45
-#: app/templates/hypesites/overview.html:25
+#: app/templates/hypesites/overview.html:44
+#: app/templates/hypesites/overview.html:57
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
@@ -713,19 +714,52 @@ msgid "Internet via cjdns"
 msgstr "Internet por cjdns"
 
 #: app/templates/hypesites/overview.html:9
-msgid "Hypesites are websites inside hyperboria."
+msgid "Hypesites are websites inside Hyperboria."
 msgstr ""
 
 #: app/templates/hypesites/overview.html:10
 msgid "Run a webserver and publish your own site."
 msgstr ""
 
-#: app/templates/hypesites/overview.html:20
+#: app/templates/hypesites/overview.html:18
 #, fuzzy
-msgid "Enable Webserver"
-msgstr "Desbloquear Teletext"
+msgid "Hypesites webserver firewall configuration"
+msgstr "Configuración general"
 
-#: app/templates/hypesites/overview.html:23
+#: app/templates/hypesites/overview.html:22
+#, fuzzy
+msgid "Allow access"
+msgstr "Dirección SSH"
+
+#: app/templates/hypesites/overview.html:24
+msgid "Global"
+msgstr ""
+
+#: app/templates/hypesites/overview.html:25
+msgid "Friends only"
+msgstr ""
+
+#: app/templates/hypesites/overview.html:26
+#, fuzzy
+msgid "Internal LAN"
+msgstr "Internet"
+
+#: app/templates/hypesites/overview.html:27
+msgid "Off"
+msgstr ""
+
+#: app/templates/hypesites/overview.html:35
+#, fuzzy
+msgid "Webservices"
+msgstr "Servicios"
+
+#: app/templates/hypesites/overview.html:39
+#, fuzzy
+msgid "Personal website"
+msgstr "Información compañero"
+
+#: app/templates/hypesites/overview.html:42
+#: app/templates/hypesites/overview.html:55
 #: app/templates/peerings/overview.html:44
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
@@ -737,6 +771,15 @@ msgstr "Desbloquear Teletext"
 #: app/templates/webfilter/overview.html:95
 msgid "Enabled"
 msgstr "Activado"
+
+#: app/templates/hypesites/overview.html:46
+#: app/templates/hypesites/overview.html:59
+msgid "Configure access..."
+msgstr ""
+
+#: app/templates/hypesites/overview.html:52
+msgid "Dokuwiki"
+msgstr ""
 
 #: app/templates/passwords/edit.html:18
 #: app/templates/passwords/overview.html:15
@@ -1141,6 +1184,10 @@ msgid "Signal"
 msgstr ""
 
 #, fuzzy
+#~ msgid "Enable Webserver"
+#~ msgstr "Desbloquear Teletext"
+
+#, fuzzy
 #~ msgid "Password for the <a href=\"http://box/\">web interface</a>"
 #~ msgstr "Contraseña para el interfaz web"
 
@@ -1339,10 +1386,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Select %s"
 #~ msgstr "Seleccionar país"
-
-#, fuzzy
-#~ msgid "Personal info"
-#~ msgstr "Información compañero"
 
 #, fuzzy
 #~ msgid "Password changed successfully."
