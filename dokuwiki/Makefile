@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dokuwiki
 PKG_VERSION:=2015-05-20-ee6d15b6ee72f57c177065e23d15d15570bdb890
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -43,10 +43,6 @@ define Package/dokuwiki/install
 	$(CP) -rv $(PKG_BUILD_DIR)/doku.php $(1)/www/htdocs/dokuwiki/
 	$(CP) -rv $(PKG_BUILD_DIR)/feed.php $(1)/www/htdocs/dokuwiki/
 	$(CP) -rv $(PKG_BUILD_DIR)/index.php $(1)/www/htdocs/dokuwiki/
-
-	# hypesite config
-	$(INSTALL_DIR) $(1)/etc/lighttpd/hypesites.d
-	$(INSTALL_DATA) ./files/dokuwiki.conf $(1)/etc/lighttpd/hypesites.d/dokuwiki.conf
 endef
 
 $(eval $(call BuildPackage,dokuwiki))
