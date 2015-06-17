@@ -845,10 +845,6 @@ def teletext(request):
 def hypesites(request):
     o = Option()
 
-    if request.POST.get('webserver'):
-        o.toggle_value('webserver_enabled')
-        o.config_changed(True)
-
     if request.POST.get('access_global'):
         o.set_value('hypesites_access', 'global')
         o.config_changed(True)
@@ -859,6 +855,10 @@ def hypesites(request):
 
     if request.POST.get('access_off'):
         o.set_value('hypesites_access', 'off')
+        o.config_changed(True)
+
+    if request.POST.get('access_internal'):
+        o.set_value('hypesites_access', 'internal')
         o.config_changed(True)
 
     if request.POST.get('personal_website'):

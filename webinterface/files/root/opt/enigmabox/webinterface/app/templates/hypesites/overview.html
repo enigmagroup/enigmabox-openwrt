@@ -15,24 +15,7 @@
 
 <fieldset>
 <!-- Form Name -->
-<legend>{% trans "Webserver" %}</legend>
-
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label" for="webserver">{% trans "Enable Webserver" %}:</label>
-  <div class="controls">
-{% if webserver_enabled == '1' %}
-    <button id="webserver" name="webserver" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
-{% else %}
-    <button id="webserver" name="webserver" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
-{% endif %}
-  </div>
-</div>
-</fieldset>
-
-<fieldset>
-<!-- Form Name -->
-<legend>{% trans "Firewall configuration" %}</legend>
+<legend>{% trans "Hypesites webserver firewall configuration" %}</legend>
 
 <!-- Button (Double) -->
 <div class="control-group">
@@ -40,6 +23,7 @@
   <div class="controls">
     <button id="access_global" name="access_global" value="1" class="btn btn-{% btn_state hypesites_access 'global' 'warning' 'default' %}">{% trans "Global" %}</button>
     <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hypesites_access 'friends' 'warning' 'default' %}">{% trans "Friends only" %}</button>
+    <button id="access_internal" name="access_internal" value="1" class="btn btn-{% btn_state hypesites_access 'internal' 'warning' 'default' %}">{% trans "Internal LAN" %}</button>
     <button id="access_off" name="access_off" value="1" class="btn btn-{% btn_state hypesites_access 'off' 'warning' 'default' %}">{% trans "Off" %}</button>
   </div>
 </div>
