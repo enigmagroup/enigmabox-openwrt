@@ -172,7 +172,7 @@ $ip6tables -A friends-services -p tcp --dport 5060 -j ACCEPT    # asterisk
 $ip6tables -A friends-services -p udp --dport 5060 -j ACCEPT    # asterisk
 $ip6tables -A friends-services -p udp -m udp --dport 10000:20000 -j ACCEPT  # rtp
 {{#if_hype_access_friends}}
-$ip6tables -A friends-services -p tcp --dport 80 -j ACCEPT      # smtp
+$ip6tables -A friends-services -p tcp --dport 80 -j ACCEPT      # hypesites
 {{/if_hype_access_friends}}
 $ip6tables -A friends-services -p ipv6-icmp -m limit --limit 10/second -j ACCEPT # icmp
 
