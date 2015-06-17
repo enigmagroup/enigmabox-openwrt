@@ -879,9 +879,22 @@ def hypesites(request):
 def hypesites_access(request, webservice):
     o = Option()
 
+    if request.POST.get('access_all'):
+        o.set_value('hype_access_' + webservice, 'all')
+        o.config_changed(True)
+
+    if request.POST.get('access_friends'):
+        o.set_value('hype_access_' + webservice, 'friends')
+        o.config_changed(True)
+
+    if request.POST.get('access_specific'):
+        o.set_value('hype_access_' + webservice, 'specific')
+        o.config_changed(True)
+
     return render_to_response('hypesites/manage_access.html', {
         'webserver_enabled': o.get_value('webserver_enabled', 0),
         'webservice': webservice,
+        'hype_access_webservice': o.get_value('hype_access_' + webservice, 'all'),
     }, context_instance=RequestContext(request))
 
 
