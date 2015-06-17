@@ -58,6 +58,7 @@ urlpatterns = patterns('app.views',
     url(r'^teletext/$', 'teletext'),
 
     # hypesites
+    url(r'^hypesites/access/(?P<webservice>.*)/$', 'hypesites_access'),
     url(r'^hypesites/$', 'hypesites'),
 
     # changes

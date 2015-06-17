@@ -876,6 +876,14 @@ def hypesites(request):
         'dokuwiki': o.get_value('dokuwiki', 0),
     }, context_instance=RequestContext(request))
 
+def hypesites_access(request, webservice):
+    o = Option()
+
+    return render_to_response('hypesites/manage_access.html', {
+        'webserver_enabled': o.get_value('webserver_enabled', 0),
+        'webservice': webservice,
+    }, context_instance=RequestContext(request))
+
 
 
 # Changes

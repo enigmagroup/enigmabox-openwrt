@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+        <ul class="breadcrumb">
+            <li><a href="{% url app.views.hypesites %}">{% trans "Hypesites" %}</a> <span class="divider">/</span></li>
+            <li class="active">{{ webservice|capfirst }}</li>
+        </ul>
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+
+<fieldset>
+<!-- Form Name -->
+<legend>{{ webservice|capfirst }} {% trans "access configuration" %}</legend>
+
+<!-- Button (Double) -->
+<div class="control-group">
+  <label class="control-label" for="access_all">{% trans "Allow access" %}</label>
+  <div class="controls">
+    <button id="access_all" name="access_all" value="1" class="btn btn-{% btn_state hypesites_access 'global' 'warning' 'default' %}">{% trans "All" %}</button>
+    <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hypesites_access 'friends' 'warning' 'default' %}">{% trans "Friends only" %}</button>
+    <button id="access_specific" name="access_specific" value="1" class="btn btn-{% btn_state hypesites_access 'off' 'warning' 'default' %}">{% trans "Specific IPs..." %}</button>
+  </div>
+</div>
+
+</fieldset>
+
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}
