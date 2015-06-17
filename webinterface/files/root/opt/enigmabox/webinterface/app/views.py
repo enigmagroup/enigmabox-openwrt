@@ -1287,6 +1287,8 @@ def cfengine_site(request):
         'hype_access_internal': hype_access_internal,
         'hype_access_friends': hype_access_friends,
         'hype_access_global': hype_access_global,
+        'hype_personal_site': o.get_value('personal_website', 0),
+        'hype_dokuwiki': o.get_value('dokuwiki', 0),
         'display_expiration_notice': display_expiration_notice,
     }
 
