@@ -102,6 +102,10 @@ if [[ $task == 'backup_to_usb' ]]; then
     /usr/bin/rsync -Pah --delete /opt/enigmabox/teletext/public/img/profile/ /mnt/teletext-avatars/
     echo
 
+    echo "backup hypesites"
+    /usr/bin/rsync -Pah --delete /www/ /mnt/www/
+    echo
+
     echo "sync & umount, first attempt:"
     sync
     umount /mnt
