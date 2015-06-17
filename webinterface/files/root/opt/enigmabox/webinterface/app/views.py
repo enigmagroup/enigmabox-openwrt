@@ -845,12 +845,35 @@ def teletext(request):
 def hypesites(request):
     o = Option()
 
-    if request.POST:
+    if request.POST.get('webserver'):
         o.toggle_value('webserver_enabled')
+        o.config_changed(True)
+
+    if request.POST.get('access_global'):
+        o.set_value('hypesites_access', 'global')
+        o.config_changed(True)
+
+    if request.POST.get('access_friends'):
+        o.set_value('hypesites_access', 'friends')
+        o.config_changed(True)
+
+    if request.POST.get('access_off'):
+        o.set_value('hypesites_access', 'off')
+        o.config_changed(True)
+
+    if request.POST.get('personal_website'):
+        o.toggle_value('personal_website')
+        o.config_changed(True)
+
+    if request.POST.get('dokuwiki'):
+        o.toggle_value('dokuwiki')
         o.config_changed(True)
 
     return render_to_response('hypesites/overview.html', {
         'webserver_enabled': o.get_value('webserver_enabled', 0),
+        'hypesites_access': o.get_value('hypesites_access', 'off'),
+        'personal_website': o.get_value('personal_website', 0),
+        'dokuwiki': o.get_value('dokuwiki', 0),
     }, context_instance=RequestContext(request))
 
 
@@ -1294,4 +1317,3 @@ def _get_missioncontrol():
         pass
 
     return missioncontrol
-
