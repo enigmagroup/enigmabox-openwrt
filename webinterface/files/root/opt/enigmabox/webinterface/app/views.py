@@ -882,6 +882,7 @@ def hypesites_access(request, webservice):
     o = Option()
 
     addresses = Address.objects.all().order_by('id')
+    addresses = HypeAccess.objects.filter(boxes__isnull=True)
 
     if request.POST.get('access_all'):
         o.set_value('hype_access_' + webservice, 'all')

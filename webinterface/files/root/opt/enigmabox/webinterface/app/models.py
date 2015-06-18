@@ -31,7 +31,7 @@ class Country(models.Model):
 
 class HypeAccess(models.Model):
     appname = models.CharField(max_length=20)
-    boxes = models.ManyToManyField(Address, blank=True)
+    addresses = models.ManyToManyField(Address, blank=True)
 
     def __unicode__(self):
         return self.appname

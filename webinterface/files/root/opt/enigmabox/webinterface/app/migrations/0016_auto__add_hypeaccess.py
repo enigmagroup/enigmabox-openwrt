@@ -15,8 +15,8 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('app', ['HypeAccess'])
 
-        # Adding M2M table for field boxes on 'HypeAccess'
-        m2m_table_name = db.shorten_name('app_hypeaccess_boxes')
+        # Adding M2M table for field addresses on 'HypeAccess'
+        m2m_table_name = db.shorten_name('app_hypeaccess_addresses')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('hypeaccess', models.ForeignKey(orm['app.hypeaccess'], null=False)),
@@ -29,8 +29,8 @@ class Migration(SchemaMigration):
         # Deleting model 'HypeAccess'
         db.delete_table('app_hypeaccess')
 
-        # Removing M2M table for field boxes on 'HypeAccess'
-        db.delete_table(db.shorten_name('app_hypeaccess_boxes'))
+        # Removing M2M table for field addresses on 'HypeAccess'
+        db.delete_table(db.shorten_name('app_hypeaccess_addresses'))
 
 
     models = {
@@ -51,8 +51,8 @@ class Migration(SchemaMigration):
         },
         'app.hypeaccess': {
             'Meta': {'object_name': 'HypeAccess'},
+            'addresses': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['app.Address']", 'symmetrical': 'False', 'blank': 'True'}),
             'appname': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
-            'boxes': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['app.Address']", 'symmetrical': 'False', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
         },
         'app.option': {
