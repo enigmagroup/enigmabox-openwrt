@@ -27,7 +27,6 @@ define Package/hypesites/install
 	$(INSTALL_DATA) ./files/hypesites.conf $(1)/etc/lighttpd/sites.d/hypesites.conf
 
 	$(INSTALL_DIR) $(1)/etc/lighttpd/hypesites.d
-	$(INSTALL_DATA) ./files/index.conf $(1)/etc/lighttpd/hypesites.d/index.conf
 
 	$(INSTALL_DIR) $(1)/www/htdocs
 	$(INSTALL_DATA) ./files/index.html $(1)/www/htdocs/index.html
