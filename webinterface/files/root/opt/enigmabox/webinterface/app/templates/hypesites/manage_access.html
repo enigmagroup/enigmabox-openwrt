@@ -59,7 +59,7 @@
   <label class="control-label" for="user_access">Users with access</label>
   <div class="controls">
     <select id="user_access" name="user_access" size="10" class="input-xxlarge" multiple="multiple">
-{% for address in addresses %}
+{% for address in access_list %}
       <option>{{ address.name }} ({{ address.ipv6 }})</option>
 {% endfor %}
     </select>
