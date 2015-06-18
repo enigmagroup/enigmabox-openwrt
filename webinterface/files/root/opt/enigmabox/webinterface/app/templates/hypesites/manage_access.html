@@ -40,7 +40,7 @@
   <div class="controls">
     <select id="userlist" name="userlist" size="10" class="input-xxlarge" multiple="multiple">
 {% for address in addresses %}
-      <option>{{ address.name }} ({{ address.ipv6 }})</option>
+      <option value="{{ address.ipv6 }}">{{ address.name }} ({{ address.ipv6 }})</option>
 {% endfor %}
     </select>
   </div>
@@ -50,7 +50,7 @@
 <div class="control-group">
   <label class="control-label" for="grant"></label>
   <div class="controls">
-    <button id="grant" name="grant" class="btn btn-success"><i class="icon-arrow-down icon-white"></i> Grant selected users</button>
+    <button id="grant" name="grant" value="1" class="btn btn-success"><i class="icon-arrow-down icon-white"></i> Grant selected users</button>
   </div>
 </div>
 
@@ -60,7 +60,7 @@
   <div class="controls">
     <select id="user_access" name="user_access" size="10" class="input-xxlarge" multiple="multiple">
 {% for address in access_list %}
-      <option>{{ address.name }} ({{ address.ipv6 }})</option>
+      <option value="{{ address.ipv6 }}">{{ address.name }} ({{ address.ipv6 }})</option>
 {% endfor %}
     </select>
   </div>
@@ -70,7 +70,7 @@
 <div class="control-group">
   <label class="control-label" for="revoke"></label>
   <div class="controls">
-    <button id="revoke" name="revoke" class="btn btn-danger"><i class="icon-ban-circle icon-white"></i> Revoke selected users</button>
+    <button id="revoke" name="revoke" value="1" class="btn btn-danger"><i class="icon-ban-circle icon-white"></i> Revoke selected users</button>
   </div>
 </div>
 </fieldset>

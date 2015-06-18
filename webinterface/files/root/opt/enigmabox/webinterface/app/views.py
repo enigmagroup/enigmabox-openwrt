@@ -896,6 +896,16 @@ def hypesites_access(request, webservice):
         o.set_value('hype_access_' + webservice, 'specific')
         o.config_changed(True)
 
+    if request.POST.get('grant'):
+        hypeaccess = HypeAccess.objects.get(appname=webservice)
+        #hypeaccess.addresses.clear()
+        userlist = request.POST.getlist('userlist')
+        for address in userlist:
+            db_address = Address.objects.get(ipv6=address)
+            hypeaccess.addresses.add(db_address)
+            #hypeaccess.save()
+        o.config_changed(True)
+
     return render_to_response('hypesites/manage_access.html', {
         'webserver_enabled': o.get_value('webserver_enabled', 0),
         'webservice': webservice,
