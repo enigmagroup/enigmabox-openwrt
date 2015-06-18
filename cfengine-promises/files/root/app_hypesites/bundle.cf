@@ -11,6 +11,14 @@ bundle agent app_hypesites
   files:
 
     personal_site::
+      "/etc/lighttpd/hypesites.d/index.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/index.conf.mustache",
+      edit_defaults => no_backup,
+      classes => if_repaired("restart_lighttpd");
+
       "/etc/lighttpd/hypesites.d/site.conf"
       create => "true",
       template_method => "mustache",
@@ -21,6 +29,10 @@ bundle agent app_hypesites
 
     !personal_site::
       "/etc/lighttpd/hypesites.d/site.conf"
+      delete => tidy,
+      classes => if_repaired("restart_lighttpd");
+
+      "/etc/lighttpd/hypesites.d/index.conf"
       delete => tidy,
       classes => if_repaired("restart_lighttpd");
 
