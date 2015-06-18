@@ -34,15 +34,15 @@ define Build/Compile
 endef
 
 define Package/dokuwiki/install
-	$(INSTALL_DIR) $(1)/www/htdocs/dokuwiki
-	$(CP) -rv $(PKG_BUILD_DIR)/bin $(1)/www/htdocs/dokuwiki/
-	$(CP) -rv $(PKG_BUILD_DIR)/conf $(1)/www/htdocs/dokuwiki/
-	$(CP) -rv $(PKG_BUILD_DIR)/data $(1)/www/htdocs/dokuwiki/
-	$(CP) -rv $(PKG_BUILD_DIR)/inc $(1)/www/htdocs/dokuwiki/
-	$(CP) -rv $(PKG_BUILD_DIR)/lib $(1)/www/htdocs/dokuwiki/
-	$(CP) -rv $(PKG_BUILD_DIR)/doku.php $(1)/www/htdocs/dokuwiki/
-	$(CP) -rv $(PKG_BUILD_DIR)/feed.php $(1)/www/htdocs/dokuwiki/
-	$(CP) -rv $(PKG_BUILD_DIR)/index.php $(1)/www/htdocs/dokuwiki/
+	$(INSTALL_DIR) $(1)/srv/www/dokuwiki
+	$(CP) -rv $(PKG_BUILD_DIR)/bin $(1)/srv/www/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/conf $(1)/srv/www/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/data $(1)/srv/www/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/inc $(1)/srv/www/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/lib $(1)/srv/www/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/doku.php $(1)/srv/www/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/feed.php $(1)/srv/www/dokuwiki/
+	$(CP) -rv $(PKG_BUILD_DIR)/index.php $(1)/srv/www/dokuwiki/
 endef
 
 $(eval $(call BuildPackage,dokuwiki))

@@ -31,8 +31,8 @@ define Build/Compile
 endef
 
 define Package/owncloud/install
-	$(INSTALL_DIR) $(1)/www/htdocs/owncloud
-	$(CP) -rv $(BUILD_DIR)/owncloud/* $(1)/www/htdocs/owncloud/
+	$(INSTALL_DIR) $(1)/srv/www/owncloud
+	$(CP) -rv $(BUILD_DIR)/owncloud/* $(1)/srv/www/owncloud/
 
 	# hypesite config
 	$(INSTALL_DIR) $(1)/etc/lighttpd/hypesites.d

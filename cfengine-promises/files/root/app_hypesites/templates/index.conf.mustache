@@ -1,8 +1,8 @@
 
-$HTTP["url"] =~ "^/$" {
+$HTTP["url"] =~ "^/" {
 
 {{^if_hype_access_site_all}}
-    $HTTP["remoteip"] !~ "{{#hype_site_accesslist}}{{ ipv6 }}|{{/hype_site_accesslist}}127.0.0.1" {
+    $HTTP["remoteip"] !~ "fdfa::|fdfb::|{{#hype_site_accesslist}}{{ ipv6 }}|{{/hype_site_accesslist}}127.0.0.1" {
         url.access-deny = ( "" )
     }
 {{/if_hype_access_site_all}}
@@ -11,10 +11,18 @@ $HTTP["url"] =~ "^/$" {
     server.max-request-size = 1024
 
     # docroot
-    server.document-root = "/www/htdocs"
+    server.document-root = "/srv/www"
 
     # disable directory listing
     dir-listing.activate = "disable"
+
+    # make sure those are always served through FastCGI and never as static files
+    static-file.exclude-extensions = ( ".php" )
+
+    # php
+    cgi.assign = ( ".php" => "/usr/bin/php-cgi" )
+
+    index-file.names = ("index.php")
 
 }
 

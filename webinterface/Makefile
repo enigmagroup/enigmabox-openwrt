@@ -57,7 +57,6 @@ define Package/webinterface/install
 
 	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
 	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/webinterface.conf
-	$(INSTALL_DIR) $(1)/www/htdocs
 
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./files/backup-stuff $(1)/usr/sbin/backup-stuff

@@ -28,10 +28,8 @@ define Package/hypesites/install
 
 	$(INSTALL_DIR) $(1)/etc/lighttpd/hypesites.d
 
-	$(INSTALL_DIR) $(1)/www/htdocs
-	$(INSTALL_DATA) ./files/index.html $(1)/www/htdocs/index.html
-
-	$(INSTALL_DIR) $(1)/www/htdocs/site
+	$(INSTALL_DIR) $(1)/srv/www
+	$(INSTALL_DATA) ./files/index.html $(1)/srv/www/index.html
 endef
 
 $(eval $(call BuildPackage,hypesites))
