@@ -8,7 +8,7 @@ bundle agent app_database
       edit_defaults => no_backup,
       classes => if_repaired("init_mysql");
 
-      "/www/db/mysql/."
+      "/srv/db/mysql/."
       create => "true";
 
   commands:

@@ -103,7 +103,7 @@ if [[ $task == 'backup_to_usb' ]]; then
     echo
 
     echo "backup hypesites"
-    /usr/bin/rsync -Pah --delete /www/ /mnt/www/
+    /usr/bin/rsync -Pah --delete /srv/ /mnt/srv/
     echo
 
     echo "sync & umount, first attempt:"

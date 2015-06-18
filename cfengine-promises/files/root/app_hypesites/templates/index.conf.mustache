@@ -10,9 +10,6 @@ $HTTP["url"] =~ "^/" {
     # max post request: 1M
     server.max-request-size = 1024
 
-    # docroot
-    server.document-root = "/srv/www"
-
     # disable directory listing
     dir-listing.activate = "disable"
 
@@ -22,7 +19,7 @@ $HTTP["url"] =~ "^/" {
     # php
     cgi.assign = ( ".php" => "/usr/bin/php-cgi" )
 
-    index-file.names = ("index.php")
+    index-file.names = ( "index.html", "index.htm", "index.php" )
 
 }
 
