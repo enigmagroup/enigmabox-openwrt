@@ -1304,14 +1304,25 @@ def cfengine_site(request):
     hype_access_friends = (hypesites_access[0] == 'friends')
     hype_access_global = (hypesites_access[0] == 'global')
 
-    addresslist = HypeAccess.objects.get(appname='site').addresses.all()
+    hype_access_site = o.get_value('hype_access_site', 'all')
+    hype_access_dokuwiki = o.get_value('hype_access_dokuwiki', 'all')
+
+    addresslist = []
+    if hype_access_site == 'friends':
+        addresslist = Address.objects.all().order_by('id')
+    elif hype_access_site == 'specific':
+        addresslist = HypeAccess.objects.get(appname='site').addresses.all()
     hype_site_accesslist = []
     for address in addresslist:
         hype_site_accesslist.append({'ipv6': address.ipv6})
 
-    addresslist = HypeAccess.objects.get(appname='dokuwiki').addresses.all()
+    addresslist = []
+    if hype_access_dokuwiki == 'friends':
+        addresslist = Address.objects.all().order_by('id')
+    elif hype_access_dokuwiki == 'specific':
+        addresslist = HypeAccess.objects.get(appname='dokuwiki').addresses.all()
     hype_dokuwiki_accesslist = []
-    for addresslist in addresslist:
+    for address in addresslist:
         hype_dokuwiki_accesslist.append({'ipv6': address.ipv6})
 
     response_data = {
