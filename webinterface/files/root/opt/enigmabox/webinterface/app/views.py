@@ -874,6 +874,8 @@ def hypesites(request):
         'hypesites_access': o.get_value('hypesites_access', 'off'),
         'personal_website': o.get_value('personal_website', 0),
         'dokuwiki': o.get_value('dokuwiki', 0),
+        'hype_access_site': o.get_value('hype_access_site', 'all'),
+        'hype_access_dokuwiki': o.get_value('hype_access_dokuwiki', 'all'),
     }, context_instance=RequestContext(request))
 
 def hypesites_access(request, webservice):

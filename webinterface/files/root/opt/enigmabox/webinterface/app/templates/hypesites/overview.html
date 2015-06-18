@@ -43,7 +43,15 @@
 {% else %}
     <button id="personal_website" name="personal_website" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
 {% endif %}
-    <a href="/hypesites/access/site/" class="btn btn-default">{% trans "Configure access..." %}</a>
+{% if hype_access_site == 'all' %}
+    <a href="/hypesites/access/site/" class="btn btn-warning">{% trans "Configure access..." %}</a>
+{% endif %}
+{% if hype_access_site == 'friends' %}
+    <a href="/hypesites/access/site/" class="btn btn-primary">{% trans "Configure access..." %}</a>
+{% endif %}
+{% if hype_access_site == 'specific' %}
+    <a href="/hypesites/access/site/" class="btn btn-success">{% trans "Configure access..." %}</a>
+{% endif %}
   </div>
 </div>
 
@@ -56,7 +64,15 @@
 {% else %}
     <button id="dokuwiki" name="dokuwiki" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
 {% endif %}
-    <a href="/hypesites/access/dokuwiki/" class="btn btn-default">{% trans "Configure access..." %}</a>
+{% if hype_access_dokuwiki == 'all' %}
+    <a href="/hypesites/access/dokuwiki/" class="btn btn-warning">{% trans "Configure access..." %}</a>
+{% endif %}
+{% if hype_access_dokuwiki == 'friends' %}
+    <a href="/hypesites/access/dokuwiki/" class="btn btn-primary">{% trans "Configure access..." %}</a>
+{% endif %}
+{% if hype_access_dokuwiki == 'specific' %}
+    <a href="/hypesites/access/dokuwiki/" class="btn btn-success">{% trans "Configure access..." %}</a>
+{% endif %}
   </div>
 </div>
 </fieldset>
