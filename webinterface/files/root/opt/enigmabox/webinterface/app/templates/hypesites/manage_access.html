@@ -31,12 +31,10 @@
 
 {% if hypesites_access == 'specific' %}
 <fieldset>
-<!-- Form Name -->
-<legend>Access control</legend>
 
 <!-- Select Multiple -->
 <div class="control-group">
-  <label class="control-label" for="userlist">User list</label>
+  <label class="control-label" for="userlist">{% trans "User list" %}</label>
   <div class="controls">
     <select id="userlist" name="userlist" size="10" class="input-xxlarge" multiple="multiple">
 {% for address in addresses %}
@@ -50,13 +48,13 @@
 <div class="control-group">
   <label class="control-label" for="grant"></label>
   <div class="controls">
-    <button id="grant" name="grant" value="1" class="btn btn-success"><i class="icon-arrow-down icon-white"></i> Grant selected users</button>
+    <button id="grant" name="grant" value="1" class="btn btn-success"><i class="icon-arrow-down icon-white"></i> {% trans "Grant selected users" %}</button>
   </div>
 </div>
 
 <!-- Select Multiple -->
 <div class="control-group">
-  <label class="control-label" for="accesslist">Users with access</label>
+  <label class="control-label" for="accesslist">{% trans "Users with access" %}</label>
   <div class="controls">
     <select id="accesslist" name="accesslist" size="10" class="input-xxlarge" multiple="multiple">
 {% for address in access_list %}
@@ -70,7 +68,7 @@
 <div class="control-group">
   <label class="control-label" for="revoke"></label>
   <div class="controls">
-    <button id="revoke" name="revoke" value="1" class="btn btn-danger"><i class="icon-ban-circle icon-white"></i> Revoke selected users</button>
+    <button id="revoke" name="revoke" value="1" class="btn btn-danger"><i class="icon-ban-circle icon-white"></i> {% trans "Revoke selected users" %}</button>
   </div>
 </div>
 </fieldset>

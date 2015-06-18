@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17 18:52+0200\n"
-"PO-Revision-Date: 2015-06-17 18:54+0100\n"
+"POT-Creation-Date: 2015-06-18 22:42+0200\n"
+"PO-Revision-Date: 2015-06-18 22:43+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -148,7 +148,8 @@ msgstr "Dienste"
 msgid "Teletext"
 msgstr "Teletext"
 
-#: app/templates/base.html:77 app/templates/hypesites/overview.html:8
+#: app/templates/base.html:77 app/templates/hypesites/manage_access.html:9
+#: app/templates/hypesites/overview.html:8
 msgid "Hypesites"
 msgstr "Hypesites"
 
@@ -305,7 +306,7 @@ msgstr "Abgelehnt"
 
 #: app/templates/addressbook/overview-global.html:45
 #: app/templates/hypesites/overview.html:44
-#: app/templates/hypesites/overview.html:57
+#: app/templates/hypesites/overview.html:65
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
@@ -693,6 +694,44 @@ msgstr "cjdns"
 msgid "Internet via cjdns"
 msgstr "Internet via cjdns"
 
+#: app/templates/hypesites/manage_access.html:18
+msgid "access configuration"
+msgstr "Zugriffsverwaltung"
+
+#: app/templates/hypesites/manage_access.html:22
+#: app/templates/hypesites/overview.html:22
+msgid "Allow access"
+msgstr "Zugriff erlauben"
+
+#: app/templates/hypesites/manage_access.html:24
+msgid "All"
+msgstr "Alle"
+
+#: app/templates/hypesites/manage_access.html:25
+#: app/templates/hypesites/overview.html:25
+msgid "Friends only"
+msgstr "Nur Freunde"
+
+#: app/templates/hypesites/manage_access.html:26
+msgid "Specific IPs..."
+msgstr "Spezifische IP..."
+
+#: app/templates/hypesites/manage_access.html:37
+msgid "User list"
+msgstr "Adressliste"
+
+#: app/templates/hypesites/manage_access.html:51
+msgid "Grant selected users"
+msgstr "Gewählten Benutzern Zugriff gewähren"
+
+#: app/templates/hypesites/manage_access.html:57
+msgid "Users with access"
+msgstr "Benutzer mit Zugriff"
+
+#: app/templates/hypesites/manage_access.html:71
+msgid "Revoke selected users"
+msgstr "Gewählten Benutzern Zugriff entziehen"
+
 #: app/templates/hypesites/overview.html:9
 msgid "Hypesites are websites inside Hyperboria."
 msgstr "Hypesites sind Websites innerhalb Hyperboria."
@@ -705,17 +744,9 @@ msgstr "Publiziere deine eigene Hyperboria-Website."
 msgid "Hypesites webserver firewall configuration"
 msgstr "Hypesites Webserver Firewallkonfiguration"
 
-#: app/templates/hypesites/overview.html:22
-msgid "Allow access"
-msgstr "Zugriff erlauben"
-
 #: app/templates/hypesites/overview.html:24
 msgid "Global"
 msgstr "Global"
-
-#: app/templates/hypesites/overview.html:25
-msgid "Friends only"
-msgstr "Nur Freunde"
 
 #: app/templates/hypesites/overview.html:26
 msgid "Internal LAN"
@@ -734,7 +765,7 @@ msgid "Personal website"
 msgstr "Eigene Website"
 
 #: app/templates/hypesites/overview.html:42
-#: app/templates/hypesites/overview.html:55
+#: app/templates/hypesites/overview.html:63
 #: app/templates/peerings/overview.html:44
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
@@ -747,12 +778,16 @@ msgstr "Eigene Website"
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: app/templates/hypesites/overview.html:46
-#: app/templates/hypesites/overview.html:59
+#: app/templates/hypesites/overview.html:47
+#: app/templates/hypesites/overview.html:50
+#: app/templates/hypesites/overview.html:53
+#: app/templates/hypesites/overview.html:68
+#: app/templates/hypesites/overview.html:71
+#: app/templates/hypesites/overview.html:74
 msgid "Configure access..."
 msgstr "Zugriffe verwalten..."
 
-#: app/templates/hypesites/overview.html:52
+#: app/templates/hypesites/overview.html:60
 msgid "Dokuwiki"
 msgstr "Dokuwiki"
 
@@ -1216,6 +1251,3 @@ msgstr "Signal"
 
 #~ msgid "Webinterface"
 #~ msgstr "Webinterface"
-
-#~ msgid "Username is"
-#~ msgstr "Benutzername ist"

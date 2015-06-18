@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17 18:52+0200\n"
+"POT-Creation-Date: 2015-06-18 22:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,7 +150,8 @@ msgstr "Servicios"
 msgid "Teletext"
 msgstr "Teletext"
 
-#: app/templates/base.html:77 app/templates/hypesites/overview.html:8
+#: app/templates/base.html:77 app/templates/hypesites/manage_access.html:9
+#: app/templates/hypesites/overview.html:8
 msgid "Hypesites"
 msgstr ""
 
@@ -310,7 +311,7 @@ msgstr ""
 
 #: app/templates/addressbook/overview-global.html:45
 #: app/templates/hypesites/overview.html:44
-#: app/templates/hypesites/overview.html:57
+#: app/templates/hypesites/overview.html:65
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
@@ -713,6 +714,47 @@ msgstr "cjdns"
 msgid "Internet via cjdns"
 msgstr "Internet por cjdns"
 
+#: app/templates/hypesites/manage_access.html:18
+#, fuzzy
+msgid "access configuration"
+msgstr "Configuración general"
+
+#: app/templates/hypesites/manage_access.html:22
+#: app/templates/hypesites/overview.html:22
+#, fuzzy
+msgid "Allow access"
+msgstr "Dirección SSH"
+
+#: app/templates/hypesites/manage_access.html:24
+msgid "All"
+msgstr ""
+
+#: app/templates/hypesites/manage_access.html:25
+#: app/templates/hypesites/overview.html:25
+msgid "Friends only"
+msgstr ""
+
+#: app/templates/hypesites/manage_access.html:26
+msgid "Specific IPs..."
+msgstr ""
+
+#: app/templates/hypesites/manage_access.html:37
+#, fuzzy
+msgid "User list"
+msgstr "Nombre de usuario es"
+
+#: app/templates/hypesites/manage_access.html:51
+msgid "Grant selected users"
+msgstr ""
+
+#: app/templates/hypesites/manage_access.html:57
+msgid "Users with access"
+msgstr ""
+
+#: app/templates/hypesites/manage_access.html:71
+msgid "Revoke selected users"
+msgstr ""
+
 #: app/templates/hypesites/overview.html:9
 msgid "Hypesites are websites inside Hyperboria."
 msgstr ""
@@ -726,17 +768,8 @@ msgstr ""
 msgid "Hypesites webserver firewall configuration"
 msgstr "Configuración general"
 
-#: app/templates/hypesites/overview.html:22
-#, fuzzy
-msgid "Allow access"
-msgstr "Dirección SSH"
-
 #: app/templates/hypesites/overview.html:24
 msgid "Global"
-msgstr ""
-
-#: app/templates/hypesites/overview.html:25
-msgid "Friends only"
 msgstr ""
 
 #: app/templates/hypesites/overview.html:26
@@ -759,7 +792,7 @@ msgid "Personal website"
 msgstr "Información compañero"
 
 #: app/templates/hypesites/overview.html:42
-#: app/templates/hypesites/overview.html:55
+#: app/templates/hypesites/overview.html:63
 #: app/templates/peerings/overview.html:44
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
@@ -772,12 +805,16 @@ msgstr "Información compañero"
 msgid "Enabled"
 msgstr "Activado"
 
-#: app/templates/hypesites/overview.html:46
-#: app/templates/hypesites/overview.html:59
+#: app/templates/hypesites/overview.html:47
+#: app/templates/hypesites/overview.html:50
+#: app/templates/hypesites/overview.html:53
+#: app/templates/hypesites/overview.html:68
+#: app/templates/hypesites/overview.html:71
+#: app/templates/hypesites/overview.html:74
 msgid "Configure access..."
 msgstr ""
 
-#: app/templates/hypesites/overview.html:52
+#: app/templates/hypesites/overview.html:60
 msgid "Dokuwiki"
 msgstr ""
 
@@ -1251,9 +1288,6 @@ msgstr ""
 
 #~ msgid "Webinterface"
 #~ msgstr "Interfaz web"
-
-#~ msgid "Username is"
-#~ msgstr "Nombre de usuario es"
 
 #, fuzzy
 #~ msgid "Danish"
