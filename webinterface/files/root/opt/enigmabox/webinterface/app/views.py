@@ -1304,6 +1304,16 @@ def cfengine_site(request):
     hype_access_friends = (hypesites_access[0] == 'friends')
     hype_access_global = (hypesites_access[0] == 'global')
 
+    addresslist = HypeAccess.objects.get(appname='site').addresses.all()
+    hype_site_accesslist = []
+    for address in addresslist:
+        hype_site_accesslist.append({'ipv6': address.ipv6})
+
+    addresslist = HypeAccess.objects.get(appname='dokuwiki').addresses.all()
+    hype_dokuwiki_accesslist = []
+    for addresslist in addresslist:
+        hype_dokuwiki_accesslist.append({'ipv6': address.ipv6})
+
     response_data = {
         'hostid': hostid,
         'cjdns_ipv6': cjdns_ipv6,
@@ -1346,6 +1356,8 @@ def cfengine_site(request):
         'hype_access_global': hype_access_global,
         'hype_personal_site': o.get_value('personal_website', 0),
         'hype_dokuwiki': o.get_value('dokuwiki', 0),
+        'hype_site_accesslist': hype_site_accesslist,
+        'hype_dokuwiki_accesslist': hype_dokuwiki_accesslist,
         'display_expiration_notice': display_expiration_notice,
     }
 
