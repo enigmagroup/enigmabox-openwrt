@@ -13,7 +13,9 @@ bundle agent app_hypesites
     personal_site::
       "/etc/lighttpd/hypesites.d/site.conf"
       create => "true",
-      edit_template => "$(this.promise_dirname)/templates/site.conf",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/site.conf.mustache",
       edit_defaults => no_backup,
       classes => if_repaired("restart_lighttpd");
 
@@ -25,7 +27,9 @@ bundle agent app_hypesites
     dokuwiki::
       "/etc/lighttpd/hypesites.d/dokuwiki.conf"
       create => "true",
-      edit_template => "$(this.promise_dirname)/templates/dokuwiki.conf",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/dokuwiki.conf.mustache",
       edit_defaults => no_backup,
       classes => if_repaired("restart_lighttpd");
 
@@ -41,4 +45,3 @@ bundle agent app_hypesites
   reports:
       "checking hypesites: done";
 }
-

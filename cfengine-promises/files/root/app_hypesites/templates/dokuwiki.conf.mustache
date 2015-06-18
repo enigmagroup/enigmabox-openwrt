@@ -5,6 +5,12 @@ $HTTP["url"] =~ "^/dokuwiki/(bin|data|inc|conf)/" {
 
 $HTTP["url"] =~ "^/dokuwiki" {
 
+{{^if_hype_access_dokuwiki_all}}
+    $HTTP["remoteip"] !~ "{{#hype_dokuwiki_accesslist}}{{ ipv6 }}|{{/hype_dokuwiki_accesslist}}127.0.0.1" {
+        url.access-deny = ( "" )
+    }
+{{/if_hype_access_dokuwiki_all}}
+
     # max post request: 1M
     server.max-request-size = 1024
 
@@ -37,4 +43,3 @@ $HTTP["url"] =~ "^/dokuwiki" {
       "^/dokuwiki/(.*)"                        => "/dokuwiki/doku.php?id=$1"
     )
 }
-
