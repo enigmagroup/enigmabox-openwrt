@@ -1,11 +1,11 @@
 
 $HTTP["url"] =~ "^/site" {
 
-{{^if_hype_access_dokuwiki_all}}
-    $HTTP["remoteip"] !~ "{{#hype_dokuwiki_accesslist}}{{ ipv6 }}|{{/hype_dokuwiki_accesslist}}127.0.0.1" {
+{{^if_hype_access_site_all}}
+    $HTTP["remoteip"] !~ "{{#hype_site_accesslist}}{{ ipv6 }}|{{/hype_site_accesslist}}127.0.0.1" {
         url.access-deny = ( "" )
     }
-{{/if_hype_access_dokuwiki_all}}
+{{/if_hype_access_site_all}}
 
     # max post request: 1M
     server.max-request-size = 1024
