@@ -884,7 +884,13 @@ def hypesites_access(request, webservice):
     addresses = Address.objects.exclude(pk__in=HypeAccess.objects.filter(appname=webservice).values('addresses').query)
     if len(addresses) == 0:
         addresses = Address.objects.all().order_by('id')
-    access_list = HypeAccess.objects.get(appname=webservice).addresses.all()
+    try:
+        access_list = HypeAccess.objects.get(appname=webservice).addresses.all()
+    except Exception:
+        ha = HypeAccess()
+        ha.appname = webservice
+        ha.save()
+        access_list = HypeAccess.objects.get(appname=webservice).addresses.all()
     if len(access_list) == len(addresses):
         addresses = []
 
