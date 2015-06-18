@@ -1,5 +1,5 @@
 
-$HTTP["url"] =~ "^/" {
+$HTTP["url"] =~ "^/(?!dokuwiki|owncloud)" {
 
 {{^if_hype_access_site_all}}
     $HTTP["remoteip"] !~ "fdfa::|fdfb::|{{#hype_site_accesslist}}{{ ipv6 }}|{{/hype_site_accesslist}}127.0.0.1" {
@@ -22,4 +22,3 @@ $HTTP["url"] =~ "^/" {
     index-file.names = ( "index.html", "index.htm", "index.php" )
 
 }
-
