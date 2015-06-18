@@ -225,7 +225,15 @@ $ip6tables -A INPUT -i tun0 -p tcp --dport 3838 -j ACCEPT
 {{#if_hype_access_global}}
 # allow global Hypesite access
 $ip6tables -A INPUT -i tun0 -p tcp --dport 80 -j ACCEPT
+
+# allow Hypesite access from LAN
+$ip6tables -A INPUT -p tcp --dport 80 -j internal-in
 {{/if_hype_access_global}}
+
+{{#if_hype_access_friends}}
+# allow Hypesite access from LAN
+$ip6tables -A INPUT -p tcp --dport 80 -j internal-in
+{{/if_hype_access_friends}}
 
 {{#if_hype_access_internal}}
 # allow Hypesite access from LAN
