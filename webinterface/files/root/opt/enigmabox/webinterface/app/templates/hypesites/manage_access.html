@@ -56,9 +56,9 @@
 
 <!-- Select Multiple -->
 <div class="control-group">
-  <label class="control-label" for="user_access">Users with access</label>
+  <label class="control-label" for="accesslist">Users with access</label>
   <div class="controls">
-    <select id="user_access" name="user_access" size="10" class="input-xxlarge" multiple="multiple">
+    <select id="accesslist" name="accesslist" size="10" class="input-xxlarge" multiple="multiple">
 {% for address in access_list %}
       <option value="{{ address.ipv6 }}">{{ address.name }} ({{ address.ipv6 }})</option>
 {% endfor %}

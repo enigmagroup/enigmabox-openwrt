@@ -906,6 +906,15 @@ def hypesites_access(request, webservice):
             #hypeaccess.save()
         o.config_changed(True)
 
+    if request.POST.get('revoke'):
+        hypeaccess = HypeAccess.objects.get(appname=webservice)
+        accesslist = request.POST.getlist('accesslist')
+        for address in accesslist:
+            db_address = Address.objects.get(ipv6=address)
+            hypeaccess.addresses.remove(db_address)
+            #hypeaccess.save()
+        o.config_changed(True)
+
     return render_to_response('hypesites/manage_access.html', {
         'webserver_enabled': o.get_value('webserver_enabled', 0),
         'webservice': webservice,
