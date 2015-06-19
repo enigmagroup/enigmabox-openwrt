@@ -1,6 +1,10 @@
 
 $HTTP["url"] =~ "^/(?!dokuwiki|owncloud)" {
 
+{{^if_hype_personal_site}}
+    url.access-deny = ( "" )
+{{/if_hype_personal_site}}
+
 {{^if_hype_access_site_all}}
     $HTTP["remoteip"] !~ "fdfa::|fdfb::|{{#hype_site_accesslist}}{{ ipv6 }}|{{/hype_site_accesslist}}127.0.0.1" {
         url.access-deny = ( "" )

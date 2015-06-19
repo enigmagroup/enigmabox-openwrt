@@ -4,13 +4,7 @@ bundle agent app_hypesites
   vars:
       "site" data => readjson("$(g.site)", 64000);
 
-  classes:
-      "personal_site" expression => strcmp("$(site[if_hype_personal_site])", "true");
-      "dokuwiki" expression => strcmp("$(site[if_hype_dokuwiki])", "true");
-
   files:
-
-    personal_site::
       "/etc/lighttpd/hypesites.d/index.conf"
       create => "true",
       template_method => "mustache",
@@ -19,23 +13,12 @@ bundle agent app_hypesites
       edit_defaults => no_backup,
       classes => if_repaired("restart_lighttpd");
 
-    !personal_site::
-      "/etc/lighttpd/hypesites.d/index.conf"
-      delete => tidy,
-      classes => if_repaired("restart_lighttpd");
-
-    dokuwiki::
       "/etc/lighttpd/hypesites.d/dokuwiki.conf"
       create => "true",
       template_method => "mustache",
       template_data => readjson("$(g.site)", 64000),
       edit_template => "$(this.promise_dirname)/templates/dokuwiki.conf.mustache",
       edit_defaults => no_backup,
-      classes => if_repaired("restart_lighttpd");
-
-    !dokuwiki::
-      "/etc/lighttpd/hypesites.d/dokuwiki.conf"
-      delete => tidy,
       classes => if_repaired("restart_lighttpd");
 
   commands:

@@ -5,6 +5,10 @@ $HTTP["url"] =~ "^/dokuwiki/(bin|data|inc|conf)/" {
 
 $HTTP["url"] =~ "^/dokuwiki" {
 
+{{^if_hype_dokuwiki}}
+    url.access-deny = ( "" )
+{{/if_hype_dokuwiki}}
+
 {{^if_hype_access_dokuwiki_all}}
     $HTTP["remoteip"] !~ "fdfa::|fdfb::|{{#hype_dokuwiki_accesslist}}{{ ipv6 }}|{{/hype_dokuwiki_accesslist}}127.0.0.1" {
         url.access-deny = ( "" )
