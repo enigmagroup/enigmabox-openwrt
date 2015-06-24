@@ -845,8 +845,28 @@ def teletext(request):
 def hypesites(request):
     o = Option()
 
+    hypesites = []
+
+    try:
+        import sqlite3
+        db = sqlite3.connect('/etc/enigmabox/hypesites.db')
+        db.text_factory = sqlite3.OptimizedUnicode
+        c = db.cursor()
+        c.execute("SELECT ipv6,hostname,last_seen FROM addresses")
+
+        for a in c.fetchall():
+            hypesites.append({
+                'ipv6': a[0],
+                'hostname': a[1],
+                'last_seen': a[2],
+            })
+
+    except Exception:
+        pass
+
     return render_to_response('hypesites/overview.html', {
         'ipv6': o.get_value('ipv6'),
+        'hypesites': hypesites,
     }, context_instance=RequestContext(request))
 
 def configure_hypesites(request):
