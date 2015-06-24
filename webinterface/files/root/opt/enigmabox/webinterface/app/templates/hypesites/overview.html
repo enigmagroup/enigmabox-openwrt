@@ -25,11 +25,11 @@
         <td><a href="http://[{{ ipv6 }}]" target="_blank">http://[{{ ipv6 }}]/</a></td>
         <td>ls</td>
     </tr>
-    {% for address in addresses %}
+    {% for site in hypesites %}
     <tr>
-        <td><a href="{% url app.views.addressbook_edit address.pk %}">{{ address.name }}</a></td>
-        <td>{{ address.ipv6 }}</td>
-        <td>ls</td>
+        <td>{{ site.hostname }}</td>
+        <td><a href="http://[{{ site.ipv6 }}]" target="_blank">http://[{{ site.ipv6 }}]/</a></td>
+        <td>{{ site.last_seen }}</td>
     </tr>
     {% endfor %}
     </tbody>

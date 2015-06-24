@@ -852,7 +852,7 @@ def hypesites(request):
         db = sqlite3.connect('/etc/enigmabox/hypesites.db')
         db.text_factory = sqlite3.OptimizedUnicode
         c = db.cursor()
-        c.execute("SELECT ipv6,hostname,last_seen FROM addresses")
+        c.execute("SELECT ipv6,hostname,last_seen FROM hypesites")
 
         for a in c.fetchall():
             hypesites.append({
