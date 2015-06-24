@@ -876,6 +876,7 @@ def hypesites(request):
         'dokuwiki': o.get_value('dokuwiki', 0),
         'hype_access_site': o.get_value('hype_access_site', 'all'),
         'hype_access_dokuwiki': o.get_value('hype_access_dokuwiki', 'all'),
+        'ipv6': o.get_value('ipv6'),
     }, context_instance=RequestContext(request))
 
 def hypesites_access(request, webservice):

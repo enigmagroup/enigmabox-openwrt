@@ -52,6 +52,9 @@
 {% if hype_access_site == 'specific' %}
     <a href="/hypesites/access/site/" class="btn btn-success">{% trans "Configure access..." %}</a>
 {% endif %}
+{% if personal_website == '1' %}
+    <a href="http://[{{ ipv6 }}]" target="_blank">http://[{{ ipv6 }}]/</a>
+{% endif %}
   </div>
 </div>
 
@@ -72,6 +75,9 @@
 {% endif %}
 {% if hype_access_dokuwiki == 'specific' %}
     <a href="/hypesites/access/dokuwiki/" class="btn btn-success">{% trans "Configure access..." %}</a>
+{% endif %}
+{% if dokuwiki == '1' %}
+    <a href="http://[{{ ipv6 }}]/dokuwiki/" target="_blank">http://[{{ ipv6 }}]/dokuwiki/</a>
 {% endif %}
   </div>
 </div>
