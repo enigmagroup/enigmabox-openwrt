@@ -905,17 +905,17 @@ def hypesites_access(request, webservice):
     if request.POST.get('access_all'):
         o.set_value('hype_access_' + webservice, 'all')
         o.config_changed(True)
-        return redirect('/hypesites/access/' + webservice)
+        return redirect('/hypesites/configure/' + webservice + '/access/')
 
     if request.POST.get('access_friends'):
         o.set_value('hype_access_' + webservice, 'friends')
         o.config_changed(True)
-        return redirect('/hypesites/access/' + webservice)
+        return redirect('/hypesites/configure/' + webservice + '/access/')
 
     if request.POST.get('access_specific'):
         o.set_value('hype_access_' + webservice, 'specific')
         o.config_changed(True)
-        return redirect('/hypesites/access/' + webservice)
+        return redirect('/hypesites/configure/' + webservice + '/access/')
 
     if request.POST.get('grant'):
         hypeaccess = HypeAccess.objects.get(appname=webservice)
@@ -926,7 +926,7 @@ def hypesites_access(request, webservice):
             hypeaccess.addresses.add(db_address)
             #hypeaccess.save()
         o.config_changed(True)
-        return redirect('/hypesites/access/' + webservice)
+        return redirect('/hypesites/configure/' + webservice + '/access/')
 
     if request.POST.get('revoke'):
         hypeaccess = HypeAccess.objects.get(appname=webservice)
@@ -936,7 +936,7 @@ def hypesites_access(request, webservice):
             hypeaccess.addresses.remove(db_address)
             #hypeaccess.save()
         o.config_changed(True)
-        return redirect('/hypesites/access/' + webservice)
+        return redirect('/hypesites/configure/' + webservice + '/access/')
 
     return render_to_response('hypesites/manage_access.html', {
         'webserver_enabled': o.get_value('webserver_enabled', 0),
