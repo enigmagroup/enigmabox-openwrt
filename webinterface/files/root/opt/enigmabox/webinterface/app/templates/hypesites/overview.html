@@ -7,83 +7,33 @@
 
       <h1>{% trans "Hypesites" %}</h1>
       <p>{% trans 'Hypesites are websites inside Hyperboria.' %}</p>
-      <p>{% trans 'Run a webserver and publish your own site.' %}</p>
+      <br />
+      <p><a href="/hypesites/configure/" class="btn btn-primary">{% trans "Run your own..." %}</a></p>
       <br />
 
-<form method="post" class="form-horizontal">
-{% csrf_token %}
-
-<fieldset>
-<!-- Form Name -->
-<legend>{% trans "Hypesites webserver firewall configuration" %}</legend>
-
-<!-- Button (Double) -->
-<div class="control-group">
-  <label class="control-label" for="access_global">{% trans "Allow access" %}</label>
-  <div class="controls">
-    <button id="access_global" name="access_global" value="1" class="btn btn-{% btn_state hypesites_access 'global' 'warning' 'default' %}">{% trans "Global" %}</button>
-    <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hypesites_access 'friends' 'primary' 'default' %}">{% trans "Friends only" %}</button>
-    <button id="access_internal" name="access_internal" value="1" class="btn btn-{% btn_state hypesites_access 'internal' 'success' 'default' %}">{% trans "Internal LAN" %}</button>
-    <button id="access_off" name="access_off" value="1" class="btn btn-{% btn_state hypesites_access 'off' 'inverse' 'default' %}">{% trans "Off" %}</button>
-  </div>
-</div>
-
-</fieldset>
-
-<fieldset>
-<!-- Form Name -->
-<legend>{% trans "Webservices" %}</legend>
-
-<!-- Button (Double) -->
-<div class="control-group">
-  <label class="control-label" for="personal_website">{% trans "Personal website" %}</label>
-  <div class="controls">
-{% if personal_website == '1' %}
-    <button id="personal_website" name="personal_website" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
-{% else %}
-    <button id="personal_website" name="personal_website" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
-{% endif %}
-{% if hype_access_site == 'all' %}
-    <a href="/hypesites/access/site/" class="btn btn-warning">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if hype_access_site == 'friends' %}
-    <a href="/hypesites/access/site/" class="btn btn-primary">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if hype_access_site == 'specific' %}
-    <a href="/hypesites/access/site/" class="btn btn-success">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if personal_website == '1' %}
-    <a href="http://[{{ ipv6 }}]" target="_blank">http://[{{ ipv6 }}]/</a>
-{% endif %}
-  </div>
-</div>
-
-<!-- Button (Double) -->
-<div class="control-group">
-  <label class="control-label" for="dokuwiki">{% trans "Dokuwiki" %}</label>
-  <div class="controls">
-{% if dokuwiki == '1' %}
-    <button id="dokuwiki" name="dokuwiki" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
-{% else %}
-    <button id="dokuwiki" name="dokuwiki" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
-{% endif %}
-{% if hype_access_dokuwiki == 'all' %}
-    <a href="/hypesites/access/dokuwiki/" class="btn btn-warning">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if hype_access_dokuwiki == 'friends' %}
-    <a href="/hypesites/access/dokuwiki/" class="btn btn-primary">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if hype_access_dokuwiki == 'specific' %}
-    <a href="/hypesites/access/dokuwiki/" class="btn btn-success">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if dokuwiki == '1' %}
-    <a href="http://[{{ ipv6 }}]/dokuwiki/" target="_blank">http://[{{ ipv6 }}]/dokuwiki/</a>
-{% endif %}
-  </div>
-</div>
-</fieldset>
-
-</form>
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>{% trans "Hostname" %}</th>
+        <th>{% trans "Site" %}</th>
+        <th>{% trans "Last seen" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{% trans "My address" %}</td>
+        <td><a href="http://[{{ ipv6 }}]" target="_blank">http://[{{ ipv6 }}]/</a></td>
+        <td>ls</td>
+    </tr>
+    {% for address in addresses %}
+    <tr>
+        <td><a href="{% url app.views.addressbook_edit address.pk %}">{{ address.name }}</a></td>
+        <td>{{ address.ipv6 }}</td>
+        <td>ls</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
     </div> <!-- /container -->
 {% endblock %}

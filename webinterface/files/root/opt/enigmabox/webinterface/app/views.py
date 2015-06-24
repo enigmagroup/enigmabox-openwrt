@@ -845,6 +845,13 @@ def teletext(request):
 def hypesites(request):
     o = Option()
 
+    return render_to_response('hypesites/overview.html', {
+        'ipv6': o.get_value('ipv6'),
+    }, context_instance=RequestContext(request))
+
+def configure_hypesites(request):
+    o = Option()
+
     if request.POST.get('access_global'):
         o.set_value('hypesites_access', 'global')
         o.config_changed(True)
@@ -869,7 +876,7 @@ def hypesites(request):
         o.toggle_value('dokuwiki')
         o.config_changed(True)
 
-    return render_to_response('hypesites/overview.html', {
+    return render_to_response('hypesites/configure.html', {
         'webserver_enabled': o.get_value('webserver_enabled', 0),
         'hypesites_access': o.get_value('hypesites_access', 'off'),
         'personal_website': o.get_value('personal_website', 0),
