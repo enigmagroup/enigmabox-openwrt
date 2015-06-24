@@ -29,7 +29,7 @@
     <tr>
         <td>{{ site.hostname }}</td>
         <td><a href="http://[{{ site.ipv6 }}]" target="_blank">http://[{{ site.ipv6 }}]/</a></td>
-        <td>{{ site.last_seen }}</td>
+        <td>{{ site.last_seen|timesince }}</td>
     </tr>
     {% endfor %}
     </tbody>

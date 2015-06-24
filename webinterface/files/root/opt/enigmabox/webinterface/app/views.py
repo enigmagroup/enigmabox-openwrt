@@ -858,7 +858,7 @@ def hypesites(request):
             hypesites.append({
                 'ipv6': a[0],
                 'hostname': a[1],
-                'last_seen': a[2],
+                'last_seen': datetime.fromtimestamp(a[2]),
             })
 
     except Exception:
