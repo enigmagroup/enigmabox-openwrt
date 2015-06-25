@@ -31,7 +31,6 @@ stop() {
 
 restart() {
     stop
-    init_db
     start
 }
 
