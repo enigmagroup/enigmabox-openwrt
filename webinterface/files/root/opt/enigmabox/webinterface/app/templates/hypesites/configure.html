@@ -63,7 +63,7 @@
 
 <!-- Button (Double) -->
 <div class="control-group">
-  <label class="control-label" for="dokuwiki">{% trans "Dokuwiki" %}</label>
+  <label class="control-label" for="dokuwiki">{% trans "Wiki" %}</label>
   <div class="controls">
 {% if dokuwiki == '1' %}
     <button id="dokuwiki" name="dokuwiki" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
@@ -80,7 +80,7 @@
     <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
 {% endif %}
 {% if dokuwiki == '1' %}
-    <a href="http://[{{ ipv6 }}]/dokuwiki/" target="_blank">http://[{{ ipv6 }}]/dokuwiki/</a>
+    <a href="http://[{{ ipv6 }}]/dokuwiki/" target="_blank">http://[{{ ipv6 }}]/wiki/</a>
 {% endif %}
   </div>
 </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-25 11:16+0200\n"
+"POT-Creation-Date: 2015-06-25 14:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -790,7 +790,7 @@ msgid "Configure access..."
 msgstr ""
 
 #: app/templates/hypesites/configure.html:66
-msgid "Dokuwiki"
+msgid "Wiki"
 msgstr ""
 
 #: app/templates/hypesites/manage_access.html:19
