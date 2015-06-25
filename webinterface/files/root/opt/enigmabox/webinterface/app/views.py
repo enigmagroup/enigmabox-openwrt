@@ -90,7 +90,7 @@ def addressbook(request):
             a = Address()
             a.name = cd['name'].strip()
             a.display_name = cd['name'].replace('-', ' ').title()
-            a.ipv6 = cd['ipv6'].strip()
+            a.ipv6 = normalize_ipv6(cd['ipv6'].strip())
             a.phone = cd['phone']
             a.save()
             o = Option()
@@ -133,7 +133,7 @@ def addressbook_edit(request, addr_id):
             a = Address.objects.get(pk=addr_id)
             a.name = cd['name'].strip()
             a.display_name = cd['display_name'].strip()
-            a.ipv6 = cd['ipv6'].strip()
+            a.ipv6 = normalize_ipv6(cd['ipv6'].strip())
             a.phone = cd['phone']
             a.save()
             o = Option()
