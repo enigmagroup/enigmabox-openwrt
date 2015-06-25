@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-18 22:42+0200\n"
-"PO-Revision-Date: 2015-06-24 17:50+0100\n"
+"POT-Creation-Date: 2015-06-25 11:16+0200\n"
+"PO-Revision-Date: 2015-06-25 11:18+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -148,7 +148,8 @@ msgstr "Dienste"
 msgid "Teletext"
 msgstr "Teletext"
 
-#: app/templates/base.html:77 app/templates/hypesites/manage_access.html:9
+#: app/templates/base.html:77 app/templates/hypesites/configure.html:9
+#: app/templates/hypesites/manage_access.html:9
 #: app/templates/hypesites/overview.html:8
 msgid "Hypesites"
 msgstr "Hypesites"
@@ -179,6 +180,7 @@ msgstr "Fertig"
 #: app/templates/addressbook/overview-global.html:28
 #: app/templates/addressbook/overview-global.html:67
 #: app/templates/addressbook/overview.html:35
+#: app/templates/hypesites/overview.html:17
 msgid "Hostname"
 msgstr "Hostname"
 
@@ -206,6 +208,7 @@ msgid "Status"
 msgstr "Status"
 
 #: app/templates/addressbook/address_table.html:15
+#: app/templates/hypesites/overview.html:24
 msgid "My address"
 msgstr "Meine Adresse"
 
@@ -305,8 +308,8 @@ msgid "Rejected"
 msgstr "Abgelehnt"
 
 #: app/templates/addressbook/overview-global.html:45
-#: app/templates/hypesites/overview.html:44
-#: app/templates/hypesites/overview.html:65
+#: app/templates/hypesites/configure.html:47
+#: app/templates/hypesites/configure.html:71
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
@@ -694,78 +697,51 @@ msgstr "cjdns"
 msgid "Internet via cjdns"
 msgstr "Internet via cjdns"
 
-#: app/templates/hypesites/manage_access.html:18
-msgid "access configuration"
-msgstr "Zugriffsverwaltung"
+#: app/templates/hypesites/configure.html:10
+#: app/templates/hypesites/manage_access.html:10
+msgid "Configure"
+msgstr "Konfiguration"
 
-#: app/templates/hypesites/manage_access.html:22
-#: app/templates/hypesites/overview.html:22
-msgid "Allow access"
-msgstr "Zugriff erlauben"
-
-#: app/templates/hypesites/manage_access.html:24
-msgid "All"
-msgstr "Alle"
-
-#: app/templates/hypesites/manage_access.html:25
-#: app/templates/hypesites/overview.html:25
-msgid "Friends only"
-msgstr "Nur Freunde"
-
-#: app/templates/hypesites/manage_access.html:26
-msgid "Specific IPs..."
-msgstr "Spezifische IP..."
-
-#: app/templates/hypesites/manage_access.html:37
-msgid "User list"
-msgstr "Adressliste"
-
-#: app/templates/hypesites/manage_access.html:51
-msgid "Grant selected users"
-msgstr "Gewählten Benutzern Zugriff gewähren"
-
-#: app/templates/hypesites/manage_access.html:57
-msgid "Users with access"
-msgstr "Benutzer mit Zugriff"
-
-#: app/templates/hypesites/manage_access.html:71
-msgid "Revoke selected users"
-msgstr "Gewählten Benutzern Zugriff entziehen"
-
-#: app/templates/hypesites/overview.html:9
-msgid "Hypesites are websites inside Hyperboria."
-msgstr "Hypesites sind Websites innerhalb Hyperboria."
-
-#: app/templates/hypesites/overview.html:10
+#: app/templates/hypesites/configure.html:13
 msgid "Run a webserver and publish your own site."
 msgstr "Publiziere deine eigene Hyperboria-Website."
 
-#: app/templates/hypesites/overview.html:18
+#: app/templates/hypesites/configure.html:21
 msgid "Hypesites webserver firewall configuration"
 msgstr "Hypesites Webserver Firewallkonfiguration"
 
-#: app/templates/hypesites/overview.html:24
+#: app/templates/hypesites/configure.html:25
+#: app/templates/hypesites/manage_access.html:23
+msgid "Allow access"
+msgstr "Zugriff erlauben"
+
+#: app/templates/hypesites/configure.html:27
 msgid "Global"
 msgstr "Global"
 
-#: app/templates/hypesites/overview.html:26
+#: app/templates/hypesites/configure.html:28
+#: app/templates/hypesites/manage_access.html:26
+msgid "Friends only"
+msgstr "Nur Freunde"
+
+#: app/templates/hypesites/configure.html:29
 msgid "Internal LAN"
 msgstr "Internes LAN"
 
-#: app/templates/hypesites/overview.html:27
+#: app/templates/hypesites/configure.html:30
 msgid "Off"
 msgstr "Keiner"
 
-#: app/templates/hypesites/overview.html:35
+#: app/templates/hypesites/configure.html:38
 msgid "Webservices"
 msgstr "Webdienste"
 
-#: app/templates/hypesites/overview.html:39
+#: app/templates/hypesites/configure.html:42
 msgid "Personal website"
 msgstr "Eigene Website"
 
-#: app/templates/hypesites/overview.html:42
-#: app/templates/hypesites/overview.html:63
+#: app/templates/hypesites/configure.html:45
+#: app/templates/hypesites/configure.html:69
 #: app/templates/peerings/overview.html:44
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
@@ -778,18 +754,62 @@ msgstr "Eigene Website"
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: app/templates/hypesites/overview.html:47
-#: app/templates/hypesites/overview.html:50
-#: app/templates/hypesites/overview.html:53
-#: app/templates/hypesites/overview.html:68
-#: app/templates/hypesites/overview.html:71
-#: app/templates/hypesites/overview.html:74
+#: app/templates/hypesites/configure.html:50
+#: app/templates/hypesites/configure.html:53
+#: app/templates/hypesites/configure.html:56
+#: app/templates/hypesites/configure.html:74
+#: app/templates/hypesites/configure.html:77
+#: app/templates/hypesites/configure.html:80
 msgid "Configure access..."
 msgstr "Zugriff verwalten..."
 
-#: app/templates/hypesites/overview.html:60
+#: app/templates/hypesites/configure.html:66
 msgid "Dokuwiki"
 msgstr "Dokuwiki"
+
+#: app/templates/hypesites/manage_access.html:19
+msgid "access configuration"
+msgstr "Zugriffsverwaltung"
+
+#: app/templates/hypesites/manage_access.html:25
+msgid "All"
+msgstr "Alle"
+
+#: app/templates/hypesites/manage_access.html:27
+msgid "Specific IPs..."
+msgstr "Spezifische IP..."
+
+#: app/templates/hypesites/manage_access.html:38
+msgid "User list"
+msgstr "Adressliste"
+
+#: app/templates/hypesites/manage_access.html:52
+msgid "Grant selected users"
+msgstr "Gewählten Benutzern Zugriff gewähren"
+
+#: app/templates/hypesites/manage_access.html:58
+msgid "Users with access"
+msgstr "Benutzer mit Zugriff"
+
+#: app/templates/hypesites/manage_access.html:72
+msgid "Revoke selected users"
+msgstr "Gewählten Benutzern Zugriff entziehen"
+
+#: app/templates/hypesites/overview.html:9
+msgid "Hypesites are websites inside Hyperboria."
+msgstr "Hypesites sind Websites innerhalb Hyperboria."
+
+#: app/templates/hypesites/overview.html:11
+msgid "Run your own..."
+msgstr "Hosting konfigurieren..."
+
+#: app/templates/hypesites/overview.html:18
+msgid "Site"
+msgstr "Site"
+
+#: app/templates/hypesites/overview.html:19
+msgid "Last seen"
+msgstr "Zuletzt online"
 
 #: app/templates/passwords/edit.html:18
 #: app/templates/passwords/overview.html:15
