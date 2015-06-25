@@ -1,9 +1,9 @@
 
-$HTTP["url"] =~ "^/dokuwiki/(bin|data|inc|conf)/" {
+$HTTP["url"] =~ "^/wiki/(bin|data|inc|conf)/" {
     url.access-deny = ( "" )
 }
 
-$HTTP["url"] =~ "^/dokuwiki" {
+$HTTP["url"] =~ "^/wiki" {
 
 {{^if_hype_dokuwiki}}
     url.access-deny = ( "" )
@@ -31,16 +31,16 @@ $HTTP["url"] =~ "^/dokuwiki" {
     index-file.names = ("doku.php")
 
     url.rewrite-once = (
-      "^/dokuwiki/lib/.*$"                     => "$0",
-      "^/dokuwiki/_media/(.*)?\?(.*)$"         => "/dokuwiki/lib/exe/fetch.php?media=$1&$2",
-      "^/dokuwiki/_media/(.*)$"                => "/dokuwiki/lib/exe/fetch.php?media=$1",
-      "^/dokuwiki/_detail/(.*)?\?(.*)$"        => "/dokuwiki/lib/exe/detail.php?media=$1&$2",
-      "^/dokuwiki/_detail/(.*)?$"              => "/dokuwiki/lib/exe/detail.php?media=$1",
-      "^/dokuwiki/_export/([^/]+)/(.*)\?(.*)$" => "/dokuwiki/doku.php?do=export_$1&id=$2&$3",
-      "^/dokuwiki/_export/([^/]+)/(.*)"        => "/dokuwiki/doku.php?do=export_$1&id=$2",
-      "^/dokuwiki/doku.php.*"                  => "$0",
-      "^/dokuwiki/feed.php.*"                  => "$0",
-      "^/dokuwiki/(.*)\?(.*)"                  => "/dokuwiki/doku.php?id=$1&$2",
-      "^/dokuwiki/(.*)"                        => "/dokuwiki/doku.php?id=$1"
+      "^/wiki/lib/.*$"                     => "$0",
+      "^/wiki/_media/(.*)?\?(.*)$"         => "/wiki/lib/exe/fetch.php?media=$1&$2",
+      "^/wiki/_media/(.*)$"                => "/wiki/lib/exe/fetch.php?media=$1",
+      "^/wiki/_detail/(.*)?\?(.*)$"        => "/wiki/lib/exe/detail.php?media=$1&$2",
+      "^/wiki/_detail/(.*)?$"              => "/wiki/lib/exe/detail.php?media=$1",
+      "^/wiki/_export/([^/]+)/(.*)\?(.*)$" => "/wiki/doku.php?do=export_$1&id=$2&$3",
+      "^/wiki/_export/([^/]+)/(.*)"        => "/wiki/doku.php?do=export_$1&id=$2",
+      "^/wiki/doku.php.*"                  => "$0",
+      "^/wiki/feed.php.*"                  => "$0",
+      "^/wiki/(.*)\?(.*)"                  => "/wiki/doku.php?id=$1&$2",
+      "^/wiki/(.*)"                        => "/wiki/doku.php?id=$1"
     )
 }

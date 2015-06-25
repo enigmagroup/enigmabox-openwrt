@@ -22,7 +22,7 @@
     <tbody>
     <tr>
         <td>{% trans "My address" %}</td>
-        <td><a href="http://[{{ ipv6 }}]" target="_blank">http://[{{ ipv6 }}]/</a></td>
+        <td><a href="http://[{{ ipv6 }}]" target="_blank">http://[{{ ipv6 }}]</a></td>
         <td>-</td>
     </tr>
     {% for site in hypesites %}
@@ -32,7 +32,7 @@
     {% else %}
         <td>{{ site.hostname }}</td>
     {% endif %}
-        <td><a href="http://[{{ site.ipv6 }}]" target="_blank">http://[{{ site.ipv6 }}]/</a></td>
+        <td><a href="http://[{{ site.ipv6 }}]" target="_blank">http://[{{ site.ipv6 }}]</a></td>
         <td>{{ site.last_seen|timesince }}</td>
     </tr>
     {% endfor %}
