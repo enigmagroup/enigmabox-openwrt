@@ -24,9 +24,9 @@
 <div class="control-group">
   <label class="control-label" for="access_global">{% trans "Allow access" %}</label>
   <div class="controls">
-    <button id="access_global" name="access_global" value="1" class="btn btn-{% btn_state hypesites_access 'global' 'warning' 'default' %}">{% trans "Global" %}</button>
-    <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hypesites_access 'friends' 'primary' 'default' %}">{% trans "Friends only" %}</button>
-    <button id="access_internal" name="access_internal" value="1" class="btn btn-{% btn_state hypesites_access 'internal' 'success' 'default' %}">{% trans "Internal LAN" %}</button>
+    <button id="access_global" name="access_global" value="1" class="btn btn-{% btn_state hypesites_access 'global' 'success' 'default' %}">{% trans "Global" %}</button>
+    <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hypesites_access 'friends' 'warning' 'default' %}">{% trans "Friends only" %}</button>
+    <button id="access_internal" name="access_internal" value="1" class="btn btn-{% btn_state hypesites_access 'internal' 'danger' 'default' %}">{% trans "Internal LAN" %}</button>
     <button id="access_off" name="access_off" value="1" class="btn btn-{% btn_state hypesites_access 'off' 'inverse' 'default' %}">{% trans "Off" %}</button>
   </div>
 </div>
@@ -47,13 +47,13 @@
     <button id="personal_website" name="personal_website" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
 {% endif %}
 {% if hype_access_site == 'all' %}
-    <a href="/hypesites/configure/site/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
+    <a href="/hypesites/configure/site/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
 {% endif %}
 {% if hype_access_site == 'friends' %}
-    <a href="/hypesites/configure/site/access/" class="btn btn-primary">{% trans "Configure access..." %}</a>
+    <a href="/hypesites/configure/site/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
 {% endif %}
 {% if hype_access_site == 'specific' %}
-    <a href="/hypesites/configure/site/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
+    <a href="/hypesites/configure/site/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
 {% endif %}
 {% if personal_website == '1' %}
     <a href="http://[{{ ipv6 }}]" target="_blank">http://[{{ ipv6 }}]/</a>
@@ -71,13 +71,13 @@
     <button id="dokuwiki" name="dokuwiki" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
 {% endif %}
 {% if hype_access_dokuwiki == 'all' %}
-    <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
+    <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
 {% endif %}
 {% if hype_access_dokuwiki == 'friends' %}
-    <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-primary">{% trans "Configure access..." %}</a>
+    <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
 {% endif %}
 {% if hype_access_dokuwiki == 'specific' %}
-    <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
+    <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
 {% endif %}
 {% if dokuwiki == '1' %}
     <a href="http://[{{ ipv6 }}]/dokuwiki/" target="_blank">http://[{{ ipv6 }}]/dokuwiki/</a>
