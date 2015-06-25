@@ -207,8 +207,10 @@
 
         $('#apply-now').modal({
             'backdrop': 'static',
-            'keyboard': false
+            'keyboard': true
         });
+
+        $('#confirm-apply').focus();
 
         return false;
     });
@@ -231,6 +233,7 @@
                             $('#apply-now .dynamic-output').slideUp(function(){
                                 $('.apply-changes-success').show();
                                 $('.apply-donebar').show();
+                                $('.apply-donebar button').focus();
                             });
                         }, 1000);
                     }
