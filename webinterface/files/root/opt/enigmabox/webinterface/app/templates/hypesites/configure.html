@@ -25,7 +25,7 @@
   <label class="control-label" for="access_global">{% trans "Allow access" %}</label>
   <div class="controls">
     <button id="access_global" name="access_global" value="1" class="btn btn-{% btn_state hypesites_access 'global' 'success' 'default' %}">{% trans "Global" %}</button>
-    <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hypesites_access 'friends' 'warning' 'default' %}">{% trans "Friends only" %}</button>
+    <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hypesites_access 'friends' 'warning' 'default' %} tooltip-hover" data-placement="bottom" data-original-title="{% trans "Only persons in your address book" %}">{% trans "Friends only" %}</button>
     <button id="access_internal" name="access_internal" value="1" class="btn btn-{% btn_state hypesites_access 'internal' 'danger' 'default' %}">{% trans "Internal LAN" %}</button>
     <button id="access_off" name="access_off" value="1" class="btn btn-{% btn_state hypesites_access 'off' 'inverse' 'default' %}">{% trans "Off" %}</button>
   </div>

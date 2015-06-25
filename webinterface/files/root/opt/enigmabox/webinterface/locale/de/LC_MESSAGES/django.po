@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-25 14:27+0200\n"
-"PO-Revision-Date: 2015-06-25 14:27+0100\n"
+"POT-Creation-Date: 2015-06-25 14:36+0200\n"
+"PO-Revision-Date: 2015-06-25 14:36+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -718,6 +718,10 @@ msgstr "Zugriff erlauben"
 #: app/templates/hypesites/configure.html:27
 msgid "Global"
 msgstr "Global"
+
+#: app/templates/hypesites/configure.html:28
+msgid "Only persons in your address book"
+msgstr "Nur Personen in deinem Adressbuch"
 
 #: app/templates/hypesites/configure.html:28
 #: app/templates/hypesites/manage_access.html:26
