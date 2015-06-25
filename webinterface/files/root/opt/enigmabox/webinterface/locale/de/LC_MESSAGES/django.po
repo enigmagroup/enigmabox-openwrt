@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-25 14:36+0200\n"
-"PO-Revision-Date: 2015-06-25 14:36+0100\n"
+"POT-Creation-Date: 2015-06-25 14:57+0200\n"
+"PO-Revision-Date: 2015-06-25 14:57+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -1044,12 +1044,13 @@ msgid "Warning"
 msgstr "Achtung"
 
 #: app/templates/upgrade/overview.html:16
-msgid "Back up your emails!"
-msgstr "Sichere deine E-Mails!"
+msgid "Back up your system"
+msgstr "Sichere dein System"
 
 #: app/templates/upgrade/overview.html:16
-msgid "Your emails WILL BE DELETED during the upgrade!"
-msgstr "Deine E-Mails werden bei der Aktualisierung GELÖSCHT!"
+msgid "Your emails, Hypesites and /wiki WILL BE DELETED during the upgrade!"
+msgstr ""
+"Deine E-Mails, Hypesites und /wiki werden bei der Aktualisierung GELÖSCHT!"
 
 #: app/templates/upgrade/overview.html:24
 msgid "Flash firmware"

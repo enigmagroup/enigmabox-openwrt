@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-25 14:36+0200\n"
+"POT-Creation-Date: 2015-06-25 14:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1080,11 +1080,11 @@ msgstr ""
 
 #: app/templates/upgrade/overview.html:16
 #, fuzzy
-msgid "Back up your emails!"
+msgid "Back up your system"
 msgstr "Copia de seguridad e mails"
 
 #: app/templates/upgrade/overview.html:16
-msgid "Your emails WILL BE DELETED during the upgrade!"
+msgid "Your emails, Hypesites and /wiki WILL BE DELETED during the upgrade!"
 msgstr ""
 
 #: app/templates/upgrade/overview.html:24
