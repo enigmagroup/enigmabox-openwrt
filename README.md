@@ -48,6 +48,15 @@ Then configure for your system:
   * Include kernel in root filesystem: yes
   * Include DTB in root filesystem: yes
 
+Recently, OpenWrt decided to ~~fuck everything up~~ switch to musl by default.
+
+Stick to uClibc manually:
+
+"Advanced configuration options":
+  * Toolchain Options
+    * C Library implementation
+      * Use uClibc
+
 "Enigmabox":
 * cfengine-promises: yes
   * Network profile: Rasperry Pi
