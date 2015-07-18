@@ -94,13 +94,13 @@
 {% else %}
     <button id="owncloud" name="owncloud" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
 {% endif %}
-{% if hype_access_dokuwiki == 'all' %}
+{% if hype_access_owncloud == 'all' %}
     <a href="/hypesites/configure/owncloud/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
 {% endif %}
-{% if hype_access_dokuwiki == 'friends' %}
+{% if hype_access_owncloud == 'friends' %}
     <a href="/hypesites/configure/owncloud/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
 {% endif %}
-{% if hype_access_dokuwiki == 'specific' %}
+{% if hype_access_owncloud == 'specific' %}
     <a href="/hypesites/configure/owncloud/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
 {% endif %}
 {% if owncloud == '1' %}
