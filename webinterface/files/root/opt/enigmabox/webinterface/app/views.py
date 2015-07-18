@@ -896,13 +896,19 @@ def configure_hypesites(request):
         o.toggle_value('dokuwiki')
         o.config_changed(True)
 
+    if request.POST.get('owncloud'):
+        o.toggle_value('owncloud')
+        o.config_changed(True)
+
     return render_to_response('hypesites/configure.html', {
         'webserver_enabled': o.get_value('webserver_enabled', 0),
         'hypesites_access': o.get_value('hypesites_access', 'off'),
         'personal_website': o.get_value('personal_website', 0),
         'dokuwiki': o.get_value('dokuwiki', 0),
+        'owncloud': o.get_value('owncloud', 0),
         'hype_access_site': o.get_value('hype_access_site', 'all'),
         'hype_access_dokuwiki': o.get_value('hype_access_dokuwiki', 'all'),
+        'hype_access_owncloud': o.get_value('hype_access_owncloud', 'all'),
         'ipv6': o.get_value('ipv6'),
     }, context_instance=RequestContext(request))
 
@@ -1340,6 +1346,7 @@ def cfengine_site(request):
 
     hype_access_site = o.get_value('hype_access_site', 'all')
     hype_access_dokuwiki = o.get_value('hype_access_dokuwiki', 'all')
+    hype_access_owncloud = o.get_value('hype_access_owncloud', 'all')
 
     my_ip = o.get_value('ipv6', '')
 
@@ -1362,6 +1369,16 @@ def cfengine_site(request):
     for address in addresslist:
         hype_dokuwiki_accesslist.append({'ipv6': address.ipv6})
     hype_access_dokuwiki_all = (hype_access_dokuwiki == 'all')
+
+    addresslist = []
+    if hype_access_owncloud == 'friends':
+        addresslist = Address.objects.all().order_by('id')
+    elif hype_access_owncloud == 'specific':
+        addresslist = HypeAccess.objects.get(appname='owncloud').addresses.all()
+    hype_owncloud_accesslist = [{'ipv6': my_ip}]
+    for address in addresslist:
+        hype_owncloud_accesslist.append({'ipv6': address.ipv6})
+    hype_access_owncloud_all = (hype_access_owncloud == 'all')
 
     response_data = {
         'hostid': hostid,
@@ -1405,10 +1422,13 @@ def cfengine_site(request):
         'hype_access_global': hype_access_global,
         'hype_personal_site': o.get_value('personal_website', 0),
         'hype_dokuwiki': o.get_value('dokuwiki', 0),
+        'hype_owncloud': o.get_value('owncloud', 0),
         'hype_access_site_all': hype_access_site_all,
         'hype_access_dokuwiki_all': hype_access_dokuwiki_all,
+        'hype_access_owncloud_all': hype_access_owncloud_all,
         'hype_site_accesslist': hype_site_accesslist,
         'hype_dokuwiki_accesslist': hype_dokuwiki_accesslist,
+        'hype_owncloud_accesslist': hype_owncloud_accesslist,
         'display_expiration_notice': display_expiration_notice,
     }
 

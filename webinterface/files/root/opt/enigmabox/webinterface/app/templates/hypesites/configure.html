@@ -84,6 +84,30 @@
 {% endif %}
   </div>
 </div>
+
+<!-- Button (Double) -->
+<div class="control-group">
+  <label class="control-label" for="owncloud">{% trans "OwnCloud" %}</label>
+  <div class="controls">
+{% if owncloud == '1' %}
+    <button id="owncloud" name="owncloud" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
+{% else %}
+    <button id="owncloud" name="owncloud" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
+{% endif %}
+{% if hype_access_dokuwiki == 'all' %}
+    <a href="/hypesites/configure/owncloud/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
+{% endif %}
+{% if hype_access_dokuwiki == 'friends' %}
+    <a href="/hypesites/configure/owncloud/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
+{% endif %}
+{% if hype_access_dokuwiki == 'specific' %}
+    <a href="/hypesites/configure/owncloud/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
+{% endif %}
+{% if owncloud == '1' %}
+    <a href="http://[{{ ipv6 }}]/owncloud/" target="_blank">http://[{{ ipv6 }}]/owncloud/</a>
+{% endif %}
+  </div>
+</div>
 </fieldset>
 
 </form>

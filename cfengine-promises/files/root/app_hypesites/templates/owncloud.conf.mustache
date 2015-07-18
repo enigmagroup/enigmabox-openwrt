@@ -1,0 +1,33 @@
+
+$HTTP["url"] =~ "^/owncloud/data/" {
+     url.access-deny = ("")
+}
+
+$HTTP["url"] =~ "^/owncloud" {
+
+{{^if_hype_owncloud}}
+    url.access-deny = ( "" )
+{{/if_hype_owncloud}}
+
+{{^if_hype_access_owncloud_all}}
+    $HTTP["remoteip"] !~ "fdfa::|fdfb::|{{#hype_owncloud_accesslist}}{{ ipv6 }}|{{/hype_owncloud_accesslist}}127.0.0.1" {
+        url.access-deny = ( "" )
+    }
+{{/if_hype_access_owncloud_all}}
+
+    # max post request: 1G
+    server.max-request-size = 1048576
+
+    # activate directory listing
+    dir-listing.activate = "disable"
+
+    # make sure those are always served through FastCGI and never as static files
+    static-file.exclude-extensions = ( ".php" )
+
+    # php
+    cgi.assign = ( ".php" => "/usr/bin/php-cgi" )
+
+    # rewrites for owncloud
+    index-file.names = ("index.php")
+
+}
