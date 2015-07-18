@@ -33,10 +33,6 @@ endef
 define Package/owncloud/install
 	$(INSTALL_DIR) $(1)/srv/www/owncloud
 	$(CP) -rv $(BUILD_DIR)/owncloud/* $(1)/srv/www/owncloud/
-
-	# hypesite config
-	$(INSTALL_DIR) $(1)/etc/lighttpd/hypesites.d
-	$(INSTALL_DATA) ./files/owncloud.conf $(1)/etc/lighttpd/hypesites.d/owncloud.conf
 endef
 
 $(eval $(call BuildPackage,owncloud))
