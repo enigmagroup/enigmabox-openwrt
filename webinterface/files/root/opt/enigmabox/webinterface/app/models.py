@@ -36,6 +36,14 @@ class HypeAccess(models.Model):
     def __unicode__(self):
         return self.appname
 
+class Volume(models.Model):
+    identifier = models.CharField(max_length=100)
+    name = models.CharField(max_length=50)
+    size = models.IntegerField(max_length=20)
+
+    def __unicode__(self):
+        return self.identifier
+
 class Option(models.Model):
     key = models.CharField(max_length=50)
     value = models.TextField()

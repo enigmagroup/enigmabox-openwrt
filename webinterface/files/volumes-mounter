@@ -1,0 +1,37 @@
+#!/bin/ash
+
+task=$1
+
+if [[ $task == 'format_usb' ]]; then
+
+    usbdrive=$(find_usb)
+    [[ -z $usbdrive ]] && exit 1
+
+    echo "p
+d
+d
+d
+d
+g
+n
+
+
+
+p
+w
+" | /usr/sbin/fdisk $usbdrive
+
+    /usr/sbin/mkfs.ext4 "$usbdrive"1
+
+fi
+
+
+if [[ $task == 'list_drives' ]]; then
+    drives=$(find /dev -name sd[b-z])
+    for drive in $drives; do
+        echo $drive
+        if [[ $(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | wc -l) -gt 0 ]]; then
+            fdisk $drive --list | grep 'Disk identifier'
+        fi
+    done
+fi
