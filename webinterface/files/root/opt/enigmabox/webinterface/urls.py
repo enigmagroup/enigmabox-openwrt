@@ -62,6 +62,9 @@ urlpatterns = patterns('app.views',
     url(r'^hypesites/configure/$', 'configure_hypesites'),
     url(r'^hypesites/$', 'hypesites'),
 
+    # storage
+    url(r'^storage/$', 'storage'),
+
     # changes
     url(r'^apply_changes/$', 'apply_changes'),
 

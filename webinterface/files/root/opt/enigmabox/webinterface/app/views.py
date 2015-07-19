@@ -979,6 +979,16 @@ def hypesites_access(request, webservice):
 
 
 
+# Storage
+
+def storage(request):
+    o = Option()
+
+    return render_to_response('hypesites/overview.html', {
+    }, context_instance=RequestContext(request))
+
+
+
 # Changes
 
 @csrf_exempt

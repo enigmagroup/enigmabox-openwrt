@@ -56,6 +56,7 @@
                 <li class="nav-header">{% trans "System" %}</li>
                 <li class="{% active request 'addressbook' %}"><a href="{% url app.views.addressbook %}"><i class="icon-user"></i>&nbsp;{% trans "Addressbook" %}</a></li>
                 <li class="{% active request 'passwords' %}"><a href="{% url app.views.passwords %}"><i class="icon-lock"></i>&nbsp;{% trans "Passwords" %}</a></li>
+                <li class="{% active request 'storage' %}"><a href="{% url app.views.storage %}"><i class="icon-hdd"></i>&nbsp;{% trans "Storage" %}</a></li>
                 <li class="{% active request 'backup' %}"><a href="{% url app.views.backup %}"><i class="icon-share"></i>&nbsp;{% trans "Backup &amp; restore" %}</a></li>
 {% if_updates object None  %}
                 <li class="{% active request 'updates' %}"><a href="{% url app.views.updates %}"><i class="icon-circle-arrow-up"></i>&nbsp;{% trans "Updates" %}</a></li>

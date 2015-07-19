@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-25 14:57+0200\n"
+"POT-Creation-Date: 2015-07-19 14:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,28 +30,28 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:675
+#: app/views.py:679
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:676
+#: app/views.py:680
 msgid "Sweden"
 msgstr ""
 
-#: app/views.py:677
+#: app/views.py:681
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:678
+#: app/views.py:682
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:679
+#: app/views.py:683
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:680
+#: app/views.py:684
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
@@ -63,8 +63,8 @@ msgstr "¿Estás seguro?"
 msgid "Show"
 msgstr "Mostrar"
 
-#: app/templates/base.html:31 app/templates/base.html.py:93
-#: app/templates/base.html:103
+#: app/templates/base.html:31 app/templates/base.html.py:94
+#: app/templates/base.html:104
 msgid "Apply changes"
 msgstr "Aplicar cambios"
 
@@ -80,7 +80,7 @@ msgstr "Sistema"
 #: app/templates/addressbook/overview-global-edit.html:9
 #: app/templates/addressbook/overview-global.html:8
 #: app/templates/addressbook/overview.html:8
-#: app/templates/home/overview.html:38
+#: app/templates/home/overview.html:47
 msgid "Addressbook"
 msgstr "Libreta de direcciones"
 
@@ -90,7 +90,11 @@ msgstr "Libreta de direcciones"
 msgid "Passwords"
 msgstr "Contraseñas"
 
-#: app/templates/base.html:59 app/templates/backup/overview.html:8
+#: app/templates/base.html:59
+msgid "Storage"
+msgstr ""
+
+#: app/templates/base.html:60 app/templates/backup/overview.html:8
 #: app/templates/backup/sslcerts.html:8 app/templates/backup/system.html:8
 #: app/templates/backup/backupwizard/backup_to_usb.html:8
 #: app/templates/backup/backupwizard/check_usb.html:8
@@ -101,77 +105,77 @@ msgstr "Contraseñas"
 msgid "Backup &amp; restore"
 msgstr "Copia de seguridad y restaurar"
 
-#: app/templates/base.html:61 app/templates/updates/overview.html:8
+#: app/templates/base.html:62 app/templates/updates/overview.html:8
 msgid "Updates"
 msgstr ""
 
-#: app/templates/base.html:64 app/templates/upgrade/overview.html:8
+#: app/templates/base.html:65 app/templates/upgrade/overview.html:8
 msgid "Firmware upgrade"
 msgstr ""
 
-#: app/templates/base.html:66 app/templates/home/system_status.html:5
+#: app/templates/base.html:67
 msgid "Internet"
 msgstr "Internet"
 
-#: app/templates/base.html:67
+#: app/templates/base.html:68
 msgid "Country selection"
 msgstr "Selección de país"
 
-#: app/templates/base.html:68 app/templates/webfilter/overview.html:8
+#: app/templates/base.html:69 app/templates/webfilter/overview.html:8
 msgid "Ad blocking"
 msgstr "Añadir bloqueo"
 
-#: app/templates/base.html:69
+#: app/templates/base.html:70
 msgid "Network"
 msgstr "Red"
 
-#: app/templates/base.html:71 app/templates/subscription/overview.html:8
+#: app/templates/base.html:72 app/templates/subscription/overview.html:8
 #: app/templates/subscription/overview.html:40
 #, fuzzy
 msgid "Subscription"
 msgstr "Descripción"
 
-#: app/templates/base.html:73 app/templates/peerings/detail.html:9
+#: app/templates/base.html:74 app/templates/peerings/detail.html:9
 #: app/templates/peerings/overview.html:8
 msgid "Peerings"
 msgstr "Compañeros"
 
-#: app/templates/base.html:74 app/templates/wlan_settings/overview.html:8
+#: app/templates/base.html:75 app/templates/wlan_settings/overview.html:8
 #: app/templates/wlan_settings/scan.html:9
 msgid "WLAN settings"
 msgstr "Configuración WLAN"
 
-#: app/templates/base.html:75
+#: app/templates/base.html:76
 msgid "Services"
 msgstr "Servicios"
 
-#: app/templates/base.html:76 app/templates/home/overview.html:41
-#: app/templates/home/overview.html:43 app/templates/teletext/overview.html:8
+#: app/templates/base.html:77 app/templates/home/overview.html:50
+#: app/templates/home/overview.html:52 app/templates/teletext/overview.html:8
 msgid "Teletext"
 msgstr "Teletext"
 
-#: app/templates/base.html:77 app/templates/hypesites/configure.html:9
+#: app/templates/base.html:78 app/templates/hypesites/configure.html:9
 #: app/templates/hypesites/manage_access.html:9
 #: app/templates/hypesites/overview.html:8
 msgid "Hypesites"
 msgstr ""
 
-#: app/templates/base.html:97
+#: app/templates/base.html:98
 #, fuzzy
 msgid "Apply changes?"
 msgstr "Aplicar cambios"
 
-#: app/templates/base.html:98
+#: app/templates/base.html:99
 msgid "Changes successfully applied."
 msgstr "Cambios aplicados con éxito"
 
-#: app/templates/base.html:102 app/templates/addressbook/detail.html:65
+#: app/templates/base.html:103 app/templates/addressbook/detail.html:65
 #: app/templates/addressbook/overview-global-edit.html:52
 #: app/templates/passwords/edit.html:63 app/templates/peerings/detail.html:68
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: app/templates/base.html:111
+#: app/templates/base.html:112
 msgid "Done"
 msgstr ""
 
@@ -315,6 +319,7 @@ msgstr ""
 #: app/templates/addressbook/overview-global.html:45
 #: app/templates/hypesites/configure.html:47
 #: app/templates/hypesites/configure.html:71
+#: app/templates/hypesites/configure.html:95
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
@@ -670,30 +675,50 @@ msgid "Renew subscription"
 msgstr "Descripción"
 
 #: app/templates/home/overview.html:36
-msgid "Applications"
-msgstr "Aplicaciones"
-
-#: app/templates/home/overview.html:39
-msgid "Webmail"
-msgstr "E mail web"
-
-#: app/templates/home/overview.html:48
 msgid "System status"
 msgstr "Estado de sistema"
 
-#: app/templates/home/overview.html:56
+#: app/templates/home/overview.html:44
+msgid "Applications"
+msgstr "Aplicaciones"
+
+#: app/templates/home/overview.html:48
+msgid "Webmail"
+msgstr "E mail web"
+
+#: app/templates/home/overview.html:57 app/templates/home/overview.html:59
+#: app/templates/hypesites/configure.html:42
+#, fuzzy
+msgid "Personal website"
+msgstr "Información compañero"
+
+#: app/templates/home/overview.html:62 app/templates/home/overview.html:64
+#: app/templates/hypesites/configure.html:66
+msgid "Wiki"
+msgstr ""
+
+#: app/templates/home/overview.html:67 app/templates/home/overview.html:69
+#: app/templates/hypesites/configure.html:90
+msgid "OwnCloud"
+msgstr ""
+
+#: app/templates/home/overview.html:71
+msgid "Configure Hypesite services..."
+msgstr ""
+
+#: app/templates/home/overview.html:76
 msgid "Connection info"
 msgstr "Información conexión"
 
-#: app/templates/home/overview.html:56
+#: app/templates/home/overview.html:76
 msgid "SSH access"
 msgstr "Dirección SSH"
 
-#: app/templates/home/overview.html:57 app/templates/passwords/edit.html:37
+#: app/templates/home/overview.html:77 app/templates/passwords/edit.html:37
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: app/templates/home/overview.html:58 app/templates/passwords/edit.html:45
+#: app/templates/home/overview.html:78 app/templates/passwords/edit.html:45
 #: app/templates/passwords/edit.html:47 app/templates/passwords/edit.html:54
 #: app/templates/peerings/detail.html:49 app/templates/peerings/detail.html:51
 #: app/templates/peerings/overview.html:61
@@ -701,21 +726,28 @@ msgstr "Nombre de usuario"
 msgid "Password"
 msgstr "Contraseña"
 
-#: app/templates/home/overview.html:59
+#: app/templates/home/overview.html:79
 msgid "Server"
 msgstr "Servidor"
 
 #: app/templates/home/system_status.html:4
-msgid "DHCP"
-msgstr "DHCP"
+msgid "IP from Router"
+msgstr ""
+
+#: app/templates/home/system_status.html:5
+#, fuzzy
+msgid "Regular Internet"
+msgstr "Internet"
 
 #: app/templates/home/system_status.html:6
-msgid "cjdns"
-msgstr "cjdns"
+#, fuzzy
+msgid "Network service"
+msgstr "Dirección de red valida hasta"
 
 #: app/templates/home/system_status.html:7
-msgid "Internet via cjdns"
-msgstr "Internet por cjdns"
+#, fuzzy
+msgid "Encrypted Internet"
+msgstr "Internet"
 
 #: app/templates/hypesites/configure.html:10
 #: app/templates/hypesites/manage_access.html:10
@@ -766,13 +798,9 @@ msgstr ""
 msgid "Webservices"
 msgstr "Servicios"
 
-#: app/templates/hypesites/configure.html:42
-#, fuzzy
-msgid "Personal website"
-msgstr "Información compañero"
-
 #: app/templates/hypesites/configure.html:45
 #: app/templates/hypesites/configure.html:69
+#: app/templates/hypesites/configure.html:93
 #: app/templates/peerings/overview.html:44
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
@@ -791,11 +819,10 @@ msgstr "Activado"
 #: app/templates/hypesites/configure.html:74
 #: app/templates/hypesites/configure.html:77
 #: app/templates/hypesites/configure.html:80
+#: app/templates/hypesites/configure.html:98
+#: app/templates/hypesites/configure.html:101
+#: app/templates/hypesites/configure.html:104
 msgid "Configure access..."
-msgstr ""
-
-#: app/templates/hypesites/configure.html:66
-msgid "Wiki"
 msgstr ""
 
 #: app/templates/hypesites/manage_access.html:19
@@ -1084,7 +1111,9 @@ msgid "Back up your system"
 msgstr "Copia de seguridad e mails"
 
 #: app/templates/upgrade/overview.html:16
-msgid "Your emails, Hypesites and /wiki WILL BE DELETED during the upgrade!"
+msgid ""
+"Your emails, Hypesites, /wiki and /owncloud WILL BE DELETED during the "
+"upgrade!"
 msgstr ""
 
 #: app/templates/upgrade/overview.html:24
@@ -1245,6 +1274,15 @@ msgstr "Información conexión"
 #: app/templates/wlan_settings/scan.html:22
 msgid "Signal"
 msgstr ""
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#~ msgid "cjdns"
+#~ msgstr "cjdns"
+
+#~ msgid "Internet via cjdns"
+#~ msgstr "Internet por cjdns"
 
 #, fuzzy
 #~ msgid "Enable Webserver"
