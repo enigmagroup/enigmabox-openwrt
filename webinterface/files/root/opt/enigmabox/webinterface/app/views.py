@@ -61,9 +61,13 @@ def home(request):
     else:
         return render_to_response('home/overview.html', {
             'hostid': o.get_value('hostid'),
+            'ipv6': o.get_value('ipv6'),
             'internet_access': internet_access,
             'internet_access_formatted': internet_access_formatted,
-            'teletext_enabled': o.get_value('teletext_enabled'),
+            'teletext_enabled': o.get_value('teletext_enabled', 0),
+            'personal_website': o.get_value('personal_website', 0),
+            'dokuwiki': o.get_value('dokuwiki', 0),
+            'owncloud': o.get_value('owncloud', 0),
             'root_password': o.get_value('root_password'),
             'netstat': netstat,
         }, context_instance=RequestContext(request))
