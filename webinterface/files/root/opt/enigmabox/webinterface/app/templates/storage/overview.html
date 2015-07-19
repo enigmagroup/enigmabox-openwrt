@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Storage" %}</h1>
+      <p>{% trans 'Configure external storage devices.' %}</p>
+      <br />
+      <p><a href="/storage/add/" class="btn btn-primary">{% trans "Add..." %}</a></p>
+      <br />
+
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>{% trans "Device identifier" %}</th>
+        <th>{% trans "Size" %}</th>
+        <th>{% trans "Device name" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for volume in volumes %}
+    <tr>
+        <td>{{ volume.identifier }}</td>
+        <td>{{ volume.size }}</td>
+        <td>{{ volume.name }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+    </div> <!-- /container -->
+{% endblock %}

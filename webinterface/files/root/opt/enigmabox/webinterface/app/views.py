@@ -984,7 +984,10 @@ def hypesites_access(request, webservice):
 def storage(request):
     o = Option()
 
-    return render_to_response('hypesites/overview.html', {
+    volumes = Volume.objects.all().order_by('id')
+
+    return render_to_response('storage/overview.html', {
+        'volumes': volumes,
     }, context_instance=RequestContext(request))
 
 
