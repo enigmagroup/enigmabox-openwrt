@@ -25,13 +25,28 @@ w
 
 fi
 
-
 if [[ $task == 'list_drives' ]]; then
     drives=$(find /dev -name sd[b-z])
     for drive in $drives; do
-        echo $drive
-        if [[ $(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | wc -l) -gt 0 ]]; then
+        echo "$drive"
+        if [[ $(fdisk "$drive" --list 2> /dev/null | grep 'Disk identifier' | wc -l) -gt 0 ]]; then
             fdisk $drive --list | grep 'Disk identifier'
         fi
     done
 fi
+
+if [[ $task == 'mount_drive' ]]; then
+    vol_id=$2
+    vol_name=$3
+
+    drives=$(find /dev -name sd[b-z])
+    for drive in $drives; do
+        echo vorif
+        if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
+            echo inif
+            mkdir -p "/media/$vol_name"
+            mount "$drive"1 "/media/$vol_name"
+        fi
+    done
+fi
+
