@@ -1,4 +1,4 @@
-(function(){
+$(function() {
 
     var trans = window.translation;
 
@@ -264,4 +264,4 @@
         'keyboard': true
     });
 
-})();
+});
