@@ -42,7 +42,19 @@ if [[ $task == 'mount_drive' ]]; then
     for drive in $drives; do
         if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
             mkdir -p "/media/$vol_name"
+            [[ $(mount | grep $drive | wc -l) -gt 0 ]] && umount "$drive"1 && sleep 1
             mount "$drive"1 "/media/$vol_name"
+        fi
+    done
+fi
+
+if [[ $task == 'umount_drive' ]]; then
+    vol_id=$2
+
+    drives=$(find /dev -name sd[b-z])
+    for drive in $drives; do
+        if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
+            umount "$drive"1
         fi
     done
 fi
