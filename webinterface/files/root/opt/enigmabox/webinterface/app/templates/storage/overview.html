@@ -11,6 +11,14 @@
       <p><a href="/storage/" class="btn btn-primary">{% trans "Refresh" %}</a></p>
       <br />
 
+{% if form.errors %}
+<div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>{% trans "Error" %}:</strong>
+{{ form.errors }}
+</div>
+{% endif %}
+
 <table class="table table-hover table-striped table-bordered">
     <thead>
       <tr>
