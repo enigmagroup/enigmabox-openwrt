@@ -11,9 +11,11 @@ class Migration(SchemaMigration):
         # Adding model 'Volume'
         db.create_table('app_volume', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('identifier', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
-            ('size', self.gf('django.db.models.fields.IntegerField')(max_length=20)),
+            ('identifier', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('size', self.gf('django.db.models.fields.IntegerField')(max_length=20, null=True, blank=True)),
+            ('status', self.gf('django.db.models.fields.CharField')(max_length=20, null=True, blank=True)),
+            ('use', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal('app', ['Volume'])
 
@@ -64,9 +66,11 @@ class Migration(SchemaMigration):
         'app.volume': {
             'Meta': {'object_name': 'Volume'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'identifier': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'size': ('django.db.models.fields.IntegerField', [], {'max_length': '20'})
+            'identifier': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
+            'size': ('django.db.models.fields.IntegerField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
+            'status': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
+            'use': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
         }
     }
 

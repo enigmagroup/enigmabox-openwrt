@@ -37,10 +37,10 @@ class HypeAccess(models.Model):
         return self.appname
 
 class Volume(models.Model):
-    identifier = models.CharField(max_length=100)
-    name = models.CharField(max_length=50, blank=True)
-    size = models.IntegerField(max_length=20)
-    status = models.CharField(max_length=20)
+    identifier = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
+    size = models.IntegerField(max_length=20, blank=True, null=True)
+    status = models.CharField(max_length=20, blank=True, null=True)
     use = models.BooleanField(default=False)
 
     def __unicode__(self):
