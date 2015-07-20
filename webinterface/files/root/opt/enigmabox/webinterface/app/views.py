@@ -998,6 +998,10 @@ def storage(request):
         v = Volume.objects.get(identifier=request.POST.get('identifier'))
         Popen(["volumes-mounter", "mount_drive", v.identifier, v.name], stdout=PIPE).communicate()[0]
 
+    if request.POST.get('remove', False):
+        v = Volume.objects.get(identifier=request.POST.get('identifier'))
+        v.delete()
+
     # get all volumes via script
     volumes = Popen(["volumes-mounter", "list_drives"], stdout=PIPE).communicate()[0]
 
@@ -1011,6 +1015,7 @@ def storage(request):
             except Exception:
                 pass
 
+    # get stats for each volume
     db_volumes = Volume.objects.all().order_by('id')
     volumes = []
     for volume in db_volumes:
@@ -1027,6 +1032,7 @@ def storage(request):
             v.status = 'unmounted'
             v.save()
 
+    # get the updated volumes
     db_volumes = Volume.objects.all().order_by('id')
 
     return render_to_response('storage/overview.html', {
