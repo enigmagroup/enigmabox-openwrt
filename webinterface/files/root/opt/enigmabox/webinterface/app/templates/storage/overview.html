@@ -72,13 +72,15 @@
   </div>
   <div class="modal-body">
     <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output hide" data-static_height="300"></pre>
-    <p class="apply-changes-ask">{% trans "Apply changes?" %}</p>
-    <p class="apply-changes-success hide">{% trans "Changes successfully applied." %}</p>
+    <p>{% trans "Mount failed." %}</p>
+    <p><strong>/media/{{ failed_mount_device.name }} ({{ failed_mount_device.size|filesizeformat }})</strong> - {{ failed_mount_device.identifier }}</p>
+    <p class="format-drive-ask">{% trans "Format this volume?" %}</p>
+    <p class="format-drive-success hide">{% trans "Changes successfully applied." %}</p>
   </div>
   <div class="modal-footer">
     <span class="apply-buttonbar">
         <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
-        <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
+        <button id="confirm-apply" class="btn btn-danger confirmation">{% trans "Format and destroy all data" %}</button>
     </span>
     <span class="apply-progressbar hide">
         <div class="progress progress-striped active">

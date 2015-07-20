@@ -1001,8 +1001,8 @@ def storage(request):
         v.use = True
         v.save()
         mount_result = Popen(["volumes-mounter", "mount_drive", v.identifier, v.name], stdout=PIPE).communicate()[0]
-        if mount_result != 'ok':
-            failed_mount_device = v.identifier
+        if mount_result == 'failed':
+            failed_mount_device = v
 
     if request.POST.get('nouse', False):
         v = Volume.objects.get(identifier=request.POST.get('identifier'))
