@@ -1001,10 +1001,18 @@ def storage(request):
     volumes = []
     for volume in db_volumes:
         # TODO: get status for device
-        volumes.append(volume)
+        stats = Popen(["volumes-mounter", "get_drive_stat", volume.identifier], stdout=PIPE).communicate()[0]
+        mounted = stats.split('vol_mounted:')[1].split(' ')[0]
+        size = stats.split('vol_size:')[1].split(' ')[0]
+        v = Volume.objects.get(identifier=volume.identifier)
+        v.status = 'mounted' if mounted == '1' else 'unmounted'
+        v.size = size
+        v.save()
+
+    db_volumes = Volume.objects.all().order_by('id')
 
     return render_to_response('storage/overview.html', {
-        'volumes': volumes,
+        'volumes': db_volumes,
     }, context_instance=RequestContext(request))
 
 
