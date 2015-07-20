@@ -992,7 +992,7 @@ def storage(request):
             v.name = cd['name'].strip()
             v.save()
     else:
-        form = VolumesForm(request.POST)
+        form = VolumesForm()
 
     if request.POST.get('use', False):
         v = Volume.objects.get(identifier=request.POST.get('identifier'))
