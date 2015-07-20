@@ -24,7 +24,11 @@
     <tbody>
     {% for volume in volumes %}
     <tr>
-        <td>{% trans "Not mounted" %}</a></td>
+{% if volume.status == 'mounted' %}
+        <td><span class="label label-success">{% trans "Mounted" %}</span></td>
+{% else %}
+        <td><span class="label label-default">{% trans "Not mounted" %}</span></td>
+{% endif %}
         <td>{{ volume.size }}</td>
         <td><div class="input-prepend"><span class="add-on">/media/</span><input id="phone" name="phone" type="text" placeholder="name" class="input-mini" value="{{ volume.name }}" maxlength="7"><a href="/storage/" class="btn btn-default">{% trans "OK" %}</a></div></td>
         <td>{{ volume.identifier }}</td>
