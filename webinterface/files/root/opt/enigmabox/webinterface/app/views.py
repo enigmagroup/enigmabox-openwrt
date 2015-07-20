@@ -985,9 +985,14 @@ def storage(request):
     o = Option()
 
     if request.POST.get('set_name', False):
-        v = Volume.objects.get(identifier=request.POST.get('identifier'))
-        v.name = request.POST.get('name')
-        v.save()
+        form = VolumesForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            v = Volume.objects.get(identifier=request.POST.get('identifier'))
+            v.name = cd['name'].strip()
+            v.save()
+    else:
+        form = VolumesForm(request.POST)
 
     if request.POST.get('use', False):
         v = Volume.objects.get(identifier=request.POST.get('identifier'))
@@ -1026,6 +1031,7 @@ def storage(request):
 
     return render_to_response('storage/overview.html', {
         'volumes': db_volumes,
+        'form': form,
     }, context_instance=RequestContext(request))
 
 

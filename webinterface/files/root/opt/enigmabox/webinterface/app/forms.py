@@ -58,3 +58,10 @@ class PasswordForm(forms.Form):
 
         return self.cleaned_data
 
+class VolumesForm(forms.Form):
+    def validate_name(value):
+        if re.search("[^a-z0-9-]", value):
+            raise exceptions.ValidationError('Der Name darf nur aus Kleinbuchstaben, Zahlen und Bindestrichen (-) bestehen.')
+
+    name = forms.CharField(initial='', required=True, min_length=1, max_length=20, validators=[validate_name])
+
