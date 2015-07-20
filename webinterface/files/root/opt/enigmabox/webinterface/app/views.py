@@ -1020,6 +1020,7 @@ def storage(request):
         except Exception:
             v = Volume.objects.get(identifier=volume.identifier)
             v.status = 'unmounted'
+            v.save()
 
     db_volumes = Volume.objects.all().order_by('id')
 
