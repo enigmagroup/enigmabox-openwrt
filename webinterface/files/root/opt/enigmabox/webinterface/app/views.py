@@ -984,6 +984,8 @@ def hypesites_access(request, webservice):
 def storage(request):
     o = Option()
 
+    failed_mount_device = ''
+
     if request.POST.get('set_name', False):
         form = VolumesForm(request.POST)
         if form.is_valid():
@@ -996,7 +998,17 @@ def storage(request):
 
     if request.POST.get('use', False):
         v = Volume.objects.get(identifier=request.POST.get('identifier'))
-        Popen(["volumes-mounter", "mount_drive", v.identifier, v.name], stdout=PIPE).communicate()[0]
+        v.use = True
+        v.save()
+        mount_result = Popen(["volumes-mounter", "mount_drive", v.identifier, v.name], stdout=PIPE).communicate()[0]
+        if mount_result != 'ok':
+            failed_mount_device = v.identifier
+
+    if request.POST.get('nouse', False):
+        v = Volume.objects.get(identifier=request.POST.get('identifier'))
+        v.use = False
+        v.save()
+        Popen(["volumes-mounter", "umount_drive", v.identifier, v.name], stdout=PIPE).communicate()[0]
 
     if request.POST.get('remove', False):
         v = Volume.objects.get(identifier=request.POST.get('identifier'))
@@ -1038,6 +1050,7 @@ def storage(request):
     return render_to_response('storage/overview.html', {
         'volumes': db_volumes,
         'form': form,
+        'failed_mount_device': failed_mount_device,
     }, context_instance=RequestContext(request))
 
 

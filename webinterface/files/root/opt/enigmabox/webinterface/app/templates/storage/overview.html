@@ -49,7 +49,11 @@
         </td>
         <td>{{ volume.identifier }}<input type="hidden" name="identifier" value="{{ volume.identifier }}" /></td>
         <td>
+{% if volume.use %}
+            <button type="submit" class="btn btn-success" name="nouse" value="1">{% trans "Use" %}</button>
+{% else %}
             <button type="submit" class="btn btn-default" name="use" value="1">{% trans "Use" %}</button>
+{% endif %}
             <button type="submit" class="btn btn-default" name="remove" value="1">{% trans "Remove" %}</button>
         </td>
     </form>
@@ -59,4 +63,33 @@
 </table>
 
     </div> <!-- /container -->
+
+{% if failed_mount_device != '' %}
+<!-- Modal -->
+<div id="failed-mount" class="modal hide" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <h3>{% trans "Mount failed" %}</h3>
+  </div>
+  <div class="modal-body">
+    <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output hide" data-static_height="300"></pre>
+    <p class="apply-changes-ask">{% trans "Apply changes?" %}</p>
+    <p class="apply-changes-success hide">{% trans "Changes successfully applied." %}</p>
+  </div>
+  <div class="modal-footer">
+    <span class="apply-buttonbar">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
+        <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
+    </span>
+    <span class="apply-progressbar hide">
+        <div class="progress progress-striped active">
+            <div class="bar" style="width: 100%"></div>
+        </div>
+    </span>
+    <span class="apply-donebar hide">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Done" %}</button>
+    </span>
+  </div>
+</div>
+{% endif %}
+
 {% endblock %}

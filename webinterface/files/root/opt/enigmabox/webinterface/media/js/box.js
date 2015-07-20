@@ -259,4 +259,9 @@
         clearInterval(applyval);
     });
 
+    $('#failed-mount').modal({
+        'backdrop': 'static',
+        'keyboard': true
+    });
+
 })();
