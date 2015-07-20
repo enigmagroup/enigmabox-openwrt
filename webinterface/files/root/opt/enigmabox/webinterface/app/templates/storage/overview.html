@@ -24,15 +24,18 @@
     <tbody>
     {% for volume in volumes %}
     <tr>
+    <form action="" method="post">
+    {% csrf_token %}
 {% if volume.status == 'mounted' %}
         <td><span class="label label-success">{% trans "Mounted" %}</span></td>
 {% else %}
         <td><span class="label label-default">{% trans "Not mounted" %}</span></td>
 {% endif %}
         <td>{{ volume.size|filesizeformat }}</td>
-        <td><div class="input-prepend"><span class="add-on">/media/</span><input id="phone" name="phone" type="text" placeholder="name" class="input-mini" value="{{ volume.name }}" maxlength="7"><a href="/storage/" class="btn btn-default">{% trans "OK" %}</a></div></td>
-        <td>{{ volume.identifier }}</td>
+        <td><div class="input-prepend"><span class="add-on">/media/</span><input id="name" name="name" type="text" placeholder="name" class="input-mini" value="{{ volume.name|default:'' }}" maxlength="20"><button type="submit" class="btn btn-default" name="set_name" value="1">OK</button></div></td>
+        <td>{{ volume.identifier }}<input type="hidden" name="identifier" value="{{ volume.identifier }}" /></td>
         <td><a href="/storage/" class="btn btn-default">{% trans "Use" %}</a></td>
+    </form>
     </tr>
     {% endfor %}
     </tbody>

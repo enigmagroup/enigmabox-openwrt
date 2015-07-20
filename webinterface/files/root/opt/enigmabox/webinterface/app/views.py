@@ -984,6 +984,11 @@ def hypesites_access(request, webservice):
 def storage(request):
     o = Option()
 
+    if request.POST.get('set_name', False):
+        v = Volume.objects.get(identifier=request.POST.get('identifier'))
+        v.name = request.POST.get('name')
+        v.save()
+
     # get all volumes via script
     volumes = Popen(["volumes-mounter", "list_drives"], stdout=PIPE).communicate()[0]
 
