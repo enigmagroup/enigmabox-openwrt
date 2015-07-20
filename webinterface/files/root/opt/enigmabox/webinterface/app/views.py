@@ -989,6 +989,10 @@ def storage(request):
         v.name = request.POST.get('name')
         v.save()
 
+    if request.POST.get('use', False):
+        v = Volume.objects.get(identifier=request.POST.get('identifier'))
+        Popen(["volumes-mounter", "mount_drive", v.identifier, v.name], stdout=PIPE).communicate()[0]
+
     # get all volumes via script
     volumes = Popen(["volumes-mounter", "list_drives"], stdout=PIPE).communicate()[0]
 
