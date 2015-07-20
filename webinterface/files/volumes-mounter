@@ -47,3 +47,23 @@ if [[ $task == 'mount_drive' ]]; then
     done
 fi
 
+if [[ $task == 'get_drive_stat' ]]; then
+    vol_id=$2
+
+    drives=$(find /dev -name sd[b-z])
+    for drive in $drives; do
+        if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
+
+            # get size
+            vol_size=$(fdisk $drive --list | grep "Disk $drive" | cut -d' ' -f5)
+
+            # get mount status
+            [[ $(mount | grep $drive | wc -l) -gt 0 ]] && vol_mounted=1 || vol_mounted=0
+
+            echo "vol_id:$vol_id vol_size:$vol_size vol_mounted:$vol_mounted "
+
+        fi
+    done
+
+fi
+
