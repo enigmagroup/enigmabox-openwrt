@@ -984,7 +984,15 @@ def hypesites_access(request, webservice):
 def storage(request):
     o = Option()
 
-    volumes = Volume.objects.all().order_by('id')
+    # hol alle volumes per script
+    volumes = Popen(["volumes-mounter", "list_drives"], stdout=PIPE).communicate()[0]
+    print volumes
+    # fueg sie in db ein
+    # zweiter schritt:
+    # hole alle volumes in db
+    # get status for device
+
+    db_volumes = Volume.objects.all().order_by('id')
 
     return render_to_response('storage/overview.html', {
         'volumes': volumes,
