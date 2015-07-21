@@ -299,7 +299,7 @@ $(function() {
                 });
             }, 600);
 
-            $.post('/storage/', {
+            $.post('/format_drive/', {
                 'format_drive': 'run',
                 'identifier': $('#confirm-format').data('identifier')
             });

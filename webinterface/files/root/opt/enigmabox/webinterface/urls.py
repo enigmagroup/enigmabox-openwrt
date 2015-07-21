@@ -64,6 +64,7 @@ urlpatterns = patterns('app.views',
 
     # storage
     url(r'^storage/$', 'storage'),
+    url(r'^format_drive/$', 'format_drive'),
 
     # changes
     url(r'^apply_changes/$', 'apply_changes'),
