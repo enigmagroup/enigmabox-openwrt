@@ -76,11 +76,13 @@ fi
 
 if [[ $task == 'umount_drive' ]]; then
     vol_id=$2
+    vol_name=$3
 
     drives=$(find /dev -name sd[b-z])
     for drive in $drives; do
         if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
             umount "$drive"1
+            umount "/media/$vol_name"
         fi
     done
 fi
