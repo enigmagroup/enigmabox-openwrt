@@ -76,8 +76,8 @@
                 <li class="{% active request 'peerings' %}"><a href="{% url app.views.peerings %}"><i class="icon-random"></i>&nbsp;{% trans "Peerings" %}</a></li>
                 <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i>&nbsp;{% trans "WLAN settings" %}</a></li>
                 <li class="nav-header">{% trans "Services" %}</li>
+                <li class="{% active request 'hypesites' %}"><a href="{% url app.views.hypesites %}"><i class="icon-road"></i>&nbsp;{% trans "Hypesites" %}</a></li>
                 <li class="{% active request 'teletext' %}"><a href="{% url app.views.teletext %}"><i class="icon-list"></i>&nbsp;{% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a></li>
-                <li class="{% active request 'hypesites' %}"><a href="{% url app.views.hypesites %}"><i class="icon-road"></i>&nbsp;{% trans "Hypesites" %}&nbsp;<span class="label label-default">beta</span></a></li>
             </ul>
         </div>
         <div class="span10">
