@@ -44,7 +44,7 @@
     right: 20px;
 }
 
-.apply-progressbar .progress, #restore-progress .progress {
+.apply-progressbar .progress, #restore-progress .progress, .format-progressbar .progress {
     margin-bottom: 0;
 }
 
