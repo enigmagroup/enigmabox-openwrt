@@ -82,9 +82,9 @@ if [[ $task == 'umount_drive' ]]; then
     for drive in $drives; do
         if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
             umount "$drive"1
-            umount "/media/$vol_name"
         fi
     done
+    umount "/media/$vol_name"
 fi
 
 if [[ $task == 'get_drive_stat' ]]; then
