@@ -9,6 +9,8 @@ dynamic_status="/tmp/format-in-progress"
 
 task=$1
 
+[[ -z $task ]] && exit 0
+
 if [[ $task == 'format_drive' ]]; then
     vol_id=$2
 
@@ -103,6 +105,17 @@ if [[ $task == 'get_drive_stat' ]]; then
             echo "vol_id:$vol_id vol_size:$vol_size vol_mounted:$vol_mounted "
 
         fi
+    done
+
+fi
+
+if [[ $task == 'mount_all' ]]; then
+
+    volumes=$(cat /etc/enigmabox/volumes)
+    for volume in $volumes; do
+        identifier=$(echo $volume | cut -d' ' -f1)
+        name=$(echo $volume | cut -d' ' -f2)
+        /usr/sbin/volumes-mounter mount_drive "$identifier" "$name"
     done
 
 fi
