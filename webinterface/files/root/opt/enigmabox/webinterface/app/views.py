@@ -1015,6 +1015,7 @@ def storage(request):
     if request.POST.get('remove', False):
         v = Volume.objects.get(identifier=request.POST.get('identifier'))
         v.delete()
+        o.config_changed(True)
 
     # get all volumes via script
     volumes = Popen(["volumes-mounter", "list_drives"], stdout=PIPE).communicate()[0]
