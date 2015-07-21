@@ -1067,6 +1067,18 @@ def apply_changes(request):
 
 
 
+# Format drive
+
+@csrf_exempt
+def format_drive(request):
+    if request.POST.get('format_drive') == 'run':
+        Popen(["/usr/sbin/volumes-mounter", "format_drive", request.POST.get('identifier')], stdout=PIPE, close_fds=True)
+        return HttpResponse('ok')
+
+    return HttpResponse('')
+
+
+
 # Dynamic output
 
 def dynamic_output(request):
