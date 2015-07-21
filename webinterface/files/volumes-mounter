@@ -25,8 +25,8 @@ task=$1
 [[ -z $task ]] && exit 0
 
 mount_drive() {
-    vol_id=$2
-    vol_name=$3
+    vol_id=$1
+    vol_name=$2
 
     drives=$(find /dev -name sd[b-z])
     for drive in $drives; do
