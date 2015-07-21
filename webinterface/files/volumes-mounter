@@ -3,6 +3,7 @@
 # variables
 webinterface="http://127.0.0.1:8000"
 dynamic_output="/tmp/dynamic_output"
+dynamic_status="/tmp/format-in-progress"
 
 
 
@@ -10,6 +11,8 @@ task=$1
 
 if [[ $task == 'format_drive' ]]; then
     vol_id=$2
+
+    touch "$dynamic_status"
 
     drives=$(find /dev -name sd[b-z])
     for drive in $drives; do
@@ -36,6 +39,8 @@ w
 
         fi
     done
+
+    rm "$dynamic_status"
 
 fi
 

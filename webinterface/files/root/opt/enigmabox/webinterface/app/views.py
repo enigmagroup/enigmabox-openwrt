@@ -1112,6 +1112,13 @@ def dynamic_status(request):
         else:
             return HttpResponse('done')
 
+    if request.GET.get('key') == 'formatdrive':
+        import os.path
+        if os.path.isfile('/tmp/format-in-progress'):
+            return HttpResponse('in progress')
+        else:
+            return HttpResponse('done')
+
 
 
 # API
