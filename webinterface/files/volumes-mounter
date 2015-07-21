@@ -1,13 +1,21 @@
 #!/bin/ash
 
+# variables
+webinterface="http://127.0.0.1:8000"
+dynamic_output="/tmp/dynamic_output"
+
+
+
 task=$1
 
-if [[ $task == 'format_usb' ]]; then
+if [[ $task == 'format_drive' ]]; then
+    vol_id=$2
 
-    usbdrive=$(find_usb)
-    [[ -z $usbdrive ]] && exit 1
+    drives=$(find /dev -name sd[b-z])
+    for drive in $drives; do
+        if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
 
-    echo "p
+        echo "p
 d
 d
 d
@@ -19,9 +27,12 @@ n
 
 p
 w
-" | /usr/sbin/fdisk $usbdrive
+" | /usr/sbin/fdisk $drive > "$dynamic_output"
 
-    /usr/sbin/mkfs.ext4 "$usbdrive"1
+        /usr/sbin/mkfs.ext4 "$drive"1 > "$dynamic_output"
+
+        fi
+    done
 
 fi
 
