@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
 PKG_VERSION:=1.4.9
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -63,6 +63,9 @@ define Package/webinterface/install
 	$(INSTALL_BIN) ./files/restore-stuff $(1)/usr/sbin/restore-stuff
 	$(INSTALL_BIN) ./files/set-country $(1)/usr/sbin/set-country
 	$(INSTALL_BIN) ./files/volumes-mounter $(1)/usr/sbin/volumes-mounter
+
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/usb
+	$(INSTALL_BIN) ./files/trigger-volume-mounter $(1)/etc/hotplug.d/usb/trigger-volume-mounter
 endef
 
 $(eval $(call BuildPackage,webinterface))
