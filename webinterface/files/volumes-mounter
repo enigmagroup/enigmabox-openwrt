@@ -11,7 +11,7 @@ dynamic_status="/tmp/format-in-progress"
 # Check if this script is already running
 kill -0 $(cat "$pidfile" 2> /dev/null) 2> /dev/null
 if [[ "$?" == "0" ]]; then
-    echo "Script is already running, exiting"
+    #echo "Script is already running, exiting" #don't tell that, output for list_drives...
     exit 1
 else
     [[ -f "$pidfile" ]] && rm "$pidfile"
