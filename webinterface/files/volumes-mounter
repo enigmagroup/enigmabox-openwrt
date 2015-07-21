@@ -111,6 +111,9 @@ fi
 
 if [[ $task == 'mount_all' ]]; then
 
+    IFS="
+" #yes. Newline.
+
     volumes=$(cat /etc/enigmabox/volumes)
     for volume in $volumes; do
         identifier=$(echo $volume | cut -d' ' -f1)

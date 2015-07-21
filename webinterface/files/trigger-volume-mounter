@@ -1,5 +1,7 @@
 #!/bin/ash
 
+sleep 1
+
 drives=$(find /dev -name sd[a-z])
 for drive in $drives; do
     identifier=$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')
