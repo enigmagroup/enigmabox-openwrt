@@ -24,6 +24,26 @@ task=$1
 
 [[ -z $task ]] && exit 0
 
+mount_drive() {
+    vol_id=$2
+    vol_name=$3
+
+    drives=$(find /dev -name sd[b-z])
+    for drive in $drives; do
+        if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
+            mkdir -p "/media/$vol_name"
+            [[ $(mount | grep "/media/$vol_name" | wc -l) -gt 0 ]] && umount "/media/$vol_name" && sleep 1
+            mount "$drive"1 "/media/$vol_name"
+            [[ $(mount | grep $drive | wc -l) -gt 0 ]] || echo 'failed'
+
+            # check if writeable
+            echo 'writeable' > "/media/$vol_name/.writetest"
+            [[ $(cat "/media/$vol_name/.writetest") == 'writeable' ]] || echo 'failed'
+            rm "/media/$vol_name/.writetest" 2> /dev/null
+        fi
+    done
+}
+
 if [[ $task == 'format_drive' ]]; then
     vol_id=$2
 
@@ -70,23 +90,7 @@ if [[ $task == 'list_drives' ]]; then
 fi
 
 if [[ $task == 'mount_drive' ]]; then
-    vol_id=$2
-    vol_name=$3
-
-    drives=$(find /dev -name sd[b-z])
-    for drive in $drives; do
-        if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
-            mkdir -p "/media/$vol_name"
-            [[ $(mount | grep "/media/$vol_name" | wc -l) -gt 0 ]] && umount "/media/$vol_name" && sleep 1
-            mount "$drive"1 "/media/$vol_name"
-            [[ $(mount | grep $drive | wc -l) -gt 0 ]] || echo 'failed'
-
-            # check if writeable
-            echo 'writeable' > "/media/$vol_name/.writetest"
-            [[ $(cat "/media/$vol_name/.writetest") == 'writeable' ]] || echo 'failed'
-            rm "/media/$vol_name/.writetest" 2> /dev/null
-        fi
-    done
+    mount_drive $2 $3
 fi
 
 if [[ $task == 'umount_drive' ]]; then
@@ -131,7 +135,7 @@ if [[ $task == 'mount_all' ]]; then
     for volume in $volumes; do
         identifier=$(echo $volume | cut -d' ' -f1)
         name=$(echo $volume | cut -d' ' -f2)
-        /usr/sbin/volumes-mounter mount_drive "$identifier" "$name"
+        mount_drive "$identifier" "$name"
     done
 
 fi
