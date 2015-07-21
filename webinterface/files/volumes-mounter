@@ -136,3 +136,5 @@ if [[ $task == 'mount_all' ]]; then
 
 fi
 
+rm "$pidfile"
+
