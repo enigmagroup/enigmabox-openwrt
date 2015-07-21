@@ -274,7 +274,7 @@ $(function() {
 
             applyval = setInterval(function() {
                 try {
-                    $.get('/dynamic_status/?key=applynow', function(data) {
+                    $.get('/dynamic_status/?key=formatdrive', function(data) {
                         if(data == 'done') {
                             setTimeout(function() {
                                 clearInterval(applyval);
@@ -299,11 +299,10 @@ $(function() {
                 });
             }, 600);
 
-    /*
-            $.post('/format-drive/', {
-                'apply_changes': 'run'
+            $.post('/storage/', {
+                'format_drive': 'run',
+                'identifier': $('#confirm-format').data('identifier')
             });
-    */
 
         }
     });

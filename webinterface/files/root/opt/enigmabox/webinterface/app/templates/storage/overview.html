@@ -80,7 +80,7 @@
   <div class="modal-footer">
     <span class="format-buttonbar">
         <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
-        <button id="confirm-format" class="btn btn-danger">{% trans "Format and destroy all data" %}</button>
+        <button id="confirm-format" class="btn btn-danger" data-identifier="{{ failed_mount_device.identifier }}">{% trans "Format and destroy all data" %}</button>
     </span>
     <span class="format-progressbar hide">
         <div class="progress progress-striped active">
