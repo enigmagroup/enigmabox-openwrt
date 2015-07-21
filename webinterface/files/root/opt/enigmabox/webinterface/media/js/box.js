@@ -230,11 +230,9 @@ $(function() {
                             clearInterval(applyval);
                             $('.apply-progressbar').hide();
                             $('#button-apply').hide();
-                            $('#apply-now .dynamic-output').slideUp(function(){
-                                $('.apply-changes-success').show();
-                                $('.apply-donebar').show();
-                                $('.apply-donebar button').focus();
-                            });
+                            $('.apply-changes-success').show();
+                            $('.apply-donebar').show();
+                            $('.apply-donebar button').focus();
                         }, 1000);
                     }
                 });
