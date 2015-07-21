@@ -1003,12 +1003,14 @@ def storage(request):
         mount_result = Popen(["volumes-mounter", "mount_drive", v.identifier, v.name], stdout=PIPE).communicate()[0]
         if 'failed' in mount_result:
             failed_mount_device = v
+        o.config_changed(True)
 
     if request.POST.get('nouse', False):
         v = Volume.objects.get(identifier=request.POST.get('identifier'))
         v.use = False
         v.save()
         Popen(["volumes-mounter", "umount_drive", v.identifier, v.name], stdout=PIPE).communicate()[0]
+        o.config_changed(True)
 
     if request.POST.get('remove', False):
         v = Volume.objects.get(identifier=request.POST.get('identifier'))
@@ -1437,6 +1439,14 @@ def cfengine_site(request):
     else:
         autopeering = 0
 
+    volumes = []
+    db_volumes = Volume.objects.filter(use=True).order_by('id')
+    for v in db_volumes:
+        volumes.append({
+            'identifier': v.identifier,
+            'name': v.name,
+        })
+
     hypesites_access = o.get_value('hypesites_access', 'off'),
     hype_access_off = (hypesites_access[0] == 'off')
     hype_access_internal = (hypesites_access[0] == 'internal')
@@ -1529,6 +1539,7 @@ def cfengine_site(request):
         'hype_dokuwiki_accesslist': hype_dokuwiki_accesslist,
         'hype_owncloud_accesslist': hype_owncloud_accesslist,
         'display_expiration_notice': display_expiration_notice,
+        'volumes': volumes,
     }
 
     # and this, ladies and gentlemen, is a workaround for mustache
