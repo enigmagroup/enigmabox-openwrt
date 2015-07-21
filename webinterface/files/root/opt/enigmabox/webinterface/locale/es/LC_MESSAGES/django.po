@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-19 14:24+0200\n"
+"POT-Creation-Date: 2015-07-21 22:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,8 +63,8 @@ msgstr "¿Estás seguro?"
 msgid "Show"
 msgstr "Mostrar"
 
-#: app/templates/base.html:31 app/templates/base.html.py:94
-#: app/templates/base.html:104
+#: app/templates/base.html:31 app/templates/base.html.py:96
+#: app/templates/base.html:106
 msgid "Apply changes"
 msgstr "Aplicar cambios"
 
@@ -90,11 +90,11 @@ msgstr "Libreta de direcciones"
 msgid "Passwords"
 msgstr "Contraseñas"
 
-#: app/templates/base.html:59
+#: app/templates/base.html:60 app/templates/storage/overview.html:8
 msgid "Storage"
 msgstr ""
 
-#: app/templates/base.html:60 app/templates/backup/overview.html:8
+#: app/templates/base.html:62 app/templates/backup/overview.html:8
 #: app/templates/backup/sslcerts.html:8 app/templates/backup/system.html:8
 #: app/templates/backup/backupwizard/backup_to_usb.html:8
 #: app/templates/backup/backupwizard/check_usb.html:8
@@ -105,77 +105,78 @@ msgstr ""
 msgid "Backup &amp; restore"
 msgstr "Copia de seguridad y restaurar"
 
-#: app/templates/base.html:62 app/templates/updates/overview.html:8
+#: app/templates/base.html:64 app/templates/updates/overview.html:8
 msgid "Updates"
 msgstr ""
 
-#: app/templates/base.html:65 app/templates/upgrade/overview.html:8
+#: app/templates/base.html:67 app/templates/upgrade/overview.html:8
 msgid "Firmware upgrade"
 msgstr ""
 
-#: app/templates/base.html:67
+#: app/templates/base.html:69
 msgid "Internet"
 msgstr "Internet"
 
-#: app/templates/base.html:68
+#: app/templates/base.html:70
 msgid "Country selection"
 msgstr "Selección de país"
 
-#: app/templates/base.html:69 app/templates/webfilter/overview.html:8
+#: app/templates/base.html:71 app/templates/webfilter/overview.html:8
 msgid "Ad blocking"
 msgstr "Añadir bloqueo"
 
-#: app/templates/base.html:70
+#: app/templates/base.html:72
 msgid "Network"
 msgstr "Red"
 
-#: app/templates/base.html:72 app/templates/subscription/overview.html:8
+#: app/templates/base.html:74 app/templates/subscription/overview.html:8
 #: app/templates/subscription/overview.html:40
 #, fuzzy
 msgid "Subscription"
 msgstr "Descripción"
 
-#: app/templates/base.html:74 app/templates/peerings/detail.html:9
+#: app/templates/base.html:76 app/templates/peerings/detail.html:9
 #: app/templates/peerings/overview.html:8
 msgid "Peerings"
 msgstr "Compañeros"
 
-#: app/templates/base.html:75 app/templates/wlan_settings/overview.html:8
+#: app/templates/base.html:77 app/templates/wlan_settings/overview.html:8
 #: app/templates/wlan_settings/scan.html:9
 msgid "WLAN settings"
 msgstr "Configuración WLAN"
 
-#: app/templates/base.html:76
+#: app/templates/base.html:78
 msgid "Services"
 msgstr "Servicios"
 
-#: app/templates/base.html:77 app/templates/home/overview.html:50
-#: app/templates/home/overview.html:52 app/templates/teletext/overview.html:8
-msgid "Teletext"
-msgstr "Teletext"
-
-#: app/templates/base.html:78 app/templates/hypesites/configure.html:9
+#: app/templates/base.html:79 app/templates/hypesites/configure.html:9
 #: app/templates/hypesites/manage_access.html:9
 #: app/templates/hypesites/overview.html:8
 msgid "Hypesites"
 msgstr ""
 
-#: app/templates/base.html:98
+#: app/templates/base.html:80 app/templates/home/overview.html:50
+#: app/templates/home/overview.html:52 app/templates/teletext/overview.html:8
+msgid "Teletext"
+msgstr "Teletext"
+
+#: app/templates/base.html:100
 #, fuzzy
 msgid "Apply changes?"
 msgstr "Aplicar cambios"
 
-#: app/templates/base.html:99
+#: app/templates/base.html:101
 msgid "Changes successfully applied."
 msgstr "Cambios aplicados con éxito"
 
-#: app/templates/base.html:103 app/templates/addressbook/detail.html:65
+#: app/templates/base.html:105 app/templates/addressbook/detail.html:65
 #: app/templates/addressbook/overview-global-edit.html:52
 #: app/templates/passwords/edit.html:63 app/templates/peerings/detail.html:68
+#: app/templates/storage/overview.html:86
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: app/templates/base.html:112
+#: app/templates/base.html:114 app/templates/storage/overview.html:95
 msgid "Done"
 msgstr ""
 
@@ -211,6 +212,7 @@ msgstr "Número teléfono"
 
 #: app/templates/addressbook/address_table.html:10
 #: app/templates/addressbook/overview-global.html:33
+#: app/templates/storage/overview.html:25
 msgid "Status"
 msgstr "Estado"
 
@@ -228,6 +230,7 @@ msgstr "Mi dirección"
 #: app/templates/backup/restorewizard/check_usb.html:25
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:20
 #: app/templates/passwords/edit.html:30 app/templates/peerings/detail.html:26
+#: app/templates/storage/overview.html:17
 msgid "Error"
 msgstr "Error"
 
@@ -983,6 +986,74 @@ msgstr "Compañero automático"
 msgid "Automatically connect to other cjdns nodes in the same LAN"
 msgstr "Conecta automáticamente a otros nodos cjdns en el mismo LAN"
 
+#: app/templates/storage/overview.html:9
+msgid "Configure external storage devices."
+msgstr ""
+
+#: app/templates/storage/overview.html:11
+#: app/templates/updates/overview.html:62
+#: app/templates/wlan_settings/scan.html:13
+msgid "Refresh"
+msgstr "Renovar"
+
+#: app/templates/storage/overview.html:26
+msgid "Size"
+msgstr ""
+
+#: app/templates/storage/overview.html:27
+#, fuzzy
+msgid "Device name"
+msgstr "Visualización nombre"
+
+#: app/templates/storage/overview.html:28
+msgid "Device identifier"
+msgstr ""
+
+#: app/templates/storage/overview.html:29
+#: app/templates/wlan_settings/overview.html:46
+msgid "Action"
+msgstr "Acción"
+
+#: app/templates/storage/overview.html:38
+msgid "Mounted"
+msgstr ""
+
+#: app/templates/storage/overview.html:40
+msgid "Not mounted"
+msgstr ""
+
+#: app/templates/storage/overview.html:53
+#: app/templates/storage/overview.html:56
+#: app/templates/storage/overview.html:58
+#, fuzzy
+msgid "Use"
+msgstr "Nombre de usuario"
+
+#: app/templates/storage/overview.html:61
+#, fuzzy
+msgid "Remove"
+msgstr "Remover compañero"
+
+#: app/templates/storage/overview.html:75
+msgid "Mount failed"
+msgstr ""
+
+#: app/templates/storage/overview.html:79
+msgid "Mount failed."
+msgstr ""
+
+#: app/templates/storage/overview.html:81
+msgid "Format this volume?"
+msgstr ""
+
+#: app/templates/storage/overview.html:82
+msgid "Drive has been formatted. It may appear as a new volume."
+msgstr ""
+
+#: app/templates/storage/overview.html:87
+msgid "Format and destroy all data"
+msgstr ""
+
 #: app/templates/subscription/overview.html:10
 msgid "Renew your subscription."
 msgstr ""
@@ -1083,11 +1154,6 @@ msgstr "Compañero nuevo"
 #: app/templates/updates/overview.html:62
 msgid "Updates applied."
 msgstr ""
-
-#: app/templates/updates/overview.html:62
-#: app/templates/wlan_settings/scan.html:13
-msgid "Refresh"
-msgstr "Renovar"
 
 #: app/templates/updates/overview.html:63
 msgid "Install updates"
@@ -1240,10 +1306,6 @@ msgstr "Conectar a un punto de acceso WLAN"
 #: app/templates/wlan_settings/scan.html:21
 msgid "SSID"
 msgstr "SSID"
-
-#: app/templates/wlan_settings/overview.html:46
-msgid "Action"
-msgstr "Acción"
 
 #: app/templates/wlan_settings/overview.html:50
 #: app/templates/wlan_settings/scan.html:10
@@ -1418,20 +1480,12 @@ msgstr ""
 #~ msgstr "Contraseña"
 
 #, fuzzy
-#~ msgid "User"
-#~ msgstr "Nombre de usuario"
-
-#, fuzzy
 #~ msgid "Show all"
 #~ msgstr "Mostrar"
 
 #, fuzzy
 #~ msgid "Password (again)"
 #~ msgstr "Contraseña"
-
-#, fuzzy
-#~ msgid "Remove"
-#~ msgstr "Remover compañero"
 
 #, fuzzy
 #~ msgid "Delete?"

@@ -2,8 +2,21 @@
 
 # variables
 webinterface="http://127.0.0.1:8000"
+pidfile="/var/run/volumes-mounter.pid"
 dynamic_output="/tmp/dynamic_output"
 dynamic_status="/tmp/format-in-progress"
+
+
+
+# Check if this script is already running
+kill -0 $(cat "$pidfile" 2> /dev/null) 2> /dev/null
+if [[ "$?" == "0" ]]; then
+    echo "Script is already running, exiting"
+    exit 1
+else
+    [[ -f "$pidfile" ]] && rm "$pidfile"
+fi
+echo $$ > "$pidfile"
 
 
 
