@@ -280,11 +280,9 @@ $(function() {
                                 clearInterval(applyval);
                                 $('.format-progressbar').hide();
                                 $('#button-format').hide();
-                                $('#failed-mount .dynamic-output').slideUp(function(){
-                                    $('.format-drive-success').show();
-                                    $('.format-donebar').show();
-                                    $('.format-donebar a').focus();
-                                });
+                                $('.format-drive-success').show();
+                                $('.format-donebar').show();
+                                $('.format-donebar a').focus();
                             }, 1000);
                         }
                     });
