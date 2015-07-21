@@ -18,14 +18,15 @@ if [[ $task == 'format_drive' ]]; then
     for drive in $drives; do
         if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
 
-            echo "formatting drive..." > "$dynamic_output"
-            exit
-
             echo "p
 d
+
 d
+
 d
+
 d
+
 g
 n
 
@@ -35,7 +36,7 @@ p
 w
 " | /usr/sbin/fdisk $drive > "$dynamic_output"
 
-            /usr/sbin/mkfs.ext4 "$drive"1 > "$dynamic_output"
+            /usr/sbin/mkfs.ext4 "$drive"1 >> "$dynamic_output"
 
         fi
     done
