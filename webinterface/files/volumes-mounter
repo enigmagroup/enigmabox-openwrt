@@ -32,14 +32,28 @@ mount_drive() {
     for drive in $drives; do
         if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
             mkdir -p "/media/$vol_name"
-            [[ $(mount | grep "/media/$vol_name" | wc -l) -gt 0 ]] && umount "/media/$vol_name" && sleep 1
-            mount "$drive"1 "/media/$vol_name"
-            [[ $(mount | grep $drive | wc -l) -gt 0 ]] || echo 'failed'
 
-            # check if writeable
-            echo 'writeable' > "/media/$vol_name/.writetest"
-            [[ $(cat "/media/$vol_name/.writetest") == 'writeable' ]] || echo 'failed'
-            rm "/media/$vol_name/.writetest" 2> /dev/null
+            # umount if mounted and unable to write
+            if [[ $(mount | grep "/media/$vol_name" | wc -l) -gt 0 ]]; then
+                echo 'writeable' > "/media/$vol_name/.writetest"
+                if [[ $(cat "/media/$vol_name/.writetest") == 'writeable' ]]; then
+                    rm "/media/$vol_name/.writetest" 2> /dev/null
+                else
+                    umount "/media/$vol_name"
+                    mount "$drive"1 "/media/$vol_name"
+                    [[ $(mount | grep $drive | wc -l) -gt 0 ]] || echo 'failed'
+                fi
+
+            # drive is not mounted
+            else
+                mount "$drive"1 "/media/$vol_name"
+                [[ $(mount | grep $drive | wc -l) -gt 0 ]] || echo 'failed'
+
+                # check if writeable
+                echo 'writeable' > "/media/$vol_name/.writetest"
+                [[ $(cat "/media/$vol_name/.writetest") == 'writeable' ]] || echo 'failed'
+                rm "/media/$vol_name/.writetest" 2> /dev/null
+            fi
         fi
     done
 }
