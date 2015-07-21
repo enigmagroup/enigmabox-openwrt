@@ -264,4 +264,48 @@ $(function() {
         'keyboard': true
     });
 
+    $('#confirm-format').on('click', function() {
+        if(confirm(trans['are_you_sure'])) {
+
+            $('.format-buttonbar').hide();
+            $('.format-drive-ask').hide();
+            $('.format-progressbar').show();
+            $('#failed-mount .dynamic-output').slideDown();
+
+            applyval = setInterval(function() {
+                try {
+                    $.get('/dynamic_status/?key=applynow', function(data) {
+                        if(data == 'done') {
+                            setTimeout(function() {
+                                clearInterval(applyval);
+                                $('.format-progressbar').hide();
+                                $('#button-format').hide();
+                                $('#failed-mount .dynamic-output').slideUp(function(){
+                                    $('.format-drive-success').show();
+                                    $('.format-donebar').show();
+                                    $('.format-donebar a').focus();
+                                });
+                            }, 1000);
+                        }
+                    });
+                } catch(e){}
+                $dynamic_output.load('/dynamic_output/', function(data) {
+                    if(data != prev_data){
+                        $('#failed-mount .dynamic-output').animate({
+                            scrollTop: $('.dynamic-output')[0].scrollHeight
+                        }, 1000);
+                        prev_data = data;
+                    }
+                });
+            }, 600);
+
+    /*
+            $.post('/format-drive/', {
+                'apply_changes': 'run'
+            });
+    */
+
+        }
+    });
+
 });
