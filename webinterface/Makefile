@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=1.4.2
+PKG_VERSION:=1.4.3
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -62,6 +62,7 @@ define Package/webinterface/install
 	$(INSTALL_BIN) ./files/backup-stuff $(1)/usr/sbin/backup-stuff
 	$(INSTALL_BIN) ./files/restore-stuff $(1)/usr/sbin/restore-stuff
 	$(INSTALL_BIN) ./files/set-country $(1)/usr/sbin/set-country
+	$(INSTALL_BIN) ./files/volumes-mounter $(1)/usr/sbin/volumes-mounter
 endef
 
 $(eval $(call BuildPackage,webinterface))
