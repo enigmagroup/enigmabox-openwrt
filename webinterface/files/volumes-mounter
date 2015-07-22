@@ -5,6 +5,7 @@ webinterface="http://127.0.0.1:8000"
 pidfile="/var/run/volumes-mounter.pid"
 dynamic_output="/tmp/dynamic_output"
 dynamic_status="/tmp/format-in-progress"
+[[ $(cat /etc/enigmabox/network-profile) == 'raspi' ]] && start_part=a || start_part=b
 
 
 
@@ -28,7 +29,7 @@ mount_drive() {
     vol_id=$1
     vol_name=$2
 
-    drives=$(find /dev -name sd[b-z])
+    drives=$(find /dev -name sd[$start_part-z])
     for drive in $drives; do
         if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
             mkdir -p "/media/$vol_name"
@@ -63,7 +64,7 @@ if [[ $task == 'format_drive' ]]; then
 
     touch "$dynamic_status"
 
-    drives=$(find /dev -name sd[b-z])
+    drives=$(find /dev -name sd[$start_part-z])
     for drive in $drives; do
         if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
 
@@ -95,7 +96,7 @@ w
 fi
 
 if [[ $task == 'list_drives' ]]; then
-    drives=$(find /dev -name sd[b-z])
+    drives=$(find /dev -name sd[$start_part-z])
     for drive in $drives; do
         if [[ $(fdisk "$drive" --list 2> /dev/null | grep 'Disk identifier' | wc -l) -gt 0 ]]; then
             fdisk $drive --list | grep 'Disk identifier' | cut -d' ' -f3
@@ -111,7 +112,7 @@ if [[ $task == 'umount_drive' ]]; then
     vol_id=$2
     vol_name=$3
 
-    drives=$(find /dev -name sd[b-z])
+    drives=$(find /dev -name sd[$start_part-z])
     for drive in $drives; do
         if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
             umount "$drive"1
@@ -123,7 +124,7 @@ fi
 if [[ $task == 'get_drive_stat' ]]; then
     vol_id=$2
 
-    drives=$(find /dev -name sd[b-z])
+    drives=$(find /dev -name sd[$start_part-z])
     for drive in $drives; do
         if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
 
