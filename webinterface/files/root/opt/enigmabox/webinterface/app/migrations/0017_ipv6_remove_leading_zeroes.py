@@ -12,6 +12,12 @@ class Migration(DataMigration):
         # Use orm.ModelName to refer to models in this application,
         # and orm['appname.ModelName'] for models in other applications.
 
+        # strange bug: on some boxes, there are multiple entries
+        # ensure that there is only one
+        while len(orm.Option.objects.filter(key='ipv6')) > 1:
+            ipv6 = orm.Option.objects.filter(key='ipv6')
+            ipv6[1].delete()
+
         # normalize own ip
         ipv6 = orm.Option.objects.get(key='ipv6')
         ipv6.value = ':'.join([str(x).lstrip('0') for x in ipv6.value.split(':')])
