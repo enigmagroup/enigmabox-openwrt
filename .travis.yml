@@ -11,5 +11,5 @@ script:
     - wget http://paste.the-compiler.org/view/raw/0446fd8b -O .config
     - make defconfig
     - make prereq
-    - make -j2 V=99
+    - make -j1 V=99
 
