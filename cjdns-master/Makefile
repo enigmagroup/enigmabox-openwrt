@@ -48,6 +48,7 @@ define Build/Compile
 	CROSS="true" \
 	CFLAGS="$(TARGET_CFLAGS)" \
 	NO_PIE="true" \
+	SSP_SUPPORT="n" \
 	Seccomp_NO="true" \
 	CC="$(TARGET_CC)" \
 	ARCH="$(ARCH)" \
