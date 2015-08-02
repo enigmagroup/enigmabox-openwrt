@@ -1,0 +1,18 @@
+diff --git a/node_build/make.js b/node_build/make.js
+index 5b15c1b..12623b3 100644
+--- a/node_build/make.js
++++ b/node_build/make.js
+@@ -61,13 +61,6 @@ Builder.configure({
+         '-Wno-unused-parameter',
+         '-Wno-unused-result',
+ 
+-        // Broken GCC patch makes -fstack-protector-all not work
+-        // workaround is to give -fno-stack-protector first.
+-        // see: https://bugs.launchpad.net/ubuntu/+source/gcc-4.5/+bug/691722
+-        '-fno-stack-protector',
+-        '-fstack-protector-all',
+-        '-Wstack-protector',
+-
+         '-D','HAS_BUILTIN_CONSTANT_P',
+ 
+         '-g',
