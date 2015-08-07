@@ -12,11 +12,11 @@ How to build that stuff:
 
 Your feeds.conf should look like this:
 
-    src-git packages https://github.com/openwrt/packages.git
-    src-git oldpackages http://git.openwrt.org/packages.git
-    src-git management https://github.com/openwrt-management/packages.git
-    src-git routing https://github.com/openwrt-routing/packages.git
-    src-git telephony https://github.com/openwrt/telephony.git
+    src-git packages https://github.com/enigmagroup/openwrt-packages.git
+    src-git oldpackages https://github.com/enigmagroup/openwrt-oldpackages.git
+    src-git management https://github.com/enigmagroup/openwrt-management.git
+    src-git routing https://github.com/enigmagroup/openwrt-routing.git
+    src-git telephony https://github.com/enigmagroup/openwrt-telephony.git
 
     src-git enigmabox https://github.com/enigmagroup/enigmabox-openwrt.git
 
