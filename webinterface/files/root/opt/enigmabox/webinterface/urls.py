@@ -47,7 +47,7 @@ urlpatterns = patterns('app.views',
     url(r'^peerings/$', 'peerings'),
 
     # countryselect
-    url(r'^countryselect/$', 'countryselect'),
+    #url(r'^countryselect/$', 'countryselect'),
 
     # ad filter
     url(r'^webfilter/$', 'webfilter'),
