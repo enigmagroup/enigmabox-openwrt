@@ -1283,6 +1283,8 @@ def cfengine_site(request):
         except Exception:
             pass
 
+        cjdns_version = o.get_value('cjdns_version', cjdns_version)
+
         o.set_value('hostid', hostid)
         o.set_value('internet_access', internet_access)
         o.set_value('password', password)

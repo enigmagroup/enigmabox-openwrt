@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "Select network" %}</h1>
+
+      <p>{% trans "We are migrating to a new topology soon. Try it out here. Be warned: the two networks are separate, peers can only communicate inside the same network." %}</p>
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+<fieldset>
+
+<legend>{% trans "Network selection" %}</legend>
+
+{% if network_preference == 'regular' %}
+    <button id="set_network_preference_regular" name="set_network_preference_regular" class="btn btn-warning" value="1">{% trans "Legacy" %}</button>
+{% else %}
+    <button id="set_network_preference_regular" name="set_network_preference_regular" class="btn btn-default" value="1">{% trans "Legacy" %}</button>
+{% endif %}
+
+{% if network_preference == 'topo128' %}
+    <button id="set_network_preference_topo128" name="set_network_preference_topo128" class="btn btn-warning" value="1">{% trans "New topology" %}</button>
+{% else %}
+    <button id="set_network_preference_topo128" name="set_network_preference_topo128" class="btn btn-default" value="1">{% trans "New topology" %}</button>
+{% endif %}
+
+</fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}

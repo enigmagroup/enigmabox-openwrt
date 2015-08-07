@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=1.5.0
-PKG_RELEASE:=2
+PKG_VERSION:=1.5.1
+PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -11,7 +11,7 @@ define Package/webinterface
   CATEGORY:=Enigmabox
   TITLE:=Enigmabox web interface
   URL:=http://enigmabox.net/en/
-  DEPENDS:=+cjdns-master +cjdns-v6
+  DEPENDS:=+cjdns-master +cjdns-v6 +cjdns-v16
   DEPENDS+= +curl +syslog-ng +zip +unzip +shadow-usermod +kmod-ipt-nat6 +isc-dhcp-server-ipv4 +radvd +gesftpserver +vnstat +rsync +fdisk +@DROPBEAR_ECC +@BUSYBOX_CUSTOM +@BUSYBOX_CONFIG_DIFF
   DEPENDS+= +python +python-django-1.4 +python-gunicorn +python-six +python-gevent +python-requests +django-south +python-json +python-unidecode +python-beanstalkc +python-imglib
   DEPENDS+= +asterisk11 +asterisk11-sounds +asterisk11-codec-gsm +asterisk11-format-gsm +asterisk11-format-wav +asterisk11-res-srtp +asterisk11-res-musiconhold +asterisk11-app-confbridge +asterisk11-app-read +asterisk11-res-timing-timerfd +asterisk11-voicemail +asterisk11-format-h264
