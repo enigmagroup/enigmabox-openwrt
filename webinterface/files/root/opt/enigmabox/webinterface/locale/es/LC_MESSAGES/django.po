@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-21 22:38+0200\n"
+"POT-Creation-Date: 2015-09-01 10:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -874,6 +874,32 @@ msgstr ""
 msgid "Last seen"
 msgstr ""
 
+#: app/templates/network_selection/overview.html:8
+#, fuzzy
+msgid "Select network"
+msgstr "Seleccionar país"
+
+#: app/templates/network_selection/overview.html:10
+msgid ""
+"We are migrating to a new topology soon. Try it out here. Be warned: the two "
+"networks are separate, peers can only communicate inside the same network."
+msgstr ""
+
+#: app/templates/network_selection/overview.html:16
+#, fuzzy
+msgid "Network selection"
+msgstr "Selección de país"
+
+#: app/templates/network_selection/overview.html:19
+#: app/templates/network_selection/overview.html:21
+msgid "Legacy"
+msgstr ""
+
+#: app/templates/network_selection/overview.html:25
+#: app/templates/network_selection/overview.html:27
+msgid "New topology"
+msgstr ""
+
 #: app/templates/passwords/edit.html:18
 #: app/templates/passwords/overview.html:15
 #, fuzzy
@@ -1231,9 +1257,10 @@ msgid "Instructions"
 msgstr "Instrucciones"
 
 #: app/templates/webfilter/overview.html:13
+#, fuzzy
 msgid ""
-"<a href=\"http://enigmabox.net/en/ad-blocking/\" target=\"_blank\">enigmabox."
-"net/en/ad-blocking/</a>"
+"<a href=\"https://wiki.enigmabox.net/howto/adblocker/en/configure\" target="
+"\"_blank\">wiki.enigmabox.net/howto/adblocker/en/configure</a>"
 msgstr ""
 "<a href=\"http://enigmabox.net/en/ad-blocking/\" target=\"_blank\">enigmabox."
 "net/en/ad-blocking/</a>"
@@ -1449,10 +1476,6 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Run the selected action"
-#~ msgstr "Selección de país"
-
-#, fuzzy
-#~ msgid "Clear selection"
 #~ msgstr "Selección de país"
 
 #, fuzzy

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-21 22:38+0200\n"
-"PO-Revision-Date: 2015-07-21 22:42+0100\n"
+"POT-Creation-Date: 2015-09-01 10:14+0200\n"
+"PO-Revision-Date: 2015-09-01 10:15+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -842,6 +842,30 @@ msgstr "Site"
 msgid "Last seen"
 msgstr "Zuletzt online"
 
+#: app/templates/network_selection/overview.html:8
+msgid "Select network"
+msgstr "Netzwerk auswählen"
+
+#: app/templates/network_selection/overview.html:10
+msgid ""
+"We are migrating to a new topology soon. Try it out here. Be warned: the two "
+"networks are separate, peers can only communicate inside the same network."
+msgstr ""
+
+#: app/templates/network_selection/overview.html:16
+msgid "Network selection"
+msgstr "Netzwerkauswahl"
+
+#: app/templates/network_selection/overview.html:19
+#: app/templates/network_selection/overview.html:21
+msgid "Legacy"
+msgstr ""
+
+#: app/templates/network_selection/overview.html:25
+#: app/templates/network_selection/overview.html:27
+msgid "New topology"
+msgstr ""
+
 #: app/templates/passwords/edit.html:18
 #: app/templates/passwords/overview.html:15
 msgid "Password for the web interface <em>http://box/</em>"
@@ -1194,11 +1218,11 @@ msgstr "Anleitung"
 
 #: app/templates/webfilter/overview.html:13
 msgid ""
-"<a href=\"http://enigmabox.net/en/ad-blocking/\" target=\"_blank\">enigmabox."
-"net/en/ad-blocking/</a>"
+"<a href=\"https://wiki.enigmabox.net/howto/adblocker/en/configure\" target="
+"\"_blank\">wiki.enigmabox.net/howto/adblocker/en/configure</a>"
 msgstr ""
-"<a href=\"http://enigmabox.net/werbeblocker/\" target=\"_blank\">enigmabox."
-"net/werbeblocker/</a>"
+"<a href=\"https://wiki.enigmabox.net/howto/adblocker/de/configure\" target="
+"\"_blank\">wiki.enigmabox.net/howto/adblocker/de/configure</a>"
 
 #: app/templates/webfilter/overview.html:23
 msgid "General configuration"
