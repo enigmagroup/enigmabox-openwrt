@@ -30,6 +30,10 @@ bundle agent system_base
       edit_template => "$(this.promise_dirname)/templates/sysupgrade.conf",
       edit_defaults => no_backup;
 
+      "/etc/sysctl.conf"
+      edit_template => "$(this.promise_dirname)/templates/sysctl.conf",
+      edit_defaults => no_backup;
+
       "/etc/banner"
       edit_template => "$(this.promise_dirname)/templates/banner",
       edit_defaults => no_backup;
