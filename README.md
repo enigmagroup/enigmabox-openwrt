@@ -5,7 +5,7 @@ OpenWrt package feed for the Enigmabox software suite.
 
 How to build that stuff:
 
-    $ git clone git://git.openwrt.org/openwrt.git
+    $ git clone https://github.com/enigmagroup/openwrt.git
     $ cd openwrt
 
     $ vi feeds.conf
@@ -24,8 +24,6 @@ Next use that package system to incorporate the Enigmabox software suite:
 
     $ ./scripts/feeds update -a
     $ ./scripts/feeds install -a
-    $ make defconfig
-    $ make prereq
 
 Then configure for your system:
 
