@@ -8,9 +8,13 @@ exp_month=$(echo $expiredate | cut -d- -f2)
 exp_day=$(echo $expiredate | cut -d- -f3)
 reachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '192.168.' | grep -v '.eb' | grep OK | wc -l)
 unreachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '192.168.' | grep -v '.eb' | grep UNREACHABLE | wc -l)
+new_mails=$(/usr/bin/find /box/vmail/mail/Maildir/new/ -type f | wc -l)
 
 echo > $statfile
 
+if [[ $new_mails -gt 0 ]]; then
+    echo "Du hast $new_mails i-mäils erhalten." >> $statfile
+fi
 if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
     echo 'Alle Systeme funktionieren einwandfrei, dein Internetzugang ist verschlüsselt.' >> $statfile
 else
