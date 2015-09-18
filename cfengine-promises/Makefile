@@ -42,6 +42,8 @@ define Package/cfengine-promises/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) ./files/hello $(1)/usr/bin/hello
 	$(INSTALL_BIN) ./files/speedtest $(1)/usr/bin/speedtest
+	$(INSTALL_BIN) ./files/tts-de $(1)/usr/bin/tts-de
+	$(INSTALL_BIN) ./files/tts-en $(1)/usr/bin/tts-en
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cfengine-promises.init $(1)/etc/init.d/cfengine-promises

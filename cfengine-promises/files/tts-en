@@ -1,0 +1,8 @@
+#!/bin/ash
+
+temptts=/tmp/tts
+
+/usr/bin/pico2wave -l en-EN -w $temptts.wav "$@"
+/usr/bin/sox $temptts.wav -r 8000 -c1 -e gsm $temptts.gsm
+/bin/rm $temptts.wav
+
