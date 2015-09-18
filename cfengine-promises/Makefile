@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cfengine-promises
 PKG_VERSION:=1.5.3
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -44,6 +44,7 @@ define Package/cfengine-promises/install
 	$(INSTALL_BIN) ./files/speedtest $(1)/usr/bin/speedtest
 	$(INSTALL_BIN) ./files/tts-de $(1)/usr/bin/tts-de
 	$(INSTALL_BIN) ./files/tts-en $(1)/usr/bin/tts-en
+	$(INSTALL_BIN) ./files/generate-enigmabox-statusmsg $(1)/usr/bin/generate-enigmabox-statusmsg
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/cfengine-promises.init $(1)/etc/init.d/cfengine-promises

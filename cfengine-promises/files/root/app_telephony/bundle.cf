@@ -30,13 +30,6 @@ bundle agent app_telephony
       edit_defaults => no_backup,
       classes => if_repaired("restart_asterisk");
 
-      "/usr/bin/generate-enigmabox-statusmsg"
-      create => "true",
-      template_method => "mustache",
-      template_data => readjson("$(g.site)", 64000),
-      edit_template => "$(this.promise_dirname)/templates/generate-enigmabox-statusmsg.mustache",
-      edit_defaults => no_backup;
-
   commands:
     restart_asterisk::
       "/etc/init.d/asterisk restart";
