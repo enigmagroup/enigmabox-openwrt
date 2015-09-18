@@ -14,7 +14,7 @@ exten => _X.,n,Hangup()
 {{#if_display_expiration_notice}}
 ;expiration notice
 exten => _X.,1,Answer()
-exten => _X.,n,System(/usr/bin/tts 'Dein Abonnement ist abgelaufen. Das tut mir nicht leid. Hättest du halt pünktlich gezahlt.')
+exten => _X.,n,System(/usr/bin/tts-de 'Dein Abonnement ist abgelaufen. Das tut mir nicht leid. Hättest du halt pünktlich gezahlt.')
 exten => _X.,n,Playback(/tmp/tts)
 exten => _X.,n,Hangup()
 {{/if_display_expiration_notice}}
