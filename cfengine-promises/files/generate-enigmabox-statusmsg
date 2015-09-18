@@ -10,7 +10,32 @@ reachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '.eb' | grep OK | 
 unreachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '.eb' | grep UNREACHABLE | wc -l)
 
 echo > $statfile
-#echo 'Alle Systeme sind grün.' >> $statfile
+
+if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
+    echo 'Alle Systeme funktionieren einwandfrei, dein Internetzugang ist verschlüsselt.' >> $statfile
+else
+    echo 'Scheisse, hier ist etwas faul.' >> $statfile
+    if [[ $(cat /tmp/netstat-dhcp) == '1' ]]; then
+        echo 'Ich habe eine IP von deinem Router erhalten.' >> $statfile
+    else
+        echo 'Ich habe keine IP von deinem Router erhalten.' >> $statfile
+    fi
+    if [[ $(cat /tmp/netstat-internet) == '1' ]]; then
+        echo 'Ich kann auf das Internet zugreifen.' >> $statfile
+    else
+        echo 'Ich kann nicht auf das Internet zugreifen.' >> $statfile
+    fi
+    if [[ $(cat /tmp/netstat-cjdns) == '1' ]]; then
+        echo 'Der Netzwerkdienst läuft.' >> $statfile
+    else
+        echo 'Der Netzwerkdienst läuft nicht.' >> $statfile
+    fi
+    if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
+        echo 'Ich habe Zugang zum verschlüsselten Internet.' >> $statfile
+    else
+        echo 'Ich habe keinen Zugang zum verschlüsselten Internet.' >> $statfile
+    fi
+fi
 echo "Deine Host-ei-di ist $hostid. - " >> $statfile
 echo "Dein Netzwerkzugang ist noch gültig bis zum $exp_day.$exp_month.$exp_year." >> $statfile
 echo "$reachable Kontakte erreichbar." >> $statfile
