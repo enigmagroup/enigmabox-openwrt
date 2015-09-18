@@ -11,6 +11,16 @@ exten => _X.,n,Voicemail(100@default)
 exten => _X.,n,Hangup()
 
 [friends]
+{{#if_display_expiration_notice}}
+;expiration notice
+exten => _X.,1,Answer()
+exten => _X.,n,System(/usr/bin/tts 'Dein Abonnement ist abgelaufen. Das tut mir nicht leid. Hättest du halt pünktlich gezahlt.')
+exten => _X.,n,Playback(/tmp/tts)
+exten => _X.,n,Hangup()
+{{/if_display_expiration_notice}}
+
+{{^if_display_expiration_notice}}
+
 {{#addresses}}
 exten => {{phone}},1,Dial(SIP/100@{{hostname}})
 {{/addresses}}
@@ -29,3 +39,4 @@ exten => 1,n,Hangup()
 ;confcall
 exten => 8,1,ConfBridge(8)
 
+{{/if_display_expiration_notice}}
