@@ -3,6 +3,6 @@
 temptts=/tmp/tts
 
 /usr/bin/pico2wave -l de-DE -w $temptts.wav "$@"
-/usr/bin/sox $temptts.wav -r 8000 -c1 -e gsm $temptts.gsm
+/usr/bin/sox $temptts.wav -r 8000 -c1 -e gsm $temptts.gsm norm -3
 /bin/rm $temptts.wav
 
