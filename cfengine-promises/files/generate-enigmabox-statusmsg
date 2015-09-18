@@ -16,9 +16,9 @@ if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
 else
     echo 'Scheisse, hier ist etwas faul.' >> $statfile
     if [[ $(cat /tmp/netstat-dhcp) == '1' ]]; then
-        echo 'Ich habe eine IP von deinem Router erhalten.' >> $statfile
+        echo 'Ich habe eine ai pi von deinem Router erhalten.' >> $statfile
     else
-        echo 'Ich habe keine IP von deinem Router erhalten.' >> $statfile
+        echo 'Ich habe keine ai pi von deinem Router erhalten.' >> $statfile
     fi
     if [[ $(cat /tmp/netstat-internet) == '1' ]]; then
         echo 'Ich kann auf das Internet zugreifen.' >> $statfile
