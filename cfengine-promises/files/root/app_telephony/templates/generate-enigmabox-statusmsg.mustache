@@ -1,0 +1,16 @@
+#!/bin/ash
+
+statfile=/tmp/tmp-ebox-statustext
+hostid='{{hostid}}'
+expiredate='{{expiredate}}'
+
+echo > $statfile
+#echo 'Alle Systeme sind grün.' >> $statfile
+echo "Deine Host-ei-di ist $hostid. - " >> $statfile
+echo "Dein Netzwerkzugang ist noch gültig bis zum $expiredate." >> $statfile
+echo "12 Kontakte erreichbar." >> $statfile
+echo "17 Kontakte nicht erreichbar." >> $statfile
+echo "Ich wünsche dir einen schönen Tag und einen sicheren Aufenthalt im globalen Datennetzwerk." >> $statfile
+
+/usr/bin/tts-de "$(cat $statfile)"
+

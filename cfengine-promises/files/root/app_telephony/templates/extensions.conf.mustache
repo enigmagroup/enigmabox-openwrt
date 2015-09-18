@@ -20,14 +20,10 @@ exten => {{phone}},1,Dial(SIP/100@{{hostname}})
 exten => 01{{phone}},1,Dial(SIP/100@{{hostname}}.eb)
 {{/global_addresses}}
 
-;echo test
+;statusmsg
 exten => 1,1,Answer()
-;exten => 1,n,Playback(tt-somethingwrong)
-exten => 1,n,Playback(tt-weasels)
-exten => 1,n,Playback(tt-monkeysintro)
-exten => 1,n,Playback(tt-monkeys)
-exten => 1,n,Echo()
-exten => 1,n,Playback(vm-goodbye)
+exten => 1,n,System(/usr/bin/generate-enigmabox-statusmsg)
+exten => 1,n,Playback(/tmp/tts)
 exten => 1,n,Hangup()
 
 ;confcall
