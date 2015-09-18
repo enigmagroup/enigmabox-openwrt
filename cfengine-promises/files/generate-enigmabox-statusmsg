@@ -6,8 +6,8 @@ expiredate=$(grep internet_access /box/server.json | awk '{ print $2 }' | cut -d
 exp_year=$(echo $expiredate | cut -d- -f1)
 exp_month=$(echo $expiredate | cut -d- -f2)
 exp_day=$(echo $expiredate | cut -d- -f3)
-reachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '.eb' | grep OK | wc -l)
-unreachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '.eb' | grep UNREACHABLE | wc -l)
+reachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '192.168.' | grep -v '.eb' | grep OK | wc -l)
+unreachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '192.168.' | grep -v '.eb' | grep UNREACHABLE | wc -l)
 
 echo > $statfile
 
