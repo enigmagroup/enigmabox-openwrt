@@ -53,6 +53,11 @@ class PasswordForm(forms.Form):
         password = self.cleaned_data.get('password')
         password_repeat = self.cleaned_data.get('password_repeat')
 
+        try:
+            password.encode('ascii')
+        except Exception:
+            raise forms.ValidationError('Aus technischen Gruenden koennen keine Umlaute oder Zeichen ausserhalb des ASCII-Zeichensatzes verwendet werden. Python, Unicode und so... Seufz.')
+
         if password and password != password_repeat:
             raise forms.ValidationError("Passwords don't match")
 
