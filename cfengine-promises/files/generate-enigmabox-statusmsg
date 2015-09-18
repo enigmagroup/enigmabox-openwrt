@@ -1,17 +1,20 @@
 #!/bin/ash
 
 statfile=/tmp/tmp-ebox-statustext
-hostid='{{hostid}}'
-expiredate='{{expiredate}}'
-
-sip_peers=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '.eb' | grep UNREACHABLE | wc -l)
+hostid=$(grep hostid /box/server.json | awk '{ print $2 }' | cut -d\" -f2 | cut -d\" -f1 | sed 's/./& /g')
+expiredate=$(grep internet_access /box/server.json | awk '{ print $2 }' | cut -d\" -f2 | cut -d\" -f1)
+exp_year=$(echo $expiredate | cut -d- -f1)
+exp_month=$(echo $expiredate | cut -d- -f2)
+exp_day=$(echo $expiredate | cut -d- -f3)
+reachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '.eb' | grep OK | wc -l)
+unreachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '.eb' | grep UNREACHABLE | wc -l)
 
 echo > $statfile
 #echo 'Alle Systeme sind grün.' >> $statfile
 echo "Deine Host-ei-di ist $hostid. - " >> $statfile
-echo "Dein Netzwerkzugang ist noch gültig bis zum $expiredate." >> $statfile
-echo "12 Kontakte erreichbar." >> $statfile
-echo "17 Kontakte nicht erreichbar." >> $statfile
+echo "Dein Netzwerkzugang ist noch gültig bis zum $exp_day.$exp_month.$exp_year." >> $statfile
+echo "$reachable Kontakte erreichbar." >> $statfile
+echo "$unreachable Kontakte nicht erreichbar." >> $statfile
 echo "Ich wünsche dir einen schönen Tag und einen sicheren Aufenthalt im globalen Datennetzwerk." >> $statfile
 
 /usr/bin/tts-de "$(cat $statfile)"
