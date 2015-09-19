@@ -9,6 +9,15 @@ exp_day=$(echo $expiredate | cut -d- -f3)
 reachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '192.168.' | grep -v '.eb' | grep OK | wc -l)
 unreachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '192.168.' | grep -v '.eb' | grep UNREACHABLE | wc -l)
 new_mails=$(/usr/bin/find /box/vmail/mail/Maildir/new/ -type f | wc -l)
+country_pubkey=$(cat /box/cjdroute.conf | grep -A2 outgoingConnections | tail -n 1 | cut -d\" -f2)
+country_shortcode=$(grep -B2 $country_pubkey /box/server.json | head -n 1 | cut -d\" -f4)
+[[ $country_shortcode == 'ch' ]] && selected_country="die Schweiz"
+[[ $country_shortcode == 'hu' ]] && selected_country="Ungarn"
+[[ $country_shortcode == 'se' ]] && selected_country="Schweden"
+[[ $country_shortcode == 'de' ]] && selected_country="Deutschland"
+[[ $country_shortcode == 'us' ]] && selected_country="die verunreinigten Staaten von Amerika"
+
+
 
 echo > $statfile
 
@@ -16,7 +25,7 @@ if [[ $new_mails -gt 0 ]]; then
     echo "Du hast $new_mails i-mäils erhalten." >> $statfile
 fi
 if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
-    echo 'Alle Systeme funktionieren einwandfrei, dein Internetzugang ist verschlüsselt.' >> $statfile
+    echo "Alle Systeme funktionieren einwandfrei, du hast Internet über $selected_country." >> $statfile
 else
     echo 'Scheisse, hier ist etwas faul.' >> $statfile
     if [[ $(cat /tmp/netstat-dhcp) == '1' ]]; then
