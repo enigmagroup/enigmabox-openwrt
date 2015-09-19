@@ -35,17 +35,18 @@ $iptables -A OUTPUT -o lo -j ACCEPT
 
 $iptables -X internal-services
 $iptables -N internal-services
-$iptables -A internal-services -p tcp --dport 22 -j ACCEPT      # ssh
-$iptables -A internal-services -p tcp --dport 25 -j ACCEPT      # smtp
-$iptables -A internal-services -p udp --dport 53 -j ACCEPT      # allow dns requests to tinyproxy
-$iptables -A internal-services -p udp --dport 67:68 -j ACCEPT   # dhcp server
-$iptables -A internal-services -p tcp --dport 80 -j ACCEPT      # webinterface
-$iptables -A internal-services -p tcp --dport 110 -j ACCEPT     # pop3
-$iptables -A internal-services -p tcp --dport 143 -j ACCEPT     # imap
-$iptables -A internal-services -p udp --dport 5060 -j ACCEPT    # voip phone
-$iptables -A internal-services -p tcp --dport 8117 -j ACCEPT    # renew notice
-$iptables -A internal-services -p tcp --dport 8080 -j ACCEPT    # grandstream phone provisioning
-$iptables -A internal-services -p tcp --dport 8888 -j ACCEPT    # tinyproxy
+$iptables -A internal-services -p tcp --dport 22 -j ACCEPT          # ssh
+$iptables -A internal-services -p tcp --dport 25 -j ACCEPT          # smtp
+$iptables -A internal-services -p udp --dport 53 -j ACCEPT          # allow dns requests to tinyproxy
+$iptables -A internal-services -p udp --dport 67:68 -j ACCEPT       # dhcp server
+$iptables -A internal-services -p tcp --dport 80 -j ACCEPT          # webinterface
+$iptables -A internal-services -p tcp --dport 110 -j ACCEPT         # pop3
+$iptables -A internal-services -p tcp --dport 143 -j ACCEPT         # imap
+$iptables -A internal-services -p udp --dport 5060 -j ACCEPT        # voip phone
+$iptables -A internal-services -p udp --dport 1024:65535 -j ACCEPT  # voip phone video
+$iptables -A internal-services -p tcp --dport 8117 -j ACCEPT        # renew notice
+$iptables -A internal-services -p tcp --dport 8080 -j ACCEPT        # grandstream phone provisioning
+$iptables -A internal-services -p tcp --dport 8888 -j ACCEPT        # tinyproxy
 $iptables -A internal-services -p icmp -m limit --limit 10/second -j ACCEPT     # icmp
 
 $iptables -X internal-in

@@ -44,7 +44,9 @@ echo "Deine Host-ei-di ist $hostid. - " >> $statfile
 echo "Dein Netzwerkzugang ist noch gültig bis zum $exp_day.$exp_month.$exp_year." >> $statfile
 echo "$reachable Kontakte erreichbar." >> $statfile
 echo "$unreachable Kontakte nicht erreichbar." >> $statfile
-echo "Ich wünsche dir einen schönen Tag und einen sicheren Aufenthalt im globalen Datennetzwerk." >> $statfile
+if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
+    echo "Ich wünsche dir einen schönen Tag und einen sicheren Aufenthalt im globalen Datennetzwerk." >> $statfile
+fi
 
 /usr/bin/tts-de "$(cat $statfile)"
 
