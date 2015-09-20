@@ -1,8 +1,9 @@
 #!/bin/ash
 
 statfile=/tmp/tmp-ebox-statustext
-hostid=$(grep hostid /box/server.json | awk '{ print $2 }' | cut -d\" -f2 | cut -d\" -f1 | sed 's/./& /g')
-expiredate=$(grep internet_access /box/server.json | awk '{ print $2 }' | cut -d\" -f2 | cut -d\" -f1)
+hostid=$(grep hostid /box/server.json | awk '{ print $2 }' | cut -d\" -f2 | sed 's/./& /g')
+language=$(grep language /box/server.json | awk '{ print $2 }' | cut -d\" -f2)
+expiredate=$(grep internet_access /box/server.json | awk '{ print $2 }' | cut -d\" -f2)
 exp_year=$(echo $expiredate | cut -d- -f1)
 exp_month=$(echo $expiredate | cut -d- -f2)
 exp_day=$(echo $expiredate | cut -d- -f3)
@@ -11,54 +12,107 @@ unreachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '192.168.' | gre
 new_mails=$(/usr/bin/find /box/vmail/mail/Maildir/new/ -type f | wc -l)
 country_pubkey=$(cat /box/cjdroute.conf | grep -A2 outgoingConnections | tail -n 1 | cut -d\" -f2)
 country_shortcode=$(grep -B2 $country_pubkey /box/server.json | head -n 1 | cut -d\" -f4)
-[[ $country_shortcode == 'ch' ]] && selected_country="die Schweiz"
-[[ $country_shortcode == 'hu' ]] && selected_country="Ungarn"
-[[ $country_shortcode == 'se' ]] && selected_country="Schweden"
-[[ $country_shortcode == 'de' ]] && selected_country="Deutschland"
-[[ $country_shortcode == 'us' ]] && selected_country="die verunreinigten Staaten von Amerika"
 
 
 
 echo > $statfile
 
-if [[ $new_mails -eq 1 ]]; then
-    echo "Du hast ein i-mäil erhalten." >> $statfile
-fi
-if [[ $new_mails -gt 1 ]]; then
-    echo "Du hast $new_mails i-mäils erhalten." >> $statfile
-fi
-if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
-    echo "Alle Systeme funktionieren einwandfrei, du hast Internet über $selected_country." >> $statfile
-else
-    echo 'Scheisse, hier ist etwas faul.' >> $statfile
-    if [[ $(cat /tmp/netstat-dhcp) == '1' ]]; then
-        echo 'Ich habe eine ai pi von deinem Router erhalten.' >> $statfile
-    else
-        echo 'Ich habe keine ai pi von deinem Router erhalten.' >> $statfile
+if [[ $language != 'de' ]]; then
+
+    [[ $country_shortcode == 'ch' ]] && selected_country="Switzerland"
+    [[ $country_shortcode == 'hu' ]] && selected_country="Hungary"
+    [[ $country_shortcode == 'se' ]] && selected_country="Sweden"
+    [[ $country_shortcode == 'de' ]] && selected_country="Germany"
+    [[ $country_shortcode == 'us' ]] && selected_country="the United Stasi of Murica"
+
+    if [[ $new_mails -eq 1 ]]; then
+        echo "You have received one email." >> $statfile
     fi
-    if [[ $(cat /tmp/netstat-internet) == '1' ]]; then
-        echo 'Ich kann auf das Internet zugreifen.' >> $statfile
-    else
-        echo 'Ich kann nicht auf das Internet zugreifen.' >> $statfile
-    fi
-    if [[ $(cat /tmp/netstat-cjdns) == '1' ]]; then
-        echo 'Der Netzwerkdienst läuft.' >> $statfile
-    else
-        echo 'Der Netzwerkdienst läuft nicht.' >> $statfile
+    if [[ $new_mails -gt 1 ]]; then
+        echo "You have received $new_mails emails." >> $statfile
     fi
     if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
-        echo 'Ich habe Zugang zum verschlüsselten Internet.' >> $statfile
+        echo "All systems show green, you have internet via $selected_country." >> $statfile
     else
-        echo 'Ich habe keinen Zugang zum verschlüsselten Internet.' >> $statfile
+        echo 'Oh shit, something\'s wrong' >> $statfile
+        if [[ $(cat /tmp/netstat-dhcp) == '1' ]]; then
+            echo 'I\'ve got an IP from your router.' >> $statfile
+        else
+            echo 'I\'ve got no IP from your router.' >> $statfile
+        fi
+        if [[ $(cat /tmp/netstat-internet) == '1' ]]; then
+            echo 'I can access the internet' >> $statfile
+        else
+            echo 'I can not access the internet' >> $statfile
+        fi
+        if [[ $(cat /tmp/netstat-cjdns) == '1' ]]; then
+            echo 'The network service is running' >> $statfile
+        else
+            echo 'The network service is not running' >> $statfile
+        fi
+        if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
+            echo 'I have access to the encrypted internet.' >> $statfile
+        else
+            echo 'I have no access to the encrypted internet.' >> $statfile
+        fi
     fi
-fi
-echo "Deine Host-ei-di ist $hostid. - " >> $statfile
-echo "Dein Netzwerkzugang ist noch gültig bis zum $exp_day.$exp_month.$exp_year." >> $statfile
-echo "$reachable Kontakte erreichbar." >> $statfile
-echo "$unreachable Kontakte nicht erreichbar." >> $statfile
-if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
-    echo "Ich wünsche dir einen schönen Tag und einen sicheren Aufenthalt im globalen Datennetzwerk." >> $statfile
-fi
+    echo "Your Hostid is $hostid. - " >> $statfile
+    echo "Network access is valid until $exp_month/$exp_day/$exp_year." >> $statfile
+    echo "$reachable contacts reachable." >> $statfile
+    echo "$unreachable contacts unreachable." >> $statfile
+    if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
+        echo "Have a safe journey in the global data network." >> $statfile
+    fi
 
-/usr/bin/tts-de "$(cat $statfile)"
+    /usr/bin/tts-en "$(cat $statfile)"
 
+else
+
+    [[ $country_shortcode == 'ch' ]] && selected_country="die Schweiz"
+    [[ $country_shortcode == 'hu' ]] && selected_country="Ungarn"
+    [[ $country_shortcode == 'se' ]] && selected_country="Schweden"
+    [[ $country_shortcode == 'de' ]] && selected_country="Deutschland"
+    [[ $country_shortcode == 'us' ]] && selected_country="die verunreinigten Staaten von Amerika"
+
+    if [[ $new_mails -eq 1 ]]; then
+        echo "Du hast ein i-mäil erhalten." >> $statfile
+    fi
+    if [[ $new_mails -gt 1 ]]; then
+        echo "Du hast $new_mails i-mäils erhalten." >> $statfile
+    fi
+    if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
+        echo "Alle Systeme funktionieren einwandfrei, du hast Internet über $selected_country." >> $statfile
+    else
+        echo 'Scheisse, hier ist etwas faul.' >> $statfile
+        if [[ $(cat /tmp/netstat-dhcp) == '1' ]]; then
+            echo 'Ich habe eine ai pi von deinem Router erhalten.' >> $statfile
+        else
+            echo 'Ich habe keine ai pi von deinem Router erhalten.' >> $statfile
+        fi
+        if [[ $(cat /tmp/netstat-internet) == '1' ]]; then
+            echo 'Ich kann auf das Internet zugreifen.' >> $statfile
+        else
+            echo 'Ich kann nicht auf das Internet zugreifen.' >> $statfile
+        fi
+        if [[ $(cat /tmp/netstat-cjdns) == '1' ]]; then
+            echo 'Der Netzwerkdienst läuft.' >> $statfile
+        else
+            echo 'Der Netzwerkdienst läuft nicht.' >> $statfile
+        fi
+        if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
+            echo 'Ich habe Zugang zum verschlüsselten Internet.' >> $statfile
+        else
+            echo 'Ich habe keinen Zugang zum verschlüsselten Internet.' >> $statfile
+        fi
+    fi
+    echo "Deine Host-ei-di ist $hostid. - " >> $statfile
+    echo "Dein Netzwerkzugang ist noch gültig bis zum $exp_day.$exp_month.$exp_year." >> $statfile
+    echo "$reachable Kontakte erreichbar." >> $statfile
+    echo "$unreachable Kontakte nicht erreichbar." >> $statfile
+    if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
+        echo "Ich wünsche dir einen schönen Tag und einen sicheren Aufenthalt im globalen Datennetzwerk." >> $statfile
+    fi
+
+    /usr/bin/tts-de "$(cat $statfile)"
+
+fi

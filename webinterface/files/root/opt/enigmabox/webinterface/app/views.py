@@ -1494,6 +1494,7 @@ def cfengine_site(request):
 
     response_data = {
         'hostid': hostid,
+        'language': o.get_value('language', 'de'),
         'cjdns_ipv6': cjdns_ipv6,
         'cjdns_public_key': cjdns_public_key,
         'cjdns_private_key': cjdns_private_key,
