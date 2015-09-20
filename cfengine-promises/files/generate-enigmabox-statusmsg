@@ -17,13 +17,13 @@ country_shortcode=$(grep -B2 $country_pubkey /box/server.json | head -n 1 | cut 
 
 echo > $statfile
 
-if [[ $language != 'de' ]]; then
+if [[ "$language" != "de" ]]; then
 
-    [[ $country_shortcode == 'ch' ]] && selected_country="Switzerland"
-    [[ $country_shortcode == 'hu' ]] && selected_country="Hungary"
-    [[ $country_shortcode == 'se' ]] && selected_country="Sweden"
-    [[ $country_shortcode == 'de' ]] && selected_country="Germany"
-    [[ $country_shortcode == 'us' ]] && selected_country="the United Stasi of Murica"
+    [[ "$country_shortcode" == "ch" ]] && selected_country="Switzerland"
+    [[ "$country_shortcode" == "hu" ]] && selected_country="Hungary"
+    [[ "$country_shortcode" == "se" ]] && selected_country="Sweden"
+    [[ "$country_shortcode" == "de" ]] && selected_country="Germany"
+    [[ "$country_shortcode" == "us" ]] && selected_country="the United Stasi of Murica"
 
     if [[ $new_mails -eq 1 ]]; then
         echo "You have received one email." >> $statfile
@@ -68,11 +68,11 @@ if [[ $language != 'de' ]]; then
 
 else
 
-    [[ $country_shortcode == 'ch' ]] && selected_country="die Schweiz"
-    [[ $country_shortcode == 'hu' ]] && selected_country="Ungarn"
-    [[ $country_shortcode == 'se' ]] && selected_country="Schweden"
-    [[ $country_shortcode == 'de' ]] && selected_country="Deutschland"
-    [[ $country_shortcode == 'us' ]] && selected_country="die verunreinigten Staaten von Amerika"
+    [[ "$country_shortcode" == "ch" ]] && selected_country="die Schweiz"
+    [[ "$country_shortcode" == "hu" ]] && selected_country="Ungarn"
+    [[ "$country_shortcode" == "se" ]] && selected_country="Schweden"
+    [[ "$country_shortcode" == "de" ]] && selected_country="Deutschland"
+    [[ "$country_shortcode" == "us" ]] && selected_country="die verunreinigten Staaten von Amerika"
 
     if [[ $new_mails -eq 1 ]]; then
         echo "Du hast ein i-mäil erhalten." >> $statfile
