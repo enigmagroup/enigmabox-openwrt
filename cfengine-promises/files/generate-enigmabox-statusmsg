@@ -2,7 +2,7 @@
 
 statfile=/tmp/tmp-ebox-statustext
 hostid=$(grep hostid /box/server.json | awk '{ print $2 }' | cut -d\" -f2 | sed 's/./& /g')
-language=$(grep language /box/server.json | awk '{ print $2 }' | cut -d\" -f2)
+language=$(grep language /box/.cf-site.json | awk '{ print $2 }' | cut -d\" -f2)
 expiredate=$(grep internet_access /box/server.json | awk '{ print $2 }' | cut -d\" -f2)
 exp_year=$(echo $expiredate | cut -d- -f1)
 exp_month=$(echo $expiredate | cut -d- -f2)
@@ -34,11 +34,11 @@ if [[ $language != 'de' ]]; then
     if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
         echo "All systems show green, you have internet via $selected_country." >> $statfile
     else
-        echo 'Oh shit, something\'s wrong' >> $statfile
+        echo "Oh shit, something's wrong" >> $statfile
         if [[ $(cat /tmp/netstat-dhcp) == '1' ]]; then
-            echo 'I\'ve got an IP from your router.' >> $statfile
+            echo "I've got an IP from your router." >> $statfile
         else
-            echo 'I\'ve got no IP from your router.' >> $statfile
+            echo "I've got no IP from your router." >> $statfile
         fi
         if [[ $(cat /tmp/netstat-internet) == '1' ]]; then
             echo 'I can access the internet' >> $statfile
