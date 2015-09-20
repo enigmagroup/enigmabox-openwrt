@@ -21,7 +21,10 @@ country_shortcode=$(grep -B2 $country_pubkey /box/server.json | head -n 1 | cut 
 
 echo > $statfile
 
-if [[ $new_mails -gt 0 ]]; then
+if [[ $new_mails -eq 1 ]]; then
+    echo "Du hast ein i-mäil erhalten." >> $statfile
+fi
+if [[ $new_mails -gt 1 ]]; then
     echo "Du hast $new_mails i-mäils erhalten." >> $statfile
 fi
 if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
