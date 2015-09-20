@@ -1,8 +1,8 @@
 #!/bin/ash
 
 statfile=/tmp/tmp-ebox-statustext
-hostid=$(grep hostid /box/server.json | awk '{ print $2 }' | cut -d\" -f2 | sed 's/./& /g')
-language=$(grep language /box/.cf-site.json | awk '{ print $2 }' | cut -d\" -f2)
+hostid=$(grep hostid /box/server.json | awk '{ print $2 }' | cut -d\" -f2 | sed 's/./&, /g')
+language=$(grep '"language"' /box/.cf-site.json | awk '{ print $2 }' | cut -d\" -f2)
 expiredate=$(grep internet_access /box/server.json | awk '{ print $2 }' | cut -d\" -f2)
 exp_year=$(echo $expiredate | cut -d- -f1)
 exp_month=$(echo $expiredate | cut -d- -f2)
@@ -34,21 +34,21 @@ if [[ "$language" != "de" ]]; then
     if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
         echo "All systems show green, you have internet via $selected_country." >> $statfile
     else
-        echo "Oh shit, something's wrong" >> $statfile
+        echo "Oh shit, something's wrong." >> $statfile
         if [[ $(cat /tmp/netstat-dhcp) == '1' ]]; then
             echo "I've got an IP from your router." >> $statfile
         else
             echo "I've got no IP from your router." >> $statfile
         fi
         if [[ $(cat /tmp/netstat-internet) == '1' ]]; then
-            echo 'I can access the internet' >> $statfile
+            echo 'I can access the internet.' >> $statfile
         else
-            echo 'I can not access the internet' >> $statfile
+            echo 'I can not access the internet.' >> $statfile
         fi
         if [[ $(cat /tmp/netstat-cjdns) == '1' ]]; then
-            echo 'The network service is running' >> $statfile
+            echo 'The network service is running.' >> $statfile
         else
-            echo 'The network service is not running' >> $statfile
+            echo 'The network service is not running.' >> $statfile
         fi
         if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
             echo 'I have access to the encrypted internet.' >> $statfile
@@ -56,7 +56,7 @@ if [[ "$language" != "de" ]]; then
             echo 'I have no access to the encrypted internet.' >> $statfile
         fi
     fi
-    echo "Your Hostid is $hostid. - " >> $statfile
+    echo "Your Hostid is: $hostid. - " >> $statfile
     echo "Network access is valid until $exp_month/$exp_day/$exp_year." >> $statfile
     echo "$reachable contacts reachable." >> $statfile
     echo "$unreachable contacts unreachable." >> $statfile
