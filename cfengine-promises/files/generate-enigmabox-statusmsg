@@ -56,7 +56,7 @@ if [[ "$language" != "de" ]]; then
             echo 'I have no access to the encrypted internet.' >> $statfile
         fi
     fi
-    echo "Your Hostid is: $hostid. - " >> $statfile
+    echo "Your Host i.d. is: $hostid. - " >> $statfile
     echo "Network access is valid until $exp_month/$exp_day/$exp_year." >> $statfile
     echo "$reachable contacts reachable." >> $statfile
     echo "$unreachable contacts unreachable." >> $statfile
