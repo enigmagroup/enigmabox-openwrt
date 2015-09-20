@@ -105,7 +105,7 @@ else
             echo 'Ich habe keinen Zugang zum verschlüsselten Internet.' >> $statfile
         fi
     fi
-    echo "Deine Host-ei-di ist $hostid. - " >> $statfile
+    echo "Deine Host-ei-di ist: $hostid. - " >> $statfile
     echo "Dein Netzwerkzugang ist noch gültig bis zum $exp_day.$exp_month.$exp_year." >> $statfile
     echo "$reachable Kontakte erreichbar." >> $statfile
     echo "$unreachable Kontakte nicht erreichbar." >> $statfile
