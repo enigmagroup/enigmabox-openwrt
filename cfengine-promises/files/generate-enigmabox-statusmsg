@@ -12,6 +12,8 @@ unreachable=$(/usr/sbin/asterisk -rx 'sip show peers' | grep -v '192.168.' | gre
 new_mails=$(/usr/bin/find /box/vmail/mail/Maildir/new/ -type f | wc -l)
 country_pubkey=$(cat /box/cjdroute.conf | grep -A2 outgoingConnections | tail -n 1 | cut -d\" -f2)
 country_shortcode=$(grep -B2 $country_pubkey /box/server.json | head -n 1 | cut -d\" -f4)
+installed_version=$(opkg info webinterface | grep 'Version:' | cut -d' ' -f2 | cut -d- -f1 | sed 's/\./ /g')
+installed_date=$(date --date="@$(opkg info webinterface | grep 'Installed-Time:' | cut -d' ' -f2)" +%d.%m.%Y)
 
 
 
@@ -60,6 +62,7 @@ if [[ "$language" != "de" ]]; then
     echo "Network access is valid until $exp_month/$exp_day/$exp_year." >> $statfile
     echo "$reachable contacts reachable." >> $statfile
     echo "$unreachable contacts unreachable." >> $statfile
+    echo "The software is at version $installed_version from $installed_date." >> $statfile
     if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
         echo "Have a safe journey in the global data network." >> $statfile
     fi
@@ -109,6 +112,7 @@ else
     echo "Dein Netzwerkzugang ist noch gültig bis zum $exp_day.$exp_month.$exp_year." >> $statfile
     echo "$reachable Kontakte erreichbar." >> $statfile
     echo "$unreachable Kontakte nicht erreichbar." >> $statfile
+    echo "Die Software ist auf Version $installed_version vom $installed_date." >> $statfile
     if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
         echo "Ich wünsche dir einen schönen Tag und einen sicheren Aufenthalt im globalen Datennetzwerk." >> $statfile
     fi
