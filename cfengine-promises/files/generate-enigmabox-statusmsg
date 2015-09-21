@@ -59,7 +59,7 @@ if [[ "$language" != "de" ]]; then
         fi
     fi
     echo "Your Host i.d. is: $hostid. - " >> $statfile
-    echo "Network access is valid until $exp_month/$exp_day/$exp_year." >> $statfile
+    echo "Network access is valid until $exp_day.$exp_month.$exp_year." >> $statfile
     echo "$reachable contacts reachable." >> $statfile
     echo "$unreachable contacts unreachable." >> $statfile
     echo "The software is at version $installed_version from $installed_date." >> $statfile
