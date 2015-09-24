@@ -39,7 +39,7 @@ urlpatterns = patterns('app.views',
     url(r'^subscription/$', 'subscription'),
 
     # network selection
-    #url(r'^network_selection/$', 'network_selection'),
+    url(r'^network_selection/$', 'network_selection'),
 
     # peerings
     url(r'^peerings/new/$', 'peerings_edit'),
