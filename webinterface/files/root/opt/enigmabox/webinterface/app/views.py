@@ -1260,7 +1260,7 @@ def cfengine_site(request):
     cjdns_ipv6 = o.get_value('ipv6').strip()
     cjdns_public_key = o.get_value('public_key')
     cjdns_private_key = o.get_value('private_key')
-    cjdns_version = 'master'
+    cjdns_version = 'v16'
     selected_country = o.get_value('selected_country', 'ch')
     hostid = ''
     addresses = []
@@ -1276,7 +1276,6 @@ def cfengine_site(request):
         hostid = json_data['hostid']
         internet_access = json_data['internet_access']
         password = json_data['password']
-        json_peerings = json_data['peerings']
 
         try:
             cjdns_version = json_data['cjdns_version']
@@ -1290,6 +1289,11 @@ def cfengine_site(request):
         o.set_value('password', password)
 
         Peering.objects.filter(custom=False).delete()
+
+        if cjdns_version == 'v6':
+            json_peerings = json_data['peerings']
+        else:
+            json_peerings = json_data['peerings_topo128']
 
         for address, peering in json_peerings.items():
             p = Peering()
