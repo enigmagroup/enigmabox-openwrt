@@ -49,9 +49,17 @@ def updates_count():
 @register.simple_tag
 def peer_status(peer_name, sip_peers):
     try:
-        ret = re.search('\n' + peer_name + '\s.*5060(.*)', sip_peers).group(1).strip()
+        status = re.search('\n' + peer_name + '\s.*5060(.*)', sip_peers).group(1).strip()
     except Exception:
-        ret = '-'
+        status = '-'
+
+    ret = '<span class="badge">-</span>'
+    if 'OK' in status:
+        ret = '<span class="badge badge-success" title="' + status + '">OK</span>'
+    if 'LAGGED' in status:
+        ret = '<span class="badge badge-warning" title="' + status + '">OK</span>'
+    if 'UNREACHABLE' in status:
+        ret = '<span class="badge badge-inverse">Offline</span>'
     return ret
 
 @register.simple_tag
