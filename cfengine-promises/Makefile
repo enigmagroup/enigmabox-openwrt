@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cfengine-promises
-PKG_VERSION:=1.6.2
+PKG_VERSION:=1.6.3
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -41,7 +41,7 @@ define Package/cfengine-promises/install
 
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) ./files/hello $(1)/usr/bin/hello
-	$(INSTALL_BIN) ./files/speedtest $(1)/usr/bin/speedtest
+	$(INSTALL_BIN) ./files/speedtest_cli.py $(1)/usr/bin/speedtest
 	$(INSTALL_BIN) ./files/tts-de $(1)/usr/bin/tts-de
 	$(INSTALL_BIN) ./files/tts-en $(1)/usr/bin/tts-en
 	$(INSTALL_BIN) ./files/generate-enigmabox-statusmsg $(1)/usr/bin/generate-enigmabox-statusmsg
