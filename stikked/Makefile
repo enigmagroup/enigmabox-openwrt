@@ -34,15 +34,11 @@ define Build/Compile
 endef
 
 define Package/stikked/install
-	$(INSTALL_DIR) $(1)/srv/www/stikked
-	$(CP) -v $(PKG_BUILD_DIR)/htdocs/* $(1)/srv/www/stikked/
+	$(INSTALL_DIR) $(1)/srv/www/pastebin
+	$(CP) -v $(PKG_BUILD_DIR)/htdocs/* $(1)/srv/www/pastebin/
 
 	# stikked config
-	$(INSTALL_DATA) ./files/stikked.php $(1)/srv/www/stikked/application/config/stikked.php
-
-	# hypesite config
-	$(INSTALL_DIR) $(1)/etc/lighttpd/hypesites.d
-	$(INSTALL_DATA) ./files/stikked.conf $(1)/etc/lighttpd/hypesites.d/stikked.conf
+	$(INSTALL_DATA) ./files/stikked.php $(1)/srv/www/pastebin/application/config/stikked.php
 endef
 
 $(eval $(call BuildPackage,stikked))
