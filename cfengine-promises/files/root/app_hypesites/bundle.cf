@@ -29,6 +29,14 @@ bundle agent app_hypesites
       edit_defaults => no_backup,
       classes => if_repaired("restart_lighttpd");
 
+      "/etc/lighttpd/hypesites.d/pastebin.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/pastebin.conf.mustache",
+      edit_defaults => no_backup,
+      classes => if_repaired("restart_lighttpd");
+
       "/etc/enigmabox/volumes"
       create => "true",
       template_method => "mustache",
