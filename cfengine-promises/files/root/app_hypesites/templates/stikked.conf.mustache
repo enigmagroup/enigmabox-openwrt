@@ -1,5 +1,9 @@
 
-$HTTP["url"] =~ "^/stikked" {
+$HTTP["url"] =~ "^/pastebin" {
+
+{{^if_hype_pastebin}}
+    url.access-deny = ( "" )
+{{/if_hype_pastebin}}
 
     # max post request: 1M
     server.max-request-size = 1024
@@ -19,10 +23,10 @@ $HTTP["url"] =~ "^/stikked" {
     )
 
     url.rewrite-once = (
-        "^/stikked/static/(.*)$" => "/stikked/static/$1",
-        "^/stikked/favicon\.ico$" => "/stikked/favicon.ico",
-        "^/stikked/robots\.txt$" => "/stikked/robots.txt",
-        "^/stikked/(.*)$" => "/stikked/index.php$2",
+        "^/pastebin/static/(.*)$" => "/pastebin/static/$1",
+        "^/pastebin/favicon\.ico$" => "/pastebin/favicon.ico",
+        "^/pastebin/robots\.txt$" => "/pastebin/robots.txt",
+        "^/pastebin/(.*)$" => "/pastebin/index.php$2",
     )
 
 }

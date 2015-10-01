@@ -110,6 +110,19 @@
 </div>
 </fieldset>
 
+<!-- Button (Double) -->
+<div class="control-group">
+  <label class="control-label" for="pastebin">{% trans "Pastebin" %}</label>
+  <div class="controls">
+{% if pastebin == '1' %}
+    <button id="pastebin" name="pastebin" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
+    <a href="http://[{{ ipv6 }}]/pastebin/" target="_blank">http://[{{ ipv6 }}]/pastebin/</a>
+{% else %}
+    <button id="pastebin" name="pastebin" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
+{% endif %}
+  </div>
+</div>
+
 </form>
 
     </div> <!-- /container -->

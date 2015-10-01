@@ -68,6 +68,7 @@ def home(request):
             'personal_website': o.get_value('personal_website', 0),
             'dokuwiki': o.get_value('dokuwiki', 0),
             'owncloud': o.get_value('owncloud', 0),
+            'pastebin': o.get_value('pastebin', 0),
             'root_password': o.get_value('root_password'),
             'netstat': netstat,
         }, context_instance=RequestContext(request))
@@ -926,12 +927,17 @@ def configure_hypesites(request):
         o.toggle_value('owncloud')
         o.config_changed(True)
 
+    if request.POST.get('pastebin'):
+        o.toggle_value('pastebin')
+        o.config_changed(True)
+
     return render_to_response('hypesites/configure.html', {
         'webserver_enabled': o.get_value('webserver_enabled', 0),
         'hypesites_access': o.get_value('hypesites_access', 'off'),
         'personal_website': o.get_value('personal_website', 0),
         'dokuwiki': o.get_value('dokuwiki', 0),
         'owncloud': o.get_value('owncloud', 0),
+        'pastebin': o.get_value('pastebin', 0),
         'hype_access_site': o.get_value('hype_access_site', 'all'),
         'hype_access_dokuwiki': o.get_value('hype_access_dokuwiki', 'all'),
         'hype_access_owncloud': o.get_value('hype_access_owncloud', 'all'),
@@ -1562,6 +1568,7 @@ def cfengine_site(request):
         'hype_personal_site': o.get_value('personal_website', 0),
         'hype_dokuwiki': o.get_value('dokuwiki', 0),
         'hype_owncloud': o.get_value('owncloud', 0),
+        'hype_pastebin': o.get_value('pastebin', 0),
         'hype_access_site_all': hype_access_site_all,
         'hype_access_dokuwiki_all': hype_access_dokuwiki_all,
         'hype_access_owncloud_all': hype_access_owncloud_all,

@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=1.6.2
+PKG_VERSION:=1.7.0
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -29,7 +29,7 @@ define Package/webinterface
 #  DEPENDS+= +kmod-e1000 +kmod-r8169 +kmod-via-rhine
   DEPENDS+= +kmod-fs-btrfs +kmod-fs-cifs +kmod-fs-cramfs +kmod-fs-ext4 +kmod-fs-hfs +kmod-fs-hfsplus +kmod-fs-isofs +kmod-fs-jfs +kmod-fs-msdos +kmod-fs-nfs +kmod-fs-ntfs +kmod-fs-reiserfs +kmod-fs-udf +kmod-fs-vfat +kmod-fs-xfs +kmod-fuse
   DEPENDS+= +kmod-nls-cp1250 +kmod-nls-cp1251 +kmod-nls-cp437 +kmod-nls-cp775 +kmod-nls-cp850 +kmod-nls-cp852 +kmod-nls-cp862 +kmod-nls-cp864 +kmod-nls-cp866 +kmod-nls-cp932 +kmod-nls-iso8859-1 +kmod-nls-iso8859-13 +kmod-nls-iso8859-15 +kmod-nls-iso8859-2 +kmod-nls-iso8859-6 +kmod-nls-iso8859-8 +kmod-nls-koi8r +kmod-nls-utf8
-  DEPENDS+= +hypesites +dokuwiki +owncloud +owncloud-documents
+  DEPENDS+= +hypesites +dokuwiki +owncloud +owncloud-documents +stikked
   DEPENDS+= +@LIBC_USE_UCLIBC #doesn't work, set it manually!
 endef
 
