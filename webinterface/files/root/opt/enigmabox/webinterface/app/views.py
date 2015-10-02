@@ -736,7 +736,7 @@ def webfilter(request):
         # always send that data, even if its an empty string
         o.set_value('webfilter_custom-rules-text', request.POST.get('custom-rules-text'))
 
-    settings_fields = ['filter-ads', 'filter-headers', 'disable-browser-ident', 'block-facebook', 'block-google', 'block-twitter', 'custom-rules']
+    settings_fields = ['filter-ads', 'block-win10stasi', 'filter-headers', 'disable-browser-ident', 'block-facebook', 'block-google', 'block-twitter', 'custom-rules']
 
     for postval in settings_fields:
         if request.POST.get(postval):
@@ -1553,6 +1553,7 @@ def cfengine_site(request):
         'webinterface_password': webinterface_password,
         'mailbox_password': mailbox_password,
         'webfilter_filter_ads': o.get_value('webfilter_filter-ads', 0),
+        'webfilter_block-win10stasi': o.get_value('webfilter_block-win10stasi', 0),
         'webfilter_filter_headers': o.get_value('webfilter_filter-headers', 0),
         'webfilter_disable_browser_ident': o.get_value('webfilter_disable-browser-ident', 0),
         'webfilter_block_facebook': o.get_value('webfilter_block-facebook', 0),
