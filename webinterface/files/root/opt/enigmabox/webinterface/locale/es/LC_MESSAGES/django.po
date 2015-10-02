@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-01 10:14+0200\n"
+"POT-Creation-Date: 2015-10-02 18:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,28 +30,28 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:679
+#: app/views.py:702
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:680
+#: app/views.py:703
 msgid "Sweden"
 msgstr ""
 
-#: app/views.py:681
+#: app/views.py:704
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:682
+#: app/views.py:705
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:683
+#: app/views.py:706
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:684
+#: app/views.py:707
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
@@ -63,8 +63,8 @@ msgstr "¿Estás seguro?"
 msgid "Show"
 msgstr "Mostrar"
 
-#: app/templates/base.html:31 app/templates/base.html.py:96
-#: app/templates/base.html:106
+#: app/templates/base.html:31 app/templates/base.html.py:103
+#: app/templates/base.html:113
 msgid "Apply changes"
 msgstr "Aplicar cambios"
 
@@ -160,23 +160,23 @@ msgstr ""
 msgid "Teletext"
 msgstr "Teletext"
 
-#: app/templates/base.html:100
+#: app/templates/base.html:107
 #, fuzzy
 msgid "Apply changes?"
 msgstr "Aplicar cambios"
 
-#: app/templates/base.html:101
+#: app/templates/base.html:108
 msgid "Changes successfully applied."
 msgstr "Cambios aplicados con éxito"
 
-#: app/templates/base.html:105 app/templates/addressbook/detail.html:65
+#: app/templates/base.html:112 app/templates/addressbook/detail.html:65
 #: app/templates/addressbook/overview-global-edit.html:52
 #: app/templates/passwords/edit.html:63 app/templates/peerings/detail.html:68
 #: app/templates/storage/overview.html:86
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: app/templates/base.html:114 app/templates/storage/overview.html:95
+#: app/templates/base.html:121 app/templates/storage/overview.html:95
 msgid "Done"
 msgstr ""
 
@@ -243,7 +243,7 @@ msgstr "Visualización nombre"
 #: app/templates/addressbook/overview-global-edit.html:51
 #: app/templates/passwords/edit.html:62 app/templates/peerings/detail.html:67
 #: app/templates/peerings/overview.html:70
-#: app/templates/webfilter/overview.html:114
+#: app/templates/webfilter/overview.html:126
 msgid "Save"
 msgstr "Guardar"
 
@@ -323,15 +323,17 @@ msgstr ""
 #: app/templates/hypesites/configure.html:47
 #: app/templates/hypesites/configure.html:71
 #: app/templates/hypesites/configure.html:95
+#: app/templates/hypesites/configure.html:121
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
 #: app/templates/updates/overview.html:23
 #: app/templates/webfilter/overview.html:39
-#: app/templates/webfilter/overview.html:56
+#: app/templates/webfilter/overview.html:51
 #: app/templates/webfilter/overview.html:68
 #: app/templates/webfilter/overview.html:80
-#: app/templates/webfilter/overview.html:97
+#: app/templates/webfilter/overview.html:92
+#: app/templates/webfilter/overview.html:109
 msgid "Disabled"
 msgstr "Desactivado"
 
@@ -705,23 +707,28 @@ msgstr ""
 msgid "OwnCloud"
 msgstr ""
 
-#: app/templates/home/overview.html:71
+#: app/templates/home/overview.html:72 app/templates/home/overview.html:74
+#: app/templates/hypesites/configure.html:115
+msgid "Pastebin"
+msgstr ""
+
+#: app/templates/home/overview.html:78
 msgid "Configure Hypesite services..."
 msgstr ""
 
-#: app/templates/home/overview.html:76
+#: app/templates/home/overview.html:83
 msgid "Connection info"
 msgstr "Información conexión"
 
-#: app/templates/home/overview.html:76
+#: app/templates/home/overview.html:83
 msgid "SSH access"
 msgstr "Dirección SSH"
 
-#: app/templates/home/overview.html:77 app/templates/passwords/edit.html:37
+#: app/templates/home/overview.html:84 app/templates/passwords/edit.html:37
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: app/templates/home/overview.html:78 app/templates/passwords/edit.html:45
+#: app/templates/home/overview.html:85 app/templates/passwords/edit.html:45
 #: app/templates/passwords/edit.html:47 app/templates/passwords/edit.html:54
 #: app/templates/peerings/detail.html:49 app/templates/peerings/detail.html:51
 #: app/templates/peerings/overview.html:61
@@ -729,7 +736,7 @@ msgstr "Nombre de usuario"
 msgid "Password"
 msgstr "Contraseña"
 
-#: app/templates/home/overview.html:79
+#: app/templates/home/overview.html:86
 msgid "Server"
 msgstr "Servidor"
 
@@ -804,15 +811,17 @@ msgstr "Servicios"
 #: app/templates/hypesites/configure.html:45
 #: app/templates/hypesites/configure.html:69
 #: app/templates/hypesites/configure.html:93
+#: app/templates/hypesites/configure.html:118
 #: app/templates/peerings/overview.html:44
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
 #: app/templates/updates/overview.html:21
 #: app/templates/webfilter/overview.html:37
-#: app/templates/webfilter/overview.html:54
+#: app/templates/webfilter/overview.html:49
 #: app/templates/webfilter/overview.html:66
 #: app/templates/webfilter/overview.html:78
-#: app/templates/webfilter/overview.html:95
+#: app/templates/webfilter/overview.html:90
+#: app/templates/webfilter/overview.html:107
 msgid "Enabled"
 msgstr "Activado"
 
@@ -1281,23 +1290,27 @@ msgstr "Reglas personalizadas de bloqueo"
 msgid "Filter ads and trackers"
 msgstr "Filtrar publicidad y rastreadores"
 
-#: app/templates/webfilter/overview.html:51
+#: app/templates/webfilter/overview.html:46
+msgid "Block Windows 10 Stasi features"
+msgstr ""
+
+#: app/templates/webfilter/overview.html:63
 msgid "Block Facebook"
 msgstr "Bloquea Facebook"
 
-#: app/templates/webfilter/overview.html:63
+#: app/templates/webfilter/overview.html:75
 msgid "Block Google"
 msgstr "Bloquea Google"
 
-#: app/templates/webfilter/overview.html:75
+#: app/templates/webfilter/overview.html:87
 msgid "Block Twitter"
 msgstr "Bloquea Twitter"
 
-#: app/templates/webfilter/overview.html:92
+#: app/templates/webfilter/overview.html:104
 msgid "Custom rules"
 msgstr "Reglas personalizados"
 
-#: app/templates/webfilter/overview.html:104
+#: app/templates/webfilter/overview.html:116
 msgid "Rules"
 msgstr "Reglas"
 
