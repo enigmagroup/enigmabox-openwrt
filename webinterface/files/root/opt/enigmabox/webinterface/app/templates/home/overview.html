@@ -68,7 +68,14 @@
 {% else %}
         <a disabled="disabled" class="btn btn-primary">{% trans "OwnCloud" %}</a>
 {% endif %}
-        <a href="/hypesites/configure/">{% trans "Configure Hypesite services..." %}</a>
+{% if pastebin == '1' %}
+        <a href="http://[{{ ipv6 }}]/pastebin/" target="_blank" class="btn btn-primary"><i class="icon icon-white icon-list-alt"></i>&nbsp;{% trans "Pastebin" %}</a>
+{% else %}
+        <a disabled="disabled" class="btn btn-primary"><i class="icon icon-white icon-list-alt"></i>&nbsp;{% trans "Pastebin" %}</a>
+{% endif %}
+</p>
+<p>
+    <a href="/hypesites/configure/">{% trans "Configure Hypesite services..." %}</a>
 </p>
 
       <hr />
