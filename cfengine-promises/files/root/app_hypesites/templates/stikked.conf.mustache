@@ -11,16 +11,14 @@ $HTTP["url"] =~ "^/pastebin" {
     # activate directory listing
     dir-listing.activate = "disable"
 
+    # make sure those are always served through FastCGI and never as static files
+    static-file.exclude-extensions = ( ".php" )
+
     # php
-    fastcgi.server = (
-        ".php" =>
-            ((
-            "host" => "127.0.0.1",
-            "port" => 1026,
-            "check-local" => "disable",
-            "docroot" => "/srv/www"
-            ))
-    )
+    cgi.assign = ( ".php" => "/usr/bin/php-cgi" )
+
+    # rewrites for stikked
+    index-file.names = ("index.php")
 
     url.rewrite-once = (
         "^/pastebin/static/(.*)$" => "/pastebin/static/$1",
