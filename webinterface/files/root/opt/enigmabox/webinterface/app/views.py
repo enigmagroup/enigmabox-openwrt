@@ -664,6 +664,10 @@ def network_selection(request):
 def countryselect(request):
     o = Option()
 
+    if request.POST.get('default_country', False):
+        o.set_value('default_country', request.POST.get('default_country'))
+        return redirect('/countryselect/')
+
     country = request.POST.get('country', False)
     if country:
         o.set_value('selected_country', country)
@@ -721,6 +725,7 @@ def countryselect(request):
         'countries': countries,
         'countries_trans': countries_trans,
         'selected_country': o.get_value('selected_country', 'ch'),
+        'default_country': o.get_value('default_country', 'ch'),
     }, context_instance=RequestContext(request))
 
 
@@ -1263,6 +1268,15 @@ def api_v1(request, api_url):
         o.set_value('selected_country', next_country)
 
         resp['value'] = next_country
+        resp['result'] = 'success'
+
+    if api_url == 'set_default_country':
+
+        o = Option()
+        default_country = o.get_value('default_country', 'ch')
+        o.set_value('selected_country', default_country)
+
+        resp['value'] = default_country
         resp['result'] = 'success'
 
     if api_url == 'get_hashed_rootpw':

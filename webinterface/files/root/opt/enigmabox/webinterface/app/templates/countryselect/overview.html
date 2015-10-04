@@ -7,7 +7,7 @@
 
       <h1>{% trans "Select country" %}</h1>
       <p>{% trans "Choose over which country you want internet access." %}</p>
-      <p>{% trans "Drag and drop to reorder priorities. Mark servers active for failover in case the first (default) server is going down." %}</p>
+      <p>{% trans "Drag and drop to reorder priorities. Mark servers active for failover in case the currently selected server is going down." %}</p>
       <br />
 
 <form method="post" class="form-horizontal">
@@ -43,10 +43,34 @@
     </ol>
 </form>
 
-      <p>{% trans "The first server marked &quot;active&quot; is your default server, starting from the top." %}</p>
-      <p>{% trans "The country marked orange is the currently selected country." %}</p>
-      <p>{% trans "If a server goes down, the next server marked &quot;active&quot; is automatically selected." %}</p>
-      <p>{% trans "It may take some time after a country switch until all contacts are reachable again!" %}</p>
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+<fieldset>
+
+<!-- Form Name -->
+<legend>{% trans "Default country" %}</legend>
+
+<p>{% trans "In case of a failover, we will switch back to this country during night." %}</p>
+
+<!-- Select Basic -->
+<div class="control-group">
+  <label class="control-label" for="default_country">Default country</label>
+  <div class="controls">
+    <select id="default_country" name="default_country" class="input-xlarge">
+{% for c in countries %}
+    {% if c.countrycode == default_country %}
+      <option selected="selected" name="default_country" value="{{ c.countrycode }}">{% trans c.countryname %}</option>
+    {% else %}
+      <option name="default_country" value="{{ c.countrycode }}">{% trans c.countryname %}</option>
+    {% endif %}
+{% endfor %}
+    </select>
+    <button id="submit" name="submit" class="btn btn-primary">Set</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
 
     </div> <!-- /container -->
 {% endblock %}
