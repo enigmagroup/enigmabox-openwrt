@@ -637,28 +637,6 @@ def peerings_edit(request, peering_id=None):
 
 
 
-# Network selection
-
-def network_selection(request):
-    o = Option()
-
-    if request.POST.get('set_network_preference_regular'):
-        o.set_value('cjdns_version', 'v6')
-        o.config_changed(True)
-
-    if request.POST.get('set_network_preference_topo128'):
-        o.set_value('cjdns_version', 'v16')
-        o.config_changed(True)
-
-    cjdns_version = o.get_value('cjdns_version', 'v6')
-    network_preference = 'topo128' if cjdns_version == 'v16' else 'regular'
-
-    return render_to_response('network_selection/overview.html', {
-        'network_preference': network_preference,
-    }, context_instance=RequestContext(request))
-
-
-
 # Country selection
 
 def countryselect(request):

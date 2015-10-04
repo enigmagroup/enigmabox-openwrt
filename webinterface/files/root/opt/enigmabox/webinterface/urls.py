@@ -38,9 +38,6 @@ urlpatterns = patterns('app.views',
     url(r'^subscription/hide_notice/$', 'subscription_hide_notice'),
     url(r'^subscription/$', 'subscription'),
 
-    # network selection
-    url(r'^network_selection/$', 'network_selection'),
-
     # peerings
     url(r'^peerings/new/$', 'peerings_edit'),
     url(r'^peerings/(?P<peering_id>.*)/$', 'peerings_edit'),

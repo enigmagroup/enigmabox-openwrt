@@ -54,7 +54,7 @@
 
 <!-- Select Basic -->
 <div class="control-group">
-  <label class="control-label" for="default_country">Default country</label>
+  <label class="control-label" for="default_country">{% trans "Default country" %}</label>
   <div class="controls">
     <select id="default_country" name="default_country" class="input-xlarge">
 {% for c in countries %}
@@ -65,7 +65,7 @@
     {% endif %}
 {% endfor %}
     </select>
-    <button id="submit" name="submit" class="btn btn-primary">Set</button>
+    <button id="submit" name="submit" class="btn btn-primary">{% trans "Set default country" %}</button>
   </div>
 </div>
 
