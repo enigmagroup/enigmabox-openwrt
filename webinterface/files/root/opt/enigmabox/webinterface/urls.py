@@ -43,6 +43,9 @@ urlpatterns = patterns('app.views',
     url(r'^peerings/(?P<peering_id>.*)/$', 'peerings_edit'),
     url(r'^peerings/$', 'peerings'),
 
+    # lan range
+    url(r'^lan_range/$', 'lan_range'),
+
     # countryselect
     url(r'^countryselect/$', 'countryselect'),
 

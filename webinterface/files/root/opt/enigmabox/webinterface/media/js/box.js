@@ -303,4 +303,14 @@ $(function() {
         }
     });
 
+    $('#lan_range_first').change(function() {
+        var lan_first = parseInt($('#lan_range_first').val(), 10);
+        var lan_second = lan_first + 1;
+        $('#lan_range_second').val(lan_second);
+    });
+
+    $('#iprange_form').submit(function() {
+        $('#iprange_form button').attr('disabled', 'disabled');
+    });
+
 });

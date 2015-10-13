@@ -637,6 +637,36 @@ def peerings_edit(request, peering_id=None):
 
 
 
+# Lan Range
+
+def lan_range(request):
+    o = Option()
+
+    if request.POST.get('save'):
+        lan_range_first = int(request.POST.get('lan_range_first', 100))
+        lan_range_second = lan_range_first + 1
+        o.set_value('lan_range_first', lan_range_first)
+        o.set_value('lan_range_second', lan_range_second)
+        Popen(['/usr/sbin/cfengine-apply'], stdout=PIPE).communicate()[0]
+        Popen(['/sbin/reboot'], stdout=PIPE, close_fds=True)
+
+    ip_range_first = []
+    for i in range(0, 250):
+        ip_range_first.append(i)
+
+    ip_range_second = []
+    for i in range(1, 251):
+        ip_range_second.append(i)
+
+    return render_to_response('lan_range/overview.html', {
+        'lan_range_first': int(o.get_value('lan_range_first', 100)),
+        'lan_range_second': int(o.get_value('lan_range_second', 101)),
+        'ip_range_first': ip_range_first,
+        'ip_range_second': ip_range_second,
+    }, context_instance=RequestContext(request))
+
+
+
 # Country selection
 
 def countryselect(request):

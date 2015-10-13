@@ -75,6 +75,7 @@
                 <li class="{% active request 'subscription' %}"><a href="{% url app.views.subscription %}"><i class="icon-repeat"></i>&nbsp;{% trans "Subscription" %}</a></li>
 {% endif_internet_access_expiring %}
                 <li class="{% active request 'peerings' %}"><a href="{% url app.views.peerings %}"><i class="icon-random"></i>&nbsp;{% trans "Peerings" %}</a></li>
+                <li class="{% active request 'lan_range' %}"><a href="{% url app.views.lan_range %}"><i class="icon-resize-horizontal"></i>&nbsp;{% trans "LAN IP range" %}</a></li>
                 <li class="{% active request 'wlan_settings' %}"><a href="{% url app.views.wlan_settings %}"><i class="icon-signal"></i>&nbsp;{% trans "WLAN settings" %}</a></li>
                 <li class="nav-header">{% trans "Services" %}</li>
                 <li class="{% active request 'hypesites' %}"><a href="{% url app.views.hypesites %}"><i class="icon-road"></i>&nbsp;{% trans "Hypesites" %}</a></li>
