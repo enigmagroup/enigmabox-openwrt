@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cfengine-promises
-PKG_VERSION:=1.7.1
+PKG_VERSION:=1.7.2
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -59,6 +59,7 @@ define Package/cfengine-promises/install
 	if [ "$(CONFIG_NETWORK_PROFILE_ALIX)" == "y" ]; then echo alix > $(1)/etc/enigmabox/network-profile; fi
 	if [ "$(CONFIG_NETWORK_PROFILE_APU)" == "y" ]; then echo apu > $(1)/etc/enigmabox/network-profile; fi
 	if [ "$(CONFIG_NETWORK_PROFILE_RASPI)" == "y" ]; then echo raspi > $(1)/etc/enigmabox/network-profile; fi
+	$(INSTALL_DATA) ./files/lan-range $(1)/etc/enigmabox/lan-range
 
 	# create empty crontab so that the cron service starts
 	$(INSTALL_DIR) $(1)/etc/crontabs
