@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-04 15:01+0200\n"
-"PO-Revision-Date: 2015-10-04 15:01+0100\n"
+"POT-Creation-Date: 2015-10-13 15:01+0200\n"
+"PO-Revision-Date: 2015-10-13 15:02+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -30,52 +30,52 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:684
+#: app/views.py:714
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:685
+#: app/views.py:715
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:686
+#: app/views.py:716
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:687
+#: app/views.py:717
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:688
+#: app/views.py:718
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:689
+#: app/views.py:719
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
-#: app/templates/base.html:18
+#: app/templates/base.html:19
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
-#: app/templates/base.html:19
+#: app/templates/base.html:20
 msgid "Show"
 msgstr "Zeigen"
 
-#: app/templates/base.html:31 app/templates/base.html.py:103
-#: app/templates/base.html:113
+#: app/templates/base.html:32 app/templates/base.html.py:105
+#: app/templates/base.html:115
 msgid "Apply changes"
 msgstr "Änderungen anwenden"
 
-#: app/templates/base.html:55 app/templates/home/overview.html:9
+#: app/templates/base.html:56 app/templates/home/overview.html:9
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: app/templates/base.html:56
+#: app/templates/base.html:57
 msgid "System"
 msgstr "System"
 
-#: app/templates/base.html:57 app/templates/addressbook/detail.html:9
+#: app/templates/base.html:58 app/templates/addressbook/detail.html:9
 #: app/templates/addressbook/overview-global-edit.html:9
 #: app/templates/addressbook/overview-global.html:8
 #: app/templates/addressbook/overview.html:8
@@ -83,17 +83,17 @@ msgstr "System"
 msgid "Addressbook"
 msgstr "Adressbuch"
 
-#: app/templates/base.html:58 app/templates/passwords/edit.html:9
+#: app/templates/base.html:59 app/templates/passwords/edit.html:9
 #: app/templates/passwords/overview.html:8
 #: app/templates/passwords/overview.html:12
 msgid "Passwords"
 msgstr "Passwörter"
 
-#: app/templates/base.html:60 app/templates/storage/overview.html:8
+#: app/templates/base.html:61 app/templates/storage/overview.html:8
 msgid "Storage"
 msgstr "Speichermedien"
 
-#: app/templates/base.html:62 app/templates/backup/overview.html:8
+#: app/templates/base.html:63 app/templates/backup/overview.html:8
 #: app/templates/backup/sslcerts.html:8 app/templates/backup/system.html:8
 #: app/templates/backup/backupwizard/backup_to_usb.html:8
 #: app/templates/backup/backupwizard/check_usb.html:8
@@ -104,76 +104,80 @@ msgstr "Speichermedien"
 msgid "Backup &amp; restore"
 msgstr "Sichern &amp; Wiederherstellen"
 
-#: app/templates/base.html:64 app/templates/updates/overview.html:8
+#: app/templates/base.html:65 app/templates/updates/overview.html:8
 msgid "Updates"
 msgstr "Aktualisierungen"
 
-#: app/templates/base.html:67 app/templates/upgrade/overview.html:8
+#: app/templates/base.html:68 app/templates/upgrade/overview.html:8
 msgid "Firmware upgrade"
 msgstr "Firmwareaktualisierung"
 
-#: app/templates/base.html:69
+#: app/templates/base.html:70
 msgid "Internet"
 msgstr "Internet"
 
-#: app/templates/base.html:70
+#: app/templates/base.html:71
 msgid "Country selection"
 msgstr "Land auswählen"
 
-#: app/templates/base.html:71 app/templates/webfilter/overview.html:8
+#: app/templates/base.html:72 app/templates/webfilter/overview.html:8
 msgid "Ad blocking"
 msgstr "Werbeblocker"
 
-#: app/templates/base.html:72
+#: app/templates/base.html:73
 msgid "Network"
 msgstr "Netzwerk"
 
-#: app/templates/base.html:74 app/templates/subscription/overview.html:8
+#: app/templates/base.html:75 app/templates/subscription/overview.html:8
 #: app/templates/subscription/overview.html:40
 msgid "Subscription"
 msgstr "Abonnement"
 
-#: app/templates/base.html:76 app/templates/peerings/detail.html:9
+#: app/templates/base.html:77 app/templates/peerings/detail.html:9
 #: app/templates/peerings/overview.html:8
 msgid "Peerings"
 msgstr "Peerings"
 
-#: app/templates/base.html:77 app/templates/wlan_settings/overview.html:8
+#: app/templates/base.html:78 app/templates/lan_range/overview.html:8
+msgid "LAN IP range"
+msgstr "IP-Bereich LAN"
+
+#: app/templates/base.html:79 app/templates/wlan_settings/overview.html:8
 #: app/templates/wlan_settings/scan.html:9
 msgid "WLAN settings"
 msgstr "WLAN-Einstellungen"
 
-#: app/templates/base.html:78
+#: app/templates/base.html:80
 msgid "Services"
 msgstr "Dienste"
 
-#: app/templates/base.html:79 app/templates/hypesites/configure.html:9
+#: app/templates/base.html:81 app/templates/hypesites/configure.html:9
 #: app/templates/hypesites/manage_access.html:9
 #: app/templates/hypesites/overview.html:8
 msgid "Hypesites"
 msgstr "Hypesites"
 
-#: app/templates/base.html:80 app/templates/home/overview.html:50
+#: app/templates/base.html:82 app/templates/home/overview.html:50
 #: app/templates/home/overview.html:52 app/templates/teletext/overview.html:8
 msgid "Teletext"
 msgstr "Teletext"
 
-#: app/templates/base.html:107
+#: app/templates/base.html:109
 msgid "Apply changes?"
 msgstr "Änderungen anwenden?"
 
-#: app/templates/base.html:108
+#: app/templates/base.html:110
 msgid "Changes successfully applied."
 msgstr "Änderungen erfolgreich angewendet."
 
-#: app/templates/base.html:112 app/templates/addressbook/detail.html:65
+#: app/templates/base.html:114 app/templates/addressbook/detail.html:65
 #: app/templates/addressbook/overview-global-edit.html:52
 #: app/templates/passwords/edit.html:63 app/templates/peerings/detail.html:68
 #: app/templates/storage/overview.html:86
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: app/templates/base.html:121 app/templates/storage/overview.html:95
+#: app/templates/base.html:123 app/templates/storage/overview.html:95
 msgid "Done"
 msgstr "Fertig"
 
@@ -839,6 +843,26 @@ msgstr "Site"
 msgid "Last seen"
 msgstr "Zuletzt online"
 
+#: app/templates/lan_range/overview.html:9
+msgid "Which IP range should the Enigmabox provide to internal devices?"
+msgstr ""
+"Welcher IP-Adressbereich soll die Enigmabox den internen Geräten vergeben?"
+
+#: app/templates/lan_range/overview.html:10
+msgid ""
+"This is to avoid conflicts in case your router already has 192.168.100.1."
+msgstr ""
+"Dies, um Konflikte zu vermeiden, falls dein Router bereits den Adressbereich "
+"192.168.100.1 hat."
+
+#: app/templates/lan_range/overview.html:16
+msgid "Select IP range"
+msgstr "IP-Bereich auswählen"
+
+#: app/templates/lan_range/overview.html:33
+msgid "Save and reboot"
+msgstr "Speichern und neustarten"
+
 #: app/templates/passwords/edit.html:18
 #: app/templates/passwords/overview.html:15
 msgid "Password for the web interface <em>http://box/</em>"
@@ -1322,9 +1346,6 @@ msgstr "Signal"
 #~ msgstr ""
 #~ "Hinweis: Es kann nach einem Länderwechel etwas dauern, bis alle Adressen "
 #~ "im Adressbuch wieder erreichbar sind."
-
-#~ msgid "Select network"
-#~ msgstr "Netzwerk auswählen"
 
 #~ msgid "Network selection"
 #~ msgstr "Netzwerkauswahl"
