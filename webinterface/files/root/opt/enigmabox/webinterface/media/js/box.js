@@ -309,8 +309,4 @@ $(function() {
         $('#lan_range_second').val(lan_second);
     });
 
-    $('#iprange_form').submit(function() {
-        $('#iprange_form button').attr('disabled', 'disabled');
-    });
-
 });

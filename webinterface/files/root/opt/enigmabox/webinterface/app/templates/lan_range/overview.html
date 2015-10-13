@@ -9,7 +9,7 @@
       <p>{% trans "Which IP range should the Enigmabox provide to internal devices?" %}</p>
       <p>{% trans "This is to avoid conflicts in case your router already has 192.168.100.1." %}</p>
 
-<form method="post" id="iprange_form" class="form-horizontal">
+<form method="post" class="form-horizontal">
 {% csrf_token %}
 <fieldset>
 
@@ -30,7 +30,7 @@
 </select>
 .1</p>
 
-<button id="iprange_save" name="save" class="btn btn-danger confirmation" value="1">{% trans "Save and reboot" %}</button>
+<button id="iprange_save" name="save" class="btn btn-danger confirmation disable_after_click" value="1">{% trans "Save and reboot" %}</button>
 
 </fieldset>
 </form>
