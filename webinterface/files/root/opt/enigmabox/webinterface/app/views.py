@@ -1536,6 +1536,8 @@ def cfengine_site(request):
         'wlan_security': o.get_value('wlan_security'),
         'wlan_group': o.get_value('wlan_group'),
         'wlan_pairwise': o.get_value('wlan_pairwise'),
+        'lan_range_first': o.get_value('lan_range_first', 100),
+        'lan_range_second': o.get_value('lan_range_second', 101),
         'peerings': peerings,
         'internet_gateway': internet_gateway,
         'autopeering': autopeering,
