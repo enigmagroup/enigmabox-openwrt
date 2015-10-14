@@ -322,7 +322,7 @@ fi
 
 echo "No internet via cjdns. Checking for regular internet connection..."
 set_status "dhcp" 0
-set_status "dhcp_conflict" 0
+rm "$netstat_file-dhcp_conflict" 2> /dev/null
 set_status "internet" 0
 set_status "cjdns" 0
 set_status "cjdns_internet" 0
@@ -335,7 +335,7 @@ if [[ "$(interface_dhcp_success)" == "true" ]]; then
 fi
 
 if [[ "$(interface_dhcp_conflict)" == "true" ]]; then
-    set_status "dhcp_conflict" 1
+    ifconfig "$clearnet_interface" | grep 'inet addr' | cut -d: -f2 | cut -d' ' -f1 > "$netstat_file-dhcp_conflict"
 fi
 
 wehaveinternet="no"
