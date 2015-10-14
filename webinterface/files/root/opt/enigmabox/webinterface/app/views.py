@@ -659,11 +659,20 @@ def lan_range(request):
     for i in range(2, 251):
         ip_range_second.append(i)
 
+    ip_range_router = False
+    try:
+        with open('/tmp/netstat-dhcp_conflict', 'r') as f:
+            ip_range_router = f.read().strip().split('.')[2]
+    except Exception:
+        pass
+
     return render_to_response('lan_range/overview.html', {
         'lan_range_first': int(o.get_value('lan_range_first', 100)),
         'lan_range_second': int(o.get_value('lan_range_second', 101)),
         'ip_range_first': ip_range_first,
         'ip_range_second': ip_range_second,
+        'ip_range_router': int(ip_range_router),
+        'ip_range_router_prev': int(ip_range_router) - 1,
     }, context_instance=RequestContext(request))
 
 

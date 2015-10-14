@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-13 15:01+0200\n"
+"POT-Creation-Date: 2015-10-14 11:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,28 +30,28 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:714
+#: app/views.py:724
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:715
+#: app/views.py:725
 msgid "Sweden"
 msgstr ""
 
-#: app/views.py:716
+#: app/views.py:726
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:717
+#: app/views.py:727
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:718
+#: app/views.py:728
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:719
+#: app/views.py:729
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
@@ -732,24 +732,42 @@ msgstr "Contraseña"
 msgid "Server"
 msgstr "Servidor"
 
-#: app/templates/home/system_status.html:4
+#: app/templates/home/system_status.html:5
+#: app/templates/home/system_status.html:7
 msgid "IP from Router"
 msgstr ""
 
-#: app/templates/home/system_status.html:5
+#: app/templates/home/system_status.html:9
 #, fuzzy
 msgid "Regular Internet"
 msgstr "Internet"
 
-#: app/templates/home/system_status.html:6
+#: app/templates/home/system_status.html:10
 #, fuzzy
 msgid "Network service"
 msgstr "Dirección de red valida hasta"
 
-#: app/templates/home/system_status.html:7
+#: app/templates/home/system_status.html:11
 #, fuzzy
 msgid "Encrypted Internet"
 msgstr "Internet"
+
+#: app/templates/home/system_status.html:16
+#, fuzzy
+msgid "Attention!"
+msgstr "Acción"
+
+#: app/templates/home/system_status.html:17
+msgid "The IP assigned from your router"
+msgstr ""
+
+#: app/templates/home/system_status.html:17
+msgid "is conflicting with the internal ip range."
+msgstr ""
+
+#: app/templates/home/system_status.html:18
+msgid "Please choose a different IP range <a href=\"/lan_range/\">here</a>."
+msgstr ""
 
 #: app/templates/hypesites/configure.html:10
 #: app/templates/hypesites/manage_access.html:10
@@ -889,7 +907,7 @@ msgstr ""
 msgid "Select IP range"
 msgstr "Seleccionar país"
 
-#: app/templates/lan_range/overview.html:33
+#: app/templates/lan_range/overview.html:37
 msgid "Save and reboot"
 msgstr ""
 

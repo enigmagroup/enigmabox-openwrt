@@ -7,7 +7,6 @@
 
       <h1>{% trans "LAN IP range" %}</h1>
       <p>{% trans "Which IP range should the Enigmabox provide to internal devices?" %}</p>
-      <p>{% trans "This is to avoid conflicts in case your router already has 192.168.100.1." %}</p>
 
 <form method="post" class="form-horizontal">
 {% csrf_token %}
@@ -17,7 +16,11 @@
 <p>LAN 1: 192.168.
 <select id="lan_range_first" name="lan_range_first" class="input-mini">
 {% for i in ip_range_first %}
-  <option value="{{ i }}"{% if i == lan_range_first %} selected="selected"{% endif %}>{{ i }}</option>
+    {% if ip_range_router == i or ip_range_router_prev == i %}
+        <option value="{{ i }}" disabled="disabled">{{ i }}</option>
+    {% else %}
+        <option value="{{ i }}"{% if i == lan_range_first %} selected="selected"{% endif %}>{{ i }}</option>
+    {% endif %}
 {% endfor %}
 </select>
 .1</p>
