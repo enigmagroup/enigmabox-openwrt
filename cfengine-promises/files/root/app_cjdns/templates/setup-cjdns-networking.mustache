@@ -189,10 +189,11 @@ interface_dhcp_conflict() {
     clearnet_range=$(ifconfig "$clearnet_interface" | grep 'inet addr' | cut -d. -f3)
 
     for interface in $internal_interfaces; do
-    if [[ "$(ifconfig "$interface" | grep 'inet addr' | cut -d. -f3)" == "$clearnet_range" ]]; then
-        echo true
-        break
-    fi
+        if [[ "$(ifconfig "$interface" | grep 'inet addr' | cut -d. -f3)" == "$clearnet_range" ]]; then
+            echo true
+            break
+        fi
+    done
 }
 
 mtu() {
