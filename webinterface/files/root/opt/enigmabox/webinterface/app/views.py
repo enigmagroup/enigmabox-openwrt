@@ -651,11 +651,11 @@ def lan_range(request):
         Popen(['/sbin/reboot'], stdout=PIPE, close_fds=True)
 
     ip_range_first = []
-    for i in range(0, 250):
+    for i in range(1, 250):
         ip_range_first.append(i)
 
     ip_range_second = []
-    for i in range(1, 251):
+    for i in range(2, 251):
         ip_range_second.append(i)
 
     return render_to_response('lan_range/overview.html', {
