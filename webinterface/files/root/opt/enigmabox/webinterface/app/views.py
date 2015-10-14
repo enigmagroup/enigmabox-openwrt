@@ -28,6 +28,7 @@ def home(request):
 
     netstat = {
         'dhcp': '0',
+        'dhcp_conflict': False,
         'internet': '0',
         'cjdns': '0',
         'cjdns_internet': '0',

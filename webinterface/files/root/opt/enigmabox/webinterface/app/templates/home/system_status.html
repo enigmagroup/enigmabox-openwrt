@@ -1,8 +1,21 @@
 {% load i18n %}
 {% load apptags %}
 
+{% if netstat.dhcp_conflict %}
+<span class="label label-important">{% trans "IP from Router" %}</span>
+{% else %}
 <span class="label label-{% btn_state netstat.dhcp '1' 'success' 'inverse' %}">{% trans "IP from Router" %}</span>
+{% endif %}
 <span class="label label-{% btn_state netstat.internet '1' 'success' 'inverse' %}">{% trans "Regular Internet" %}</span>
 <span class="label label-{% btn_state netstat.cjdns '1' 'success' 'inverse' %}">{% trans "Network service" %}</span>
 <span class="label label-{% btn_state netstat.cjdns_internet '1' 'success' 'inverse' %}">{% trans "Encrypted Internet" %}</span>
 
+{% if netstat.dhcp_conflict %}
+<p>
+<div class="alert alert-error">
+  <h4>{% trans "Attention!" %}</h4>
+  <p>{% trans "Your router's IP is conflicting with the internal ip range." %}</p>
+  <p>{% trans 'Please choose a different IP range <a href="/lan_range/">here</a>.' %}</p>
+</div>
+</p>
+{% endif %}
