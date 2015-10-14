@@ -336,6 +336,7 @@ fi
 
 if [[ "$(interface_dhcp_conflict)" == "true" ]]; then
     ifconfig "$clearnet_interface" | grep 'inet addr' | cut -d: -f2 | cut -d' ' -f1 > "$netstat_file-dhcp_conflict"
+    exit
 fi
 
 wehaveinternet="no"
