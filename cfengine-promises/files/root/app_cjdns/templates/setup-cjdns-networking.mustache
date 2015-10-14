@@ -11,9 +11,18 @@ remoteaddresses="{{#peerings}}{{ip}} {{/peerings}}{{#missioncontrol}}{{ip}} {{/m
 orggatewayfile="/tmp/cjdns_org_gw"
 
 network_profile="$(cat /etc/enigmabox/network-profile)"
-[[ "$network_profile" = "alix" ]] && clearnet_interface="eth0"
-[[ "$network_profile" = "apu" ]] && clearnet_interface="eth2"
-[[ "$network_profile" = "raspi" ]] && clearnet_interface="eth1"
+if [[ "$network_profile" = "alix" ]]; then
+    clearnet_interface="eth0"
+    internal_interfaces="eth1 eth2"
+fi
+if [[ "$network_profile" = "apu" ]]; then
+    clearnet_interface="eth2"
+    internal_interfaces="eth1 eth0"
+fi
+if [[ "$network_profile" = "raspi" ]]; then
+    clearnet_interface="eth1"
+    internal_interfaces="eth0"
+fi
 
 ping="ping -c 5 -W 5"
 cjdns_request_tries="/tmp/cjdns_request_tries"
@@ -176,6 +185,16 @@ interface_dhcp_success() {
     fi
 }
 
+interface_dhcp_conflict() {
+    clearnet_range=$(ifconfig "$clearnet_interface" | grep 'inet addr' | cut -d. -f3)
+
+    for interface in $internal_interfaces; do
+    if [[ "$(ifconfig "$interface" | grep 'inet addr' | cut -d. -f3)" == "$clearnet_range" ]]; then
+        echo true
+        break
+    fi
+}
+
 mtu() {
     if [[ "$(ifconfig tun0 2> /dev/null | grep -i mtu | awk '{ print $6 }' | cut -d: -f 2)" -ne 1300 ]]; then
         e "setting mtu"
@@ -302,6 +321,7 @@ fi
 
 echo "No internet via cjdns. Checking for regular internet connection..."
 set_status "dhcp" 0
+set_status "dhcp_conflict" 0
 set_status "internet" 0
 set_status "cjdns" 0
 set_status "cjdns_internet" 0
@@ -311,6 +331,10 @@ dhcp
 
 if [[ "$(interface_dhcp_success)" == "true" ]]; then
     set_status "dhcp" 1
+fi
+
+if [[ "$(interface_dhcp_conflict)" == "true" ]]; then
+    set_status "dhcp_conflict" 1
 fi
 
 wehaveinternet="no"
