@@ -182,7 +182,6 @@ gateway_is_up() {
 
 we_have_internet() {
     for internethost in $internethosts; do
-        echo "pinging $internethost..."
         if [[ "$($ping "$internethost" | grep 'bytes from')" ]]; then
             echo true
             break
