@@ -7,6 +7,7 @@ export LC_ALL=en_US.UTF-8
 # vars
 
 remoteaddresses="{{#peerings}}{{ip}} {{/peerings}}{{#missioncontrol}}{{ip}} {{/missioncontrol}}"
+internethosts="91.219.237.212 178.209.51.141 8.8.8.8"
 
 orggatewayfile="/tmp/cjdns_org_gw"
 
@@ -179,6 +180,16 @@ gateway_is_up() {
     fi
 }
 
+we_have_internet() {
+    for internethost in $internethosts; do
+        echo "pinging $internethost..."
+        if [[ "$($ping "$internethost" | grep 'bytes from')" ]]; then
+            echo true
+            break
+        fi
+    done
+}
+
 interface_dhcp_success() {
     if [[ "$(ifconfig "$clearnet_interface" | grep 'inet addr' | wc -l)" -gt 0 ]]; then
         echo true
@@ -309,7 +320,7 @@ fi
 if [[ "$(gateway_is_up)" == "true" ]]; then
     set_network_parameters
     e "checking internet connectivity over cjdns"
-    if [[ "$($ping 8.8.8.8 | grep 'bytes from')" ]]; then
+    if [[ "$(we_have_internet)" == "true" ]]; then
         echo "We have internet. Good."
         set_status "dhcp" 1
         set_status "internet" 1
@@ -355,7 +366,7 @@ if [[ "$wehaveinternet" == "yes" && "$request_internet" == "yes" ]]; then
             e "gateway is up."
             set_network_parameters
             e "checking internet connectivity over cjdns"
-            if [[ "$($ping 8.8.8.8 | grep 'bytes from')" ]]; then
+            if [[ "$(we_have_internet)" == "true" ]]; then
                 echo "We have internet. Good."
                 set_status "dhcp" 1
                 set_status "internet" 1
