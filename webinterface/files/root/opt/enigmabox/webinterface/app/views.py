@@ -1460,7 +1460,7 @@ def cfengine_site(request):
     custom_rules_text = custom_rules_text_array
 
     wlan_opmode = o.get_value('wlan_opmode', 'mesh')
-    meshmode = (wlan_opmode[0] == 'mesh')
+    meshmode = (wlan_opmode == 'mesh')
 
     # autopeering
     if o.get_value('autopeering', 0) == '1':
