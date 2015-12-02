@@ -3,27 +3,66 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a href="{% url app.views.addressbook %}">{% trans "Addressbook" %}</a></li>
+        <li class="active">{{ address.display_name }}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-        <ul class="breadcrumb">
-            <li><a href="{% url app.views.addressbook %}">{% trans "Addressbook" %}</a> <span class="divider">/</span></li>
-            <li class="active">{{ address.display_name }}</li>
-        </ul>
+    <!-- Block -->
+    <div class="block">
 
-        <form method="post" class="form-horizontal">
-        {% csrf_token %}
-        <fieldset>
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Addressbook" %}</strong></h2>
+        </div>
+        <!-- END Title -->
+
+      <p>{% trans "Managing contacts and assigning names and numbers." %}</p>
+
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form-horizontal">
+                <fieldset>
+
+                <!-- Form Name -->
+                <legend>{{ address.display_name }}</legend>
+
+                {% if form.errors %}
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>{% trans "Error" %}:</strong>
+                {{ form.errors }}
+                </div>
+                {% endif %}
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="hostname">{% trans "Hostname" %}</label>  
+                  <div class="col-md-4">
+                      <input {% form_error form.name.errors %} id="hostname" name="hostname" type="text" value="{{ form.name.value }}" placeholder="{% trans "Hostname" %}" class="form-control input-md">
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="display_name">{% trans "Displayed name" %}</label>  
+                  <div class="col-md-4">
+                      <input {% form_error form.name.errors %} id="display_name" name="display_name" type="text" value="{{ form.display_name.value }}" placeholder="{% trans "Displayed name" %}" class="form-control input-md">
+                  </div>
+                </div>
+
+                </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </div>
 
         <!-- Form Name -->
         <legend>{{ address.display_name }}</legend>
-
-{% if form.errors %}
-<div class="alert alert-error">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>{% trans "Error" %}:</strong>
-{{ form.errors }}
-</div>
-{% endif %}
 
         <!-- Text input-->
         <div class="control-group">
