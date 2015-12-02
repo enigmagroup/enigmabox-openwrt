@@ -3,82 +3,101 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Addressbook" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Addressbook" %}</h1>
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Addressbook" %}</strong></h2>
+        </div>
+        <!-- END Title -->
+
       <p>{% trans "Managing contacts and assigning names and numbers." %}</p>
       <br />
 
-<ul class="nav nav-tabs">
-  <li><a href="/addressbook/">{% trans "Personal address book" %}</a></li>
-  <li class="active"><a href="/addressbook-global/">{% trans "Global address book" %}</a></li>
-</ul>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
+                    <ul class="nav nav-tabs">
+                      <li><a href="/addressbook/">{% trans "Personal address book" %}</a></li>
+                      <li class="active"><a href="/addressbook-global/">{% trans "Global address book" %}</a></li>
+                    </ul>
 
-<form method="post" class="form-horizontal">
-{% csrf_token %}
+                    <form method="post" class="form-horizontal">
+                    {% csrf_token %}
 
-<fieldset>
+                    <fieldset>
 
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label tooltip-hover" for="filter-ads" data-toggle="tooltip" data-placement="left" title="{% trans "If enabled, you can be called from anyone. If disabled, you can still call everyone in the global address book." %}">{% trans "Global availability" %}</label>
-  <div class="controls">
-{% if global_availability == '1' %}
-    <button id="global-availability" name="global-availability" class="btn btn-success" value="1">{% trans "I am globally available" %}</button>
-    <strong>{% trans "Hostname" %}:</strong>
-    <span>{{ global_hostname|default_if_none:'[unset]' }}</span>,
-    <strong>{% trans "phone" %}:</strong>
-    <span>{{ global_phone|default_if_none:'[unset]' }}</span>
-    <a href="/addressbook-global/edit/" class="btn btn-primary" value="1">{% trans "Edit" %}</a>
-    <span>{% trans "Status" %}:
-{% if global_address_status == "unset" or global_address_status == None %}
-        <span class="label label-default">{% trans "Unset" %}</span>
-{% elif global_address_status == "pending" %}
-        <span class="label label-warning">{% trans "Pending" %}</span>
-{% elif global_address_status == "confirmed" %}
-        <span class="label label-success">{% trans "Confirmed" %}</span>
-{% elif global_address_status == "rejected" %}
-        <span class="label label-important">{% trans "Rejected" %}</span>
-{% endif %}
-    </span>
-{% else %}
-    <button id="global-availability" name="global-availability" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
-{% endif %}
-  </div>
-</div>
-</fieldset>
+                    <!-- Button -->
+                    <div class="control-group">
+                      <label class="control-label tooltip-hover" for="filter-ads" data-toggle="tooltip" data-placement="left" title="{% trans "If enabled, you can be called from anyone. If disabled, you can still call everyone in the global address book." %}">{% trans "Global availability" %}</label>
+                      <div class="controls">
+                    {% if global_availability == '1' %}
+                        <button id="global-availability" name="global-availability" class="btn btn-success" value="1">{% trans "I am globally available" %}</button>
+                        <strong>{% trans "Hostname" %}:</strong>
+                        <span>{{ global_hostname|default_if_none:'[unset]' }}</span>,
+                        <strong>{% trans "phone" %}:</strong>
+                        <span>{{ global_phone|default_if_none:'[unset]' }}</span>
+                        <a href="/addressbook-global/edit/" class="btn btn-primary" value="1">{% trans "Edit" %}</a>
+                        <span>{% trans "Status" %}:
+                    {% if global_address_status == "unset" or global_address_status == None %}
+                            <span class="label label-default">{% trans "Unset" %}</span>
+                    {% elif global_address_status == "pending" %}
+                            <span class="label label-warning">{% trans "Pending" %}</span>
+                    {% elif global_address_status == "confirmed" %}
+                            <span class="label label-success">{% trans "Confirmed" %}</span>
+                    {% elif global_address_status == "rejected" %}
+                            <span class="label label-important">{% trans "Rejected" %}</span>
+                    {% endif %}
+                        </span>
+                    {% else %}
+                        <button id="global-availability" name="global-availability" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+                    {% endif %}
+                      </div>
+                    </div>
+                    </fieldset>
 
-{% if form.errors %}
-<div class="alert alert-error">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>{% trans "Error" %}:</strong>
-{{ form.errors }}
-</div>
-{% endif %}
+                    {% if form.errors %}
+                    <div class="alert alert-error">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{% trans "Error" %}:</strong>
+                    {{ form.errors }}
+                    </div>
+                    {% endif %}
 
-</fieldset>
-</form>
+                    </fieldset>
+                    </form>
 
-<legend>{% trans "Global address book" %}</legend>
+                    <legend>{% trans "Global address book" %}</legend>
 
-<table class="table table-hover table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>{% trans "Hostname" %}</th>
-        <th>{% trans "IPv6 address" %}</th>
-        <th>{% trans "Phone number" %}</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for address in addresses %}
-    <tr class="{% btn_state address.mine '1' 'warning' '' %}">
-        <td>{{ address.name }}</td>
-        <td>{{ address.ipv6 }}</td>
-        <td>01{{ address.phone }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
-
-    </div> <!-- /container -->
+                    <table class="table table-hover table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>{% trans "Hostname" %}</th>
+                            <th>{% trans "IPv6 address" %}</th>
+                            <th>{% trans "Phone number" %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for address in addresses %}
+                        <tr class="{% btn_state address.mine '1' 'warning' '' %}">
+                            <td><a href="{% url app.views.addressbook_edit address.pk %}">{{ address.name }}</a></td>
+                            <td>{{ address.ipv6 }}</td>
+                            <td>01{{ address.phone|default_if_none:'-' }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Block -->
 {% endblock %}
