@@ -72,7 +72,9 @@
                             </a>
                             <!-- END Brand -->
 {% if_config_changed object None %}
-      <a id="button-apply" href="{% url app.views.apply_changes %}" class="btn btn-danger">{% trans "Apply changes" %}</a>
+                            <div class="text-center">
+                                <a id="button-apply" href="{% url app.views.apply_changes %}" class="btn btn-danger animation-pulse">{% trans "Apply changes" %}</a>
+                            </div>
 {% endif_config_changed %}
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
