@@ -30,39 +30,41 @@
                       <li class="active"><a href="/addressbook-global/">{% trans "Global address book" %}</a></li>
                     </ul>
 
+                    <br />
+
                     <form method="post" class="form-horizontal">
                     {% csrf_token %}
 
                     <fieldset>
 
                     <!-- Button -->
-                    <div class="control-group">
-                      <label class="control-label tooltip-hover" for="filter-ads" data-toggle="tooltip" data-placement="left" title="{% trans "If enabled, you can be called from anyone. If disabled, you can still call everyone in the global address book." %}">{% trans "Global availability" %}</label>
-                      <div class="controls">
-                    {% if global_availability == '1' %}
-                        <button id="global-availability" name="global-availability" class="btn btn-success" value="1">{% trans "I am globally available" %}</button>
-                        <strong>{% trans "Hostname" %}:</strong>
-                        <span>{{ global_hostname|default_if_none:'[unset]' }}</span>,
-                        <strong>{% trans "phone" %}:</strong>
-                        <span>{{ global_phone|default_if_none:'[unset]' }}</span>
-                        <a href="/addressbook-global/edit/" class="btn btn-primary" value="1">{% trans "Edit" %}</a>
-                        <span>{% trans "Status" %}:
-                    {% if global_address_status == "unset" or global_address_status == None %}
-                            <span class="label label-default">{% trans "Unset" %}</span>
-                    {% elif global_address_status == "pending" %}
-                            <span class="label label-warning">{% trans "Pending" %}</span>
-                    {% elif global_address_status == "confirmed" %}
-                            <span class="label label-success">{% trans "Confirmed" %}</span>
-                    {% elif global_address_status == "rejected" %}
-                            <span class="label label-important">{% trans "Rejected" %}</span>
-                    {% endif %}
-                        </span>
-                    {% else %}
-                        <button id="global-availability" name="global-availability" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
-                    {% endif %}
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="singlebutton">{% trans "Global availability" %}</label>
+                      <div class="col-md-4">
+                        {% if global_availability == '1' %}
+                            <button id="global-availability" name="global-availability" class="btn btn-success" value="1">{% trans "I am globally available" %}</button><br />
+                            <strong>{% trans "Hostname" %}:</strong>
+                            <span>{{ global_hostname|default_if_none:'[unset]' }}</span><br />
+                            <strong>{% trans "phone" %}:</strong>
+                            <span>{{ global_phone|default_if_none:'[unset]' }}</span><br />
+                            <span>{% trans "Status" %}:
+                        {% if global_address_status == "unset" or global_address_status == None %}
+                                <span class="label label-default">{% trans "Unset" %}</span>
+                        {% elif global_address_status == "pending" %}
+                                <span class="label label-warning">{% trans "Pending" %}</span>
+                        {% elif global_address_status == "confirmed" %}
+                                <span class="label label-success">{% trans "Confirmed" %}</span>
+                        {% elif global_address_status == "rejected" %}
+                                <span class="label label-important">{% trans "Rejected" %}</span>
+                        {% endif %}
+                            </span><br />
+                            <br />
+                            <a href="/addressbook-global/edit/" class="btn btn-primary" value="1">{% trans "Set global hostname and phone number..." %}</a><br />
+                        {% else %}
+                            <button id="global-availability" name="global-availability" class="btn btn-alt btn-success" value="1">{% trans "Disabled" %}</button>
+                        {% endif %}
                       </div>
                     </div>
-                    </fieldset>
 
                     {% if form.errors %}
                     <div class="alert alert-error">
