@@ -3721,7 +3721,8 @@ p, .table, .alert, .carousel {
 */
 
 /* Small devices, Tablets (>767px) */
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) { */
+@media screen and (min-width: 0px) {
 
     /* General */
     #login-background {
@@ -3869,7 +3870,8 @@ p, .table, .alert, .carousel {
 }
 
 /* Medium devices, Desktops (>991px) */
-@media screen and (min-width: 992px) {
+/* @media screen and (min-width: 992px) { */
+@media screen and (min-width: 0px) {
 
     /* General */
     #login-alt-container {
@@ -4085,7 +4087,8 @@ p, .table, .alert, .carousel {
 }
 
 /* Large devices, Desktops (>1199px) */
-@media screen and (min-width: 1200px) {
+/* @media screen and (min-width: 1200px) { */
+@media screen and (min-width: 0px) {
 
     /* Main Layout */
     .header-fixed-top .sidebar-content,
