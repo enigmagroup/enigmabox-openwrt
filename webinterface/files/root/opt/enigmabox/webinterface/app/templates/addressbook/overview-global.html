@@ -90,7 +90,7 @@
                         <tbody>
                         {% for address in addresses %}
                         <tr class="{% btn_state address.mine '1' 'warning' '' %}">
-                            <td><a href="{% url app.views.addressbook_edit address.pk %}">{{ address.name }}</a></td>
+                            <td>{{ address.name }}</td>
                             <td>{{ address.ipv6 }}</td>
                             <td>01{{ address.phone|default_if_none:'-' }}</td>
                         </tr>
