@@ -89,19 +89,19 @@
                                     <a class="{% active request 'passwords' %}" href="{% url app.views.passwords %}"><i class="gi gi-lock sidebar-nav-icon"></i>&nbsp;{% trans "Passwords" %}</a>
                                 </li>
                                 <li>
-                                    <a class="{% active request 'storage' %}" href="{% url app.views.storage %}"><i class="gi gi-hd sidebar-nav-icon"></i>&nbsp;{% trans "Storage" %}</a>
+                                    <a class="{% active request 'storage' %}" href="{% url app.views.storage %}"><i class="gi gi-hdd sidebar-nav-icon"></i>&nbsp;{% trans "Storage" %}</a>
                                 </li>
                                 <li>
                                     <a class="{% active request 'backup' %}" href="{% url app.views.backup %}"><i class="gi gi-share sidebar-nav-icon"></i>&nbsp;{% trans "Backup &amp; restore" %}</a>
                                 </li>
 {% if_updates object None  %}
                                 <li>
-                                    <a class="{% active request 'updates' %}" href="{% url app.views.updates %}"><i class="gi gi-circle-arrow-up sidebar-nav-icon"></i>&nbsp;{% trans "Updates" %}</a>
+                                    <a class="{% active request 'updates' %}" href="{% url app.views.updates %}"><i class="gi gi-circle_arrow_top sidebar-nav-icon"></i>&nbsp;{% trans "Updates" %}</a>
                                 </li>
 {% endif_updates %}
 {% if_show_upgrader object None %}
                                 <li>
-                                    <a class="{% active request 'upgrade' %}" href="{% url app.views.upgrade %}"><i class="gi gi-download-alt sidebar-nav-icon"></i>&nbsp;{% trans "Firmware upgrade" %}</a>
+                                    <a class="{% active request 'upgrade' %}" href="{% url app.views.upgrade %}"><i class="gi gi-download_alt sidebar-nav-icon"></i>&nbsp;{% trans "Firmware upgrade" %}</a>
                                 </li>
 {% endif_show_upgrader  %}
                                 <li class="sidebar-header">
@@ -125,7 +125,7 @@
                                     <a class="{% active request 'peerings' %}" href="{% url app.views.peerings %}"><i class="gi gi-random sidebar-nav-icon"></i>&nbsp;{% trans "Peerings" %}</a>
                                 </li>
                                 <li>
-                                    <a class="{% active request 'lan_range' %}" href="{% url app.views.lan_range %}"><i class="gi gi-random sidebar-nav-icon"></i>&nbsp;{% trans "LAN IP range" %}</a>
+                                    <a class="{% active request 'lan_range' %}" href="{% url app.views.lan_range %}"><i class="hi hi-resize-horizontal sidebar-nav-icon"></i>&nbsp;{% trans "LAN IP range" %}</a>
                                 </li>
                                 <li>
                                     <a class="{% active request 'wlan_settings' %}" href="{% url app.views.wlan_settings %}"><i class="gi gi-signal sidebar-nav-icon"></i>&nbsp;{% trans "WLAN settings" %}</a>
