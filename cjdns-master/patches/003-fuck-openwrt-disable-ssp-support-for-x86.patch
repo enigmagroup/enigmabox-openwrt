@@ -1,0 +1,14 @@
+diff --git a/node_build/make.js b/node_build/make.js
+index 3adc281..53acd75 100644
+--- a/node_build/make.js
++++ b/node_build/make.js
+@@ -152,9 +152,6 @@ Builder.configure({
+             // Broken GCC patch makes -fstack-protector-all not work
+             // workaround is to give -fno-stack-protector first.
+             // see: https://bugs.launchpad.net/ubuntu/+source/gcc-4.5/+bug/691722
+-            '-fno-stack-protector',
+-            '-fstack-protector-all',
+-            '-Wstack-protector'
+         );
+ 
+         // Static libssp provides __stack_chk_fail_local, which x86 needs in

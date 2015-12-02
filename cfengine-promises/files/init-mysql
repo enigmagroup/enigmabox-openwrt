@@ -1,0 +1,9 @@
+#!/bin/ash
+
+/usr/bin/mysql_install_db --force
+
+/etc/init.d/mysqld start
+/etc/init.d/mysqld enable
+
+mysqladmin -u root password 'root'
+

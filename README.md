@@ -5,18 +5,18 @@ OpenWrt package feed for the Enigmabox software suite.
 
 How to build that stuff:
 
-    $ git clone git://git.openwrt.org/openwrt.git
+    $ git clone https://github.com/enigmagroup/openwrt.git
     $ cd openwrt
 
     $ vi feeds.conf
 
 Your feeds.conf should look like this:
 
-    src-git packages https://github.com/openwrt/packages.git
-    src-git oldpackages http://git.openwrt.org/packages.git
-    src-git management https://github.com/openwrt-management/packages.git
-    src-git routing https://github.com/openwrt-routing/packages.git
-    src-git telephony https://github.com/openwrt/telephony.git
+    src-git packages https://github.com/enigmagroup/openwrt-packages.git
+    src-git oldpackages https://github.com/enigmagroup/openwrt-oldpackages.git
+    src-git management https://github.com/enigmagroup/openwrt-management.git
+    src-git routing https://github.com/enigmagroup/openwrt-routing.git
+    src-git telephony https://github.com/enigmagroup/openwrt-telephony.git
 
     src-git enigmabox https://github.com/enigmagroup/enigmabox-openwrt.git
 
@@ -24,8 +24,6 @@ Next use that package system to incorporate the Enigmabox software suite:
 
     $ ./scripts/feeds update -a
     $ ./scripts/feeds install -a
-    $ make defconfig
-    $ make prereq
 
 Then configure for your system:
 
@@ -47,6 +45,15 @@ Then configure for your system:
   * Root filesystem partition size (in MB): 3600
   * Include kernel in root filesystem: yes
   * Include DTB in root filesystem: yes
+
+Recently, OpenWrt decided to ~~fuck everything up~~ switch to musl by default.
+
+Stick to uClibc manually:
+
+"Advanced configuration options":
+  * Toolchain Options
+    * C Library implementation
+      * Use uClibc
 
 "Enigmabox":
 * cfengine-promises: yes

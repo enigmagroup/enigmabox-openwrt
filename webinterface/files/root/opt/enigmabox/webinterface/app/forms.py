@@ -53,8 +53,20 @@ class PasswordForm(forms.Form):
         password = self.cleaned_data.get('password')
         password_repeat = self.cleaned_data.get('password_repeat')
 
+        try:
+            password.encode('ascii')
+        except Exception:
+            raise forms.ValidationError('Aus technischen Gruenden koennen keine Umlaute oder Zeichen ausserhalb des ASCII-Zeichensatzes verwendet werden. Python, Unicode und so... Seufz.')
+
         if password and password != password_repeat:
             raise forms.ValidationError("Passwords don't match")
 
         return self.cleaned_data
+
+class VolumesForm(forms.Form):
+    def validate_name(value):
+        if re.search("[^a-z0-9-]", value):
+            raise exceptions.ValidationError('Der Name darf nur aus Kleinbuchstaben, Zahlen und Bindestrichen (-) bestehen.')
+
+    name = forms.CharField(initial='', required=True, min_length=1, max_length=20, validators=[validate_name])
 

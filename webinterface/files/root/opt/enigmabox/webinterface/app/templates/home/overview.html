@@ -33,8 +33,17 @@
 
       <hr />
 
+      <h5>{% trans "System status" %}</h5>
+
+<div class="ajax_refresh" data-request_url="/">
+{% include 'home/system_status.html' %}
+</div>
+
+      <hr />
+
       <h5>{% trans "Applications" %}</h5>
 
+<p>
         <a href="/addressbook" class="btn btn-primary"><i class="icon icon-white icon-user"></i>&nbsp;{% trans "Addressbook" %}</a>
         <a href="http://mail.box/" target="_blank" class="btn btn-primary"><i class="icon icon-white icon-envelope"></i>&nbsp;{% trans "Webmail" %}</a>
 {% if teletext_enabled == '1' %}
@@ -42,14 +51,32 @@
 {% else %}
         <a disabled="disabled" class="btn btn-primary"><i class="icon icon-white icon-list"></i>&nbsp;{% trans "Teletext" %}</a>
 {% endif %}
-
-      <hr />
-
-      <h5>{% trans "System status" %}</h5>
-
-<div class="ajax_refresh" data-request_url="/">
-{% include 'home/system_status.html' %}
-</div>
+</p>
+<p>
+{% if personal_website == '1' %}
+        <a href="http://[{{ ipv6 }}]/" target="_blank" class="btn btn-primary"><i class="icon icon-white icon-home"></i>&nbsp;{% trans "Personal website" %}</a>
+{% else %}
+        <a disabled="disabled" class="btn btn-primary"><i class="icon icon-white icon-home"></i>&nbsp;{% trans "Personal website" %}</a>
+{% endif %}
+{% if dokuwiki == '1' %}
+        <a href="http://[{{ ipv6 }}]/wiki/" target="_blank" class="btn btn-primary"><i class="icon icon-white icon-book"></i>&nbsp;{% trans "Wiki" %}</a>
+{% else %}
+        <a disabled="disabled" class="btn btn-primary"><i class="icon icon-white icon-book"></i>&nbsp;{% trans "Wiki" %}</a>
+{% endif %}
+{% if owncloud == '1' %}
+        <a href="http://[{{ ipv6 }}]/owncloud/" target="_blank" class="btn btn-primary">{% trans "OwnCloud" %}</a>
+{% else %}
+        <a disabled="disabled" class="btn btn-primary">{% trans "OwnCloud" %}</a>
+{% endif %}
+{% if pastebin == '1' %}
+        <a href="http://[{{ ipv6 }}]/pastebin/" target="_blank" class="btn btn-primary"><i class="icon icon-white icon-list-alt"></i>&nbsp;{% trans "Pastebin" %}</a>
+{% else %}
+        <a disabled="disabled" class="btn btn-primary"><i class="icon icon-white icon-list-alt"></i>&nbsp;{% trans "Pastebin" %}</a>
+{% endif %}
+</p>
+<p>
+    <a href="/hypesites/configure/">{% trans "Configure Hypesite services..." %}</a>
+</p>
 
       <hr />
 

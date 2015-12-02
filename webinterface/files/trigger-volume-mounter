@@ -1,0 +1,12 @@
+#!/bin/ash
+
+sleep 1
+
+drives=$(find /dev -name sd[a-z])
+for drive in $drives; do
+    identifier=$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')
+    if [[ $(grep "$identifier" /etc/enigmabox/volumes | wc -l) -gt 0 ]]; then
+        /usr/sbin/volumes-mounter mount_all
+    fi
+done
+

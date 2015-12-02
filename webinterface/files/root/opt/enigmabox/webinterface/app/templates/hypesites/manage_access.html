@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+        <ul class="breadcrumb">
+            <li><a href="{% url app.views.hypesites %}">{% trans "Hypesites" %}</a> <span class="divider">/</span></li>
+            <li><a href="{% url app.views.configure_hypesites %}">{% trans "Configure" %}</a> <span class="divider">/</span></li>
+            <li class="active">{{ webservice|capfirst }}</li>
+        </ul>
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+
+<fieldset>
+<!-- Form Name -->
+<legend>{{ webservice|capfirst }} {% trans "access configuration" %}</legend>
+
+<!-- Button (Double) -->
+<div class="control-group">
+  <label class="control-label" for="access_all">{% trans "Allow access" %}</label>
+  <div class="controls">
+    <button id="access_all" name="access_all" value="1" class="btn btn-{% btn_state hype_access_webservice 'all' 'success' 'default' %}">{% trans "All" %}</button>
+    <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hype_access_webservice 'friends' 'warning' 'default' %}">{% trans "Friends only" %}</button>
+    <button id="access_specific" name="access_specific" value="1" class="btn btn-{% btn_state hype_access_webservice 'specific' 'danger' 'default' %}">{% trans "Specific IPs..." %}</button>
+  </div>
+</div>
+
+</fieldset>
+
+{% if hypesites_access == 'specific' %}
+<fieldset>
+
+<!-- Select Multiple -->
+<div class="control-group">
+  <label class="control-label" for="userlist">{% trans "User list" %}</label>
+  <div class="controls">
+    <select id="userlist" name="userlist" size="10" class="input-xxlarge" multiple="multiple">
+{% for address in addresses %}
+      <option value="{{ address.ipv6 }}">{{ address.name }} ({{ address.ipv6 }})</option>
+{% endfor %}
+    </select>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="grant"></label>
+  <div class="controls">
+    <button id="grant" name="grant" value="1" class="btn btn-success"><i class="icon-arrow-down icon-white"></i> {% trans "Grant selected users" %}</button>
+  </div>
+</div>
+
+<!-- Select Multiple -->
+<div class="control-group">
+  <label class="control-label" for="accesslist">{% trans "Users with access" %}</label>
+  <div class="controls">
+    <select id="accesslist" name="accesslist" size="10" class="input-xxlarge" multiple="multiple">
+{% for address in access_list %}
+      <option value="{{ address.ipv6 }}">{{ address.name }} ({{ address.ipv6 }})</option>
+{% endfor %}
+    </select>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="revoke"></label>
+  <div class="controls">
+    <button id="revoke" name="revoke" value="1" class="btn btn-danger"><i class="icon-ban-circle icon-white"></i> {% trans "Revoke selected users" %}</button>
+  </div>
+</div>
+</fieldset>
+{% endif %}
+
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}

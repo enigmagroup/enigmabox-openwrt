@@ -1,0 +1,53 @@
+
+bundle agent app_hypesites
+{
+  vars:
+      "site" data => readjson("$(g.site)", 64000);
+
+  files:
+      "/etc/lighttpd/hypesites.d/index.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/index.conf.mustache",
+      edit_defaults => no_backup,
+      classes => if_repaired("restart_lighttpd");
+
+      "/etc/lighttpd/hypesites.d/dokuwiki.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/dokuwiki.conf.mustache",
+      edit_defaults => no_backup,
+      classes => if_repaired("restart_lighttpd");
+
+      "/etc/lighttpd/hypesites.d/owncloud.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/owncloud.conf.mustache",
+      edit_defaults => no_backup,
+      classes => if_repaired("restart_lighttpd");
+
+      "/etc/lighttpd/hypesites.d/stikked.conf"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/stikked.conf.mustache",
+      edit_defaults => no_backup,
+      classes => if_repaired("restart_lighttpd");
+
+      "/etc/enigmabox/volumes"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/volumes.mustache",
+      edit_defaults => no_backup;
+
+  commands:
+    restart_lighttpd::
+      "/etc/init.d/lighttpd restart";
+
+  reports:
+      "checking hypesites: done";
+}

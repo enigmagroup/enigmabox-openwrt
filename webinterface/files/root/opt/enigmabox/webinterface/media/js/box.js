@@ -1,4 +1,4 @@
-(function(){
+$(function() {
 
     var trans = window.translation;
 
@@ -207,8 +207,10 @@
 
         $('#apply-now').modal({
             'backdrop': 'static',
-            'keyboard': false
+            'keyboard': true
         });
+
+        $('#confirm-apply').focus();
 
         return false;
     });
@@ -228,10 +230,9 @@
                             clearInterval(applyval);
                             $('.apply-progressbar').hide();
                             $('#button-apply').hide();
-                            $('#apply-now .dynamic-output').slideUp(function(){
-                                $('.apply-changes-success').show();
-                                $('.apply-donebar').show();
-                            });
+                            $('.apply-changes-success').show();
+                            $('.apply-donebar').show();
+                            $('.apply-donebar button').focus();
                         }, 1000);
                     }
                 });
@@ -256,4 +257,56 @@
         clearInterval(applyval);
     });
 
-})();
+    $('#failed-mount').modal({
+        'backdrop': 'static',
+        'keyboard': true
+    });
+
+    $('#confirm-format').on('click', function() {
+        if(confirm(trans['are_you_sure'])) {
+
+            $('.format-buttonbar').hide();
+            $('.format-drive-ask').hide();
+            $('.format-progressbar').show();
+            $('#failed-mount .dynamic-output').slideDown();
+
+            applyval = setInterval(function() {
+                try {
+                    $.get('/dynamic_status/?key=formatdrive', function(data) {
+                        if(data == 'done') {
+                            setTimeout(function() {
+                                clearInterval(applyval);
+                                $('.format-progressbar').hide();
+                                $('#button-format').hide();
+                                $('.format-drive-success').show();
+                                $('.format-donebar').show();
+                                $('.format-donebar a').focus();
+                            }, 1000);
+                        }
+                    });
+                } catch(e){}
+                $dynamic_output.load('/dynamic_output/', function(data) {
+                    if(data != prev_data){
+                        $('#failed-mount .dynamic-output').animate({
+                            scrollTop: $('.dynamic-output')[0].scrollHeight
+                        }, 1000);
+                        prev_data = data;
+                    }
+                });
+            }, 600);
+
+            $.post('/format_drive/', {
+                'format_drive': 'run',
+                'identifier': $('#confirm-format').data('identifier')
+            });
+
+        }
+    });
+
+    $('#lan_range_first').change(function() {
+        var lan_first = parseInt($('#lan_range_first').val(), 10);
+        var lan_second = lan_first + 1;
+        $('#lan_range_second').val(lan_second);
+    });
+
+});

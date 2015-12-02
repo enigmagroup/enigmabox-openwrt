@@ -1,0 +1,159 @@
+#!/bin/ash
+
+# variables
+webinterface="http://127.0.0.1:8000"
+pidfile="/var/run/volumes-mounter.pid"
+dynamic_output="/tmp/dynamic_output"
+dynamic_status="/tmp/format-in-progress"
+[[ $(cat /etc/enigmabox/network-profile) == 'raspi' ]] && start_part=a || start_part=b
+
+
+
+# Check if this script is already running
+kill -0 $(cat "$pidfile" 2> /dev/null) 2> /dev/null
+if [[ "$?" == "0" ]]; then
+    #echo "Script is already running, exiting" #don't tell that, output for list_drives...
+    exit 1
+else
+    [[ -f "$pidfile" ]] && rm "$pidfile"
+fi
+echo $$ > "$pidfile"
+
+
+
+task=$1
+
+[[ -z $task ]] && exit 0
+
+mount_drive() {
+    vol_id=$1
+    vol_name=$2
+
+    drives=$(find /dev -name sd[$start_part-z])
+    for drive in $drives; do
+        if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
+            mkdir -p "/media/$vol_name"
+
+            # umount if mounted and unable to write
+            if [[ $(mount | grep "/media/$vol_name" | wc -l) -gt 0 ]]; then
+                echo 'writeable' > "/media/$vol_name/.writetest"
+                if [[ $(cat "/media/$vol_name/.writetest") == 'writeable' ]]; then
+                    rm "/media/$vol_name/.writetest" 2> /dev/null
+                else
+                    umount "/media/$vol_name"
+                    mount "$drive"1 "/media/$vol_name"
+                    [[ $(mount | grep $drive | wc -l) -gt 0 ]] || echo 'failed'
+                fi
+
+            # drive is not mounted
+            else
+                mount "$drive"1 "/media/$vol_name"
+                [[ $(mount | grep $drive | wc -l) -gt 0 ]] || echo 'failed'
+
+                # check if writeable
+                echo 'writeable' > "/media/$vol_name/.writetest"
+                [[ $(cat "/media/$vol_name/.writetest") == 'writeable' ]] || echo 'failed'
+                rm "/media/$vol_name/.writetest" 2> /dev/null
+            fi
+        fi
+    done
+}
+
+if [[ $task == 'format_drive' ]]; then
+    vol_id=$2
+
+    touch "$dynamic_status"
+
+    drives=$(find /dev -name sd[$start_part-z])
+    for drive in $drives; do
+        if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
+
+            echo "p
+d
+
+d
+
+d
+
+d
+
+g
+n
+
+
+
+p
+w
+" | /usr/sbin/fdisk $drive > "$dynamic_output"
+
+            /usr/sbin/mkfs.ext4 "$drive"1 >> "$dynamic_output"
+
+        fi
+    done
+
+    rm "$dynamic_status"
+
+fi
+
+if [[ $task == 'list_drives' ]]; then
+    drives=$(find /dev -name sd[$start_part-z])
+    for drive in $drives; do
+        if [[ $(fdisk "$drive" --list 2> /dev/null | grep 'Disk identifier' | wc -l) -gt 0 ]]; then
+            fdisk $drive --list | grep 'Disk identifier' | cut -d' ' -f3
+        fi
+    done
+fi
+
+if [[ $task == 'mount_drive' ]]; then
+    mount_drive $2 $3
+fi
+
+if [[ $task == 'umount_drive' ]]; then
+    vol_id=$2
+    vol_name=$3
+
+    drives=$(find /dev -name sd[$start_part-z])
+    for drive in $drives; do
+        if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
+            umount "$drive"1
+        fi
+    done
+    umount "/media/$vol_name"
+fi
+
+if [[ $task == 'get_drive_stat' ]]; then
+    vol_id=$2
+
+    drives=$(find /dev -name sd[$start_part-z])
+    for drive in $drives; do
+        if [[ "$(fdisk $drive --list 2> /dev/null | grep 'Disk identifier' | awk '{ print $3 }')" == "$vol_id" ]]; then
+
+            # get size
+            vol_size=$(fdisk $drive --list | grep "Disk $drive" | cut -d' ' -f5)
+
+            # get mount status
+            [[ $(mount | grep $drive | wc -l) -gt 0 ]] && vol_mounted=1 || vol_mounted=0
+
+            echo "vol_id:$vol_id vol_size:$vol_size vol_mounted:$vol_mounted "
+
+        fi
+    done
+
+fi
+
+if [[ $task == 'mount_all' ]]; then
+
+    IFS="
+" #yes. Newline.
+
+    volumes=$(cat /etc/enigmabox/volumes)
+    for volume in $volumes; do
+        identifier=$(echo $volume | cut -d' ' -f1)
+        name=$(echo $volume | cut -d' ' -f2)
+        mount_drive "$identifier" "$name"
+    done
+
+fi
+
+rm "$pidfile"
+

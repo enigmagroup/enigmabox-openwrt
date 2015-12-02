@@ -20,6 +20,8 @@ body common control
 		  "$(g.workdir)/app_email/bundle.cf",
 		  "$(g.workdir)/app_webfilter/bundle.cf",
 		  "$(g.workdir)/app_security/bundle.cf",
+		  "$(g.workdir)/app_hypesites/bundle.cf",
+#		  "$(g.workdir)/app_database/bundle.cf",
       };
 
       bundlesequence => {
@@ -29,6 +31,8 @@ body common control
 			  "app_email",
 			  "app_webfilter",
 			  "app_security",
+			  "app_hypesites",
+#			  "app_database",
       };
 }
 

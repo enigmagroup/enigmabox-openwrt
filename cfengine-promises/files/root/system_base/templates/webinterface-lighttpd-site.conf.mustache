@@ -1,10 +1,13 @@
 
-$HTTP["host"] =~ "^(enigma\.box|box|box\.enigmabox\.net|192.168.100.1|192.168.101.1)$" {
+$HTTP["host"] =~ "^(enigma\.box|box|box\.enigmabox\.net|192.168.{{ lan_range_first }}.1|192.168.{{ lan_range_second }}.1)$" {
 
     include_shell "cat auth/webinterface.conf 2> /dev/null"
 
     # max post request: 120M
     server.max-request-size = 122880
+
+    # custom error pages
+    server.errorfile-prefix = "/opt/enigmabox/webinterface/status-"
 
     proxy.server = ( "" =>
         ( (
@@ -14,4 +17,3 @@ $HTTP["host"] =~ "^(enigma\.box|box|box\.enigmabox\.net|192.168.100.1|192.168.10
     )
 
 }
-

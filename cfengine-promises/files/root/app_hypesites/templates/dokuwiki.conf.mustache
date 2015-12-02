@@ -1,0 +1,46 @@
+
+$HTTP["url"] =~ "^/wiki/(bin|data|inc|conf)/" {
+    url.access-deny = ( "" )
+}
+
+$HTTP["url"] =~ "^/wiki" {
+
+{{^if_hype_dokuwiki}}
+    url.access-deny = ( "" )
+{{/if_hype_dokuwiki}}
+
+{{^if_hype_access_dokuwiki_all}}
+    $HTTP["remoteip"] !~ "fdfa::|fdfb::|{{#hype_dokuwiki_accesslist}}{{ ipv6 }}|{{/hype_dokuwiki_accesslist}}127.0.0.1" {
+        url.access-deny = ( "" )
+    }
+{{/if_hype_access_dokuwiki_all}}
+
+    # max post request: 1M
+    server.max-request-size = 1024
+
+    # activate directory listing
+    dir-listing.activate = "disable"
+
+    # make sure those are always served through FastCGI and never as static files
+    static-file.exclude-extensions = ( ".php" )
+
+    # php
+    cgi.assign = ( ".php" => "/usr/bin/php-cgi" )
+
+    # rewrites for dokuwiki
+    index-file.names = ("doku.php")
+
+    url.rewrite-once = (
+      "^/wiki/lib/.*$"                     => "$0",
+      "^/wiki/_media/(.*)?\?(.*)$"         => "/wiki/lib/exe/fetch.php?media=$1&$2",
+      "^/wiki/_media/(.*)$"                => "/wiki/lib/exe/fetch.php?media=$1",
+      "^/wiki/_detail/(.*)?\?(.*)$"        => "/wiki/lib/exe/detail.php?media=$1&$2",
+      "^/wiki/_detail/(.*)?$"              => "/wiki/lib/exe/detail.php?media=$1",
+      "^/wiki/_export/([^/]+)/(.*)\?(.*)$" => "/wiki/doku.php?do=export_$1&id=$2&$3",
+      "^/wiki/_export/([^/]+)/(.*)"        => "/wiki/doku.php?do=export_$1&id=$2",
+      "^/wiki/doku.php.*"                  => "$0",
+      "^/wiki/feed.php.*"                  => "$0",
+      "^/wiki/(.*)\?(.*)"                  => "/wiki/doku.php?id=$1&$2",
+      "^/wiki/(.*)"                        => "/wiki/doku.php?id=$1"
+    )
+}

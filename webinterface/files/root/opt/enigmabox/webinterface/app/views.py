@@ -28,6 +28,7 @@ def home(request):
 
     netstat = {
         'dhcp': '0',
+        'dhcp_conflict': False,
         'internet': '0',
         'cjdns': '0',
         'cjdns_internet': '0',
@@ -61,9 +62,14 @@ def home(request):
     else:
         return render_to_response('home/overview.html', {
             'hostid': o.get_value('hostid'),
+            'ipv6': o.get_value('ipv6'),
             'internet_access': internet_access,
             'internet_access_formatted': internet_access_formatted,
-            'teletext_enabled': o.get_value('teletext_enabled'),
+            'teletext_enabled': o.get_value('teletext_enabled', 0),
+            'personal_website': o.get_value('personal_website', 0),
+            'dokuwiki': o.get_value('dokuwiki', 0),
+            'owncloud': o.get_value('owncloud', 0),
+            'pastebin': o.get_value('pastebin', 0),
             'root_password': o.get_value('root_password'),
             'netstat': netstat,
         }, context_instance=RequestContext(request))
@@ -90,7 +96,7 @@ def addressbook(request):
             a = Address()
             a.name = cd['name'].strip()
             a.display_name = cd['name'].replace('-', ' ').title()
-            a.ipv6 = cd['ipv6'].strip()
+            a.ipv6 = normalize_ipv6(cd['ipv6'].strip())
             a.phone = cd['phone']
             a.save()
             o = Option()
@@ -133,7 +139,7 @@ def addressbook_edit(request, addr_id):
             a = Address.objects.get(pk=addr_id)
             a.name = cd['name'].strip()
             a.display_name = cd['display_name'].strip()
-            a.ipv6 = cd['ipv6'].strip()
+            a.ipv6 = normalize_ipv6(cd['ipv6'].strip())
             a.phone = cd['phone']
             a.save()
             o = Option()
@@ -632,10 +638,53 @@ def peerings_edit(request, peering_id=None):
 
 
 
+# Lan Range
+
+def lan_range(request):
+    o = Option()
+
+    if request.POST.get('save'):
+        lan_range_first = int(request.POST.get('lan_range_first', 100))
+        lan_range_second = lan_range_first + 1
+        o.set_value('lan_range_first', lan_range_first)
+        o.set_value('lan_range_second', lan_range_second)
+        Popen(['/usr/sbin/cfengine-apply'], stdout=PIPE).communicate()[0]
+        Popen(['/sbin/reboot'], stdout=PIPE, close_fds=True)
+
+    ip_range_first = []
+    for i in range(1, 250):
+        ip_range_first.append(i)
+
+    ip_range_second = []
+    for i in range(2, 251):
+        ip_range_second.append(i)
+
+    ip_range_router = False
+    try:
+        with open('/tmp/netstat-dhcp_conflict', 'r') as f:
+            ip_range_router = f.read().strip().split('.')[2]
+    except Exception:
+        pass
+
+    return render_to_response('lan_range/overview.html', {
+        'lan_range_first': int(o.get_value('lan_range_first', 100)),
+        'lan_range_second': int(o.get_value('lan_range_second', 101)),
+        'ip_range_first': ip_range_first,
+        'ip_range_second': ip_range_second,
+        'ip_range_router': int(ip_range_router),
+        'ip_range_router_prev': int(ip_range_router) - 1,
+    }, context_instance=RequestContext(request))
+
+
+
 # Country selection
 
 def countryselect(request):
     o = Option()
+
+    if request.POST.get('default_country', False):
+        o.set_value('default_country', request.POST.get('default_country'))
+        return redirect('/countryselect/')
 
     country = request.POST.get('country', False)
     if country:
@@ -694,6 +743,7 @@ def countryselect(request):
         'countries': countries,
         'countries_trans': countries_trans,
         'selected_country': o.get_value('selected_country', 'ch'),
+        'default_country': o.get_value('default_country', 'ch'),
     }, context_instance=RequestContext(request))
 
 
@@ -709,7 +759,7 @@ def webfilter(request):
         # always send that data, even if its an empty string
         o.set_value('webfilter_custom-rules-text', request.POST.get('custom-rules-text'))
 
-    settings_fields = ['filter-ads', 'filter-headers', 'disable-browser-ident', 'block-facebook', 'block-google', 'block-twitter', 'custom-rules']
+    settings_fields = ['filter-ads', 'block-win10stasi', 'filter-headers', 'disable-browser-ident', 'block-facebook', 'block-google', 'block-twitter', 'custom-rules']
 
     for postval in settings_fields:
         if request.POST.get(postval):
@@ -845,12 +895,216 @@ def teletext(request):
 def hypesites(request):
     o = Option()
 
-    if request.POST:
-        o.toggle_value('webserver_enabled')
-        o.config_changed(True)
+    hypesites = []
+
+    try:
+        import sqlite3
+        db = sqlite3.connect('/etc/enigmabox/hypesites.db')
+        db.text_factory = sqlite3.OptimizedUnicode
+        c = db.cursor()
+        c.execute("SELECT ipv6,hostname,last_seen FROM hypesites")
+
+        for a in c.fetchall():
+            hypesites.append({
+                'ipv6': a[0],
+                'hostname': a[1],
+                'last_seen': datetime.fromtimestamp(a[2]),
+            })
+
+    except Exception:
+        pass
 
     return render_to_response('hypesites/overview.html', {
+        'ipv6': o.get_value('ipv6'),
+        'hypesites': hypesites,
+    }, context_instance=RequestContext(request))
+
+def configure_hypesites(request):
+    o = Option()
+
+    if request.POST.get('access_global'):
+        o.set_value('hypesites_access', 'global')
+        o.config_changed(True)
+
+    if request.POST.get('access_friends'):
+        o.set_value('hypesites_access', 'friends')
+        o.config_changed(True)
+
+    if request.POST.get('access_off'):
+        o.set_value('hypesites_access', 'off')
+        o.config_changed(True)
+
+    if request.POST.get('access_internal'):
+        o.set_value('hypesites_access', 'internal')
+        o.config_changed(True)
+
+    if request.POST.get('personal_website'):
+        o.toggle_value('personal_website')
+        o.config_changed(True)
+
+    if request.POST.get('dokuwiki'):
+        o.toggle_value('dokuwiki')
+        o.config_changed(True)
+
+    if request.POST.get('owncloud'):
+        o.toggle_value('owncloud')
+        o.config_changed(True)
+
+    if request.POST.get('pastebin'):
+        o.toggle_value('pastebin')
+        o.config_changed(True)
+
+    return render_to_response('hypesites/configure.html', {
         'webserver_enabled': o.get_value('webserver_enabled', 0),
+        'hypesites_access': o.get_value('hypesites_access', 'off'),
+        'personal_website': o.get_value('personal_website', 0),
+        'dokuwiki': o.get_value('dokuwiki', 0),
+        'owncloud': o.get_value('owncloud', 0),
+        'pastebin': o.get_value('pastebin', 0),
+        'hype_access_site': o.get_value('hype_access_site', 'all'),
+        'hype_access_dokuwiki': o.get_value('hype_access_dokuwiki', 'all'),
+        'hype_access_owncloud': o.get_value('hype_access_owncloud', 'all'),
+        'ipv6': o.get_value('ipv6'),
+    }, context_instance=RequestContext(request))
+
+def hypesites_access(request, webservice):
+    o = Option()
+
+    addresses = Address.objects.exclude(pk__in=HypeAccess.objects.filter(appname=webservice).values('addresses').query)
+    if len(addresses) == 0:
+        addresses = Address.objects.all().order_by('id')
+    try:
+        access_list = HypeAccess.objects.get(appname=webservice).addresses.all()
+    except Exception:
+        ha = HypeAccess()
+        ha.appname = webservice
+        ha.save()
+        access_list = HypeAccess.objects.get(appname=webservice).addresses.all()
+    if len(access_list) == len(addresses):
+        addresses = []
+
+    if request.POST.get('access_all'):
+        o.set_value('hype_access_' + webservice, 'all')
+        o.config_changed(True)
+        return redirect('/hypesites/configure/' + webservice + '/access/')
+
+    if request.POST.get('access_friends'):
+        o.set_value('hype_access_' + webservice, 'friends')
+        o.config_changed(True)
+        return redirect('/hypesites/configure/' + webservice + '/access/')
+
+    if request.POST.get('access_specific'):
+        o.set_value('hype_access_' + webservice, 'specific')
+        o.config_changed(True)
+        return redirect('/hypesites/configure/' + webservice + '/access/')
+
+    if request.POST.get('grant'):
+        hypeaccess = HypeAccess.objects.get(appname=webservice)
+        #hypeaccess.addresses.clear()
+        userlist = request.POST.getlist('userlist')
+        for address in userlist:
+            db_address = Address.objects.get(ipv6=address)
+            hypeaccess.addresses.add(db_address)
+            #hypeaccess.save()
+        o.config_changed(True)
+        return redirect('/hypesites/configure/' + webservice + '/access/')
+
+    if request.POST.get('revoke'):
+        hypeaccess = HypeAccess.objects.get(appname=webservice)
+        accesslist = request.POST.getlist('accesslist')
+        for address in accesslist:
+            db_address = Address.objects.get(ipv6=address)
+            hypeaccess.addresses.remove(db_address)
+            #hypeaccess.save()
+        o.config_changed(True)
+        return redirect('/hypesites/configure/' + webservice + '/access/')
+
+    return render_to_response('hypesites/manage_access.html', {
+        'webserver_enabled': o.get_value('webserver_enabled', 0),
+        'webservice': webservice,
+        'hype_access_webservice': o.get_value('hype_access_' + webservice, 'all'),
+        'addresses': addresses,
+        'access_list': access_list,
+        'hypesites_access': o.get_value('hype_access_' + webservice, 'off'),
+    }, context_instance=RequestContext(request))
+
+
+
+# Storage
+
+def storage(request):
+    o = Option()
+
+    failed_mount_device = ''
+
+    if request.POST.get('set_name', False):
+        form = VolumesForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            v = Volume.objects.get(identifier=request.POST.get('identifier'))
+            v.name = cd['name'].strip()
+            v.save()
+    else:
+        form = VolumesForm()
+
+    if request.POST.get('use', False):
+        v = Volume.objects.get(identifier=request.POST.get('identifier'))
+        v.use = True
+        v.save()
+        mount_result = Popen(["volumes-mounter", "mount_drive", v.identifier, v.name], stdout=PIPE).communicate()[0]
+        if 'failed' in mount_result:
+            failed_mount_device = v
+        o.config_changed(True)
+
+    if request.POST.get('nouse', False):
+        v = Volume.objects.get(identifier=request.POST.get('identifier'))
+        v.use = False
+        v.save()
+        Popen(["volumes-mounter", "umount_drive", v.identifier, v.name], stdout=PIPE).communicate()[0]
+        o.config_changed(True)
+
+    if request.POST.get('remove', False):
+        v = Volume.objects.get(identifier=request.POST.get('identifier'))
+        v.delete()
+        o.config_changed(True)
+
+    # get all volumes via script
+    volumes = Popen(["volumes-mounter", "list_drives"], stdout=PIPE).communicate()[0]
+
+    # add them to db
+    for volume in volumes.split('\n'):
+        if volume != '':
+            try:
+                v = Volume()
+                v.identifier = volume
+                v.save()
+            except Exception:
+                pass
+
+    # get stats for each volume
+    db_volumes = Volume.objects.all().order_by('id')
+    volumes = []
+    for volume in db_volumes:
+        try:
+            stats = Popen(["volumes-mounter", "get_drive_stat", volume.identifier], stdout=PIPE).communicate()[0]
+            mounted = stats.split('vol_mounted:')[1].split(' ')[0]
+            size = stats.split('vol_size:')[1].split(' ')[0]
+            v = Volume.objects.get(identifier=volume.identifier)
+            v.status = 'mounted' if mounted == '1' else 'unmounted'
+            v.size = size
+            v.save()
+        except Exception:
+            v = Volume.objects.get(identifier=volume.identifier)
+            v.status = 'unmounted'
+            v.save()
+
+    # get the updated volumes
+    db_volumes = Volume.objects.all().order_by('id')
+
+    return render_to_response('storage/overview.html', {
+        'volumes': db_volumes,
+        'form': form,
+        'failed_mount_device': failed_mount_device,
     }, context_instance=RequestContext(request))
 
 
@@ -861,6 +1115,18 @@ def hypesites(request):
 def apply_changes(request):
     if request.POST.get('apply_changes') == 'run':
         Popen(["/usr/sbin/cfengine-apply", "-b"], stdout=PIPE, close_fds=True)
+        return HttpResponse('ok')
+
+    return HttpResponse('')
+
+
+
+# Format drive
+
+@csrf_exempt
+def format_drive(request):
+    if request.POST.get('format_drive') == 'run':
+        Popen(["/usr/sbin/volumes-mounter", "format_drive", request.POST.get('identifier')], stdout=PIPE, close_fds=True)
         return HttpResponse('ok')
 
     return HttpResponse('')
@@ -896,6 +1162,13 @@ def dynamic_status(request):
     if request.GET.get('key') == 'restore':
         import os.path
         if os.path.isfile('/tmp/restore-in-progress'):
+            return HttpResponse('in progress')
+        else:
+            return HttpResponse('done')
+
+    if request.GET.get('key') == 'formatdrive':
+        import os.path
+        if os.path.isfile('/tmp/format-in-progress'):
             return HttpResponse('in progress')
         else:
             return HttpResponse('done')
@@ -1015,6 +1288,15 @@ def api_v1(request, api_url):
         resp['value'] = next_country
         resp['result'] = 'success'
 
+    if api_url == 'set_default_country':
+
+        o = Option()
+        default_country = o.get_value('default_country', 'ch')
+        o.set_value('selected_country', default_country)
+
+        resp['value'] = default_country
+        resp['result'] = 'success'
+
     if api_url == 'get_hashed_rootpw':
         from crypt import crypt
 
@@ -1038,7 +1320,7 @@ def cfengine_site(request):
     cjdns_ipv6 = o.get_value('ipv6').strip()
     cjdns_public_key = o.get_value('public_key')
     cjdns_private_key = o.get_value('private_key')
-    cjdns_version = 'master'
+    cjdns_version = 'v16'
     selected_country = o.get_value('selected_country', 'ch')
     hostid = ''
     addresses = []
@@ -1054,18 +1336,24 @@ def cfengine_site(request):
         hostid = json_data['hostid']
         internet_access = json_data['internet_access']
         password = json_data['password']
-        json_peerings = json_data['peerings']
 
         try:
             cjdns_version = json_data['cjdns_version']
         except Exception:
             pass
 
+        cjdns_version = o.get_value('cjdns_version', cjdns_version)
+
         o.set_value('hostid', hostid)
         o.set_value('internet_access', internet_access)
         o.set_value('password', password)
 
         Peering.objects.filter(custom=False).delete()
+
+        if cjdns_version == 'v6':
+            json_peerings = json_data['peerings']
+        else:
+            json_peerings = json_data['peerings_topo128']
 
         for address, peering in json_peerings.items():
             p = Peering()
@@ -1100,7 +1388,7 @@ def cfengine_site(request):
         # no additional server data found, moving on...
         pass
 
-    server_peerings = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1]
+    server_peerings = Peering.objects.filter(custom=False).order_by('id')
     for p in server_peerings:
         peerings.append({
             'ip': p.address.split(':')[0],
@@ -1218,8 +1506,59 @@ def cfengine_site(request):
     else:
         autopeering = 0
 
+    volumes = []
+    db_volumes = Volume.objects.filter(use=True).order_by('id')
+    for v in db_volumes:
+        volumes.append({
+            'identifier': v.identifier,
+            'name': v.name,
+        })
+
+    hypesites_access = o.get_value('hypesites_access', 'off'),
+    hype_access_off = (hypesites_access[0] == 'off')
+    hype_access_internal = (hypesites_access[0] == 'internal')
+    hype_access_friends = (hypesites_access[0] == 'friends')
+    hype_access_global = (hypesites_access[0] == 'global')
+
+    hype_access_site = o.get_value('hype_access_site', 'all')
+    hype_access_dokuwiki = o.get_value('hype_access_dokuwiki', 'all')
+    hype_access_owncloud = o.get_value('hype_access_owncloud', 'all')
+
+    my_ip = o.get_value('ipv6', '')
+
+    addresslist = []
+    if hype_access_site == 'friends':
+        addresslist = Address.objects.all().order_by('id')
+    elif hype_access_site == 'specific':
+        addresslist = HypeAccess.objects.get(appname='site').addresses.all()
+    hype_site_accesslist = [{'ipv6': my_ip}]
+    for address in addresslist:
+        hype_site_accesslist.append({'ipv6': address.ipv6})
+    hype_access_site_all = (hype_access_site == 'all')
+
+    addresslist = []
+    if hype_access_dokuwiki == 'friends':
+        addresslist = Address.objects.all().order_by('id')
+    elif hype_access_dokuwiki == 'specific':
+        addresslist = HypeAccess.objects.get(appname='dokuwiki').addresses.all()
+    hype_dokuwiki_accesslist = [{'ipv6': my_ip}]
+    for address in addresslist:
+        hype_dokuwiki_accesslist.append({'ipv6': address.ipv6})
+    hype_access_dokuwiki_all = (hype_access_dokuwiki == 'all')
+
+    addresslist = []
+    if hype_access_owncloud == 'friends':
+        addresslist = Address.objects.all().order_by('id')
+    elif hype_access_owncloud == 'specific':
+        addresslist = HypeAccess.objects.get(appname='owncloud').addresses.all()
+    hype_owncloud_accesslist = [{'ipv6': my_ip}]
+    for address in addresslist:
+        hype_owncloud_accesslist.append({'ipv6': address.ipv6})
+    hype_access_owncloud_all = (hype_access_owncloud == 'all')
+
     response_data = {
         'hostid': hostid,
+        'language': o.get_value('language', 'de'),
         'cjdns_ipv6': cjdns_ipv6,
         'cjdns_public_key': cjdns_public_key,
         'cjdns_private_key': cjdns_private_key,
@@ -1237,6 +1576,8 @@ def cfengine_site(request):
         'wlan_security': o.get_value('wlan_security'),
         'wlan_group': o.get_value('wlan_group'),
         'wlan_pairwise': o.get_value('wlan_pairwise'),
+        'lan_range_first': o.get_value('lan_range_first', 100),
+        'lan_range_second': o.get_value('lan_range_second', 101),
         'peerings': peerings,
         'internet_gateway': internet_gateway,
         'autopeering': autopeering,
@@ -1246,6 +1587,7 @@ def cfengine_site(request):
         'webinterface_password': webinterface_password,
         'mailbox_password': mailbox_password,
         'webfilter_filter_ads': o.get_value('webfilter_filter-ads', 0),
+        'webfilter_block-win10stasi': o.get_value('webfilter_block-win10stasi', 0),
         'webfilter_filter_headers': o.get_value('webfilter_filter-headers', 0),
         'webfilter_disable_browser_ident': o.get_value('webfilter_disable-browser-ident', 0),
         'webfilter_block_facebook': o.get_value('webfilter_block-facebook', 0),
@@ -1254,8 +1596,22 @@ def cfengine_site(request):
         'webfilter_custom_rules': o.get_value('webfilter_custom-rules', 0),
         'webfilter_custom_rules_text': custom_rules_text,
         'teletext_enabled': o.get_value('teletext_enabled', 0),
-        'webserver_enabled': o.get_value('webserver_enabled', 0),
+        'hype_access_off': hype_access_off,
+        'hype_access_internal': hype_access_internal,
+        'hype_access_friends': hype_access_friends,
+        'hype_access_global': hype_access_global,
+        'hype_personal_site': o.get_value('personal_website', 0),
+        'hype_dokuwiki': o.get_value('dokuwiki', 0),
+        'hype_owncloud': o.get_value('owncloud', 0),
+        'hype_pastebin': o.get_value('pastebin', 0),
+        'hype_access_site_all': hype_access_site_all,
+        'hype_access_dokuwiki_all': hype_access_dokuwiki_all,
+        'hype_access_owncloud_all': hype_access_owncloud_all,
+        'hype_site_accesslist': hype_site_accesslist,
+        'hype_dokuwiki_accesslist': hype_dokuwiki_accesslist,
+        'hype_owncloud_accesslist': hype_owncloud_accesslist,
         'display_expiration_notice': display_expiration_notice,
+        'volumes': volumes,
     }
 
     # and this, ladies and gentlemen, is a workaround for mustache
@@ -1294,4 +1650,3 @@ def _get_missioncontrol():
         pass
 
     return missioncontrol
-

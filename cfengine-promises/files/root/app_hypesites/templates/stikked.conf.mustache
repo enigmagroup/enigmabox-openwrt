@@ -1,0 +1,31 @@
+
+$HTTP["url"] =~ "^/pastebin" {
+
+{{^if_hype_pastebin}}
+    url.access-deny = ( "" )
+{{/if_hype_pastebin}}
+
+    # max post request: 1M
+    server.max-request-size = 1024
+
+    # activate directory listing
+    dir-listing.activate = "disable"
+
+    # make sure those are always served through FastCGI and never as static files
+    static-file.exclude-extensions = ( ".php" )
+
+    # php
+    cgi.assign = ( ".php" => "/usr/bin/php-cgi" )
+
+    # rewrites for stikked
+    index-file.names = ("index.php")
+
+    url.rewrite-once = (
+        "^/pastebin/static/(.*)$" => "/pastebin/static/$1",
+        "^/pastebin/favicon\.ico$" => "/pastebin/favicon.ico",
+        "^/pastebin/robots\.txt$" => "/pastebin/robots.txt",
+        "^/pastebin/(.*)$" => "/pastebin/index.php$2",
+    )
+
+}
+

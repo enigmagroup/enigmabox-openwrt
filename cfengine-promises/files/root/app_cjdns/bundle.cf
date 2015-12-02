@@ -12,6 +12,9 @@ bundle agent app_cjdns
       "cjdns_v6"
       expression => regcmp("v6", "$(json[cjdns_version])");
 
+      "cjdns_v16"
+      expression => regcmp("v16", "$(json[cjdns_version])");
+
   files:
       "/box/cjdroute.conf"
       create => "true",
@@ -54,6 +57,11 @@ bundle agent app_cjdns
     cjdns_v6::
       "/usr/sbin/cjdroute"
       copy_from => local_copy("/usr/sbin/cjdroute.v6"),
+      classes => if_repaired("restart_cjdns");
+
+    cjdns_v16::
+      "/usr/sbin/cjdroute"
+      copy_from => local_copy("/usr/sbin/cjdroute.v16"),
       classes => if_repaired("restart_cjdns");
 
   commands:

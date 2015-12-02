@@ -2,11 +2,33 @@
 
 [incoming]
 exten => _X.,1,Answer()
-exten => _X.,n,Playback(silence/1)
-exten => _X.,n,Dial(SIP/100,30)
+exten => _X.,n,Playback(ascending-2tone)
+exten => _X.,n,Read(get,"silence/1",,,,1)
+exten => _X.,n,GotoIf($[ 1${get} = 18 ]?confcall:dial)
+exten => _X.,n(confcall),ConfBridge(8)
+exten => _X.,n(dial),Dial(SIP/100,30)
+exten => _X.,n,Voicemail(100@default)
 exten => _X.,n,Hangup()
 
 [friends]
+{{#if_display_expiration_notice}}
+;expiration notice
+exten => _X.,1,Answer()
+exten => _X.,n,System(/usr/bin/tts-de 'Dein Abonnement ist abgelaufen oder läuft bald ab. Bitte verlängern.')
+exten => _X.,n,Playback(/tmp/tts)
+exten => _X.,n,System(/usr/bin/tts-en 'Your subscription has expired or is about to expire. Please renew.')
+exten => _X.,n,Playback(/tmp/tts)
+exten => _X.,n,Hangup()
+
+exten => 1,1,Answer()
+exten => 1,n,System(/usr/bin/tts-de 'Dein Abonnement ist abgelaufen oder läuft bald ab. Bitte verlängern.')
+exten => 1,n,Playback(/tmp/tts)
+exten => 1,n,System(/usr/bin/tts-en 'Your subscription has expired or is about to expire. Please renew.')
+exten => 1,n,Playback(/tmp/tts)
+exten => 1,n,Hangup()
+{{/if_display_expiration_notice}}
+
+{{^if_display_expiration_notice}}
 {{#addresses}}
 exten => {{phone}},1,Dial(SIP/100@{{hostname}})
 {{/addresses}}
@@ -16,13 +38,15 @@ exten => {{phone}},1,Dial(SIP/100@{{hostname}})
 exten => 01{{phone}},1,Dial(SIP/100@{{hostname}}.eb)
 {{/global_addresses}}
 
-;echo test
+;statusmsg
 exten => 1,1,Answer()
-;exten => 1,n,Playback(tt-somethingwrong)
-exten => 1,n,Playback(tt-weasels)
-exten => 1,n,Playback(tt-monkeysintro)
-exten => 1,n,Playback(tt-monkeys)
-exten => 1,n,Echo()
-exten => 1,n,Playback(vm-goodbye)
+exten => 1,n,Ringing()
+exten => 1,n,System(/usr/bin/generate-enigmabox-statusmsg)
+exten => 1,n,Playback(ascending-2tone)
+exten => 1,n,Playback(silence/1)
+exten => 1,n,Playback(/tmp/tts)
 exten => 1,n,Hangup()
 
+;confcall
+exten => 8,1,ConfBridge(8)
+{{/if_display_expiration_notice}}

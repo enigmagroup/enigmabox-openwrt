@@ -7,10 +7,11 @@ tcpenable=yes
 canreinvite=no
 context=incoming
 disallow=all
-allow=gsm
 allow=ulaw
 allow=alaw
 allow=h263
+allow=h264
+videosupport=yes
 ;jbenable=yes
 ;jbforce=yes
 
@@ -44,8 +45,8 @@ transport=udp
 
 [basic-options](!)
     type=peer
-    qualify=5000
-    qualifyfreq=10
+    qualify=1000
+    qualifyfreq=300
     context=incoming
     encryption=yes
 
@@ -66,7 +67,7 @@ transport=udp
     encryption=yes
 
 {{#global_addresses}}
-[global-{{hostname}}](global-addresses)
+[{{hostname}}.eb](global-addresses)
     host={{ipv6}}
     callerid="{{hostname}}.eb <01{{phone}}>"
 

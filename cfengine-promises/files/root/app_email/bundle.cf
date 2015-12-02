@@ -51,8 +51,7 @@ bundle agent app_email
       "/etc/php.ini"
       create => "true",
       edit_template => "$(this.promise_dirname)/templates/php.ini",
-      edit_defaults => no_backup,
-      classes => if_repaired("restart_php");
+      edit_defaults => no_backup;
 
   commands:
     restart_exim::
@@ -60,9 +59,6 @@ bundle agent app_email
 
     restart_dovecot::
       "/etc/init.d/dovecot restart";
-
-    restart_php::
-      "/etc/init.d/php5-fastcgi restart";
 
   reports:
       "checking email: done";

@@ -10,7 +10,7 @@
 
 <div class="alert alert-info">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>{% trans "Instructions" %}:</strong> {% trans '<a href="http://enigmabox.net/en/ad-blocking/" target="_blank">enigmabox.net/en/ad-blocking/</a>' %}
+    <strong>{% trans "Instructions" %}:</strong> {% trans '<a href="https://wiki.enigmabox.net/howto/adblocker/en/configure" target="_blank">wiki.enigmabox.net/howto/adblocker/en/configure</a>' %}
 </div>
 
 <br />
@@ -37,6 +37,18 @@
             <button id="filter-ads" name="filter-ads" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
 {% else %}
             <button id="filter-ads" name="filter-ads" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
+{% endif %}
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="block-win10stasi">{% trans "Block Windows 10 Stasi features" %}</label>
+          <div class="controls">
+{% if block_win10stasi == '1' %}
+            <button id="block-win10stasi" name="block-win10stasi" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+{% else %}
+            <button id="block-win10stasi" name="block-win10stasi" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
 {% endif %}
           </div>
         </div>

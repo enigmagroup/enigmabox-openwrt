@@ -26,7 +26,11 @@ if [[ $task == 'sslcerts' ]]; then
     mkdir -p /box/ssl
 
     # copy certs
-    mv "/tmp/ca.pem" "/box/ssl/"
+    if [[ ! -f "/tmp/ca.pem" ]]; then
+        cp "/etc/enigmabox/ca-prodnet.pem" "/box/ssl/ca.pem"
+    else
+        mv "/tmp/ca.pem" "/box/ssl/"
+    fi
     mv "/tmp/$hostid-cert.pem" "/box/ssl/"
     mv "/tmp/$hostid-public_key.pem" "/box/ssl/"
     mv "/tmp/$hostid-private_key.pem" "/box/ssl/"
@@ -88,6 +92,7 @@ if [[ $task == 'usbstick' ]]; then
     rsync -Pah /mnt/box/roundcube.sqlite /box/
     rsync -Pah /mnt/box/settings.sqlite /box/
     rsync -Pah /mnt/teletext-avatars/ /opt/enigmabox/teletext/public/img/profile/
+    rsync -Pah /mnt/srv/ /srv/
 
     chown -R root:www-data /etc/enigmabox/addressbook.db
     chown -R root:www-data /box/teletext.db

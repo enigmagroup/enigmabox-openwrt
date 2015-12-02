@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <div class="container">
+
+      <h1>{% trans "LAN IP range" %}</h1>
+      <p>{% trans "Which IP range should the Enigmabox provide to internal devices?" %}</p>
+
+<form method="post" class="form-horizontal">
+{% csrf_token %}
+<fieldset>
+
+<legend>{% trans "Select IP range" %}</legend>
+<p>LAN 1: 192.168.
+<select id="lan_range_first" name="lan_range_first" class="input-mini">
+{% for i in ip_range_first %}
+    {% if ip_range_router == i or ip_range_router_prev == i %}
+        <option value="{{ i }}" disabled="disabled">{{ i }}</option>
+    {% else %}
+        <option value="{{ i }}"{% if i == lan_range_first %} selected="selected"{% endif %}>{{ i }}</option>
+    {% endif %}
+{% endfor %}
+</select>
+.1</p>
+
+<p>LAN 2: 192.168.
+<select id="lan_range_second" name="lan_range_second" class="input-mini" disabled="disabled">
+{% for i in ip_range_second %}
+  <option value="{{ i }}"{% if i == lan_range_second %} selected="selected"{% endif %}>{{ i }}</option>
+{% endfor %}
+</select>
+.1</p>
+
+<button id="iprange_save" name="save" class="btn btn-danger confirmation disable_after_click" value="1">{% trans "Save and reboot" %}</button>
+
+</fieldset>
+</form>
+
+    </div> <!-- /container -->
+{% endblock %}

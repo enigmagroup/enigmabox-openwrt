@@ -43,6 +43,9 @@ urlpatterns = patterns('app.views',
     url(r'^peerings/(?P<peering_id>.*)/$', 'peerings_edit'),
     url(r'^peerings/$', 'peerings'),
 
+    # lan range
+    url(r'^lan_range/$', 'lan_range'),
+
     # countryselect
     url(r'^countryselect/$', 'countryselect'),
 
@@ -58,7 +61,13 @@ urlpatterns = patterns('app.views',
     url(r'^teletext/$', 'teletext'),
 
     # hypesites
+    url(r'^hypesites/configure/(?P<webservice>.*)/access/$', 'hypesites_access'),
+    url(r'^hypesites/configure/$', 'configure_hypesites'),
     url(r'^hypesites/$', 'hypesites'),
+
+    # storage
+    url(r'^storage/$', 'storage'),
+    url(r'^format_drive/$', 'format_drive'),
 
     # changes
     url(r'^apply_changes/$', 'apply_changes'),

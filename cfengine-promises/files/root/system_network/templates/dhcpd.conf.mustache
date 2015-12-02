@@ -1,0 +1,19 @@
+ddns-update-style none;
+default-lease-time 86400;
+max-lease-time 604800;
+authoritative;
+log-facility local7;
+option domain-name "box";
+option domain-name-servers 192.168.{{ lan_range_first }}.1;
+option tftp-server-name "http://box:8080";
+
+subnet 192.168.{{ lan_range_first }}.0 netmask 255.255.255.0 {
+    range 192.168.{{ lan_range_first }}.50 192.168.{{ lan_range_first }}.150;
+    option routers 192.168.{{ lan_range_first }}.1;
+}
+
+subnet 192.168.{{ lan_range_second }}.0 netmask 255.255.255.0 {
+    range 192.168.{{ lan_range_second }}.50 192.168.{{ lan_range_second }}.150;
+    option routers 192.168.{{ lan_range_second }}.1;
+}
+

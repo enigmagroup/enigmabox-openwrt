@@ -61,10 +61,6 @@ if [[ $task == 'format_usb' ]]; then
     [[ -z $usbdrive ]] && exit 1
 
     echo "p
-d
-d
-d
-d
 g
 n
 
@@ -74,7 +70,7 @@ p
 w
 " | /usr/sbin/fdisk $usbdrive
 
-    /usr/sbin/mkfs.ext4 "$usbdrive"1
+    /usr/sbin/mkfs.ext4 -F "$usbdrive"1
 
 fi
 
@@ -100,6 +96,10 @@ if [[ $task == 'backup_to_usb' ]]; then
 
     echo "backup teletext avatars"
     /usr/bin/rsync -Pah --delete /opt/enigmabox/teletext/public/img/profile/ /mnt/teletext-avatars/
+    echo
+
+    echo "backup hypesites"
+    /usr/bin/rsync -Pah --delete /srv/ /mnt/srv/
     echo
 
     echo "sync & umount, first attempt:"

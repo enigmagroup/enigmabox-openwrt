@@ -89,6 +89,9 @@
                                     <a class="{% active request 'passwords' %}" href="{% url app.views.passwords %}"><i class="gi gi-lock sidebar-nav-icon"></i>&nbsp;{% trans "Passwords" %}</a>
                                 </li>
                                 <li>
+                                    <a class="{% active request 'storage' %}" href="{% url app.views.storage %}"><i class="gi gi-hd sidebar-nav-icon"></i>&nbsp;{% trans "Storage" %}</a>
+                                </li>
+                                <li>
                                     <a class="{% active request 'backup' %}" href="{% url app.views.backup %}"><i class="gi gi-share sidebar-nav-icon"></i>&nbsp;{% trans "Backup &amp; restore" %}</a>
                                 </li>
 {% if_updates object None  %}
@@ -122,19 +125,20 @@
                                     <a class="{% active request 'peerings' %}" href="{% url app.views.peerings %}"><i class="gi gi-random sidebar-nav-icon"></i>&nbsp;{% trans "Peerings" %}</a>
                                 </li>
                                 <li>
+                                    <a class="{% active request 'lan_range' %}" href="{% url app.views.lan_range %}"><i class="gi gi-random sidebar-nav-icon"></i>&nbsp;{% trans "LAN IP range" %}</a>
+                                </li>
+                                <li>
                                     <a class="{% active request 'wlan_settings' %}" href="{% url app.views.wlan_settings %}"><i class="gi gi-signal sidebar-nav-icon"></i>&nbsp;{% trans "WLAN settings" %}</a>
                                 </li>
                                 <li class="sidebar-header">
                                     <span class="sidebar-header-title">{% trans "Services" %}</span>
                                 </li>
                                 <li>
+                                    <a class="{% active request 'hypesites' %}" href="{% url app.views.hypesites %}"><i class="gi gi-road sidebar-nav-icon"></i>&nbsp;{% trans "Hypesites" %}</a>
+                                </li>
+                                <li>
                                     <a class="{% active request 'teletext' %}" href="{% url app.views.teletext %}"><i class="gi gi-list sidebar-nav-icon"></i>&nbsp;{% trans "Teletext" %}&nbsp;<span class="label label-default">beta</span></a>
                                 </li>
-                                <!--                
-                                <li>
-                                    <a class="{% active request 'hypesites' %}" href="{% url app.views.hypesites %}"><i class="gi gi-road sidebar-nav-icon"></i>&nbsp;{% trans "Hypesites" %}&nbsp;<span class="label label-default">beta</span></a>
-                                </li>
-                                -->
                             </ul>
                             <!-- END Sidebar Navigation -->
 
@@ -246,7 +250,7 @@
                     <!-- Footer -->
                     <footer class="clearfix">
                         <div class="pull-right">
-                            <a href="https://github.com/enigmagroup/enigmabox-openwrt" target="_blank">Enigmasuite Version 1.4.0 on OpenWrt</a>
+                            <a href="https://github.com/enigmagroup/enigmabox-openwrt" target="_blank">Enigmasuite Version 2.0.0 on OpenWrt</a>
                         </div>
                     </footer>
                     <!-- END Footer -->

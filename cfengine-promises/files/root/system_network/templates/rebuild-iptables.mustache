@@ -35,17 +35,18 @@ $iptables -A OUTPUT -o lo -j ACCEPT
 
 $iptables -X internal-services
 $iptables -N internal-services
-$iptables -A internal-services -p tcp --dport 22 -j ACCEPT      # ssh
-$iptables -A internal-services -p tcp --dport 25 -j ACCEPT      # smtp
-$iptables -A internal-services -p udp --dport 53 -j ACCEPT      # allow dns requests to tinyproxy
-$iptables -A internal-services -p udp --dport 67:68 -j ACCEPT   # dhcp server
-$iptables -A internal-services -p tcp --dport 80 -j ACCEPT      # webinterface
-$iptables -A internal-services -p tcp --dport 110 -j ACCEPT     # pop3
-$iptables -A internal-services -p tcp --dport 143 -j ACCEPT     # imap
-$iptables -A internal-services -p udp --dport 5060 -j ACCEPT    # voip phone
-$iptables -A internal-services -p tcp --dport 8117 -j ACCEPT    # renew notice
-$iptables -A internal-services -p tcp --dport 8080 -j ACCEPT    # grandstream phone provisioning
-$iptables -A internal-services -p tcp --dport 8888 -j ACCEPT    # tinyproxy
+$iptables -A internal-services -p tcp --dport 22 -j ACCEPT          # ssh
+$iptables -A internal-services -p tcp --dport 25 -j ACCEPT          # smtp
+$iptables -A internal-services -p udp --dport 53 -j ACCEPT          # allow dns requests to tinyproxy
+$iptables -A internal-services -p udp --dport 67:68 -j ACCEPT       # dhcp server
+$iptables -A internal-services -p tcp --dport 80 -j ACCEPT          # webinterface
+$iptables -A internal-services -p tcp --dport 110 -j ACCEPT         # pop3
+$iptables -A internal-services -p tcp --dport 143 -j ACCEPT         # imap
+$iptables -A internal-services -p udp --dport 5060 -j ACCEPT        # voip phone
+$iptables -A internal-services -p udp --dport 1024:65535 -j ACCEPT  # voip phone video
+$iptables -A internal-services -p tcp --dport 8117 -j ACCEPT        # renew notice
+$iptables -A internal-services -p tcp --dport 8080 -j ACCEPT        # grandstream phone provisioning
+$iptables -A internal-services -p tcp --dport 8888 -j ACCEPT        # tinyproxy
 $iptables -A internal-services -p icmp -m limit --limit 10/second -j ACCEPT     # icmp
 
 $iptables -X internal-in
@@ -171,6 +172,9 @@ $ip6tables -A friends-services -p tcp --dport 25 -j ACCEPT      # smtp
 $ip6tables -A friends-services -p tcp --dport 5060 -j ACCEPT    # asterisk
 $ip6tables -A friends-services -p udp --dport 5060 -j ACCEPT    # asterisk
 $ip6tables -A friends-services -p udp -m udp --dport 10000:20000 -j ACCEPT  # rtp
+{{#if_hype_access_friends}}
+$ip6tables -A friends-services -p tcp --dport 80 -j ACCEPT      # hypesites
+{{/if_hype_access_friends}}
 $ip6tables -A friends-services -p ipv6-icmp -m limit --limit 10/second -j ACCEPT # icmp
 
 $ip6tables -X friends-in
@@ -219,13 +223,23 @@ $ip6tables -A INPUT -i tun0 -p tcp --dport 3838 -j ACCEPT
 #$ip6tables -A INPUT -i tun0 -p tcp --sport 3838 -j ACCEPT - test that
 {{/if_teletext_enabled}}
 
-{{#if_webserver_enabled}}
-# hypesite
+{{#if_hype_access_global}}
+# allow global Hypesite access
 $ip6tables -A INPUT -i tun0 -p tcp --dport 80 -j ACCEPT
-{{/if_webserver_enabled}}
 
-# allow webserver access from LAN
+# allow Hypesite access from LAN
 $ip6tables -A INPUT -p tcp --dport 80 -j internal-in
+{{/if_hype_access_global}}
+
+{{#if_hype_access_friends}}
+# allow Hypesite access from LAN
+$ip6tables -A INPUT -p tcp --dport 80 -j internal-in
+{{/if_hype_access_friends}}
+
+{{#if_hype_access_internal}}
+# allow Hypesite access from LAN
+$ip6tables -A INPUT -p tcp --dport 80 -j internal-in
+{{/if_hype_access_internal}}
 
 ################################################################################
 # output

@@ -39,12 +39,12 @@
 }
 
 .credits {
-    position: fixed;
+    position: absolute;
     bottom: 10px;
-    right: 20px;
+    right: 0px;
 }
 
-.apply-progressbar .progress, #restore-progress .progress {
+.apply-progressbar .progress, #restore-progress .progress, .format-progressbar .progress {
     margin-bottom: 0;
 }
 

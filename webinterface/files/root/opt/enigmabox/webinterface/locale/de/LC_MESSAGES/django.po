@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-26 15:41+0100\n"
-"PO-Revision-Date: 2015-02-26 15:41+0100\n"
+"POT-Creation-Date: 2015-10-14 11:30+0200\n"
+"PO-Revision-Date: 2015-10-14 11:31+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -30,66 +30,70 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:675
+#: app/views.py:724
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:676
+#: app/views.py:725
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:677
+#: app/views.py:726
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:678
+#: app/views.py:727
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:679
+#: app/views.py:728
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:680
+#: app/views.py:729
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
-#: app/templates/base.html:18
+#: app/templates/base.html:19
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
-#: app/templates/base.html:19
+#: app/templates/base.html:20
 msgid "Show"
 msgstr "Zeigen"
 
-#: app/templates/base.html:31 app/templates/base.html.py:93
-#: app/templates/base.html:103
+#: app/templates/base.html:32 app/templates/base.html.py:105
+#: app/templates/base.html:115
 msgid "Apply changes"
 msgstr "Änderungen anwenden"
 
-#: app/templates/base.html:55 app/templates/home/overview.html:9
+#: app/templates/base.html:56 app/templates/home/overview.html:9
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: app/templates/base.html:56
+#: app/templates/base.html:57
 msgid "System"
 msgstr "System"
 
-#: app/templates/base.html:57 app/templates/addressbook/detail.html:9
+#: app/templates/base.html:58 app/templates/addressbook/detail.html:9
 #: app/templates/addressbook/overview-global-edit.html:9
 #: app/templates/addressbook/overview-global.html:8
 #: app/templates/addressbook/overview.html:8
-#: app/templates/home/overview.html:38
+#: app/templates/home/overview.html:47
 msgid "Addressbook"
 msgstr "Adressbuch"
 
-#: app/templates/base.html:58 app/templates/passwords/edit.html:9
+#: app/templates/base.html:59 app/templates/passwords/edit.html:9
 #: app/templates/passwords/overview.html:8
 #: app/templates/passwords/overview.html:12
 msgid "Passwords"
 msgstr "Passwörter"
 
-#: app/templates/base.html:59 app/templates/backup/overview.html:8
+#: app/templates/base.html:61 app/templates/storage/overview.html:8
+msgid "Storage"
+msgstr "Speichermedien"
+
+#: app/templates/base.html:63 app/templates/backup/overview.html:8
 #: app/templates/backup/sslcerts.html:8 app/templates/backup/system.html:8
 #: app/templates/backup/backupwizard/backup_to_usb.html:8
 #: app/templates/backup/backupwizard/check_usb.html:8
@@ -100,73 +104,80 @@ msgstr "Passwörter"
 msgid "Backup &amp; restore"
 msgstr "Sichern &amp; Wiederherstellen"
 
-#: app/templates/base.html:61 app/templates/updates/overview.html:8
+#: app/templates/base.html:65 app/templates/updates/overview.html:8
 msgid "Updates"
 msgstr "Aktualisierungen"
 
-#: app/templates/base.html:64 app/templates/upgrade/overview.html:8
+#: app/templates/base.html:68 app/templates/upgrade/overview.html:8
 msgid "Firmware upgrade"
 msgstr "Firmwareaktualisierung"
 
-#: app/templates/base.html:66 app/templates/home/system_status.html:5
+#: app/templates/base.html:70
 msgid "Internet"
 msgstr "Internet"
 
-#: app/templates/base.html:67
+#: app/templates/base.html:71
 msgid "Country selection"
 msgstr "Land auswählen"
 
-#: app/templates/base.html:68 app/templates/webfilter/overview.html:8
+#: app/templates/base.html:72 app/templates/webfilter/overview.html:8
 msgid "Ad blocking"
 msgstr "Werbeblocker"
 
-#: app/templates/base.html:69
+#: app/templates/base.html:73
 msgid "Network"
 msgstr "Netzwerk"
 
-#: app/templates/base.html:71 app/templates/subscription/overview.html:8
+#: app/templates/base.html:75 app/templates/subscription/overview.html:8
 #: app/templates/subscription/overview.html:40
 msgid "Subscription"
 msgstr "Abonnement"
 
-#: app/templates/base.html:73 app/templates/peerings/detail.html:9
+#: app/templates/base.html:77 app/templates/peerings/detail.html:9
 #: app/templates/peerings/overview.html:8
 msgid "Peerings"
 msgstr "Peerings"
 
-#: app/templates/base.html:74 app/templates/wlan_settings/overview.html:8
+#: app/templates/base.html:78 app/templates/lan_range/overview.html:8
+msgid "LAN IP range"
+msgstr "IP-Bereich LAN"
+
+#: app/templates/base.html:79 app/templates/wlan_settings/overview.html:8
 #: app/templates/wlan_settings/scan.html:9
 msgid "WLAN settings"
 msgstr "WLAN-Einstellungen"
 
-#: app/templates/base.html:75
+#: app/templates/base.html:80
 msgid "Services"
 msgstr "Dienste"
 
-#: app/templates/base.html:76 app/templates/home/overview.html:41
-#: app/templates/home/overview.html:43 app/templates/teletext/overview.html:8
+#: app/templates/base.html:81 app/templates/hypesites/configure.html:9
+#: app/templates/hypesites/manage_access.html:9
+#: app/templates/hypesites/overview.html:8
+msgid "Hypesites"
+msgstr "Hypesites"
+
+#: app/templates/base.html:82 app/templates/home/overview.html:50
+#: app/templates/home/overview.html:52 app/templates/teletext/overview.html:8
 msgid "Teletext"
 msgstr "Teletext"
 
-#: app/templates/base.html:77 app/templates/hypesites/overview.html:8
-msgid "Hypesites"
-msgstr ""
-
-#: app/templates/base.html:97
+#: app/templates/base.html:109
 msgid "Apply changes?"
 msgstr "Änderungen anwenden?"
 
-#: app/templates/base.html:98
+#: app/templates/base.html:110
 msgid "Changes successfully applied."
 msgstr "Änderungen erfolgreich angewendet."
 
-#: app/templates/base.html:102 app/templates/addressbook/detail.html:65
+#: app/templates/base.html:114 app/templates/addressbook/detail.html:65
 #: app/templates/addressbook/overview-global-edit.html:52
 #: app/templates/passwords/edit.html:63 app/templates/peerings/detail.html:68
+#: app/templates/storage/overview.html:86
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: app/templates/base.html:111
+#: app/templates/base.html:123 app/templates/storage/overview.html:95
 msgid "Done"
 msgstr "Fertig"
 
@@ -178,6 +189,7 @@ msgstr "Fertig"
 #: app/templates/addressbook/overview-global.html:28
 #: app/templates/addressbook/overview-global.html:67
 #: app/templates/addressbook/overview.html:35
+#: app/templates/hypesites/overview.html:17
 msgid "Hostname"
 msgstr "Hostname"
 
@@ -201,10 +213,12 @@ msgstr "Telefonnummer"
 
 #: app/templates/addressbook/address_table.html:10
 #: app/templates/addressbook/overview-global.html:33
+#: app/templates/storage/overview.html:25
 msgid "Status"
 msgstr "Status"
 
 #: app/templates/addressbook/address_table.html:15
+#: app/templates/hypesites/overview.html:24
 msgid "My address"
 msgstr "Meine Adresse"
 
@@ -217,6 +231,7 @@ msgstr "Meine Adresse"
 #: app/templates/backup/restorewizard/check_usb.html:25
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:20
 #: app/templates/passwords/edit.html:30 app/templates/peerings/detail.html:26
+#: app/templates/storage/overview.html:17
 msgid "Error"
 msgstr "Fehler"
 
@@ -229,7 +244,7 @@ msgstr "Angezeigter Name"
 #: app/templates/addressbook/overview-global-edit.html:51
 #: app/templates/passwords/edit.html:62 app/templates/peerings/detail.html:67
 #: app/templates/peerings/overview.html:70
-#: app/templates/webfilter/overview.html:114
+#: app/templates/webfilter/overview.html:126
 msgid "Save"
 msgstr "Speichern"
 
@@ -304,16 +319,20 @@ msgid "Rejected"
 msgstr "Abgelehnt"
 
 #: app/templates/addressbook/overview-global.html:45
-#: app/templates/hypesites/overview.html:25
+#: app/templates/hypesites/configure.html:47
+#: app/templates/hypesites/configure.html:71
+#: app/templates/hypesites/configure.html:95
+#: app/templates/hypesites/configure.html:121
 #: app/templates/peerings/overview.html:46
 #: app/templates/peerings/overview.html:102
 #: app/templates/teletext/overview.html:25
 #: app/templates/updates/overview.html:23
 #: app/templates/webfilter/overview.html:39
-#: app/templates/webfilter/overview.html:56
+#: app/templates/webfilter/overview.html:51
 #: app/templates/webfilter/overview.html:68
 #: app/templates/webfilter/overview.html:80
-#: app/templates/webfilter/overview.html:97
+#: app/templates/webfilter/overview.html:92
+#: app/templates/webfilter/overview.html:109
 msgid "Disabled"
 msgstr "Deaktiviert"
 
@@ -571,7 +590,7 @@ msgstr "Über welches Land willst Du surfen?"
 #: app/templates/countryselect/overview.html:10
 msgid ""
 "Drag and drop to reorder priorities. Mark servers active for failover in "
-"case the first (default) server is going down."
+"case the currently selected server is going down."
 msgstr ""
 "Ziehe die einzelnen Länder mit der Maus, um die Prioritäten zu bestimmen. "
 "Setze die Server aktiv, die im Fehlerfall bei einem Ausfall verwendet werden "
@@ -587,33 +606,21 @@ msgstr "Aktiv"
 msgid "Inactive"
 msgstr "Inaktiv"
 
-#: app/templates/countryselect/overview.html:46
-msgid ""
-"The first server marked &quot;active&quot; is your default server, starting "
-"from the top."
-msgstr ""
-"Der erste als &quot;aktiv&quot; markierte Server wird standardmässig "
-"verwendet."
+#: app/templates/countryselect/overview.html:51
+#: app/templates/countryselect/overview.html:57
+msgid "Default country"
+msgstr "Standardland"
 
-#: app/templates/countryselect/overview.html:47
-msgid "The country marked orange is the currently selected country."
-msgstr "Orange: Aktuell gewähltes Land"
-
-#: app/templates/countryselect/overview.html:48
+#: app/templates/countryselect/overview.html:53
 msgid ""
-"If a server goes down, the next server marked &quot;active&quot; is "
-"automatically selected."
+"In case of a failover, we will switch back to this country during night."
 msgstr ""
-"Falls ein Server nicht mehr erreichbar ist, wird automatisch der nächste als "
-"&quot;aktiv&quot; markierte Server ausgewählt."
+"Das Land, auf das in der Nacht umgestellt wird, sollte es sich aufgrund "
+"eines Ausfalls am Tag gewechselt haben."
 
-#: app/templates/countryselect/overview.html:49
-msgid ""
-"It may take some time after a country switch until all contacts are "
-"reachable again!"
-msgstr ""
-"Hinweis: Es kann nach einem Länderwechel etwas dauern, bis alle Adressen im "
-"Adressbuch wieder erreichbar sind."
+#: app/templates/countryselect/overview.html:68
+msgid "Set default country"
+msgstr "Standardland festlegen"
 
 #: app/templates/home/overview.html:11
 msgid "Your hostid is"
@@ -645,30 +652,54 @@ msgid "Renew subscription"
 msgstr "Abo erneuern"
 
 #: app/templates/home/overview.html:36
-msgid "Applications"
-msgstr "Anwendungen"
-
-#: app/templates/home/overview.html:39
-msgid "Webmail"
-msgstr "Webmail"
-
-#: app/templates/home/overview.html:48
 msgid "System status"
 msgstr "Systemstatus"
 
-#: app/templates/home/overview.html:56
+#: app/templates/home/overview.html:44
+msgid "Applications"
+msgstr "Anwendungen"
+
+#: app/templates/home/overview.html:48
+msgid "Webmail"
+msgstr "Webmail"
+
+#: app/templates/home/overview.html:57 app/templates/home/overview.html:59
+#: app/templates/hypesites/configure.html:42
+msgid "Personal website"
+msgstr "Eigene Website"
+
+#: app/templates/home/overview.html:62 app/templates/home/overview.html:64
+#: app/templates/hypesites/configure.html:66
+msgid "Wiki"
+msgstr "Wiki"
+
+#: app/templates/home/overview.html:67 app/templates/home/overview.html:69
+#: app/templates/hypesites/configure.html:90
+msgid "OwnCloud"
+msgstr "OwnCloud"
+
+#: app/templates/home/overview.html:72 app/templates/home/overview.html:74
+#: app/templates/hypesites/configure.html:115
+msgid "Pastebin"
+msgstr "Pastebin"
+
+#: app/templates/home/overview.html:78
+msgid "Configure Hypesite services..."
+msgstr "Hypesite-Dienste konfigurieren..."
+
+#: app/templates/home/overview.html:83
 msgid "Connection info"
 msgstr "Verbindungsinfos"
 
-#: app/templates/home/overview.html:56
+#: app/templates/home/overview.html:83
 msgid "SSH access"
 msgstr "SSH-Zugang"
 
-#: app/templates/home/overview.html:57 app/templates/passwords/edit.html:37
+#: app/templates/home/overview.html:84 app/templates/passwords/edit.html:37
 msgid "Username"
 msgstr "Benutzername"
 
-#: app/templates/home/overview.html:58 app/templates/passwords/edit.html:45
+#: app/templates/home/overview.html:85 app/templates/passwords/edit.html:45
 #: app/templates/passwords/edit.html:47 app/templates/passwords/edit.html:54
 #: app/templates/peerings/detail.html:49 app/templates/peerings/detail.html:51
 #: app/templates/peerings/overview.html:61
@@ -676,46 +707,179 @@ msgstr "Benutzername"
 msgid "Password"
 msgstr "Passwort"
 
-#: app/templates/home/overview.html:59
+#: app/templates/home/overview.html:86
 msgid "Server"
 msgstr "Server"
 
-#: app/templates/home/system_status.html:4
-msgid "DHCP"
-msgstr "DHCP"
-
-#: app/templates/home/system_status.html:6
-msgid "cjdns"
-msgstr "cjdns"
-
+#: app/templates/home/system_status.html:5
 #: app/templates/home/system_status.html:7
-msgid "Internet via cjdns"
-msgstr "Internet via cjdns"
+msgid "IP from Router"
+msgstr "IP vom Router"
 
-#: app/templates/hypesites/overview.html:9
-msgid "Hypesites are websites inside hyperboria."
+#: app/templates/home/system_status.html:9
+msgid "Regular Internet"
+msgstr "Reguläres Internet"
+
+#: app/templates/home/system_status.html:10
+msgid "Network service"
+msgstr "Netzwerkdienst"
+
+#: app/templates/home/system_status.html:11
+msgid "Encrypted Internet"
+msgstr "Verschlüsseltes Internet"
+
+#: app/templates/home/system_status.html:16
+msgid "Attention!"
+msgstr "Achtung!"
+
+#: app/templates/home/system_status.html:17
+msgid "The IP assigned from your router"
+msgstr "Die vom Router zugewiesene IP"
+
+#: app/templates/home/system_status.html:17
+msgid "is conflicting with the internal ip range."
+msgstr "steht in Konflikt mit dem internen IP-Bereich."
+
+#: app/templates/home/system_status.html:18
+msgid "Please choose a different IP range <a href=\"/lan_range/\">here</a>."
 msgstr ""
+"Bitte wähle <a href=\"/lan_range/\">hier</a> einen anderen IP-Bereich aus."
 
-#: app/templates/hypesites/overview.html:10
+#: app/templates/hypesites/configure.html:10
+#: app/templates/hypesites/manage_access.html:10
+msgid "Configure"
+msgstr "Konfiguration"
+
+#: app/templates/hypesites/configure.html:13
 msgid "Run a webserver and publish your own site."
-msgstr ""
+msgstr "Publiziere deine eigene Hyperboria-Website."
 
-#: app/templates/hypesites/overview.html:20
-msgid "Enable Webserver"
-msgstr "Webserver aktivieren"
+#: app/templates/hypesites/configure.html:21
+msgid "Hypesites webserver firewall configuration"
+msgstr "Hypesites Webserver Firewallkonfiguration"
 
-#: app/templates/hypesites/overview.html:23
+#: app/templates/hypesites/configure.html:25
+#: app/templates/hypesites/manage_access.html:23
+msgid "Allow access"
+msgstr "Zugriff erlauben"
+
+#: app/templates/hypesites/configure.html:27
+msgid "Global"
+msgstr "Global"
+
+#: app/templates/hypesites/configure.html:28
+msgid "Only persons in your address book"
+msgstr "Nur Personen in deinem Adressbuch"
+
+#: app/templates/hypesites/configure.html:28
+#: app/templates/hypesites/manage_access.html:26
+msgid "Friends only"
+msgstr "Nur Freunde"
+
+#: app/templates/hypesites/configure.html:29
+msgid "Internal LAN"
+msgstr "Internes LAN"
+
+#: app/templates/hypesites/configure.html:30
+msgid "Off"
+msgstr "Keiner"
+
+#: app/templates/hypesites/configure.html:38
+msgid "Webservices"
+msgstr "Webdienste"
+
+#: app/templates/hypesites/configure.html:45
+#: app/templates/hypesites/configure.html:69
+#: app/templates/hypesites/configure.html:93
+#: app/templates/hypesites/configure.html:118
 #: app/templates/peerings/overview.html:44
 #: app/templates/peerings/overview.html:100
 #: app/templates/teletext/overview.html:23
 #: app/templates/updates/overview.html:21
 #: app/templates/webfilter/overview.html:37
-#: app/templates/webfilter/overview.html:54
+#: app/templates/webfilter/overview.html:49
 #: app/templates/webfilter/overview.html:66
 #: app/templates/webfilter/overview.html:78
-#: app/templates/webfilter/overview.html:95
+#: app/templates/webfilter/overview.html:90
+#: app/templates/webfilter/overview.html:107
 msgid "Enabled"
 msgstr "Aktiviert"
+
+#: app/templates/hypesites/configure.html:50
+#: app/templates/hypesites/configure.html:53
+#: app/templates/hypesites/configure.html:56
+#: app/templates/hypesites/configure.html:74
+#: app/templates/hypesites/configure.html:77
+#: app/templates/hypesites/configure.html:80
+#: app/templates/hypesites/configure.html:98
+#: app/templates/hypesites/configure.html:101
+#: app/templates/hypesites/configure.html:104
+msgid "Configure access..."
+msgstr "Zugriff verwalten..."
+
+#: app/templates/hypesites/manage_access.html:19
+msgid "access configuration"
+msgstr "Zugriffsverwaltung"
+
+#: app/templates/hypesites/manage_access.html:25
+msgid "All"
+msgstr "Alle"
+
+#: app/templates/hypesites/manage_access.html:27
+msgid "Specific IPs..."
+msgstr "Spezifische IP..."
+
+#: app/templates/hypesites/manage_access.html:38
+msgid "User list"
+msgstr "Adressliste"
+
+#: app/templates/hypesites/manage_access.html:52
+msgid "Grant selected users"
+msgstr "Gewählten Benutzern Zugriff gewähren"
+
+#: app/templates/hypesites/manage_access.html:58
+msgid "Users with access"
+msgstr "Benutzer mit Zugriff"
+
+#: app/templates/hypesites/manage_access.html:72
+msgid "Revoke selected users"
+msgstr "Gewählten Benutzern Zugriff entziehen"
+
+#: app/templates/hypesites/overview.html:9
+msgid "Hypesites are websites inside Hyperboria."
+msgstr "Hypesites sind Websites innerhalb Hyperboria."
+
+#: app/templates/hypesites/overview.html:11
+msgid "Run your own..."
+msgstr "Hosting konfigurieren..."
+
+#: app/templates/hypesites/overview.html:18
+msgid "Site"
+msgstr "Site"
+
+#: app/templates/hypesites/overview.html:19
+msgid "Last seen"
+msgstr "Zuletzt online"
+
+#: app/templates/lan_range/overview.html:9
+msgid "Which IP range should the Enigmabox provide to internal devices?"
+msgstr ""
+"Welcher IP-Adressbereich soll die Enigmabox den internen Geräten vergeben?"
+
+#: app/templates/lan_range/overview.html:10
+msgid ""
+"This is to avoid conflicts in case your router already has 192.168.100.1."
+msgstr ""
+"Dies, um Konflikte zu vermeiden, falls dein Router bereits den Adressbereich "
+"192.168.100.1 hat."
+
+#: app/templates/lan_range/overview.html:16
+msgid "Select IP range"
+msgstr "IP-Bereich auswählen"
+
+#: app/templates/lan_range/overview.html:37
+msgid "Save and reboot"
+msgstr "Speichern und neustarten"
 
 #: app/templates/passwords/edit.html:18
 #: app/templates/passwords/overview.html:15
@@ -824,6 +988,73 @@ msgstr "Autopeering"
 msgid "Automatically connect to other cjdns nodes in the same LAN"
 msgstr "Automatisch zu anderen cjdns-Knoten im gleichen Netzwerk verbinden"
 
+#: app/templates/storage/overview.html:9
+msgid "Configure external storage devices."
+msgstr "Externe Speichermedien konfigurieren."
+
+#: app/templates/storage/overview.html:11
+#: app/templates/updates/overview.html:62
+#: app/templates/wlan_settings/scan.html:13
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#: app/templates/storage/overview.html:26
+msgid "Size"
+msgstr "Grösse"
+
+#: app/templates/storage/overview.html:27
+msgid "Device name"
+msgstr "Gerätename"
+
+#: app/templates/storage/overview.html:28
+msgid "Device identifier"
+msgstr "Laufwerksidentifikation"
+
+#: app/templates/storage/overview.html:29
+#: app/templates/wlan_settings/overview.html:46
+msgid "Action"
+msgstr "Aktion"
+
+#: app/templates/storage/overview.html:38
+msgid "Mounted"
+msgstr "Eingehängt"
+
+#: app/templates/storage/overview.html:40
+msgid "Not mounted"
+msgstr "Nicht eingehängt"
+
+#: app/templates/storage/overview.html:53
+#: app/templates/storage/overview.html:56
+#: app/templates/storage/overview.html:58
+msgid "Use"
+msgstr "Benutzen"
+
+#: app/templates/storage/overview.html:61
+msgid "Remove"
+msgstr "Entfernen"
+
+#: app/templates/storage/overview.html:75
+msgid "Mount failed"
+msgstr "Einhängen fehlgeschlagen"
+
+#: app/templates/storage/overview.html:79
+msgid "Mount failed."
+msgstr "Einhängen fehlgeschlagen."
+
+#: app/templates/storage/overview.html:81
+msgid "Format this volume?"
+msgstr "Dieses Laufwerk formatieren?"
+
+#: app/templates/storage/overview.html:82
+msgid "Drive has been formatted. It may appear as a new volume."
+msgstr ""
+"Das Laufwerk wurde formatiert. Es wird möglicherweise unter einem neuen "
+"Eintrag angezeigt."
+
+#: app/templates/storage/overview.html:87
+msgid "Format and destroy all data"
+msgstr "Formatieren und alle Daten darauf löschen"
+
 #: app/templates/subscription/overview.html:10
 msgid "Renew your subscription."
 msgstr "Abonnement erneuern."
@@ -924,11 +1155,6 @@ msgstr "Neue Version"
 msgid "Updates applied."
 msgstr "Aktualisierungen installiert."
 
-#: app/templates/updates/overview.html:62
-#: app/templates/wlan_settings/scan.html:13
-msgid "Refresh"
-msgstr "Aktualisieren"
-
 #: app/templates/updates/overview.html:63
 msgid "Install updates"
 msgstr "Aktualisierungen installieren"
@@ -946,12 +1172,16 @@ msgid "Warning"
 msgstr "Achtung"
 
 #: app/templates/upgrade/overview.html:16
-msgid "Back up your emails!"
-msgstr "Sichere deine E-Mails!"
+msgid "Back up your system"
+msgstr "Sichere dein System"
 
 #: app/templates/upgrade/overview.html:16
-msgid "Your emails WILL BE DELETED during the upgrade!"
-msgstr "Deine E-Mails werden bei der Aktualisierung GELÖSCHT!"
+msgid ""
+"Your emails, Hypesites, /wiki and /owncloud WILL BE DELETED during the "
+"upgrade!"
+msgstr ""
+"Deine E-Mails, Hypesites, /wiki und /owncloud werden bei der Aktualisierung "
+"GELÖSCHT!"
 
 #: app/templates/upgrade/overview.html:24
 msgid "Flash firmware"
@@ -1003,11 +1233,11 @@ msgstr "Anleitung"
 
 #: app/templates/webfilter/overview.html:13
 msgid ""
-"<a href=\"http://enigmabox.net/en/ad-blocking/\" target=\"_blank\">enigmabox."
-"net/en/ad-blocking/</a>"
+"<a href=\"https://wiki.enigmabox.net/howto/adblocker/en/configure\" target="
+"\"_blank\">wiki.enigmabox.net/howto/adblocker/en/configure</a>"
 msgstr ""
-"<a href=\"http://enigmabox.net/werbeblocker/\" target=\"_blank\">enigmabox."
-"net/werbeblocker/</a>"
+"<a href=\"https://wiki.enigmabox.net/howto/adblocker/de/configure\" target="
+"\"_blank\">wiki.enigmabox.net/howto/adblocker/de/configure</a>"
 
 #: app/templates/webfilter/overview.html:23
 msgid "General configuration"
@@ -1025,23 +1255,27 @@ msgstr "Eigene Filterregeln"
 msgid "Filter ads and trackers"
 msgstr "Werbung filtern"
 
-#: app/templates/webfilter/overview.html:51
+#: app/templates/webfilter/overview.html:46
+msgid "Block Windows 10 Stasi features"
+msgstr "Windows 10 Stasi-Features blockieren"
+
+#: app/templates/webfilter/overview.html:63
 msgid "Block Facebook"
 msgstr "Facebook blockieren"
 
-#: app/templates/webfilter/overview.html:63
+#: app/templates/webfilter/overview.html:75
 msgid "Block Google"
 msgstr "Google blockieren"
 
-#: app/templates/webfilter/overview.html:75
+#: app/templates/webfilter/overview.html:87
 msgid "Block Twitter"
 msgstr "Twitter blockieren"
 
-#: app/templates/webfilter/overview.html:92
+#: app/templates/webfilter/overview.html:104
 msgid "Custom rules"
 msgstr "Eigene Regeln"
 
-#: app/templates/webfilter/overview.html:104
+#: app/templates/webfilter/overview.html:116
 msgid "Rules"
 msgstr "Regeln"
 
@@ -1078,10 +1312,6 @@ msgstr "Zu einem WLAN Access-Point verbinden"
 msgid "SSID"
 msgstr "SSID"
 
-#: app/templates/wlan_settings/overview.html:46
-msgid "Action"
-msgstr "Aktion"
-
 #: app/templates/wlan_settings/overview.html:50
 #: app/templates/wlan_settings/scan.html:10
 msgid "Scan for WLAN networks"
@@ -1110,6 +1340,51 @@ msgstr "Verbinden"
 #: app/templates/wlan_settings/scan.html:22
 msgid "Signal"
 msgstr "Signal"
+
+#~ msgid ""
+#~ "The first server marked &quot;active&quot; is your default server, "
+#~ "starting from the top."
+#~ msgstr ""
+#~ "Der erste als &quot;aktiv&quot; markierte Server wird standardmässig "
+#~ "verwendet."
+
+#~ msgid "The country marked orange is the currently selected country."
+#~ msgstr "Orange: Aktuell gewähltes Land"
+
+#~ msgid ""
+#~ "If a server goes down, the next server marked &quot;active&quot; is "
+#~ "automatically selected."
+#~ msgstr ""
+#~ "Falls ein Server nicht mehr erreichbar ist, wird automatisch der nächste "
+#~ "als &quot;aktiv&quot; markierte Server ausgewählt."
+
+#~ msgid ""
+#~ "It may take some time after a country switch until all contacts are "
+#~ "reachable again!"
+#~ msgstr ""
+#~ "Hinweis: Es kann nach einem Länderwechel etwas dauern, bis alle Adressen "
+#~ "im Adressbuch wieder erreichbar sind."
+
+#~ msgid "Network selection"
+#~ msgstr "Netzwerkauswahl"
+
+#~ msgid "New topology"
+#~ msgstr "Neue Topologie"
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#~ msgid "cjdns"
+#~ msgstr "cjdns"
+
+#~ msgid "Internet via cjdns"
+#~ msgstr "Internet via cjdns"
+
+#~ msgid "Dokuwiki"
+#~ msgstr "Dokuwiki"
+
+#~ msgid "Enable Webserver"
+#~ msgstr "Webserver aktivieren"
 
 #~ msgid "Password for the <a href=\"http://box/\">web interface</a>"
 #~ msgstr "Passwort für das <a href=\"http://box/\">Webinterface</a>"
@@ -1174,6 +1449,3 @@ msgstr "Signal"
 
 #~ msgid "Webinterface"
 #~ msgstr "Webinterface"
-
-#~ msgid "Username is"
-#~ msgstr "Benutzername ist"

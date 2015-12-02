@@ -29,6 +29,23 @@ class Country(models.Model):
     def __unicode__(self):
         return self.countrycode
 
+class HypeAccess(models.Model):
+    appname = models.CharField(max_length=20)
+    addresses = models.ManyToManyField(Address, blank=True)
+
+    def __unicode__(self):
+        return self.appname
+
+class Volume(models.Model):
+    identifier = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
+    size = models.IntegerField(max_length=20, blank=True, null=True)
+    status = models.CharField(max_length=20, blank=True, null=True)
+    use = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return self.identifier
+
 class Option(models.Model):
     key = models.CharField(max_length=50)
     value = models.TextField()

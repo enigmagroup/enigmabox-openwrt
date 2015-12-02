@@ -49,9 +49,17 @@ def updates_count():
 @register.simple_tag
 def peer_status(peer_name, sip_peers):
     try:
-        ret = re.search('\n' + peer_name + '\s.*5060(.*)', sip_peers).group(1).strip()
+        status = re.search('\n' + peer_name + '\s.*5060(.*)', sip_peers).group(1).strip()
     except Exception:
-        ret = '-'
+        status = '-'
+
+    ret = '<span class="badge">-</span>'
+    if 'OK' in status:
+        ret = '<span class="badge badge-success" title="' + status + '">OK</span>'
+    if 'LAGGED' in status:
+        ret = '<span class="badge badge-warning" title="' + status + '">OK</span>'
+    if 'UNREACHABLE' in status:
+        ret = '<span class="badge badge-inverse">Offline</span>'
     return ret
 
 @register.simple_tag
@@ -82,6 +90,12 @@ def if_show_upgrader(object, __=None):
             return output in ['alix', 'apu']
         except Exception:
             return False
+
+@register.tag
+@condition_tag
+def if_show_storage(object, __=None):
+    o = Option()
+    return o.get_value('owncloud', '0') == '1'
 
 @register.tag
 @condition_tag

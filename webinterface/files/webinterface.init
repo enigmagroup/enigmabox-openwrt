@@ -1,17 +1,17 @@
 #!/bin/sh /etc/rc.common
 # Enigmabox Webinterface
- 
+
 START=91
 STOP=09
 PIDFILE=/var/run/webinterface.pid
 EXTRA_COMMANDS="init_db"
- 
+
 start() {
     # kill that nasty ssl-params process
     killall -9 ssl-params 2> /dev/null
 
     # init db
-    [[ ! -f /box/settings.sqlite ]] && init_db
+    init_db
 
     # another 'apu ethernet card hangs' workaround... -.-
     while [[ $(ifconfig lo | wc -l) -eq 0 ]]; do
@@ -24,14 +24,13 @@ start() {
     # waiting another 5secs just to be sure gunicorn is available
     sleep 5
 }
- 
+
 stop() {
     kill $(cat "$PIDFILE")
 }
 
 restart() {
     stop
-    init_db
     start
 }
 
@@ -39,4 +38,3 @@ init_db() {
     /opt/enigmabox/webinterface/manage.py syncdb
     /opt/enigmabox/webinterface/manage.py migrate app --noinput
 }
-
