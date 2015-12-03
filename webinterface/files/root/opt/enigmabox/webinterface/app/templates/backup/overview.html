@@ -3,27 +3,45 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Backup &amp; restore" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Backup &amp; restore" %}</h1>
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Backup &amp; restore" %}</strong></h2>
+        </div>
+        <!-- END Title -->
 
       <p>{% trans "Backup and restore your data." %}</p>
 
-      <p>&nbsp;</p>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
 
-        <div class="control-group">
-          <div class="controls">
-            <a href="/backup/system/" class="btn btn-inverse">{% trans "Complete system" %}</a>
-            {% trans "Everything." %}
-          </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <a href="/backup/system/" class="btn btn-primary">{% trans "Complete system" %}</a>
+                        {% trans "Everything." %}
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <a href="/backup/sslcerts/" class="btn btn-warning">{% trans "SSL certificates" %}</a>
+                        {% trans "Used for communication with our server, e.g. requesting internet or updates." %}
+                      </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div class="control-group">
-          <div class="controls">
-            <a href="/backup/sslcerts/" class="btn btn-warning">{% trans "SSL certificates" %}</a>
-            {% trans "Used for communication with our server, e.g. requesting internet or updates." %}
-          </div>
-        </div>
-
-    </div> <!-- /container -->
 {% endblock %}
