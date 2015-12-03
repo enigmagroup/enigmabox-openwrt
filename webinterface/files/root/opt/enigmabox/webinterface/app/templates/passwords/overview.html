@@ -3,32 +3,49 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Passwords" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Passwords" %}</h1>
+    <!-- Block -->
+    <div class="block">
 
-      <p>{% trans "Set passwords and protect the administration interface from access." %}</p>
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Passwords" %}</strong></h2>
+        </div>
+        <!-- END Title -->
 
-<legend>{% trans "Passwords" %}</legend>
+        <p>{% trans "Set passwords and protect the administration interface from access." %}</p>
+      <br />
 
-<p>
-    {% trans 'Password for the web interface <em>http://box/</em>' %}:
-{% if webinterface_password == '' %}
-    <span class="label label-default">{% trans "Unset" %}</span>
-{% else %}
-    <span class="label label-success">{% trans "Set" %}</span>
-{% endif %}
-    <a href="/passwords/webinterface/"><i class="icon icon-pencil"></i> {% trans "Edit" %}</a>
-</p>
-<p>
-    {% trans 'Password for the email account <em>mail@box</em>' %}:
-{% if mailbox_password == '' %}
-    <span class="label label-default">{% trans "Unset" %}</span>
-{% else %}
-    <span class="label label-success">{% trans "Set" %}</span>
-{% endif %}
-    <a href="/passwords/mailbox/"><i class="icon icon-pencil"></i> {% trans "Edit" %}</a>
-</p>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
 
-    </div> <!-- /container -->
+                <p>
+                    {% trans 'Password for the web interface <em>http://box/</em>' %}:
+                {% if webinterface_password == '' %}
+                    <span class="label label-default">{% trans "Unset" %}</span>
+                {% else %}
+                    <span class="label label-success">{% trans "Set" %}</span>
+                {% endif %}
+                    <a href="/passwords/webinterface/"><i class="icon icon-pencil"></i> {% trans "Edit" %}</a>
+                </p>
+                <p>
+                    {% trans 'Password for the email account <em>mail@box</em>' %}:
+                {% if mailbox_password == '' %}
+                    <span class="label label-default">{% trans "Unset" %}</span>
+                {% else %}
+                    <span class="label label-success">{% trans "Set" %}</span>
+                {% endif %}
+                    <a href="/passwords/mailbox/"><i class="icon icon-pencil"></i> {% trans "Edit" %}</a>
+                </p>
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}
