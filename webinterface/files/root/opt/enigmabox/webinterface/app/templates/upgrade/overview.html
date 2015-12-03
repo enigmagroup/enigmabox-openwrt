@@ -3,100 +3,87 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Firmware upgrade" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Firmware upgrade" %}</h1>
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Firmware upgrade" %}</strong></h2>
+        </div>
+        <!-- END Title -->
 
       <p>{% trans "Flash the current image onto the Enigmabox." %}</p>
 
-      <p>&nbsp;</p>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
 
-<div class="alert alert-error">
-  <h4>{% trans "Warning" %}</h4>
-  <a target="_blank" href="/backup/system/backupwizard/">{% trans "Back up your system" %}</a>! {% trans "Your emails, Hypesites, /wiki and /owncloud WILL BE DELETED during the upgrade!" %}
-</div>
+                    <div class="alert alert-danger">
+                      <h4><strong>{% trans "Warning" %}</strong></h4>
+                      <a target="_blank" href="/backup/system/backupwizard/">{% trans "Back up your system" %}</a>! {% trans "Your emails, Hypesites, /wiki and /owncloud WILL BE DELETED during the upgrade!" %}
+                    </div>
 
-<form action="" method="post" class="form-horizontal">
-{% csrf_token %}
-<fieldset>
+                    <form action="" method="post" class="form-horizontal">
+                    {% csrf_token %}
+                    <fieldset>
 
-<!-- Form Name -->
-<legend>{% trans "Flash firmware" %}</legend>
+                    <!-- Form Name -->
+                    <legend>{% trans "Flash firmware" %}</legend>
 
-<div class="row">
-    <div class="span5">
-        <!-- Button -->
-        <div class="control-group">
-          <label class="control-label" for="download">{% trans "Step one" %}:</label>
-          <div class="controls">
-            <button id="fw-download" name="download" value="1" class="btn btn-success">{% trans "Download image" %}</button>
-          </div>
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="download">{% trans "Step one" %}</label>
+                      <div class="col-md-4">
+                        <button id="download" name="download" value="1" class="btn btn-success">{% trans "Download image" %}</button>
+                      </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="verify">{% trans "Step two" %}</label>
+                      <div class="col-md-4">
+                        <button id="verify" name="verify" value="1" class="btn btn-warning" {% if not download_ok %}disabled="disabled"{% endif %}>{% trans "Verify image" %}</button> {% if verify_ok %}{% trans "Image ok" %}{% endif %}
+                      </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="write">{% trans "Step three" %}</label>
+                      <div class="col-md-4">
+                        <button id="write" name="write" value="1" class="btn btn-danger" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
+                      </div>
+                    </div>
+
+                    </fieldset>
+                    </form>
+
+                    <!-- Modal -->
+                    <div id="fw-countdown" class="modal hide fade" tabindex="-1" role="dialog">
+                      <div class="modal-header">
+                        <h3>{% trans "Firmware upgrade in progress" %}</h3>
+                      </div>
+                      <div class="modal-body text-center">
+                        <p>{% trans "Do NOT power off your Enigmabox!" %}</p>
+                        <p class="counter">999</p>
+                        <p>{% trans "seconds remaining" %}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <div id="fw-write-progress" class="progress progress-striped active">
+                            <div id="fw-write-bar" class="bar" style="width: 0%"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-
-        <!-- Button -->
-        <div class="control-group">
-          <label class="control-label" for="verify">{% trans "Step two" %}:</label>
-          <div class="controls">
-            <button id="fw-verify" name="verify" value="1" class="btn btn-warning" {% if not download_ok %}disabled="disabled"{% endif %}>{% trans "Verify image" %}</button> {% if verify_ok %}{% trans "Image ok" %}{% endif %}
-          </div>
-        </div>
-
-        <!-- Button -->
-        <div class="control-group">
-          <label class="control-label" for="write">{% trans "Step three" %}:</label>
-          <div class="controls">
-            <button id="fw-write" name="write" value="1" class="btn btn-danger" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
-          </div>
-        </div>
-
     </div>
-{% if download_ok %}
-    <div class="span7">
-        <div class="progress progress-success">
-            <div id="fw-download-bar" class="bar" style="width: 100%"></div>
-        </div>
-    </div>
-{% else %}
-    <div class="span7">
-        <div id="fw-download-progress" class="progress progress-success hidden">
-            <div id="fw-download-bar" class="bar" style="width: 0%"></div>
-        </div>
-    </div>
-{% endif %}
-{% if verify_ok %}
-    <div class="span7">
-        <div class="progress progress-warning">
-            <div id="fw-verify-bar" class="bar" style="width: 100%"></div>
-        </div>
-    </div>
-{% else %}
-    <div class="span7">
-        <div id="fw-verify-progress" class="progress progress-warning hidden">
-            <div id="fw-verify-bar" class="bar" style="width: 0%"></div>
-        </div>
-    </div>
-{% endif %}
-</div>
 
-</fieldset>
-</form>
-
-<!-- Modal -->
-<div id="fw-countdown" class="modal hide fade" tabindex="-1" role="dialog">
-  <div class="modal-header">
-    <h3>{% trans "Firmware upgrade in progress" %}</h3>
-  </div>
-  <div class="modal-body text-center">
-    <p>{% trans "Do NOT power off your Enigmabox!" %}</p>
-    <p class="counter">999</p>
-    <p>{% trans "seconds remaining" %}</p>
-  </div>
-  <div class="modal-footer">
-    <div id="fw-write-progress" class="progress progress-striped active">
-        <div id="fw-write-bar" class="bar" style="width: 0%"></div>
-    </div>
-  </div>
-</div>
-
-    </div> <!-- /container -->
 {% endblock %}
