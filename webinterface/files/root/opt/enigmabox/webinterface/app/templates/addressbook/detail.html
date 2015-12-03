@@ -25,18 +25,17 @@
                 <legend>{{ address.display_name }}</legend>
 
                 {% if form.errors %}
-                <div class="alert alert-error">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <div class="alert alert-danger" role="alert">
                     <strong>{% trans "Error" %}:</strong>
-                {{ form.errors }}
+                    {{ form.errors }}
                 </div>
                 {% endif %}
 
                 <!-- Text input-->
                 <div class="form-group">
-                  <label class="col-md-4 control-label" for="hostname">{% trans "Hostname" %}</label>
+                  <label class="col-md-4 control-label" for="name">{% trans "Hostname" %}</label>
                   <div class="col-md-4">
-                      <input {% form_error form.name.errors %} id="hostname" name="hostname" type="text" value="{{ form.name.value }}" placeholder="{% trans "Hostname" %}" class="form-control input-md">
+                      <input {% form_error form.name.errors %} id="name" name="name" type="text" value="{{ form.name.value }}" placeholder="{% trans "Hostname" %}" class="form-control input-md">
                   </div>
                 </div>
 
