@@ -32,7 +32,7 @@
                             <p>{% trans "Insert an USB stick, large enough to back up you data." %}</p>
 
                     {% if errormsg %}
-                            <div class="alert alert-error" role="alert">
+                            <div class="alert alert-danger" role="alert">
                                 <h4>{% trans "Error" %}</h4>
                     {% if errormsg == 'sizefail' %}
                                 {% trans "This USB stick is too small!" %}

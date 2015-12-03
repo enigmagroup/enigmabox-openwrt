@@ -3,26 +3,42 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
-    <ul class="breadcrumb">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
         <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a> <span class="divider">/</span></li>
         <li><a href="/backup/system/">{% trans "Complete system" %}</a> <span class="divider">/</span></li>
         <li class="active">{% trans "Restore wizard" %}</li>
     </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Complete system restore" %}</h1>
+    <!-- Block -->
+    <div class="block">
 
-      <p>&nbsp;</p>
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Complete system restore" %}</strong></h2>
+        </div>
+        <!-- END Title -->
 
-<form action="" method="post" class="form-horizontal">
-{% csrf_token %}
-    <fieldset>
-        <legend>{% trans "Step 2: Restore from USB stick" %}</legend>
-        <p>{% trans "Ok, now we restore all your user data and system settings from the USB stick." %}</p>
-        <p>&nbsp;</p>
-        <button id="restore_from_usb" name="restore_from_usb" value="1" class="btn btn-danger disable_after_click">{% trans "Start restore" %}</button>
-    </fieldset>
-</form>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
+
+                    <form action="" method="post" class="form-horizontal">
+                    {% csrf_token %}
+                        <fieldset>
+                            <legend>{% trans "Step 2: Restore from USB stick" %}</legend>
+                            <p>{% trans "Ok, now we restore all your user data and system settings from the USB stick." %}</p>
+                            <p>&nbsp;</p>
+                            <button id="restore_from_usb" name="restore_from_usb" value="1" class="btn btn-danger disable_after_click">{% trans "Start restore" %}</button>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!-- Modal -->
 <div id="restore-progress" class="modal hide fade" tabindex="-1" role="dialog">
@@ -39,5 +55,4 @@
   </div>
 </div>
 
-    </div> <!-- /container -->
 {% endblock %}
