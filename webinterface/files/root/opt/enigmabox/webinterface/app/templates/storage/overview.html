@@ -3,70 +3,95 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Storage" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Storage" %}</h1>
-      <p>{% trans 'Configure external storage devices.' %}</p>
-      <br />
-      <p><a href="/storage/" class="btn btn-primary">{% trans "Refresh" %}</a></p>
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Storage" %}</strong></h2>
+        </div>
+        <!-- END Title -->
+
+          <p>{% trans 'Configure external storage devices.' %}</p>
+          <p><a href="/storage/" class="btn btn-primary">{% trans "Refresh" %}</a></p>
       <br />
 
 {% if form.errors %}
-<div class="alert alert-error">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
+<div class="alert alert-error" role="alert">
     <strong>{% trans "Error" %}:</strong>
 {{ form.errors }}
 </div>
 {% endif %}
 
-<table class="table table-hover table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>{% trans "Status" %}</th>
-        <th>{% trans "Size" %}</th>
-        <th>{% trans "Device name" %}</th>
-        <th>{% trans "Device identifier" %}</th>
-        <th>{% trans "Action" %}</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for volume in volumes %}
-    <tr>
-    <form action="" method="post">
-    {% csrf_token %}
-{% if volume.status == 'mounted' %}
-        <td><span class="label label-success">{% trans "Mounted" %}</span></td>
-{% else %}
-        <td><span class="label label-default">{% trans "Not mounted" %}</span></td>
-{% endif %}
-        <td>{{ volume.size|filesizeformat }}</td>
-        <td>
-            <div class="input-prepend">
-                <span class="add-on">/media/</span>
-                <input id="name" name="name" type="text" placeholder="name" class="input-mini" value="{{ volume.name|default:'' }}" maxlength="20">
-                <button type="submit" class="btn btn-default" name="set_name" value="1">OK</button>
-            </div>
-        </td>
-        <td>{{ volume.identifier }}<input type="hidden" name="identifier" value="{{ volume.identifier }}" /></td>
-        <td>
-{% if volume.use %}
-            <button type="submit" class="btn btn-success" name="nouse" value="1">{% trans "Use" %}</button>
-{% else %}
-    {% if volume.name %}
-            <button type="submit" class="btn btn-default" name="use" value="1">{% trans "Use" %}</button>
-    {% else %}
-            <button disabled="disabled" type="submit" class="btn btn-default" name="use" value="1">{% trans "Use" %}</button>
-    {% endif %}
-{% endif %}
-            <button type="submit" class="btn btn-default" name="remove" value="1">{% trans "Remove" %}</button>
-        </td>
-    </form>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
 
-    </div> <!-- /container -->
+                <table class="table table-hover table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Size" %}</th>
+                        <th>{% trans "Device name" %}</th>
+                        <th>{% trans "Device identifier" %}</th>
+                        <th>{% trans "Action" %}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for volume in volumes %}
+                    <tr>
+                    <form action="" method="post">
+                    {% csrf_token %}
+                {% if volume.status == 'mounted' %}
+                        <td><span class="label label-success">{% trans "Mounted" %}</span></td>
+                {% else %}
+                        <td><span class="label label-default">{% trans "Not mounted" %}</span></td>
+                {% endif %}
+                        <td>{{ volume.size|filesizeformat }}</td>
+                        <td>
+                        <div class="row">
+                            <!-- Prepended text-->
+                            <div class="form-group">
+                              <div class="col-md-6">
+                                <div class="input-group">
+                                  <span class="input-group-addon">/media/</span>
+                                  <input id="prependedtext" name="prependedtext" class="form-control" placeholder="name" type="text">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <button type="submit" class="btn btn-default" name="set_name" value="1">OK</button>
+                              </div>
+                            </div>
+                        </div>
+                        </td>
+                        <td>{{ volume.identifier }}<input type="hidden" name="identifier" value="{{ volume.identifier }}" /></td>
+                        <td>
+                {% if volume.use %}
+                            <button type="submit" class="btn btn-success" name="nouse" value="1">{% trans "Use" %}</button>
+                {% else %}
+                    {% if volume.name %}
+                            <button type="submit" class="btn btn-default" name="use" value="1">{% trans "Use" %}</button>
+                    {% else %}
+                            <button disabled="disabled" type="submit" class="btn btn-default" name="use" value="1">{% trans "Use" %}</button>
+                    {% endif %}
+                {% endif %}
+                            <button type="submit" class="btn btn-default" name="remove" value="1">{% trans "Remove" %}</button>
+                        </td>
+                    </form>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+        </div>
+    </div>
+</div>
 
 {% if failed_mount_device != '' %}
 <!-- Modal -->
