@@ -3,73 +3,90 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
-    <ul class="breadcrumb">
-        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a> <span class="divider">/</span></li>
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a></li>
         <li class="active">{% trans "SSL certificates" %}</li>
     </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Backup &amp; restore SSL certificates" %}</h1>
+    <!-- Block -->
+    <div class="block">
 
-      <p>&nbsp;</p>
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Backup &amp; restore SSL certificates" %}</strong></h2>
+        </div>
+        <!-- END Title -->
 
-<form method="post" class="form-horizontal">
-{% csrf_token %}
-<fieldset>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
 
-<legend>{% trans "Backup SSL certificates" %}</legend>
+                    <form method="post" class="form-horizontal">
+                    {% csrf_token %}
+                    <fieldset>
 
-<!-- Button -->
-<div class="control-group">
-  <div class="controls">
-    <button name="backup" class="btn btn-primary" value="1">{% trans "Backup" %}</button>
-  </div>
-</div>
+                    <legend>{% trans "Backup SSL certificates" %}</legend>
 
-</fieldset>
-</form>
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="backup"></label>
+                      <div class="col-md-4">
+                        <button id="backup" name="backup" value="1" class="btn btn-primary">Backup</button>
+                      </div>
+                    </div>
 
-<form method="post" enctype="multipart/form-data" class="form-horizontal">
-{% csrf_token %}
-<fieldset>
+                    </fieldset>
+                    </form>
 
-<legend>{% trans "Import SSL certificates" %}</legend>
+                    <form method="post" enctype="multipart/form-data" class="form-horizontal">
+                    {% csrf_token %}
+                    <fieldset>
 
-<!-- File Button -->
-<div class="control-group">
-  <label class="control-label">sslcerts-{{ hostid }}.zip {% trans "file" %}:</label>
-  <div class="controls">
-    <input name="file" class="input-file" type="file">
-  </div>
-</div>
+                    <legend>{% trans "Import SSL certificates" %}</legend>
 
-{% if msg %}
-{% if msg == 'backuperror' %}
-<div class="alert alert-error">
-{% trans "Error in creating backup" %}
-</div>
-{% endif %}
-{% if msg == 'restoreerror' %}
-<div class="alert alert-error">
-{% trans "Error importing SSL certificates" %}
-</div>
-{% endif %}
-{% if msg == 'restoresuccess' %}
-<div class="alert alert-success">
-{% trans "Import successful" %}
-</div>
-{% endif %}
-{% endif %}
+                    <!-- File Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="filebutton">sslcerts-{{ hostid }}.zip {% trans "file" %}:</label>
+                      <div class="col-md-4">
+                        <input id="filebutton" name="filebutton" class="input-file" type="file">
+                      </div>
+                    </div>
 
-<!-- Button -->
-<div class="control-group">
-  <div class="controls">
-    <button name="restore" class="btn btn-danger confirmation" value="1">{% trans "Import" %}</button>
-  </div>
-</div>
+                    {% if msg %}
+                    {% if msg == 'backuperror' %}
+                    <div class="alert alert-danger">
+                    {% trans "Error in creating backup" %}
+                    </div>
+                    {% endif %}
+                    {% if msg == 'restoreerror' %}
+                    <div class="alert alert-danger">
+                    {% trans "Error importing SSL certificates" %}
+                    </div>
+                    {% endif %}
+                    {% if msg == 'restoresuccess' %}
+                    <div class="alert alert-success">
+                    {% trans "Import successful" %}
+                    </div>
+                    {% endif %}
+                    {% endif %}
 
-</fieldset>
-</form>
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="backup"></label>
+                      <div class="col-md-4">
+                        <button id="restore" name="restore" value="1" class="btn btn-danger confirmation">{% trans "Import" %}</button>
+                      </div>
+                    </div>
 
-    </div> <!-- /container -->
+                    </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
