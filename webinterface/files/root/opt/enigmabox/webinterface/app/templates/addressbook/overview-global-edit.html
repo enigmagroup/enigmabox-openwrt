@@ -3,68 +3,77 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a href="{% url app.views.addressbook_global %}">{% trans "Global address book" %}</a></li>
+        <li class="active">{% trans "Set global address" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-        <ul class="breadcrumb">
-            <li><a href="{% url app.views.addressbook_global %}">{% trans "Addressbook" %}</a> <span class="divider">/</span></li>
-            <li class="active">{{ address.display_name }}</li>
-        </ul>
+    <!-- Block -->
+    <div class="block">
 
-        <form method="post" class="form-horizontal">
-        {% csrf_token %}
-        <fieldset>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" class="form-horizontal">
+                {% csrf_token %}
 
-        <!-- Form Name -->
-        <legend>{{ address.display_name }}</legend>
+                <fieldset>
 
-{% if form.errors %}
-<div class="alert alert-error">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>{% trans "Error" %}:</strong>
-{{ form.errors }}
-</div>
-{% endif %}
+                {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>{% trans "Error" %}:</strong>
+                    {{ form.errors }}
+                </div>
+                {% endif %}
 
-        <!-- Text input-->
-        <div class="control-group">
-          <label class="control-label">{% trans "Hostname" %}</label>
-          <div class="controls">
-            <input {% form_error form.name.errors %} id="name" name="name" type="text" value="{{ form.name.value }}" placeholder="{% trans "Hostname" %}" class="input-xlarge" />
-          </div>
-        </div>
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="name">Hostname</label>
+                  <div class="col-md-4">
+                    <input {% form_error form.name.errors %} id="name" name="name" type="text" value="{{ form.name.value }}" placeholder="{% trans "Hostname" %}" class="form-control input-md">
+                  </div>
+                </div>
 
-        <!-- Text input-->
-        <div class="control-group">
-          <label class="control-label">{% trans "Phone number" %}</label>
-          <div class="controls">
-            <div class="input-prepend">
-                <span class="add-on">01</span>
-                <input {% form_error form.phone.errors %} id="phone" name="phone" type="text" value="{{ form.phone.value|default_if_none:'' }}" placeholder="{% trans "Phone number" %}" class="input-xlarge" maxlength="7" />
+                <!-- Prepended text-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="phone">Phone number</label>
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <span class="input-group-addon">01</span>
+                        <input {% form_error form.phone.errors %} id="phone" name="phone" type="text" value="{{ form.phone.value|default_if_none:'' }}" placeholder="{% trans "Phone number" %}" class="form-control input-md" maxlength="7">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Button (Double) -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="save"></label>
+                  <div class="col-md-8">
+                    <button id="submit" name="submit" value="save" class="btn btn-primary">{% trans "Save" %}</button>
+                    <a href="{% url app.views.addressbook_global %}" class="btn btn-default">{% trans "Cancel" %}</a>
+                  </div>
+                </div>
+
+                </fieldset>
+
+                <fieldset>
+
+                <legend>{% trans "Delete phone number" %}</legend>
+
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="save"></label>
+                  <div class="col-md-8">
+                    <button name="submit" value="delete" class="btn btn-danger confirmation">{% trans "Delete" %}</button>
+                  </div>
+                </div>
+
+                </fieldset>
+
+                </form>
+
             </div>
-          </div>
         </div>
-
-        <!-- Button -->
-        <div class="control-group">
-          <label class="control-label"></label>
-          <div class="controls">
-            <button id="submit" name="submit" value="save" class="btn btn-primary">{% trans "Save" %}</button>
-            <a href="{% url app.views.addressbook_global %}" class="btn">{% trans "Cancel" %}</a>
-          </div>
-        </div>
-
-        <hr />
-
-        <legend>{% trans "Delete phone number" %}</legend>
-
-        <div class="control-group">
-          <div class="controls">
-            <button name="submit" value="delete" class="btn btn-danger confirmation">{% trans "Delete" %}</button>
-          </div>
-        </div>
-
-        </fieldset>
-        </form>
-
-    </div> <!-- /container -->
+    </div>
 {% endblock %}
