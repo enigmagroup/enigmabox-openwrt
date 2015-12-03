@@ -3,74 +3,92 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Backup &amp; restore" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Updates" %}</h1>
+    <!-- Block -->
+    <div class="block">
 
-<p>{% trans "Automatic and manual updates." %}</p>
-<br />
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Backup &amp; restore" %}</strong></h2>
+        </div>
+        <!-- END Title -->
 
-<form method="post" class="form-horizontal">
-{% csrf_token %}
+      <p>{% trans "Backup and restore your data." %}</p>
 
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label" for="autoupdates">{% trans "Automatic updates" %}:</label>
-  <div class="controls">
-{% if autoupdates == '1' %}
-    <button id="autoupdates" name="autoupdates" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
-{% else %}
-    <button id="autoupdates" name="autoupdates" class="btn btn-inverse" value="0">{% trans "Disabled" %}</button>
-{% endif %}
-  </div>
-</div>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
 
-<div class="control-group">
-  <label class="control-label" for="check">{% trans "Manual updates" %}:</label>
-  <div class="controls">
-      <button name="check" class="btn btn-primary" value="1">{% trans "Check for updates" %}</button>
-  </div>
-</div>
+                    <form method="post" class="form-horizontal">
+                    {% csrf_token %}
 
-</form>
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="autoupdates">{% trans "Automatic updates" %}:</label>
+                      <div class="col-md-4">
+                        {% if autoupdates == '1' %}
+                            <button id="autoupdates" name="autoupdates" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
+                        {% else %}
+                            <button id="autoupdates" name="autoupdates" class="btn btn-default" value="0">{% trans "Disabled" %}</button>
+                        {% endif %}
+                      </div>
+                    </div>
 
-{% if upgradables|length > 0 %}
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="check">{% trans "Manual updates" %}</label>
+                      <div class="col-md-4">
+                        <button id="check" name="check" class="btn btn-primary" value="1">{% trans "Check for updates" %}</button>
+                      </div>
+                    </div>
 
-<h2>&nbsp;</h2>
+                    </form>
 
-    <table class="table table-hover table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>{% trans "Package" %}</th>
-            <th>{% trans "Installed version" %}</th>
-            <th>{% trans "New version" %}</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for package in upgradables %}
-        <tr>
-            {% for row in package %}
-            <td>{{ row }}</td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    {% if upgradables|length > 0 %}
 
-    <form method="post" class="form-horizontal">
-    {% csrf_token %}
-        <span id="success" style="display: none;">{% trans "Updates applied." %}&nbsp;<a href="" class="btn btn-success">{% trans "Refresh" %}</a></span>
-        <button id="button-run" name="apply_updates" type="text" class="btn btn-danger confirmation" value="apply">{% trans "Install updates" %}</button>
-        <span class="loader" style="display: none;">&nbsp;{% trans "Please wait" %}...&nbsp;<img src="/media/img/ajax-loader.gif" alt="ajax loader" /></span>
-    </form>
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead>
+                              <tr>
+                                <th>{% trans "Package" %}</th>
+                                <th>{% trans "Installed version" %}</th>
+                                <th>{% trans "New version" %}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for package in upgradables %}
+                            <tr>
+                                {% for row in package %}
+                                <td>{{ row }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
 
-{% endif %}
+                        <form method="post" class="form-horizontal">
+                        {% csrf_token %}
+                            <span id="success" style="display: none;">{% trans "Updates applied." %}&nbsp;<a href="" class="btn btn-success">{% trans "Refresh" %}</a></span>
+                            <button id="button-run" name="apply_updates" type="text" class="btn btn-danger confirmation" value="apply">{% trans "Install updates" %}</button>
+                            <span class="loader" style="display: none;">&nbsp;{% trans "Please wait" %}...&nbsp;<img src="/media/img/ajax-loader.gif" alt="ajax loader" /></span>
+                        </form>
 
-{% if output_window %}
-    <div id="loader-hint" data-value="{{ loader_hint }}"></div>
-    <div id="output-type" data-value="{{ output_type }}"></div>
-    <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output"></pre>
-{% endif %}
+                    {% endif %}
 
-    </div> <!-- /container -->
+                    {% if output_window %}
+                        <div id="loader-hint" data-value="{{ loader_hint }}"></div>
+                        <div id="output-type" data-value="{{ output_type }}"></div>
+                        <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output"></pre>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
