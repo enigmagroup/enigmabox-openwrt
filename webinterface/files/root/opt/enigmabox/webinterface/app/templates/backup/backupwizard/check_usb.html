@@ -3,37 +3,53 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
-    <ul class="breadcrumb">
-        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a> <span class="divider">/</span></li>
-        <li><a href="/backup/system/">{% trans "Complete system" %}</a> <span class="divider">/</span></li>
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a></li>
+        <li><a href="/backup/system/">{% trans "Complete system" %}</a></li>
         <li class="active">{% trans "Backup wizard" %}</li>
     </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Complete system backup" %}</h1>
+    <!-- Block -->
+    <div class="block">
 
-      <p>&nbsp;</p>
-
-<form action="" method="post" class="form-horizontal">
-{% csrf_token %}
-    <fieldset>
-        <legend>{% trans "Step 1: Prepare USB stick" %}</legend>
-        <p>{% trans "Insert an USB stick, large enough to back up you data." %}</p>
-        <p>&nbsp;</p>
-{% if errormsg %}
-        <div class="alert alert-error">
-            <h4>{% trans "Error" %}</h4>
-{% if errormsg == 'sizefail' %}
-            {% trans "This USB stick is too small!" %}
-{% endif %}
-{% if errormsg == 'nodrive' %}
-            {% trans "No USB stick detected." %}
-{% endif %}
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Backup &amp; restore complete system" %}</strong></h2>
         </div>
-{% endif %}
-        <button id="check_usb" name="check_usb" value="1" class="btn btn-primary disable_after_click">{% trans "Check USB stick" %}</button>
-    </fieldset>
-</form>
+        <!-- END Title -->
 
-    </div> <!-- /container -->
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
+
+                    <form action="" method="post" class="form-horizontal">
+                    {% csrf_token %}
+                        <fieldset>
+                            <legend>{% trans "Step 1: Prepare USB stick" %}</legend>
+                            <p>{% trans "Insert an USB stick, large enough to back up you data." %}</p>
+
+                    {% if errormsg %}
+                            <div class="alert alert-error" role="alert">
+                                <h4>{% trans "Error" %}</h4>
+                    {% if errormsg == 'sizefail' %}
+                                {% trans "This USB stick is too small!" %}
+                    {% endif %}
+                    {% if errormsg == 'nodrive' %}
+                                {% trans "No USB stick detected." %}
+                    {% endif %}
+                            </div>
+                    {% endif %}
+
+                            <button id="check_usb" name="check_usb" value="1" class="btn btn-primary disable_after_click">{% trans "Check USB stick" %}</button>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

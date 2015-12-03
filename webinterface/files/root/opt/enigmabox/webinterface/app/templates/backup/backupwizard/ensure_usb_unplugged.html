@@ -3,32 +3,47 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
-    <ul class="breadcrumb">
-        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a> <span class="divider">/</span></li>
-        <li><a href="/backup/system/">{% trans "Complete system" %}</a> <span class="divider">/</span></li>
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a></li>
+        <li><a href="/backup/system/">{% trans "Complete system" %}</a></li>
         <li class="active">{% trans "Backup wizard" %}</li>
     </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Complete system backup" %}</h1>
+    <!-- Block -->
+    <div class="block">
 
-      <p>&nbsp;</p>
-
-<form action="" method="post" class="form-horizontal">
-{% csrf_token %}
-    <fieldset>
-        <legend>{% trans "Step 4: Remove USB stick" %}</legend>
-        <p>{% trans "Now remove the USB stick." %}</p>
-        <p>&nbsp;</p>
-{% if errormsg %}
-        <div class="alert alert-error">
-            <h4>{% trans "Error" %}</h4>
-            {% trans "Please remove the USB stick!" %}
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Backup &amp; restore complete system" %}</strong></h2>
         </div>
-{% endif %}
-        <button id="ensure_usb_unplugged" name="ensure_usb_unplugged" value="1" class="btn btn-primary disable_after_click">{% trans "I have removed the USB stick" %}</button>
-    </fieldset>
-</form>
+        <!-- END Title -->
 
-    </div> <!-- /container -->
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
+
+                    <form action="" method="post" class="form-horizontal">
+                    {% csrf_token %}
+                        <fieldset>
+                            <legend>{% trans "Step 4: Remove USB stick" %}</legend>
+                            <p>{% trans "Now remove the USB stick." %}</p>
+                            <p>&nbsp;</p>
+                    {% if errormsg %}
+                            <div class="alert alert-error">
+                                <h4>{% trans "Error" %}</h4>
+                                {% trans "Please remove the USB stick!" %}
+                            </div>
+                    {% endif %}
+                            <button id="ensure_usb_unplugged" name="ensure_usb_unplugged" value="1" class="btn btn-primary disable_after_click">{% trans "I have removed the USB stick" %}</button>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

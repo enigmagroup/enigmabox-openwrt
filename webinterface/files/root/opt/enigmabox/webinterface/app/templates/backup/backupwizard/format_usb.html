@@ -3,27 +3,41 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
-    <ul class="breadcrumb">
-        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a> <span class="divider">/</span></li>
-        <li><a href="/backup/system/">{% trans "Complete system" %}</a> <span class="divider">/</span></li>
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a></li>
+        <li><a href="/backup/system/">{% trans "Complete system" %}</a></li>
         <li class="active">{% trans "Backup wizard" %}</li>
     </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Complete system backup" %}</h1>
+    <!-- Block -->
+    <div class="block">
 
-      <p>&nbsp;</p>
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Backup &amp; restore complete system" %}</strong></h2>
+        </div>
+        <!-- END Title -->
 
-<form action="" method="post" class="form-horizontal">
-{% csrf_token %}
-    <fieldset>
-        <legend>{% trans "Step 2: Format USB stick" %}</legend>
-        <p>{% trans "Your USB stick seems ok." %}</p>
-        <p>{% trans "We will format your USB stick now." %}</p>
-        <p>&nbsp;</p>
-        <button id="format_usb" name="format_usb" value="1" class="btn btn-danger disable_after_click">{% trans "Format USB stick" %}</button>
-    </fieldset>
-</form>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
 
-    </div> <!-- /container -->
+                    <form action="" method="post" class="form-horizontal">
+                    {% csrf_token %}
+                        <fieldset>
+                            <legend>{% trans "Step 2: Format USB stick" %}</legend>
+                            <p>{% trans "Your USB stick seems ok." %}</p>
+                            <p>{% trans "We will format your USB stick now." %}</p>
+                            <button id="format_usb" name="format_usb" value="1" class="btn btn-danger disable_after_click">{% trans "Format USB stick" %}</button>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
