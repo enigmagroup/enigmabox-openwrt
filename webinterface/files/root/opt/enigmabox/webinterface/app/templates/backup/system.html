@@ -3,47 +3,50 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
-    <ul class="breadcrumb">
-        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a> <span class="divider">/</span></li>
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a href="/backup/">{% trans "Backup &amp; restore" %}</a></li>
         <li class="active">{% trans "Complete system" %}</li>
     </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Backup &amp; restore complete system" %}</h1>
+    <!-- Block -->
+    <div class="block">
 
-        <p>&nbsp;</p>
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Backup &amp; restore complete system" %}</strong></h2>
+        </div>
+        <!-- END Title -->
 
-<form method="post" class="form-horizontal">
-{% csrf_token %}
-<fieldset>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
 
-<legend>{% trans "Backup complete system" %}</legend>
+                    <form method="post" class="form-horizontal">
+                    {% csrf_token %}
+                    <fieldset>
 
-<!-- Button -->
-<div class="control-group">
-  <div class="controls">
-    <a href="/backup/system/backupwizard/" class="btn btn-primary">{% trans "Start backup wizard" %}</a>
-  </div>
-</div>
+                    <legend>{% trans "Backup complete system" %}</legend>
 
-</fieldset>
-</form>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <a href="/backup/system/backupwizard/" class="btn btn-primary">{% trans "Start backup wizard" %}</a>
+                      </div>
+                    </div>
 
-<form method="post" enctype="multipart/form-data" class="form-horizontal">
-{% csrf_token %}
-<fieldset>
+                    <legend>{% trans "Restore complete system" %}</legend>
 
-<legend>{% trans "Restore complete system" %}</legend>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <a href="/backup/system/restorewizard/" class="btn btn-danger">{% trans "Start restore wizard" %}</a>
+                      </div>
+                    </div>
 
-<!-- Button -->
-<div class="control-group">
-  <div class="controls">
-    <a href="/backup/system/restorewizard/" class="btn btn-danger">{% trans "Start restore wizard" %}</a>
-  </div>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-</fieldset>
-</form>
-
-    </div> <!-- /container -->
 {% endblock %}
