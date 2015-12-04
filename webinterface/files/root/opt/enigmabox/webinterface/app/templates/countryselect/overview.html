@@ -24,9 +24,12 @@
         <div class="row">
             <div class="col-md-6">
 
+                <form method="post" class="form-horizontal">
+                {% csrf_token %}
+
                 <!-- Draggable Blocks Row -->
-                <div id="countrysort" class="row">
-                    <div class="col-sm-6 column">
+                <div class="row">
+                    <div id="countrysort" class="col-sm-6 column">
                         {% for c in countries %}
                         <!-- Block -->
                         <div class="block {% if c.countrycode == selected_country %}selected-country{% endif %}" data-countrycode="{{ c.countrycode }}">
@@ -39,7 +42,7 @@
                                 </div>
                                 <div class="col-sm-8 column">
                                     {% if c.countrycode != selected_country %}
-                                        <p><button type="button" name="country" value="{{ c.countrycode }}" class="btn btn-alt btn-success">Switch to this country</button></p>
+                                        <p><button type="submit" name="country" value="{{ c.countrycode }}" class="btn btn-alt btn-success confirmation">Switch to this country</button></p>
                                     {% endif %}
                                 </div>
                             </div>
@@ -47,8 +50,33 @@
                         <!-- END Block -->
                         {% endfor %}
                     </div>
+                    <div class="col-sm-6 column">
+                        <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Default country</legend>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="selectbasic">Default country</label>
+                          <div class="col-md-4">
+                            <select id="selectbasic" name="selectbasic" class="form-control">
+                                {% for c in countries %}
+                                  <option {% if c.countrycode == default_country %}selected="selected"{% endif %} value="{{ c.countrycode }}">{{ c.countryname }}</option>
+                                {% endfor %}
+                            </select>
+                            <button id="submit" name="submit" class="btn btn-primary">Set default country</button>
+                          </div>
+                        </div>
+
+                        <p>{% trans "In case of a failover, we will switch back to this country during night." %}</p>
+
+                        </fieldset>
+                    </div>
                 </div>
                 <!-- END Draggable Blocks Row -->
+
+                </form>
 
             </div>
         </div>
