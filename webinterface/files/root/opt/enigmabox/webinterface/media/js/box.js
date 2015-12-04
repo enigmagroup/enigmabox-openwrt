@@ -309,4 +309,16 @@ $(function() {
         $('#lan_range_second').val(lan_second);
     });
 
+    $('.draggable-blocks').sortable({
+        connectWith: '.block',
+        items: '.block',
+        opacity: 0.75,
+        handle: '.block-title',
+        placeholder: 'draggable-placeholder',
+        tolerance: 'pointer',
+        start: function(e, ui){
+            ui.placeholder.css('height', ui.item.outerHeight());
+        }
+    });
+
 });
