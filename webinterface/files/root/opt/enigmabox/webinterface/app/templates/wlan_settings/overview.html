@@ -3,106 +3,119 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "WLAN settings" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "WLAN settings" %}</h1>
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "WLAN settings" %}</strong></h2>
+        </div>
+        <!-- END Title -->
+
       <p>{% trans 'If you have a <a target="_blank" href="http://www.wlan-shop24.de/24-GHz-USB-WLAN-Adapter-ALFA-AWUS036NEH-150-MBit-1000mW">ALFA AWUS036NEH</a> WLAN adapter, you can configure your connection here.' %}</p>
-      <br />
 
-<form method="post" class="form-horizontal">
-{% csrf_token %}
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
 
-<fieldset>
+                    <form method="post" class="form-horizontal">
+                    {% csrf_token %}
 
-<!-- Form Name -->
-<legend>{% trans "Mode of operation" %}</legend>
+                    <fieldset>
 
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label" for="opmode">{% trans "Mode of operation" %}</label>
-  <div class="controls">
-    <a href="/wlan_settings/set_opmode/mesh/" id="mesh" class="btn btn-{% btn_state wlan_opmode 'mesh' 'warning' 'default' %}">{% trans "Mesh" %}</a>
-    <a href="/wlan_settings/set_opmode/client/" id="client" class="btn btn-{% btn_state wlan_opmode 'client' 'warning' 'default' %}">{% trans "Client" %}</a>
-  </div>
-</div>
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="button1id">Mode of operation</label>
+                      <div class="col-md-8">
+                        <a href="/wlan_settings/set_opmode/mesh/" class="btn btn-{% btn_state wlan_opmode 'mesh' 'warning' 'default' %}">Mesh</a>
+                        <a href="/wlan_settings/set_opmode/client/" class="btn btn-{% btn_state wlan_opmode 'client' 'warning' 'default' %}">Client</a>
+                      </div>
+                    </div>
 
-</fieldset>
+                    </fieldset>
 
-<fieldset>
+                    <fieldset>
 
-{% if wlan_opmode == 'client' %}
+                    {% if wlan_opmode == 'client' %}
 
-<!-- Form Name -->
-<legend>{% trans "Connect to a WLAN access point" %}</legend>
+                    <!-- Form Name -->
+                    <legend>{% trans "Connect to a WLAN access point" %}</legend>
 
-<!-- Button Drop Down -->
-<div class="control-group">
-  <label class="control-label" for="ssid">{% trans "SSID" %}</label>
-  <div class="controls">
-    <div class="input-append">
-      <input id="ssid" name="ssid" class="input-xlarge" placeholder="{% trans "SSID" %}" type="text" value="{{ wlan_ssid }}">
-      <div class="btn-group">
-        <button class="btn dropdown-toggle" data-toggle="dropdown">
-          {% trans "Action" %}
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a href="/wlan_settings/scan/">{% trans "Scan for WLAN networks" %}...</a></li>
-        </ul>
-      </div>
+                    <!-- Button Drop Down -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="ssid">{% trans "SSID" %}</label>
+                      <div class="col-md-4">
+                        <div class="input-group">
+                          <input id="ssid" name="ssid" class="form-control" placeholder="{% trans "SSID" %}" type="text" value="{{ wlan_ssid }}">
+                          <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              {% trans "Action" %}
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                              <li><a href="/wlan_settings/scan/">{% trans "Scan for WLAN networks" %}...</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Password input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="pass">{% trans "WLAN password" %}</label>
+                      <div class="col-md-4">
+                        <input id="pass" name="pass" type="password" placeholder="{% trans "Password" %}" class="form-control input-md" value="{{ wlan_pass }}">
+                      </div>
+                    </div>
+
+                    <!-- Multiple Radios -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="security">{% trans "WLAN security" %}</label>
+                      <div class="col-md-4">
+                      <div class="radio">
+                        <label for="security-0">
+                          <input type="radio" name="security" id="security-0" value="WPA" {% if wlan_security == "WPA" %}checked="checked"{% endif %}>
+                          {% trans "WPA2" %}
+                        </label>
+                        </div>
+                      <div class="radio">
+                        <label for="security-1">
+                          <input type="radio" name="security" id="security-1" value="WEP" {% if wlan_security == "WEP" %}checked="checked"{% endif %}>
+                          {% trans "WEP or unencrypted" %}
+                        </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    {% endif %}
+
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="connect"></label>
+                      <div class="col-md-4">
+                        <button id="connect" name="connect" class="btn btn-primary">{% trans "Connect" %}</button>
+                      </div>
+                    </div>
+
+                    </fieldset>
+                    </form>
+
+                    {% if output_window %}
+                        <div id="loader-hint" data-value="{{ loader_hint }}"></div>
+                        <div id="output-type" data-value="{{ output_type }}"></div>
+                        <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output"></pre>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- Password input-->
-<div class="control-group">
-  <label class="control-label" for="pass">{% trans "WLAN password" %}</label>
-  <div class="controls">
-    <input id="pass" name="pass" type="password" placeholder="{% trans "Password" %}" value="{{ wlan_pass }}" class="input-xlarge">
-  </div>
-</div>
-
-<!-- Multiple Radios -->
-<div class="control-group">
-  <label class="control-label" for="WLAN security">{% trans "WLAN security" %}</label>
-  <div class="controls">
-    <label class="radio" for="WLAN security-0">
-{% if wlan_security == "WPA" %}
-      <input type="radio" name="security" id="WLAN security-0" value="WPA" checked="checked">
-{% else %}
-      <input type="radio" name="security" id="WLAN security-0" value="WPA">
-{% endif %}
-      {% trans "WPA2" %}
-    </label>
-    <label class="radio" for="WLAN security-1">
-{% if wlan_security == "WEP" %}
-      <input type="radio" name="security" id="WLAN security-1" value="WEP" checked="checked">
-{% else %}
-      <input type="radio" name="security" id="WLAN security-1" value="WEP">
-{% endif %}
-      {% trans "WEP or unencrypted" %}
-    </label>
-  </div>
-</div>
-
-{% endif %}
-
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label" for="connect"></label>
-  <div class="controls">
-    <button id="connect" name="connect" class="btn btn-primary">{% trans "Connect" %}</button>
-  </div>
-</div>
-
-</fieldset>
-</form>
-
-{% if output_window %}
-    <div id="loader-hint" data-value="{{ loader_hint }}"></div>
-    <div id="output-type" data-value="{{ output_type }}"></div>
-    <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output"></pre>
-{% endif %}
-
-    </div> <!-- /container -->
 {% endblock %}
