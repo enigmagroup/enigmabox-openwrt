@@ -13,6 +13,12 @@
     <!-- Block -->
     <div class="block">
 
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{{ address.display_name }}</strong></h2>
+        </div>
+        <!-- END Title -->
+
         <!-- Content -->
         <div class="row">
             <div class="col-md-6">
@@ -20,9 +26,6 @@
                 {% csrf_token %}
 
                 <fieldset>
-
-                <!-- Form Name -->
-                <legend>{{ address.display_name }}</legend>
 
                 {% if form.errors %}
                 <div class="alert alert-danger" role="alert">
@@ -71,6 +74,9 @@
                     <a href="{% url app.views.addressbook %}" class="btn btn-default">{% trans "Cancel" %}</a>
                   </div>
                 </div>
+
+                </fieldset>
+                <fieldset>
 
                 <legend>{% trans "Delete phone number" %}</legend>
 
