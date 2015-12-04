@@ -3,6 +3,173 @@
 {% load apptags %}
 
 {% block main %}
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Peerings" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
+
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Peerings" %}</strong></h2>
+        </div>
+        <!-- END Title -->
+
+      <p>{% trans "Manage peerings (encrypted, direct connections to other cjdns users)" %}</p>
+
+        <form method="post" class="form-horizontal">
+        {% csrf_token %}
+        <fieldset>
+
+        <legend>{% trans "Outgoing peerings" %}</legend>
+
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
+
+                    {% if peerings %}
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead>
+                              <tr>
+                                <th>{% trans "Peering address" %}</th>
+                                <th>{% trans "Description" %}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for peering in peerings %}
+                            <tr>
+                                <td><a href="{% url app.views.peerings_edit peering.pk %}">{{ peering.address }}</a></td>
+                                <td>{{ peering.description }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+
+                    <a href="/peerings/new/" class="btn btn-primary">{% trans "New peering" %}</a>
+
+                </div>
+            </div>
+        </div>
+
+        </fieldset>
+        </form>
+
+        <form method="post" class="form-horizontal">
+        {% csrf_token %}
+        <fieldset>
+
+        <legend>{% trans "Incoming peering" %}</legend>
+
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
+
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="allow_peering">Incoming peering</label>
+                      <div class="col-md-4">
+                        <button id="allow_peering" name="allow_peering" class="btn btn-default">Disabled</button>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="port">{% trans "Port" %}</label>
+                      <div class="col-md-4">
+                          <input id="port" name="port" type="text" placeholder="47526" class="form-control input-md">
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="password">{% trans "Password" %}</label>
+                      <div class="col-md-4">
+                          <input id="password" name="password" type="text" placeholder="{% trans "Password" %}" class="form-control input-md">
+                      </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="allow_peering"></label>
+                      <div class="col-md-4">
+                        <button id="allow_peering" name="allow_peering" class="btn btn-primary">{% trans "Save" %}</button>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="peeringinfo">{% trans "Peering info" %}</label>
+                      <div class="col-md-4">
+                          <input id="peeringinfo" name="peeringinfo" type="text" class="form-control input-md">
+                        <p class="help-block">{% trans "Hand over that information to your peer!" %}</p>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        </fieldset>
+        </form>
+
+        <form method="post" class="form-horizontal">
+        {% csrf_token %}
+        <fieldset>
+
+        <legend>{% trans "Autopeering" %}</legend>
+
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
+
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="autopeering">{% trans "Automatically connect to other cjdns nodes in the same LAN" %}</label>
+                      <div class="col-md-4">
+                        <button id="autopeering" name="autopeering" class="btn btn-default">Disabled</button>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        </fieldset>
+        </form>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="container">
 
       <h1>{% trans "Peerings" %}</h1>
