@@ -3,40 +3,71 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "LAN IP range" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "LAN IP range" %}</h1>
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "LAN IP range" %}</strong></h2>
+        </div>
+        <!-- END Title -->
+
       <p>{% trans "Which IP range should the Enigmabox provide to internal devices?" %}</p>
 
-<form method="post" class="form-horizontal">
-{% csrf_token %}
-<fieldset>
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
 
-<legend>{% trans "Select IP range" %}</legend>
-<p>LAN 1: 192.168.
-<select id="lan_range_first" name="lan_range_first" class="input-mini">
-{% for i in ip_range_first %}
-    {% if ip_range_router == i or ip_range_router_prev == i %}
-        <option value="{{ i }}" disabled="disabled">{{ i }}</option>
-    {% else %}
-        <option value="{{ i }}"{% if i == lan_range_first %} selected="selected"{% endif %}>{{ i }}</option>
-    {% endif %}
-{% endfor %}
-</select>
-.1</p>
+                    <form method="post" class="form-horizontal">
+                    {% csrf_token %}
+                    <fieldset>
 
-<p>LAN 2: 192.168.
-<select id="lan_range_second" name="lan_range_second" class="input-mini" disabled="disabled">
-{% for i in ip_range_second %}
-  <option value="{{ i }}"{% if i == lan_range_second %} selected="selected"{% endif %}>{{ i }}</option>
-{% endfor %}
-</select>
-.1</p>
+                    <legend>{% trans "Select IP range" %}</legend>
 
-<button id="iprange_save" name="save" class="btn btn-danger confirmation disable_after_click" value="1">{% trans "Save and reboot" %}</button>
+                    <p>LAN 1: 192.168.
+                        <select id="lan_range_first" name="lan_range_first" class="form-control" style="width: 100px; display: inline;">
+                        {% for i in ip_range_first %}
+                            {% if ip_range_router == i or ip_range_router_prev == i %}
+                                <option value="{{ i }}" disabled="disabled">{{ i }}</option>
+                            {% else %}
+                                <option value="{{ i }}"{% if i == lan_range_first %} selected="selected"{% endif %}>{{ i }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    .1</p>
 
-</fieldset>
-</form>
+                    <p>LAN 2: 192.168.
+                        <select id="lan_range_second" name="lan_range_second" class="form-control" style="width: 100px; display: inline;">
+                        {% for i in ip_range_first %}
+                            {% if ip_range_router == i or ip_range_router_prev == i %}
+                                <option value="{{ i }}" disabled="disabled">{{ i }}</option>
+                            {% else %}
+                                <option value="{{ i }}"{% if i == lan_range_second %} selected="selected"{% endif %}>{{ i }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    .1</p>
 
-    </div> <!-- /container -->
+                    <!-- Button -->
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <button id="iprange_save" name="save" value="1" class="btn btn-danger confirmation disable_after_click">{% trans "Save and reboot" %}</button>
+                      </div>
+                    </div>
+
+                    </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
