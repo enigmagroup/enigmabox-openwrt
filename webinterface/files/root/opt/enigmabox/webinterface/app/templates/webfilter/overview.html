@@ -33,6 +33,11 @@
             </div>
         </div>
 
+        <form method="post" class="form-horizontal">
+        {% csrf_token %}
+
+        <fieldset>
+
         <div class="tab-content">
             <div class="tab-pane" id="general-config">
 
@@ -44,9 +49,9 @@
                           <label class="col-md-4 control-label" for="filter-ads">{% trans "Filter ads and trackers" %}</label>
                           <div class="col-md-4">
                             {% if filter_ads == '1' %}
-                                <button id="filter-ads" name="filter-ads" class="btn btn-success">{% trans "Enabled" %}</button>
+                                <button id="filter-ads" name="filter-ads" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
                             {% else %}
-                                <button id="filter-ads" name="filter-ads" class="btn btn-default">{% trans "Disabled" %}</button>
+                                <button id="filter-ads" name="filter-ads" value="1" class="btn btn-default">{% trans "Disabled" %}</button>
                             {% endif %}
                           </div>
                         </div>
@@ -62,9 +67,9 @@
                           <label class="col-md-4 control-label" for="block-win10stasi">{% trans "Block Windows 10 Stasi features" %}</label>
                           <div class="col-md-4">
                             {% if block_win10stasi == '1' %}
-                                <button id="block-win10stasi" name="block-win10stasi" class="btn btn-success">{% trans "Enabled" %}</button>
+                                <button id="block-win10stasi" name="block-win10stasi" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
                             {% else %}
-                                <button id="block-win10stasi" name="block-win10stasi" class="btn btn-default">{% trans "Disabled" %}</button>
+                                <button id="block-win10stasi" name="block-win10stasi" value="1" class="btn btn-default">{% trans "Disabled" %}</button>
                             {% endif %}
                           </div>
                         </div>
@@ -73,80 +78,106 @@
                 </div>
 
             </div>
-            <br />
 
             <div class="tab-pane" id="block-domains">
 
-                <!-- Button -->
-                <div class="control-group">
-                  <label class="control-label" for="block-facebook">{% trans "Block Facebook" %}</label>
-                  <div class="controls">
-        {% if block_facebook == '1' %}
-                    <button id="block-facebook" name="block-facebook" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
-        {% else %}
-                    <button id="block-facebook" name="block-facebook" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
-        {% endif %}
-                  </div>
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <!-- Button -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="block-facebook">{% trans "Block Facebook" %}</label>
+                          <div class="col-md-4">
+                            {% if block_facebook == '1' %}
+                                <button id="block-facebook" name="block-facebook" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
+                            {% else %}
+                                <button id="block-facebook" name="block-facebook" value="1" class="btn btn-default">{% trans "Disabled" %}</button>
+                            {% endif %}
+                          </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <!-- Button -->
-                <div class="control-group">
-                  <label class="control-label" for="block-google">{% trans "Block Google" %}</label>
-                  <div class="controls">
-        {% if block_google == '1' %}
-                    <button id="block-google" name="block-google" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
-        {% else %}
-                    <button id="block-google" name="block-google" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
-        {% endif %}
-                  </div>
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <!-- Button -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="block-google">{% trans "Block Google" %}</label>
+                          <div class="col-md-4">
+                            {% if block_google == '1' %}
+                                <button id="block-google" name="block-google" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
+                            {% else %}
+                                <button id="block-google" name="block-google" value="1" class="btn btn-default">{% trans "Disabled" %}</button>
+                            {% endif %}
+                          </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <!-- Button -->
-                <div class="control-group">
-                  <label class="control-label" for="block-twitter">{% trans "Block Twitter" %}</label>
-                  <div class="controls">
-        {% if block_twitter == '1' %}
-                    <button id="block-twitter" name="block-twitter" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
-        {% else %}
-                    <button id="block-twitter" name="block-twitter" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
-        {% endif %}
-                  </div>
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <!-- Button -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="block-twitter">{% trans "Block Twitter" %}</label>
+                          <div class="col-md-4">
+                            {% if block_twitter == '1' %}
+                                <button id="block-twitter" name="block-twitter" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
+                            {% else %}
+                                <button id="block-twitter" name="block-twitter" value="1" class="btn btn-default">{% trans "Disabled" %}</button>
+                            {% endif %}
+                          </div>
+                        </div>
+
+                    </div>
                 </div>
-                </fieldset>
+
             </div>
 
             <div class="tab-pane" id="custom-rules">
-                <fieldset>
 
-                <!-- Button -->
-                <div class="control-group">
-                  <label class="control-label" for="custom-rules">{% trans "Custom rules" %}</label>
-                  <div class="controls">
-        {% if custom_rules == '1' %}
-                    <button id="custom-rules" name="custom-rules" class="btn btn-success" value="1">{% trans "Enabled" %}</button>
-        {% else %}
-                    <button id="custom-rules" name="custom-rules" class="btn btn-inverse" value="1">{% trans "Disabled" %}</button>
-        {% endif %}
-                  </div>
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <!-- Button -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="custom-rules">{% trans "Custom rules" %}</label>
+                          <div class="col-md-4">
+                            {% if custom_rules == '1' %}
+                                <button id="custom-rules" name="custom-rules" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
+                            {% else %}
+                                <button id="custom-rules" name="custom-rules" value="1" class="btn btn-default">{% trans "Disabled" %}</button>
+                            {% endif %}
+                          </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <!-- Textarea -->
-                <div class="control-group">
-                  <label class="control-label" for="custom-rules-text">{% trans "Rules" %}</label>
-                  <div class="controls">
-                    <textarea id="custom-rules-text" name="custom-rules-text" class="input-xlarge" rows="10">{{ custom_rules_text }}</textarea>
-                  </div>
-                </div>
-                </fieldset>
+                <div class="row">
+                    <div class="col-md-6">
 
-                <!-- Button -->
-                <div class="control-group">
-                  <div class="controls">
-                    <button id="save-custom-rules" name="save-custom-rules" class="btn btn-primary">{% trans "Save" %}</button>
-                  </div>
+                        <!-- Textarea -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="custom-rules-text">{% trans "Rules" %}</label>
+                          <div class="col-md-4">
+                            <textarea class="form-control" id="custom-rules-text" name="custom-rules-text" rows="10">{{ custom_rules_text }}</textarea>
+                          </div>
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
+
         </div>
+
+        </fieldset>
+        </form>
+
         <!-- END Content -->
 
     </div>
