@@ -25,11 +25,11 @@
             <div class="col-md-6">
 
                 <!-- Draggable Blocks Row -->
-                <div class="row draggable-blocks">
+                <div id="countrysort" class="row">
                     <div class="col-sm-6 column">
                         {% for c in countries %}
                         <!-- Block -->
-                        <div class="block {% if c.countrycode == selected_country %}selected-country{% endif %}">
+                        <div class="block {% if c.countrycode == selected_country %}selected-country{% endif %}" data-countrycode="{{ c.countrycode }}">
                             <div class="block-title">
                                 <h2>{{ c.countryname }}</h2>
                             </div>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col-sm-8 column">
                                     {% if c.countrycode != selected_country %}
-                                        <p><button type="button" class="btn btn-alt btn-success">Switch to this country</button></p>
+                                        <p><button type="button" name="country" value="{{ c.countrycode }}" class="btn btn-alt btn-success">Switch to this country</button></p>
                                     {% endif %}
                                 </div>
                             </div>

@@ -69,17 +69,31 @@ $(function() {
     $('.tooltip-hover').tooltip();
 
     $('#countrysort').sortable({
-        cancel: ".ui-state-disabled",
-        placeholder: "ui-state-highlight",
+        connectWith: '.block',
+        items: '.block',
+        opacity: 0.75,
+        handle: '.block-title',
+        placeholder: 'draggable-placeholder',
+        tolerance: 'pointer',
+        start: function(e, ui){
+            ui.placeholder.css('height', ui.item.outerHeight());
+        },
         update: function(ev) {
             var countries = [];
-            $('#countrysort button[name=country]').each(function(i, c){
-                countries.push($(c).val());
+            $('#countrysort .block').each(function(i, c){
+                countries.push($(c).data('countrycode'));
             });
             $.post('/api/v1/set_countries', {
                 'countries': countries.join(',')
             });
         }
+    });
+
+    $('#countrysort .switch input[type="checkbox"]').change(function(ev){
+        var countrycode = $(this).parents('.block').data('countrycode');
+        $.post('/api/v1/toggle_country', {
+            'countrycode': countrycode
+        });
     });
 
     $('#fw-download').on('click', function() {
@@ -307,18 +321,6 @@ $(function() {
         var lan_first = parseInt($('#lan_range_first').val(), 10);
         var lan_second = lan_first + 1;
         $('#lan_range_second').val(lan_second);
-    });
-
-    $('.draggable-blocks').sortable({
-        connectWith: '.block',
-        items: '.block',
-        opacity: 0.75,
-        handle: '.block-title',
-        placeholder: 'draggable-placeholder',
-        tolerance: 'pointer',
-        start: function(e, ui){
-            ui.placeholder.css('height', ui.item.outerHeight());
-        }
     });
 
 });
