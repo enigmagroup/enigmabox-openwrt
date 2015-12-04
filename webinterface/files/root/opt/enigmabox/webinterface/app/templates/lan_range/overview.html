@@ -29,8 +29,6 @@
                     {% csrf_token %}
                     <fieldset>
 
-                    <legend>{% trans "Select IP range" %}</legend>
-
                     <p>LAN 1: 192.168.
                         <select id="lan_range_first" name="lan_range_first" class="form-control" style="width: 100px; display: inline;">
                         {% for i in ip_range_first %}
@@ -44,7 +42,7 @@
                     .1</p>
 
                     <p>LAN 2: 192.168.
-                        <select id="lan_range_second" name="lan_range_second" class="form-control" style="width: 100px; display: inline;">
+                        <select id="lan_range_second" name="lan_range_second" class="form-control" style="width: 100px; display: inline;" disabled="disabled">
                         {% for i in ip_range_first %}
                             {% if ip_range_router == i or ip_range_router_prev == i %}
                                 <option value="{{ i }}" disabled="disabled">{{ i }}</option>
