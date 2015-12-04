@@ -1254,6 +1254,20 @@ def api_v1(request, api_url):
                 c.save()
                 prio = prio + 1
 
+            resp['result'] = 'ok'
+
+        except Exception:
+            resp['message'] = 'fail'
+
+    if api_url == 'toggle_country':
+        try:
+            countrycode = request.POST.get('countrycode', '').strip()
+            c = Country.objects.get(countrycode=countrycode)
+            c.active = True if c.active == False else False
+            c.save()
+
+            resp['result'] = 'ok'
+
         except Exception:
             resp['message'] = 'fail'
 
