@@ -58,9 +58,9 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                          <label class="col-md-4 control-label" for="selectbasic">Default country</label>
+                          <label class="col-md-4 control-label" for="default_country">Default country</label>
                           <div class="col-md-4">
-                            <select id="selectbasic" name="selectbasic" class="form-control">
+                            <select id="default_country" name="default_country" class="form-control">
                                 {% for c in countries %}
                                   <option {% if c.countrycode == default_country %}selected="selected"{% endif %} value="{{ c.countrycode }}">{{ c.countryname }}</option>
                                 {% endfor %}
