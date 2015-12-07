@@ -3,127 +3,142 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a href="{% url app.views.hypesites %}">{% trans "Hypesites" %}</a> <span class="divider">/</span></li>
+        <li class="active">{% trans "Configure" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-        <ul class="breadcrumb">
-            <li><a href="{% url app.views.hypesites %}">{% trans "Hypesites" %}</a> <span class="divider">/</span></li>
-            <li class="active">{% trans "Configure" %}</li>
-        </ul>
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Configure Hypesites" %}</strong></h2>
+        </div>
+        <!-- END Title -->
 
       <p>{% trans 'Run a webserver and publish your own site.' %}</p>
-      <br />
 
-<form method="post" class="form-horizontal">
-{% csrf_token %}
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
 
-<fieldset>
-<!-- Form Name -->
-<legend>{% trans "Hypesites webserver firewall configuration" %}</legend>
+                <form method="post" class="form-horizontal">
+                {% csrf_token %}
 
-<!-- Button (Double) -->
-<div class="control-group">
-  <label class="control-label" for="access_global">{% trans "Allow access" %}</label>
-  <div class="controls">
-    <button id="access_global" name="access_global" value="1" class="btn btn-{% btn_state hypesites_access 'global' 'success' 'default' %}">{% trans "Global" %}</button>
-    <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hypesites_access 'friends' 'warning' 'default' %} tooltip-hover" data-placement="bottom" data-original-title="{% trans "Only persons in your address book" %}">{% trans "Friends only" %}</button>
-    <button id="access_internal" name="access_internal" value="1" class="btn btn-{% btn_state hypesites_access 'internal' 'danger' 'default' %}">{% trans "Internal LAN" %}</button>
-    <button id="access_off" name="access_off" value="1" class="btn btn-{% btn_state hypesites_access 'off' 'inverse' 'default' %}">{% trans "Off" %}</button>
-  </div>
-</div>
+                <fieldset>
+                <!-- Form Name -->
+                <legend>{% trans "Hypesites webserver firewall configuration" %}</legend>
 
-</fieldset>
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="access_global">Allow access</label>
+                  <div class="col-md-8 btn-group">
+                    <button id="access_global" name="access_global" value="1" class="btn btn-{% btn_state hypesites_access 'global' 'success' 'default' %}">{% trans "Global" %}</button>
+                    <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hypesites_access 'friends' 'warning' 'default' %}">{% trans "Friends only" %}</button>
+                    <button id="access_internal" name="access_internal" value="1" class="btn btn-{% btn_state hypesites_access 'internal' 'danger' 'default' %}">{% trans "Internal LAN" %}</button>
+                    <button id="access_off" name="access_off" value="1" class="btn btn-{% btn_state hypesites_access 'off' 'primary' 'default' %}">{% trans "Off" %}</button>
+                  </div>
+                </div>
 
-<fieldset>
-<!-- Form Name -->
-<legend>{% trans "Webservices" %}</legend>
+                </fieldset>
 
-<!-- Button (Double) -->
-<div class="control-group">
-  <label class="control-label" for="personal_website">{% trans "Personal website" %}</label>
-  <div class="controls">
-{% if personal_website == '1' %}
-    <button id="personal_website" name="personal_website" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
-{% else %}
-    <button id="personal_website" name="personal_website" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
-{% endif %}
-{% if hype_access_site == 'all' %}
-    <a href="/hypesites/configure/site/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if hype_access_site == 'friends' %}
-    <a href="/hypesites/configure/site/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if hype_access_site == 'specific' %}
-    <a href="/hypesites/configure/site/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if personal_website == '1' %}
-    <a href="http://[{{ ipv6 }}]" target="_blank">http://[{{ ipv6 }}]</a>
-{% endif %}
-  </div>
-</div>
+                <fieldset>
+                <!-- Form Name -->
+                <legend>{% trans "Webservices" %}</legend>
 
-<!-- Button (Double) -->
-<div class="control-group">
-  <label class="control-label" for="dokuwiki">{% trans "Wiki" %}</label>
-  <div class="controls">
-{% if dokuwiki == '1' %}
-    <button id="dokuwiki" name="dokuwiki" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
-{% else %}
-    <button id="dokuwiki" name="dokuwiki" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
-{% endif %}
-{% if hype_access_dokuwiki == 'all' %}
-    <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if hype_access_dokuwiki == 'friends' %}
-    <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if hype_access_dokuwiki == 'specific' %}
-    <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if dokuwiki == '1' %}
-    <a href="http://[{{ ipv6 }}]/wiki/" target="_blank">http://[{{ ipv6 }}]/wiki/</a>
-{% endif %}
-  </div>
-</div>
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="personal_website">{% trans "Personal website" %}</label>
+                  <div class="col-md-4">
+                    {% if personal_website == '1' %}
+                        <button id="personal_website" name="personal_website" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
+                    {% else %}
+                        <button id="personal_website" name="personal_website" value="1" class="btn btn-default">{% trans "Disabled" %}</button>
+                    {% endif %}
+                    {% if hype_access_site == 'all' %}
+                        <a href="/hypesites/configure/site/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
+                    {% endif %}
+                    {% if hype_access_site == 'friends' %}
+                        <a href="/hypesites/configure/site/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
+                    {% endif %}
+                    {% if hype_access_site == 'specific' %}
+                        <a href="/hypesites/configure/site/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
+                    {% endif %}
+                    {% if personal_website == '1' %}
+                        <a href="http://[{{ ipv6 }}]" target="_blank">http://[{{ ipv6 }}]</a>
+                    {% endif %}
+                  </div>
+                </div>
 
-<!-- Button (Double) -->
-<div class="control-group">
-  <label class="control-label" for="owncloud">{% trans "OwnCloud" %}</label>
-  <div class="controls">
-{% if owncloud == '1' %}
-    <button id="owncloud" name="owncloud" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
-{% else %}
-    <button id="owncloud" name="owncloud" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
-{% endif %}
-{% if hype_access_owncloud == 'all' %}
-    <a href="/hypesites/configure/owncloud/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if hype_access_owncloud == 'friends' %}
-    <a href="/hypesites/configure/owncloud/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if hype_access_owncloud == 'specific' %}
-    <a href="/hypesites/configure/owncloud/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
-{% endif %}
-{% if owncloud == '1' %}
-    <a href="http://[{{ ipv6 }}]/owncloud/" target="_blank">http://[{{ ipv6 }}]/owncloud/</a>
-{% endif %}
-  </div>
-</div>
-</fieldset>
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="dokuwiki">{% trans "Wiki" %}</label>
+                  <div class="col-md-4">
+                    {% if dokuwiki == '1' %}
+                        <button id="dokuwiki" name="dokuwiki" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
+                    {% else %}
+                        <button id="dokuwiki" name="dokuwiki" value="1" class="btn btn-default">{% trans "Disabled" %}</button>
+                    {% endif %}
+                    {% if hype_access_dokuwiki == 'all' %}
+                        <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
+                    {% endif %}
+                    {% if hype_access_dokuwiki == 'friends' %}
+                        <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
+                    {% endif %}
+                    {% if hype_access_dokuwiki == 'specific' %}
+                        <a href="/hypesites/configure/dokuwiki/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
+                    {% endif %}
+                    {% if dokuwiki == '1' %}
+                        <a href="http://[{{ ipv6 }}]/wiki/" target="_blank">http://[{{ ipv6 }}]/wiki/</a>
+                    {% endif %}
+                  </div>
+                </div>
 
-<!-- Button (Double) -->
-<div class="control-group">
-  <label class="control-label" for="pastebin">{% trans "Pastebin" %}</label>
-  <div class="controls">
-{% if pastebin == '1' %}
-    <button id="pastebin" name="pastebin" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
-    <a href="http://[{{ ipv6 }}]/pastebin/" target="_blank">http://[{{ ipv6 }}]/pastebin/</a>
-{% else %}
-    <button id="pastebin" name="pastebin" value="1" class="btn btn-inverse">{% trans "Disabled" %}</button>
-{% endif %}
-  </div>
-</div>
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="owncloud">{% trans "OwnCloud" %}</label>
+                  <div class="col-md-4">
+                    {% if owncloud == '1' %}
+                        <button id="owncloud" name="owncloud" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
+                    {% else %}
+                        <button id="owncloud" name="owncloud" value="1" class="btn btn-default">{% trans "Disabled" %}</button>
+                    {% endif %}
+                    {% if hype_access_owncloud == 'all' %}
+                        <a href="/hypesites/configure/owncloud/access/" class="btn btn-success">{% trans "Configure access..." %}</a>
+                    {% endif %}
+                    {% if hype_access_owncloud == 'friends' %}
+                        <a href="/hypesites/configure/owncloud/access/" class="btn btn-warning">{% trans "Configure access..." %}</a>
+                    {% endif %}
+                    {% if hype_access_owncloud == 'specific' %}
+                        <a href="/hypesites/configure/owncloud/access/" class="btn btn-danger">{% trans "Configure access..." %}</a>
+                    {% endif %}
+                    {% if owncloud == '1' %}
+                        <a href="http://[{{ ipv6 }}]/owncloud/" target="_blank">http://[{{ ipv6 }}]/owncloud/</a>
+                    {% endif %}
+                  </div>
+                </div>
 
-</form>
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="pastebin">{% trans "Pastebin" %}</label>
+                  <div class="col-md-4">
+                    {% if pastebin == '1' %}
+                        <button id="pastebin" name="pastebin" value="1" class="btn btn-success">{% trans "Enabled" %}</button>
+                        <a href="http://[{{ ipv6 }}]/pastebin/" target="_blank">http://[{{ ipv6 }}]/pastebin/</a>
+                    {% else %}
+                        <button id="pastebin" name="pastebin" value="1" class="btn btn-default">{% trans "Disabled" %}</button>
+                    {% endif %}
+                  </div>
+                </div>
 
-    </div> <!-- /container -->
+                </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
