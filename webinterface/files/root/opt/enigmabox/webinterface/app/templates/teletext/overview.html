@@ -3,32 +3,50 @@
 {% load apptags %}
 
 {% block main %}
-    <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Teletext" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
 
-      <h1>{% trans "Teletext" %}</h1>
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Teletext" %}</strong></h2>
+        </div>
+        <!-- END Title -->
+
       <p>{% trans 'Teletext is a distributed Twitter clone.' %}</p>
       <p>{% trans 'Publish telegrams, find other ciphernauts, coordinate a revolution below the radar.' %}</p>
-      <br />
 
-<form method="post" class="form-horizontal">
-{% csrf_token %}
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
 
-<fieldset>
+                <form method="post" class="form-horizontal">
+                {% csrf_token %}
 
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label" for="teletext">{% trans "Enable Teletext" %}:</label>
-  <div class="controls">
-{% if teletext_enabled == '1' %}
-    <button id="teletext" name="teletext" class="btn btn-success">{% trans "Enabled" %}</button>
-{% else %}
-    <button id="teletext" name="teletext" class="btn btn-inverse">{% trans "Disabled" %}</button>
-{% endif %}
-  </div>
-</div>
+                <fieldset>
 
-</fieldset>
-</form>
+                    <!-- Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="teletext">Enable Teletext</label>
+                      <div class="col-md-4">
+                        {% if teletext_enabled == '1' %}
+                            <button id="teletext" name="teletext" class="btn btn-success">{% trans "Enabled" %}</button>
+                        {% else %}
+                            <button id="teletext" name="teletext" class="btn btn-default">{% trans "Disabled" %}</button>
+                        {% endif %}
+                      </div>
+                    </div>
 
-    </div> <!-- /container -->
+                </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
