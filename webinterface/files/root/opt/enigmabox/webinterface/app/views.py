@@ -56,15 +56,19 @@ def home(request):
 
     lan_first_ip = '192.168.100.1' #TODO
     gateway_ip = '192.168.0.1' #TODO
+    internet_access_valid = '1' #TODO
+    global_availability = '1' #TODO
 
     if request.is_ajax():
         return render_to_response('home/system_status.html', {
             'hostid': o.get_value('hostid'),
             'netstat': netstat,
             'internet_access': internet_access,
+            'internet_access_valid': internet_access_valid,
             'internet_access_formatted': internet_access_formatted,
             'lan_first_ip': lan_first_ip,
             'gateway_ip': gateway_ip,
+            'global_availability': global_availability,
         }, context_instance=RequestContext(request))
 
     else:
@@ -72,6 +76,7 @@ def home(request):
             'hostid': o.get_value('hostid'),
             'ipv6': o.get_value('ipv6'),
             'internet_access': internet_access,
+            'internet_access_valid': internet_access_valid,
             'internet_access_formatted': internet_access_formatted,
             'teletext_enabled': o.get_value('teletext_enabled', 0),
             'personal_website': o.get_value('personal_website', 0),
@@ -82,6 +87,7 @@ def home(request):
             'netstat': netstat,
             'lan_first_ip': lan_first_ip,
             'gateway_ip': gateway_ip,
+            'global_availability': global_availability,
         }, context_instance=RequestContext(request))
 
 
