@@ -54,9 +54,17 @@ def home(request):
         except Exception:
             pass
 
+    lan_first_ip = '192.168.100.1' #TODO
+    gateway_ip = '192.168.0.1' #TODO
+
     if request.is_ajax():
         return render_to_response('home/system_status.html', {
+            'hostid': o.get_value('hostid'),
             'netstat': netstat,
+            'internet_access': internet_access,
+            'internet_access_formatted': internet_access_formatted,
+            'lan_first_ip': lan_first_ip,
+            'gateway_ip': gateway_ip,
         }, context_instance=RequestContext(request))
 
     else:
@@ -72,6 +80,8 @@ def home(request):
             'pastebin': o.get_value('pastebin', 0),
             'root_password': o.get_value('root_password'),
             'netstat': netstat,
+            'lan_first_ip': lan_first_ip,
+            'gateway_ip': gateway_ip,
         }, context_instance=RequestContext(request))
 
 

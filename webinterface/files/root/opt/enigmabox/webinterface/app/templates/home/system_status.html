@@ -10,12 +10,13 @@
 
 <div class="row">
     <div class="col-md-3 text-center">
-        <h1><i class="fa fa-shield"></i></h1>
+        <h1><i class="fa fa-shield text-{% btn_state internet_access_valid '1' 'success' 'default' %}"></i></h1>
         <p>
         <h4>Enigmabox</h4>
-        <br />
+        {{ lan_first_ip }}<br />
         {% if hostid %}
-              <p>{% trans "Your hostid is" %} <strong>{{ hostid }}</strong>. {% trans "Network access valid until" %} {{ internet_access_formatted }}.</p>
+              Hostid: <strong>{{ hostid }}</strong><br />
+              {% trans "Network access:" %} {{ internet_access_formatted }}
         {% else %}
               <p>No subscription.
               <p>{% trans "Continue installation:" %}<br />
@@ -25,16 +26,17 @@
         </p>
     </div>
     <div class="col-md-3 text-center">
-        <h1><i class="fa fa-hdd-o"></i></h1>
+        <h1><i class="fa fa-hdd-o text-{% btn_state netstat.dhcp '1' 'success' 'default' %}"></i></h1>
         <h4>Router</h4>
+        {{ gateway_ip }}
     </div>
     <div class="col-md-3 text-center">
-        <h1><i class="fa fa-globe"></i></h1>
+        <h1><i class="fa fa-globe text-{% btn_state netstat.internet '1' 'success' 'default' %}"></i></h1>
         <h4>Internet</h4>
     </div>
     <div class="col-md-3 text-center">
-        <h1><span class="flag-icon flag-icon-ch"></span></h1>
-        <h4>Current country</h4>
+        <h1><span class="fa fa-lock text-{% btn_state netstat.cjdns_internet '1' 'success' 'default' %}"></span></h1>
+        <h4>Encrypted Internet</h4>
     </div>
 </div>
 
@@ -42,6 +44,10 @@
     <div class="col-md-3 text-center">
         <h1><i class="fa fa-phone"></i></h1>
         <h4>Phone number</h4>
+    </div>
+    <div class="col-md-3 col-md-offset-6 text-center">
+        <h1><span class="flag-icon flag-icon-ch"></span></h1>
+        <h4>Switzerland</h4>
     </div>
 </div>
 

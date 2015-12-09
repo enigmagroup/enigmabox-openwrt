@@ -28,8 +28,6 @@
                     <form method="post" class="form-horizontal">
                     {% csrf_token %}
 
-                    <fieldset>
-
                     <!-- Button (Double) -->
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="button1id">{% trans "Mode of operation" %}</label>
@@ -38,10 +36,6 @@
                         <a href="/wlan_settings/set_opmode/client/" class="btn btn-{% btn_state wlan_opmode 'client' 'warning' 'default' %}">Client</a>
                       </div>
                     </div>
-
-                    </fieldset>
-
-                    <fieldset>
 
                     {% if wlan_opmode == 'client' %}
 
@@ -104,7 +98,6 @@
                       </div>
                     </div>
 
-                    </fieldset>
                     </form>
 
                     {% if output_window %}
