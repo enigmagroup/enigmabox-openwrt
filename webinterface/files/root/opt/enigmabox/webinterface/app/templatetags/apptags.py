@@ -53,13 +53,13 @@ def peer_status(peer_name, sip_peers):
     except Exception:
         status = '-'
 
-    ret = '<span class="badge">-</span>'
+    ret = '<span class="label label-default">-</span>'
     if 'OK' in status:
-        ret = '<span class="badge badge-success" title="' + status + '">OK</span>'
+        ret = '<span class="label label-success" title="' + status + '">OK</span>'
     if 'LAGGED' in status:
-        ret = '<span class="badge badge-warning" title="' + status + '">OK</span>'
+        ret = '<span class="label label-warning" title="' + status + '">OK</span>'
     if 'UNREACHABLE' in status:
-        ret = '<span class="badge badge-inverse">Offline</span>'
+        ret = '<span class="label label-default">Offline</span>'
     return ret
 
 @register.simple_tag
