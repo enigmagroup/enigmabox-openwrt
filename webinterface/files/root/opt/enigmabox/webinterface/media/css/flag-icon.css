@@ -1512,3 +1512,25 @@
 .flag-icon-zw.flag-icon-squared {
   background-image: url(../flags/1x1/zw.svg);
 }
+
+/* override */
+.flag-icon-ch {
+  background-image: url(../img/flags/ch.png);
+}
+
+.flag-icon-hu {
+  background-image: url(../img/flags/hu.png);
+}
+
+.flag-icon-se {
+  background-image: url(../img/flags/se.png);
+}
+
+.flag-icon-de {
+  background-image: url(../img/flags/de.png);
+}
+
+.flag-icon-us {
+  background-image: url(../img/flags/us.png);
+}
+
