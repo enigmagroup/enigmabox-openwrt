@@ -73,14 +73,14 @@ def home(request):
 
     try:
         network_devices = []
-        arp = Popen(["arp"], stdout=PIPE).communicate()[0].strip().split('\n')
+        arp = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
+        arp = arp[1:]
         for device in arp:
             network_devices.append({
                 'ip': re.split(r' +', device)[0],
                 'mac': re.split(r' +', device)[3],
                 'device': re.split(r' +', device)[5],
             })
-        network_devices = network_devices.pop(0)
     except Exception:
         network_devices = []
 

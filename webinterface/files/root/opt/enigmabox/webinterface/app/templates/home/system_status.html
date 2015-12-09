@@ -63,11 +63,23 @@
 <div class="row">
     <div class="col-md-3 text-center">
         <h4>Network devices</h4>
-        {{ network_devices }}
+        <table class="table table-striped text-left">
+            <tr>
+                <th>MAC<th>
+                <th>IP<th>
+                <th>Port<th>
+            </tr>
+            {% for device in network_devices %}
+            <tr>
+                <td>{{ device.mac }}<td>
+                <td>{{ device.ip }}<td>
+                <td>{{ device.device }}<td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
     <div class="col-md-3 text-center">
         <h4>Applications</h4>
-        Phone number
     </div>
 </div>
 
