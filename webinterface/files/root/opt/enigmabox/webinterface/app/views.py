@@ -54,10 +54,35 @@ def home(request):
         except Exception:
             pass
 
-    lan_first_ip = '192.168.100.1' #TODO
-    gateway_ip = '192.168.0.1' #TODO
-    internet_access_valid = '1' #TODO
-    global_availability = '1' #TODO
+    lan_first_ip = '192.168.' + str(o.get_value('lan_range_first', 100)) + '.1'
+
+    try:
+        with open('/tmp/cjdns_org_gw', 'r') as f:
+            gateway_ip = f.read().strip()
+    except Exception:
+        gateway_ip = ''
+
+    # expiration notice
+    dt = datetime.strptime(internet_access, '%Y-%m-%d')
+    now = datetime.utcnow()
+    internet_access_valid = '1' if now < dt else '0'
+
+    global_availability = o.get_value('global_availability', '0')
+    global_hostname = o.get_value('global_hostname', '')
+    global_phone = o.get_value('global_phone', '')
+
+    try:
+        network_devices = []
+        arp = Popen(["arp"], stdout=PIPE).communicate()[0].strip().split('\n')
+        for device in arp:
+            network_devices.append({
+                'ip': re.split(r' +', device)[0],
+                'mac': re.split(r' +', device)[3],
+                'device': re.split(r' +', device)[5],
+            })
+        network_devices = network_devices.pop(0)
+    except Exception:
+        network_devices = []
 
     if request.is_ajax():
         return render_to_response('home/system_status.html', {
@@ -69,6 +94,9 @@ def home(request):
             'lan_first_ip': lan_first_ip,
             'gateway_ip': gateway_ip,
             'global_availability': global_availability,
+            'global_hostname': global_hostname,
+            'global_phone': global_phone,
+            'network_devices': network_devices,
         }, context_instance=RequestContext(request))
 
     else:
@@ -88,6 +116,9 @@ def home(request):
             'lan_first_ip': lan_first_ip,
             'gateway_ip': gateway_ip,
             'global_availability': global_availability,
+            'global_hostname': global_hostname,
+            'global_phone': global_phone,
+            'network_devices': network_devices,
         }, context_instance=RequestContext(request))
 
 

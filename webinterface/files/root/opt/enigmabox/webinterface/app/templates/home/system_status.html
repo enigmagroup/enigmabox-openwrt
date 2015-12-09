@@ -13,10 +13,10 @@
         <h1><i class="fa fa-shield text-{% btn_state internet_access_valid '1' 'success' 'default' %}"></i></h1>
         <p>
         <h4>Enigmabox</h4>
-        {{ lan_first_ip }}<br />
+        <a href="/lan_range/">{{ lan_first_ip }}</a><br />
         {% if hostid %}
-              Hostid: <strong>{{ hostid }}</strong><br />
-              {% trans "Network access:" %} {{ internet_access_formatted }}
+              <strong>Hostid:</strong> {{ hostid }}<br />
+              <strong>{% trans "Network access:" %}</strong> {{ internet_access_formatted }}
         {% else %}
               <p>No subscription.
               <p>{% trans "Continue installation:" %}<br />
@@ -43,7 +43,13 @@
 <div class="row">
     <div class="col-md-3 text-center">
         <h1><i class="fa fa-phone text-{% btn_state global_availability '1' 'success' 'default' %}"></i></h1>
-        <h4>Phone number</h4>
+        <h4>Global availability</h4>
+        {% if global_hostname %}
+            <strong>{% trans "Hostname" %}:</strong>
+            <span>{{ global_hostname }}</span><br />
+            <strong>{% trans "phone" %}:</strong>
+            <span>{{ global_phone }}</span>
+        {% endif %}
     </div>
     <div class="col-md-3 col-md-offset-6 text-center">
         <h1><span class="flag-icon flag-icon-ch"></span></h1>
@@ -52,11 +58,12 @@
 </div>
 
 <p>&nbsp;</p>
+<hr />
 
 <div class="row">
     <div class="col-md-3 text-center">
         <h4>Network devices</h4>
-        Phone number
+        {{ network_devices }}
     </div>
     <div class="col-md-3 text-center">
         <h4>Applications</h4>
