@@ -96,6 +96,18 @@ def home(request):
     selected_country = o.get_value('selected_country', 'ch')
     selected_country_text = countries_trans[selected_country]
 
+    try:
+        df = Popen(["df", "-h"], stdout=PIPE).communicate()[0].strip().split('\n')
+        df = df[1]
+        used_space = re.split(r' +', df)[2]
+        total_space = re.split(r' +', df)[1]
+        space_usage = re.split(r' +', df)[4]
+
+    except Exception:
+        used_space = '0'
+        total_space = '0'
+        space_usage = '0%'
+
     if request.is_ajax():
         return render_to_response('home/system_status.html', {
             'hostid': o.get_value('hostid'),
@@ -135,6 +147,9 @@ def home(request):
             'global_hostname': global_hostname,
             'global_phone': global_phone,
             'network_devices': network_devices,
+            'used_space': used_space,
+            'total_space': total_space,
+            'space_usage': space_usage,
         }, context_instance=RequestContext(request))
 
 

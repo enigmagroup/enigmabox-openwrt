@@ -151,7 +151,10 @@
                             <div class="sidebar-section sidebar-nav-mini-hide">
                                 <div class="alert alert-warning alert-alt">
                                     <small>Speicherplatz</small><br>
-                                    <strong>2GB</strong> von 4GB belegt
+                                    <strong>{{ used_space }}</strong> von {{ total_space }} benutzt
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" style="width: {{ space_usage }}">{{ space_usage }}</div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- END Sidebar Notifications -->
