@@ -1,21 +1,60 @@
 {% load i18n %}
 {% load apptags %}
 
-{% if netstat.dhcp_conflict %}
-<span class="label label-important">{% trans "IP from Router" %}</span>
-{% else %}
-<span class="label label-{% btn_state netstat.dhcp '1' 'success' 'inverse' %}">{% trans "IP from Router" %}</span>
-{% endif %}
-<span class="label label-{% btn_state netstat.internet '1' 'success' 'inverse' %}">{% trans "Regular Internet" %}</span>
-<span class="label label-{% btn_state netstat.cjdns '1' 'success' 'inverse' %}">{% trans "Network service" %}</span>
-<span class="label label-{% btn_state netstat.cjdns_internet '1' 'success' 'inverse' %}">{% trans "Encrypted Internet" %}</span>
-
-{% if netstat.dhcp_conflict %}
-<p>
-<div class="alert alert-error">
-  <h4>{% trans "Attention!" %}</h4>
-  <p>{% trans "The IP assigned from your router" %} ({{ netstat.dhcp_conflict }}) {% trans "is conflicting with the internal ip range." %}</p>
-  <p>{% trans 'Please choose a different IP range <a href="/lan_range/">here</a>.' %}</p>
+<div class="row">
+    <div class="col-md-3 text-center">
+        <h1><i class="fa fa-wifi"></i></h1>
+        <h4>WLAN</h4>
+    </div>
 </div>
-</p>
-{% endif %}
+
+<div class="row">
+    <div class="col-md-3 text-center">
+        <h1><i class="fa fa-shield"></i></h1>
+        <p>
+        <h4>Enigmabox</h4>
+        <br />
+        {% if hostid %}
+              <p>{% trans "Your hostid is" %} <strong>{{ hostid }}</strong>. {% trans "Network access valid until" %} {{ internet_access_formatted }}.</p>
+        {% else %}
+              <p>No subscription.
+              <p>{% trans "Continue installation:" %}<br />
+              <a href="/" class="btn btn-primary">{% trans "Restore from USB stick" %}</a>
+              <a href="/" class="btn btn-warning">{% trans "Import SSL certificates" %}</a></p>
+        {% endif %}
+        </p>
+    </div>
+    <div class="col-md-3 text-center">
+        <h1><i class="fa fa-hdd-o"></i></h1>
+        <h4>Router</h4>
+    </div>
+    <div class="col-md-3 text-center">
+        <h1><i class="fa fa-globe"></i></h1>
+        <h4>Internet</h4>
+    </div>
+    <div class="col-md-3 text-center">
+        <h1><span class="flag-icon flag-icon-ch"></span></h1>
+        <h4>Current country</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 text-center">
+        <h1><i class="fa fa-phone"></i></h1>
+        <h4>Phone number</h4>
+    </div>
+</div>
+
+<p>&nbsp;</p>
+
+<div class="row">
+    <div class="col-md-3 text-center">
+        <h4>Network devices</h4>
+        Phone number
+    </div>
+    <div class="col-md-3 text-center">
+        <h4>Applications</h4>
+        Phone number
+    </div>
+</div>
+

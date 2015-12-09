@@ -3,6 +3,50 @@
 {% load apptags %}
 
 {% block main %}
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Home" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
+
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Enigmabox system overview" %}</strong></h2>
+        </div>
+        <!-- END Title -->
+
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ajax_refresh" data-request_url="/">
+                    {% include 'home/system_status.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div class="container">
 
@@ -34,12 +78,6 @@
       <hr />
 
       <h5>{% trans "System status" %}</h5>
-
-<div class="ajax_refresh" data-request_url="/">
-{% include 'home/system_status.html' %}
-</div>
-
-      <hr />
 
       <h5>{% trans "Applications" %}</h5>
 
