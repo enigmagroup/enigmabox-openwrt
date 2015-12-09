@@ -84,6 +84,18 @@ def home(request):
     except Exception:
         network_devices = []
 
+    countries_trans = {
+        'ch': _('Switzerland'),
+        'se': _('Sweden'),
+        'hu': _('Hungary'),
+        'fr': _('France'),
+        'de': _('Germany'),
+        'us': _('United Stasi of America'),
+    }
+
+    selected_country = o.get_value('selected_country', 'ch')
+    selected_country_text = countries_trans[selected_country]
+
     if request.is_ajax():
         return render_to_response('home/system_status.html', {
             'hostid': o.get_value('hostid'),
@@ -91,6 +103,8 @@ def home(request):
             'internet_access': internet_access,
             'internet_access_valid': internet_access_valid,
             'internet_access_formatted': internet_access_formatted,
+            'selected_country': selected_country,
+            'selected_country_text': selected_country_text,
             'lan_first_ip': lan_first_ip,
             'gateway_ip': gateway_ip,
             'global_availability': global_availability,
@@ -106,6 +120,8 @@ def home(request):
             'internet_access': internet_access,
             'internet_access_valid': internet_access_valid,
             'internet_access_formatted': internet_access_formatted,
+            'selected_country': selected_country,
+            'selected_country_text': selected_country_text,
             'teletext_enabled': o.get_value('teletext_enabled', 0),
             'personal_website': o.get_value('personal_website', 0),
             'dokuwiki': o.get_value('dokuwiki', 0),

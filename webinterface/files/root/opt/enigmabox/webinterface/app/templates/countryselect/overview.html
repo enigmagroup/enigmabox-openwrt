@@ -34,7 +34,7 @@
                         <!-- Block -->
                         <div class="block {% if c.countrycode == selected_country %}selected-country{% endif %}" data-countrycode="{{ c.countrycode }}">
                             <div class="block-title">
-                                <h2>{{ c.countryname }}</h2>
+                                <h2><span class="flag-icon flag-icon-{{ c.countrycode }}"></span> {{ c.countryname }}</h2>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4 column">
