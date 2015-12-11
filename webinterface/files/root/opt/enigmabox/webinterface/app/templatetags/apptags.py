@@ -1,5 +1,6 @@
 from django import template
 from app.models import *
+from django.utils.translation import ugettext as _
 from condtag import *
 from datetime import datetime, timedelta
 import re
@@ -39,6 +40,22 @@ def display_version(slugify=False):
         return template.defaultfilters.slugify(version)
     else:
         return version
+
+@register.simple_tag
+def display_space_usage():
+    try:
+        df = Popen(["df", "-h"], stdout=PIPE).communicate()[0].strip().split('\n')
+        df = df[1]
+        used_space = re.split(r' +', df)[2]
+        total_space = re.split(r' +', df)[1]
+        space_usage = re.split(r' +', df)[4]
+        return """<small>""" + _('Space usage') + """</small><br>
+        <strong>""" + used_space + """</strong> """ + _('of') + """ """ + total_space + """ """ + _('used') + """
+        <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar" style="width: """ + space_usage + """">""" + space_usage + """</div>
+        </div>"""
+    except Exception:
+        return ''
 
 @register.simple_tag
 def updates_count():

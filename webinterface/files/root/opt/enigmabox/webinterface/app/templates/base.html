@@ -29,22 +29,22 @@
 
         <!-- Stylesheets -->
         <!-- Bootstrap is included in its original form, unaltered -->
-        <link rel="stylesheet" href="/media/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/media/css/flag-icon.css">
+        <link rel="stylesheet" href="/media/css/bootstrap.min.css?{% display_version slugify='1' %}">
+        <link rel="stylesheet" href="/media/css/flag-icon.css?{% display_version slugify='1' %}">
 
         <!-- Related styles of various icon packs and plugins -->
-        <link rel="stylesheet" href="/media/css/plugins.css">
+        <link rel="stylesheet" href="/media/css/plugins.css?{% display_version slugify='1' %}">
 
         <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-        <link rel="stylesheet" href="/media/css/main.css">
+        <link rel="stylesheet" href="/media/css/main.css?{% display_version slugify='1' %}">
 
         <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-        <link rel="stylesheet" href="/media/css/themes/forest.css">
+        <link rel="stylesheet" href="/media/css/themes/forest.css?{% display_version slugify='1' %}">
 
         <link href="/media/css/box.css?{% display_version slugify='1' %}" rel="stylesheet" media="screen">
-        <link href="/media/css/ansi2html.css" rel="stylesheet" media="screen">
+        <link href="/media/css/ansi2html.css?{% display_version slugify='1' %}" rel="stylesheet" media="screen">
         <!-- END Stylesheets -->
 
         <script type="text/javascript">
@@ -150,11 +150,7 @@
                             <!-- Sidebar Notifications -->
                             <div class="sidebar-section sidebar-nav-mini-hide">
                                 <div class="alert alert-warning alert-alt">
-                                    <small>Speicherplatz</small><br>
-                                    <strong>{{ used_space }}</strong> von {{ total_space }} benutzt
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" style="width: {{ space_usage }}">{{ space_usage }}</div>
-                                    </div>
+                                    {% display_space_usage %}
                                 </div>
                             </div>
                             <!-- END Sidebar Notifications -->
@@ -365,9 +361,9 @@
         <script src="/media/js/vendor/jquery-1.11.2.min.js"></script>
 
         <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
-        <script src="/media/js/vendor/bootstrap.min.js"></script>
-        <script src="/media/js/plugins.js"></script>
-        <script src="/media/js/app.js"></script>
+        <script src="/media/js/vendor/bootstrap.min.js?{% display_version slugify='1' %}"></script>
+        <script src="/media/js/plugins.js?{% display_version slugify='1' %}"></script>
+        <script src="/media/js/app.js?{% display_version slugify='1' %}"></script>
         <script src="/media/js/box.js?{% display_version slugify='1' %}"></script>
     </body>
 </html>
