@@ -266,74 +266,53 @@
         <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
         <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
 
-        <!-- User Settings, modal which opens from Settings link (found in top right user menu) and the Cog link (found in sidebar user info) -->
-        <div id="modal-user-settings" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header text-center">
-                        <h2 class="modal-title"><i class="fa fa-pencil"></i> Settings</h2>
-                    </div>
-                    <!-- END Modal Header -->
 
-                    <!-- Modal Body -->
-                    <div class="modal-body">
-                        <form action="index.html" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
-                            <fieldset>
-                                <legend>Vital Info</legend>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Username</label>
-                                    <div class="col-md-8">
-                                        <p class="form-control-static">Admin</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-email">Email</label>
-                                    <div class="col-md-8">
-                                        <input type="email" id="user-settings-email" name="user-settings-email" class="form-control" value="admin@example.com">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-notifications">Email Notifications</label>
-                                    <div class="col-md-8">
-                                        <label class="switch switch-primary">
-                                            <input type="checkbox" id="user-settings-notifications" name="user-settings-notifications" value="1" checked>
-                                            <span></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <legend>Password Update</legend>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-password">New Password</label>
-                                    <div class="col-md-8">
-                                        <input type="password" id="user-settings-password" name="user-settings-password" class="form-control" placeholder="Please choose a complex one..">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-repassword">Confirm New Password</label>
-                                    <div class="col-md-8">
-                                        <input type="password" id="user-settings-repassword" name="user-settings-repassword" class="form-control" placeholder="..and confirm it!">
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <div class="form-group form-actions">
-                                <div class="col-xs-12 text-right">
-                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                                </div>
-                            </div>
-                        </form>
+
+
+
+
+
+
+
+<div id="apply-now" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">{% trans "Apply changes" %}</h3>
+            </div>
+            <div class="modal-body">
+                <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output hide" data-static_height="300"></pre>
+                <p class="apply-changes-ask">{% trans "Apply changes?" %}</p>
+                <p class="apply-changes-success hide">{% trans "Changes successfully applied." %}</p>
+            </div>
+            <div class="modal-footer">
+                <span class="apply-buttonbar">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
+                    <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
+                </span>
+                <span class="apply-progressbar hide">
+                    <div class="progress progress-striped active">
+                        <div class="bar" style="width: 100%"></div>
                     </div>
-                    <!-- END Modal Body -->
-                </div>
+                </span>
+                <span class="apply-donebar hide">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Done" %}</button>
+                </span>
             </div>
         </div>
-        <!-- END User Settings -->
+    </div>
+</div>
+
+
+
+
+
+
+
+
 
         <!-- Modal -->
-        <div id="apply-now" class="modal hide" tabindex="-1" role="dialog">
+        <div id="apply-naow" class="modal hide" tabindex="-1" role="dialog">
           <div class="modal-header">
             <h3>{% trans "Apply changes" %}</h3>
           </div>
