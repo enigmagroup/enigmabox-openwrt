@@ -116,12 +116,6 @@ $(function() {
         }, 10);
 
         $('#fw-verify-progress').show();
-
-        var w = 0;
-        setInterval(function() {
-            w += 2;
-            $('#fw-verify-bar').css('width', w + '%');
-        }, 300);
     });
 
     $('#fw-write').on('click', function() {
