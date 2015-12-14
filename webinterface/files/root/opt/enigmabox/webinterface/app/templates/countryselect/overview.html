@@ -38,11 +38,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-4 column">
-                                    <p><label class="switch switch-success"><input type="checkbox" {% if c.active %}checked="checked"{% endif %}><span></span></label></p>
+                                    <p><label class="switch switch-info"><input type="checkbox" {% if c.active %}checked="checked"{% endif %}><span></span></label></p>
                                 </div>
                                 <div class="col-sm-8 column">
                                     {% if c.countrycode != selected_country %}
-                                        <p><button type="submit" name="country" value="{{ c.countrycode }}" class="btn btn-alt btn-success confirmation">Switch to this country</button></p>
+                                        <p><button type="submit" name="country" value="{{ c.countrycode }}" class="btn btn-alt btn-info confirmation">Switch to this country</button></p>
                                     {% endif %}
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                   <option {% if c.countrycode == default_country %}selected="selected"{% endif %} value="{{ c.countrycode }}">{{ c.countryname }}</option>
                                 {% endfor %}
                             </select>
-                            <button id="submit" name="submit" class="btn btn-primary">Set default country</button>
+                            <button id="submit" name="submit" class="btn btn-info btn-alt">Set default country</button>
                           </div>
                         </div>
 

@@ -32,8 +32,10 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="button1id">{% trans "Mode of operation" %}</label>
                       <div class="col-md-8">
-                        <a href="/wlan_settings/set_opmode/mesh/" class="btn btn-{% btn_state wlan_opmode 'mesh' 'warning' 'default' %}">Mesh</a>
-                        <a href="/wlan_settings/set_opmode/client/" class="btn btn-{% btn_state wlan_opmode 'client' 'warning' 'default' %}">Client</a>
+                        <div class="btn-group">
+                            <a href="/wlan_settings/set_opmode/mesh/" class="btn btn-{% btn_state wlan_opmode 'mesh' 'info' 'default' %}">Mesh</a>
+                            <a href="/wlan_settings/set_opmode/client/" class="btn btn-{% btn_state wlan_opmode 'client' 'info' 'default' %}">Client</a>
+                        </div>
                       </div>
                     </div>
 
@@ -49,7 +51,7 @@
                         <div class="input-group">
                           <input id="ssid" name="ssid" class="form-control" placeholder="{% trans "SSID" %}" type="text" value="{{ wlan_ssid }}">
                           <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <button type="button" class="btn btn-default btn-alt dropdown-toggle" data-toggle="dropdown">
                               {% trans "Action" %}
                               <span class="caret"></span>
                             </button>
@@ -94,7 +96,7 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="connect"></label>
                       <div class="col-md-4">
-                        <button id="connect" name="connect" class="btn btn-primary">{% trans "Connect" %}</button>
+                        <button id="connect" name="connect" class="btn btn-info btn-alt">{% trans "Connect" %}</button>
                       </div>
                     </div>
 

@@ -19,7 +19,7 @@
         <!-- END Title -->
 
           <p>{% trans 'Configure external storage devices.' %}</p>
-          <p><a href="/storage/" class="btn btn-primary">{% trans "Refresh" %}</a></p>
+          <p><a href="/storage/" class="btn btn-info btn-alt">{% trans "Refresh" %}</a></p>
       <br />
 
 {% if form.errors %}
@@ -65,7 +65,7 @@
                                 </div>
                               </div>
                               <div class="col-md-6">
-                                <button type="submit" class="btn btn-default" name="set_name" value="1">OK</button>
+                                <button type="submit" class="btn btn-info btn-alt" name="set_name" value="1">OK</button>
                               </div>
                             </div>
                         </div>
@@ -73,15 +73,15 @@
                         <td>{{ volume.identifier }}<input type="hidden" name="identifier" value="{{ volume.identifier }}" /></td>
                         <td>
                 {% if volume.use %}
-                            <button type="submit" class="btn btn-success" name="nouse" value="1">{% trans "Use" %}</button>
+                            <button type="submit" class="btn btn-success btn-alt" name="nouse" value="1">{% trans "Use" %}</button>
                 {% else %}
                     {% if volume.name %}
-                            <button type="submit" class="btn btn-default" name="use" value="1">{% trans "Use" %}</button>
+                            <button type="submit" class="btn btn-default btn-alt" name="use" value="1">{% trans "Use" %}</button>
                     {% else %}
-                            <button disabled="disabled" type="submit" class="btn btn-default" name="use" value="1">{% trans "Use" %}</button>
+                            <button disabled="disabled" type="submit" class="btn btn-default btn-alt" name="use" value="1">{% trans "Use" %}</button>
                     {% endif %}
                 {% endif %}
-                            <button type="submit" class="btn btn-default" name="remove" value="1">{% trans "Remove" %}</button>
+                            <button type="submit" class="btn btn-default btn-alt" name="remove" value="1">{% trans "Remove" %}</button>
                         </td>
                     </form>
                     </tr>
@@ -108,8 +108,8 @@
   </div>
   <div class="modal-footer">
     <span class="format-buttonbar">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
-        <button id="confirm-format" class="btn btn-danger" data-identifier="{{ failed_mount_device.identifier }}">{% trans "Format and destroy all data" %}</button>
+        <button class="btn btn-default btn-alt" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
+        <button id="confirm-format" class="btn btn-danger btn-alt" data-identifier="{{ failed_mount_device.identifier }}">{% trans "Format and destroy all data" %}</button>
     </span>
     <span class="format-progressbar hide">
         <div class="progress progress-striped active">
@@ -117,7 +117,7 @@
         </div>
     </span>
     <span class="format-donebar hide">
-        <a class="btn" href="/storage/">{% trans "Done" %}</a>
+        <a class="btn btn-info btn-alt" href="/storage/">{% trans "Done" %}</a>
     </span>
   </div>
 </div>

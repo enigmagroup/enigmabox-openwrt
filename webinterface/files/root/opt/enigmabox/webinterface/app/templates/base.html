@@ -172,70 +172,7 @@
                         </ul>
 
 {% block main %}
-                        <!-- Buttons - Dropdowns Header -->
-                        <ul class="breadcrumb breadcrumb-top">
-                            <li>Overview</li>
-                        </ul>
-                        <!-- END Buttons - Dropdowns Header -->
 
-                        <!-- Buttons Alternative Style Block -->
-                        <div class="block">
-                            <!-- Buttons Alternative Style Title -->
-                            <div class="block-title">
-                                <h2><strong>Addressbuch</strong></h2>
-                            </div>
-                            <!-- END Buttons Alternative Style Title -->
-
-                            <!-- Buttons Alternative Style Content -->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="block-section">
-                                        <h4 class="sub-header">Extra Small</h4>
-                                        <button type="button" class="btn btn-alt btn-xs btn-default">Default</button>
-                                        <button type="button" class="btn btn-alt btn-xs btn-primary">Primary</button>
-                                        <button type="button" class="btn btn-alt btn-xs btn-info">Info</button>
-                                        <button type="button" class="btn btn-alt btn-xs btn-success">Success</button>
-                                        <button type="button" class="btn btn-alt btn-xs btn-warning">Warning</button>
-                                        <button type="button" class="btn btn-alt btn-xs btn-danger">Danger</button>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="block-section">
-                                        <h4 class="sub-header">Small</h4>
-                                        <button type="button" class="btn btn-alt btn-sm btn-default">Default</button>
-                                        <button type="button" class="btn btn-alt btn-sm btn-primary">Primary</button>
-                                        <button type="button" class="btn btn-alt btn-sm btn-info">Info</button>
-                                        <button type="button" class="btn btn-alt btn-sm btn-success">Success</button>
-                                        <button type="button" class="btn btn-alt btn-sm btn-warning">Warning</button>
-                                        <button type="button" class="btn btn-alt btn-sm btn-danger">Danger</button>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="block-section">
-                                        <h4 class="sub-header">Normal</h4>
-                                        <button type="button" class="btn btn-alt btn-default">Default</button>
-                                        <button type="button" class="btn btn-alt btn-primary">Primary</button>
-                                        <button type="button" class="btn btn-alt btn-info">Info</button>
-                                        <button type="button" class="btn btn-alt btn-success">Success</button>
-                                        <button type="button" class="btn btn-alt btn-warning">Warning</button>
-                                        <button type="button" class="btn btn-alt btn-danger">Danger</button>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="block-section">
-                                        <h4 class="sub-header">Large</h4>
-                                        <button type="button" class="btn btn-alt btn-lg btn-default">Default</button>
-                                        <button type="button" class="btn btn-alt btn-lg btn-primary">Primary</button>
-                                        <button type="button" class="btn btn-alt btn-lg btn-info">Info</button>
-                                        <button type="button" class="btn btn-alt btn-lg btn-success">Success</button>
-                                        <button type="button" class="btn btn-alt btn-lg btn-warning">Warning</button>
-                                        <button type="button" class="btn btn-alt btn-lg btn-danger">Danger</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END Buttons Alternative Style Content -->
-                        </div>
-                        <!-- END Buttons Alternative Style Block -->
 {% endblock %}
                     </div>
                     <!-- END Page Content -->
@@ -271,14 +208,14 @@
                     </div>
                     <div class="modal-footer">
                         <span class="apply-buttonbar">
-                            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
-                            <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
+                            <button class="btn btn-default btn-alt" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
+                            <button id="confirm-apply" class="btn btn-info btn-alt">{% trans "Apply changes" %}</button>
                         </span>
                         <div style="display: none;" class="apply-progressbar progress progress-striped active">
                             <div class="progress-bar progress-bar-info" role="progressbar" style="width: 100%"></div>
                         </div>
                         <span style="display: none;" class="apply-donebar">
-                            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">{% trans "Done" %}</button>
+                            <button class="btn btn-info btn-alt" data-dismiss="modal" aria-hidden="true">{% trans "Done" %}</button>
                         </span>
                     </div>
                 </div>

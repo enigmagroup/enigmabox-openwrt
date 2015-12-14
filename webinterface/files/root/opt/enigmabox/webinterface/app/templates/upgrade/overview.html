@@ -41,7 +41,7 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="fw-download">{% trans "Step one" %}</label>
                       <div class="col-md-8">
-                        <button id="fw-download" name="download" value="1" class="btn btn-success">{% trans "Download image" %}</button> {% if download_ok %}{% trans "Download successful" %} <i class="hi hi-ok"></i>{% endif %}
+                        <button id="fw-download" name="download" value="1" class="btn btn-success btn-alt">{% trans "Download image" %}</button> {% if download_ok %}{% trans "Download successful" %} <i class="hi hi-ok"></i>{% endif %}
                         <i id="fw-download-progress" class="fa fa-sun-o fa-spin"></i>
                       </div>
                     </div>
@@ -50,7 +50,7 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="fw-verify">{% trans "Step two" %}</label>
                       <div class="col-md-8">
-                        <button id="fw-verify" name="verify" value="1" class="btn btn-warning" {% if not download_ok %}disabled="disabled"{% endif %}>{% trans "Verify image" %}</button> {% if verify_ok %}{% trans "Image ok" %} <i class="hi hi-ok"></i>{% endif %}
+                        <button id="fw-verify" name="verify" value="1" class="btn btn-warning btn-alt" {% if not download_ok %}disabled="disabled"{% endif %}>{% trans "Verify image" %}</button> {% if verify_ok %}{% trans "Image ok" %} <i class="hi hi-ok"></i>{% endif %}
                         <i id="fw-verify-progress" class="fa fa-sun-o fa-spin"></i>
                       </div>
                     </div>
@@ -59,7 +59,7 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="fw-write">{% trans "Step three" %}</label>
                       <div class="col-md-8">
-                        <button id="fw-write" name="write" value="1" class="btn btn-danger" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
+                        <button id="fw-write" name="write" value="1" class="btn btn-danger btn-alt" {% if not verify_ok %}disabled="disabled"{% endif %}>{% trans "Write image" %}</button>
                       </div>
                     </div>
 
