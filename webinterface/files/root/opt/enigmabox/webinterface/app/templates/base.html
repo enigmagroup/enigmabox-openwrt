@@ -266,75 +266,34 @@
         <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
         <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
 
-
-
-
-
-
-
-
-
-<div id="apply-now" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">{% trans "Apply changes" %}</h3>
-            </div>
-            <div class="modal-body">
-                <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output hide" data-static_height="300"></pre>
-                <p class="apply-changes-ask">{% trans "Apply changes?" %}</p>
-                <p class="apply-changes-success hide">{% trans "Changes successfully applied." %}</p>
-            </div>
-            <div class="modal-footer">
-                <span class="apply-buttonbar">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
-                    <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
-                </span>
-                <span class="apply-progressbar hide">
-                    <div class="progress progress-striped active">
-                        <div class="bar" style="width: 100%"></div>
+        <!-- Apply now modal -->
+        <div id="apply-now" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">{% trans "Apply changes" %}</h3>
                     </div>
-                </span>
-                <span class="apply-donebar hide">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Done" %}</button>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-        <!-- Modal -->
-        <div id="apply-naow" class="modal hide" tabindex="-1" role="dialog">
-          <div class="modal-header">
-            <h3>{% trans "Apply changes" %}</h3>
-          </div>
-          <div class="modal-body">
-            <pre style="overflow-y: scroll; overflow-x: hidden;" class="dynamic-output hide" data-static_height="300"></pre>
-            <p class="apply-changes-ask">{% trans "Apply changes?" %}</p>
-            <p class="apply-changes-success hide">{% trans "Changes successfully applied." %}</p>
-          </div>
-          <div class="modal-footer">
-            <span class="apply-buttonbar">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
-                <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
-            </span>
-            <span class="apply-progressbar hide">
-                <div class="progress progress-striped active">
-                    <div class="bar" style="width: 100%"></div>
+                    <div class="modal-body">
+                        <pre style="overflow-y: scroll; overflow-x: hidden; display: none;" class="dynamic-output" data-static_height="300"></pre>
+                        <p class="apply-changes-ask">{% trans "Apply changes?" %}</p>
+                        <p style="display: none;" class="apply-changes-success">{% trans "Changes successfully applied." %}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <span class="apply-buttonbar">
+                            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
+                            <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
+                        </span>
+                        <span style="display: none;" class="apply-progressbar">
+                            <div class="progress progress-striped active">
+                                <div class="bar" style="width: 100%"></div>
+                            </div>
+                        </span>
+                        <span style="display: none;" class="apply-donebar">
+                            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">{% trans "Done" %}</button>
+                        </span>
+                    </div>
                 </div>
-            </span>
-            <span class="apply-donebar hide">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Done" %}</button>
-            </span>
-          </div>
+            </div>
         </div>
 
         <script src="/media/js/vendor/jquery-1.11.2.min.js"></script>
