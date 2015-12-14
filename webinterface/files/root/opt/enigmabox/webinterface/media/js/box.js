@@ -1,27 +1,38 @@
 $(function() {
 
     var trans = window.translation;
+    window.ajaxval = '';
 
     $('.confirmation').click(function(){
         return confirm(trans['are_you_sure']);
     });
 
-    var $unveil = $('.unveil');
-    var unveil_text = $unveil.data('text');
-    $unveil.html('<a href="#">' + trans['show'] + '</a>');
-    $unveil.on('click', function(){
-        $unveil.html(unveil_text);
-        return false;
-    });
+    var init_unveil = function(){
+        var $unveil = $('.unveil');
+        var unveil_text = $unveil.data('text');
+        $unveil.html('<a href="#">' + trans['show'] + '</a>');
+        $unveil.on('click', function(){
+            $unveil.html(unveil_text);
+            try {
+                clearInterval(window.ajaxval);
+            } catch (e) {}
+            return false;
+        });
+    }
+    init_unveil();
 
     var $ajax_refresh = $('.ajax_refresh');
     if ($ajax_refresh.length){
         var request_url = $ajax_refresh.data('request_url');
-        var ajaxval = setInterval(function() {
-            $ajax_refresh.load(request_url);
+        window.ajaxval = setInterval(function() {
+            $ajax_refresh.load(request_url, function(){
+                init_unveil();
+            });
         }, 2000);
         $ajax_refresh.on('click', function() {
-            clearInterval(ajaxval);
+            try {
+                clearInterval(window.ajaxval);
+            } catch (e) {}
         });
     }
 

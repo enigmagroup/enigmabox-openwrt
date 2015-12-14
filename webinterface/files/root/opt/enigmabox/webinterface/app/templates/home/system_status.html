@@ -80,8 +80,29 @@
     </div>
     <div class="col-md-4 text-center">
         <h4>Applications</h4>
+        <a href="/addressbook/" class="btn btn-lg btn-alt btn-default"><i class="fa fa-user"></i> Adressbuch</a>
+        <a href="http://mail.box/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-envelope"></i> Webmail</a>
+        <a href="/hypesites/configure/" class="btn btn-lg btn-alt btn-default"><i class="fa fa-wrench"></i> Configure Hypesites service...</a>
+    {% if personal_website == '1' %}
+        <a href="http://[{{ ipv6 }}]/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-home"></i> Eigene Website</a>
+    {% endif %}
+    {% if wiki == '1' %}
+        <a href="http://[{{ ipv6 }}]/wiki/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-book"></i> Wiki</a>
+    {% endif %}
+    {% if owncloud == '1' %}
+        <a href="http://[{{ ipv6 }}]/owncloud/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-cloud"></i> OwnCloud</a>
+    {% endif %}
+    {% if pastebin == '1' %}
+        <a href="http://[{{ ipv6 }}]/pastebin/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-calendar-o"></i> Pastebin</a>
+    {% endif %}
     </div>
     <div class="col-md-4 text-center">
+        <h4>SSH access</h4>
+        <p>
+        <strong>{% trans "Server" %}:</strong> box<br />
+        <strong>{% trans "Username" %}:</strong> root<br />
+        <strong>{% trans "Password" %}:</strong> <span class="unveil" data-text="{{ root_password }}"></span>
+        </p>
     </div>
 </div>
 
