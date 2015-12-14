@@ -96,6 +96,7 @@ $(function() {
         });
     });
 
+    $('#fw-download-progress').hide();
     $('#fw-download').on('click', function() {
         var self = this;
 
@@ -104,14 +105,9 @@ $(function() {
         }, 10);
 
         $('#fw-download-progress').show();
-
-        var w = 0;
-        setInterval(function() {
-            w += 1;
-            $('#fw-download-bar').css('width', w + '%');
-        }, 300);
     });
 
+    $('#fw-verify-progress').hide();
     $('#fw-verify').on('click', function() {
         var self = this;
 
