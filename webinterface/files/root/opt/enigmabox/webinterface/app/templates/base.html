@@ -283,11 +283,9 @@
                             <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans "Cancel" %}</button>
                             <button id="confirm-apply" class="btn btn-primary">{% trans "Apply changes" %}</button>
                         </span>
-                        <span style="display: none;" class="apply-progressbar">
-                            <div class="progress progress-striped active">
-                                <div class="bar" style="width: 100%"></div>
-                            </div>
-                        </span>
+                        <div style="display: none;" class="apply-progressbar progress progress-striped active">
+                            <div class="progress-bar progress-bar-info" role="progressbar" style="width: 100%"></div>
+                        </div>
                         <span style="display: none;" class="apply-donebar">
                             <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">{% trans "Done" %}</button>
                         </span>

@@ -48,6 +48,10 @@
     margin-bottom: 0;
 }
 
+.apply-progressbar {
+    margin-bottom: 0;
+}
+
 .table thead > tr > th {
     font-size: 13px;
     font-weight: 600;
