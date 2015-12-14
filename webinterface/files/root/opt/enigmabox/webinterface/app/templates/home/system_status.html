@@ -48,8 +48,9 @@
             <strong>{% trans "Hostname" %}:</strong>
             <span>{{ global_hostname }}.eb</span><br />
             <strong>{% trans "phone" %}:</strong>
-            <span>01{{ global_phone }}</span>
+            <span>01{{ global_phone }}</span><br />
         {% endif %}
+        <a href="/addressbook-global/">Configure...</a>
     </div>
     <div class="col-md-3 col-md-offset-6 text-center">
         <h1><span class="flag-icon flag-icon-{{ selected_country }}"></span></h1>
@@ -86,7 +87,7 @@
     {% if personal_website == '1' %}
         <a href="http://[{{ ipv6 }}]/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-home"></i> Eigene Website</a>
     {% endif %}
-    {% if wiki == '1' %}
+    {% if dokuwiki == '1' %}
         <a href="http://[{{ ipv6 }}]/wiki/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-book"></i> Wiki</a>
     {% endif %}
     {% if owncloud == '1' %}
