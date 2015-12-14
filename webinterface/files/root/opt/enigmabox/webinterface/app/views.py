@@ -579,9 +579,9 @@ def subscription(request):
         'lt': 1000,
     }
     amount_table['USD'] = {
-        '1': 130,
-        '5': 550,
-        'lt': 1100,
+        '1': 120,
+        '5': 500,
+        'lt': 1000,
     }
 
     amount = amount_table[currency][subscription]
