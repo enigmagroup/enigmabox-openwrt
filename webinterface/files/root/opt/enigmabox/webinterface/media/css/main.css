@@ -24,7 +24,7 @@
 */
 
 /* Include Open Sans font from Google Web Fonts */
-@import url('google-fonts.css');
+@import url('/media/css/google-fonts.css');
 
 /* Preloader */
 #page-wrapper.page-loading {
