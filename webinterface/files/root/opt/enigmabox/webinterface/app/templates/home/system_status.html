@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-3 text-center">
         <h1><i class="fa fa-wifi"></i></h1>
-        <h4>WLAN</h4>
+        <h4>{% trans "WLAN" %}</h4>
     </div>
 </div>
 
@@ -18,39 +18,39 @@
               <strong>Hostid:</strong> {{ hostid }}<br />
               <strong>{% trans "Network access:" %}</strong> {{ internet_access_formatted }}
         {% else %}
-              <p>No subscription.
+              <p>{% trans "No subscription." %}</p>
               <p>{% trans "Continue installation:" %}<br />
-              <a href="/" class="btn btn-primary">{% trans "Restore from USB stick" %}</a>
-              <a href="/" class="btn btn-warning">{% trans "Import SSL certificates" %}</a></p>
+              <a href="/backup/system/restorewizard/" class="btn btn-primary">{% trans "Restore from USB stick" %}</a>
+              <a href="/backup/sslcerts/" class="btn btn-warning">{% trans "Import SSL certificates" %}</a></p>
         {% endif %}
         </p>
     </div>
     <div class="col-md-3 text-center">
         <h1><i class="fa fa-hdd-o text-{% btn_state netstat.dhcp '1' 'success' 'default' %}"></i></h1>
-        <h4>Router</h4>
+        <h4>{% trans "Router" %}</h4>
         {{ gateway_ip }}
     </div>
     <div class="col-md-3 text-center">
         <h1><i class="fa fa-globe text-{% btn_state netstat.internet '1' 'success' 'default' %}"></i></h1>
-        <h4>Internet</h4>
+        <h4>{% trans "Internet" %}</h4>
     </div>
     <div class="col-md-3 text-center">
         <h1><span class="fa fa-lock text-{% btn_state netstat.cjdns_internet '1' 'success' 'default' %}"></span></h1>
-        <h4>Encrypted Internet</h4>
+        <h4>{% trans "Encrypted Internet" %}</h4>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-3 text-center">
         <h1><i class="fa fa-phone text-{% btn_state global_availability '1' 'success' 'default' %}"></i></h1>
-        <h4>Global availability</h4>
+        <h4>{% trans "Global availability" %}</h4>
         {% if global_hostname %}
             <strong>{% trans "Hostname" %}:</strong>
             <span>{{ global_hostname }}.eb</span><br />
             <strong>{% trans "phone" %}:</strong>
             <span>01{{ global_phone }}</span><br />
         {% endif %}
-        <a href="/addressbook-global/">Configure...</a>
+        <a href="/addressbook-global/">{% trans "Configure..." %}</a>
     </div>
     <div class="col-md-3 col-md-offset-6 text-center">
         <h1><span class="flag-icon flag-icon-{{ selected_country }}"></span></h1>
@@ -63,7 +63,7 @@
 
 <div class="row">
     <div class="col-md-4 text-center">
-        <h4>Network devices</h4>
+        <h4>{% trans "Network devices" %}</h4>
         <table class="table table-striped text-left">
             <tr>
                 <th>MAC<th>
@@ -80,25 +80,25 @@
         </table>
     </div>
     <div class="col-md-4 text-center">
-        <h4>Applications</h4>
-        <a href="/addressbook/" class="btn btn-lg btn-alt btn-default"><i class="fa fa-user"></i> Adressbuch</a>
-        <a href="http://mail.box/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-envelope"></i> Webmail</a>
-        <a href="/hypesites/configure/" class="btn btn-lg btn-alt btn-default"><i class="fa fa-wrench"></i> Configure Hypesites service...</a>
+        <h4>{% trans "Applications" %}</h4>
+        <a href="/addressbook/" class="btn btn-alt btn-default"><i class="fa fa-user"></i> {% trans "Address book" %}</a>
+        <a href="http://mail.box/" target="_blank" class="btn btn-alt btn-default"><i class="fa fa-envelope"></i> Web mail</a>
+        <a href="/hypesites/configure/" class="btn btn-alt btn-default"><i class="fa fa-wrench"></i> {% trans "Configure Hypesite services..." %}</a>
     {% if personal_website == '1' %}
-        <a href="http://[{{ ipv6 }}]/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-home"></i> Eigene Website</a>
+        <a href="http://[{{ ipv6 }}]/" target="_blank" class="btn btn-alt btn-default"><i class="fa fa-home"></i> {% trans "Personal website" %}</a>
     {% endif %}
     {% if dokuwiki == '1' %}
-        <a href="http://[{{ ipv6 }}]/wiki/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-book"></i> Wiki</a>
+        <a href="http://[{{ ipv6 }}]/wiki/" target="_blank" class="btn btn-alt btn-default"><i class="fa fa-book"></i> {% trans "Wiki" %}</a>
     {% endif %}
     {% if owncloud == '1' %}
-        <a href="http://[{{ ipv6 }}]/owncloud/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-cloud"></i> OwnCloud</a>
+        <a href="http://[{{ ipv6 }}]/owncloud/" target="_blank" class="btn btn-alt btn-default"><i class="fa fa-cloud"></i> {% trans "OwnCloud" %}</a>
     {% endif %}
     {% if pastebin == '1' %}
-        <a href="http://[{{ ipv6 }}]/pastebin/" target="_blank" class="btn btn-lg btn-alt btn-default"><i class="fa fa-calendar-o"></i> Pastebin</a>
+        <a href="http://[{{ ipv6 }}]/pastebin/" target="_blank" class="btn btn-alt btn-default"><i class="fa fa-calendar-o"></i> {% trans "Pastebin" %}</a>
     {% endif %}
     </div>
     <div class="col-md-4 text-center">
-        <h4>SSH access</h4>
+        <h4>{% trans "SSH access" %}</h4>
         <p>
         <strong>{% trans "Server" %}:</strong> box<br />
         <strong>{% trans "Username" %}:</strong> root<br />

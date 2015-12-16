@@ -67,3 +67,7 @@
 #countrysort .block-title {
     cursor: move;
 }
+
+pre {
+    background: #fff;
+}

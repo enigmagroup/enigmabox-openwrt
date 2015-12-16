@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="col-sm-8 column">
                                     {% if c.countrycode != selected_country %}
-                                        <p><button type="submit" name="country" value="{{ c.countrycode }}" class="btn btn-alt btn-info confirmation">Switch to this country</button></p>
+                                        <p><button type="submit" name="country" value="{{ c.countrycode }}" class="btn btn-alt btn-info confirmation">{% trans "Switch to this country" %}</button></p>
                                     {% endif %}
                                 </div>
                             </div>
@@ -59,18 +59,18 @@
                         <fieldset>
 
                         <!-- Form Name -->
-                        <legend>Default country</legend>
+                        <legend>{% trans "Default country" %}</legend>
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                          <label class="col-md-4 control-label" for="default_country">Default country</label>
+                          <label class="col-md-4 control-label" for="default_country">{% trans "Default country" %}</label>
                           <div class="col-md-4">
                             <select id="default_country" name="default_country" class="form-control">
                                 {% for c in countries %}
                                   <option {% if c.countrycode == default_country %}selected="selected"{% endif %} value="{{ c.countrycode }}">{{ c.countryname }}</option>
                                 {% endfor %}
                             </select>
-                            <button id="submit" name="submit" class="btn btn-info btn-alt">Set default country</button>
+                            <button id="submit" name="submit" class="btn btn-info btn-alt">{% trans "Set default country" %}</button>
                           </div>
                         </div>
 
