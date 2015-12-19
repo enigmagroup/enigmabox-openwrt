@@ -63,9 +63,12 @@ def home(request):
         gateway_ip = ''
 
     # expiration notice
-    dt = datetime.strptime(internet_access, '%Y-%m-%d')
-    now = datetime.utcnow()
-    internet_access_valid = '1' if now < dt else '0'
+    try:
+        dt = datetime.strptime(internet_access, '%Y-%m-%d')
+        now = datetime.utcnow()
+        internet_access_valid = '1' if now < dt else '0'
+    except Exception:
+        internet_access_valid = '0'
 
     global_availability = o.get_value('global_availability', '0')
     global_hostname = o.get_value('global_hostname', '')
