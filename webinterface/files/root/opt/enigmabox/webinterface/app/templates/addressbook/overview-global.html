@@ -46,7 +46,7 @@
                             <strong>{% trans "Hostname" %}:</strong>
                             <span>{{ global_hostname|default_if_none:'[unset]' }}</span><br />
                             <strong>{% trans "phone" %}:</strong>
-                            <span>{{ global_phone|default_if_none:'[unset]' }}</span><br />
+                            <span>01{{ global_phone|default_if_none:'[unset]' }}</span><br />
                             <span>{% trans "Status" %}:
                         {% if global_address_status == "unset" or global_address_status == None %}
                                 <span class="label label-default">{% trans "Unset" %}</span>
