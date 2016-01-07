@@ -224,7 +224,6 @@ original_gateway() {
 }
 
 defaultroute() {
-    original_gateway=$(get_original_gateway)
     vpn_gateway=$(get_vpn_gateway)
     if [[ "$(route -n | egrep "0.0.0.0.*?$vpn_gateway" | wc -l)" -eq 0 ]]; then
         e "setting defaultroute"
@@ -237,6 +236,12 @@ set_network_parameters() {
     mtu
     original_gateway
     defaultroute
+    (
+        for i in $(seq 1 60); do
+            sleep 1
+            defaultroute
+        done
+    ) &
 }
 
 check_for_internet() {
