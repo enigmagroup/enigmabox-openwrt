@@ -1450,7 +1450,25 @@ def cfengine_site(request):
             p.country = peering['country']
             p.save()
 
-        internet_gateway_db = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1][0]
+        try:
+            internet_gateway_db = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1][0]
+            internet_gateway_db.public_key
+
+        except Exception:
+            try:
+                one_active_country = Country.objects.filter(active=True).order_by('priority')[0]
+                internet_gateway_db = Peering.objects.filter(custom=False,country=one_active_country).order_by('id')[:1][0]
+                internet_gateway_db.public_key
+
+            except Exception:
+                try:
+                    any_country = Country.objects.all().order_by('priority')[0]
+                    internet_gateway_db = Peering.objects.filter(custom=False,country=any_country).order_by('id')[0]
+                    internet_gateway_db.public_key
+
+                except Exception:
+                    internet_gateway_db = { 'public_key': '' }
+
         internet_gateway = {
             'public_key': internet_gateway_db.public_key,
         }
