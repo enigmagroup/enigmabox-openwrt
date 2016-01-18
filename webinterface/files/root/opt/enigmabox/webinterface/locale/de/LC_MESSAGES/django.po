@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-16 15:20+0100\n"
-"PO-Revision-Date: 2015-12-16 15:22+0100\n"
+"POT-Creation-Date: 2016-01-18 21:50+0100\n"
+"PO-Revision-Date: 2016-01-18 21:50+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -30,27 +30,27 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:88 app/views.py:794
+#: app/views.py:91 app/views.py:797
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:89 app/views.py:795
+#: app/views.py:92 app/views.py:798
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:90 app/views.py:796
+#: app/views.py:93 app/views.py:799
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:91 app/views.py:797
+#: app/views.py:94 app/views.py:800
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:92 app/views.py:798
+#: app/views.py:95 app/views.py:801
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:93 app/views.py:799
+#: app/views.py:96 app/views.py:802
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
@@ -1061,8 +1061,8 @@ msgid ""
 "As soon as we've received the money, your subscription will be renewed. This "
 "can take up to two business days."
 msgstr ""
-"Sobald wir dein Geld haben, wird dein Abo erneuert. Das kann bis zu zwei "
-"Tagen dauern."
+"Sobald das Geld bei uns eingetroffen ist, wird dein Abo erneuert. Das kann "
+"bis zu zwei Tagen dauern."
 
 #: app/templates/teletext/overview.html:21
 msgid "Teletext is a distributed Twitter clone."

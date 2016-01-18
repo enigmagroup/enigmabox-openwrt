@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-16 15:20+0100\n"
+"POT-Creation-Date: 2016-01-18 21:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,28 +30,28 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:88 app/views.py:794
+#: app/views.py:91 app/views.py:797
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:89 app/views.py:795
+#: app/views.py:92 app/views.py:798
 msgid "Sweden"
 msgstr ""
 
-#: app/views.py:90 app/views.py:796
+#: app/views.py:93 app/views.py:799
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:91 app/views.py:797
+#: app/views.py:94 app/views.py:800
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:92 app/views.py:798
+#: app/views.py:95 app/views.py:801
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:93 app/views.py:799
+#: app/views.py:96 app/views.py:802
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
