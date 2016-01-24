@@ -77,16 +77,22 @@
 
                 <p>{% trans "Please send" %} <strong>{{ currency }} {{ amount }}.-</strong> {% trans "to the following account" %}:</p>
 
-                <p>PostFinance AG<br />
-                Mingerstrasse 20<br />
-                3030 Bern<br />
+                <p>Valiant Bank AG<br />
+                Gerliswilstrasse 43<br />
+                Postfach<br />
+                6021 Emmenbrücke<br />
                 Schweiz<br />
 <br />
-                {% trans "Account" %}: Enigmagroup<br />
+                {% trans "Account" %}: Verein Enigmabox, Emmenbrücke<br />
                 <strong>{% trans "Payment reference" %}: abo-{{ hostid }}</strong><br />
-                CHF-Konto: 61-908232-8<br />
-                IBAN: CH51 0900 0000 6190 8232 8<br />
-                SWIFT/BIC: POFICHBEXXX</p>
+                {% if currency == 'EUR' %}
+                EUR-Konto: 50.295.383.190.0<br />
+                IBAN: CH04 0630 0502 9538 3190 0<br />
+                {% else %}
+                CHF-Konto: 50.295.383.368.7<br />
+                IBAN: CH61 0630 0502 9538 3368 7<br />
+                {% endif %}
+                SWIFT/BIC: VABECH22XXX</p>
 
                 <p>{% trans "As soon as we've received the money, your subscription will be renewed. This can take up to two business days." %}</p>
 
