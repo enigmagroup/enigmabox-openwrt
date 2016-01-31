@@ -12,12 +12,18 @@ allow=alaw
 allow=h263
 allow=h264
 videosupport=yes
-;jbenable=yes
-;jbforce=yes
+
+
+
+{{^if_is_apu}}
+; enable jitter for non-apus
+
+jbenable=yes
+jbforce=yes
 
 ; this settings work well when the net is fucked up and laggy
-;jbmaxsize=100
-;jbresyncthreshold=500
+jbmaxsize=100
+jbresyncthreshold=500
 
 ; little less treshold
 ;jbmaxsize=50
@@ -26,6 +32,7 @@ videosupport=yes
 ; this settings work well when the net is ok
 ;jbmaxsize=25
 ;jbresyncthreshold=200
+{{/if_is_apu}}
 
 
 

@@ -1414,6 +1414,9 @@ def cfengine_site(request):
     internet_gateway = []
     peerings = []
     display_expiration_notice = '0'
+    is_alix = False
+    is_apu = False
+    is_raspi = False
 
     # get Enigmabox-specific server data, when available
     try:
@@ -1491,6 +1494,18 @@ def cfengine_site(request):
 
     except Exception:
         # no additional server data found, moving on...
+        pass
+
+    try:
+        with open('/etc/enigmabox/network-profile', 'r') as f:
+            network_profile = f.read().strip()
+            if network_profile == 'alix':
+                is_alix = True
+            if network_profile == 'apu':
+                is_apu = True
+            if network_profile == 'raspi':
+                is_raspi = True
+    except Exception:
         pass
 
     server_peerings = Peering.objects.filter(custom=False).order_by('id')
@@ -1677,6 +1692,9 @@ def cfengine_site(request):
         'wlan_ssid': o.get_value('wlan_ssid'),
         'wlan_opmode': wlan_opmode,
         'meshmode': meshmode,
+        'is_alix': is_alix,
+        'is_apu': is_apu,
+        'is_raspi': is_raspi,
         'wlan_pass': o.get_value('wlan_pass'),
         'wlan_security': o.get_value('wlan_security'),
         'wlan_group': o.get_value('wlan_group'),
