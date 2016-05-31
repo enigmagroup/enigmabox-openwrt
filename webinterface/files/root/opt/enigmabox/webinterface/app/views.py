@@ -1677,7 +1677,7 @@ def cfengine_site(request):
     hype_access_owncloud_all = (hype_access_owncloud == 'all')
 
     # Transform hostid
-    hostid_phonetic = hostid.replace('', ' ')
+    hostid_phonetic = hostid.replace('', ', ')
 
     response_data = {
         'hostid': hostid,
