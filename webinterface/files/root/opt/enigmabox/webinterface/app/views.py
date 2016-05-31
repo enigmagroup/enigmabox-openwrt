@@ -1676,8 +1676,12 @@ def cfengine_site(request):
         hype_owncloud_accesslist.append({'ipv6': address.ipv6})
     hype_access_owncloud_all = (hype_access_owncloud == 'all')
 
+    # Transform hostid
+    hostid_phonetic = hostid.replace('', ' ')
+
     response_data = {
         'hostid': hostid,
+        'hostid_phonetic': hostid_phonetic,
         'language': o.get_value('language', 'de'),
         'cjdns_ipv6': cjdns_ipv6,
         'cjdns_public_key': cjdns_public_key,

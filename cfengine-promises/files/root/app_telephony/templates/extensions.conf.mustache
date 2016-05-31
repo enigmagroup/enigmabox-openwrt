@@ -14,16 +14,16 @@ exten => _X.,n,Hangup()
 {{#if_display_expiration_notice}}
 ;expiration notice
 exten => _X.,1,Answer()
-exten => _X.,n,System(/usr/bin/tts-de 'Dein Abonnement ist abgelaufen oder läuft bald ab. Bitte verlängern.')
+exten => _X.,n,System(/usr/bin/tts-de 'Dein Abonnement ist abgelaufen oder läuft bald ab. Bitte verlängern. Deine Host-ei-di ist: {{hostid_phonetic}}.')
 exten => _X.,n,Playback(/tmp/tts)
-exten => _X.,n,System(/usr/bin/tts-en 'Your subscription has expired or is about to expire. Please renew.')
+exten => _X.,n,System(/usr/bin/tts-en 'Your subscription has expired or is about to expire. Please renew. Your Host i.d. is: {{hostid_phonetic}}.')
 exten => _X.,n,Playback(/tmp/tts)
 exten => _X.,n,Hangup()
 
 exten => 1,1,Answer()
-exten => 1,n,System(/usr/bin/tts-de 'Dein Abonnement ist abgelaufen oder läuft bald ab. Bitte verlängern.')
+exten => 1,n,System(/usr/bin/tts-de 'Dein Abonnement ist abgelaufen oder läuft bald ab. Bitte verlängern. Deine Host-ei-di ist: {{hostid_phonetic}}.')
 exten => 1,n,Playback(/tmp/tts)
-exten => 1,n,System(/usr/bin/tts-en 'Your subscription has expired or is about to expire. Please renew.')
+exten => 1,n,System(/usr/bin/tts-en 'Your subscription has expired or is about to expire. Please renew. Your Host i.d. is: {{hostid_phonetic}}.')
 exten => 1,n,Playback(/tmp/tts)
 exten => 1,n,Hangup()
 {{/if_display_expiration_notice}}
