@@ -55,6 +55,9 @@ Stick to uClibc manually:
     * C Library implementation
       * Use uClibc
 
+"Libraries":
+  * libffmpeg-audio-dec
+
 "Enigmabox":
 * cfengine-promises: yes
   * Network profile: Rasperry Pi
