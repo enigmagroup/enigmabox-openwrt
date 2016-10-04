@@ -1432,6 +1432,16 @@ def cfengine_site(request):
         except Exception:
             pass
 
+        if cjdns_version == 'v16':
+            try:
+                # check for AVX support
+                avxinfo = Popen(["grep", " avx ", "/proc/cpuinfo"], stdout=PIPE).communicate()[0]
+                if len(avxinfo) > 0:
+                    cjdns_version = 'v16_avx'
+            except Exception:
+                pass
+
+        # allow version to be overridden by webinterface
         cjdns_version = o.get_value('cjdns_version', cjdns_version)
 
         o.set_value('hostid', hostid)
