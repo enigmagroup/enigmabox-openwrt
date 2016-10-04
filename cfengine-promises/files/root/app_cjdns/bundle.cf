@@ -15,6 +15,9 @@ bundle agent app_cjdns
       "cjdns_v16"
       expression => regcmp("v16", "$(json[cjdns_version])");
 
+      "cjdns_v16_avx"
+      expression => regcmp("v16_avx", "$(json[cjdns_version])");
+
   files:
       "/box/cjdroute.conf"
       create => "true",
@@ -64,6 +67,11 @@ bundle agent app_cjdns
       copy_from => local_copy("/usr/sbin/cjdroute.v16"),
       classes => if_repaired("restart_cjdns");
 
+    cjdns_v16_avx::
+      "/usr/sbin/cjdroute"
+      copy_from => local_copy("/usr/sbin/cjdroute.v16-avx"),
+      classes => if_repaired("restart_cjdns");
+
   commands:
     restart_cjdns::
       "/etc/init.d/cjdns restart";
@@ -71,4 +79,3 @@ bundle agent app_cjdns
   reports:
       "checking cjdns: done";
 }
-
