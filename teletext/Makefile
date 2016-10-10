@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=teletext
 PKG_VERSION:=0.2.0
-PKG_RELEASE:=5
+PKG_RELEASE:=6
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -53,14 +53,8 @@ define Build/Compile
 endef
 
 define Package/teletext/install
+	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION) $(1)/usr/sbin/teletext
-#	cp -rv ./files/root/* $(1)
-#
-#	$(INSTALL_DIR) $(1)/etc/init.d
-#	$(INSTALL_BIN) ./files/teletext.init $(1)/etc/init.d/teletext
-#
-#	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
-#	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/teletext.conf
 endef
 
 $(eval $(call BuildPackage,teletext))
