@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=teletext
 PKG_VERSION:=0.2.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -49,7 +49,7 @@ ifeq ($(GNU_TARGET_NAME), arm-openwrt-linux)
 	GOARCH=arm
 endif
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && GOOS=$(GOOS) GOARCH=$(GOARCH) go build
+	cd $(PKG_BUILD_DIR) && GOPATH=$(PKG_BUILD_DIR) GOOS=$(GOOS) GOARCH=$(GOARCH) go build
 endef
 
 define Package/teletext/install
