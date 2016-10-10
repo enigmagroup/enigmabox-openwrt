@@ -53,7 +53,7 @@ define Build/Compile
 endef
 
 define Package/teletext/install
-	$(INSTALL_BIN) $(PKG_BUILD_DIR) $(1)/usr/sbin/teletext
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION) $(1)/usr/sbin/teletext
 #	cp -rv ./files/root/* $(1)
 #
 #	$(INSTALL_DIR) $(1)/etc/init.d
