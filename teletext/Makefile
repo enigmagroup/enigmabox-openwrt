@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=teletext
 PKG_VERSION:=0.2.3
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -10,6 +10,8 @@ PKG_SOURCE_URL:=https://github.com/enigmagroup/teletext.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=a8a46f52f41050037f6766eabd2c6e9e4c431121
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+
+CC="$(TARGET_CC)"
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -49,8 +51,7 @@ ifeq ($(GNU_TARGET_NAME), arm-openwrt-linux)
 	GOARCH=arm
 endif
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && GOPATH=$(PKG_BUILD_DIR) GOOS=$(GOOS) GOARCH=$(GOARCH) go get -d github.com/mattn/go-sqlite3
-	cd $(PKG_BUILD_DIR) && GOPATH=$(PKG_BUILD_DIR) GOOS=$(GOOS) GOARCH=$(GOARCH) go build
+	cd $(PKG_BUILD_DIR) && GOPATH=$(PKG_BUILD_DIR) GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=1 go build
 endef
 
 define Package/teletext/install
