@@ -8,7 +8,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/enigmagroup/teletext.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=a8a46f52f41050037f6766eabd2c6e9e4c431121
+PKG_SOURCE_VERSION:=73546f3cd52deccb5ac616c3ec744b4a895bfa24
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
@@ -42,7 +42,8 @@ define Build/Compile
 endef
 
 define Package/teletext/install
-	cp -rv ./files/root/* $(1)
+	$(INSTALL_DIR) $(1)/opt/enigmabox/teletext
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/teletext.py $(1)/opt/enigmabox/teletext/teletext.py
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/teletext.init $(1)/etc/init.d/teletext
