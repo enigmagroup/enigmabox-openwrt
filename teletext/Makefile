@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=teletext
 PKG_VERSION:=0.2.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -39,7 +39,11 @@ define Build/Configure
 endef
 
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && go build
+	GOOS=linux
+	ifeq ($(GNU_HOST_NAME),"x86_64-linux-gnu")
+		GOARCH=amd64
+	endif
+	cd $(PKG_BUILD_DIR) && go build GOOS=$(GOOS) GOARCH=$(GOARCH)
 endef
 
 define Package/teletext/install
