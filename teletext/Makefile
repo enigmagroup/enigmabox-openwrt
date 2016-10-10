@@ -49,7 +49,7 @@ ifeq ($(GNU_TARGET_NAME), arm-openwrt-linux)
 	GOARCH=arm
 endif
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && GOOS=$(GOOS) GOARCH=$(GOARCH) go build -ldflags '-linkmode external -extldflags -static -w'
+	cd $(PKG_BUILD_DIR) && GOOS=$(GOOS) GOARCH=$(GOARCH) go build
 endef
 
 define Package/teletext/install
