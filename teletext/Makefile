@@ -1,8 +1,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=teletext
-PKG_VERSION:=0.1.9
+PKG_VERSION:=0.2.0
 PKG_RELEASE:=1
+
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/enigmagroup/teletext.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=34015f2d6deb75da992a66719ea9f3cfeadfa81c
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -32,16 +39,17 @@ define Build/Configure
 endef
 
 define Build/Compile
+	cd $(PKG_BUILD_DIR) && go build
 endef
 
 define Package/teletext/install
-	cp -rv ./files/root/* $(1)
-
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/teletext.init $(1)/etc/init.d/teletext
-
-	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
-	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/teletext.conf
+#	cp -rv ./files/root/* $(1)
+#
+#	$(INSTALL_DIR) $(1)/etc/init.d
+#	$(INSTALL_BIN) ./files/teletext.init $(1)/etc/init.d/teletext
+#
+#	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
+#	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/teletext.conf
 endef
 
 $(eval $(call BuildPackage,teletext))
