@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=teletext
-PKG_VERSION:=0.2.3
-PKG_RELEASE:=5
+PKG_VERSION:=0.3.0
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -10,8 +10,6 @@ PKG_SOURCE_URL:=https://github.com/enigmagroup/teletext.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=a8a46f52f41050037f6766eabd2c6e9e4c431121
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-
-CC="$(TARGET_CC)"
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -40,23 +38,17 @@ endef
 define Build/Configure
 endef
 
-GOOS=linux
-ifeq ($(GNU_TARGET_NAME), x86_64-openwrt-linux)
-	GOARCH=amd64
-endif
-ifeq ($(GNU_TARGET_NAME), i486-openwrt-linux)
-	GOARCH=386
-endif
-ifeq ($(GNU_TARGET_NAME), arm-openwrt-linux)
-	GOARCH=arm
-endif
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && GOPATH=$(PKG_BUILD_DIR) GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=1 CC=$(TARGET_CC) go build -ldflags '-linkmode external -extldflags -static -w'
 endef
 
 define Package/teletext/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION) $(1)/usr/sbin/teletext
+	cp -rv ./files/root/* $(1)
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/teletext.init $(1)/etc/init.d/teletext
+
+	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
+	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/teletext.conf
 endef
 
 $(eval $(call BuildPackage,teletext))
