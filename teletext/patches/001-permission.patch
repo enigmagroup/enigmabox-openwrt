@@ -1,0 +1,13 @@
+diff --git a/utils.py b/utils.py
+index 135d648..4893f2e 100644
+--- a/utils.py
++++ b/utils.py
+@@ -25,7 +25,7 @@ def internal(fn):
+         if ':' in remote_ip:
+             pass
+             #log.debug("utils.py:26: re-enable permission check")
+-            #return '404'
++            return '404'
+         return fn(**kwargs)
+ 
+     return check_ip
