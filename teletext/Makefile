@@ -1,14 +1,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=teletext
-PKG_VERSION:=0.3.1
+PKG_VERSION:=0.3.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/enigmagroup/teletext.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=73546f3cd52deccb5ac616c3ec744b4a895bfa24
+PKG_SOURCE_VERSION:=ee275e93662db926e183eebcd320285add7f9c9d
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
@@ -43,7 +43,17 @@ endef
 
 define Package/teletext/install
 	$(INSTALL_DIR) $(1)/opt/enigmabox/teletext
-	cp -rv $(PKG_BUILD_DIR)/* $(1)/opt/enigmabox/teletext/
+	cp -rv $(PKG_BUILD_DIR)/public $(1)/opt/enigmabox/teletext/
+	cp -rv $(PKG_BUILD_DIR)/views $(1)/opt/enigmabox/teletext/
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/api.py $(1)/opt/enigmabox/teletext/api.py
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/beanstalkc.py $(1)/opt/enigmabox/teletext/beanstalkc.py
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/bottle.py $(1)/opt/enigmabox/teletext/bottle.py
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/data.py $(1)/opt/enigmabox/teletext/data.py
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/queue.py $(1)/opt/enigmabox/teletext/queue.py
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/routes.py $(1)/opt/enigmabox/teletext/routes.py
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/teletext.py $(1)/opt/enigmabox/teletext/teletext.py
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/utils.py $(1)/opt/enigmabox/teletext/utils.py
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/workers.py $(1)/opt/enigmabox/teletext/workers.py
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/teletext.init $(1)/etc/init.d/teletext
