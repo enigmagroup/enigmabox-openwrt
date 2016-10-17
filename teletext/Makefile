@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=teletext
 PKG_VERSION:=0.6.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -43,6 +43,7 @@ endef
 
 define Package/teletext/install
 	$(INSTALL_DIR) $(1)/opt/enigmabox/teletext
+	cp -rv $(PKG_BUILD_DIR)/arrow $(1)/opt/enigmabox/teletext/
 	cp -rv $(PKG_BUILD_DIR)/public $(1)/opt/enigmabox/teletext/
 	cp -rv $(PKG_BUILD_DIR)/views $(1)/opt/enigmabox/teletext/
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/api.py $(1)/opt/enigmabox/teletext/api.py
