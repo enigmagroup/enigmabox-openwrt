@@ -1,14 +1,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=teletext
-PKG_VERSION:=0.6.0
-PKG_RELEASE:=2
+PKG_VERSION:=0.6.1
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/enigmagroup/teletext.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=ff8b51dedd11f2a9411a4782bcc6171ee378e52b
+PKG_SOURCE_VERSION:=97134487935497333e523d0928cae3504960a0ba
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
@@ -44,6 +44,7 @@ endef
 define Package/teletext/install
 	$(INSTALL_DIR) $(1)/opt/enigmabox/teletext
 	cp -rv $(PKG_BUILD_DIR)/arrow $(1)/opt/enigmabox/teletext/
+	cp -rv $(PKG_BUILD_DIR)/dateutil $(1)/opt/enigmabox/teletext/
 	cp -rv $(PKG_BUILD_DIR)/public $(1)/opt/enigmabox/teletext/
 	cp -rv $(PKG_BUILD_DIR)/views $(1)/opt/enigmabox/teletext/
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/api.py $(1)/opt/enigmabox/teletext/api.py
