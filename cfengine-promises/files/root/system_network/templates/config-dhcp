@@ -1,6 +1,8 @@
 config dnsmasq
     option domainneeded '1'
     option boguspriv '1'
+    list bogusnxdomain '104.239.213.7'
+    list bogusnxdomain '198.105.254.11'
     option filterwin2k '1'
     option localise_queries '1'
     option rebind_protection '1'
@@ -13,4 +15,3 @@ config dnsmasq
     option readethers '1'
     option leasefile '/tmp/dhcp.leases'
     option resolvfile '/etc/resolv.conf.enigmabox'
-
