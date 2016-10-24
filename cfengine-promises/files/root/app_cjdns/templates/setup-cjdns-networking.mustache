@@ -79,7 +79,11 @@ startwifi() {
 dhcp() {
     ifconfig "$clearnet_interface" up
 
-    if [[ $( route -n | grep ^0.0.0.0 | wc -l ) -eq 0 ]]; then
+    if [[ $(ifconfig "$clearnet_interface" | grep 'inet addr' | wc -l) -eq 0 ]]; then
+        e "dhcp request $clearnet_interface"
+        udhcpc -i "$clearnet_interface" --now
+    fi
+    if [[ $(route -n | grep ^0.0.0.0 | wc -l) -eq 0 ]]; then
         e "dhcp request $clearnet_interface"
         udhcpc -i "$clearnet_interface" --now
     fi
