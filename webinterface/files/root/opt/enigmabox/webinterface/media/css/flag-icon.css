@@ -1522,6 +1522,10 @@
   background-image: url(../img/flags/hu.png);
 }
 
+.flag-icon-ru {
+  background-image: url(../img/flags/ru.png);
+}
+
 .flag-icon-se {
   background-image: url(../img/flags/se.png);
 }
