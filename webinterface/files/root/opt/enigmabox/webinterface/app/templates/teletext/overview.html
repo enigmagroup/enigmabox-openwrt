@@ -47,6 +47,9 @@
 
             </div>
         </div>
+{% if teletext_enabled == '1' %}
+      <p>{% trans '<a href="http://text.box/fc80:56b5:b0ac:0c35:8e73:c9d1:5029:a6f2" target="_blank">News Super Aktuell</a> (german) &mdash; read the latest underground news and connect with others.' %}</p>
+{% endif %}
     </div>
 
 {% endblock %}
