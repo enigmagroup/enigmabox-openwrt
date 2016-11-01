@@ -96,6 +96,9 @@
     {% if pastebin == '1' %}
         <a href="http://[{{ ipv6 }}]/pastebin/" target="_blank" class="btn btn-alt btn-default"><i class="fa fa-calendar-o"></i> {% trans "Pastebin" %}</a>
     {% endif %}
+    {% if teletext_enabled == '1' %}
+        <a href="http://text.box/" target="_blank" class="btn btn-alt btn-default"><i class="fa fa-list"></i> {% trans "Teletext" %}</a>
+    {% endif %}
     </div>
     <div class="col-md-4 text-center">
         <h4>{% trans "SSH access" %}</h4>

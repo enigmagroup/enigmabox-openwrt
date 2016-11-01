@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-25 14:22+0200\n"
-"PO-Revision-Date: 2016-10-25 14:22+0200\n"
+"POT-Creation-Date: 2016-11-01 21:56+0100\n"
+"PO-Revision-Date: 2016-11-01 21:58+0100\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -168,7 +168,8 @@ msgstr "Dienste"
 msgid "Hypesites"
 msgstr "Hypesites"
 
-#: app/templates/base.html:134 app/templates/teletext/overview.html:8
+#: app/templates/base.html:134 app/templates/home/system_status.html:100
+#: app/templates/teletext/overview.html:8
 #: app/templates/teletext/overview.html:17
 msgid "Teletext"
 msgstr "Teletext"
@@ -689,20 +690,20 @@ msgstr "OwnCloud"
 msgid "Pastebin"
 msgstr "Pastebin"
 
-#: app/templates/home/system_status.html:101
+#: app/templates/home/system_status.html:104
 msgid "SSH access"
 msgstr "SSH-Zugang"
 
-#: app/templates/home/system_status.html:103
+#: app/templates/home/system_status.html:106
 msgid "Server"
 msgstr "Server"
 
-#: app/templates/home/system_status.html:104
+#: app/templates/home/system_status.html:107
 #: app/templates/passwords/edit.html:48
 msgid "Username"
 msgstr "Benutzername"
 
-#: app/templates/home/system_status.html:105
+#: app/templates/home/system_status.html:108
 #: app/templates/passwords/edit.html:57 app/templates/passwords/edit.html:59
 #: app/templates/peerings/detail.html:58 app/templates/peerings/detail.html:60
 #: app/templates/peerings/overview.html:102
@@ -1082,6 +1083,16 @@ msgstr ""
 #: app/templates/teletext/overview.html:35
 msgid "Enable Teletext"
 msgstr "Teletext aktivieren"
+
+#: app/templates/teletext/overview.html:51
+msgid ""
+"<a href=\"http://text.box/fc80:56b5:b0ac:0c35:8e73:c9d1:5029:a6f2\" target="
+"\"_blank\">News Super Aktuell</a> (german) &mdash; read the latest "
+"underground news and connect with others."
+msgstr ""
+"<a href=\"http://text.box/fc80:56b5:b0ac:0c35:8e73:c9d1:5029:a6f2\" target="
+"\"_blank\">News Super Aktuell</a> &mdash; lies die neusten Nachrichten aus "
+"dem Untergrund und finde andere Teletext-Benutzer."
 
 #: app/templates/updates/overview.html:21
 msgid "Automatic and manual updates."
