@@ -325,6 +325,13 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
     fi
 fi
 
+# set MWI status for the phone
+if [[ $(/usr/bin/find /box/vmail/mail/Maildir/new/ -type f | wc -l) -gt 0 ]]; then
+    /usr/sbin/asterisk -rx 'sip notify set-mwi 100'
+else
+    /usr/sbin/asterisk -rx 'sip notify clear-mwi 100'
+fi
+
 if [[ "$(gateway_is_up)" == "true" ]]; then
     set_network_parameters
     e "checking internet connectivity over cjdns"

@@ -22,14 +22,14 @@
 
         <!-- Content -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-12">
 
                 <form method="post" class="form-horizontal">
                 {% csrf_token %}
 
                 <!-- Draggable Blocks Row -->
                 <div class="row">
-                    <div id="countrysort" class="col-sm-6 column">
+                    <div id="countrysort" class="col-xs-12 col-sm-8 col-lg-6 column">
                         {% for c in countries %}
                         <!-- Block -->
                         <div class="block {% if c.countrycode == selected_country %}selected-country{% endif %}" data-countrycode="{{ c.countrycode }}">
@@ -55,7 +55,7 @@
                 <form method="post" class="form-horizontal">
                 {% csrf_token %}
 
-                    <div class="col-sm-6 column">
+                    <div class="col-xs-12 col-sm-8 col-lg-6">
                         <fieldset>
 
                         <!-- Form Name -->
