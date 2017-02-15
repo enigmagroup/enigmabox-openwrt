@@ -1520,7 +1520,8 @@ def cfengine_site(request):
     except Exception:
         pass
 
-    server_peerings = Peering.objects.filter(custom=False).order_by('id')
+    #server_peerings = Peering.objects.filter(custom=False).order_by('id')
+    server_peerings = Peering.objects.filter(custom=False,country=selected_country).order_by('id')[:1]
     for p in server_peerings:
         peerings.append({
             'ip': p.address.split(':')[0],
