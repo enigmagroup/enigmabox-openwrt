@@ -198,6 +198,12 @@ www.example.com/nasty-ads/sponsor.gif
 {+block{Facebook "like" and similar tracking URLs.}}
 www.facebook.com/(extern|plugins)/(login_status|like(box)?|activity|fan)\.php
 
+# allow range header (for videostreaming)
+{+client-header-tagger{range-requests}}
+/
+{-filter -deanimate-gifs}
+TAG:^RANGE-REQUEST$
+
 {{#if_webfilter_block_google}}
 {+block{Block all google}}
 .*google.*
