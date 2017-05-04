@@ -234,6 +234,11 @@ defaultroute() {
         route del default
         route add default gw "$vpn_gateway" tun0
     fi
+    if [[ "$(route -A inet6 | egrep '::/0' | wc -l)" -eq 0 ]]; then
+        e "setting defaultroute ipv6"
+        route -A inet6 del default
+        route -A inet6 add default tun0
+    fi
 }
 
 set_network_parameters() {
