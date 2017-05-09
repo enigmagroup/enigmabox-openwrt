@@ -25,7 +25,8 @@ if [[ "$language" != "de" ]]; then
     [[ "$country_shortcode" == "hu" ]] && selected_country="Hungary"
     [[ "$country_shortcode" == "se" ]] && selected_country="Sweden"
     [[ "$country_shortcode" == "de" ]] && selected_country="Germany"
-    [[ "$country_shortcode" == "us" ]] && selected_country="the United Stasi of Murica"
+    [[ "$country_shortcode" == "us" ]] && selected_country="the United Stasi of America"
+    [[ "$country_shortcode" == "ru" ]] && selected_country="Mother Russia"
 
     if [[ $new_mails -eq 1 ]]; then
         echo "You have received one email." >> $statfile
@@ -76,6 +77,7 @@ else
     [[ "$country_shortcode" == "se" ]] && selected_country="Schweden"
     [[ "$country_shortcode" == "de" ]] && selected_country="Deutschland"
     [[ "$country_shortcode" == "us" ]] && selected_country="die verunreinigten Staaten von Amerika"
+    [[ "$country_shortcode" == "ru" ]] && selected_country="Mütterchen Russland"
 
     if [[ $new_mails -eq 1 ]]; then
         echo "Du hast ein i-mäil erhalten." >> $statfile
