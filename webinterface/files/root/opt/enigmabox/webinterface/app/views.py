@@ -950,6 +950,17 @@ def wlan_scan(request):
 
 
 
+# Port forwarding
+
+def portforwarding(request):
+    o = Option()
+
+    return render_to_response('teletext/overview.html', {
+        'teletext_enabled': o.get_value('teletext_enabled', 0),
+    }, context_instance=RequestContext(request))
+
+
+
 # Teletext
 
 def teletext(request):
