@@ -45,7 +45,16 @@
                                 <td><a href="{% url app.views.portforwarding_edit pfw.port %}">{{ pfw.port }}</a></td>
                                 <td>{{ pfw.hw_address }}</td>
                                 <td>{{ pfw.description }}</td>
-                                <td>{{ pfw.access }}</td>
+                                <td>
+                                    <!-- Button -->
+                                      <div class="col-md-12 btn-group btn-group-xs">
+                                        <button id="access_global" name="access_global" value="1" class="btn btn-{% btn_state pfw.access 'global' 'info' 'default' %}">{% trans "Global" %}</button>
+                                        <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state pfw.access 'friends' 'info' 'default' %}">{% trans "Friends only" %}</button>
+                                        <button id="access_specific" name="access_specific" value="1" class="btn btn-{% btn_state pfw.access 'specific' 'info' 'default' %}">{% trans "Specific IPs..." %}</button>
+                                        <button id="access_off" name="access_off" value="1" class="btn btn-{% btn_state pfw.access 'none' 'info' 'default' %}">{% trans "Off" %}</button>
+                                      </div>
+                                </td>
+
                             </tr>
                             {% endfor %}
                             </tbody>
