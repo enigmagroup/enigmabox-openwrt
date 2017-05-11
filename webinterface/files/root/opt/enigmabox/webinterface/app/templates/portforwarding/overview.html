@@ -34,6 +34,7 @@
                             <thead>
                               <tr>
                                 <th>{% trans "Port" %}</th>
+                                <th>{% trans "Device" %}</th>
                                 <th>{% trans "Description" %}</th>
                                 <th>{% trans "Access rights" %}</th>
                               </tr>
@@ -41,7 +42,8 @@
                             <tbody>
                             {% for pfw in portforwardings %}
                             <tr>
-                                <td><a href="{% url app.views.peerings_edit pfw.pk %}">{{ pfw.port }}</a></td>
+                                <td><a href="{% url app.views.portforwarding_edit pfw.port %}">{{ pfw.port }}</a></td>
+                                <td>{{ pfw.hw_address }}</td>
                                 <td>{{ pfw.description }}</td>
                                 <td>{{ pfw.access }}</td>
                             </tr>

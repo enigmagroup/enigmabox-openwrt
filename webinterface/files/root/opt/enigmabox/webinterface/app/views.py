@@ -956,7 +956,7 @@ def portforwarding(request):
     o = Option()
 
     return render_to_response('portforwarding/overview.html', {
-        'teletext_enabled': o.get_value('teletext_enabled', 0),
+        'portforwardings': PortForward.objects.all().order_by('port'),
     }, context_instance=RequestContext(request))
 
 def portforwarding_edit(request, port=None):
