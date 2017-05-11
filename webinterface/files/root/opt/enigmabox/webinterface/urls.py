@@ -58,6 +58,8 @@ urlpatterns = patterns('app.views',
     url(r'^wlan_settings/$', 'wlan_settings'),
 
     # port forwarding
+    url(r'^portforwarding/new/$', 'portforwarding_edit'),
+    url(r'^portforwarding/(?P<port>.*)/$', 'portforwarding_edit'),
     url(r'^portforwarding/$', 'portforwarding'),
 
     # teletext
