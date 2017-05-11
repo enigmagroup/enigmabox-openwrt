@@ -994,8 +994,21 @@ def portforwarding_edit(request, port=None):
             })
 
     return render_to_response('portforwarding/detail.html', {
-        'teletext_enabled': o.get_value('teletext_enabled', 0),
     }, context_instance=RequestContext(request))
+
+def portforwarding_setaccess(request, port=None, mode="none"):
+    o = Option()
+
+    if mode == "specific":
+        return render_to_response('portforwarding/set_access.html', {
+        }, context_instance=RequestContext(request))
+    else:
+        p = PortForward.objects.get(port=port)
+        p.access = mode
+        p.save()
+        o = Option()
+        o.config_changed(True)
+        return redirect('/portforwarding/')
 
 
 
