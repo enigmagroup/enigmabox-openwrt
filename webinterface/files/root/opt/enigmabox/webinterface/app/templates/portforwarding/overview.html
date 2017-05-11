@@ -33,15 +33,17 @@
                         <table class="table table-hover table-striped table-bordered">
                             <thead>
                               <tr>
-                                <th>{% trans "Peering address" %}</th>
+                                <th>{% trans "Port" %}</th>
                                 <th>{% trans "Description" %}</th>
+                                <th>{% trans "Access rights" %}</th>
                               </tr>
                             </thead>
                             <tbody>
                             {% for pfw in portforwardings %}
                             <tr>
-                                <td><a href="{% url app.views.peerings_edit pfw.pk %}">{{ pfw.address }}</a></td>
+                                <td><a href="{% url app.views.peerings_edit pfw.pk %}">{{ pfw.port }}</a></td>
                                 <td>{{ pfw.description }}</td>
+                                <td>{{ pfw.access }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
