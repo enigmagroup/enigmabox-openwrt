@@ -36,6 +36,22 @@ class HypeAccess(models.Model):
     def __unicode__(self):
         return self.appname
 
+class PortForward(models.Model):
+    port = models.IntegerField(max_length=5, unique=True)
+    hw_address = models.CharField(max_length=17)
+    description = models.CharField(max_length=100, null=True, blank=True)
+    access = models.CharField(max_length=10)
+
+    def __unicode__(self):
+        return self.port
+
+class PortForwardAccess(models.Model):
+    port = models.IntegerField(max_length=5, unique=True)
+    addresses = models.ManyToManyField(Address, blank=True)
+
+    def __unicode__(self):
+        return self.port
+
 class Volume(models.Model):
     identifier = models.CharField(max_length=100, unique=True)
     name = models.CharField(max_length=50, blank=True, null=True)
