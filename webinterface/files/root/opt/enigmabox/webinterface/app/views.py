@@ -959,8 +959,39 @@ def portforwarding(request):
         'teletext_enabled': o.get_value('teletext_enabled', 0),
     }, context_instance=RequestContext(request))
 
-def portforwarding_edit(request):
+def portforwarding_edit(request, port=None):
     o = Option()
+
+    if request.POST:
+        if request.POST.get('submit') == 'delete':
+            p = PortForward.objects.get(port=port)
+            p.delete()
+            o = Option()
+            o.config_changed(True)
+            return redirect('/portforwarding/')
+
+        form = PortforwardingForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            if port == None:
+                p = PortForward()
+            else:
+                p = PortForward.objects.get(port=port)
+            p.port = cd['port']
+            p.hw_address = cd['hw_address'].strip()
+            p.description = cd['description'].strip()
+            p.save()
+            o = Option()
+            o.config_changed(True)
+            return redirect('/portforwarding/')
+    else:
+        if port:
+            portforwarding = PortForward.objects.get(port=port)
+            form = PortforwardingForm(initial={
+                'port': '',
+                'hw_address': '',
+                'description': '',
+            })
 
     return render_to_response('portforwarding/detail.html', {
         'teletext_enabled': o.get_value('teletext_enabled', 0),

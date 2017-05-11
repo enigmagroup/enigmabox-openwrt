@@ -45,6 +45,11 @@ class PeeringsForm(forms.Form):
     country = forms.CharField(initial='', required=False, min_length=2, max_length=2)
     description = forms.CharField(initial='', required=False)
 
+class PortforwardingForm(forms.Form):
+    port = forms.IntegerField(initial='', required=True)
+    hw_address = forms.CharField(initial='', required=True, min_length=17, max_length=17)
+    description = forms.CharField(initial='', required=False, max_length=100)
+
 class PasswordForm(forms.Form):
     password = forms.CharField(initial='', required=True, max_length=100)
     password_repeat = forms.CharField(initial='', required=True)
