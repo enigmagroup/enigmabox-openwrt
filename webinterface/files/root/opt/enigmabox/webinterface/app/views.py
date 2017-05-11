@@ -994,13 +994,15 @@ def portforwarding_edit(request, port=None):
             })
 
     return render_to_response('portforwarding/detail.html', {
+        'port': port,
     }, context_instance=RequestContext(request))
 
 def portforwarding_setaccess(request, port=None, mode="none"):
     o = Option()
 
     if mode == "specific":
-        return render_to_response('portforwarding/set_access.html', {
+        return render_to_response('portforwarding/manage_access.html', {
+            'port': port,
         }, context_instance=RequestContext(request))
     else:
         p = PortForward.objects.get(port=port)

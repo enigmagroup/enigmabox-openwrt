@@ -6,7 +6,11 @@
     <!-- Breadcrumbs -->
     <ul class="breadcrumb breadcrumb-top">
         <li><a href="/portforwarding/">{% trans "Port forwarding" %}</a></li>
-        <li class="active">{% trans "New" %}</li>
+        {% if port %}
+        <li class="active">{{ port }}</li>
+        {% else %}
+        <li class="active">New</li>
+        {% endif %}
     </ul>
     <!-- END Breadcrumbs -->
 
@@ -15,7 +19,11 @@
 
         <!-- Title -->
         <div class="block-title">
+            {% if port %}
+            <h2><strong>{% trans "Edit port forwarding" %}</strong></h2>
+            {% else %}
             <h2><strong>{% trans "New port forwarding" %}</strong></h2>
+            {% endif %}
         </div>
         <!-- END Title -->
 

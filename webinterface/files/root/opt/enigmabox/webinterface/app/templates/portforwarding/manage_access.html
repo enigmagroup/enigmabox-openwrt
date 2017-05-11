@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a href="{% url app.views.portforwarding %}">{% trans "Port forwarding" %}</a></li>
+        <li class="active">{% trans "Manage access" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
+
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "access configuration" %} Port {{ port }}</strong></h2>
+        </div>
+        <!-- END Title -->
+
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+
+                <form method="post" class="form-horizontal">
+                {% csrf_token %}
+
+                <fieldset>
+
+                <!-- Select Multiple -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="userlist">{% trans "User list" %}</label>
+                  <div class="col-md-8">
+                    <select id="userlist" name="userlist" size="10" class="form-control" multiple="multiple">
+                    {% for address in addresses %}
+                          <option value="{{ address.ipv6 }}">{{ address.name }} ({{ address.ipv6 }})</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="grant"></label>
+                  <div class="col-md-4">
+                    <button id="grant" name="grant" value="1" class="btn btn-success btn-alt"><i class="gi gi-down_arrow"></i> {% trans "Grant selected users" %}</button>
+                  </div>
+                </div>
+
+                <!-- Select Multiple -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="accesslist">{% trans "Users with access" %}</label>
+                  <div class="col-md-8">
+                    <select id="accesslist" name="accesslist" size="10" class="form-control" multiple="multiple">
+                    {% for address in access_list %}
+                          <option value="{{ address.ipv6 }}">{{ address.name }} ({{ address.ipv6 }})</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="revoke"></label>
+                  <div class="col-md-4">
+                    <button id="revoke" name="revoke" value="1" class="btn btn-danger btn-alt"><i class="gi gi-ban"></i> {% trans "Revoke selected users" %}</button>
+                  </div>
+                </div>
+
+                </fieldset>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
