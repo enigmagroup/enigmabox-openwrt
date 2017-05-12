@@ -980,6 +980,7 @@ def portforwarding_edit(request, port=None):
             p.port = cd['port']
             p.hw_address = cd['hw_address'].strip()
             p.description = cd['description'].strip()
+            p.access = 'none'
             p.save()
             o = Option()
             o.config_changed(True)
