@@ -999,17 +999,54 @@ def portforwarding_edit(request, port=None):
 
 def portforwarding_setaccess(request, port=None, mode="none"):
     o = Option()
+    p = PortForward.objects.get(port=port)
+    p.access = mode
+    p.save()
+    o = Option()
+    o.config_changed(True)
 
     if mode == "specific":
+        addresses = Address.objects.exclude(pk__in=PortForwardAccess.objects.filter(port=port).values('addresses').query)
+        if len(addresses) == 0:
+            addresses = Address.objects.all().order_by('id')
+        try:
+            access_list = PortForwardAccess.objects.get(port=port).addresses.all()
+        except Exception:
+            pfa = PortForwardAccess()
+            pfa.port = port
+            pfa.save()
+            access_list = PortForwardAccess.objects.get(port=port).addresses.all()
+        if len(access_list) == len(addresses):
+            addresses = []
+
+        if request.POST.get('grant'):
+            portforwardaccess = PortForwardAccess.objects.get(port=port)
+            #portforwardaccess.addresses.clear()
+            userlist = request.POST.getlist('userlist')
+            for address in userlist:
+                db_address = Address.objects.get(ipv6=address)
+                portforwardaccess.addresses.add(db_address)
+                #portforwardaccess.save()
+            o.config_changed(True)
+            return redirect('/portforwarding/' + port + '/set_access/specific/')
+
+        if request.POST.get('revoke'):
+            portforwardaccess = PortForwardAccess.objects.get(port=port)
+            accesslist = request.POST.getlist('accesslist')
+            for address in accesslist:
+                db_address = Address.objects.get(ipv6=address)
+                portforwardaccess.addresses.remove(db_address)
+                #portforwardaccess.save()
+            o.config_changed(True)
+            return redirect('/portforwarding/' + port + '/set_access/specific/')
+
         return render_to_response('portforwarding/manage_access.html', {
             'port': port,
+            'addresses': addresses,
+            'access_list': access_list,
         }, context_instance=RequestContext(request))
+
     else:
-        p = PortForward.objects.get(port=port)
-        p.access = mode
-        p.save()
-        o = Option()
-        o.config_changed(True)
         return redirect('/portforwarding/')
 
 
