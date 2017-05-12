@@ -21,7 +21,7 @@
 
         <!-- Content -->
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-12 col-md-10 col-lg-8">
 
                 <form method="post" class="form-horizontal">
                 {% csrf_token %}
@@ -68,15 +68,19 @@
                   </div>
                 </div>
 
+                </fieldset>
+                </form>
+
+                <form method="post" class="form-horizontal">
+                <fieldset>
+                <legend>{% trans "Save" %}</legend>
+
                 <div class="form-group">
-                  <label class="col-md-4 control-label">{% trans "Save" %}</label>
                   <div class="col-md-4">
                     <a href="/portforwarding/" class="btn btn-info btn-alt">{% trans "Ok &amp; go back" %}</a>
                   </div>
                 </div>
-
                 </fieldset>
-
                 </form>
 
             </div>
