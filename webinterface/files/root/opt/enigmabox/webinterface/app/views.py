@@ -961,6 +961,7 @@ def portforwarding(request):
 
 def portforwarding_edit(request, port=None):
     o = Option()
+    form = ''
 
     if request.POST:
         if request.POST.get('submit') == 'delete':
@@ -989,13 +990,14 @@ def portforwarding_edit(request, port=None):
         if port:
             portforwarding = PortForward.objects.get(port=port)
             form = PortforwardingForm(initial={
-                'port': '',
-                'hw_address': '',
-                'description': '',
+                'port': portforwarding.port,
+                'hw_address': portforwarding.hw_address,
+                'description': portforwarding.description,
             })
 
     return render_to_response('portforwarding/detail.html', {
         'port': port,
+        'form': form,
     }, context_instance=RequestContext(request))
 
 def portforwarding_setaccess(request, port=None, mode="none"):
