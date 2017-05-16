@@ -56,8 +56,9 @@
                       <label class="col-md-4 control-label" for="hw_address">{% trans "Destination Device" %}</label>
                       <div class="col-md-4">
                         <select id="hw_address" name="hw_address" class="form-control">
-                          <option value="40:8d:5c:b0:56:dc">192.168.100.54 (40:8d:5c:b0:56:dc)</option>
-                          <option value="40:7d:5c:b0:56:ea">192.168.100.53 (40:7d:5c:b0:56:ea)</option>
+                        {% for device in device_list %}
+                          <option value="{{ device.hw }}">{{ device.ip }} ({{ device.hw }})</option>
+                        {% endfor %}
                         </select>
                       </div>
                     </div>

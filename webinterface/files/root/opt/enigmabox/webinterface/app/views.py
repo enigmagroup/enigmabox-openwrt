@@ -963,6 +963,33 @@ def portforwarding_edit(request, port=None):
     o = Option()
     form = ''
 
+    arp_result = Popen(["arp"], stdout=PIPE).communicate()[0]
+    arp_result = """IP address       HW type     Flags       HW address            Mask     Device
+192.168.0.1      0x1         0x2         dc:53:7c:ad:e2:49     *        eth2
+192.168.100.50   0x1         0x2         00:0b:82:68:de:a7     *        eth1
+192.168.100.56   0x1         0x2         00:1a:4d:54:e7:cb     *        eth1
+192.168.100.54   0x1         0x2         40:8d:5c:b0:56:dc     *        eth1
+"""
+
+    results = {}
+    r = 0
+    for row in arp_result.split('\n'):
+        results[r] = []
+        fields = row.split(' ')
+        for f in fields:
+            f.strip(' ')
+            if f != '':
+                results[r].append(f)
+        r += 1
+
+    device_list = []
+    for d in range(1, len(results) - 1):
+        if results[d][5] != "eth2":
+            device_list.append({
+                "ip": results[d][0],
+                "hw": results[d][3],
+            })
+
     if request.POST:
         if request.POST.get('submit') == 'delete':
             p = PortForward.objects.get(port=port)
@@ -999,6 +1026,7 @@ def portforwarding_edit(request, port=None):
 
     return render_to_response('portforwarding/detail.html', {
         'port': port,
+        'device_list': device_list,
         'form': form,
     }, context_instance=RequestContext(request))
 
