@@ -155,24 +155,37 @@ start_cjdns() {
     if [[ "$(/etc/init.d/cjdns status)" != "running" ]]; then
         e "starting cjdns"
         /etc/init.d/cjdns start
-        start_portforwardings
     fi
 }
 
 restart_cjdns() {
     e "restarting cjdns"
     /etc/init.d/cjdns restart
-    start_portforwardings
 }
 
-start_portforwardings() {
-    e "starting port forwardings"
-    killall socat 2> /dev/null
-    sleep 1
+portforwardings() {
 {{#portforwardings}}
-    /usr/bin/socat TCP6-LISTEN:{{port}},reuseaddr,fork TCP:{{ip}}:{{dstport}}
-    /usr/bin/socat UDP6-LISTEN:{{port}},reuseaddr,fork UDP:{{ip}}:{{dstport}}
+    start_portforwarding "{{port}}" "{{mac}}" "{{dstport}}"
 {{/portforwardings}}
+}
+
+start_portforwarding() {
+    port=$1
+    mac=$2
+    dstport=$3
+
+    if [[ "$(netstat -tulpen | grep socat | grep tcp | grep :::$port | wc -l)" -eq 0 ]]; then
+        echo "starting port forwarding $port TCP"
+        /usr/bin/socat TCP6-LISTEN:$port,reuseaddr,fork TCP:$(mactoip "$mac"):$dstport &
+    fi
+    if [[ "$(netstat -tulpen | grep socat | grep udp | grep :::$port | wc -l)" -eq 0 ]]; then
+        echo "starting port forwarding $port UDP"
+        /usr/bin/socat UDP6-LISTEN:$port,reuseaddr,fork UDP:$(mactoip "$mac"):$dstport &
+    fi
+}
+
+mactoip() {
+    arp | grep "$1" | cut -d' ' -f1
 }
 
 get_vpn_gateway() {
@@ -255,6 +268,7 @@ defaultroute() {
 
 set_network_parameters() {
     mtu
+    portforwardings
     original_gateway
     defaultroute
     (
@@ -344,9 +358,9 @@ fi
 
 # set MWI status for the phone
 if [[ $(/usr/bin/find /box/vmail/mail/Maildir/new/ -type f 2> /dev/null | wc -l) -gt 0 ]]; then
-    /usr/sbin/asterisk -rx 'sip notify set-mwi 100'
+    /usr/sbin/asterisk -rx 'sip notify set-mwi 100' &> /dev/null
 else
-    /usr/sbin/asterisk -rx 'sip notify clear-mwi 100'
+    /usr/sbin/asterisk -rx 'sip notify clear-mwi 100' &> /dev/null
 fi
 
 if [[ "$(gateway_is_up)" == "true" ]]; then

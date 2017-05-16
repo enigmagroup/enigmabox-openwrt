@@ -1732,7 +1732,7 @@ def cfengine_site(request):
             })
         portforwardings.append({
             'port': p.port,
-            'ip': "127.0.0.2",
+            'mac': p.hw_address,
             'dstport': p.dstport,
             'access': p.access,
             'access_list': access_list,
