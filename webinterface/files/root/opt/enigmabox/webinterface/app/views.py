@@ -1060,14 +1060,8 @@ def portforwarding_setaccess(request, port=None, mode="none"):
         addresses = Address.objects.exclude(pk__in=PortforwardAccess.objects.filter(port=port).values('addresses').query)
         if len(addresses) == 0:
             addresses = Address.objects.all().order_by('id')
+
         access_list = PortforwardAccess.objects.get(port=port).addresses.all()
-        #try:
-        #    access_list = PortforwardAccess.objects.get(port=port).addresses.all()
-        #except Exception:
-        #    pfa = PortforwardAccess()
-        #    pfa.port = port
-        #    pfa.save()
-        #    access_list = PortforwardAccess.objects.get(port=port).addresses.all()
         if len(access_list) == len(addresses):
             addresses = []
 
