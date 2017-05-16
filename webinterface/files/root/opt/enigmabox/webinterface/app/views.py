@@ -1026,6 +1026,9 @@ def portforwarding_edit(request, port=None):
             p.description = cd['description'].strip()
             p.access = 'none'
             p.save()
+            pfa = PortforwardAccess()
+            pfa.port = cd['port']
+            pfa.save()
             o = Option()
             o.config_changed(True)
             return redirect('/portforwarding/')
@@ -1057,13 +1060,14 @@ def portforwarding_setaccess(request, port=None, mode="none"):
         addresses = Address.objects.exclude(pk__in=PortforwardAccess.objects.filter(port=port).values('addresses').query)
         if len(addresses) == 0:
             addresses = Address.objects.all().order_by('id')
-        try:
-            access_list = PortforwardAccess.objects.get(port=port).addresses.all()
-        except Exception:
-            pfa = PortforwardAccess()
-            pfa.port = port
-            pfa.save()
-            access_list = PortforwardAccess.objects.get(port=port).addresses.all()
+        access_list = PortforwardAccess.objects.get(port=port).addresses.all()
+        #try:
+        #    access_list = PortforwardAccess.objects.get(port=port).addresses.all()
+        #except Exception:
+        #    pfa = PortforwardAccess()
+        #    pfa.port = port
+        #    pfa.save()
+        #    access_list = PortforwardAccess.objects.get(port=port).addresses.all()
         if len(access_list) == len(addresses):
             addresses = []
 
