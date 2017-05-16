@@ -57,7 +57,7 @@
                       <div class="col-md-4">
                         <select id="hw_address" name="hw_address" class="form-control">
                         {% for device in device_list %}
-                          <option value="{{ device.hw }}">{{ device.ip }} ({{ device.hw }})</option>
+                          <option value="{{ device.hw }}" {% if device.hw == form.hw_address.value %}selected="selected"{% endif %}>{{ device.ip }}</option>
                         {% endfor %}
                         </select>
                       </div>

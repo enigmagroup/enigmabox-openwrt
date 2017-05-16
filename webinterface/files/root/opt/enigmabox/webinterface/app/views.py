@@ -963,6 +963,7 @@ def portforwarding_edit(request, port=None):
     o = Option()
     form = ''
 
+    # read arp table
     arp_result = Popen(["arp"], stdout=PIPE).communicate()[0]
     arp_result = """IP address       HW type     Flags       HW address            Mask     Device
 192.168.0.1      0x1         0x2         dc:53:7c:ad:e2:49     *        eth2
@@ -971,6 +972,21 @@ def portforwarding_edit(request, port=None):
 192.168.100.54   0x1         0x2         40:8d:5c:b0:56:dc     *        eth1
 """
 
+    # get internet interface to exclude it later
+    try:
+        with open('/etc/enigmabox/network-profile', 'r') as f:
+            network_profile = f.read().strip()
+    except Exception:
+        network_profile = 'apu'
+
+    if network_profile == 'alix':
+        internet_interface = 'eth0'
+    if network_profile == 'apu':
+        internet_interface = 'eth2'
+    if network_profile == 'raspi':
+        internet_interface = 'eth1'
+
+    # assemble results
     results = {}
     r = 0
     for row in arp_result.split('\n'):
@@ -984,7 +1000,7 @@ def portforwarding_edit(request, port=None):
 
     device_list = []
     for d in range(1, len(results) - 1):
-        if results[d][5] != "eth2":
+        if results[d][5] != internet_interface:
             device_list.append({
                 "ip": results[d][0],
                 "hw": results[d][3],
