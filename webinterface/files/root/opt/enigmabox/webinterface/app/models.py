@@ -44,7 +44,7 @@ class PortForward(models.Model):
     access = models.CharField(max_length=10)
 
     def __unicode__(self):
-        return self.port
+        return str(self.port)
 
 class PortForwardAccess(models.Model):
     port = models.IntegerField(max_length=5, unique=True)
