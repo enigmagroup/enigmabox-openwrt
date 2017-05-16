@@ -47,6 +47,7 @@ class PeeringsForm(forms.Form):
 
 class PortforwardingForm(forms.Form):
     port = forms.IntegerField(initial='', required=True)
+    dstport = forms.IntegerField(initial='', required=True)
     hw_address = forms.CharField(initial='', required=True, min_length=17, max_length=17)
     description = forms.CharField(initial='', required=False, max_length=100)
 

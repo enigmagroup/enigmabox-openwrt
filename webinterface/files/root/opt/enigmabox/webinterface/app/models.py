@@ -38,6 +38,7 @@ class HypeAccess(models.Model):
 
 class PortForward(models.Model):
     port = models.IntegerField(max_length=5, unique=True)
+    dstport = models.IntegerField(max_length=5)
     hw_address = models.CharField(max_length=17)
     description = models.CharField(max_length=100, null=True, blank=True)
     access = models.CharField(max_length=10)

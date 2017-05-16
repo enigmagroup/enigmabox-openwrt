@@ -979,6 +979,7 @@ def portforwarding_edit(request, port=None):
             else:
                 p = PortForward.objects.get(port=port)
             p.port = cd['port']
+            p.dstport = cd['dstport']
             p.hw_address = cd['hw_address'].strip()
             p.description = cd['description'].strip()
             p.access = 'none'
@@ -991,6 +992,7 @@ def portforwarding_edit(request, port=None):
             portforwarding = PortForward.objects.get(port=port)
             form = PortforwardingForm(initial={
                 'port': portforwarding.port,
+                'dstport': portforwarding.dstport,
                 'hw_address': portforwarding.hw_address,
                 'description': portforwarding.description,
             })

@@ -47,18 +47,26 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="port">{% trans "Port" %}</label>
                       <div class="col-md-4">
-                      <input {% form_error form.port.errors %} id="port" name="port" type="text" placeholder="{% trans "5900" %}" class="form-control input-md" value="{{ form.port.value }}">
+                      <input {% form_error form.port.errors %} id="port" name="port" type="text" class="form-control input-md" value="{{ form.port.value }}">
                       </div>
                     </div>
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="hw_address">Device</label>
+                      <label class="col-md-4 control-label" for="hw_address">{% trans "Destination Device" %}</label>
                       <div class="col-md-4">
                         <select id="hw_address" name="hw_address" class="form-control">
                           <option value="40:8d:5c:b0:56:dc">192.168.100.54 (40:8d:5c:b0:56:dc)</option>
                           <option value="40:7d:5c:b0:56:ea">192.168.100.53 (40:7d:5c:b0:56:ea)</option>
                         </select>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="dstport">{% trans "Destination Port" %}</label>
+                      <div class="col-md-4">
+                      <input {% form_error form.dstport.errors %} id="dstport" name="dstport" type="text" class="form-control input-md" value="{{ form.dstport.value }}">
                       </div>
                     </div>
 
