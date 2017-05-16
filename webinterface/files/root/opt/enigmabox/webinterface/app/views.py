@@ -959,7 +959,7 @@ def portforwarding(request):
     arp_result = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0]
 
     return render_to_response('portforwarding/overview.html', {
-        'portforwardings': PortForward.objects.all().order_by('port'),
+        'portforwardings': Portforward.objects.all().order_by('port'),
         'arp_table': arp_result,
         'ipv6': o.get_value('ipv6'),
     }, context_instance=RequestContext(request))
@@ -1007,7 +1007,7 @@ def portforwarding_edit(request, port=None):
 
     if request.POST:
         if request.POST.get('submit') == 'delete':
-            p = PortForward.objects.get(port=port)
+            p = Portforward.objects.get(port=port)
             p.delete()
             o = Option()
             o.config_changed(True)
@@ -1017,9 +1017,9 @@ def portforwarding_edit(request, port=None):
         if form.is_valid():
             cd = form.cleaned_data
             if port == None:
-                p = PortForward()
+                p = Portforward()
             else:
-                p = PortForward.objects.get(port=port)
+                p = Portforward.objects.get(port=port)
             p.port = cd['port']
             p.dstport = cd['dstport']
             p.hw_address = cd['hw_address'].strip()
@@ -1031,7 +1031,7 @@ def portforwarding_edit(request, port=None):
             return redirect('/portforwarding/')
     else:
         if port:
-            portforwarding = PortForward.objects.get(port=port)
+            portforwarding = Portforward.objects.get(port=port)
             form = PortforwardingForm(initial={
                 'port': portforwarding.port,
                 'dstport': portforwarding.dstport,
@@ -1047,28 +1047,28 @@ def portforwarding_edit(request, port=None):
 
 def portforwarding_setaccess(request, port=None, mode="none"):
     o = Option()
-    p = PortForward.objects.get(port=port)
+    p = Portforward.objects.get(port=port)
     p.access = mode
     p.save()
     o = Option()
     o.config_changed(True)
 
     if mode == "specific":
-        addresses = Address.objects.exclude(pk__in=PortForwardAccess.objects.filter(port=port).values('addresses').query)
+        addresses = Address.objects.exclude(pk__in=PortforwardAccess.objects.filter(port=port).values('addresses').query)
         if len(addresses) == 0:
             addresses = Address.objects.all().order_by('id')
         try:
-            access_list = PortForwardAccess.objects.get(port=port).addresses.all()
+            access_list = PortforwardAccess.objects.get(port=port).addresses.all()
         except Exception:
-            pfa = PortForwardAccess()
+            pfa = PortforwardAccess()
             pfa.port = port
             pfa.save()
-            access_list = PortForwardAccess.objects.get(port=port).addresses.all()
+            access_list = PortforwardAccess.objects.get(port=port).addresses.all()
         if len(access_list) == len(addresses):
             addresses = []
 
         if request.POST.get('grant'):
-            portforwardaccess = PortForwardAccess.objects.get(port=port)
+            portforwardaccess = PortforwardAccess.objects.get(port=port)
             #portforwardaccess.addresses.clear()
             userlist = request.POST.getlist('userlist')
             for address in userlist:
@@ -1079,7 +1079,7 @@ def portforwarding_setaccess(request, port=None, mode="none"):
             return redirect('/portforwarding/' + port + '/set_access/specific/')
 
         if request.POST.get('revoke'):
-            portforwardaccess = PortForwardAccess.objects.get(port=port)
+            portforwardaccess = PortforwardAccess.objects.get(port=port)
             accesslist = request.POST.getlist('accesslist')
             for address in accesslist:
                 db_address = Address.objects.get(ipv6=address)
@@ -1724,9 +1724,9 @@ def cfengine_site(request):
         })
 
     portforwardings = []
-    pfw = PortForward.objects.all().order_by('port')
+    pfw = Portforward.objects.all().order_by('port')
     for p in pfw:
-        acl = PortForwardAccess.objects.get(port=p.port).addresses.all()
+        acl = PortforwardAccess.objects.get(port=p.port).addresses.all()
         access_list = []
         for a in acl:
             access_list.append({

@@ -8,24 +8,25 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'PortForward'
+        # Adding model 'Portforward'
         db.create_table('app_portforward', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('port', self.gf('django.db.models.fields.IntegerField')(unique=True, max_length=5)),
+            ('dstport', self.gf('django.db.models.fields.IntegerField')(max_length=5)),
             ('hw_address', self.gf('django.db.models.fields.CharField')(max_length=17)),
             ('description', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
             ('access', self.gf('django.db.models.fields.CharField')(max_length=10)),
         ))
-        db.send_create_signal('app', ['PortForward'])
+        db.send_create_signal('app', ['Portforward'])
 
-        # Adding model 'PortForwardAccess'
+        # Adding model 'PortforwardAccess'
         db.create_table('app_portforwardaccess', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('port', self.gf('django.db.models.fields.IntegerField')(unique=True, max_length=5)),
         ))
-        db.send_create_signal('app', ['PortForwardAccess'])
+        db.send_create_signal('app', ['PortforwardAccess'])
 
-        # Adding M2M table for field addresses on 'PortForwardAccess'
+        # Adding M2M table for field addresses on 'PortforwardAccess'
         m2m_table_name = db.shorten_name('app_portforwardaccess_addresses')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
@@ -36,13 +37,13 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
-        # Deleting model 'PortForward'
+        # Deleting model 'Portforward'
         db.delete_table('app_portforward')
 
-        # Deleting model 'PortForwardAccess'
+        # Deleting model 'PortforwardAccess'
         db.delete_table('app_portforwardaccess')
 
-        # Removing M2M table for field addresses on 'PortForwardAccess'
+        # Removing M2M table for field addresses on 'PortforwardAccess'
         db.delete_table(db.shorten_name('app_portforwardaccess_addresses'))
 
 
@@ -85,15 +86,16 @@ class Migration(SchemaMigration):
             'public_key': ('django.db.models.fields.CharField', [], {'max_length': '54'})
         },
         'app.portforward': {
-            'Meta': {'object_name': 'PortForward'},
+            'Meta': {'object_name': 'Portforward'},
             'access': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
             'description': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'dstport': ('django.db.models.fields.IntegerField', [], {'max_length': '5'}),
             'hw_address': ('django.db.models.fields.CharField', [], {'max_length': '17'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'port': ('django.db.models.fields.IntegerField', [], {'unique': 'True', 'max_length': '5'})
         },
         'app.portforwardaccess': {
-            'Meta': {'object_name': 'PortForwardAccess'},
+            'Meta': {'object_name': 'PortforwardAccess'},
             'addresses': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['app.Address']", 'symmetrical': 'False', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'port': ('django.db.models.fields.IntegerField', [], {'unique': 'True', 'max_length': '5'})

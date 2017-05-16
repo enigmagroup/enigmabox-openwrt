@@ -36,7 +36,7 @@ class HypeAccess(models.Model):
     def __unicode__(self):
         return self.appname
 
-class PortForward(models.Model):
+class Portforward(models.Model):
     port = models.IntegerField(max_length=5, unique=True)
     dstport = models.IntegerField(max_length=5)
     hw_address = models.CharField(max_length=17)
@@ -46,7 +46,7 @@ class PortForward(models.Model):
     def __unicode__(self):
         return str(self.port)
 
-class PortForwardAccess(models.Model):
+class PortforwardAccess(models.Model):
     port = models.IntegerField(max_length=5, unique=True)
     addresses = models.ManyToManyField(Address, blank=True)
 
