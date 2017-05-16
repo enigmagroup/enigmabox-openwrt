@@ -185,7 +185,7 @@ start_portforwarding() {
 }
 
 mactoip() {
-    arp | grep "$1" | cut -d' ' -f1
+    cat /proc/net/arp | grep "$1" | cut -d' ' -f1
 }
 
 get_vpn_gateway() {
