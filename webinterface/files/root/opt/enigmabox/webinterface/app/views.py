@@ -1727,6 +1727,31 @@ def cfengine_site(request):
     except Exception:
         pass
 
+    volumes = []
+    db_volumes = Volume.objects.filter(use=True).order_by('id')
+    for v in db_volumes:
+        volumes.append({
+            'identifier': v.identifier,
+            'name': v.name,
+        })
+
+    portforwardings = []
+    pfw = PortForward.objects.all().order_by('port')
+    for p in pfw:
+        acl = PortForwardAccess.objects.get(port=p.port).addresses.all()
+        access_list = []
+        for a in acl:
+            access_list.append({
+                'ipv6': a.ipv6,
+            })
+        portforwardings.append({
+            'port': p.port,
+            'ip': "127.0.0.2",
+            'dstport': p.dstport,
+            'access': p.access,
+            'access_list': access_list,
+        })
+
     webinterface_password = o.get_value('webinterface_password', '')
     mailbox_password = o.get_value(u'mailbox_password')
 
@@ -1880,6 +1905,7 @@ def cfengine_site(request):
         'lan_range_first': o.get_value('lan_range_first', 100),
         'lan_range_second': o.get_value('lan_range_second', 101),
         'peerings': peerings,
+        'portforwardings': portforwardings,
         'internet_gateway': internet_gateway,
         'autopeering': autopeering,
         'allow_peering': o.get_value('allow_peering', 0),

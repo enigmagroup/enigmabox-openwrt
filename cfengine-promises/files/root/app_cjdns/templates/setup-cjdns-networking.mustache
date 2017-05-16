@@ -155,12 +155,24 @@ start_cjdns() {
     if [[ "$(/etc/init.d/cjdns status)" != "running" ]]; then
         e "starting cjdns"
         /etc/init.d/cjdns start
+        start_portforwardings
     fi
 }
 
 restart_cjdns() {
     e "restarting cjdns"
     /etc/init.d/cjdns restart
+    start_portforwardings
+}
+
+start_portforwardings() {
+    e "starting port forwardings"
+    killall socat 2> /dev/null
+    sleep 1
+{{#portforwardings}}
+    /usr/bin/socat TCP6-LISTEN:{{port}},reuseaddr,fork TCP:{{ip}}:{{dstport}}
+    /usr/bin/socat UDP6-LISTEN:{{port}},reuseaddr,fork UDP:{{ip}}:{{dstport}}
+{{/portforwardings}}
 }
 
 get_vpn_gateway() {
@@ -331,7 +343,7 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
 fi
 
 # set MWI status for the phone
-if [[ $(/usr/bin/find /box/vmail/mail/Maildir/new/ -type f | wc -l) -gt 0 ]]; then
+if [[ $(/usr/bin/find /box/vmail/mail/Maildir/new/ -type f 2> /dev/null | wc -l) -gt 0 ]]; then
     /usr/sbin/asterisk -rx 'sip notify set-mwi 100'
 else
     /usr/sbin/asterisk -rx 'sip notify clear-mwi 100'
