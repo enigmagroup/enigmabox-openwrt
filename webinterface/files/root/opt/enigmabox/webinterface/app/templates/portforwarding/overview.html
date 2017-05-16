@@ -43,7 +43,7 @@
                             {% for pfw in portforwardings %}
                             <tr>
                                 <td><a href="{% url app.views.portforwarding_edit pfw.port %}">{{ pfw.port }}</a></td>
-                                <td>{% hw_ip pfw.hw_address arp_table %}</td>
+                                <td>{% hw_ip pfw.hw_address arp_table %}:<span style="color: #999;">{{ pfw.dstport }}</span></td>
                                 <td>{{ pfw.description }}</td>
                                 <td>
                                     <!-- Button -->
