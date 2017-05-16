@@ -82,7 +82,8 @@ def peer_status(peer_name, sip_peers):
 @register.simple_tag
 def hw_ip(hw_address, arp_table):
     try:
-        ip = re.search('([^\s]+).*' + hw_address, arp_table).group(0).strip()
+        mapping = {line.split()[3]: line.split()[0] for line in arp_table.split('\n')}
+        ip = mapping[hw_address]
     except Exception:
         ip = '-'
 
