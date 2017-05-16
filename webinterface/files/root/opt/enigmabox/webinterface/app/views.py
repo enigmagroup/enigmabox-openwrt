@@ -955,8 +955,18 @@ def wlan_scan(request):
 def portforwarding(request):
     o = Option()
 
+    # read arp table
+    arp_result = Popen(["arp"], stdout=PIPE).communicate()[0]
+    arp_result = """IP address       HW type     Flags       HW address            Mask     Device
+192.168.0.1      0x1         0x2         dc:53:7c:ad:e2:49     *        eth2
+192.168.100.50   0x1         0x2         00:0b:82:68:de:a7     *        eth1
+192.168.100.56   0x1         0x2         00:1a:4d:54:e7:cb     *        eth1
+192.168.100.54   0x1         0x2         40:8d:5c:b0:56:dc     *        eth1
+"""
+
     return render_to_response('portforwarding/overview.html', {
         'portforwardings': PortForward.objects.all().order_by('port'),
+        'arp_table': arp_result,
     }, context_instance=RequestContext(request))
 
 def portforwarding_edit(request, port=None):
