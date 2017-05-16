@@ -967,6 +967,7 @@ def portforwarding(request):
     return render_to_response('portforwarding/overview.html', {
         'portforwardings': PortForward.objects.all().order_by('port'),
         'arp_table': arp_result,
+        'ipv6': o.get_value('ipv6'),
     }, context_instance=RequestContext(request))
 
 def portforwarding_edit(request, port=None):

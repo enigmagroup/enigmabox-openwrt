@@ -18,7 +18,13 @@
         </div>
         <!-- END Title -->
 
-      <p>{% trans "Forward ports to devices in your LAN" %}</p>
+      <p>{% trans "Forward ports to devices in your LAN." %}</p>
+      <strong>Example:</strong>
+      <p>
+        <span data-toggle="tooltip" data-placement="bottom" title="{% trans "Your IPv6 address" %}" style="color: #999;">[{{ ipv6 }}]:</span><span data-toggle="tooltip" data-placement="bottom" title="{% trans "Port" %}">2020</span>
+        &rarr;
+        <span data-toggle="tooltip" data-placement="bottom" title="{% trans "Device in your LAN" %}" style="color: #999;">192.168.100.50:</span><span data-toggle="tooltip" data-placement="bottom" title="{% trans "Destination Port" %}">22</span>
+      </p>
 
         <form method="post" class="form-horizontal">
         {% csrf_token %}
