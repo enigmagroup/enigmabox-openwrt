@@ -164,6 +164,7 @@ restart_cjdns() {
 }
 
 portforwardings() {
+    a=b # ash doesn't allow empty functions. no port forwardings = syntax error.
 {{#portforwardings}}
     start_portforwarding "{{port}}" "{{mac}}" "{{dstport}}"
 {{/portforwardings}}
