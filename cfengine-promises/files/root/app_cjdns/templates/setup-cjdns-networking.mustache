@@ -183,6 +183,9 @@ start_portforwarding() {
     mac=$2
     dstport=$3
 
+    # don't start forwarding if ip is not up
+    [[ $(mactoip "$mac") == "" ]] || return
+
     if [[ "$(netstat -tulpen | grep socat | grep tcp | grep :::$port | wc -l)" -eq 0 ]]; then
         echo "starting port forwarding $port TCP"
         /usr/bin/socat TCP6-LISTEN:$port,reuseaddr,fork TCP:$(mactoip "$mac"):$dstport &
