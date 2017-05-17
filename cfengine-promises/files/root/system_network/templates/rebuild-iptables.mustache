@@ -178,6 +178,7 @@ $ip6tables -A friends-services -p tcp --dport 80 -j ACCEPT      # hypesites
 
 # port forwardings
 {{#portforwardings}}
+
 # port {{port}}
 if [[ "{{access}}" == "global" ]]; then
     $ip6tables -A INPUT -i tun0 -p tcp --dport {{port}} -j ACCEPT
@@ -194,7 +195,6 @@ if [[ "{{access}}" == "specific" ]]; then
 {{/access_list}}
     true # prevent syntax error on empty access_list
 fi
-
 {{/portforwardings}}
 
 $ip6tables -A friends-services -p ipv6-icmp -m limit --limit 10/second -j ACCEPT # icmp
