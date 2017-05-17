@@ -1009,6 +1009,8 @@ def portforwarding_edit(request, port=None):
         if request.POST.get('submit') == 'delete':
             p = Portforward.objects.get(port=port)
             p.delete()
+            pfa = PortforwardAccess.objects.get(port=port)
+            pfa.delete()
             o = Option()
             o.config_changed(True)
             return redirect('/portforwarding/')
