@@ -167,7 +167,15 @@ portforwardings() {
 {{#portforwardings}}
     start_portforwarding "{{port}}" "{{mac}}" "{{dstport}}"
 {{/portforwardings}}
-    true # prevent syntax error on empty portforwardings
+
+    sleep 1
+
+    # kill disabled tunnels
+    for af in $(netstat -tulpen | grep socat | awk '{ print $4 }' | cut -d: -f4 | sort | uniq); do
+        if [[ $(echo "{{#portforwardings}}{{port}} {{/portforwardings}}" | grep "$af " | wc -l) -eq 0 ]]; then
+            kill $(netstat -tulpen | grep ":::$af " | awk '{ print $7 }' | cut -d/ -f1)
+        fi
+    done
 }
 
 start_portforwarding() {
