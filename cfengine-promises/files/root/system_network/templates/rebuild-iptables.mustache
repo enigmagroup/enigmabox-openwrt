@@ -175,6 +175,22 @@ $ip6tables -A friends-services -p udp -m udp --dport 10000:20000 -j ACCEPT  # rt
 {{#if_hype_access_friends}}
 $ip6tables -A friends-services -p tcp --dport 80 -j ACCEPT      # hypesites
 {{/if_hype_access_friends}}
+{{#portforwardings}}
+if [[ "{{access}}" == "global" ]]; then
+    $ip6tables -A INPUT -i tun0 -p tcp --dport {{port}} -j ACCEPT
+    $ip6tables -A INPUT -i tun0 -p udp --dport {{port}} -j ACCEPT
+fi
+if [[ "{{access}}" == "friends" ]]; then
+    $ip6tables -A friends-services -p tcp --dport {{port}} -j ACCEPT
+    $ip6tables -A friends-services -p udp --dport {{port}} -j ACCEPT
+fi
+if [[ "{{access}}" == "specific" ]]; then
+{{#access_list}}
+    $ip6tables -A INPUT -i tun0 --src {{ipv6}} -p tcp --dport {{port}} -j ACCEPT
+    $ip6tables -A INPUT -i tun0 --src {{ipv6}} -p udp --dport {{port}} -j ACCEPT
+{{/access_list}}
+fi
+{{/portforwardings}}
 $ip6tables -A friends-services -p ipv6-icmp -m limit --limit 10/second -j ACCEPT # icmp
 
 $ip6tables -X friends-in
