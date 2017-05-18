@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-01 21:56+0100\n"
-"PO-Revision-Date: 2016-11-01 21:58+0100\n"
+"POT-Creation-Date: 2017-05-18 09:03+0200\n"
+"PO-Revision-Date: 2017-05-18 09:03+0200\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.10\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #: settings.py:41
 msgid "German"
@@ -66,8 +66,8 @@ msgstr "Bist du sicher?"
 msgid "Show"
 msgstr "Zeigen"
 
-#: app/templates/base.html:68 app/templates/base.html.py:202
-#: app/templates/base.html:212
+#: app/templates/base.html:68 app/templates/base.html.py:205
+#: app/templates/base.html:215
 msgid "Apply changes"
 msgstr "Änderungen anwenden"
 
@@ -174,21 +174,30 @@ msgstr "Hypesites"
 msgid "Teletext"
 msgstr "Teletext"
 
-#: app/templates/base.html:206
+#: app/templates/base.html:137 app/templates/portforwarding/detail.html:8
+#: app/templates/portforwarding/manage_access.html:8
+#: app/templates/portforwarding/overview.html:8
+#: app/templates/portforwarding/overview.html:17
+msgid "Port forwarding"
+msgstr "Portweiterleitung"
+
+#: app/templates/base.html:209
 msgid "Apply changes?"
 msgstr "Änderungen anwenden?"
 
-#: app/templates/base.html:207
+#: app/templates/base.html:210
 msgid "Changes successfully applied."
 msgstr "Änderungen erfolgreich angewendet."
 
-#: app/templates/base.html:211 app/templates/addressbook/detail.html:74
+#: app/templates/base.html:214 app/templates/addressbook/detail.html:74
 #: app/templates/addressbook/overview-global-edit.html:61
-#: app/templates/passwords/edit.html:76 app/templates/storage/overview.html:111
+#: app/templates/passwords/edit.html:76
+#: app/templates/portforwarding/detail.html:87
+#: app/templates/storage/overview.html:111
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: app/templates/base.html:218 app/templates/storage/overview.html:120
+#: app/templates/base.html:221 app/templates/storage/overview.html:120
 msgid "Done"
 msgstr "Fertig"
 
@@ -241,6 +250,7 @@ msgstr "Meine Adresse"
 #: app/templates/backup/restorewizard/check_usb.html:35
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:36
 #: app/templates/passwords/edit.html:40 app/templates/peerings/detail.html:35
+#: app/templates/portforwarding/detail.html:41
 #: app/templates/storage/overview.html:27
 msgid "Error"
 msgstr "Fehler"
@@ -254,6 +264,8 @@ msgstr "Angezeigter Name"
 #: app/templates/addressbook/overview-global-edit.html:60
 #: app/templates/passwords/edit.html:75
 #: app/templates/peerings/overview.html:112
+#: app/templates/portforwarding/detail.html:86
+#: app/templates/portforwarding/manage_access.html:76
 msgid "Save"
 msgstr "Speichern"
 
@@ -264,6 +276,7 @@ msgstr "Telefonnummer löschen"
 
 #: app/templates/addressbook/detail.html:87
 #: app/templates/addressbook/overview-global-edit.html:74
+#: app/templates/portforwarding/detail.html:98
 msgid "Delete"
 msgstr "Löschen"
 
@@ -730,11 +743,13 @@ msgid "Hypesites webserver firewall configuration"
 msgstr "Hypesites Webserver Firewallkonfiguration"
 
 #: app/templates/hypesites/configure.html:39
+#: app/templates/portforwarding/overview.html:57
 msgid "Global"
 msgstr "Global"
 
 #: app/templates/hypesites/configure.html:40
-#: app/templates/hypesites/manage_access.html:37
+#: app/templates/hypesites/manage_access.html:38
+#: app/templates/portforwarding/overview.html:58
 msgid "Friends only"
 msgstr "Nur Freunde"
 
@@ -743,6 +758,7 @@ msgid "Internal LAN"
 msgstr "Internes LAN"
 
 #: app/templates/hypesites/configure.html:42
+#: app/templates/portforwarding/overview.html:60
 msgid "Off"
 msgstr "Keiner"
 
@@ -780,34 +796,40 @@ msgid "Configure access..."
 msgstr "Zugriff verwalten..."
 
 #: app/templates/hypesites/manage_access.html:19
+#: app/templates/portforwarding/manage_access.html:18
 msgid "access configuration"
 msgstr "Zugriffsverwaltung"
 
-#: app/templates/hypesites/manage_access.html:34
+#: app/templates/hypesites/manage_access.html:35
 msgid "Allow access"
 msgstr "Zugriff erlauben"
 
-#: app/templates/hypesites/manage_access.html:36
+#: app/templates/hypesites/manage_access.html:37
 msgid "All"
 msgstr "Alle"
 
-#: app/templates/hypesites/manage_access.html:38
+#: app/templates/hypesites/manage_access.html:39
+#: app/templates/portforwarding/overview.html:59
 msgid "Specific IPs..."
 msgstr "Spezifische IP..."
 
-#: app/templates/hypesites/manage_access.html:49
+#: app/templates/hypesites/manage_access.html:50
+#: app/templates/portforwarding/manage_access.html:33
 msgid "User list"
 msgstr "Adressliste"
 
-#: app/templates/hypesites/manage_access.html:63
+#: app/templates/hypesites/manage_access.html:64
+#: app/templates/portforwarding/manage_access.html:47
 msgid "Grant selected users"
 msgstr "Gewählten Benutzern Zugriff gewähren"
 
-#: app/templates/hypesites/manage_access.html:69
+#: app/templates/hypesites/manage_access.html:70
+#: app/templates/portforwarding/manage_access.html:53
 msgid "Users with access"
 msgstr "Benutzer mit Zugriff"
 
-#: app/templates/hypesites/manage_access.html:83
+#: app/templates/hypesites/manage_access.html:84
+#: app/templates/portforwarding/manage_access.html:67
 msgid "Revoke selected users"
 msgstr "Gewählten Benutzern Zugriff entziehen"
 
@@ -903,6 +925,8 @@ msgstr "publickey.k"
 
 #: app/templates/peerings/detail.html:66
 #: app/templates/peerings/overview.html:39
+#: app/templates/portforwarding/detail.html:76
+#: app/templates/portforwarding/overview.html:44
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -934,6 +958,9 @@ msgid "Incoming peering"
 msgstr "Eingehendes Peering"
 
 #: app/templates/peerings/overview.html:94
+#: app/templates/portforwarding/detail.html:48
+#: app/templates/portforwarding/overview.html:24
+#: app/templates/portforwarding/overview.html:42
 msgid "Port"
 msgstr "Port"
 
@@ -952,6 +979,63 @@ msgstr "Autopeering"
 #: app/templates/peerings/overview.html:151
 msgid "Automatically connect to other cjdns nodes in the same LAN"
 msgstr "Automatisch zu anderen cjdns-Knoten im gleichen Netzwerk verbinden"
+
+#: app/templates/portforwarding/detail.html:23
+msgid "Edit port forwarding"
+msgstr "Portweiterleitung bearbeiten"
+
+#: app/templates/portforwarding/detail.html:25
+msgid "New port forwarding"
+msgstr "Neue Portweiterleitung"
+
+#: app/templates/portforwarding/detail.html:56
+msgid "Destination Device"
+msgstr "Zielgerät"
+
+#: app/templates/portforwarding/detail.html:68
+#: app/templates/portforwarding/overview.html:26
+msgid "Destination Port"
+msgstr "Zielport"
+
+#: app/templates/portforwarding/detail.html:93
+msgid "Remove port forwarding"
+msgstr "Portweiterleitung löschen"
+
+#: app/templates/portforwarding/manage_access.html:9
+msgid "Manage access"
+msgstr "Zugriff verwalten"
+
+#: app/templates/portforwarding/manage_access.html:80
+msgid "Ok &amp; go back"
+msgstr "Ok &amp; zurück"
+
+#: app/templates/portforwarding/overview.html:21
+msgid "Forward ports to devices in your LAN."
+msgstr "Ports zu Geräten im LAN weiterleiten"
+
+#: app/templates/portforwarding/overview.html:22
+msgid "Example:"
+msgstr "Beispiel:"
+
+#: app/templates/portforwarding/overview.html:24
+msgid "Your IPv6 address"
+msgstr "Deine IPv6-Adresse"
+
+#: app/templates/portforwarding/overview.html:26
+msgid "Device in your LAN"
+msgstr "Gerät in deinem LAN"
+
+#: app/templates/portforwarding/overview.html:43
+msgid "Device"
+msgstr "Gerät"
+
+#: app/templates/portforwarding/overview.html:45
+msgid "Access rights"
+msgstr "Zugriffsrechte"
+
+#: app/templates/portforwarding/overview.html:70
+msgid "New forwarding"
+msgstr "Neue Portweiterleitung"
 
 #: app/templates/storage/overview.html:21
 msgid "Configure external storage devices."

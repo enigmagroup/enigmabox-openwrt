@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-01 21:56+0100\n"
+"POT-Creation-Date: 2017-05-18 09:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,8 @@ msgstr "¿Estás seguro?"
 msgid "Show"
 msgstr "Mostrar"
 
-#: app/templates/base.html:68 app/templates/base.html.py:202
-#: app/templates/base.html:212
+#: app/templates/base.html:68 app/templates/base.html.py:205
+#: app/templates/base.html:215
 msgid "Apply changes"
 msgstr "Aplicar cambios"
 
@@ -177,22 +177,31 @@ msgstr ""
 msgid "Teletext"
 msgstr "Teletext"
 
-#: app/templates/base.html:206
+#: app/templates/base.html:137 app/templates/portforwarding/detail.html:8
+#: app/templates/portforwarding/manage_access.html:8
+#: app/templates/portforwarding/overview.html:8
+#: app/templates/portforwarding/overview.html:17
+msgid "Port forwarding"
+msgstr ""
+
+#: app/templates/base.html:209
 #, fuzzy
 msgid "Apply changes?"
 msgstr "Aplicar cambios"
 
-#: app/templates/base.html:207
+#: app/templates/base.html:210
 msgid "Changes successfully applied."
 msgstr "Cambios aplicados con éxito"
 
-#: app/templates/base.html:211 app/templates/addressbook/detail.html:74
+#: app/templates/base.html:214 app/templates/addressbook/detail.html:74
 #: app/templates/addressbook/overview-global-edit.html:61
-#: app/templates/passwords/edit.html:76 app/templates/storage/overview.html:111
+#: app/templates/passwords/edit.html:76
+#: app/templates/portforwarding/detail.html:87
+#: app/templates/storage/overview.html:111
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: app/templates/base.html:218 app/templates/storage/overview.html:120
+#: app/templates/base.html:221 app/templates/storage/overview.html:120
 msgid "Done"
 msgstr ""
 
@@ -245,6 +254,7 @@ msgstr "Mi dirección"
 #: app/templates/backup/restorewizard/check_usb.html:35
 #: app/templates/backup/restorewizard/ensure_usb_unplugged.html:36
 #: app/templates/passwords/edit.html:40 app/templates/peerings/detail.html:35
+#: app/templates/portforwarding/detail.html:41
 #: app/templates/storage/overview.html:27
 msgid "Error"
 msgstr "Error"
@@ -258,6 +268,8 @@ msgstr "Visualización nombre"
 #: app/templates/addressbook/overview-global-edit.html:60
 #: app/templates/passwords/edit.html:75
 #: app/templates/peerings/overview.html:112
+#: app/templates/portforwarding/detail.html:86
+#: app/templates/portforwarding/manage_access.html:76
 msgid "Save"
 msgstr "Guardar"
 
@@ -268,6 +280,7 @@ msgstr "Borrar número teléfono"
 
 #: app/templates/addressbook/detail.html:87
 #: app/templates/addressbook/overview-global-edit.html:74
+#: app/templates/portforwarding/detail.html:98
 msgid "Delete"
 msgstr "Borrar"
 
@@ -768,11 +781,13 @@ msgid "Hypesites webserver firewall configuration"
 msgstr "Configuración general"
 
 #: app/templates/hypesites/configure.html:39
+#: app/templates/portforwarding/overview.html:57
 msgid "Global"
 msgstr ""
 
 #: app/templates/hypesites/configure.html:40
-#: app/templates/hypesites/manage_access.html:37
+#: app/templates/hypesites/manage_access.html:38
+#: app/templates/portforwarding/overview.html:58
 msgid "Friends only"
 msgstr ""
 
@@ -782,6 +797,7 @@ msgid "Internal LAN"
 msgstr "Internet"
 
 #: app/templates/hypesites/configure.html:42
+#: app/templates/portforwarding/overview.html:60
 msgid "Off"
 msgstr ""
 
@@ -820,37 +836,43 @@ msgid "Configure access..."
 msgstr ""
 
 #: app/templates/hypesites/manage_access.html:19
+#: app/templates/portforwarding/manage_access.html:18
 #, fuzzy
 msgid "access configuration"
 msgstr "Configuración general"
 
-#: app/templates/hypesites/manage_access.html:34
+#: app/templates/hypesites/manage_access.html:35
 #, fuzzy
 msgid "Allow access"
 msgstr "Dirección SSH"
 
-#: app/templates/hypesites/manage_access.html:36
+#: app/templates/hypesites/manage_access.html:37
 msgid "All"
 msgstr ""
 
-#: app/templates/hypesites/manage_access.html:38
+#: app/templates/hypesites/manage_access.html:39
+#: app/templates/portforwarding/overview.html:59
 msgid "Specific IPs..."
 msgstr ""
 
-#: app/templates/hypesites/manage_access.html:49
+#: app/templates/hypesites/manage_access.html:50
+#: app/templates/portforwarding/manage_access.html:33
 #, fuzzy
 msgid "User list"
 msgstr "Nombre de usuario es"
 
-#: app/templates/hypesites/manage_access.html:63
+#: app/templates/hypesites/manage_access.html:64
+#: app/templates/portforwarding/manage_access.html:47
 msgid "Grant selected users"
 msgstr ""
 
-#: app/templates/hypesites/manage_access.html:69
+#: app/templates/hypesites/manage_access.html:70
+#: app/templates/portforwarding/manage_access.html:53
 msgid "Users with access"
 msgstr ""
 
-#: app/templates/hypesites/manage_access.html:83
+#: app/templates/hypesites/manage_access.html:84
+#: app/templates/portforwarding/manage_access.html:67
 msgid "Revoke selected users"
 msgstr ""
 
@@ -951,6 +973,8 @@ msgstr "llavepública.k"
 
 #: app/templates/peerings/detail.html:66
 #: app/templates/peerings/overview.html:39
+#: app/templates/portforwarding/detail.html:76
+#: app/templates/portforwarding/overview.html:44
 msgid "Description"
 msgstr "Descripción"
 
@@ -982,6 +1006,9 @@ msgid "Incoming peering"
 msgstr "Compañero entrante"
 
 #: app/templates/peerings/overview.html:94
+#: app/templates/portforwarding/detail.html:48
+#: app/templates/portforwarding/overview.html:24
+#: app/templates/portforwarding/overview.html:42
 msgid "Port"
 msgstr "Puerto"
 
@@ -1000,6 +1027,69 @@ msgstr "Compañero automático"
 #: app/templates/peerings/overview.html:151
 msgid "Automatically connect to other cjdns nodes in the same LAN"
 msgstr "Conecta automáticamente a otros nodos cjdns en el mismo LAN"
+
+#: app/templates/portforwarding/detail.html:23
+msgid "Edit port forwarding"
+msgstr ""
+
+#: app/templates/portforwarding/detail.html:25
+#, fuzzy
+msgid "New port forwarding"
+msgstr "Compañero nuevo"
+
+#: app/templates/portforwarding/detail.html:56
+msgid "Destination Device"
+msgstr ""
+
+#: app/templates/portforwarding/detail.html:68
+#: app/templates/portforwarding/overview.html:26
+msgid "Destination Port"
+msgstr ""
+
+#: app/templates/portforwarding/detail.html:93
+#, fuzzy
+msgid "Remove port forwarding"
+msgstr "Remover compañero"
+
+#: app/templates/portforwarding/manage_access.html:9
+#, fuzzy
+msgid "Manage access"
+msgstr "Dirección SSH"
+
+#: app/templates/portforwarding/manage_access.html:80
+msgid "Ok &amp; go back"
+msgstr ""
+
+#: app/templates/portforwarding/overview.html:21
+msgid "Forward ports to devices in your LAN."
+msgstr ""
+
+#: app/templates/portforwarding/overview.html:22
+msgid "Example:"
+msgstr ""
+
+#: app/templates/portforwarding/overview.html:24
+#, fuzzy
+msgid "Your IPv6 address"
+msgstr "Dirección IPv6"
+
+#: app/templates/portforwarding/overview.html:26
+msgid "Device in your LAN"
+msgstr ""
+
+#: app/templates/portforwarding/overview.html:43
+#, fuzzy
+msgid "Device"
+msgstr "Servicios"
+
+#: app/templates/portforwarding/overview.html:45
+msgid "Access rights"
+msgstr ""
+
+#: app/templates/portforwarding/overview.html:70
+#, fuzzy
+msgid "New forwarding"
+msgstr "Compañero nuevo"
 
 #: app/templates/storage/overview.html:21
 msgid "Configure external storage devices."
@@ -1775,10 +1865,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Friesland"
 #~ msgstr "Suiza"
-
-#, fuzzy
-#~ msgid "Levice"
-#~ msgstr "Servicios"
 
 #, fuzzy
 #~ msgid "Sobrance"
