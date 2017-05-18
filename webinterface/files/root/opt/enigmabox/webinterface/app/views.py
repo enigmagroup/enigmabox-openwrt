@@ -1028,9 +1028,12 @@ def portforwarding_edit(request, port=None):
             p.description = cd['description'].strip()
             p.access = 'none'
             p.save()
-            pfa = PortforwardAccess()
-            pfa.port = cd['port']
-            pfa.save()
+            try:
+                pfa = PortforwardAccess()
+                pfa.port = cd['port']
+                pfa.save()
+            except Exception:
+                pass
             o = Option()
             o.config_changed(True)
             return redirect('/portforwarding/')
