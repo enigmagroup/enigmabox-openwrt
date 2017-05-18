@@ -1067,7 +1067,7 @@ def portforwarding_setaccess(request, port=None, mode="none"):
             addresses = Address.objects.all().order_by('id')
 
         access_list = PortforwardAccess.objects.get(port=port).addresses.all()
-        if len(access_list) == len(addresses):
+        if len(access_list) == len(Address.objects.all()):
             addresses = []
 
         if request.POST.get('grant'):
@@ -1207,7 +1207,7 @@ def hypesites_access(request, webservice):
         ha.appname = webservice
         ha.save()
         access_list = HypeAccess.objects.get(appname=webservice).addresses.all()
-    if len(access_list) == len(addresses):
+    if len(access_list) == len(Address.objects.all()):
         addresses = []
 
     if request.POST.get('access_all'):
