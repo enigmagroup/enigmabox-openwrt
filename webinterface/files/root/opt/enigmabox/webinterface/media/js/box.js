@@ -324,4 +324,19 @@ $(function() {
         $('#lan_range_second').val(lan_second);
     });
 
+    $('.portforwarding-status').each(function(i, p) {
+        var port = $(p).data('port');
+        $.get('/portforwarding/' + port + '/check/', function(data) {
+            try {
+                if(data.result == 'up') {
+                    $(p).html('<span class="label label-success">Up</span>');
+                } else {
+                    throw false;
+                }
+            } catch(e) {
+                $(p).html('<span class="label label-default">Down</span>');
+            }
+        });
+    });
+
 });

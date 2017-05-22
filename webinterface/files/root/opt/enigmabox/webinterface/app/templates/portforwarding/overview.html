@@ -32,7 +32,7 @@
 
         <!-- Content -->
         <div class="row">
-            <div class="col-sm-12 col-md-10 col-lg-8">
+            <div class="col-sm-12 col-md-11 col-lg-9">
                 <div class="block-section">
 
                     {% if portforwardings %}
@@ -41,6 +41,7 @@
                               <tr>
                                 <th>{% trans "Port" %}</th>
                                 <th>{% trans "Device" %}</th>
+                                <th>{% trans "Status" %}</th>
                                 <th>{% trans "Description" %}</th>
                                 <th>{% trans "Access rights" %}</th>
                               </tr>
@@ -50,6 +51,7 @@
                             <tr>
                                 <td><a href="{% url app.views.portforwarding_edit pfw.port %}">{{ pfw.port }}</a></td>
                                 <td>{% hw_ip pfw.hw_address arp_table %}:<span style="color: #999;">{{ pfw.dstport }}</span></td>
+                                <td class="portforwarding-status" data-port="{{ pfw.port }}">Checking...</td>
                                 <td>{{ pfw.description }}</td>
                                 <td>
                                     <!-- Button -->
@@ -60,7 +62,6 @@
                                         <a href="/portforwarding/{{ pfw.port }}/set_access/none/" id="access_none" name="access_none" class="btn btn-{% btn_state pfw.access 'none' 'info' 'default' %}">{% trans "Off" %}</a>
                                       </div>
                                 </td>
-
                             </tr>
                             {% endfor %}
                             </tbody>
