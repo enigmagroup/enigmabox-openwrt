@@ -1106,17 +1106,31 @@ def portforwarding_check(request, port=None):
     resp = {}
     resp['result'] = 'failed'
 
+    try:
+        p = Portforward.objects.get(port=port)
+        arp_table = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0]
+    except Exception:
+        resp['msg'] = 'port not found or arp table lookup failed'
+        return HttpResponse(json.dumps(resp), content_type='application/json')
+
+    try:
+        mapping = {line.split()[3]: line.split()[0] for line in arp_table.strip().split('\n')}
+        ip = mapping[p.hw_address]
+    except Exception:
+        resp['msg'] = 'IP not found'
+        ip = '-'
+
     s = socket.socket()
     s.settimeout(1)
-    address = '127.0.0.1'
-    port = 80
+    address = ip
+    port = port
 
     try:
         s.connect((address, port))
         if s is not None:
             resp['result'] = 'up'
     except Exception:
-        pass
+        resp['msg'] = 'connect failed'
     finally:
         s.close()
 
