@@ -1100,6 +1100,28 @@ def portforwarding_setaccess(request, port=None, mode="none"):
     else:
         return redirect('/portforwarding/')
 
+def portforwarding_check(request, port=None):
+    import socket
+
+    resp = {}
+    resp['result'] = 'failed'
+
+    s = socket.socket()
+    s.settimeout(1)
+    address = '127.0.0.1'
+    port = 80
+
+    try:
+        s.connect((address, port))
+        if s is not None:
+            resp['result'] = 'up'
+    except Exception:
+        pass
+    finally:
+        s.close()
+
+    return HttpResponse(json.dumps(resp), content_type='application/json')
+
 
 
 # Teletext
