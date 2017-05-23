@@ -74,39 +74,33 @@ def home(request):
     global_hostname = o.get_value('global_hostname', '')
     global_phone = o.get_value('global_phone', '')
 
-    try:
-        network_devices = {}
-        #arp = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
-        arp = Popen(["cat", "/tmp/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
-        arp = arp[1:]
-        for device in arp:
-            network_devices.append({
-                'ip': re.split(r' +', device)[0],
-                'mac': re.split(r' +', device)[3],
-                'device': re.split(r' +', device)[5],
-            })
-    except Exception:
-        network_devices = {}
-
+    network_devices = {}
     network_devices["internet"] = []
     network_devices["lan1"] = []
     network_devices["lan2"] = []
 
-    network_devices["internet"].append({
-        'ip': "192.168.100.1",
-        'portfwd': [22,80,5900],
-    })
-    network_devices["lan1"].append({
-        'ip': "192.168.100.40",
-        'portfwd': [22,80,5900],
-    })
-    network_devices["lan1"].append({
-        'ip': "192.168.100.50",
-        'portfwd': [22,80,5900],
-    })
-    network_devices["lan2"].append({
-        'ip': "192.168.101.50",
-    })
+    try:
+        #arp = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
+        arp = Popen(["cat", "/tmp/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
+        arp = arp[1:]
+        for device in arp:
+            ip = re.split(r' +', device)[0]
+            mac = re.split(r' +', device)[3]
+            iface = re.split(r' +', device)[5]
+
+            if iface == "eth2":
+                interface = "internet"
+            if iface == "eth1":
+                interface = "lan1"
+            if iface == "eth0":
+                interface = "lan2"
+
+            network_devices[interface].append({
+                'ip': ip,
+            })
+
+    except Exception:
+        network_devices = {}
 
     countries_trans = {
         'ch': _('Switzerland'),
