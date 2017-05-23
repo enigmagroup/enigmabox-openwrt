@@ -75,8 +75,9 @@ def home(request):
     global_phone = o.get_value('global_phone', '')
 
     try:
-        network_devices = []
-        arp = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
+        network_devices = {}
+        #arp = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
+        arp = Popen(["cat", "/tmp/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
         arp = arp[1:]
         for device in arp:
             network_devices.append({
@@ -85,7 +86,27 @@ def home(request):
                 'device': re.split(r' +', device)[5],
             })
     except Exception:
-        network_devices = []
+        network_devices = {}
+
+    network_devices["internet"] = []
+    network_devices["lan1"] = []
+    network_devices["lan2"] = []
+
+    network_devices["internet"].append({
+        'ip': "192.168.100.1",
+        'portfwd': [22,80,5900],
+    })
+    network_devices["lan1"].append({
+        'ip': "192.168.100.40",
+        'portfwd': [22,80,5900],
+    })
+    network_devices["lan1"].append({
+        'ip': "192.168.100.50",
+        'portfwd': [22,80,5900],
+    })
+    network_devices["lan2"].append({
+        'ip': "192.168.101.50",
+    })
 
     countries_trans = {
         'ch': _('Switzerland'),
