@@ -104,8 +104,7 @@ def home(request):
         }
 
     try:
-        #arp = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
-        arp = Popen(["cat", "/tmp/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
+        arp = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
         arp = arp[1:]
         for device in arp:
             ip = re.split(r' +', device)[0]
