@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigmabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-18 09:03+0200\n"
-"PO-Revision-Date: 2017-05-18 09:03+0200\n"
+"POT-Creation-Date: 2017-05-23 16:38+0200\n"
+"PO-Revision-Date: 2017-05-23 16:39+0200\n"
 "Last-Translator: Agent 42 <42@enigmabox.net>\n"
 "Language-Team: Agent 42 <42@enigmabox.net>\n"
 "Language: de\n"
@@ -30,31 +30,31 @@ msgstr "Englisch"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: app/views.py:91 app/views.py:798
+#: app/views.py:138 app/views.py:845
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: app/views.py:92 app/views.py:799
+#: app/views.py:139 app/views.py:846
 msgid "Sweden"
 msgstr "Schweden"
 
-#: app/views.py:93 app/views.py:800
+#: app/views.py:140 app/views.py:847
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: app/views.py:94 app/views.py:801
+#: app/views.py:141 app/views.py:848
 msgid "Mother Russia"
 msgstr "Mütterchen Russland"
 
-#: app/views.py:95 app/views.py:802
+#: app/views.py:142 app/views.py:849
 msgid "France"
 msgstr "Frankreich"
 
-#: app/views.py:96 app/views.py:803
+#: app/views.py:143 app/views.py:850
 msgid "Germany"
 msgstr "Deutschland"
 
-#: app/views.py:97 app/views.py:804
+#: app/views.py:144 app/views.py:851
 msgid "United Stasi of America"
 msgstr "Vereinigte Daten von Amerika"
 
@@ -168,7 +168,7 @@ msgstr "Dienste"
 msgid "Hypesites"
 msgstr "Hypesites"
 
-#: app/templates/base.html:134 app/templates/home/system_status.html:100
+#: app/templates/base.html:134 app/templates/home/system_status.html:114
 #: app/templates/teletext/overview.html:8
 #: app/templates/teletext/overview.html:17
 msgid "Teletext"
@@ -232,6 +232,7 @@ msgstr "Telefonnummer"
 
 #: app/templates/addressbook/address_table.html:10
 #: app/templates/addressbook/overview-global.html:50
+#: app/templates/portforwarding/overview.html:44
 #: app/templates/storage/overview.html:39
 msgid "Status"
 msgstr "Status"
@@ -296,7 +297,7 @@ msgstr "Globale Adresse setzen"
 #: app/templates/addressbook/overview-global.html:17
 #: app/templates/addressbook/overview.html:8
 #: app/templates/addressbook/overview.html:17
-#: app/templates/home/system_status.html:84
+#: app/templates/home/system_status.html:98
 msgid "Address book"
 msgstr "Adressbuch"
 
@@ -671,52 +672,60 @@ msgstr "Konfigurieren..."
 msgid "Network devices"
 msgstr "Netzwerkgeräte"
 
-#: app/templates/home/system_status.html:83
+#: app/templates/home/system_status.html:69
+msgid "Interface"
+msgstr "Anschluss"
+
+#: app/templates/home/system_status.html:71
+msgid "Port forwardings"
+msgstr "Portweiterleitungen"
+
+#: app/templates/home/system_status.html:97
 msgid "Applications"
 msgstr "Anwendungen"
 
-#: app/templates/home/system_status.html:85
+#: app/templates/home/system_status.html:99
 msgid "Web mail"
 msgstr "Webmail"
 
-#: app/templates/home/system_status.html:86
+#: app/templates/home/system_status.html:100
 msgid "Configure Hypesite services..."
 msgstr "Hypesite-Dienste konfigurieren..."
 
-#: app/templates/home/system_status.html:88
+#: app/templates/home/system_status.html:102
 #: app/templates/hypesites/configure.html:54
 msgid "Personal website"
 msgstr "Eigene Website"
 
-#: app/templates/home/system_status.html:91
+#: app/templates/home/system_status.html:105
 #: app/templates/hypesites/configure.html:78
 msgid "Wiki"
 msgstr "Wiki"
 
-#: app/templates/home/system_status.html:94
+#: app/templates/home/system_status.html:108
 #: app/templates/hypesites/configure.html:102
 msgid "OwnCloud"
 msgstr "OwnCloud"
 
-#: app/templates/home/system_status.html:97
+#: app/templates/home/system_status.html:111
 #: app/templates/hypesites/configure.html:126
 msgid "Pastebin"
 msgstr "Pastebin"
 
-#: app/templates/home/system_status.html:104
+#: app/templates/home/system_status.html:118
 msgid "SSH access"
 msgstr "SSH-Zugang"
 
-#: app/templates/home/system_status.html:106
+#: app/templates/home/system_status.html:120
 msgid "Server"
 msgstr "Server"
 
-#: app/templates/home/system_status.html:107
+#: app/templates/home/system_status.html:121
 #: app/templates/passwords/edit.html:48
 msgid "Username"
 msgstr "Benutzername"
 
-#: app/templates/home/system_status.html:108
+#: app/templates/home/system_status.html:122
 #: app/templates/passwords/edit.html:57 app/templates/passwords/edit.html:59
 #: app/templates/peerings/detail.html:58 app/templates/peerings/detail.html:60
 #: app/templates/peerings/overview.html:102
@@ -743,13 +752,13 @@ msgid "Hypesites webserver firewall configuration"
 msgstr "Hypesites Webserver Firewallkonfiguration"
 
 #: app/templates/hypesites/configure.html:39
-#: app/templates/portforwarding/overview.html:57
+#: app/templates/portforwarding/overview.html:59
 msgid "Global"
 msgstr "Global"
 
 #: app/templates/hypesites/configure.html:40
 #: app/templates/hypesites/manage_access.html:38
-#: app/templates/portforwarding/overview.html:58
+#: app/templates/portforwarding/overview.html:60
 msgid "Friends only"
 msgstr "Nur Freunde"
 
@@ -758,7 +767,7 @@ msgid "Internal LAN"
 msgstr "Internes LAN"
 
 #: app/templates/hypesites/configure.html:42
-#: app/templates/portforwarding/overview.html:60
+#: app/templates/portforwarding/overview.html:62
 msgid "Off"
 msgstr "Keiner"
 
@@ -809,7 +818,7 @@ msgid "All"
 msgstr "Alle"
 
 #: app/templates/hypesites/manage_access.html:39
-#: app/templates/portforwarding/overview.html:59
+#: app/templates/portforwarding/overview.html:61
 msgid "Specific IPs..."
 msgstr "Spezifische IP..."
 
@@ -926,7 +935,7 @@ msgstr "publickey.k"
 #: app/templates/peerings/detail.html:66
 #: app/templates/peerings/overview.html:39
 #: app/templates/portforwarding/detail.html:76
-#: app/templates/portforwarding/overview.html:44
+#: app/templates/portforwarding/overview.html:45
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -1029,11 +1038,11 @@ msgstr "Gerät in deinem LAN"
 msgid "Device"
 msgstr "Gerät"
 
-#: app/templates/portforwarding/overview.html:45
+#: app/templates/portforwarding/overview.html:46
 msgid "Access rights"
 msgstr "Zugriffsrechte"
 
-#: app/templates/portforwarding/overview.html:70
+#: app/templates/portforwarding/overview.html:71
 msgid "New forwarding"
 msgstr "Neue Portweiterleitung"
 
@@ -1598,6 +1607,3 @@ msgstr "benutzt"
 
 #~ msgid "Set passwords. Empty value: Password is inactive."
 #~ msgstr "Passwörter setzen. Leerer Wert = Passwort ist nicht aktiv."
-
-#~ msgid "Webinterface"
-#~ msgstr "Webinterface"

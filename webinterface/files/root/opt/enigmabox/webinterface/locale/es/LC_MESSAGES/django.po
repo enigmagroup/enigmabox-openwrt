@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-18 09:03+0200\n"
+"POT-Creation-Date: 2017-05-23 16:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Stefan <abulavia@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,32 +30,32 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: app/views.py:91 app/views.py:798
+#: app/views.py:138 app/views.py:845
 msgid "Switzerland"
 msgstr "Suiza"
 
-#: app/views.py:92 app/views.py:799
+#: app/views.py:139 app/views.py:846
 msgid "Sweden"
 msgstr ""
 
-#: app/views.py:93 app/views.py:800
+#: app/views.py:140 app/views.py:847
 msgid "Hungary"
 msgstr "Hungría"
 
-#: app/views.py:94 app/views.py:801
+#: app/views.py:141 app/views.py:848
 msgid "Mother Russia"
 msgstr ""
 
-#: app/views.py:95 app/views.py:802
+#: app/views.py:142 app/views.py:849
 msgid "France"
 msgstr "Francia"
 
-#: app/views.py:96 app/views.py:803
+#: app/views.py:143 app/views.py:850
 #, fuzzy
 msgid "Germany"
 msgstr "Alemán"
 
-#: app/views.py:97 app/views.py:804
+#: app/views.py:144 app/views.py:851
 msgid "United Stasi of America"
 msgstr "Estados Unidos"
 
@@ -171,7 +171,7 @@ msgstr "Servicios"
 msgid "Hypesites"
 msgstr ""
 
-#: app/templates/base.html:134 app/templates/home/system_status.html:100
+#: app/templates/base.html:134 app/templates/home/system_status.html:114
 #: app/templates/teletext/overview.html:8
 #: app/templates/teletext/overview.html:17
 msgid "Teletext"
@@ -236,6 +236,7 @@ msgstr "Número teléfono"
 
 #: app/templates/addressbook/address_table.html:10
 #: app/templates/addressbook/overview-global.html:50
+#: app/templates/portforwarding/overview.html:44
 #: app/templates/storage/overview.html:39
 msgid "Status"
 msgstr "Estado"
@@ -302,7 +303,7 @@ msgstr "Libreta de direcciones"
 #: app/templates/addressbook/overview-global.html:17
 #: app/templates/addressbook/overview.html:8
 #: app/templates/addressbook/overview.html:17
-#: app/templates/home/system_status.html:84
+#: app/templates/home/system_status.html:98
 #, fuzzy
 msgid "Address book"
 msgstr "Libreta de direcciones"
@@ -704,54 +705,64 @@ msgstr "Confirmar cambios"
 msgid "Network devices"
 msgstr "Dirección de red valida hasta"
 
-#: app/templates/home/system_status.html:83
+#: app/templates/home/system_status.html:69
+#, fuzzy
+msgid "Interface"
+msgstr "Interfaz web"
+
+#: app/templates/home/system_status.html:71
+#, fuzzy
+msgid "Port forwardings"
+msgstr "Compañero nuevo"
+
+#: app/templates/home/system_status.html:97
 msgid "Applications"
 msgstr "Aplicaciones"
 
-#: app/templates/home/system_status.html:85
+#: app/templates/home/system_status.html:99
 #, fuzzy
 msgid "Web mail"
 msgstr "E mail web"
 
-#: app/templates/home/system_status.html:86
+#: app/templates/home/system_status.html:100
 msgid "Configure Hypesite services..."
 msgstr ""
 
-#: app/templates/home/system_status.html:88
+#: app/templates/home/system_status.html:102
 #: app/templates/hypesites/configure.html:54
 #, fuzzy
 msgid "Personal website"
 msgstr "Información compañero"
 
-#: app/templates/home/system_status.html:91
+#: app/templates/home/system_status.html:105
 #: app/templates/hypesites/configure.html:78
 msgid "Wiki"
 msgstr ""
 
-#: app/templates/home/system_status.html:94
+#: app/templates/home/system_status.html:108
 #: app/templates/hypesites/configure.html:102
 msgid "OwnCloud"
 msgstr ""
 
-#: app/templates/home/system_status.html:97
+#: app/templates/home/system_status.html:111
 #: app/templates/hypesites/configure.html:126
 msgid "Pastebin"
 msgstr ""
 
-#: app/templates/home/system_status.html:104
+#: app/templates/home/system_status.html:118
 msgid "SSH access"
 msgstr "Dirección SSH"
 
-#: app/templates/home/system_status.html:106
+#: app/templates/home/system_status.html:120
 msgid "Server"
 msgstr "Servidor"
 
-#: app/templates/home/system_status.html:107
+#: app/templates/home/system_status.html:121
 #: app/templates/passwords/edit.html:48
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: app/templates/home/system_status.html:108
+#: app/templates/home/system_status.html:122
 #: app/templates/passwords/edit.html:57 app/templates/passwords/edit.html:59
 #: app/templates/peerings/detail.html:58 app/templates/peerings/detail.html:60
 #: app/templates/peerings/overview.html:102
@@ -781,13 +792,13 @@ msgid "Hypesites webserver firewall configuration"
 msgstr "Configuración general"
 
 #: app/templates/hypesites/configure.html:39
-#: app/templates/portforwarding/overview.html:57
+#: app/templates/portforwarding/overview.html:59
 msgid "Global"
 msgstr ""
 
 #: app/templates/hypesites/configure.html:40
 #: app/templates/hypesites/manage_access.html:38
-#: app/templates/portforwarding/overview.html:58
+#: app/templates/portforwarding/overview.html:60
 msgid "Friends only"
 msgstr ""
 
@@ -797,7 +808,7 @@ msgid "Internal LAN"
 msgstr "Internet"
 
 #: app/templates/hypesites/configure.html:42
-#: app/templates/portforwarding/overview.html:60
+#: app/templates/portforwarding/overview.html:62
 msgid "Off"
 msgstr ""
 
@@ -851,7 +862,7 @@ msgid "All"
 msgstr ""
 
 #: app/templates/hypesites/manage_access.html:39
-#: app/templates/portforwarding/overview.html:59
+#: app/templates/portforwarding/overview.html:61
 msgid "Specific IPs..."
 msgstr ""
 
@@ -974,7 +985,7 @@ msgstr "llavepública.k"
 #: app/templates/peerings/detail.html:66
 #: app/templates/peerings/overview.html:39
 #: app/templates/portforwarding/detail.html:76
-#: app/templates/portforwarding/overview.html:44
+#: app/templates/portforwarding/overview.html:45
 msgid "Description"
 msgstr "Descripción"
 
@@ -1082,11 +1093,11 @@ msgstr ""
 msgid "Device"
 msgstr "Servicios"
 
-#: app/templates/portforwarding/overview.html:45
+#: app/templates/portforwarding/overview.html:46
 msgid "Access rights"
 msgstr ""
 
-#: app/templates/portforwarding/overview.html:70
+#: app/templates/portforwarding/overview.html:71
 #, fuzzy
 msgid "New forwarding"
 msgstr "Compañero nuevo"
@@ -1602,9 +1613,6 @@ msgstr ""
 
 #~ msgid "Set passwords. Empty value: Password is inactive."
 #~ msgstr "Poner contraseñas.valor vacío:Contraseña es inactivo"
-
-#~ msgid "Webinterface"
-#~ msgstr "Interfaz web"
 
 #, fuzzy
 #~ msgid "Danish"
