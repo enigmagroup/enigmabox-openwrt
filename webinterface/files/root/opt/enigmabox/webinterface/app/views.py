@@ -80,6 +80,30 @@ def home(request):
     network_devices["lan2"] = []
 
     try:
+        with open('/etc/enigmabox/network-profile', 'r') as f:
+            network_profile = f.read().strip()
+    except Exception:
+        network_profile = 'apu'
+
+    if network_profile == 'alix':
+        iface_map = {
+            "eth0": "internet",
+            "eth1": "lan1",
+            "eth2": "lan2",
+        }
+    if network_profile == 'apu':
+        iface_map = {
+            "eth2": "internet",
+            "eth1": "lan1",
+            "eth0": "lan2",
+        }
+    if network_profile == 'raspi':
+        iface_map = {
+            "eth1": "internet",
+            "eth0": "lan1",
+        }
+
+    try:
         #arp = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
         arp = Popen(["cat", "/tmp/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
         arp = arp[1:]
@@ -88,16 +112,25 @@ def home(request):
             mac = re.split(r' +', device)[3]
             iface = re.split(r' +', device)[5]
 
-            if iface == "eth2":
-                interface = "internet"
-            if iface == "eth1":
-                interface = "lan1"
-            if iface == "eth0":
-                interface = "lan2"
+            interface = iface_map[iface]
 
             network_devices[interface].append({
                 'ip': ip,
             })
+
+            try:
+                ports = []
+                db_ports = Portforward.objects.filter(hw_address=mac)
+                for p in db_ports:
+                    ports.append(str(p.dstport))
+
+                max_ports_to_display = 3
+                if len(ports) > max_ports_to_display:
+                    ports = ports[0:max_ports_to_display]
+                    ports.append("...")
+                network_devices[interface][-1]["portfwd"] = ", ".join(ports)
+            except Exception:
+                pass
 
     except Exception:
         network_devices = {}

@@ -74,21 +74,21 @@
             <tr>
                 <td>{% if forloop.first %}Internet{% endif %}<td>
                 <td>{{ device.ip }}<td>
-                <td>{{ device.portfwd }}<td>
+                <td><a href="/portforwarding/">{{ device.portfwd }}</a><td>
             </tr>
             {% endfor %}
             {% for device in network_devices.lan1 %}
             <tr>
                 <td>{% if forloop.first %}LAN 1{% endif %}<td>
                 <td>{{ device.ip }}<td>
-                <td>{{ device.portfwd }}<td>
+                <td><a href="/portforwarding/">{{ device.portfwd }}</a><td>
             </tr>
             {% endfor %}
             {% for device in network_devices.lan2 %}
             <tr>
                 <td>{% if forloop.first %}LAN 2{% endif %}<td>
                 <td>{{ device.ip }}<td>
-                <td>{{ device.portfwd }}<td>
+                <td><a href="/portforwarding/">{{ device.portfwd }}</a><td>
             </tr>
             {% endfor %}
         </table>
