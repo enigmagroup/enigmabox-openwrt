@@ -1123,7 +1123,7 @@ def portforwarding_check(request, port=None):
     s = socket.socket()
     s.settimeout(1)
     address = ip
-    port = port
+    port = int(port)
 
     try:
         s.connect((address, port))
