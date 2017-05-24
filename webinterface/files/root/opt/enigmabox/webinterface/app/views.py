@@ -404,7 +404,6 @@ def updates(request):
     o = Option()
     output_window = False
     loader_hint = ''
-    output_type = 'updater_running'
 
     if o.get_value('autoupdates', None) == None:
         o.set_value('autoupdates', '1')
@@ -437,7 +436,6 @@ def updates(request):
     return render_to_response('updates/overview.html', {
         'output_window': output_window,
         'loader_hint': loader_hint,
-        'output_type': output_type,
         'upgradables': upgradables,
         'autoupdates': o.get_value('autoupdates'),
     }, context_instance=RequestContext(request))
