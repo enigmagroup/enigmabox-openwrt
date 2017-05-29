@@ -199,6 +199,9 @@ $(function() {
         return false;
     });
 
+    var applyval = 0;
+    var prev_data = '';
+
     var $backupwindow = $('.backupwindow');
     if ($backupwindow.length){
         var prev_data = '';
@@ -214,8 +217,20 @@ $(function() {
         }, 1000);
     }
 
-    var applyval = 0;
-    var prev_data = '';
+    var $wificonnect = $('.wifi-connect');
+    if ($wificonnect.length){
+        var prev_data = '';
+        setInterval(function() {
+            $dynamic_output.load('/dynamic_output/', function(data) {
+                if(data != prev_data){
+                    $('.dynamic-output').animate({
+                        scrollTop: $('.dynamic-output')[0].scrollHeight
+                    }, 1000);
+                    prev_data = data;
+                }
+            });
+        }, 1000);
+    }
 
     $('#button-apply').on('click', function() {
         var self = this;
@@ -322,6 +337,21 @@ $(function() {
         var lan_first = parseInt($('#lan_range_first').val(), 10);
         var lan_second = lan_first + 1;
         $('#lan_range_second').val(lan_second);
+    });
+
+    $('.portforwarding-status').each(function(i, p) {
+        var port = $(p).data('port');
+        $.get('/portforwarding/' + port + '/check/', function(data) {
+            try {
+                if(data.result == 'up') {
+                    $(p).html('<span class="label label-success">Up</span>');
+                } else {
+                    throw false;
+                }
+            } catch(e) {
+                $(p).html('<span class="label label-default">Down</span>');
+            }
+        });
     });
 
 });

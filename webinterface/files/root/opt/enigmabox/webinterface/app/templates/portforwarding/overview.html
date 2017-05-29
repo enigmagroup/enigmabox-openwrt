@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>{% trans "Port forwarding" %}</li>
+    </ul>
+    <!-- END Breadcrumbs -->
+
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            <h2><strong>{% trans "Port forwarding" %}</strong></h2>
+        </div>
+        <!-- END Title -->
+
+      <p>{% trans "Forward ports to devices in your LAN." %}</p>
+      <strong>{% trans "Example:" %}</strong>
+      <p>
+        <span data-toggle="tooltip" data-placement="bottom" title="{% trans "Your IPv6 address" %}" style="color: #999;">[{{ ipv6 }}]:</span><span data-toggle="tooltip" data-placement="bottom" title="{% trans "Port" %}">2020</span>
+        &rarr;
+        <span data-toggle="tooltip" data-placement="bottom" title="{% trans "Device in your LAN" %}" style="color: #999;">192.168.100.50:</span><span data-toggle="tooltip" data-placement="bottom" title="{% trans "Destination Port" %}">22</span>
+      </p>
+
+        <form method="post" class="form-horizontal">
+        {% csrf_token %}
+        <fieldset>
+
+        <!-- Content -->
+        <div class="row">
+            <div class="col-sm-12 col-md-11 col-lg-9">
+                <div class="block-section">
+
+                    {% if portforwardings %}
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead>
+                              <tr>
+                                <th>{% trans "Port" %}</th>
+                                <th>{% trans "Device" %}</th>
+                                <th>{% trans "Status" %}</th>
+                                <th>{% trans "Description" %}</th>
+                                <th>{% trans "Access rights" %}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for pfw in portforwardings %}
+                            <tr>
+                                <td><a href="{% url app.views.portforwarding_edit pfw.port %}">{{ pfw.port }}</a></td>
+                                <td>{% hw_ip pfw.hw_address arp_table %}:<span style="color: #999;">{{ pfw.dstport }}</span></td>
+                                <td class="portforwarding-status" data-port="{{ pfw.port }}">Checking...</td>
+                                <td>{{ pfw.description }}</td>
+                                <td>
+                                    <!-- Button -->
+                                      <div class="col-md-12 btn-group btn-group-xs">
+                                        <a href="/portforwarding/{{ pfw.port }}/set_access/global/" id="access_global" name="access_global" class="btn btn-{% btn_state pfw.access 'global' 'info' 'default' %}">{% trans "Global" %}</a>
+                                        <a href="/portforwarding/{{ pfw.port }}/set_access/friends/" id="access_friends" name="access_friends" class="btn btn-{% btn_state pfw.access 'friends' 'info' 'default' %}">{% trans "Friends only" %}</a>
+                                        <a href="/portforwarding/{{ pfw.port }}/set_access/specific/" id="access_specific" name="access_specific" class="btn btn-{% btn_state pfw.access 'specific' 'info' 'default' %}">{% trans "Specific IPs..." %}</a>
+                                        <a href="/portforwarding/{{ pfw.port }}/set_access/none/" id="access_none" name="access_none" class="btn btn-{% btn_state pfw.access 'none' 'info' 'default' %}">{% trans "Off" %}</a>
+                                      </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+
+                    <a href="/portforwarding/new/" class="btn btn-info btn-alt">{% trans "New forwarding" %}</a>
+
+                </div>
+            </div>
+        </div>
+
+        </fieldset>
+        </form>
+
+    </div>
+{% endblock %}

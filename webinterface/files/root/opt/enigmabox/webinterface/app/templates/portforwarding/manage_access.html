@@ -5,9 +5,8 @@
 {% block main %}
     <!-- Breadcrumbs -->
     <ul class="breadcrumb breadcrumb-top">
-        <li><a href="{% url app.views.hypesites %}">{% trans "Hypesites" %}</a></li>
-        <li><a href="{% url app.views.configure_hypesites %}">{% trans "Configure" %}</a></li>
-        <li class="active">{{ webservice|capfirst }}</li>
+        <li><a href="{% url app.views.portforwarding %}">{% trans "Port forwarding" %}</a></li>
+        <li class="active">{% trans "Manage access" %}</li>
     </ul>
     <!-- END Breadcrumbs -->
 
@@ -16,7 +15,7 @@
 
         <!-- Title -->
         <div class="block-title">
-            <h2><strong>{{ webservice|capfirst }} {% trans "access configuration" %}</strong></h2>
+            <h2><strong>{% trans "access configuration" %} Port {{ port }}</strong></h2>
         </div>
         <!-- END Title -->
 
@@ -24,25 +23,9 @@
         <div class="row">
             <div class="col-sm-12 col-md-10 col-lg-8">
 
-
                 <form method="post" class="form-horizontal">
                 {% csrf_token %}
 
-                <fieldset>
-
-                <!-- Button -->
-                <div class="form-group">
-                  <label class="col-md-4 control-label" for="access_global">{% trans "Allow access" %}</label>
-                  <div class="col-md-8 btn-group">
-                    <button id="access_all" name="access_all" value="1" class="btn btn-{% btn_state hype_access_webservice 'all' 'success' 'default' %}">{% trans "All" %}</button>
-                    <button id="access_friends" name="access_friends" value="1" class="btn btn-{% btn_state hype_access_webservice 'friends' 'warning' 'default' %}">{% trans "Friends only" %}</button>
-                    <button id="access_specific" name="access_specific" value="1" class="btn btn-{% btn_state hype_access_webservice 'specific' 'danger' 'default' %}">{% trans "Specific IPs..." %}</button>
-                  </div>
-                </div>
-
-                </fieldset>
-
-                {% if hypesites_access == 'specific' %}
                 <fieldset>
 
                 <!-- Select Multiple -->
@@ -86,8 +69,18 @@
                 </div>
 
                 </fieldset>
-                {% endif %}
+                </form>
 
+                <form method="post" class="form-horizontal">
+                <fieldset>
+                <legend>{% trans "Save" %}</legend>
+
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <a href="/portforwarding/" class="btn btn-info btn-alt">{% trans "Ok &amp; go back" %}</a>
+                  </div>
+                </div>
+                </fieldset>
                 </form>
 
             </div>

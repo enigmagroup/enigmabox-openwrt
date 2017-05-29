@@ -80,6 +80,16 @@ def peer_status(peer_name, sip_peers):
     return ret
 
 @register.simple_tag
+def hw_ip(hw_address, arp_table):
+    try:
+        mapping = {line.split()[3]: line.split()[0] for line in arp_table.strip().split('\n')}
+        ip = mapping[hw_address]
+    except Exception:
+        ip = '-'
+
+    return ip
+
+@register.simple_tag
 def display_applyconfig_button():
     o = Option(key='config_changed')
     return o

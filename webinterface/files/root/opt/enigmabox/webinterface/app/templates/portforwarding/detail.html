@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load apptags %}
+
+{% block main %}
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a href="/portforwarding/">{% trans "Port forwarding" %}</a></li>
+        {% if port %}
+        <li class="active">{{ port }}</li>
+        {% else %}
+        <li class="active">New</li>
+        {% endif %}
+    </ul>
+    <!-- END Breadcrumbs -->
+
+    <!-- Block -->
+    <div class="block">
+
+        <!-- Title -->
+        <div class="block-title">
+            {% if port %}
+            <h2><strong>{% trans "Edit port forwarding" %}</strong></h2>
+            {% else %}
+            <h2><strong>{% trans "New port forwarding" %}</strong></h2>
+            {% endif %}
+        </div>
+        <!-- END Title -->
+
+        <form method="post" class="form-horizontal">
+        {% csrf_token %}
+        <fieldset>
+
+        <!-- Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block-section">
+
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{% trans "Error" %}:</strong>
+                    {{ form.errors }}
+                    </div>
+                    {% endif %}
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="port">{% trans "Port" %}</label>
+                      <div class="col-md-4">
+                      <input {% form_error form.port.errors %} id="port" name="port" type="text" class="form-control input-md" value="{{ form.port.value }}">
+                      </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="hw_address">{% trans "Destination Device" %}</label>
+                      <div class="col-md-4">
+                        <select id="hw_address" name="hw_address" class="form-control">
+                        {% for device in device_list %}
+                          <option value="{{ device.hw }}" {% if device.hw == form.hw_address.value %}selected="selected"{% endif %}>{{ device.ip }}</option>
+                        {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="dstport">{% trans "Destination Port" %}</label>
+                      <div class="col-md-4">
+                      <input {% form_error form.dstport.errors %} id="dstport" name="dstport" type="text" class="form-control input-md" value="{{ form.dstport.value }}">
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="description">{% trans "Description" %}</label>
+                      <div class="col-md-4">
+                      <input {% form_error form.description.errors %} id="description" name="description" type="text" class="form-control input-md" value="{{ form.description.value }}">
+                      </div>
+                    </div>
+
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="submit"></label>
+                      <div class="col-md-8">
+                        <button id="submit" name="submit" class="btn btn-info btn-alt">{% trans "Save" %}</button>
+                        <a href="/portforwarding/" class="btn btn-default btn-alt">{% trans "Cancel" %}</a>
+                      </div>
+                    </div>
+
+                    {% if port %}
+
+                    <legend>{% trans "Remove port forwarding" %}</legend>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <button id="submit" name="submit" value="delete" class="btn btn-danger confirmation">{% trans "Delete" %}</button>
+                      </div>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+        </fieldset>
+        </form>
+
+    </div>
+
+{% endblock %}

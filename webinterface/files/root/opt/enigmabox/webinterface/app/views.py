@@ -74,18 +74,65 @@ def home(request):
     global_hostname = o.get_value('global_hostname', '')
     global_phone = o.get_value('global_phone', '')
 
+    network_devices = {}
+    network_devices["internet"] = []
+    network_devices["lan1"] = []
+    network_devices["lan2"] = []
+
     try:
-        network_devices = []
+        with open('/etc/enigmabox/network-profile', 'r') as f:
+            network_profile = f.read().strip()
+    except Exception:
+        network_profile = 'apu'
+
+    if network_profile == 'alix':
+        iface_map = {
+            "eth0": "internet",
+            "eth1": "lan1",
+            "eth2": "lan2",
+        }
+    if network_profile == 'apu':
+        iface_map = {
+            "eth2": "internet",
+            "eth1": "lan1",
+            "eth0": "lan2",
+        }
+    if network_profile == 'raspi':
+        iface_map = {
+            "eth1": "internet",
+            "eth0": "lan1",
+        }
+
+    try:
         arp = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0].strip().split('\n')
         arp = arp[1:]
         for device in arp:
-            network_devices.append({
-                'ip': re.split(r' +', device)[0],
-                'mac': re.split(r' +', device)[3],
-                'device': re.split(r' +', device)[5],
+            ip = re.split(r' +', device)[0]
+            mac = re.split(r' +', device)[3]
+            iface = re.split(r' +', device)[5]
+
+            interface = iface_map[iface]
+
+            network_devices[interface].append({
+                'ip': ip,
             })
+
+            try:
+                ports = []
+                db_ports = Portforward.objects.filter(hw_address=mac)
+                for p in db_ports:
+                    ports.append(str(p.dstport))
+
+                max_ports_to_display = 3
+                if len(ports) > max_ports_to_display:
+                    ports = ports[0:max_ports_to_display]
+                    ports.append("...")
+                network_devices[interface][-1]["portfwd"] = ", ".join(ports)
+            except Exception:
+                pass
+
     except Exception:
-        network_devices = []
+        network_devices = {}
 
     countries_trans = {
         'ch': _('Switzerland'),
@@ -357,7 +404,6 @@ def updates(request):
     o = Option()
     output_window = False
     loader_hint = ''
-    output_type = 'updater_running'
 
     if o.get_value('autoupdates', None) == None:
         o.set_value('autoupdates', '1')
@@ -390,7 +436,6 @@ def updates(request):
     return render_to_response('updates/overview.html', {
         'output_window': output_window,
         'loader_hint': loader_hint,
-        'output_type': output_type,
         'upgradables': upgradables,
         'autoupdates': o.get_value('autoupdates'),
     }, context_instance=RequestContext(request))
@@ -950,6 +995,194 @@ def wlan_scan(request):
 
 
 
+# Port forwarding
+
+def portforwarding(request):
+    o = Option()
+
+    # read arp table
+    arp_result = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0]
+
+    return render_to_response('portforwarding/overview.html', {
+        'portforwardings': Portforward.objects.all().order_by('port'),
+        'arp_table': arp_result,
+        'ipv6': o.get_value('ipv6'),
+    }, context_instance=RequestContext(request))
+
+def portforwarding_edit(request, port=None):
+    o = Option()
+    form = ''
+
+    # read arp table
+    arp_result = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0]
+
+    # get internet interface to exclude it later
+    try:
+        with open('/etc/enigmabox/network-profile', 'r') as f:
+            network_profile = f.read().strip()
+    except Exception:
+        network_profile = 'apu'
+
+    if network_profile == 'alix':
+        internet_interface = 'eth0'
+    if network_profile == 'apu':
+        internet_interface = 'eth2'
+    if network_profile == 'raspi':
+        internet_interface = 'eth1'
+
+    # assemble results
+    results = {}
+    r = 0
+    for row in arp_result.split('\n'):
+        results[r] = []
+        fields = row.split(' ')
+        for f in fields:
+            f.strip(' ')
+            if f != '':
+                results[r].append(f)
+        r += 1
+
+    device_list = []
+    for d in range(1, len(results) - 1):
+        if results[d][5] != internet_interface:
+            device_list.append({
+                "ip": results[d][0],
+                "hw": results[d][3],
+            })
+
+    if request.POST:
+        if request.POST.get('submit') == 'delete':
+            p = Portforward.objects.get(port=port)
+            p.delete()
+            pfa = PortforwardAccess.objects.get(port=port)
+            pfa.delete()
+            o = Option()
+            o.config_changed(True)
+            return redirect('/portforwarding/')
+
+        form = PortforwardingForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            if port == None:
+                p = Portforward()
+            else:
+                p = Portforward.objects.get(port=port)
+            p.port = cd['port']
+            p.dstport = cd['dstport']
+            p.hw_address = cd['hw_address'].strip()
+            p.description = cd['description'].strip()
+            p.access = 'none'
+            p.save()
+            try:
+                pfa = PortforwardAccess()
+                pfa.port = cd['port']
+                pfa.save()
+            except Exception:
+                pass
+            o = Option()
+            o.config_changed(True)
+            return redirect('/portforwarding/')
+    else:
+        if port:
+            portforwarding = Portforward.objects.get(port=port)
+            form = PortforwardingForm(initial={
+                'port': portforwarding.port,
+                'dstport': portforwarding.dstport,
+                'hw_address': portforwarding.hw_address,
+                'description': portforwarding.description,
+            })
+
+    return render_to_response('portforwarding/detail.html', {
+        'port': port,
+        'device_list': device_list,
+        'form': form,
+    }, context_instance=RequestContext(request))
+
+def portforwarding_setaccess(request, port=None, mode="none"):
+    o = Option()
+    p = Portforward.objects.get(port=port)
+    p.access = mode
+    p.save()
+    o = Option()
+    o.config_changed(True)
+
+    if mode == "specific":
+        addresses = Address.objects.exclude(pk__in=PortforwardAccess.objects.filter(port=port).values('addresses').query)
+        if len(addresses) == 0:
+            addresses = Address.objects.all().order_by('id')
+
+        access_list = PortforwardAccess.objects.get(port=port).addresses.all()
+        if len(access_list) == len(Address.objects.all()):
+            addresses = []
+
+        if request.POST.get('grant'):
+            portforwardaccess = PortforwardAccess.objects.get(port=port)
+            #portforwardaccess.addresses.clear()
+            userlist = request.POST.getlist('userlist')
+            for address in userlist:
+                db_address = Address.objects.get(ipv6=address)
+                portforwardaccess.addresses.add(db_address)
+                #portforwardaccess.save()
+            o.config_changed(True)
+            return redirect('/portforwarding/' + port + '/set_access/specific/')
+
+        if request.POST.get('revoke'):
+            portforwardaccess = PortforwardAccess.objects.get(port=port)
+            accesslist = request.POST.getlist('accesslist')
+            for address in accesslist:
+                db_address = Address.objects.get(ipv6=address)
+                portforwardaccess.addresses.remove(db_address)
+                #portforwardaccess.save()
+            o.config_changed(True)
+            return redirect('/portforwarding/' + port + '/set_access/specific/')
+
+        return render_to_response('portforwarding/manage_access.html', {
+            'port': port,
+            'addresses': addresses,
+            'access_list': access_list,
+        }, context_instance=RequestContext(request))
+
+    else:
+        return redirect('/portforwarding/')
+
+def portforwarding_check(request, port=None):
+    import socket
+
+    resp = {}
+    resp['result'] = 'failed'
+
+    try:
+        p = Portforward.objects.get(port=port)
+        arp_table = Popen(["cat", "/proc/net/arp"], stdout=PIPE).communicate()[0]
+    except Exception:
+        resp['msg'] = 'port not found or arp table lookup failed'
+        return HttpResponse(json.dumps(resp), content_type='application/json')
+
+    try:
+        mapping = {line.split()[3]: line.split()[0] for line in arp_table.strip().split('\n')}
+        ip = mapping[p.hw_address]
+    except Exception:
+        resp['msg'] = 'IP not found'
+        ip = '-'
+
+    s = socket.socket()
+    s.settimeout(1)
+    address = ip
+    port = int(p.dstport)
+
+    try:
+        s.connect((address, port))
+        if s is not None:
+            resp['result'] = 'up'
+    except Exception:
+        resp['msg'] = 'connect failed'
+    finally:
+        s.close()
+
+    return HttpResponse(json.dumps(resp), content_type='application/json')
+
+
+
 # Teletext
 
 def teletext(request):
@@ -1055,7 +1288,7 @@ def hypesites_access(request, webservice):
         ha.appname = webservice
         ha.save()
         access_list = HypeAccess.objects.get(appname=webservice).addresses.all()
-    if len(access_list) == len(addresses):
+    if len(access_list) == len(Address.objects.all()):
         addresses = []
 
     if request.POST.get('access_all'):
@@ -1566,6 +1799,31 @@ def cfengine_site(request):
     except Exception:
         pass
 
+    volumes = []
+    db_volumes = Volume.objects.filter(use=True).order_by('id')
+    for v in db_volumes:
+        volumes.append({
+            'identifier': v.identifier,
+            'name': v.name,
+        })
+
+    portforwardings = []
+    pfw = Portforward.objects.all().order_by('port')
+    for p in pfw:
+        acl = PortforwardAccess.objects.get(port=p.port).addresses.all()
+        access_list = []
+        for a in acl:
+            access_list.append({
+                'ipv6': a.ipv6,
+            })
+        portforwardings.append({
+            'port': p.port,
+            'mac': p.hw_address,
+            'dstport': p.dstport,
+            'access': p.access,
+            'access_list': access_list,
+        })
+
     webinterface_password = o.get_value('webinterface_password', '')
     mailbox_password = o.get_value(u'mailbox_password')
 
@@ -1719,6 +1977,7 @@ def cfengine_site(request):
         'lan_range_first': o.get_value('lan_range_first', 100),
         'lan_range_second': o.get_value('lan_range_second', 101),
         'peerings': peerings,
+        'portforwardings': portforwardings,
         'internet_gateway': internet_gateway,
         'autopeering': autopeering,
         'allow_peering': o.get_value('allow_peering', 0),

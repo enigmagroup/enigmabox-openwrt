@@ -57,6 +57,13 @@ urlpatterns = patterns('app.views',
     url(r'^wlan_settings/set_opmode/(?P<wlan_opmode>.*)/$', 'set_opmode'),
     url(r'^wlan_settings/$', 'wlan_settings'),
 
+    # port forwarding
+    url(r'^portforwarding/new/$', 'portforwarding_edit'),
+    url(r'^portforwarding/(?P<port>.*)/check/$', 'portforwarding_check'),
+    url(r'^portforwarding/(?P<port>.*)/set_access/(?P<mode>.*)/$', 'portforwarding_setaccess'),
+    url(r'^portforwarding/(?P<port>.*)/$', 'portforwarding_edit'),
+    url(r'^portforwarding/$', 'portforwarding'),
+
     # teletext
     url(r'^teletext/$', 'teletext'),
 

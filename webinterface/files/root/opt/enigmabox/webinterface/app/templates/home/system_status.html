@@ -66,15 +66,29 @@
         <h4>{% trans "Network devices" %}</h4>
         <table class="table table-striped text-left">
             <tr>
-                <th>MAC<th>
+                <th>{% trans "Interface" %}<th>
                 <th>IP<th>
-                <th>Port<th>
+                <th>{% trans "Port forwardings" %}<th>
             </tr>
-            {% for device in network_devices %}
+            {% for device in network_devices.internet %}
             <tr>
-                <td>{{ device.mac }}<td>
+                <td>{% if forloop.first %}Internet{% endif %}<td>
                 <td>{{ device.ip }}<td>
-                <td>{{ device.device }}<td>
+                <td><a href="/portforwarding/">{{ device.portfwd }}</a><td>
+            </tr>
+            {% endfor %}
+            {% for device in network_devices.lan1 %}
+            <tr>
+                <td>{% if forloop.first %}LAN 1{% endif %}<td>
+                <td>{{ device.ip }}<td>
+                <td><a href="/portforwarding/">{{ device.portfwd }}</a><td>
+            </tr>
+            {% endfor %}
+            {% for device in network_devices.lan2 %}
+            <tr>
+                <td>{% if forloop.first %}LAN 2{% endif %}<td>
+                <td>{{ device.ip }}<td>
+                <td><a href="/portforwarding/">{{ device.portfwd }}</a><td>
             </tr>
             {% endfor %}
         </table>

@@ -163,6 +163,45 @@ restart_cjdns() {
     /etc/init.d/cjdns restart
 }
 
+portforwardings() {
+{{#portforwardings}}
+    start_portforwarding "{{port}}" "{{mac}}" "{{dstport}}"
+{{/portforwardings}}
+
+    sleep 1
+
+    # kill disabled tunnels
+    for af in $(netstat -tulpen | grep socat | awk '{ print $4 }' | cut -d: -f4 | sort | uniq); do
+        if [[ $(echo "{{#portforwardings}}{{port}} {{/portforwardings}}" | grep "$af " | wc -l) -eq 0 ]]; then
+            echo "stopping port forwarding $af"
+            kill $(netstat -tulpen | grep ":::$af " | awk '{ print $7 }' | cut -d/ -f1) &> /dev/null
+            kill $(netstat -tulpen | grep ":::$af " | awk '{ print $6 }' | cut -d/ -f1) &> /dev/null
+        fi
+    done
+}
+
+start_portforwarding() {
+    port=$1
+    mac=$2
+    dstport=$3
+
+    # don't start forwarding if ip is not up
+    [[ $(mactoip "$mac") == "" ]] && return
+
+    if [[ "$(netstat -tulpen | grep socat | grep tcp | grep :::$port | wc -l)" -eq 0 ]]; then
+        echo "starting port forwarding $port TCP"
+        /usr/bin/socat TCP6-LISTEN:$port,reuseaddr,fork TCP:$(mactoip "$mac"):$dstport &
+    fi
+    if [[ "$(netstat -tulpen | grep socat | grep udp | grep :::$port | wc -l)" -eq 0 ]]; then
+        echo "starting port forwarding $port UDP"
+        /usr/bin/socat UDP6-LISTEN:$port,reuseaddr,fork UDP:$(mactoip "$mac"):$dstport &
+    fi
+}
+
+mactoip() {
+    cat /proc/net/arp | grep "$1" | cut -d' ' -f1
+}
+
 get_vpn_gateway() {
     ifconfig tun0 2> /dev/null | grep "inet addr" | cut -d: -f2 | awk '{ print $1 }'
 }
@@ -243,6 +282,7 @@ defaultroute() {
 
 set_network_parameters() {
     mtu
+    portforwardings
     original_gateway
     defaultroute
     (
@@ -331,10 +371,10 @@ if [[ -e "/sys/class/net/wlan0" ]]; then
 fi
 
 # set MWI status for the phone
-if [[ $(/usr/bin/find /box/vmail/mail/Maildir/new/ -type f | wc -l) -gt 0 ]]; then
-    /usr/sbin/asterisk -rx 'sip notify set-mwi 100'
+if [[ $(/usr/bin/find /box/vmail/mail/Maildir/new/ -type f 2> /dev/null | wc -l) -gt 0 ]]; then
+    /usr/sbin/asterisk -rx 'sip notify set-mwi 100' &> /dev/null
 else
-    /usr/sbin/asterisk -rx 'sip notify clear-mwi 100'
+    /usr/sbin/asterisk -rx 'sip notify clear-mwi 100' &> /dev/null
 fi
 
 if [[ "$(gateway_is_up)" == "true" ]]; then
