@@ -31,9 +31,9 @@ Then configure for your system:
 
 ## Building firmware for the Banana Pi
 
-"Target System": Allwinner A1x/A20/A3x
+"Target System": **Allwinner A1x/A20/A3x**
 
-"Target Profile": Bananapi
+"Target Profile": **Bananapi**
 
 "Target Images": configure as you please. Example:
 * Root filesystem images:
@@ -60,7 +60,7 @@ Stick to uClibc manually:
 
 "Enigmabox":
 * cfengine-promises: yes
-  * Network profile: Rasperry Pi
+  * Network profile: **Rasperry Pi**
 * provision-grandstream: yes
 * roundcube: yes
 * teletext: yes
@@ -77,4 +77,100 @@ Then:
 After about 30mins (depending on your machine), your image is ready:
 
     bin/sunxi/openwrt-sunxi-Bananapi-sdcard-vfat-ext4.img
+
+## Building firmware for the PC-Engines APU
+
+"Target System": **x86**
+
+"Target Profile": **x86_64**
+
+"Target Images": configure as you please. Example:
+* Root filesystem images:
+  * ext4: yes
+    * Maximum number of inodes in root filesystem: 200000
+    * Create a journaling filesystem: yes
+  * GZip images: no
+* Image Options:
+  * Root filesystem partition size (in MB): 3600
+  * Include kernel in root filesystem: yes
+
+Recently, OpenWrt decided to ~~fuck everything up~~ switch to musl by default.
+
+Stick to uClibc manually:
+
+"Advanced configuration options":
+  * Toolchain Options
+    * C Library implementation
+      * Use uClibc
+
+"Libraries":
+  * libffmpeg-audio-dec
+
+"Enigmabox":
+* cfengine-promises: yes
+  * Network profile: **APU**
+* provision-grandstream: yes
+* roundcube: yes
+* teletext: yes
+* webinterface: yes
+
+The "webinterface" is the most important part, since it's selecting all required dependencies.
+
+Quit and save your .config
+
+Then:
+
+    $ make
+
+After about 30mins (depending on your machine), your image is ready:
+
+    bin/x86-uClibc/openwrt-x86-64-combined-ext4.img
+
+## Building firmware for the PC-Engines Alix
+
+"Target System": **x86**
+
+"Target Profile": **Generic**
+
+"Target Images": configure as you please. Example:
+* Root filesystem images:
+  * ext4: yes
+    * Maximum number of inodes in root filesystem: 200000
+    * Create a journaling filesystem: yes
+  * GZip images: no
+* Image Options:
+  * Root filesystem partition size (in MB): 3600
+  * Include kernel in root filesystem: yes
+
+Recently, OpenWrt decided to ~~fuck everything up~~ switch to musl by default.
+
+Stick to uClibc manually:
+
+"Advanced configuration options":
+  * Toolchain Options
+    * C Library implementation
+      * Use uClibc
+
+"Libraries":
+  * libffmpeg-audio-dec
+
+"Enigmabox":
+* cfengine-promises: yes
+  * Network profile: **ALIX**
+* provision-grandstream: yes
+* roundcube: yes
+* teletext: yes
+* webinterface: yes
+
+The "webinterface" is the most important part, since it's selecting all required dependencies.
+
+Quit and save your .config
+
+Then:
+
+    $ make
+
+After about 30mins (depending on your machine), your image is ready:
+
+    bin/x86-uClibc/openwrt-x86-generic-combined-ext4.img
 
