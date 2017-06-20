@@ -1654,7 +1654,7 @@ def cfengine_site(request):
     is_apu = False
     is_raspi = False
 
-    language = request.session.get('django_language')
+    language = o.get_value('language', 'de')
 
     # get Enigmabox-specific server data, when available
     try:
