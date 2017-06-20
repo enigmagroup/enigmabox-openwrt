@@ -1654,6 +1654,8 @@ def cfengine_site(request):
     is_apu = False
     is_raspi = False
 
+    language = request.session.get('django_language')
+
     # get Enigmabox-specific server data, when available
     try:
         f = open('/box/server.json', 'r')
@@ -1684,12 +1686,16 @@ def cfengine_site(request):
         o.set_value('internet_access', internet_access)
         o.set_value('password', password)
 
-        dt = datetime.strptime(internet_access, '%Y-%m-%d')
+        try:
+            dt = datetime.strptime(internet_access, '%Y-%m-%d')
 
-        if language == 'en':
-            internet_access_formatted = dt.strftime('%m %d, %Y')
-        else:
-            internet_access_formatted = dt.strftime('%d.%m.%Y')
+            if language == 'en':
+                internet_access_formatted = dt.strftime('%m %d, %Y')
+            else:
+                internet_access_formatted = dt.strftime('%d.%m.%Y')
+
+        except Exception:
+            internet_access_formatted = ''
 
         Peering.objects.filter(custom=False).delete()
 
@@ -1970,7 +1976,7 @@ def cfengine_site(request):
         'hostid': hostid,
         'internet_access_formatted': internet_access_formatted,
         'hostid_phonetic': hostid_phonetic,
-        'language': o.get_value('language', 'de'),
+        'language': language,
         'language_de': language_de,
         'language_en': language_en,
         'cjdns_ipv6': cjdns_ipv6,
