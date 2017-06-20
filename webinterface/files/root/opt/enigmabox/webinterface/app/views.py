@@ -1645,6 +1645,7 @@ def cfengine_site(request):
     cjdns_version = 'v16'
     selected_country = o.get_value('selected_country', 'ch')
     hostid = ''
+    internet_access_formatted = ''
     addresses = []
     internet_gateway = []
     peerings = []
@@ -1682,6 +1683,13 @@ def cfengine_site(request):
         o.set_value('hostid', hostid)
         o.set_value('internet_access', internet_access)
         o.set_value('password', password)
+
+        dt = datetime.strptime(internet_access, '%Y-%m-%d')
+
+        if language == 'en':
+            internet_access_formatted = dt.strftime('%m %d, %Y')
+        else:
+            internet_access_formatted = dt.strftime('%d.%m.%Y')
 
         Peering.objects.filter(custom=False).delete()
 
@@ -1950,10 +1958,17 @@ def cfengine_site(request):
     # Transform hostid
     hostid_phonetic = hostid.replace('', ', ')
 
+    # language usable for mustache
+    language_de = language == 'de'
+    language_en = language != 'de'
+
     response_data = {
         'hostid': hostid,
+        'internet_access_formatted': internet_access_formatted,
         'hostid_phonetic': hostid_phonetic,
         'language': o.get_value('language', 'de'),
+        'language_de': language_de,
+        'language_en': language_en,
         'cjdns_ipv6': cjdns_ipv6,
         'cjdns_public_key': cjdns_public_key,
         'cjdns_private_key': cjdns_private_key,
