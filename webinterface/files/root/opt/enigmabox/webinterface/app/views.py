@@ -1959,8 +1959,12 @@ def cfengine_site(request):
     hostid_phonetic = hostid.replace('', ', ')
 
     # language usable for mustache
-    language_de = language == 'de'
-    language_en = language != 'de'
+    try:
+        language_de = language == 'de'
+        language_en = language != 'de'
+    except Exception:
+        language_de = False
+        language_en = True
 
     response_data = {
         'hostid': hostid,
