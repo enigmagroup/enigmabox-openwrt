@@ -1,21 +1,44 @@
 {{#if_language_de}}
 <h1>Enigmabox: Ablauf Abonnement</h1>
 
-<p>Das Abonnement l&auml;uft bald ab oder ist bereits abgelaufen.
-Im <a href="http://box/subscription/">Webinterface</a> kann das Abo verl&auml;ngert werden.
-<a href="http://box/subscription/hide_notice/">Diese Meldung ausblenden</a>.</p>
+<p>
+    Das Abonnement l&auml;uft bald ab oder ist bereits abgelaufen.<br />
+    Im <a href="http://box/subscription/">Webinterface</a> kann das Abo verl&auml;ngert werden.<br />
+    <a href="http://box/subscription/hide_notice/">Diese Meldung ausblenden</a>.
+</p>
 
-<p>Hostid: {{ hostid }}</p>
-<p>Ablaufdatum: {{ internet_access_formatted }}</p>
+<p>
+    Hostid: {{ hostid }}<br />
+    Ablaufdatum: {{ internet_access_formatted }}<br />
+</p>
+
+<h2>Passwort fürs Webinterface vergessen?</h2>
+
+Falls du dein Passwort für die Administrationsoberfläche vergessen hast und nicht mehr darauf zugreifen kannst:
+
+<ul>
+    <li>Stecke den mitgelieferten USB-Stick ein</li>
+    <li>Warte eine Minute</li>
+    <li>Entferne den USB-Stick</li>
+    <li>Du kannst nun auf die Administrationsoberfläche zugreifen</li>
+</ul>
+
+<p>Auf dem USB-Stick ist das SSL-Zertifikat für die Aboverwaltung gespeichert. Es dient auch dazu, Passwörter zurückzusetzen. Die Enigmabox prüft, ob das Zertifikat auf dem Stick dasselbe ist wie im System und setzt dann das Passwort der Administrationsoberfläche zurück.</p>
 {{/if_language_de}}
 
 {{#if_language_en}}
-<h1>Enigmabox: Subscription about to expire</h1>
+<h1>Enigmabox: Subscription expiration notice</h1>
 
-<p>Your subscription is about to expire or already has expired.
-Renew it in the <a href="http://box/subscription/">web interface</a>.
-<a href="http://box/subscription/hide_notice/">Hide this message</a>.</p>
+<p>
+    Your subscription is about to expire or has already expired.<br />
+    Renew it in the <a href="http://box/subscription/">web interface</a>.<br />
+    <a href="http://box/subscription/hide_notice/">Hide this message</a>.
+</p>
 
-<p>Hostid: {{ hostid }}</p>
-<p>Expiration date: {{ internet_access_formatted }}</p>
+<p>
+    Hostid: {{ hostid }}<br />
+    Expiration date: {{ internet_access_formatted }}<br />
+    Forgot webinterface password? Reset it by plugging in the shipped USB stick.
+</p>
 {{/if_lang_en}}
+
