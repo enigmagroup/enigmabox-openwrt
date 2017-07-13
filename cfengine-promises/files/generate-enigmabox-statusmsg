@@ -37,7 +37,7 @@ if [[ "$language" != "de" ]]; then
     if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
         echo "All systems show green, you have internet via $selected_country." >> $statfile
     else
-        echo "Shit, something's wrong." >> $statfile
+        echo "Oh dear, something's wrong." >> $statfile
         if [[ $(cat /tmp/netstat-dhcp) == '1' ]]; then
             echo "I've got an IP from your router." >> $statfile
         else
@@ -88,7 +88,7 @@ else
     if [[ $(cat /tmp/netstat-cjdns_internet) == '1' ]]; then
         echo "Alle Systeme funktionieren einwandfrei, du hast Internet über $selected_country." >> $statfile
     else
-        echo 'Scheisse, hier ist etwas faul.' >> $statfile
+        echo 'Oje, hier ist etwas faul.' >> $statfile
         if [[ $(cat /tmp/netstat-dhcp) == '1' ]]; then
             echo 'Ich habe eine ai pi von deinem Router erhalten.' >> $statfile
         else
