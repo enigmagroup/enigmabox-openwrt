@@ -9,6 +9,10 @@ $HTTP["host"] =~ "^(enigma\.box|box|box\.enigmabox\.net|192.168.{{ lan_range_fir
     # custom error pages
     server.errorfile-prefix = "/opt/enigmabox/webinterface/status-"
 
+    # paths to static files
+    alias.url = ( "/static/" => "/opt/enigmabox/webinterface/static/" )
+    alias.url += ( "/media/" => "/opt/enigmabox/webinterface/media/" )
+
     proxy.server = ( "" =>
         ( (
             "host" => "127.0.0.1",
