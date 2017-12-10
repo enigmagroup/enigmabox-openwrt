@@ -93,7 +93,10 @@ urlpatterns = patterns('app.views',
     url(r'^index\.html$', 'home'),
     url(r'^admin/', include(admin.site.urls)),
 
-    # staticfiles
-    url(r'static/(?P<path>.*)$', 'serve', {'document_root': settings.STATIC_ROOT}),
-    url(r'media/(?P<path>.*)$', 'serve', {'document_root': settings.MEDIA_ROOT}),
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('django.views.static',
+        url(r'static/(?P<path>.*)$', 'serve', {'document_root': settings.STATIC_ROOT}),
+        url(r'media/(?P<path>.*)$', 'serve', {'document_root': settings.MEDIA_ROOT}),
+    )
