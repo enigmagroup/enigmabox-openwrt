@@ -13,11 +13,15 @@ $HTTP["host"] =~ "^(enigma\.box|box|box\.enigmabox\.net|192.168.{{ lan_range_fir
     alias.url = ( "/static/" => "/opt/enigmabox/webinterface/static/" )
     alias.url += ( "/media/" => "/opt/enigmabox/webinterface/media/" )
 
-    proxy.server = ( "" =>
-        ( (
-            "host" => "127.0.0.1",
-            "port" => 8000
-        ) )
-    )
+    $HTTP["url"] !~ "^/static|^/media" {
+
+        proxy.server = ( "" =>
+            ( (
+                "host" => "127.0.0.1",
+                "port" => 8000
+            ) )
+        )
+
+    }
 
 }
