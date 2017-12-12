@@ -11,14 +11,6 @@ bundle agent system_base
       edit_defaults => no_backup,
       classes => if_repaired("restart_lighttpd");
 
-      "/etc/lighttpd/sites.d/webinterface.conf"
-      create => "true",
-      template_method => "mustache",
-      template_data => readjson("$(g.lan_range)", 64000),
-      edit_template => "$(this.promise_dirname)/templates/webinterface-lighttpd-site.conf.mustache",
-      edit_defaults => no_backup,
-      classes => if_repaired("restart_lighttpd");
-
       "/etc/config/network"
       template_method => "mustache",
       template_data => readjson("$(g.lan_range)", 64000),

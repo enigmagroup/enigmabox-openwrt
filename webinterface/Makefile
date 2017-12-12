@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=2.13.0
+PKG_VERSION:=2.13.1
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -70,6 +70,9 @@ define Package/webinterface/install
 
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/usb
 	$(INSTALL_BIN) ./files/trigger-volume-mounter $(1)/etc/hotplug.d/usb/trigger-volume-mounter
+
+	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
+	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/webinterface.conf
 endef
 
 $(eval $(call BuildPackage,webinterface))
