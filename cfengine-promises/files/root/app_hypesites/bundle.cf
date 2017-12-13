@@ -44,6 +44,17 @@ bundle agent app_hypesites
       edit_template => "$(this.promise_dirname)/templates/volumes.mustache",
       edit_defaults => no_backup;
 
+      "/opt/enigmabox/renew-notice/."
+      create => "true";
+
+      "/opt/enigmabox/renew-notice/index.html"
+      create => "true",
+      template_method => "mustache",
+      template_data => readjson("$(g.site)", 64000),
+      edit_template => "$(this.promise_dirname)/templates/renew-notice.mustache",
+      edit_defaults => no_backup,
+      perms => wwwdata;
+
   commands:
     restart_lighttpd::
       "/etc/init.d/lighttpd restart";

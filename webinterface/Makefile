@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=2.9.1
+PKG_VERSION:=2.13.1
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -17,7 +17,7 @@ define Package/webinterface
   DEPENDS+= +asterisk13 +asterisk13-sounds +asterisk13-codec-gsm +asterisk13-format-gsm +asterisk13-format-wav +asterisk13-res-srtp +asterisk13-res-musiconhold +asterisk13-app-confbridge +asterisk13-app-read +asterisk13-res-timing-timerfd +asterisk13-voicemail +asterisk13-format-h264 +asterisk13-app-system +asterisk13-chan-sip +asterisk13-res-rtp-asterisk +asterisk13-codec-ulaw +svox +libffmpeg-audio-dec +sox
   DEPENDS+= +php5 +php5-cgi +php5-cli +php5-mod-mcrypt +php5-mod-pdo-sqlite +php5-mod-mysql +php5-mod-mysqli +php5-mod-session +php5-mod-iconv +php5-mod-json +php5-mod-ctype +php5-mod-dom +php5-mod-gd +php5-mod-hash +php5-mod-mbstring +php5-mod-simplexml +php5-mod-xml +php5-mod-xmlreader +php5-mod-xmlwriter +php5-mod-zip +php5-mod-curl +php5-mod-pdo-mysql +php5-mod-sqlite3 +php5-mod-fileinfo +php5-mod-exif +php5-mod-ftp +@PHP5_FILTER +@PHP5_LIBXML +@BUILD_NLS
   DEPENDS+= +mysql-server
-  DEPENDS+= +lighttpd +lighttpd-mod-auth +lighttpd-mod-access +lighttpd-mod-cgi +lighttpd-mod-fastcgi +lighttpd-mod-proxy +lighttpd-mod-rewrite +lighttpd-mod-setenv
+  DEPENDS+= +lighttpd +lighttpd-mod-auth +lighttpd-mod-access +lighttpd-mod-cgi +lighttpd-mod-fastcgi +lighttpd-mod-proxy +lighttpd-mod-rewrite +lighttpd-mod-setenv +lighttpd-mod-alias
   DEPENDS+= +privoxy
   DEPENDS+= +dovecot +exim4
   DEPENDS+= +cfengine +cfengine-promises
@@ -70,6 +70,9 @@ define Package/webinterface/install
 
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/usb
 	$(INSTALL_BIN) ./files/trigger-volume-mounter $(1)/etc/hotplug.d/usb/trigger-volume-mounter
+
+	$(INSTALL_DIR) $(1)/etc/lighttpd/sites.d
+	$(INSTALL_DATA) ./files/lighttpd-site.conf $(1)/etc/lighttpd/sites.d/webinterface.conf
 endef
 
 $(eval $(call BuildPackage,webinterface))

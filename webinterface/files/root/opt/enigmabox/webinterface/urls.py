@@ -90,6 +90,7 @@ urlpatterns = patterns('app.views',
 
     # rest
     url(r'^$', 'home'),
+    url(r'^index\.html$', 'home'),
     url(r'^admin/', include(admin.site.urls)),
 
 )

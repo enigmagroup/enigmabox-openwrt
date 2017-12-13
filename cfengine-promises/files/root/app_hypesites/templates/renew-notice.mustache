@@ -1,0 +1,44 @@
+{{#if_language_de}}
+<h1>Enigmabox: Ablauf Abonnement</h1>
+
+<p>
+    Das Abonnement l&auml;uft bald ab oder ist bereits abgelaufen.<br />
+    Im <a href="http://box/subscription/">Webinterface</a> kann das Abo verl&auml;ngert werden.<br />
+    <a href="http://box/subscription/hide_notice/">Diese Meldung ausblenden</a>.
+</p>
+
+<p>
+    <strong>Hostid:</strong> {{ hostid }}<br />
+    <strong>Ablaufdatum:</strong> {{ internet_access_formatted }}
+</p>
+
+<h2>Passwort f&uuml;rs Webinterface vergessen?</h2>
+
+Falls du dein Passwort f&uuml;r die Administrationsoberfl&auml;che vergessen hast und nicht mehr darauf zugreifen kannst:
+
+<ul>
+    <li>Stecke den mitgelieferten USB-Stick in die Enigmabox ein</li>
+    <li>Warte eine Minute</li>
+    <li>Entferne den USB-Stick</li>
+    <li>Du kannst nun auf die Administrationsoberfl&auml;che zugreifen</li>
+</ul>
+
+<p>Auf dem USB-Stick ist das SSL-Zertifikat f&uuml;r die Aboverwaltung gespeichert. Es dient auch dazu, Passw&ouml;rter zur&uuml;ckzusetzen. Die Enigmabox pr&uuml;ft, ob das Zertifikat auf dem Stick dasselbe ist wie im System und setzt dann das Passwort der Administrationsoberfl&auml;che zur&uuml;ck.</p>
+{{/if_language_de}}
+
+{{#if_language_en}}
+<h1>Enigmabox: Subscription expiration notice</h1>
+
+<p>
+    Your subscription is about to expire or has already expired.<br />
+    Renew it in the <a href="http://box/subscription/">web interface</a>.<br />
+    <a href="http://box/subscription/hide_notice/">Hide this message</a>.
+</p>
+
+<p>
+    Hostid: {{ hostid }}<br />
+    Expiration date: {{ internet_access_formatted }}<br />
+    Forgot webinterface password? Reset it by plugging in the shipped USB stick into the Enigmabox.
+</p>
+{{/if_lang_en}}
+
