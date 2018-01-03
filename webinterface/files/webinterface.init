@@ -35,6 +35,6 @@ restart() {
 }
 
 init_db() {
-    /opt/enigmabox/webinterface/manage.py syncdb
+    cd /opt/enigmabox/webinterface/ && ./manage.py syncdb # chdir because of initial_data.json
     /opt/enigmabox/webinterface/manage.py migrate app --noinput
 }
