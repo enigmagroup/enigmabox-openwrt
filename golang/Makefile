@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=golang
 PKG_VERSION:=1.9.2
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=go1.9.2.linux-amd64.tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -30,8 +30,8 @@ define Build/Compile
 endef
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/usr/local
-	$(CP) -r $(PKG_BUILD_DIR)/go $(STAGING_DIR_HOSTPKG)/usr/local/
+	$(INSTALL_DIR) $(STAGING_DIR)/host/usr/local
+	$(CP) -r $(PKG_BUILD_DIR)/go $(STAGING_DIR)/host/usr/local/
 endef
 
 $(eval $(call BuildPackage,golang))
