@@ -448,5 +448,8 @@ else
     # since local phone calls may be active.
     start_cjdns
     set_status "cjdns" 1
+
+    # 6. Nov. 2018: Possible fix for boxes that won't come up
+    /usr/sbin/request-serverjson
 fi
 
