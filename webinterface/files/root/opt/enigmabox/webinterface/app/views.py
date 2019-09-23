@@ -1629,6 +1629,29 @@ def api_v1(request, api_url):
 
         return HttpResponse(hashed_password)
 
+    if api_url == 'get_firefoxAddon_info':
+        o = Option()
+        netstat = {
+            'dhcp': '0',
+            'dhcp_conflict': False,
+            'internet': '0',
+            'cjdns': '0',
+            'cjdns_internet': '0',
+        }
+        
+        message = "";
+        
+        for key, value in netstat.items():
+            try:
+                with open('/tmp/netstat-' + key, 'r') as f:
+                    message += str(f.read().strip()) + "\n"
+            except Exception:
+                pass
+        
+        message += str(o.get_value('internet_access')) + "\n" + str(o.get_value('webfilter_filter-ads', 0)) + "\n" + str(o.get_value('selected_country', 'ch')) + "\n" + str(o.get_value('teletext_enabled', 0)) + "\n" + str(o.get_value('personal_website', 0)) + "\n" + str(o.get_value('dokuwiki', 0)) + "\n" + str(o.get_value('owncloud', 0)) + "\n" + str(o.get_value('pastebin', 0)) + "\n" + o.get_value('ipv6').strip()
+        
+        return HttpResponse(message)
+
     return HttpResponse(json.dumps(resp), content_type='application/json')
 
 
